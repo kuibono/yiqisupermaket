@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "补货管理";
+    Layout = "~/Views/Shared/_WindowLayout.cshtml";
+}
+@model TEWorkFlow.Domain.Business.PcSupplementManage
+@section script
+{
+    <script type="text/javascript">
+        mini.parse();
+
+        function SaveData() {
+            var form = new mini.Form("form1");
+            var o = form.getData(true);
+
+            form.validate();
+            if (form.isValid() == false) return;
+
+            var json = mini.encode([o]);
+
+            $.ajax({
+                type: "post",
+                url: "/Business/SaveSupplement",
+                data: o,
+                cache: false,
+                success: function (text) {
+                    CloseWindow("save");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                    CloseWindow();
+                }
+            });
+        }
+        function onSupCodeValueChanged(e) {
+            var item = e.selected;
+            if (item) {
+                mini.get("EnCode").setValue(item.Id);
+            }
+        }
+
+        function onDCodeButtonEdit(e) {
+            var btnEdit = this;
+            mini.open({
+                url: "/Account/DepartmentSelectTree",
+                showMaxButton: false,
+                title: "选择部门",
+                width: 350,
+                height: 350,
+                ondestroy: function (action) {
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);
+                        if (data) {
+                            btnEdit.setValue(data.id);
+                            btnEdit.setText(data.id + "(" + data.text + ")");
+                        }
+                    }
+                }
+            });
+        }
+
+        function onGoodsCodeButtonEdit(e) {
+            var btnEdit = this;
+            mini.open({
+                url: "/Archives/GoodsSelectWindow",
+                showMaxButton: false,
+                title: "选择商品",
+                width: 400,
+                height: 350,
+                ondestroy: function (action) {
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);
+                        if (data) {
+                            btnEdit.setValue(data.Id);
+                            btnEdit.setText(data.GoodsName);
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+}
+<table class="edittable" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <td style="width: 60px;">
+            补货单号:
+        </td>
+        <td style="width: 240px;">
+            <input name="Id" value="@Model.Id" class="mini-textbox" readonly="readonly" style="width:100%"/>
+        </td>
+
+        <td style="width: 60px;">
+            供货商:
+        </td>
+        <td style="width: 240px;">
+            <input name="EnCode" class="mini-combobox"  valueField="Id" emptyText="请选择..." url="/Archives/GetAllSupplierArchiveNoPager" displayField="SupName" value="@Model.EnCode"  allowInput="false" showNullItem="true" nullItemText="请选择..." required="true"  style="width:100%"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            门店:
+        </td>
+        <td>
+            <input name="bCode" class="mini-combobox"  textField="bName" valueField="Id" emptyText="请选择..." url="/Archives/SearchAllranchesForTree" value="@Model.bCode"  allowInput="false" showNullItem="true" nullItemText="请选择..." required="true" style="width:100%"/>
+        </td>
+
+        <td>
+            创建时间:
+        </td>
+        <td>
+            <input name="CreateDate" value="@Model.CreateDate" class="mini-datepicker"  style="width:100%"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            操作员:
+        </td>
+        <td>
+            <input name="Operator" class="mini-combobox"  textField="text" valueField="id" emptyText="请选择..." url="/Category/AllUsers" value="@Model.Operator"  allowInput="false" showNullItem="true" nullItemText="请选择... " style="width:100%"/>
+        </td>
+        <td>金额：</td>
+        <td>
+            <input name="MoneyAmount" value="@Model.MoneyAmount" class="mini-spinner" minValue="-99999" maxValue="99999" decimalPlaces="2" required="true" style="width: 100%;" />
+        </td>
+    </tr>
+</table>
+</div>

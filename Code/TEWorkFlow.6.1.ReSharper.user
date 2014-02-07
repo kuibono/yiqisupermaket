@@ -1,0 +1,111 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="1BCD9140-E20D-4814-8ED0-F22DC0347F5B/d:WorkFlow/f:IInvoiceService.cs" caret="351" fromTop="0" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Styles/f:controls.css" caret="4761" fromTop="14" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Scripts/f:basic.js" caret="478" fromTop="9" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_validation.cs" caret="9565" fromTop="38" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:Extend.cs" caret="3178" fromTop="25" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:Env.cs" caret="7651" fromTop="19" />
+      <File id="5B1E28FD-70C3-4511-A801-F3ADFBEAF8E3/f:InvoiceSearchDto.cs" caret="0" fromTop="0" />
+      <File id="1BCD9140-E20D-4814-8ED0-F22DC0347F5B/d:WorkFlow/f:CaseService.cs" caret="359" fromTop="4" />
+      <File id="1BCD9140-E20D-4814-8ED0-F22DC0347F5B/d:WorkFlow/f:CheckPointService.cs" caret="887" fromTop="31" />
+      <File id="DDD1A0BF-884A-4F37-8186-04B30DBAEC94/d:Domain/f:IRepository.cs" caret="226" fromTop="9" />
+      <File id="0E74AF39-D8D6-4E78-8137-5F875F36A82B/f:Repository.cs" caret="514" fromTop="17" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:VerifyCode.cs" caret="12293" fromTop="38" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Views/d:Account/f:Login3.cshtml" caret="2335" fromTop="28" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Views/d:Account/f:login.cshtml" caret="4651" fromTop="0" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Models/f:AccountModels.cs" caret="716" fromTop="0" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Controllers/f:InvoiceController.cs" caret="7693" fromTop="18" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Controllers/f:AccountController.cs" caret="669" fromTop="12" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Config/f:Controllers.xml" caret="0" fromTop="0" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_string.cs" caret="3188" fromTop="10" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:VerifyCode.cs" caret="9252" fromTop="42" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_string.cs" caret="12668" fromTop="24" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_string.cs" caret="17258" fromTop="24" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_validation.cs" caret="198" fromTop="9" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_validation.cs" caret="10269" fromTop="47" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_string.cs" caret="24388" fromTop="16" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_string.cs" caret="24729" fromTop="26" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:Extend.cs" caret="3178" fromTop="25" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:Env.cs" caret="7955" fromTop="68" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:Env.cs" caret="152" fromTop="8" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:Env.cs" caret="5755" fromTop="20" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:Env.cs" caret="6051" fromTop="30" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:Env.cs" caret="7651" fromTop="19" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_string.cs" caret="28191" fromTop="24" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_string.cs" caret="34397" fromTop="9" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_string.cs" caret="35415" fromTop="30" />
+      <File id="A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5/f:_string.cs" caret="49701" fromTop="24" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Controllers/f:AccountController.cs" caret="332" fromTop="11" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Controllers/f:AccountController.cs" caret="890" fromTop="22" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Views/d:Account/f:login.cshtml" caret="6285" fromTop="26" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Models/f:AccountModels.cs" caret="684" fromTop="17" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Views/d:Account/f:login.cshtml" caret="5894" fromTop="27" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Controllers/f:AccountController.cs" caret="1136" fromTop="16" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Controllers/f:AccountController.cs" caret="1322" fromTop="22" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Views/d:Account/f:login.cshtml" caret="6482" fromTop="20" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Views/d:Account/f:login.cshtml" caret="4446" fromTop="27" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Controllers/f:AccountController.cs" caret="1767" fromTop="15" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Controllers/f:AccountController.cs" caret="2511" fromTop="33" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Controllers/f:AccountController.cs" caret="2072" fromTop="22" />
+      <File id="44C473CA-D3D6-4AE9-A944-1DF8770B40AD/d:Controllers/f:AccountController.cs" caret="682" fromTop="25" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False" />
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="static" priority="0" />
+      <Item value="TrimEnd`0" priority="0" />
+      <Item value="Env`0" priority="0" />
+      <Item value="using" priority="0" />
+      <Item value="NSH" priority="0" />
+      <Item value="Core" priority="0" />
+      <Item value="VSTO" priority="0" />
+      <Item value="public" priority="0" />
+      <Item value="ActionResult`0" priority="0" />
+      <Item value="VerifyCode`0" priority="0" />
+      <Item value="new" priority="1" />
+      <Item value="VerifyCode" priority="0" />
+      <Item value="v" priority="1" />
+      <Item value="HttpContext`0" priority="0" />
+      <Item value="return" priority="0" />
+      <Item value="null" priority="1" />
+      <Item value="Session" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:NSH.VSTO.VerifyCode">
+      <Item value="CreateImageOnPage`0" priority="0" />
+      <Item value="CreateForWordCode`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.HttpContext">
+      <Item value="Current" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:TEWorkFlow.Web.Client.Models.LoginModel">
+      <Item value="VCode" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Object">
+      <Item value="ToString`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpSessionStateBase">
+      <Item value="Remove`0" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>
