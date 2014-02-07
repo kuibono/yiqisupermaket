@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" style="display: block;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <title>登录</title>
+    <link type="text/css" rel="Stylesheet" href="@Url.Content("~/Styles/login.css")" />
+    <script src="~/scripts/boot.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/basic.js")"></script>
+    <style type="text/css">
+        div.shadow
+        {
+            margin: 0;
+            pading: 0;
+            z-index: 9999;
+            background-color: #000;
+            width: 100%;
+            height: 8000px;
+            filter: alpha(opacity=40);
+            -moz-opacity: 0.4;
+            -khtml-opacity: 0.4;
+            opacity: 0.4;
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            left: -50%;
+            text-align: center;
+            display: none;
+        }
+        div.cover
+        {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            margin-left: -100px;
+            z-index: 99999;
+            text-align: center;
+            color: #FFF;
+            display: none;
+        }
+    </style>
+    <body>
+        <form name="form1" method="post">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="backgiound">
+            <div class="box_top">
+                <div class="box_bott">
+                    <div class="help">
+                    </div>
+                    <div class="logo">
+                    </div>
+                    <div style="height: 10px;">
+                    </div>
+                    <div class="logincon">
+                        <div id="tag">
+                            <ul>
+                                <li id="tag1" class="dq"><a href="#">登录</a></li>
+                            </ul>
+                        </div>
+                        <div class="tagcon">
+                            <div id="tag1con" style="display: block;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="24%" class="logtitle">
+                                                用户名：
+                                            </td>
+                                            <td width="53%">
+                                                 <input type="hidden" id="logintype" name="logintype" value="0" />
+                                                <input type="text" id="UserName" name="UserName" class="inputTxt">
+                                            </td>
+                                            <td width="23%">
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="logtitle">
+                                                登录密码：
+                                            </td>
+                                            <td>
+                                                <input type="password" id="Password" name="Password" class="inputTxt">
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="logtitle">
+                                                验证码：
+                                            </td>
+                                            <td>
+                                                <input type="text" class="inputTxt" id="VCode" name="VCode" style="width: 75px;" />
+                                                <img id="_tokenImg" name="_tokenImg"  src="@Url.Content("~/Account/vcode")" onclick="this.src='@Url.Content("~/Account/vcode")?'+Math.random()" width="70"
+                                                    height="25">
+                                            </td>
+                                            <td align="left">
+                                                <a href="javascript:void(0)"
+                                                    onclick="document.getElementById('_tokenImg').src='@Url.Content("~/Account/vcode")?'+Math.random()" class="blue">换一张</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                &nbsp;
+                                            </td>
+                                            <td colspan="2" align="left">
+                                                <input type="submit" value="登   录" class="submitButton" name="Submit" id="Submit">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div id="validation" style="color:#F00;">@Html.ValidationSummary(true, "")</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="xiazai">
+                            </div>
+                            <div class="tagconbott">
+                            </div>
+                            <div class="tagconrig">
+                            </div>
+                        </div>
+                        <div class="tuiguang">
+                            <img src="/images/GetAdvertisementForLogin.jpg" />
+                        </div>
+                    </div>
+                    <div class="tishi">
+                        <div class="dianhua">
+                            <p>
+                                <b>· </b>妥善保管账号、密码等重要信息。</p>
+                            <p>
+                                <b>· </b>第一次登入本系统速度稍慢，推荐使用IE9以上，Google Chrome、火狐或者Safari浏览器。</p>
+                            <p>
+                                <b>· </b>如果忘记或丢失账号密码，请及时与工作人员联系找回，联系电话0411-84445788。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table width="653" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td>
+                        <div>
+                            <!-- InstanceBeginEditable name="hints" -->
+                            <!-- InstanceEndEditable -->
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footbar">
+            ©乐哈哈 版权所有</div>
+    </body>
+</html>

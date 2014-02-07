@@ -1,0 +1,248 @@
+﻿
+@model TEWorkFlow.Domain.Archives.BsBranchArchives
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>分店档案</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/demo.css" />
+    <script src="~/scripts/boot.js" type="text/javascript"></script>
+</head>
+<body>
+    <form id="form1" method="post">
+    <input name="Id" class="mini-hidden" value="@Model.Id" />
+    <div style="padding-left: 11px; padding-bottom: 5px;">
+        <table class="edittable" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <td style="width: 70px;">
+            名称:
+        </td>
+        <td colspan="3">
+            <input name="bName" value="@Model.bName" class="mini-textbox" required="true" maxLength="20" style="width:334px;"/>
+        </td>
+        <td style="width: 80px;">
+            拼音码:
+        </td>
+        <td style="width: 120px;">
+            <input name="PyCode" value="@Model.PyCode" class="mini-textbox" required="true" maxLength="100"/>
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 80px;">
+            分店码：
+        </td>
+        <td style="width: 120px;">
+            @if (string.IsNullOrEmpty(Model.Id)==false)
+            {
+                <input name="InputBCode" id="InputBCode" value="@Model.InputBCode" class="mini-textbox" maxLength="10" required="false" enabled="false" />
+            }
+            else
+            {
+                <input name="InputBCode" id="InputBCode" value="@Model.InputBCode" class="mini-textbox" maxLength="10" required="true" />
+            }
+        </td>
+        <td style="width: 80px;">
+            负责人:
+        </td>
+        <td style="width: 120px;">
+            <input name="Functionary" value="@Model.Functionary" class="mini-textbox" maxLength="10" required="true"/>
+        </td>
+        <td>
+            负责人电话:
+        </td>
+        <td>
+            <input name="FunctionaryPhone" value="@Model.FunctionaryPhone" class="mini-textbox"  maxLength="20"required="true"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            联系地址:
+        </td>
+        <td>
+            <input name="ContactAddress" value="@Model.ContactAddress" class="mini-textbox"  maxLength="50"/>
+        </td>
+        <td>
+            办公电话:
+        </td>
+        <td>
+            <input name="OfficePhone" value="@Model.OfficePhone" class="mini-textbox" maxLength="20"/>
+        </td>
+        <td>
+            传真:
+        </td>
+        <td>
+            <input name="FaxPhone" value="@Model.FaxPhone" class="mini-textbox"  maxLength="20"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            创建时间:
+        </td>
+        <td>
+            <input name="CreateDate" value="@Model.CreateDate" class="mini-datepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" required="true"/>
+        </td>
+        <td>
+            操作员:
+        </td>
+        <td>
+            <input name="Operator" class="mini-combobox"  textField="text" valueField="id" emptyText="请选择..." url="/Category/AllUsers" value="@Model.Operator"  allowInput="false" showNullItem="true" nullItemText="请选择..." value="@TEWorkFlow.Web.Client.Common.MyEnv.CurrentEmployee.Id"/>
+        </td>
+        <td>
+            审核人:
+        </td>
+        <td>
+            <input name="Assessor" class="mini-combobox"  textField="text" valueField="id" emptyText="请选择..." url="/Category/AllUsers" value="@Model.Assessor"  allowInput="false" showNullItem="true" nullItemText="请选择..." value="@TEWorkFlow.Web.Client.Common.MyEnv.CurrentEmployee.Id"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            是否审核:
+        </td>
+        <td align="left" style="padding-left: 2px;">
+            <div name="IfExamine" class="mini-checkbox" value="@Model.IfExamine" readOnly="false" text="审核" trueValue="1" falseValue="0">
+            </div>
+        </td>
+        <td>
+            开始时间:
+        </td>
+        <td>
+            <input name="ExamineDate" value="@Model.ExamineDate" class="mini-datepicker" required="true" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+        </td>
+        <td>
+            操作时间:
+        </td>
+        <td>
+            <input name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" required="true" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            是否同步:
+        </td>
+        <td align="left" style="padding-left: 2px;">
+            <div name="IfSend" class="mini-checkbox" checked="@Model.IfSend" readOnly="false" text="同步">
+            </div>
+        </td>
+        <td>
+            上传销售记录:
+        </td>
+        <td>
+            <div name="IfSyncSale" class="mini-checkbox" checked="@Model.IfSyncSale" readOnly="false" text="上传分店销售记录">
+            </div>
+        </td>
+        <td>
+            所属区域:
+        </td>
+        <td>
+            <input name="AreaCode" class="mini-combobox"  textField="text" valueField="id" emptyText="请选择..." url="/Category/PaAreas" value="@Model.AreaCode"  allowInput="false" showNullItem="true" nullItemText="请选择..."/>
+        </td
+    </tr>
+    <tr>
+        <td>
+            同步密码:
+        </td>
+        <td align="left" style="padding-left: 2px;">
+            <input name="SyncPassword" value="@Model.SyncPassword" class="mini-textbox"  maxLength="20"/>
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td
+    </tr>
+    <tr>
+        <td>
+            备注:
+        </td>
+        <td colspan="5">
+            <input name="Remark" value="@Model.Remark" class="mini-textarea" maxLength="250" style="width:530px;"/>
+        </td>
+    </tr>
+</table>
+    </div>
+    <div style="text-align: center; padding: 0 10px 10px 10px;">
+        <a class="mini-button" onclick="onOk" style="width: 60px; margin-right: 20px;">确定</a>
+        <a class="mini-button" onclick="onDis" style="width: 160px; margin-right: 20px;">下发分店档案</a>
+        <a class="mini-button" onclick="onCancel" style="width: 60px;">取消</a>
+    </div>
+    </form>
+    <script type="text/javascript">
+        var entityId = "@Model.Id";
+        mini.parse();
+
+        if (entityId == "") {
+            new mini.TextBox("InputBCode").enabled = false;
+        }
+
+        var form = new mini.Form("form1");
+
+        function GetData() {
+            var o = form.getData();
+            return o;
+        }
+        function CloseWindow(action) {
+            if (action == "close" && form.isChanged()) {
+                if (confirm("数据被修改了，是否先保存？")) {
+                    return false;
+                }
+            }
+            if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+            else window.close();
+        }
+        function onOk(e) {
+            SaveData();
+        }
+        function onCancel(e) {
+            CloseWindow("cancel");
+        }
+
+    </script>
+    <script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("form1");
+            var o = form.getData(true);
+
+            form.validate();
+            if (form.isValid() == false) return;
+
+            var json = mini.encode([o]);
+
+            $.ajax({
+                type: "post",
+                url: "/Archives/SaveBranchArchive",
+                data: o,
+                cache: false,
+                success: function (text) {
+                    CloseWindow("save");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                    CloseWindow();
+                }
+            });
+        }
+        function onDis() {
+            $.ajax({
+                type: "get",
+                url: "/Archives/AddAllArchivesToBranch/"+entityId,
+                cache: false,
+                success: function (text) {
+                    alert("下发成功!");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                    CloseWindow();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

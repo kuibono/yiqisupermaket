@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects default-lazy-init="true" xmlns="http://www.springframework.net">
+
+  <!--Repository-->
+  <object id="SysLoginPowerRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Sys.SysLoginPower>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+    
+  </object>
+  <object id="SysmodulecontentRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Sys.Sysmodulecontent>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="EmemployeearchiveRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Archives.Ememployeearchive>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  
+  <object id="EmPaPoliticsRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Category.EmPaPolitics>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="NationRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Category.Nation>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbSupplierArchivesRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Archives.FbSupplierArchives>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbPaSupTypeRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Category.FbPaSupType>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BsBranchArchivesRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Archives.BsBranchArchives>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BsPaClassRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Category.BsPaClass>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BsPaAreaRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Category.BsPaArea>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="GoodsArchivesRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Archives.GoodsArchives>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbPaGoodsGbRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Category.FbPaGoodsGb>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbPaGoodsGlRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Category.FbPaGoodsGl>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbPaGoodsGmRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Category.FbPaGoodsGm>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbPaGoodsGsRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Category.FbPaGoodsGs>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="PcPurchaseManageRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Business.PcPurchaseManage>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="PcPurchaseDetailRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Business.PcPurchaseDetail>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="PcPurchaseManageHistoryRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Business.PcPurchaseManageHistory>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="PcPurchaseDetailHistoryRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Business.PcPurchaseDetailHistory>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="SysPaDepartmentRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Sys.SysPaDepartment>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="PcReturnManageRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Business.PcReturnManage>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="PcReturnDetailRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Business.PcReturnDetail>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="PcSupplementManageRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Business.PcSupplementManage>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="PcSupplementDetailRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Business.PcSupplementDetail>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="SysEnterpriseArchivesRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Sys.SysEnterpriseArchives>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbPaBaseSetRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Sys.FbPaBaseSet>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="SysPostRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Sys.SysPost>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BranchPostRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Sys.BranchPost>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="TfDataDownloadRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Sys.TfDataDownload>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbGoodsSupplierRelationRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Archives.FbGoodsSupplierRelation>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbGoodsArchivesBarRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Archives.FbGoodsArchivesBar>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbGoodsArchivesSupplierRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Archives.FbGoodsArchivesSupplier>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="FbSupplierBranchRelationRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Archives.FbSupplierBranchRelation>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="SysPostSupplierRelationRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Sys.SysPostSupplierRelation>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="RtRetailManageRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Business.RtRetailManage>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="RtRetailDetailRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.Business.RtRetailDetail>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="RetailPurchaseCompareRepository" type="NSH.Repository.RepositoryGUID&lt;TEWorkFlow.Domain.RetailPurchaseCompare>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <!--Service-->
+  <object id="AppService" type="TEWorkFlow.Application.Service.AppService, TEWorkFlow.Application.Service">
+    <property name="SessionFactory" ref="NHibernateSessionFactory"/>
+  </object>
+
+  <object id="SysLoginPowerService" type="TEWorkFlow.Application.Service.Sys.SysLoginPowerService, TEWorkFlow.Application.Service">
+    <property name="SysLoginPowerRepository" ref="SysLoginPowerRepository"/>
+    <property name="EmployeeRepository" ref="EmemployeearchiveRepository"/>
+    <property name="SupplierRepository" ref="FbSupplierArchivesRepository"/>
+  </object>
+  <object id="SysmodulecontentService" type="TEWorkFlow.Application.Service.Sys.SysmodulecontentService, TEWorkFlow.Application.Service">
+    <property name="SysmodulecontentRepository" ref="SysmodulecontentRepository"/>
+  </object>
+  <object id="EmemployeearchiveService" type="TEWorkFlow.Application.Service.Archives.EmemployeearchiveService, TEWorkFlow.Application.Service">
+    <property name="EmemployeearchiveRepository" ref="EmemployeearchiveRepository"/>
+    <property name="EmPaPoliticsRepository" ref="EmPaPoliticsRepository"/>
+  </object>
+  <object id="EmPaPoliticsService" type="TEWorkFlow.Application.Service.Category.EmPaPoliticsService, TEWorkFlow.Application.Service">
+    <property name="EmPaPoliticsRepository" ref="EmPaPoliticsRepository"/>
+  </object>
+  <object id="NationService" type="TEWorkFlow.Application.Service.Category.NationService, TEWorkFlow.Application.Service">
+    <property name="NationRepository" ref="NationRepository"/>
+  </object>
+  <object id="FbSupplierArchivesService" type="TEWorkFlow.Application.Service.Archives.FbSupplierArchivesService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbSupplierArchivesRepository"/>
+    <property name="PaSupTypeRepository" ref="FbPaSupTypeRepository"/>
+    <property name="GoodsRepository" ref="GoodsArchivesRepository"/>
+    <property name="TfDataDownloadService" ref="TfDataDownloadService"/>
+  </object>
+  <object id="FbPaSupTypeService" type="TEWorkFlow.Application.Service.Category.FbPaSupTypeService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbPaSupTypeRepository"/>
+  </object>
+  <object id="BsBranchArchivesService" type="TEWorkFlow.Application.Service.Archives.BsBranchArchivesService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BsBranchArchivesRepository"/>
+    <property name="BsPaClassRepository" ref="BsPaClassRepository"/>
+    <property name="BsPaAreaRepository" ref="BsPaAreaRepository"/>
+    <property name="TfDataDownloadService" ref="TfDataDownloadService"/>
+    <property name="SupplierBranchRepository" ref="FbSupplierBranchRelationRepository"/>
+  </object>
+  <object id="BsPaClassService" type="TEWorkFlow.Application.Service.Category.BsPaClassService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BsPaClassRepository"/>
+  </object>
+  <object id="BsPaAreaService" type="TEWorkFlow.Application.Service.Category.BsPaAreaService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BsPaAreaRepository"/>
+  </object>
+  <object id="GoodsArchivesService" type="TEWorkFlow.Application.Service.Archives.GoodsArchivesService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="GoodsArchivesRepository"/>
+    <property name="GbRepository" ref="FbPaGoodsGbRepository"/>
+    <property name="GmRepository" ref="FbPaGoodsGmRepository"/>
+    <property name="GsRepository" ref="FbPaGoodsGsRepository"/>
+    <property name="GlRepository" ref="FbPaGoodsGlRepository"/>
+    <property name="SupplierRepository" ref="FbSupplierArchivesRepository"/>
+    <property name="FbPaBaseSetService" ref="FbPaBaseSetService"/>
+    <property name="TfDataDownloadService" ref="TfDataDownloadService"/>
+    <property name="GoodsArchivesBarRepository" ref="FbGoodsArchivesBarRepository"/>
+    <property name="GoodsArchivesSupplierRepository" ref="FbGoodsArchivesSupplierRepository"/>
+    <property name="FbGoodsArchivesBarService" ref="FbGoodsArchivesBarService"/>
+    <property name="FbGoodsArchivesSupplierService" ref="FbGoodsArchivesSupplierService"/>
+  </object>
+  <object id="FbPaGoodsGbService" type="TEWorkFlow.Application.Service.Category.FbPaGoodsGbService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbPaGoodsGbRepository"/>
+    <property name="FbPaBaseSetService" ref="FbPaBaseSetService"/>
+    <property name="TfDataDownloadService" ref="TfDataDownloadService"/>
+  </object>
+  <object id="FbPaGoodsGlService" type="TEWorkFlow.Application.Service.Category.FbPaGoodsGlService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbPaGoodsGlRepository"/>
+    <property name="FbPaBaseSetService" ref="FbPaBaseSetService"/>
+    <property name="TfDataDownloadService" ref="TfDataDownloadService"/>
+  </object>
+  <object id="FbPaGoodsGmService" type="TEWorkFlow.Application.Service.Category.FbPaGoodsGmService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbPaGoodsGmRepository"/>
+    <property name="FbPaBaseSetService" ref="FbPaBaseSetService"/>
+    <property name="TfDataDownloadService" ref="TfDataDownloadService"/>
+  </object>
+  <object id="FbPaGoodsGsService" type="TEWorkFlow.Application.Service.Category.FbPaGoodsGsService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbPaGoodsGsRepository"/>
+    <property name="FbPaBaseSetService" ref="FbPaBaseSetService"/>
+    <property name="TfDataDownloadService" ref="TfDataDownloadService"/>
+  </object>
+  <object id="PcPurchaseManageService" type="TEWorkFlow.Application.Service.Business.PcPurchaseManageService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="PcPurchaseManageRepository"/>
+    <property name="DetailRepository" ref="PcPurchaseDetailRepository"/>
+    <property name="DepartmentRepository" ref="SysPaDepartmentRepository"/>
+    <property name="BranchRepository" ref="BsBranchArchivesRepository"/>
+    <property name="EmemployeearchiveService" ref="EmemployeearchiveService"/>
+    <property name="PurchaseDetailRepository" ref="PcPurchaseDetailRepository"/>
+    <property name="GoodsArchivesRepository" ref="GoodsArchivesRepository"/>
+  </object>
+  <object id="PcPurchaseManageHistoryService" type="TEWorkFlow.Application.Service.Business.PcPurchaseManageHistoryService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="PcPurchaseManageHistoryRepository"/>
+    <property name="DetailHistoryRepository" ref="PcPurchaseDetailHistoryRepository"/>
+    <property name="DepartmentRepository" ref="SysPaDepartmentRepository"/>
+    <property name="BranchRepository" ref="BsBranchArchivesRepository"/>
+    <property name="EmemployeearchiveService" ref="EmemployeearchiveService"/>
+    <!--<property name="PurchaseDetailRepository" ref="PcPurchaseDetailRepository"/>-->
+    <property name="GoodsArchivesRepository" ref="GoodsArchivesRepository"/>
+  </object>
+  <object id="SysPaDepartmentService" type="TEWorkFlow.Application.Service.Sys.SysPaDepartmentService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="SysPaDepartmentRepository"/>
+  </object>
+  <object id="PcPurchaseDetailService" type="TEWorkFlow.Application.Service.Business.PcPurchaseDetailService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="PcPurchaseDetailRepository"/>
+    <property name="GoodsRepository" ref="GoodsArchivesRepository"/>
+  </object>
+  <object id="PcPurchaseDetailHistoryService" type="TEWorkFlow.Application.Service.Business.PcPurchaseDetailHistoryService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="PcPurchaseDetailHistoryRepository"/>
+    <property name="GoodsRepository" ref="GoodsArchivesRepository"/>
+  </object>
+  <object id="PcReturnManageService" type="TEWorkFlow.Application.Service.Business.PcReturnManageService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="PcReturnManageRepository"/>
+    <property name="DepartmentRepository" ref="SysPaDepartmentRepository"/>
+    <property name="BranchRepository" ref="BsBranchArchivesRepository"/>
+  </object>
+  <object id="PcReturnDetailService" type="TEWorkFlow.Application.Service.Business.PcReturnDetailService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="PcReturnDetailRepository"/>
+    <property name="GoodsRepository" ref="GoodsArchivesRepository"/>
+  </object>
+  <object id="PcSupplementManageService" type="TEWorkFlow.Application.Service.Business.PcSupplementManageService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="PcSupplementManageRepository"/>
+    <property name="DetailRepository" ref="PcSupplementDetailRepository"/>
+    <property name="DepartmentRepository" ref="SysPaDepartmentRepository"/>
+    <property name="BranchRepository" ref="BsBranchArchivesRepository"/>
+    <property name="FbSupplierRepository" ref="FbSupplierArchivesRepository"/>
+  </object>
+  <object id="PcSupplementDetailService" type="TEWorkFlow.Application.Service.Business.PcSupplementDetailService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="PcSupplementDetailRepository"/>
+    <property name="GoodsRepository" ref="GoodsArchivesRepository"/>
+  </object>
+  <object id="SysEnterpriseArchivesService" type="TEWorkFlow.Application.Service.Sys.SysEnterpriseArchivesService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="SysEnterpriseArchivesRepository"/>
+  </object>
+  <object id="FbPaBaseSetService" type="TEWorkFlow.Application.Service.Sys.FbPaBaseSetService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbPaBaseSetRepository"/>
+  </object>
+  <object id="SysPostService" type="TEWorkFlow.Application.Service.Sys.SysPostService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="SysPostRepository"/>
+    <property name="SysPostSupplierRelationRepository" ref="SysPostSupplierRelationRepository"/>
+    <property name="FbSupplierArchivesRepository" ref="FbSupplierArchivesRepository"/>
+  </object>
+  <object id="BranchPostService" type="TEWorkFlow.Application.Service.Sys.BranchPostService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BranchPostRepository"/>
+    <property name="FbSupplierArchivesRepository" ref="FbSupplierArchivesRepository"/>
+    <property name="TfDataDownloadService" ref="TfDataDownloadService"/>
+  </object>
+  <object id="TfDataDownloadService" type="TEWorkFlow.Application.Service.Sys.TfDataDownloadService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="TfDataDownloadRepository"/>
+    <property name="BranchRepository" ref="BsBranchArchivesRepository"/>
+    <property name="GoodsArchivesRepository" ref="GoodsArchivesRepository"/>
+    <property name="FbSupplierArchivesRepository" ref="FbSupplierArchivesRepository"/>
+    <property name="GbRepository" ref="FbPaGoodsGbRepository"/>
+    <property name="GmRepository" ref="FbPaGoodsGmRepository"/>
+    <property name="GsRepository" ref="FbPaGoodsGsRepository"/>
+    <property name="GlRepository" ref="FbPaGoodsGlRepository"/>
+    <property name="FbGoodsArchivesBarRepository" ref="FbGoodsArchivesBarRepository"/>
+    <property name="FbGoodsArchivesSupplierRepository" ref="FbGoodsArchivesSupplierRepository"/>
+    <property name="FbPaBaseSetRepository" ref="FbPaBaseSetRepository"/>
+  </object>
+  <object id="FbGoodsSupplierRelationService" type="TEWorkFlow.Application.Service.Archives.FbGoodsSupplierRelationService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbGoodsSupplierRelationRepository"/>
+  </object>
+  <object id="FbGoodsArchivesBarService" type="TEWorkFlow.Application.Service.Archives.FbGoodsArchivesBarService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbGoodsArchivesBarRepository"/>
+  </object>
+  <object id="FbGoodsArchivesSupplierService" type="TEWorkFlow.Application.Service.Archives.FbGoodsArchivesSupplierService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbGoodsArchivesSupplierRepository"/>
+  </object>
+  <object id="FbSupplierBranchRelationService" type="TEWorkFlow.Application.Service.Archives.FbSupplierBranchRelationService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbSupplierBranchRelationRepository"/>
+    <property name="SupplierRepository" ref="FbSupplierArchivesRepository"/>
+    <property name="BsBranchArchivesRepository" ref="BsBranchArchivesRepository"/>
+    <property name="TfDataDownloadService" ref="TfDataDownloadService"/>
+  </object>
+  <object id="SysPostSupplierRelationService" type="TEWorkFlow.Application.Service.Sys.SysPostSupplierRelationService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="SysPostSupplierRelationRepository"/>
+  </object>
+  <object id="RtRetailManageService" type="TEWorkFlow.Application.Service.Business.RtRetailManageService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="RtRetailManageRepository"/>
+    <property name="RtRetailDetailRepository" ref="RtRetailDetailRepository"/>
+  </object>
+  <object id="RtRetailDetailService" type="TEWorkFlow.Application.Service.Business.RtRetailDetailService, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="RtRetailDetailRepository"/>
+    <property name="GoodsRepository" ref="GoodsArchivesRepository"/>
+  </object>
+  <object id="ReportSevice" type="TEWorkFlow.Application.Service.Report.ReportSevice, TEWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="RetailPurchaseCompareRepository"/>
+  </object>
+</objects>

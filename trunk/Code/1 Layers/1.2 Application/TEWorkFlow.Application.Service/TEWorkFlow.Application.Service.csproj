@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1BCD9140-E20D-4814-8ED0-F22DC0347F5B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TEWorkFlow.Application.Service</RootNamespace>
+    <AssemblyName>TEWorkFlow.Application.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\lib\NHibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\..\lib\Spring.NET\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\..\..\lib\Spring.NET\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppService.cs" />
+    <Compile Include="Archives\BsBranchArchivesService.cs" />
+    <Compile Include="Archives\EmemployeearchiveService.cs" />
+    <Compile Include="Archives\FbGoodsArchivesBarService.cs" />
+    <Compile Include="Archives\FbGoodsArchivesSupplierService.cs" />
+    <Compile Include="Archives\FbGoodsSupplierRelationService.cs" />
+    <Compile Include="Archives\FbSupplierArchivesService.cs" />
+    <Compile Include="Archives\FbSupplierBranchRelationService.cs" />
+    <Compile Include="Archives\GoodsArchivesService.cs" />
+    <Compile Include="Archives\IBsBranchArchivesService.cs" />
+    <Compile Include="Archives\IEmemployeearchiveService.cs" />
+    <Compile Include="Archives\IFbGoodsArchivesBarService.cs" />
+    <Compile Include="Archives\IFbGoodsArchivesSupplierService.cs" />
+    <Compile Include="Archives\IFbGoodsSupplierRelationService.cs" />
+    <Compile Include="Archives\IFbSupplierBranchRelationService.cs" />
+    <Compile Include="Archives\IGoodsArchivesService.cs" />
+    <Compile Include="Archives\IFbSupplierArchivesService.cs" />
+    <Compile Include="Business\IPcPurchaseDetailService.cs" />
+    <Compile Include="Business\IPcPurchaseDetailHistoryService.cs" />
+    <Compile Include="Business\IPcPurchaseManageService.cs" />
+    <Compile Include="Business\IPcPurchaseManageHistoryService.cs" />
+    <Compile Include="Business\IPcReturnDetailService.cs" />
+    <Compile Include="Business\IPcReturnManageService.cs" />
+    <Compile Include="Business\IPcSupplementDetailService.cs" />
+    <Compile Include="Business\IPcSupplementManageService.cs" />
+    <Compile Include="Business\IRtRetailDetailService.cs" />
+    <Compile Include="Business\IRtRetailManageService.cs" />
+    <Compile Include="Business\PcPurchaseDetailService.cs" />
+    <Compile Include="Business\PcPurchaseDetailHistoryService.cs" />
+    <Compile Include="Business\PcPurchaseManageService.cs" />
+    <Compile Include="Business\PcPurchaseManageHistoryService.cs" />
+    <Compile Include="Business\PcReturnDetailService.cs" />
+    <Compile Include="Business\PcReturnManageService.cs" />
+    <Compile Include="Business\PcSupplementDetailService.cs" />
+    <Compile Include="Business\PcSupplementManageService.cs" />
+    <Compile Include="Business\RtRetailDetailService.cs" />
+    <Compile Include="Business\RtRetailManageService.cs" />
+    <Compile Include="Category\BsPaAreaService.cs" />
+    <Compile Include="Category\BsPaClassService.cs" />
+    <Compile Include="Category\EmPaPoliticsService.cs" />
+    <Compile Include="Category\FbPaGoodsGbService.cs" />
+    <Compile Include="Category\FbPaGoodsGlService.cs" />
+    <Compile Include="Category\FbPaGoodsGmService.cs" />
+    <Compile Include="Category\FbPaGoodsGsService.cs" />
+    <Compile Include="Category\FbPaSupTypeService.cs" />
+    <Compile Include="Category\IBsPaAreaService.cs" />
+    <Compile Include="Category\IBsPaClassService.cs" />
+    <Compile Include="Category\IEmPaPoliticsService.cs" />
+    <Compile Include="Category\IFbPaGoodsGbService.cs" />
+    <Compile Include="Category\IFbPaGoodsGlService.cs" />
+    <Compile Include="Category\IFbPaGoodsGmService.cs" />
+    <Compile Include="Category\IFbPaGoodsGsService.cs" />
+    <Compile Include="Category\IFbPaSupTypeService.cs" />
+    <Compile Include="Category\INationService.cs" />
+    <Compile Include="Category\NationService.cs" />
+    <Compile Include="IAppService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\IReportSevice.cs" />
+    <Compile Include="Report\ReportSevice.cs" />
+    <Compile Include="Sys\FbPaBaseSetService.cs" />
+    <Compile Include="Sys\IFbPaBaseSetService.cs" />
+    <Compile Include="Sys\ISysEnterpriseArchivesService.cs" />
+    <Compile Include="Sys\ISysLoginPowerService.cs" />
+    <Compile Include="Sys\ISysmodulecontentService.cs" />
+    <Compile Include="Sys\ISysPaDepartmentService.cs" />
+    <Compile Include="Sys\ISysPostService.cs" />
+    <Compile Include="Sys\ISysPostSupplierRelationService.cs" />
+    <Compile Include="Sys\ITfDataDownloadService.cs" />
+    <Compile Include="Sys\SysEnterpriseArchivesService.cs" />
+    <Compile Include="Sys\SysLoginPowerService.cs" />
+    <Compile Include="Sys\SysmodulecontentService.cs" />
+    <Compile Include="Sys\SysPaDepartmentService.cs" />
+    <Compile Include="Sys\SysPostService.cs" />
+    <Compile Include="Sys\SysPostSupplierRelationService.cs" />
+    <Compile Include="Sys\TfDataDownloadService.cs" />
+    <Compile Include="Sys\BranchPostService.cs" />
+    <Compile Include="Sys\IBranchPostService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\1.3 Domain\TEWorkFlow.Domain\TEWorkFlow.Domain.csproj">
+      <Project>{EE525669-C178-469E-BFB0-38E18900A1D3}</Project>
+      <Name>TEWorkFlow.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1.3 Domain\TEWorkFlow.Dto\TEWorkFlow.Dto.csproj">
+      <Project>{5B1E28FD-70C3-4511-A801-F3ADFBEAF8E3}</Project>
+      <Name>TEWorkFlow.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1.4 Infrastructure\1.4.1 NSH\NSH.Core\NSH.Core.csproj">
+      <Project>{DDD1A0BF-884A-4F37-8186-04B30DBAEC94}</Project>
+      <Name>NSH.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1.4 Infrastructure\1.4.1 NSH\NSH.Repository\NSH.Repository.csproj">
+      <Project>{0E74AF39-D8D6-4E78-8137-5F875F36A82B}</Project>
+      <Name>NSH.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1.4 Infrastructure\1.4.1 NSH\NSH.VSTO\NSH.VSTO.csproj">
+      <Project>{A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5}</Project>
+      <Name>NSH.VSTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeWorkFlow.Application.DataEntity\TeWorkFlow.Application.DataEntity.csproj">
+      <Project>{23FE64BD-6763-4A42-9236-1CD48A017FE3}</Project>
+      <Name>TeWorkFlow.Application.DataEntity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Service.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

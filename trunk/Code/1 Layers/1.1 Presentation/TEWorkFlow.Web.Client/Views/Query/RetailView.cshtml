@@ -1,0 +1,188 @@
+﻿@{
+    ViewBag.Title = "采购管理";
+    Layout = "~/Views/Shared/_WindowLayoutView.cshtml";
+}
+
+@model TEWorkFlow.Domain.Business.RtRetailManage
+@section script
+{
+    <script type="text/javascript" src="~/Scripts/jquery.PrintArea.js"></script>
+    <script type="text/javascript">
+        mini.parse();
+        labelModel(new mini.Form("form1"));
+        var grid = mini.get('datagrid1');
+        grid.url = "/Business/GetRetailDetailList/" + entityId;
+        grid.reload();
+
+
+        function newRow() {
+            if (grid.isEditing()) {
+                if (grid.isEditingRow(grid.getRow(0)) && grid.getRow(0)._state == "added") {
+                    return;
+                }
+                grid.cancelEdit();
+            }
+            var row = {};
+            grid.addRow(row, 0);
+
+            grid.cancelEdit();
+            grid.beginEditRow(row);
+        }
+        function editRow(row_uid) {
+            if (grid.isEditing()) {
+                if (grid.isEditingRow(grid.getRow(0)) && grid.getRow(0)._state == "added") {
+                    //grid.removeRow(grid.getRow(0));
+                    return;
+                }
+                grid.cancelEdit();
+            }
+            var row = grid.getRowByUID(row_uid);
+            if (row) {
+                grid.cancelEdit();
+                grid.beginEditRow(row);
+            }
+        }
+        function cancelRow(row_uid) {
+            grid.reload();
+        }
+
+        function updateRow(row_uid) {
+            var row = grid.getRowByUID(row_uid);
+            if (grid.isValid() == false) {
+                return false;
+            }
+            grid.commitEdit();
+            var rowData = grid.getChanges()[0];
+            if (!rowData) {
+                //没有改动
+                return;
+            }
+            if (!rowData.GoodsCode) {
+                alert("没有选择产品");
+                grid.reload();
+                return;
+            }
+            grid.loading("保存中，请稍后......");
+            var json = mini.encode(rowData);
+
+            $.ajax({
+                url: "/Business/SaveGoodsToPurchase/" + entityId,
+                data: { "data": json },
+                type: "post",
+                success: function (text) {
+                    grid.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+
+        }
+        var issaving = false;
+        function SaveData() {
+
+            var form = new mini.Form("form1");
+            var o = form.getData(true);
+            labelModel(form);
+            form.validate();
+            if (form.isValid() == false) return;
+
+            var json = mini.encode([o]);
+            issaving = true;
+            $.ajax({
+                type: "post",
+                url: "/Business/SavePurchase",
+                data: o,
+                cache: false,
+                success: function (text) {
+                    issaving = false;
+                    CloseWindow("save");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText + "err");
+                    issaving = false;
+                    CloseWindow();
+                }
+            });
+        }
+        function onBoolRenderer(e) {
+            if (e.value == "true") return "是";
+            else return "否";
+        }
+        
+    </script>
+}
+<h1 style="text-align:center">销售单
+<img src="http://chart.googleapis.com/chart?cht=qr&chs=30x30&choe=UTF-8&chld=L|4&chl=@Model.Id" id="qr" style="display:none;float:right;" />
+</h1>
+
+<table class="edittable" border="1" cellpadding="0" cellspacing="0" style="width:95%">
+    <tr>
+        <td>
+            单号:
+        </td>
+        <td align="left">
+            @Model.Id
+        </td>
+        <td>
+            销售时间:
+        </td>
+        <td align="left">
+            @Model.RtDate.ToString("yyyy-MM-dd")
+        </td>
+        <td>
+            销售方式:
+        </td>
+        <td align="left">
+            @Model.RtType
+        </td>
+    </tr>
+    <tr>
+        <td>
+            数量:
+        </td>
+        <td align="left">
+            @Model.SaleQty
+        </td>
+        <td>
+            销售金额:
+        </td>
+        <td align="left">
+            @Model.SaleMoney.ToString("#.##")
+        </td>
+        <td>
+            折扣金额:
+        </td>
+        <td align="left">
+             @Model.DiscountMoney.ToString("#.##")
+        </td>
+    </tr>
+</table>
+<div id="datagrid1" class="mini-datagrid" style="width: 95%; min-height: 200px;" idfield="Id"
+    emptytext="无产品" showemptytext="true"
+    showpager="false" showSummaryRow="true">
+    <div property="columns">
+        <div field="GoodsName" headeralign="center">
+            产品名称
+        </div>
+        
+        <div field="SaleQty" width="40"  headeralign="center" align="center" allowsort="true"  summaryType="sum">
+            数量
+        </div>
+        <div field="SalePrice" width="50" headeralign="center" align="center" allowsort="true"
+            datatype="currency" currencyunit="￥" summaryType="avg">
+            原销售单价
+        </div>
+        <div field="RealPrice" width="50" headeralign="center" align="center" allowsort="true"
+            datatype="currency" currencyunit="￥" summaryType="avg">
+            销售单价
+        </div>
+        <div field="SaleMoney" width="60" headeralign="center" align="center" allowsort="true"
+            datatype="currency" currencyunit="￥" summaryType="sum">
+            金额
+        </div>
+        <div field="GoodsBarCode"  headeralign="center" align="center" allowsort="true">
+            条码
+        </div>
+    </div>
+</div>
