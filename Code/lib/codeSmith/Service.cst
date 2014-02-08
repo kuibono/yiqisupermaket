@@ -18,14 +18,9 @@ Description: 数据库实体类
 *生成时间：<%= DateTime.Now.ToLocalTime() %>
 *生成者：<%= opuser %>
 */
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NSH.Core.Domain;
-using NSH.Core.Domain.Specifications;
-using Spring.Transaction.Interceptor;
-using TEWorkFlow.Dto;
+using YiQiWorkFlow.Domain.Archives;
+using YiQiWorkFlow.Domain.Basement;
 
 namespace <%= this.NameSpace %>
 {
@@ -61,14 +56,12 @@ namespace <%= this.NameSpace %>
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NSH.Core.Domain;
-using NSH.Core.Domain.Specifications;
 using Spring.Transaction.Interceptor;
-using TEWorkFlow.Dto;
+using YiQiWorkFlow.Domain.Archives;
+using YiQiWorkFlow.Domain.Basement;
 
 namespace <%= this.NameSpace %>
 {
@@ -168,14 +161,13 @@ namespace <%= this.NameSpace %>
 					|| l.<%= StringUtil.ToPascalCase(column.Name) %>.Contains(key)
 					<%}
 					}%>
-                        || l.SupName.Contains(key)
+                    //    || l.SupName.Contains(key)
                     select l;
 					
                 
             }
             q = q.Skip((pageIndex - 1) * pageSize).Take(pageSize);
             var result = q.ToList();
-            FillFbPaSupType(result);
             return result.ToList();
         }
 
