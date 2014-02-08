@@ -21,6 +21,7 @@
     <property name="MappingAssemblies">
       <list>
         <!--<value>NSH.Authorization</value>-->
+        <value>YiQiWorkFlow.Domain</value>
         <value>${db.mappingassemblies}</value>
       </list>
     </property>

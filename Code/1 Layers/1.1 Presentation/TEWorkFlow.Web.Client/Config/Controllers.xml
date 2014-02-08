@@ -67,4 +67,7 @@
   <object type="TEWorkFlow.Web.Client.Controllers.ReportController, TEWorkFlow.Web.Client" singleton="false" >
     <property name="ReportSevice" ref="ReportSevice" />
   </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.TestController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="FbGoodsArchivesService" ref="FbGoodsArchivesService" />
+  </object>
 </objects>

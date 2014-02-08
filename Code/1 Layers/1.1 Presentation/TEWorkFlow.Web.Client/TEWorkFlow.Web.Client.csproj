@@ -16,6 +16,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -172,6 +176,7 @@
     <Compile Include="Controllers\QueryController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,22 +197,28 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <EmbeddedResource Include="Config\Controllers.xml" />
+    <EmbeddedResource Include="Config\Controllers.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\activate.gif" />
     <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\Ajax\loading.gif" />
+    <Content Include="Images\back_to_top.gif" />
     <Content Include="Images\bannerLeft.jpg" />
     <Content Include="Images\bannerRight.jpg" />
     <Content Include="Images\bt_bg_log.jpg" />
     <Content Include="Images\calculator_edit.png" />
     <Content Include="Images\checkpoint.png" />
+    <Content Include="Images\Critical.png" />
     <Content Include="Images\database.png" />
     <Content Include="Images\delete.png" />
     <Content Include="Images\delete_16x16.gif" />
     <Content Include="Images\folder_explore.png" />
     <Content Include="Images\GetAdvertisementForLogin.jpg" />
+    <Content Include="Images\Help.png" />
+    <Content Include="Images\Info.png" />
     <Content Include="Images\jp-mountain%402x.jpg" />
     <Content Include="Images\loginBg.jpg" />
     <Content Include="Images\loginPanel.gif" />
@@ -268,10 +279,12 @@
     <Content Include="Images\TiffViewer\roateleft.png" />
     <Content Include="Images\TiffViewer\roateright.png" />
     <Content Include="Images\tools-sprites-trans.gif" />
+    <Content Include="Images\Warning.png" />
     <Content Include="robot.txt" />
     <Content Include="Scripts\basic.js" />
     <Content Include="Scripts\boot.js" />
     <Content Include="Scripts\dialog-edit.js" />
+    <Content Include="Scripts\editPage.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <Content Include="Scripts\jquery.PrintArea.js" />
@@ -976,6 +989,7 @@
     <Content Include="Styles\controls.css" />
     <Content Include="Styles\default.css" />
     <Content Include="Styles\demo.css" />
+    <Content Include="Styles\editPage.css" />
     <Content Include="Styles\email_go.png" />
     <Content Include="Styles\email_open.png" />
     <Content Include="Styles\header.gif" />
@@ -1010,6 +1024,10 @@
       <Project>{1BCD9140-E20D-4814-8ED0-F22DC0347F5B}</Project>
       <Name>TEWorkFlow.Application.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\1.2 Application\YiQiWorkFlow.Application.Service\YiQiWorkFlow.Application.Service.csproj">
+      <Project>{eb392179-ae21-41e3-84ec-00f551ea9ba2}</Project>
+      <Name>YiQiWorkFlow.Application.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\1.3 Domain\TEWorkFlow.Domain\TEWorkFlow.Domain.csproj">
       <Project>{EE525669-C178-469E-BFB0-38E18900A1D3}</Project>
       <Name>TEWorkFlow.Domain</Name>
@@ -1017,6 +1035,10 @@
     <ProjectReference Include="..\..\1.3 Domain\TEWorkFlow.Dto\TEWorkFlow.Dto.csproj">
       <Project>{5B1E28FD-70C3-4511-A801-F3ADFBEAF8E3}</Project>
       <Name>TEWorkFlow.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1.3 Domain\YiQiWorkFlow.Domain\YiQiWorkFlow.Domain.csproj">
+      <Project>{db557bbf-c203-430e-8b93-ed58de9804f2}</Project>
+      <Name>YiQiWorkFlow.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\1.4 Infrastructure\1.4.1 NSH\NSH.Core\NSH.Core.csproj">
       <Project>{DDD1A0BF-884A-4F37-8186-04B30DBAEC94}</Project>
@@ -1104,6 +1126,7 @@
     <Content Include="Views\Home\BranchPostList.cshtml" />
     <Content Include="Views\Home\BranchPostEdit.cshtml" />
     <Content Include="Views\Account\副本 ELogin.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace TEWorkFlow.Domain.Basement
+namespace YiQiWorkFlow.Domain.Basement
 {
     /// <summary>
     /// 验证类型
@@ -11,6 +12,7 @@ namespace TEWorkFlow.Domain.Basement
     [Flags]
     public enum ValidateType
     {
+        NoValidate=0x0000,
         /// <summary>
         /// 字段或属性是否为空字串
         /// </summary>
@@ -101,7 +103,7 @@ namespace TEWorkFlow.Domain.Basement
             set { this._maxLength = value; }
         }
 
-        private string _Name="";
+        private string _Name = "";
         public string Name
         {
             get
@@ -148,5 +150,4 @@ namespace TEWorkFlow.Domain.Basement
             this._validateType = validateType;
         }
     }
-
 }
