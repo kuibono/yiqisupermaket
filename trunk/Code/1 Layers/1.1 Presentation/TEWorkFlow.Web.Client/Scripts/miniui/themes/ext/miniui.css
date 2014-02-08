@@ -534,7 +534,7 @@ body .mini-button-disabled *
 
 .mini-textbox
 {
-    width:125px;
+    width:99% !important;
     height:21px;
     display:inline-block;
       
@@ -631,7 +631,7 @@ body .mini-textbox-disabled .mini-textbox-border
 
 .mini-buttonedit
 {
-    width:125px;
+    width:99% !important;
     height:21px;
     display:inline-block;    
     vertical-align:middle;    

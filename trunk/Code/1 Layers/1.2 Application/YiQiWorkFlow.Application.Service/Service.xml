@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects default-lazy-init="true" xmlns="http://www.springframework.net">
+  <!--Repository-->
+  <object id="FbGoodsArchivesRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Archives.FbGoodsArchives>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  
+  
+  <!--Service-->
+  <object id="FbGoodsArchivesService" type="YiQiWorkFlow.Application.Service.Archives.FbGoodsArchivesService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbGoodsArchivesRepository"/>
+  </object>
+</objects>
