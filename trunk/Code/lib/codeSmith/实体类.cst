@@ -20,10 +20,11 @@ Description: 数据库实体类
 */
 using System;
 using NSH.Core.Domain;
+using YiQiWorkFlow.Domain.Basement;
 namespace <%= this.NameSpace %>
 {
 	///<summary>
-	///表<%= this.SourceTable.Name %>的实体类
+	///表<%= this.SourceTable.Name %>的实体类(<%= this.SourceTable.Description %>)
 	///</summary>
 	public class <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> : EntityGUIDBase, IAggregateRootGUID
 	{
@@ -57,7 +58,15 @@ namespace <%= this.NameSpace %>
 			{
 				str_attr=str_attr.Substring(0,str_attr.Length-1);
 			}
-			str_attr+=",Name=\""+ column.Description.Trim('\n').Trim('\r') +"\"";
+			if(str_attr.Trim().EndsWith("("))
+			{
+				str_attr+="ValidateType.NoValidate,";
+			}
+			if(str_attr.Trim().EndsWith(",")==false )
+			{
+				str_attr+=",";
+			}
+			str_attr+="Name=\""+ column.Description.Trim('\n').Trim('\r') +"\"";
 			str_attr+=")]";
 			Response.WriteLine("		"+str_attr);
 		%>
