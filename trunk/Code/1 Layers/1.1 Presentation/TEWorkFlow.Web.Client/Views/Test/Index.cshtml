@@ -6,6 +6,27 @@
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
     <script type="text/javascript"> var pageTitle = "商品档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/8 22:05:54"; </script>
+    <script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+            var json = mini.encode([o]);            $.ajax({
+                url: "../data/AjaxService.aspx?method=SaveEmployees",
+                type: 'post',
+                data: { data: json },
+                cache: false,
+                success: function (text) {
+                    //CloseWindow("save");
+                    alert("success");
+                    form.unmask();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_FbGoodsArchives .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_FbGoodsArchives").show("fast");
+                    form.unmask();
+                }
+            });        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -44,7 +65,10 @@
         </div>
         <div class="tooltip critical" id="Tooltip_Critical_FbGoodsArchives">
             <img src="/images/critical.png" alt="Warning" height="48" width="48" />
-            此处填写关于商品档案编辑页面的出错信息
+            <p class="content">
+                此处填写关于商品档案编辑页面的出错信息
+            </p>
+            
             <div class="button-close">
                 x</div>
             <div class="buttonGroup">
@@ -131,7 +155,7 @@
             </div>
 
             <div class="ablock">
-                <label for="Control_GoodsState">1正常，2淘汰，3禁采销售，4禁采禁销，5废除:</label>
+                <label for="Control_GoodsState">状态zx:</label>
                 <input type="text" class="mini-textbox" name="GoodsState" id="Control_GoodsState" vtype="maxLength:20" />
             </div>
 
@@ -291,7 +315,7 @@
         </div>
         <div class="control-panel">
             <div class="control-button">
-                <input type="submit" class="myButton" value="保存(Ctrl+S)" />
+                <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                 <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
                 <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
             </div>

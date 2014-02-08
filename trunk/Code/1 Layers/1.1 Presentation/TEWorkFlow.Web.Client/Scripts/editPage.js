@@ -37,6 +37,7 @@
     }
 };
 $(function () {
+    mini.parse();
     var form = new mini.Form("#formMain"); // default form
     $(window).scroll(function () {
         if ($(document).scrollTop() > 100) {
@@ -65,27 +66,29 @@ $(function () {
             $(this).hide();
         }
     });
-    $("#formMain").submit(function () {
+    $("#btnFormSubmit").click(function () {
         form.validate();
         if (form.isValid() == false) return false;
 
-        form.loading();
+        //form.loading();
         //提交数据
-        var data = form.getData();
-        var json = mini.encode(data);
-        //setTimeout(function () { from.unmask(); }, 1000);
-        from.unmask();
+        if (SaveData) {
+            SaveData();
+        } else {
+            alert("开发人员注意，保存函数未定义！");
+        }
+        form.unmask()
         return false;
     });
     $(document).keydown(function (event) {
         //ctrl+s
         if (event.keyCode == 83 && event.ctrlKey) {
-            $("#formMain").submit();
+            $("#btnFormSubmit").click();
             return false;
         }
         //enter+ctrl
         else if (event.keyCode == 13 && event.ctrlKey) {
-            $("#formMain").submit();
+            $("#btnFormSubmit").click();
             return false;
         }
         //esc
@@ -116,15 +119,19 @@ $(function () {
                 callback: function (action) {
                     if (action == "yes") {
                         //save and close
+                        closeWithNoValidate();
                         $("#formMain").submit();
                     } else if (action == "no") {
                         //close
+                        closeWithNoValidate();
                     } else {
                         //return false;
                     }
                 }
             });
         }
+    }
+    function closeWithNoValidate() {
     }
 
 });
