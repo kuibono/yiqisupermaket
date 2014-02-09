@@ -54,6 +54,7 @@ namespace <%= this.NameSpace %>
 			{
 				str_attr+="ValidateType.MaxLength , MaxLength = "+column.Size+" ";	
 			}
+			
 			if(str_attr.EndsWith("|"))
 			{
 				str_attr=str_attr.Substring(0,str_attr.Length-1);
@@ -67,10 +68,13 @@ namespace <%= this.NameSpace %>
 				str_attr+=",";
 			}
 			str_attr+="Name=\""+ column.Description.Trim('\n').Trim('\r') +"\"";
+			if(column.ExtendedProperties["CS_Default"] != null &&column.ExtendedProperties["CS_Default"].Value!=null && column.ExtendedProperties["CS_Default"].Value.ToString().Trim()!=""){
+				str_attr+=",DefaultValue="+column.ExtendedProperties["CS_Default"].Value;
+			}
 			str_attr+=")]";
 			Response.WriteLine("		"+str_attr);
 		%>
-		public virtual <%= CSharpAlias[column.SystemType.FullName] %> <%= StringUtil.ToPascalCase(column.Name) %>{get ; set; }
+		public virtual <%= CSharpAlias[column.SystemType.FullName]+GetColunmNullable(column) %> <%= StringUtil.ToPascalCase(column.Name) %>{get ; set; }
 		
 		<% } %>
 		protected override void Validate()
@@ -80,6 +84,43 @@ namespace <%= this.NameSpace %>
 		public <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> Clone()
         {
             return (<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>)this.MemberwiseClone();
+        }
+		/// <summary>
+        /// 初始化实体
+        /// </summary>
+        /// <returns></returns>
+        public static <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> Initial()
+        {
+            <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> m = new <%= StringUtil.ToPascalCase(this.SourceTable.Name) %>();
+            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+			<% foreach (ColumnSchema column in this.SourceTable.Columns) {  
+				if(column.ExtendedProperties["CS_Default"] != null &&column.ExtendedProperties["CS_Default"].Value!=null && column.ExtendedProperties["CS_Default"].Value.ToString().Trim()!="" && column.IsPrimaryKeyMember==false){
+				string defaultValue=column.ExtendedProperties["CS_Default"].Value.ToString();
+				if(column.DataType==DbType.String||column.DataType==DbType.AnsiString)
+				{
+					defaultValue=defaultValue.Replace("(N'","\"").Replace("('","\"").Replace("')","\"");
+				}
+				if(column.DataType==DbType.Int16||column.DataType==DbType.Int32||column.DataType==DbType.Int64||column.DataType==DbType.Decimal)
+				{
+					defaultValue=defaultValue.Replace("(","").Replace(")","");
+					if(column.DataType==DbType.Decimal)
+					{
+						defaultValue=defaultValue.Trim()+"M";
+					}
+				}
+				if(column.DataType==DbType.DateTime||column.DataType==DbType.DateTime2)
+				{
+					if(defaultValue.ToLower().Contains("getdate"))
+					{
+						defaultValue="DateTime.Now";
+					}
+				}
+			%>
+			m.<%= StringUtil.ToPascalCase(column.Name) %>=<%=defaultValue%>;
+			<%
+				}
+			}%>
+            return m;
         }
 	}
 	 
@@ -106,5 +147,17 @@ public override void Render(TextWriter tw)
    this.Response.AddTextWriter(fs1);
    base.Render(tw);
    fs1.Close();
+}
+
+public string GetColunmNullable(ColumnSchema column)
+{
+	if(column.DataType==DbType.DateTime ||column.DataType==DbType.DateTime)
+	{
+		if(column.AllowDBNull)
+		{
+			return "?";
+		}
+	}
+	return "";
 }
 </script>
