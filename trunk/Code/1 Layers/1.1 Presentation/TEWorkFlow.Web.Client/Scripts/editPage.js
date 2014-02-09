@@ -133,6 +133,7 @@ $(function () {
     }
     function closeWithNoValidate() {
     }
+    $("input:text:visible").first().focus();
 
 });
 

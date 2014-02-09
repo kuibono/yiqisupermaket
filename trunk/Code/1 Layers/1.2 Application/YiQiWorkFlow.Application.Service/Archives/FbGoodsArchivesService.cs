@@ -15,6 +15,10 @@ namespace YiQiWorkFlow.Application.Service.Archives
         [Transaction]
         public string Create(FbGoodsArchives entity)
         {
+            if (entity.HaveId == false)
+            {
+                entity.GenerateId();
+            }
             return EntityRepository.Save(entity);
         }
 
