@@ -4,7 +4,6 @@
     <id name="Id" type="string" column="goods_code" >
       <generator class="assigned" />
     </id>
-    <property name="GoodsCode" column="goods_code" type="string" />
     <property name="GoodsBarCode" column="goods_bar_code" type="string" />
     <property name="GoodsSubCode" column="goods_sub_code" type="string" />
     <property name="GbCode" column="gb_code" type="string" />

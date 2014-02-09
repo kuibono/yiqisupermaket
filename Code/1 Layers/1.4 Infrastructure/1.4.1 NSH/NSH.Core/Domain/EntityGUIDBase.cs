@@ -131,7 +131,12 @@ namespace NSH.Core.Domain
                 //获取验证特性
                 object[] validateContent = property.GetCustomAttributes(typeof(ValidateAttribute), true);
 
-                string name = ((ValidateAttribute)(validateContent[0])).Name;
+                string name="";
+                try
+                {
+                    name = ((ValidateAttribute)(validateContent[0])).Name;
+                }
+                catch { }
                 if (string.IsNullOrEmpty(name))
                 {
                     name = property.Name;
@@ -276,6 +281,14 @@ namespace NSH.Core.Domain
                 }
             }
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// 生成id
+        /// </summary>
+        public void GenerateId()
+        {
+            this.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿/*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/8 20:31:18
+*生成时间：2014/2/9 12:15:16
 *生成者：kuibono
 */
 using System;
@@ -58,7 +58,7 @@ namespace YiQiWorkFlow.Domain.Archives
         /// <summary>
         /// 商品类型
         /// </summary>
-        [Validate(ValidateType.IsEmpty, Name = "商品类型")]
+        [Validate(ValidateType.IsEmpty, Name = "商品类型", DefaultValue = ('1'))]
         public virtual string GoodsType { get; set; }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace YiQiWorkFlow.Domain.Archives
         /// <summary>
         /// 1正常，2淘汰，3禁采销售，4禁采禁销，5废除
         /// </summary>
-        [Validate(ValidateType.NoValidate, Name = "1正常，2淘汰，3禁采销售，4禁采禁销，5废除")]
+        [Validate(ValidateType.NoValidate, Name = "1正常，2淘汰，3禁采销售，4禁采禁销，5废除", DefaultValue = ('1'))]
         public virtual string GoodsState { get; set; }
 
         /// <summary>
@@ -148,37 +148,37 @@ namespace YiQiWorkFlow.Domain.Archives
         /// <summary>
         /// 包装系数
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "包装系数")]
+        [Validate(ValidateType.IsDecimal, Name = "包装系数", DefaultValue = ((1)))]
         public virtual decimal PackCoef { get; set; }
 
         /// <summary>
         /// 最小订量
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "最小订量")]
+        [Validate(ValidateType.IsDecimal, Name = "最小订量", DefaultValue = ((1)))]
         public virtual decimal OfferMin { get; set; }
 
         /// <summary>
         /// 进项税率
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "进项税率")]
+        [Validate(ValidateType.IsDecimal, Name = "进项税率", DefaultValue = ((0.17)))]
         public virtual decimal InputTax { get; set; }
 
         /// <summary>
         /// 销项税率
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "销项税率")]
+        [Validate(ValidateType.IsDecimal, Name = "销项税率", DefaultValue = ((0.17)))]
         public virtual decimal OutputTax { get; set; }
 
         /// <summary>
         /// 库存上限
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "库存上限")]
+        [Validate(ValidateType.IsDecimal, Name = "库存上限", DefaultValue = ((0)))]
         public virtual decimal StockUpperLimit { get; set; }
 
         /// <summary>
         /// 库存下限
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "库存下限")]
+        [Validate(ValidateType.IsDecimal, Name = "库存下限", DefaultValue = ((0)))]
         public virtual decimal StockLowerLimit { get; set; }
 
         /// <summary>
@@ -202,25 +202,25 @@ namespace YiQiWorkFlow.Domain.Archives
         /// <summary>
         /// 含税进价
         /// </summary>
-        [Validate(ValidateType.IsEmpty | ValidateType.IsDecimal, Name = "含税进价")]
+        [Validate(ValidateType.IsEmpty | ValidateType.IsDecimal, Name = "含税进价", DefaultValue = ((0)))]
         public virtual decimal PurchasePrice { get; set; }
 
         /// <summary>
         /// 不含税进价
         /// </summary>
-        [Validate(ValidateType.IsEmpty | ValidateType.IsDecimal, Name = "不含税进价")]
+        [Validate(ValidateType.IsEmpty | ValidateType.IsDecimal, Name = "不含税进价", DefaultValue = ((0)))]
         public virtual decimal NontaxPurchasePrice { get; set; }
 
         /// <summary>
         /// 平均成本
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "平均成本")]
+        [Validate(ValidateType.IsDecimal, Name = "平均成本", DefaultValue = ((0)))]
         public virtual decimal AvgCost { get; set; }
 
         /// <summary>
         /// 不含税平均成本
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "不含税平均成本")]
+        [Validate(ValidateType.IsDecimal, Name = "不含税平均成本", DefaultValue = ((0)))]
         public virtual decimal NontaxAvgCost { get; set; }
 
         /// <summary>
@@ -232,32 +232,32 @@ namespace YiQiWorkFlow.Domain.Archives
         /// <summary>
         /// 销售价
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "销售价")]
+        [Validate(ValidateType.IsDecimal, Name = "销售价", DefaultValue = ((0)))]
         public virtual decimal SalePrice { get; set; }
 
         /// <summary>
         /// 会员价
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "会员价")]
+        [Validate(ValidateType.IsDecimal, Name = "会员价", DefaultValue = ((0)))]
         public virtual decimal VipPrice { get; set; }
 
         /// <summary>
         /// 批发价
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "批发价")]
+        [Validate(ValidateType.IsDecimal, Name = "批发价", DefaultValue = ((0)))]
         public virtual decimal TradePrice { get; set; }
 
         /// <summary>
         /// 营业员提成
         /// </summary>
-        [Validate(ValidateType.IsDecimal, Name = "营业员提成")]
+        [Validate(ValidateType.IsDecimal, Name = "营业员提成", DefaultValue = ((0)))]
         public virtual decimal PushRate { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
         [Validate(ValidateType.IsDateTime, Name = "创建时间")]
-        public virtual System.DateTime CreateDate { get; set; }
+        public virtual System.DateTime? CreateDate { get; set; }
 
         /// <summary>
         /// 操作员
@@ -274,20 +274,20 @@ namespace YiQiWorkFlow.Domain.Archives
         /// <summary>
         /// 是否审核
         /// </summary>
-        [Validate(ValidateType.NoValidate, Name = "是否审核")]
+        [Validate(ValidateType.NoValidate, Name = "是否审核", DefaultValue = ('0'))]
         public virtual string IfExamine { get; set; }
 
         /// <summary>
         /// 审核时间
         /// </summary>
         [Validate(ValidateType.IsDateTime, Name = "审核时间")]
-        public virtual System.DateTime ExamineDate { get; set; }
+        public virtual System.DateTime? ExamineDate { get; set; }
 
         /// <summary>
         /// 操作时间
         /// </summary>
         [Validate(ValidateType.IsDateTime, Name = "操作时间")]
-        public virtual System.DateTime OperatorDate { get; set; }
+        public virtual System.DateTime? OperatorDate { get; set; }
 
         protected override void Validate()
         {
@@ -297,6 +297,34 @@ namespace YiQiWorkFlow.Domain.Archives
         {
             return (FbGoodsArchives)this.MemberwiseClone();
         }
+        /// <summary>
+        /// 初始化实体
+        /// </summary>
+        /// <returns></returns>
+        public static FbGoodsArchives Initial()
+        {
+            FbGoodsArchives m = new FbGoodsArchives();
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString();
+            m.GoodsType = "1";
+            m.GoodsState = "1";
+            m.PackCoef = 1M;
+            m.OfferMin = 1M;
+            m.InputTax = 0.17M;
+            m.OutputTax = 0.17M;
+            m.StockUpperLimit = 0M;
+            m.StockLowerLimit = 0M;
+            m.PurchasePrice = 0M;
+            m.NontaxPurchasePrice = 0M;
+            m.AvgCost = 0M;
+            m.NontaxAvgCost = 0M;
+            m.SalePrice = 0M;
+            m.VipPrice = 0M;
+            m.TradePrice = 0M;
+            m.PushRate = 0M;
+            m.IfExamine = "0";
+            return m;
+        }
+
     }
 
 }

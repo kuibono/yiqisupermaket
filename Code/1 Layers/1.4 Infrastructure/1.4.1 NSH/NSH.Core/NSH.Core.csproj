@@ -75,6 +75,7 @@
     <Compile Include="Domain\OperationType.cs" />
     <Compile Include="Domain\Orderable.cs" />
     <Compile Include="Domain\OrderedArrayComparer.cs" />
+    <Compile Include="Domain\SavingResult.cs" />
     <Compile Include="Domain\Specifications\AndNotSpecification.cs" />
     <Compile Include="Domain\Specifications\AndSpecification.cs" />
     <Compile Include="Domain\Specifications\AnySpecification.cs" />
