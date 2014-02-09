@@ -73,6 +73,10 @@ namespace <%= this.NameSpace %>
         [Transaction]
         public string Create(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %> entity)
         {
+			if (entity.HaveId == false)
+            {
+                entity.GenerateId();
+            }
             return EntityRepository.Save(entity);
         }
 
