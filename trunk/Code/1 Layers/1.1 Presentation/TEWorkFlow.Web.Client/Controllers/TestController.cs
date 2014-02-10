@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using YiQiWorkFlow.Application.Service.Archives;
 using YiQiWorkFlow.Domain.Archives;
+using YiQiWorkFlow.Domain.Basement;
 
 namespace TEWorkFlow.Web.Client.Controllers
 {
@@ -73,5 +74,15 @@ namespace TEWorkFlow.Web.Client.Controllers
             return Json(r);
         }
         #endregion
+
+        public JsonResult SearchGoodsArchiveList(SearchDtoBase<FbGoodsArchives> c, FbGoodsArchives s)
+        {
+            c.entity = s;
+            if (Common.MyEnv.IsSupplierLogin)
+            {
+                c.entity.SupCode = Common.MyEnv.CurrentSupplier.Id;
+            }
+            return Json(FbGoodsArchivesService.Search(c), JsonRequestBehavior.AllowGet);
+        }
     }
 }
