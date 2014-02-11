@@ -75,14 +75,36 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
-        public JsonResult SearchGoodsArchiveList(SearchDtoBase<FbGoodsArchives> c, FbGoodsArchives s)
+        #region 商品档案搜索
+        /// <summary>
+        /// 商品档案搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchFbGoodsArchivesList(SearchDtoBase<FbGoodsArchives> c, FbGoodsArchives s)
         {
             c.entity = s;
-            if (Common.MyEnv.IsSupplierLogin)
-            {
-                c.entity.SupCode = Common.MyEnv.CurrentSupplier.Id;
-            }
             return Json(FbGoodsArchivesService.Search(c), JsonRequestBehavior.AllowGet);
         }
+        #endregion
+
+        #region 商品档案删除
+        /// <summary>
+        /// 商品档案删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult FbGoodsArchivesDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            FbGoodsArchivesService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
     }
 }

@@ -129,9 +129,12 @@ $(function () {
                     }
                 }
             });
+        } else {
+            closeWithNoValidate();
         }
     }
     function closeWithNoValidate() {
+        parent.closeTab(pageName);
     }
     $("input:text:visible").first().focus();
 

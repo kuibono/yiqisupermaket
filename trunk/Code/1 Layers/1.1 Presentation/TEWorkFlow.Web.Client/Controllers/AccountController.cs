@@ -680,30 +680,52 @@ namespace TEWorkFlow.Web.Client.Controllers
 
         public JsonResult GetModules()
         {
-            if (Session[AuthorizeSettings.SessionUserType] == null)
+            //if (Session[AuthorizeSettings.SessionUserType] == null)
+            //{
+            //    return Json("", JsonRequestBehavior.AllowGet);
+            //}
+            //if (Session[AuthorizeSettings.SessionUserType].ToString() == "0")
+            //{
+            //    return Json(
+            //        SysmodulecontentService.ModelListToDto(
+            //            SysmodulecontentService.GetAll().Where(p => p.ParentId.Length > 0 && p.EmployeeVisible).OrderBy(p => p.Index).ToList()
+            //            ),
+            //        JsonRequestBehavior.AllowGet);
+            //}
+            //else if (Session[AuthorizeSettings.SessionUserType].ToString() == "1")
+            //{
+            //    return Json(
+            //        SysmodulecontentService.ModelListToDto(
+            //            SysmodulecontentService.GetAll().Where(p => p.ParentId.Length > 0 && p.SupplierVisible).OrderBy(p => p.Index).ToList()
+            //            ),
+            //        JsonRequestBehavior.AllowGet);
+            //}
+            //else
+            //{
+            //    return Json("", JsonRequestBehavior.AllowGet);
+            //}
+            IList<SysTreeNodeDto> r = new List<SysTreeNodeDto>();
+            r.Add(new SysTreeNodeDto()
             {
-                return Json("", JsonRequestBehavior.AllowGet);
-            }
-            if (Session[AuthorizeSettings.SessionUserType].ToString() == "0")
+                id = "1",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "",
+                text = "档案",
+                url = ""
+            });
+            r.Add(new SysTreeNodeDto()
             {
-                return Json(
-                    SysmodulecontentService.ModelListToDto(
-                        SysmodulecontentService.GetAll().Where(p => p.ParentId.Length > 0 && p.EmployeeVisible).OrderBy(p => p.Index).ToList()
-                        ),
-                    JsonRequestBehavior.AllowGet);
-            }
-            else if (Session[AuthorizeSettings.SessionUserType].ToString() == "1")
-            {
-                return Json(
-                    SysmodulecontentService.ModelListToDto(
-                        SysmodulecontentService.GetAll().Where(p => p.ParentId.Length > 0 && p.SupplierVisible).OrderBy(p => p.Index).ToList()
-                        ),
-                    JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json("", JsonRequestBehavior.AllowGet);
-            }
+                id = "10",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品档案",
+                url = "Test/"
+            });
+
+
+            return Json(r, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ReIniAllSupplierLoginNameAndPassword()
@@ -716,7 +738,7 @@ namespace TEWorkFlow.Web.Client.Controllers
 
             for (int i = 0; i < allSupplier.Rows.Count; i++)
             {
-                int name = NSH.VSTO.Extend.GetRandomNumber(10000,99999);
+                int name = NSH.VSTO.Extend.GetRandomNumber(10000, 99999);
 
                 while (existName.Any(p => p == name))
                 {
