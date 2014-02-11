@@ -10,7 +10,7 @@ using TEWorkFlow.Web.Client.Common;
 
 namespace TEWorkFlow.Web.Client.Controllers
 {
-    [UserAuthorizeAttribute]
+    //[UserAuthorizeAttribute]
     public class HomeController : Controller
     {
         //

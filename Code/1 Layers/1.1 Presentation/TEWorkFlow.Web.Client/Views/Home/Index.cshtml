@@ -42,7 +42,7 @@
         </div>
         <div title="south" region="south" showsplit="false" showheader="false" height="30">
             <div style="line-height: 28px; text-align: center; cursor: default">
-                大连乐哈哈超市连锁有限公司 &copy; 2013 版权所有</div>
+                xxx有限公司 &copy; 2015 版权所有</div>
         </div>
         <div title="center" region="center" style="border: 0;" bodystyle="overflow:hidden;">
             <!--Splitter-->
@@ -57,7 +57,7 @@
                     <!--Tabs-->
                     <div id="mainTabs" class="mini-tabs " activeindex="0" style="width: 100%; height: 100%;"
                         plain="false">
-                        <div title="公告" url="/Home/Blank" id="tab_blank" iconcls="icon-bell">
+                        <div title="公告" url="about:blank" id="tab_blank" iconcls="icon-bell">
                         </div>
                     </div>
                 </div>
@@ -125,6 +125,15 @@
                 tabs.addTab(tab);
             }
             tabs.activeTab(tab);
+        }
+        function closeTab(_id) {
+            var tabs = mini.get("mainTabs");
+            var id = "tab$" + _id;
+            var tab = tabs.getTab(id);
+            if (!tab) {
+            } else {
+                tabs.removeTab(tab);
+            }
         }
 
         function onNodeSelect(e) {
