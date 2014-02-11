@@ -368,7 +368,7 @@ body .mini-buttonedit *
 }
 .mini-button
 {
-    -webkit-border-radius: 3px;
+    /*-webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
@@ -384,7 +384,22 @@ body .mini-buttonedit *
     background-image: -o-linear-gradient(top,#4b9cd7,#3892d3 50%,#358ac8 51%,#3892d3);
     background-image: linear-gradient(top,#4b9cd7,#3892d3 50%,#358ac8 51%,#3892d3);
     color:#FFF !important;
-    border-color: #126daf;
+    border-color: #126daf;*/
+    padding: 0;
+    border: 1px solid #A9ACB5;
+    background: #EBEDF2 url(images/button/button.png) repeat-x 0 0;
+    font-size: 9pt;
+    font-family: Tahoma,Verdana,宋体;
+    line-height: 22px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    zoom: 1;
+    cursor: pointer;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    vertical-align: middle;
+    outline: none;
 }
 .mini-button, a.mini-button
 {
@@ -392,14 +407,18 @@ body .mini-buttonedit *
 }
 body a:hover.mini-button
 {    
-    border-color:#157fcc;
+    /*border-color:#157fcc;
     background-image:none;
     background-color:#3386c2;
     background-image:-webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,#4792c8),color-stop(50%,#3386c2),color-stop(51%,#307fb8),color-stop(100%,#3386c2));
     background-image:-webkit-linear-gradient(top,#4792c8,#3386c2 50%,#307fb8 51%,#3386c2);
     background-image:-moz-linear-gradient(top,#4792c8,#3386c2 50%,#307fb8 51%,#3386c2);
     background-image:-o-linear-gradient(top,#4792c8,#3386c2 50%,#307fb8 51%,#3386c2);
-    background-image:linear-gradient(top,#4792c8,#3386c2 50%,#307fb8 51%,#3386c2)
+    background-image:linear-gradient(top,#4792c8,#3386c2 50%,#307fb8 51%,#3386c2)*/
+    padding: 0;
+    border: 1px solid #A9ACB5;
+    background: #dde6fe url(images/button/hover.png) repeat-x 0 0;
+    text-decoration: none;
 }
 .mini-button-text
 {   
