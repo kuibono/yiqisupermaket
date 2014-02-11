@@ -20,7 +20,7 @@ Description: 编辑页面
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "<%= StringUtil.ToPascalCase(this.SourceTable.Description) %>"; var formChanged = false; var pageType = "Edit"; var createTime = "<%=DateTime.Now%>";var id="@Model.Id"; </script>
+    <script type="text/javascript"> var pageTitle = "<%= StringUtil.ToPascalCase(this.SourceTable.Description) %>"; var formChanged = false; var pageType = "Edit"; var createTime = "<%=DateTime.Now%>";var id="@Model.Id";pageName="<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Edit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -178,6 +178,37 @@ Description: 编辑页面
             return Json(r);
         }
 		#endregion
+		
+		#region <%= StringUtil.ToPascalCase(this.SourceTable.Description) %>搜索
+        /// <summary>
+        /// <%= StringUtil.ToPascalCase(this.SourceTable.Description) %>搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult Search<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>List(SearchDtoBase<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> c, <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> s)
+        {
+            c.entity = s;
+            return Json(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Service.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region <%= StringUtil.ToPascalCase(this.SourceTable.Description) %>删除
+        /// <summary>
+        /// <%= StringUtil.ToPascalCase(this.SourceTable.Description) %>删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult <%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Delete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            <%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Service.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
 <script runat="template">
 private string GetTableColumnResult(ColumnSchema column)
 {
