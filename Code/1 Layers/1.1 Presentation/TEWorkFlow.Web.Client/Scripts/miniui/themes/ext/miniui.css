@@ -582,7 +582,7 @@ body .mini-button-disabled *
 {
     cursor:text;
     background:none;    
-    width:100%;
+    width:125px;
     height:19px;
     line-height:19px;
     font-family: Verdana;
@@ -650,7 +650,7 @@ body .mini-textbox-disabled .mini-textbox-border
 
 .mini-buttonedit
 {
-    width:99% !important;
+    width:auto;
     height:21px;
     display:inline-block;    
     vertical-align:middle;    
