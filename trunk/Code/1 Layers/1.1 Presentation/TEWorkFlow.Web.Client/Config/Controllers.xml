@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
 
-  <object type="TEWorkFlow.Web.Client.Controllers.AccountController, TEWorkFlow.Web.Client" singleton="false" >
+  <!--<object type="TEWorkFlow.Web.Client.Controllers.AccountController, TEWorkFlow.Web.Client" singleton="false" >
     <property name="SysLoginPowerService" ref="SysLoginPowerService" />
     <property name="SysmodulecontentService" ref="SysmodulecontentService" />
     <property name="BsPaClassService" ref="BsPaClassService" />
@@ -11,61 +11,12 @@
     <property name="FbPaBaseSetService" ref="FbPaBaseSetService" />
     <property name="EmemployeearchiveService" ref="EmemployeearchiveService" />
     <property name="FbSupplierArchivesService" ref="FbSupplierArchivesService" />
-  </object>
+  </object>-->
   <object type="TEWorkFlow.Web.Client.Controllers.HomeController, TEWorkFlow.Web.Client" singleton="false" >
-    <property name="SysLoginPowerService" ref="SysLoginPowerService" />
+    <!--<property name="SysLoginPowerService" ref="SysLoginPowerService" />
     <property name="SysEnterpriseArchivesService" ref="SysEnterpriseArchivesService" />
     <property name="SysPostService" ref="SysPostService" />
-    <property name="BranchPostService" ref="BranchPostService" />
-  </object>
-  <object type="TEWorkFlow.Web.Client.Controllers.ArchivesController, TEWorkFlow.Web.Client" singleton="false" >
-    <property name="EmemployeearchiveService" ref="EmemployeearchiveService" />
-    <property name="FbSupplierArchivesService" ref="FbSupplierArchivesService" />
-    <property name="BsBranchArchivesService" ref="BsBranchArchivesService" />
-    <property name="GoodsArchivesService" ref="GoodsArchivesService" />
-    <property name="FbSupplierBranchRelationService" ref="FbSupplierBranchRelationService" />
-    <property name="PcPurchaseManageService" ref="PcPurchaseManageService" />
-    <property name="GoodsArchivesRepository" ref="GoodsArchivesRepository"/>
-    <property name="TfDataDownloadService" ref="TfDataDownloadService"/>
-  </object>
-
-  <object type="TEWorkFlow.Web.Client.Controllers.CategoryController, TEWorkFlow.Web.Client" singleton="false" >
-    <property name="EmPaPoliticsService" ref="EmPaPoliticsService" />
-    <property name="NationService" ref="NationService" />
-    <property name="FbPaSupTypeService" ref="FbPaSupTypeService" />
-    <property name="SysLoginPowerService" ref="SysLoginPowerService" />
-    <property name="BsPaClassService" ref="BsPaClassService" />
-    <property name="BsPaAreaService" ref="BsPaAreaService" />
-
-    <property name="FbPaGoodsGbService" ref="FbPaGoodsGbService" />
-    <property name="FbPaGoodsGlService" ref="FbPaGoodsGlService" />
-    <property name="FbPaGoodsGmService" ref="FbPaGoodsGmService" />
-    <property name="FbPaGoodsGsService" ref="FbPaGoodsGsService" />
-
-    <property name="EmemployeearchiveService" ref="EmemployeearchiveService" />
-    <property name="FbSupplierArchivesService" ref="FbSupplierArchivesService" />
-  </object>
-  <object type="TEWorkFlow.Web.Client.Controllers.BusinessController, TEWorkFlow.Web.Client" singleton="false" >
-    <property name="PcPurchaseManageService" ref="PcPurchaseManageService" />
-    <property name="PcPurchaseDetailService" ref="PcPurchaseDetailService" />
-    <property name="GoodsArchivesService" ref="GoodsArchivesService" />
-    <property name="PcReturnManageService" ref="PcReturnManageService" />
-    <property name="PcReturnDetailService" ref="PcReturnDetailService" />
-    <property name="PcSupplementManageService" ref="PcSupplementManageService" />
-    <property name="PcSupplementDetailService" ref="PcSupplementDetailService" />
-    <property name="RtRetailManageService" ref="RtRetailManageService" />
-    <property name="RtRetailDetailService" ref="RtRetailDetailService" />
-    <property name="PcPurchaseDetailHistoryService" ref="PcPurchaseDetailHistoryService" />
-  </object>
-  <object type="TEWorkFlow.Web.Client.Controllers.QueryController, TEWorkFlow.Web.Client" singleton="false" >
-    <property name="PcPurchaseManageService" ref="PcPurchaseManageService" />
-    <property name="PcPurchaseManageHistoryService" ref="PcPurchaseManageHistoryService" />
-    <property name="GoodsArchivesService" ref="GoodsArchivesService" />
-    <property name="RtRetailManageService" ref="RtRetailManageService" />
-    <property name="ReportSevice" ref="ReportSevice" />
-  </object>
-  <object type="TEWorkFlow.Web.Client.Controllers.ReportController, TEWorkFlow.Web.Client" singleton="false" >
-    <property name="ReportSevice" ref="ReportSevice" />
+    <property name="BranchPostService" ref="BranchPostService" />-->
   </object>
   <object type="TEWorkFlow.Web.Client.Controllers.TestController, TEWorkFlow.Web.Client" singleton="false" >
     <property name="FbGoodsArchivesService" ref="FbGoodsArchivesService" />

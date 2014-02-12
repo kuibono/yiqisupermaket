@@ -47,12 +47,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\1 Layers\1.3 Domain\TEWorkFlow.Domain\TEWorkFlow.Domain.csproj">
-      <Project>{ee525669-c178-469e-bfb0-38e18900a1d3}</Project>
-      <Name>TEWorkFlow.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TEWorkFlow.Domain.Archives;
-using TEWorkFlow.Application.Service.Archives;
 using Spring.Context;
 using Spring.Context.Support;
-using TEWorkFlow.Application.Service.Sys;
 using Spring.Data.NHibernate.Generic;
 
 namespace TEWorkFlow.Web.Client.Common
@@ -88,52 +85,52 @@ namespace TEWorkFlow.Web.Client.Common
             }
         }
 
-        public static FbSupplierArchives CurrentSupplier
-        {
-            get
-            {
-                if (CurentUserType == 0 || System.Web.HttpContext.Current.Session[AuthorizeSettings.SessionUserID] == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return GetFbSupplierArchivesService().GetById(System.Web.HttpContext.Current.Session[AuthorizeSettings.SessionUserID].ToString());
-                }
-            }
-        }
+        //public static FbSupplierArchives CurrentSupplier
+        //{
+        //    get
+        //    {
+        //        if (CurentUserType == 0 || System.Web.HttpContext.Current.Session[AuthorizeSettings.SessionUserID] == null)
+        //        {
+        //            return null;
+        //        }
+        //        else
+        //        {
+        //            return GetFbSupplierArchivesService().GetById(System.Web.HttpContext.Current.Session[AuthorizeSettings.SessionUserID].ToString());
+        //        }
+        //    }
+        //}
 
-        public static Ememployeearchive CurrentEmployee
-        {
-            get
-            {
-                if (CurentUserType == 1 || System.Web.HttpContext.Current.Session[AuthorizeSettings.SessionUserID] == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return GetEmemployeearchiveService().GetById(System.Web.HttpContext.Current.Session[AuthorizeSettings.SessionUserID].ToString());
-                }
-            }
-        }
+        //public static Ememployeearchive CurrentEmployee
+        //{
+        //    get
+        //    {
+        //        if (CurentUserType == 1 || System.Web.HttpContext.Current.Session[AuthorizeSettings.SessionUserID] == null)
+        //        {
+        //            return null;
+        //        }
+        //        else
+        //        {
+        //            return GetEmemployeearchiveService().GetById(System.Web.HttpContext.Current.Session[AuthorizeSettings.SessionUserID].ToString());
+        //        }
+        //    }
+        //}
 
 
         #region GetServices
 
-        public static IEmemployeearchiveService GetEmemployeearchiveService()
-        {
-            return (IEmemployeearchiveService)_applicationContext.GetObject("EmemployeearchiveService");
-        }
+        //public static IEmemployeearchiveService GetEmemployeearchiveService()
+        //{
+        //    return (IEmemployeearchiveService)_applicationContext.GetObject("EmemployeearchiveService");
+        //}
 
-        public static IFbSupplierArchivesService GetFbSupplierArchivesService()
-        {
-            return (IFbSupplierArchivesService)_applicationContext.GetObject("FbSupplierArchivesService");
-        }
-        public static IFbPaBaseSetService GetFbPaBaseSetService()
-        {
-            return (IFbPaBaseSetService)_applicationContext.GetObject("FbPaBaseSetService");
-        }
+        //public static IFbSupplierArchivesService GetFbSupplierArchivesService()
+        //{
+        //    return (IFbSupplierArchivesService)_applicationContext.GetObject("FbSupplierArchivesService");
+        //}
+        //public static IFbPaBaseSetService GetFbPaBaseSetService()
+        //{
+        //    return (IFbPaBaseSetService)_applicationContext.GetObject("FbPaBaseSetService");
+        //}
         public static HibernateTemplate GetHibernateTemplate()
         {
             return (HibernateTemplate)_applicationContext.GetObject("HibernateTemplate");
