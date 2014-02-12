@@ -13,13 +13,13 @@ namespace TEWorkFlow.Web.Client
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
+            //routes.MapRoute(
 
-             "Localization", // 路由名称  
-             "{lang}/{controller}/{action}/{id}", // 带有参数的 URL  
-             new { controller = "Home", action = "Index", id = UrlParameter.Optional },//参数默认值  
-             new { lang = @"\w{2,3}(-\w{4})?(-\w{2,3})?$" }
-              );
+            // "Localization", // 路由名称  
+            // "{lang}/{controller}/{action}/{id}", // 带有参数的 URL  
+            // new { controller = "Home", action = "Index", id = UrlParameter.Optional },//参数默认值  
+            // new { lang = @"\w{0,1}(-\w{4})?(-\w{2,3})?$" }
+            //  );
 
             routes.MapRoute(
                 name: "Default",

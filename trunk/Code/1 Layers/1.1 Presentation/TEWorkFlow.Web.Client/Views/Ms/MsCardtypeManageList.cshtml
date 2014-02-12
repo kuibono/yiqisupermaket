@@ -1,0 +1,338 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>卡类型列表</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/demo.css" />
+    <script src="~/scripts/boot.js" type="text/javascript"></script>
+    <script type="text/javascript"> var pageTitle = "卡类型"; var pageType = "List"; var createTime = "2014/2/13 0:03:10"; var isEmployeeLogin = false; </script>
+</head>
+<body>
+    <div style="width: 100%">
+        <div class="mini-toolbar" style="border-bottom: 0; padding: 0px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a class="mini-button" iconcls="icon-add" onclick="editRow('')" plain="true">增加</a>
+                        <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">高级检索</a>
+                    </td>
+                    <td style="white-space: nowrap;" align="right">
+                        <table>
+                            <tr>
+                                <td>
+                                    <input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
+                                </td>
+                                <td>
+                                    <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
+                                </td>
+                                <td>
+                                    <a class="mini-button" onclick="search()">查询</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="mini-fit">
+        <div id="datagrid1" class="mini-datagrid" url="SearchMsCardtypeManageList"
+            style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+            pagesize="20" multiselect="true" showFilterRow="true">
+            <div property="columns">
+                <div type="indexcolumn" width="30">
+                </div>
+                <div type="checkcolumn" width="30">
+                </div>
+				<div field="CardCode" headeralign="center" align="center" width="60">
+				    卡类型编码
+					<input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="CardName" headeralign="center" align="center" width="60">
+				    卡类型名称
+					<input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="CardType" headeralign="center" align="center" width="60">
+				    卡范围
+					<input id="filter_CardType" name="CardType" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="CardMedium" headeralign="center" align="center" width="60">
+				    卡介质
+					<input id="filter_CardMedium" name="CardMedium" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="CardUsefulLife" headeralign="center" align="center" width="60">
+				    卡有效期
+					<input id="filter_CardUsefulLife" name="CardUsefulLife" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PointsUsefulLife" headeralign="center" align="center" width="60">
+				    积分有效期
+					<input id="filter_PointsUsefulLife" name="PointsUsefulLife" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="TransactCharge" headeralign="center" align="center" width="60">
+				    办卡费用
+					<input id="filter_TransactCharge" name="TransactCharge" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="DepositMoney" headeralign="center" align="center" width="60">
+				    押金金额
+					<input id="filter_DepositMoney" name="DepositMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="IfVip" headeralign="center" align="center" width="60">
+				    是否会员价
+					<input id="filter_IfVip" name="IfVip" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="IfDiscount" headeralign="center" align="center" width="60">
+				    是否折扣
+					<input id="filter_IfDiscount" name="IfDiscount" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="DiscountBase" headeralign="center" align="center" width="60">
+				    折扣基数
+					<input id="filter_DiscountBase" name="DiscountBase" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="DiscountRate" headeralign="center" align="center" width="60">
+				    折扣率
+					<input id="filter_DiscountRate" name="DiscountRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="IfPoints" headeralign="center" align="center" width="60">
+				    是否积分
+					<input id="filter_IfPoints" name="IfPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ExpendBase" headeralign="center" align="center" width="60">
+				    消费基数
+					<input id="filter_ExpendBase" name="ExpendBase" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PointsValues" headeralign="center" align="center" width="60">
+				    积分分值
+					<input id="filter_PointsValues" name="PointsValues" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="BirthdayPoints" headeralign="center" align="center" width="60">
+				    会员生日积分
+					<input id="filter_BirthdayPoints" name="BirthdayPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="IfPrepaid" headeralign="center" align="center" width="60">
+				    是否储值
+					<input id="filter_IfPrepaid" name="IfPrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="IfPrepaidPassword" headeralign="center" align="center" width="60">
+				    是否管理密码
+					<input id="filter_IfPrepaidPassword" name="IfPrepaidPassword" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="LimitTimes" headeralign="center" align="center" width="60">
+				    限制次数
+					<input id="filter_LimitTimes" name="LimitTimes" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PrestoreMoney" headeralign="center" align="center" width="60">
+				    预存金额
+					<input id="filter_PrestoreMoney" name="PrestoreMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PrestorePw" headeralign="center" align="center" width="60">
+				    预设密码
+					<input id="filter_PrestorePw" name="PrestorePw" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PrepaidMin" headeralign="center" align="center" width="60">
+				    最低充值金额
+					<input id="filter_PrepaidMin" name="PrepaidMin" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PrepaidMax" headeralign="center" align="center" width="60">
+				    最高充值金额
+					<input id="filter_PrepaidMax" name="PrepaidMax" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="IfPointToPrepaid" headeralign="center" align="center" width="60">
+				    是否积分转储值
+					<input id="filter_IfPointToPrepaid" name="IfPointToPrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PointsBase" headeralign="center" align="center" width="60">
+				    积分基数
+					<input id="filter_PointsBase" name="PointsBase" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PrepaidMoney" headeralign="center" align="center" width="60">
+				    转储值金额
+					<input id="filter_PrepaidMoney" name="PrepaidMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="CardNumberPrefix" headeralign="center" align="center" width="60">
+				    卡号前缀
+					<input id="filter_CardNumberPrefix" name="CardNumberPrefix" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="CardNumberLen" headeralign="center" align="center" width="60">
+				    卡流水位数
+					<input id="filter_CardNumberLen" name="CardNumberLen" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="RandLen" headeralign="center" align="center" width="60">
+				    随机位数
+					<input id="filter_RandLen" name="RandLen" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="UpgradeType" headeralign="center" align="center" width="60">
+				    累计积分当前积分
+					<input id="filter_UpgradeType" name="UpgradeType" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PointsNeeds" headeralign="center" align="center" width="60">
+				    所需积分
+					<input id="filter_PointsNeeds" name="PointsNeeds" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="IfDeductPoints" headeralign="center" align="center" width="60">
+				    当前时可设
+					<input id="filter_IfDeductPoints" name="IfDeductPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="IfAutoup" headeralign="center" align="center" width="60">
+				    是否自动升级
+					<input id="filter_IfAutoup" name="IfAutoup" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="CreateDate" headeralign="center" align="center" width="60">
+				    创建时间
+					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="Operator" headeralign="center" align="center" width="60">
+				    操作员
+					<input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="Assessor" headeralign="center" align="center" width="60">
+				    审核人
+					<input id="filter_Assessor" name="Assessor" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="IfExamine" headeralign="center" align="center" width="60">
+				    是否审核
+					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ExamineDate" headeralign="center" align="center" width="60">
+				    审核时间
+					<input id="filter_ExamineDate" name="ExamineDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="OperatorDate" headeralign="center" align="center" width="60">
+				    操作时间
+					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
+                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                    cellstyle="padding:0;">
+                    管理
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        mini.parse();
+        var grid = mini.get("datagrid1");
+        grid.load();
+        //对"createtime"字段，进行降级排序
+        grid.sortBy("Id", "desc");
+        $("#key").bind("keydown", function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        });
+        function onActionRenderer(e) {
+            var grid = e.sender;
+            var record = e.record;
+            var uid = record.Id;
+            var rowIndex = e.rowIndex;
+            if (record.IfExamine) {
+                if (record.IfExamine == "1") {
+                    return "";
+                }
+            }
+            var s = ' <a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')" >编辑</a>'
+                + ' <a class="Delete_Button" href="javascript:if(confirm(\'确定要删除这条记录吗？\')){deleteItem(\'' + uid + '\')}">删除</a>';
+            return s;
+        }
+
+        function onNoExamActionRenderer(e) {
+            var grid = e.sender;
+            var record = e.record;
+            var uid = record.Id;
+            var rowIndex = e.rowIndex;
+            var s = ' <a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')" >编辑</a>'
+                + ' <a class="Delete_Button" href="javascript:if(confirm(\'确定要删除这条记录吗？\')){deleteItem(\'' + uid + '\')}">删除</a>';
+            return s;
+        }
+
+        function remove() {
+            var rows = grid.getSelecteds();
+            if (rows.length > 0) {
+                if (confirm("确定删除选中记录？")) {
+                    var ids = [];
+                    for (var i = 0, l = rows.length; i < l; i++) {
+                        var r = rows[i];
+                        ids.push(r.Id);
+                    }
+                    var id = ids.join(',');
+                    grid.loading("操作中，请稍后......");
+                    deleteItem(id);
+                }
+            } else {
+                alert("请选中一条记录");
+            }
+        }
+        function search() {
+            var data = {};
+            if (mini.get("#ifexame") != undefined) {
+                data["IfExamine"] = mini.get("#ifexame").value;
+            }
+            if (mini.get("#keyword") != undefined) {
+                data["key"] = mini.get("#keyword").value;
+            }
+            $("#datagrid1 .mini-grid-filterRow :text:visible").each(function () {
+                if ($(this).val().length > 0) {
+                    data[$(this).prop("name")] = $(this).val();
+                }
+            });
+            grid.load(data);
+        }
+        function editRow(id) {
+			parent.showTab({ id:"MsCardtypeManageEdit",text: "卡类型管理", iconCls: "icon-edit", url: "/Ms/MsCardtypeManageEdit/" + id });
+        }
+        function deleteItem(id) {
+            $.ajax({
+                url: "MsCardtypeManageDelete",
+                data: { ids: id },
+                dataType: "json",
+                success: function (j) {
+                    if (j == false) {
+                        if (confirm("数据存在关联数据数据，删除后将影响整个系统运行，是否确认删除？") == true) {
+                            $.ajax({
+                                url: "MsCardtypeManageDelete",
+                                data: { ids: id, confirm: "true" },
+                                dataType: "json",
+                                success: function (r) {
+                                    grid.reload();
+                                }
+                            });
+                        }
+                    }
+                    else {
+                        grid.reload();
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+        function exame(obj, itemid, old) {
+            $.ajax({
+                url: "MsCardtypeManageDeleteExame/" + itemid,
+                success: function (j) {
+                    if (j == true) {
+                        $(obj).css("color", "green").text("是");
+                    }
+                    else {
+                        $(obj).css("color", "red").text("否");
+                    }
+                    $(obj).removeProp("onclick");
+                    $(obj).unbind("click").click(function () {
+                        exame(obj, itemid, !old)
+                    })
+                },
+                error: function () {
+                    alert("失败")
+                }
+            });
+        }
+		function showFilterRow() {
+            $("#datagrid1 .mini-grid-filterRow").toggle();
+        }
+    </script>
+</body>
+</html>
+
+
+

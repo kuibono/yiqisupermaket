@@ -1,0 +1,254 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>通讯配置表表名列表</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/demo.css" />
+    <script src="~/scripts/boot.js" type="text/javascript"></script>
+    <script type="text/javascript"> var pageTitle = "通讯配置表表名"; var pageType = "List"; var createTime = "2014/2/13 0:03:12"; var isEmployeeLogin = false; </script>
+</head>
+<body>
+    <div style="width: 100%">
+        <div class="mini-toolbar" style="border-bottom: 0; padding: 0px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a class="mini-button" iconcls="icon-add" onclick="editRow('')" plain="true">增加</a>
+                        <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">高级检索</a>
+                    </td>
+                    <td style="white-space: nowrap;" align="right">
+                        <table>
+                            <tr>
+                                <td>
+                                    <input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
+                                </td>
+                                <td>
+                                    <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
+                                </td>
+                                <td>
+                                    <a class="mini-button" onclick="search()">查询</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="mini-fit">
+        <div id="datagrid1" class="mini-datagrid" url="SearchTfDataObjectList"
+            style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+            pagesize="20" multiselect="true" showFilterRow="true">
+            <div property="columns">
+                <div type="indexcolumn" width="30">
+                </div>
+                <div type="checkcolumn" width="30">
+                </div>
+				<div field="ObjectId" headeralign="center" align="center" width="60">
+				    对象编号
+					<input id="filter_ObjectId" name="ObjectId" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectName" headeralign="center" align="center" width="60">
+				    对象名称
+					<input id="filter_ObjectName" name="ObjectName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectMain" headeralign="center" align="center" width="60">
+				    对象主表
+					<input id="filter_ObjectMain" name="ObjectMain" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectMaincolumn" headeralign="center" align="center" width="60">
+				    主表主键
+					<input id="filter_ObjectMaincolumn" name="ObjectMaincolumn" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectForeigncolumn" headeralign="center" align="center" width="60">
+				    主表外键
+					<input id="filter_ObjectForeigncolumn" name="ObjectForeigncolumn" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectIsinsert" headeralign="center" align="center" width="60">
+				    是否插入
+					<input id="filter_ObjectIsinsert" name="ObjectIsinsert" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectIsdelete" headeralign="center" align="center" width="60">
+				    是否删除
+					<input id="filter_ObjectIsdelete" name="ObjectIsdelete" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectIsupdate" headeralign="center" align="center" width="60">
+				    是否更新
+					<input id="filter_ObjectIsupdate" name="ObjectIsupdate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectDump" headeralign="center" align="center" width="60">
+				    冗余对象
+					<input id="filter_ObjectDump" name="ObjectDump" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectKeycolumn" headeralign="center" align="center" width="60">
+				    冗余对象主掀
+					<input id="filter_ObjectKeycolumn" name="ObjectKeycolumn" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectBranchcodecolumn" headeralign="center" align="center" width="60">
+				    冗余分店字段
+					<input id="filter_ObjectBranchcodecolumn" name="ObjectBranchcodecolumn" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectIsdeletedump" headeralign="center" align="center" width="60">
+				    是否删除冗余
+					<input id="filter_ObjectIsdeletedump" name="ObjectIsdeletedump" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectDescription" headeralign="center" align="center" width="60">
+				    传输对象描述
+					<input id="filter_ObjectDescription" name="ObjectDescription" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectDirection" headeralign="center" align="center" width="60">
+				    传输方向
+					<input id="filter_ObjectDirection" name="ObjectDirection" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectIstransfer" headeralign="center" align="center" width="60">
+				    是否传输
+					<input id="filter_ObjectIstransfer" name="ObjectIstransfer" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectCondition" headeralign="center" align="center" width="60">
+				    传输条件
+					<input id="filter_ObjectCondition" name="ObjectCondition" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ObjectOrder" headeralign="center" align="center" width="60">
+				    传输顺序
+					<input id="filter_ObjectOrder" name="ObjectOrder" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="Id" headeralign="center" align="center" width="60">
+				    
+					<input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
+                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                    cellstyle="padding:0;">
+                    管理
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        mini.parse();
+        var grid = mini.get("datagrid1");
+        grid.load();
+        //对"createtime"字段，进行降级排序
+        grid.sortBy("Id", "desc");
+        $("#key").bind("keydown", function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        });
+        function onActionRenderer(e) {
+            var grid = e.sender;
+            var record = e.record;
+            var uid = record.Id;
+            var rowIndex = e.rowIndex;
+            if (record.IfExamine) {
+                if (record.IfExamine == "1") {
+                    return "";
+                }
+            }
+            var s = ' <a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')" >编辑</a>'
+                + ' <a class="Delete_Button" href="javascript:if(confirm(\'确定要删除这条记录吗？\')){deleteItem(\'' + uid + '\')}">删除</a>';
+            return s;
+        }
+
+        function onNoExamActionRenderer(e) {
+            var grid = e.sender;
+            var record = e.record;
+            var uid = record.Id;
+            var rowIndex = e.rowIndex;
+            var s = ' <a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')" >编辑</a>'
+                + ' <a class="Delete_Button" href="javascript:if(confirm(\'确定要删除这条记录吗？\')){deleteItem(\'' + uid + '\')}">删除</a>';
+            return s;
+        }
+
+        function remove() {
+            var rows = grid.getSelecteds();
+            if (rows.length > 0) {
+                if (confirm("确定删除选中记录？")) {
+                    var ids = [];
+                    for (var i = 0, l = rows.length; i < l; i++) {
+                        var r = rows[i];
+                        ids.push(r.Id);
+                    }
+                    var id = ids.join(',');
+                    grid.loading("操作中，请稍后......");
+                    deleteItem(id);
+                }
+            } else {
+                alert("请选中一条记录");
+            }
+        }
+        function search() {
+            var data = {};
+            if (mini.get("#ifexame") != undefined) {
+                data["IfExamine"] = mini.get("#ifexame").value;
+            }
+            if (mini.get("#keyword") != undefined) {
+                data["key"] = mini.get("#keyword").value;
+            }
+            $("#datagrid1 .mini-grid-filterRow :text:visible").each(function () {
+                if ($(this).val().length > 0) {
+                    data[$(this).prop("name")] = $(this).val();
+                }
+            });
+            grid.load(data);
+        }
+        function editRow(id) {
+			parent.showTab({ id:"TfDataObjectEdit",text: "通讯配置表表名管理", iconCls: "icon-edit", url: "/Tf/TfDataObjectEdit/" + id });
+        }
+        function deleteItem(id) {
+            $.ajax({
+                url: "TfDataObjectDelete",
+                data: { ids: id },
+                dataType: "json",
+                success: function (j) {
+                    if (j == false) {
+                        if (confirm("数据存在关联数据数据，删除后将影响整个系统运行，是否确认删除？") == true) {
+                            $.ajax({
+                                url: "TfDataObjectDelete",
+                                data: { ids: id, confirm: "true" },
+                                dataType: "json",
+                                success: function (r) {
+                                    grid.reload();
+                                }
+                            });
+                        }
+                    }
+                    else {
+                        grid.reload();
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+        function exame(obj, itemid, old) {
+            $.ajax({
+                url: "TfDataObjectDeleteExame/" + itemid,
+                success: function (j) {
+                    if (j == true) {
+                        $(obj).css("color", "green").text("是");
+                    }
+                    else {
+                        $(obj).css("color", "red").text("否");
+                    }
+                    $(obj).removeProp("onclick");
+                    $(obj).unbind("click").click(function () {
+                        exame(obj, itemid, !old)
+                    })
+                },
+                error: function () {
+                    alert("失败")
+                }
+            });
+        }
+		function showFilterRow() {
+            $("#datagrid1 .mini-grid-filterRow").toggle();
+        }
+    </script>
+</body>
+</html>
+
+
+

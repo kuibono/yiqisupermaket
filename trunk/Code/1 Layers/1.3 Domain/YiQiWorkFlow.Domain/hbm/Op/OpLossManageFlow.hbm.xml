@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Op">
+  <class name="OpLossManageFlow" table="op_loss_manage_flow" lazy="true" >
+    <id name="Id" type="string" column="lo_number" >
+      <generator class="assigned" />
+    </id>
+		<property name="LoFlowNumber" column="lo_flow_number" type="decimal" />
+		<property name="LoDate" column="lo_date" type="System.DateTime" />
+		<property name="CkNumber" column="ck_number" type="string" />
+		<property name="LoType" column="lo_type" type="string" />
+		<property name="LoOrgan" column="lo_organ" type="string" />
+		<property name="WhCode" column="wh_code" type="string" />
+		<property name="CreateDate" column="create_date" type="System.DateTime" />
+		<property name="Operator" column="operator" type="string" />
+		<property name="Assessor" column="assessor" type="string" />
+		<property name="IfExamine" column="if_examine" type="string" />
+		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
+    
+
+  </class>
+</hibernate-mapping>
+

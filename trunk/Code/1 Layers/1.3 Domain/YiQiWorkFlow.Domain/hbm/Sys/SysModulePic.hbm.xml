@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Sys">
+  <class name="SysModulePic" table="sys_module_pic" lazy="true" >
+    <id name="Id" type="string" column="Id" >
+      <generator class="assigned" />
+    </id>
+		<property name="ModuleCode" column="module_code" type="string" />
+		<property name="ModuleName" column="module_name" type="string" />
+		<property name="PicName" column="pic_name" type="string" />
+    
+
+  </class>
+</hibernate-mapping>
+

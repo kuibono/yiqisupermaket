@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ac">
+  <class name="AcDayGoodsstockJournalAccount" table="ac_day_goodsstock_journal_account" lazy="true" >
+    <id name="Id" type="string" column="Id" >
+      <generator class="assigned" />
+    </id>
+		<property name="AcFlowNumber" column="ac_flow_number" type="decimal" />
+		<property name="AcDate" column="ac_date" type="string" />
+		<property name="GoodsCode" column="goods_code" type="string" />
+		<property name="OpCode" column="op_code" type="string" />
+		<property name="PurchasePrice" column="purchase_price" type="decimal" />
+		<property name="NontaxPurchasePrice" column="nontax_purchase_price" type="decimal" />
+		<property name="SalePrice" column="sale_price" type="decimal" />
+		<property name="InitQty" column="init_qty" type="decimal" />
+		<property name="InitMoney" column="init_money" type="decimal" />
+		<property name="InitSaleMoney" column="init_sale_money" type="decimal" />
+		<property name="PurchaseQty" column="purchase_qty" type="decimal" />
+		<property name="PurchaseMoney" column="purchase_money" type="decimal" />
+		<property name="PurchaseSaleMoney" column="purchase_sale_money" type="decimal" />
+		<property name="ReturnQty" column="return_qty" type="decimal" />
+		<property name="ReturnMoney" column="return_money" type="decimal" />
+		<property name="ReturnSaleMoney" column="return_sale_money" type="decimal" />
+		<property name="SaleQty" column="sale_qty" type="decimal" />
+		<property name="SaleMoney" column="sale_money" type="decimal" />
+		<property name="NontaxSaleMoney" column="nontax_sale_money" type="decimal" />
+		<property name="SupplyQty" column="supply_qty" type="decimal" />
+		<property name="SupplyMoney" column="supply_money" type="decimal" />
+		<property name="SupplySaleMoney" column="supply_sale_money" type="decimal" />
+		<property name="SreturnQty" column="sreturn_qty" type="decimal" />
+		<property name="SreturnMoney" column="sreturn_money" type="decimal" />
+		<property name="SreturnSaleMoney" column="sreturn_sale_money" type="decimal" />
+		<property name="LossQty" column="loss_qty" type="decimal" />
+		<property name="LossMoney" column="loss_money" type="decimal" />
+		<property name="LossSaleMoney" column="loss_sale_money" type="decimal" />
+		<property name="AdjustQty" column="adjust_qty" type="decimal" />
+		<property name="AdjustMoney" column="adjust_money" type="decimal" />
+		<property name="AdjustSaleMoney" column="adjust_sale_money" type="decimal" />
+		<property name="GrossMoney" column="gross_money" type="decimal" />
+		<property name="NontaxGrossMoney" column="nontax_gross_money" type="decimal" />
+		<property name="AdjustsaleMoney" column="adjustsale_money" type="decimal" />
+		<property name="StockQty" column="stock_qty" type="decimal" />
+		<property name="StockMoney" column="stock_money" type="decimal" />
+		<property name="StockSaleMoney" column="stock_sale_money" type="decimal" />
+		<property name="SupCode" column="sup_code" type="string" />
+    
+
+  </class>
+</hibernate-mapping>
+

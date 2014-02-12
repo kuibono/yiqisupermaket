@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ws">
+  <class name="WsWholesaleDetail" table="ws_wholesale_detail" lazy="true" >
+    <id name="Id" type="string" column="Id" >
+      <generator class="assigned" />
+    </id>
+		<property name="WsNumber" column="ws_number" type="string" />
+		<property name="GoodsCode" column="goods_code" type="string" />
+		<property name="GoodsBarCode" column="goods_bar_code" type="string" />
+		<property name="Specification" column="specification" type="string" />
+		<property name="PackUnitCode" column="pack_unit_code" type="string" />
+		<property name="PackQty" column="pack_qty" type="decimal" />
+		<property name="PackCoef" column="pack_coef" type="decimal" />
+		<property name="SaleQty" column="sale_qty" type="decimal" />
+		<property name="TradePrice" column="trade_price" type="decimal" />
+		<property name="SaleMoney" column="sale_money" type="decimal" />
+		<property name="DiscountMoney" column="discount_money" type="decimal" />
+		<property name="NontaxSalePrice" column="nontax_sale_price" type="decimal" />
+		<property name="NontaxSaleMoney" column="nontax_sale_money" type="decimal" />
+		<property name="CostMoney" column="cost_money" type="decimal" />
+		<property name="NontaxCostMoney" column="nontax_cost_money" type="decimal" />
+		<property name="GrossMoney" column="gross_money" type="decimal" />
+		<property name="NontaxGrossMoney" column="nontax_gross_money" type="decimal" />
+		<property name="SaleType" column="sale_type" type="string" />
+    
+
+  </class>
+</hibernate-mapping>
+

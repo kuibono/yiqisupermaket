@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Tg">
+  <class name="TgExpostorBalanceDetail" table="tg_expostor_balance_detail" lazy="true" >
+    <id name="Id" type="string" column="Id" >
+      <generator class="assigned" />
+    </id>
+		<property name="BaNumber" column="ba_number" type="string" />
+		<property name="GroupNumber" column="group_number" type="string" />
+		<property name="sNumber" column="s_number" type="string" />
+		<property name="SaleDate" column="sale_date" type="System.DateTime" />
+		<property name="SaleMoney" column="sale_money" type="decimal" />
+		<property name="PushRate" column="push_rate" type="decimal" />
+		<property name="PushMoney" column="push_money" type="decimal" />
+		<property name="PtimesMoney" column="ptimes_money" type="decimal" />
+		<property name="TotalPushMoney" column="total_push_money" type="decimal" />
+    
+
+  </class>
+</hibernate-mapping>
+

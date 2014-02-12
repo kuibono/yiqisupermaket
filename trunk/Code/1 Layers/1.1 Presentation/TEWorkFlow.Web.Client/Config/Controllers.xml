@@ -21,4 +21,230 @@
   <object type="TEWorkFlow.Web.Client.Controllers.TestController, TEWorkFlow.Web.Client" singleton="false" >
     <property name="FbGoodsArchivesService" ref="FbGoodsArchivesService" />
   </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.AcController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="AcCashierSummaryService" ref="AcCashierSummaryService" />
+    <property name="AcCounterSummaryService" ref="AcCounterSummaryService" />
+    <property name="AcDayBranchclassJournalAccountService" ref="AcDayBranchclassJournalAccountService" />
+    <property name="AcDayBranchgoodsJournalAccountService" ref="AcDayBranchgoodsJournalAccountService" />
+    <property name="AcDayClassJournalAccountService" ref="AcDayClassJournalAccountService" />
+    <property name="AcDayGoodsJournalAccountService" ref="AcDayGoodsJournalAccountService" />
+    <property name="AcDayGoodsJournalAccountTempService" ref="AcDayGoodsJournalAccountTempService" />
+    <property name="AcDayGoodsstockJournalAccountService" ref="AcDayGoodsstockJournalAccountService" />
+    <property name="AcDayGoodsstockJournalAccountTempService" ref="AcDayGoodsstockJournalAccountTempService" />
+    <property name="AcGoodssaleAccountService" ref="AcGoodssaleAccountService" />
+    <property name="AcMonthClassJournalAccountService" ref="AcMonthClassJournalAccountService" />
+    <property name="AcMonthGoodsJournalAccountService" ref="AcMonthGoodsJournalAccountService" />
+    <property name="AcPaDayaccountService" ref="AcPaDayaccountService" />
+    <property name="AcPaDayaccountStockService" ref="AcPaDayaccountStockService" />
+    <property name="AcPaSalesetService" ref="AcPaSalesetService" />
+    <property name="AcPeriodTimeSummaryService" ref="AcPeriodTimeSummaryService" />
+    <property name="AcSalesmanSummaryService" ref="AcSalesmanSummaryService" />
+    <property name="AcStockAccountService" ref="AcStockAccountService" />
+    <property name="AcSupplierJournalService" ref="AcSupplierJournalService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.BaController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="BaBranchDetailService" ref="BaBranchDetailService" />
+    <property name="BaBranchOfferAccountService" ref="BaBranchOfferAccountService" />
+    <property name="BaBranchOfferDetailService" ref="BaBranchOfferDetailService" />
+    <property name="BaChargeDetailService" ref="BaChargeDetailService" />
+    <property name="BaChargeManageService" ref="BaChargeManageService" />
+    <property name="BaCustomerBalanceService" ref="BaCustomerBalanceService" />
+    <property name="BaCustomerDetailService" ref="BaCustomerDetailService" />
+    <property name="BaLeaseAccountService" ref="BaLeaseAccountService" />
+    <property name="BaLeaseDetailService" ref="BaLeaseDetailService" />
+    <property name="BaOfferAccountService" ref="BaOfferAccountService" />
+    <property name="BaOfferDetailService" ref="BaOfferDetailService" />
+    <property name="BaPaAccountService" ref="BaPaAccountService" />
+    <property name="BaPaBranchAccountService" ref="BaPaBranchAccountService" />
+    <property name="BaPaChargeService" ref="BaPaChargeService" />
+    <property name="BaPoolAccountService" ref="BaPoolAccountService" />
+    <property name="BaPoolDetailService" ref="BaPoolDetailService" />
+    <property name="BaSupplierBalanceService" ref="BaSupplierBalanceService" />
+    <property name="BaSupplierDetailService" ref="BaSupplierDetailService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.BsController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="BsAdjustSalepriceGoodsService" ref="BsAdjustSalepriceGoodsService" />
+    <property name="BsBranchAllotDetailService" ref="BsBranchAllotDetailService" />
+    <property name="BsBranchAllotManageService" ref="BsBranchAllotManageService" />
+    <property name="BsBranchArchivesService" ref="BsBranchArchivesService" />
+    <property name="BsBranchPriceService" ref="BsBranchPriceService" />
+    <property name="BsPaAreaService" ref="BsPaAreaService" />
+    <property name="BsPaBranchWarehouseService" ref="BsPaBranchWarehouseService" />
+    <property name="BsPaClassService" ref="BsPaClassService" />
+    <property name="BsReturnDetailService" ref="BsReturnDetailService" />
+    <property name="BsReturnManageService" ref="BsReturnManageService" />
+    <property name="BsReturnManageFlowService" ref="BsReturnManageFlowService" />
+    <property name="BsSupplyDetailService" ref="BsSupplyDetailService" />
+    <property name="BsSupplyManageService" ref="BsSupplyManageService" />
+    <property name="BsSupplyManageFlowService" ref="BsSupplyManageFlowService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.EmController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="EmEmployeeFamilyService" ref="EmEmployeeFamilyService" />
+    <property name="EmEmployeePhotoService" ref="EmEmployeePhotoService" />
+    <property name="EmPaDutyService" ref="EmPaDutyService" />
+    <property name="EmPaEducationService" ref="EmPaEducationService" />
+    <property name="EmPaNationService" ref="EmPaNationService" />
+    <property name="EmPaPoliticsService" ref="EmPaPoliticsService" />
+    <property name="EmPaProfessionalTitleService" ref="EmPaProfessionalTitleService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.FbController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="FbAdjustClassGoodsService" ref="FbAdjustClassGoodsService" />
+    <property name="FbAdjustPoolrateService" ref="FbAdjustPoolrateService" />
+    <property name="FbAdjustPoolrateGoodsService" ref="FbAdjustPoolrateGoodsService" />
+    <property name="FbAdjustPurchasepriceService" ref="FbAdjustPurchasepriceService" />
+    <property name="FbAdjustPurchasepriceGoodsService" ref="FbAdjustPurchasepriceGoodsService" />
+    <property name="FbAdjustSalepriceService" ref="FbAdjustSalepriceService" />
+    <property name="FbAdjustSalepriceGoodsService" ref="FbAdjustSalepriceGoodsService" />
+    <property name="FbAdjustSupplierService" ref="FbAdjustSupplierService" />
+    <property name="FbAdjustSupplierGoodsService" ref="FbAdjustSupplierGoodsService" />
+    <property name="FbGoodsArchivesService" ref="FbGoodsArchivesService" />
+    <property name="FbGoodsArchivesBarService" ref="FbGoodsArchivesBarService" />
+    <property name="FbGoodsArchivesBindService" ref="FbGoodsArchivesBindService" />
+    <property name="FbGoodsArchivesLibraryService" ref="FbGoodsArchivesLibraryService" />
+    <property name="FbGoodsArchivesPartsService" ref="FbGoodsArchivesPartsService" />
+    <property name="FbGoodsArchivesPhotoService" ref="FbGoodsArchivesPhotoService" />
+    <property name="FbGoodsArchivesSupplierService" ref="FbGoodsArchivesSupplierService" />
+    <property name="FbGoodsBarCodeService" ref="FbGoodsBarCodeService" />
+    <property name="FbPaBaseSetService" ref="FbPaBaseSetService" />
+    <property name="FbPaGoodsCheckUnitService" ref="FbPaGoodsCheckUnitService" />
+    <property name="FbPaGoodsCounterService" ref="FbPaGoodsCounterService" />
+    <property name="FbPaGoodsGbService" ref="FbPaGoodsGbService" />
+    <property name="FbPaGoodsGlService" ref="FbPaGoodsGlService" />
+    <property name="FbPaGoodsGmService" ref="FbPaGoodsGmService" />
+    <property name="FbPaGoodsGsService" ref="FbPaGoodsGsService" />
+    <property name="FbPaGoodsPackUnitService" ref="FbPaGoodsPackUnitService" />
+    <property name="FbPaSupTypeService" ref="FbPaSupTypeService" />
+    <property name="FbSupplierArchivesService" ref="FbSupplierArchivesService" />
+    <property name="FbSupplierLeaseService" ref="FbSupplierLeaseService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.MsController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="MsCancelCardManageService" ref="MsCancelCardManageService" />
+    <property name="MsCardArchivesService" ref="MsCardArchivesService" />
+    <property name="MsCardtypeDiscountService" ref="MsCardtypeDiscountService" />
+    <property name="MsCardtypeGoodsDiscountService" ref="MsCardtypeGoodsDiscountService" />
+    <property name="MsCardtypeGoodsPointsService" ref="MsCardtypeGoodsPointsService" />
+    <property name="MsCardtypeManageService" ref="MsCardtypeManageService" />
+    <property name="MsCardtypePointsService" ref="MsCardtypePointsService" />
+    <property name="MsExchangeDetailService" ref="MsExchangeDetailService" />
+    <property name="MsExchangeManageService" ref="MsExchangeManageService" />
+    <property name="MsFreezeCardManageService" ref="MsFreezeCardManageService" />
+    <property name="MsGiftArchivesService" ref="MsGiftArchivesService" />
+    <property name="MsGrantCardManageService" ref="MsGrantCardManageService" />
+    <property name="MsLossCardManageService" ref="MsLossCardManageService" />
+    <property name="MsMadecardManageService" ref="MsMadecardManageService" />
+    <property name="MsMemberArchivesService" ref="MsMemberArchivesService" />
+    <property name="MsPointsClearService" ref="MsPointsClearService" />
+    <property name="MsPointtoprepaidManageService" ref="MsPointtoprepaidManageService" />
+    <property name="MsPrepaidCardManageService" ref="MsPrepaidCardManageService" />
+    <property name="MsReclaimCardManageService" ref="MsReclaimCardManageService" />
+    <property name="MsUpdateCardManageService" ref="MsUpdateCardManageService" />
+    <property name="MsUpgradeCardDetailService" ref="MsUpgradeCardDetailService" />
+    <property name="MsUpgradeCardManageService" ref="MsUpgradeCardManageService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.OpController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="OpAdjustManageService" ref="OpAdjustManageService" />
+    <property name="OpAdjustManageFlowService" ref="OpAdjustManageFlowService" />
+    <property name="OpAdjustPurchaseDetailService" ref="OpAdjustPurchaseDetailService" />
+    <property name="OpAdjustPurchaseManageService" ref="OpAdjustPurchaseManageService" />
+    <property name="OpAllotDetailService" ref="OpAllotDetailService" />
+    <property name="OpAllotManageService" ref="OpAllotManageService" />
+    <property name="OpAllotManageFlowService" ref="OpAllotManageFlowService" />
+    <property name="OpCheckDetailService" ref="OpCheckDetailService" />
+    <property name="OpCheckManageService" ref="OpCheckManageService" />
+    <property name="OpCheckStockService" ref="OpCheckStockService" />
+    <property name="OpCheckTransferService" ref="OpCheckTransferService" />
+    <property name="OpDynamicStockService" ref="OpDynamicStockService" />
+    <property name="OpDynamicStockBranchService" ref="OpDynamicStockBranchService" />
+    <property name="OpDynamicStockWhService" ref="OpDynamicStockWhService" />
+    <property name="OpGoodsBatchService" ref="OpGoodsBatchService" />
+    <property name="OpLossDetailService" ref="OpLossDetailService" />
+    <property name="OpLossManageService" ref="OpLossManageService" />
+    <property name="OpLossManageFlowService" ref="OpLossManageFlowService" />
+    <property name="OpPaWarehouseService" ref="OpPaWarehouseService" />
+    <property name="OpSplitComDetailService" ref="OpSplitComDetailService" />
+    <property name="OpSplitComGoodsService" ref="OpSplitComGoodsService" />
+    <property name="OpSplitComManageService" ref="OpSplitComManageService" />
+    <property name="OpSplitComManageFlowService" ref="OpSplitComManageFlowService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.PcController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="PcPurchaseManageService" ref="PcPurchaseManageService" />
+    <property name="PcPutinDetailService" ref="PcPutinDetailService" />
+    <property name="PcPutinManageService" ref="PcPutinManageService" />
+    <property name="PcPutoutDetailService" ref="PcPutoutDetailService" />
+    <property name="PcPutoutManageService" ref="PcPutoutManageService" />
+    <property name="PcReturnDetailService" ref="PcReturnDetailService" />
+    <property name="PcReturnManageService" ref="PcReturnManageService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.RtController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="RtClassPromotionBranchService" ref="RtClassPromotionBranchService" />
+    <property name="RtClassPromotionGoodsService" ref="RtClassPromotionGoodsService" />
+    <property name="RtPaFunctionService" ref="RtPaFunctionService" />
+    <property name="RtPaPaywayService" ref="RtPaPaywayService" />
+    <property name="RtPaPosService" ref="RtPaPosService" />
+    <property name="RtPaSalesetService" ref="RtPaSalesetService" />
+    <property name="RtPaShiftService" ref="RtPaShiftService" />
+    <property name="RtPluPromotionService" ref="RtPluPromotionService" />
+    <property name="RtPluPromotionBranchService" ref="RtPluPromotionBranchService" />
+    <property name="RtPluPromotionGoodsService" ref="RtPluPromotionGoodsService" />
+    <property name="RtPresentPromotionService" ref="RtPresentPromotionService" />
+    <property name="RtPresentPromotionBranchService" ref="RtPresentPromotionBranchService" />
+    <property name="RtPresentPromotionGoodsService" ref="RtPresentPromotionGoodsService" />
+    <property name="RtRetailDetailService" ref="RtRetailDetailService" />
+    <property name="RtRetailManageService" ref="RtRetailManageService" />
+    <property name="RtRetailPayService" ref="RtRetailPayService" />
+    <property name="RtSheetPromotionService" ref="RtSheetPromotionService" />
+    <property name="RtSheetPromotionBranchService" ref="RtSheetPromotionBranchService" />
+    <property name="RtSheetPromotionGoodsService" ref="RtSheetPromotionGoodsService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.SysController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="SysDepartPowerService" ref="SysDepartPowerService" />
+    <property name="SysEnterpriseArchivesService" ref="SysEnterpriseArchivesService" />
+    <property name="SysLoginPowerService" ref="SysLoginPowerService" />
+    <property name="SysLoginPowerFunctionService" ref="SysLoginPowerFunctionService" />
+    <property name="SysModuleService" ref="SysModuleService" />
+    <property name="SysModuleContentService" ref="SysModuleContentService" />
+    <property name="SysModulePicService" ref="SysModulePicService" />
+    <property name="SysOperationFlowService" ref="SysOperationFlowService" />
+    <property name="SysOperationFlowDetailService" ref="SysOperationFlowDetailService" />
+    <property name="SysOperationFlowDetailMaxService" ref="SysOperationFlowDetailMaxService" />
+    <property name="SysOperationWorkerService" ref="SysOperationWorkerService" />
+    <property name="SysPaDepartmentService" ref="SysPaDepartmentService" />
+    <property name="SysPrintDesignService" ref="SysPrintDesignService" />
+    <property name="SysWorkerPowerService" ref="SysWorkerPowerService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.TfController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="TfDataObjectService" ref="TfDataObjectService" />
+    <property name="TfDataPropertyService" ref="TfDataPropertyService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.TgController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="TgExpostorBalanceDetailService" ref="TgExpostorBalanceDetailService" />
+    <property name="TgGroupBalanceService" ref="TgGroupBalanceService" />
+    <property name="TgGroupBalanceDetailService" ref="TgGroupBalanceDetailService" />
+    <property name="TgGroupCallService" ref="TgGroupCallService" />
+    <property name="TgGuideArchivesService" ref="TgGuideArchivesService" />
+    <property name="TgGuideBalanceService" ref="TgGuideBalanceService" />
+    <property name="TgGuideBalanceDetailService" ref="TgGuideBalanceDetailService" />
+    <property name="TgPaCarsChargeService" ref="TgPaCarsChargeService" />
+    <property name="TgPaCarsTypeService" ref="TgPaCarsTypeService" />
+    <property name="TgPaGroupService" ref="TgPaGroupService" />
+    <property name="TgPaGroupTypeService" ref="TgPaGroupTypeService" />
+    <property name="TgPaTaTypeService" ref="TgPaTaTypeService" />
+    <property name="TgPushtacDetailService" ref="TgPushtacDetailService" />
+    <property name="TgPushtacManageService" ref="TgPushtacManageService" />
+    <property name="TgTourgroupManageService" ref="TgTourgroupManageService" />
+    <property name="TgTravelArchivesService" ref="TgTravelArchivesService" />
+    <property name="TgTravelArchivesPushtacService" ref="TgTravelArchivesPushtacService" />
+    <property name="TgTravelBalanceService" ref="TgTravelBalanceService" />
+    <property name="TgTravelBalanceDetailService" ref="TgTravelBalanceDetailService" />
+  </object>
+  <object type="TEWorkFlow.Web.Client.Controllers.WsController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="WsCustomerGoodsService" ref="WsCustomerGoodsService" />
+    <property name="WsOrderDetailService" ref="WsOrderDetailService" />
+    <property name="WsOrderManageService" ref="WsOrderManageService" />
+    <property name="WsPaCustomerTypeService" ref="WsPaCustomerTypeService" />
+    <property name="WsWholesaleDetailService" ref="WsWholesaleDetailService" />
+    <property name="WsWholesaleGoodsSetService" ref="WsWholesaleGoodsSetService" />
+    <property name="WsWholesaleManageService" ref="WsWholesaleManageService" />
+    <property name="WsWholesaleManageFlowService" ref="WsWholesaleManageFlowService" />
+  </object>
 </objects>

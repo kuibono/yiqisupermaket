@@ -1,0 +1,193 @@
+@model YiQiWorkFlow.Domain.Ms.MsPointtoprepaidManage
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>积分转储值编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "积分转储值"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 0:05:05";var id="@Model.Id";pageName="MsPointtoprepaidManageEdit"; </script>
+	<script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+            $.ajax({
+                url: "SaveMsPointtoprepaidManage",
+                type: 'post',
+                data: o,
+                cache: false,
+				dataType:"json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        closeWithNoValidate();
+                    } else {
+                        $("#Tooltip_Critical_MsPointtoprepaidManage .content").first().text(r.Message);
+                        $("#Tooltip_Critical_MsPointtoprepaidManage").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_MsPointtoprepaidManage .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_MsPointtoprepaidManage").show("fast");
+                    form.unmask();
+					$(document).scrollTop(0);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            积分转储值编辑
+        </h1>
+        <div class="tooltip warning hidden" id="Tooltip_Warning_MsPointtoprepaidManage">
+            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于积分转储值编辑页面的警告信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip info hidden" id="Tooltip_Info_MsPointtoprepaidManage">
+            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于积分转储值编辑页面的提示信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip help hidden" id="Tooltip_Help_MsPointtoprepaidManage">
+            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于积分转储值编辑页面的帮助信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip critical hidden" id="Tooltip_Critical_MsPointtoprepaidManage">
+            <img src="/images/critical.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            此处填写关于积分转储值编辑页面的出错信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <form id="formMain" method="post" action="">
+        <fieldset>
+            <legend>基本信息</legend>
+            <div class="ablock">
+                <label for="Control_NumberFlow">流水号:</label>
+                <input type="text" id="Control_NumberFlow" name="NumberFlow"  value="@Model.NumberFlow" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ExchangeDate">兑换日期:</label>
+                <input type="text" id="Control_ExchangeDate" name="ExchangeDate"  value="@Model.ExchangeDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CardNumber">卡号:</label>
+                <input type="text"  value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_SurfaceNumber">卡面明码:</label>
+                <input type="text"  value="@Model.SurfaceNumber" class="mini-textbox" name="SurfaceNumber" id="Control_SurfaceNumber" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_MsCode">会员编码:</label>
+                <input type="text"  value="@Model.MsCode" class="mini-textbox" name="MsCode" id="Control_MsCode" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_MsName">会员姓名:</label>
+                <input type="text"  value="@Model.MsName" class="mini-textbox" name="MsName" id="Control_MsName" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CardCode">卡类型编码:</label>
+                <input type="text"  value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CardName">卡类型名称:</label>
+                <input type="text"  value="@Model.CardName" class="mini-textbox" name="CardName" id="Control_CardName" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CurrentPoints">当前积分:</label>
+                <input type="text" id="Control_CurrentPoints" name="CurrentPoints"  value="@Model.CurrentPoints" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ExchangePoints">兑换积分:</label>
+                <input type="text" id="Control_ExchangePoints" name="ExchangePoints"  value="@Model.ExchangePoints" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_SurplusPoints">剩余积分:</label>
+                <input type="text" id="Control_SurplusPoints" name="SurplusPoints"  value="@Model.SurplusPoints" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PrepaidMoney">储值金额:</label>
+                <input type="text" id="Control_PrepaidMoney" name="PrepaidMoney"  value="@Model.PrepaidMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CreateDate">创建时间:</label>
+                <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Operator">操作员:</label>
+                <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OperatorDate">操作时间:</label>
+                <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock" style="display:none">
+                <label for="Control_Id">:</label>
+                <input id="Control_Id" value="@Model.Id" name="Id" class="mini-hidden"/>
+            </div>
+
+           
+        </fieldset>
+        <div class="clear">
+        </div>
+        <div class="control-panel">
+            <div class="control-button">
+                <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+            </div>
+            <div class="botton-up">
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Bs">
+  <class name="BsAdjustSaleprice" table="bs_adjust_saleprice" lazy="true" >
+    <id name="Id" type="string" column="adjust_number" >
+      <generator class="assigned" />
+    </id>
+		<property name="AdjustDate" column="adjust_date" type="System.DateTime" />
+		<property name="AdjustReason" column="adjust_reason" type="string" />
+		<property name="AdjustType" column="adjust_type" type="string" />
+		<property name="bCode" column="b_code" type="string" />
+		<property name="ClassCode" column="class_code" type="string" />
+		<property name="CreateDate" column="create_date" type="System.DateTime" />
+		<property name="Operator" column="operator" type="string" />
+		<property name="Assessor" column="assessor" type="string" />
+		<property name="IfExamine" column="if_examine" type="string" />
+		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
+    
+
+  </class>
+</hibernate-mapping>
+

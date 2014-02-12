@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using YiQiWorkFlow.Application.Service.Archives;
-using YiQiWorkFlow.Domain.Archives;
+using YiQiWorkFlow.Application.Service.Fb;
+using YiQiWorkFlow.Domain.Fb;
 using YiQiWorkFlow.Domain.Basement;
 
 namespace TEWorkFlow.Web.Client.Controllers

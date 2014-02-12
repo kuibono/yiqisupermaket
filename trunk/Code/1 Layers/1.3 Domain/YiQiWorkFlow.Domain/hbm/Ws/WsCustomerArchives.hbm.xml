@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ws">
+  <class name="WsCustomerArchives" table="ws_customer_archives" lazy="true" >
+    <id name="Id" type="string" column="cust_code" >
+      <generator class="assigned" />
+    </id>
+		<property name="CustName" column="cust_name" type="string" />
+		<property name="PyCode" column="py_code" type="string" />
+		<property name="CustTypeCode" column="cust_type_code" type="string" />
+		<property name="Linkman" column="linkman" type="string" />
+		<property name="ContactPhone" column="contact_phone" type="string" />
+		<property name="ContactAddress" column="contact_address" type="string" />
+		<property name="OfficePhone" column="office_phone" type="string" />
+		<property name="FaxPhone" column="fax_phone" type="string" />
+		<property name="eMail" column="e_mail" type="string" />
+		<property name="Postalcode" column="postalcode" type="string" />
+		<property name="OpenAccount" column="open_account" type="string" />
+		<property name="BankAccount" column="bank_account" type="string" />
+		<property name="TaxNumber" column="tax_number" type="string" />
+		<property name="PayMode" column="pay_mode" type="string" />
+		<property name="BalanceMode" column="balance_mode" type="string" />
+		<property name="BalancePeriod" column="balance_period" type="string" />
+		<property name="BalanceDay" column="balance_day" type="decimal" />
+		<property name="SalePeriod" column="sale_period" type="string" />
+		<property name="Comment" column="comment" type="string" />
+		<property name="CreateDate" column="create_date" type="System.DateTime" />
+		<property name="Operator" column="operator" type="string" />
+		<property name="Assessor" column="assessor" type="string" />
+		<property name="IfExamine" column="if_examine" type="string" />
+		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
+    
+
+  </class>
+</hibernate-mapping>
+

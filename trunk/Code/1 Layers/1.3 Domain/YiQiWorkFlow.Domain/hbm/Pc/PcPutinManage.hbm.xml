@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Pc">
+  <class name="PcPutinManage" table="pc_putin_manage" lazy="true" >
+    <id name="Id" type="string" column="pi_number" >
+      <generator class="assigned" />
+    </id>
+		<property name="PiFlowNumber" column="pi_flow_number" type="decimal" />
+		<property name="SupCode" column="sup_code" type="string" />
+		<property name="EnCode" column="en_code" type="string" />
+		<property name="PcForm" column="pc_form" type="string" />
+		<property name="dCode" column="d_code" type="string" />
+		<property name="bCode" column="b_code" type="string" />
+		<property name="PcType" column="pc_type" type="string" />
+		<property name="PcMode" column="pc_mode" type="string" />
+		<property name="WhCode" column="wh_code" type="string" />
+		<property name="PurchaseDate" column="purchase_date" type="System.DateTime" />
+		<property name="ExpectArriveDate" column="expect_arrive_date" type="System.DateTime" />
+		<property name="CheckDate" column="check_date" type="System.DateTime" />
+		<property name="PutinDate" column="putin_date" type="System.DateTime" />
+		<property name="PutinMoney" column="putin_money" type="decimal" />
+		<property name="IfAblebalance" column="if_ablebalance" type="string" />
+		<property name="IfBalance" column="if_balance" type="string" />
+		<property name="BaNumber" column="ba_number" type="string" />
+		<property name="BaMoney" column="ba_money" type="decimal" />
+		<property name="CreateDate" column="create_date" type="System.DateTime" />
+		<property name="Operator" column="operator" type="string" />
+		<property name="Assessor" column="assessor" type="string" />
+		<property name="IfExamine" column="if_examine" type="string" />
+		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
+    
+
+  </class>
+</hibernate-mapping>
+
