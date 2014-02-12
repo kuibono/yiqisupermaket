@@ -1,7 +1,6 @@
 ﻿@{
     Layout = null;
 }
-@model TEWorkFlow.Domain.Sys.SysEnterpriseArchives
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,7 +19,7 @@
             </div>
             <div style="float: left;min-width:209px;width:500px;height:100%; /*background-image:url(/Images/bannerLeft.jpg);*/ background-repeat:no-repeat;">
                 <h1 style="margin: 0; padding: 15px;margin-top:10px; cursor: default; font-family: 微软雅黑,黑体,宋体;color:#FFF;">
-                    @Model.TempString
+                   @* @Model.TempString*@
                 </h1>
             </div>
             <div style="position: absolute; top: 18px; right: 10px;">
@@ -57,7 +56,7 @@
                     <!--Tabs-->
                     <div id="mainTabs" class="mini-tabs " activeindex="0" style="width: 100%; height: 100%;"
                         plain="false">
-                        <div title="公告" url="about:blank" id="tab_blank" iconcls="icon-bell">
+                        <div title="空白" url="about:blank" id="tab_blank" iconcls="icon-bell">
                         </div>
                     </div>
                 </div>

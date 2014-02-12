@@ -57,10 +57,6 @@
       <Project>{DDD1A0BF-884A-4F37-8186-04B30DBAEC94}</Project>
       <Name>NSH.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TEWorkFlow.Domain\TEWorkFlow.Domain.csproj">
-      <Project>{EE525669-C178-469E-BFB0-38E18900A1D3}</Project>
-      <Name>TEWorkFlow.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
