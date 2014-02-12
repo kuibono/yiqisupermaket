@@ -1,0 +1,318 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>分店档案管理列表</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/demo.css" />
+    <script src="~/scripts/boot.js" type="text/javascript"></script>
+    <script type="text/javascript"> var pageTitle = "分店档案管理"; var pageType = "List"; var createTime = "2014/2/13 0:03:07"; var isEmployeeLogin = false; </script>
+</head>
+<body>
+    <div style="width: 100%">
+        <div class="mini-toolbar" style="border-bottom: 0; padding: 0px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a class="mini-button" iconcls="icon-add" onclick="editRow('')" plain="true">增加</a>
+                        <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">高级检索</a>
+                    </td>
+                    <td style="white-space: nowrap;" align="right">
+                        <table>
+                            <tr>
+                                <td>
+                                    <input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
+                                </td>
+                                <td>
+                                    <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
+                                </td>
+                                <td>
+                                    <a class="mini-button" onclick="search()">查询</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="mini-fit">
+        <div id="datagrid1" class="mini-datagrid" url="SearchBsBranchArchivesList"
+            style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+            pagesize="20" multiselect="true" showFilterRow="true">
+            <div property="columns">
+                <div type="indexcolumn" width="30">
+                </div>
+                <div type="checkcolumn" width="30">
+                </div>
+				<div field="bCode" headeralign="center" align="center" width="60">
+				    分店编码
+					<input id="filter_bCode" name="bCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="bName" headeralign="center" align="center" width="60">
+				    分店名称
+					<input id="filter_bName" name="bName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PyCode" headeralign="center" align="center" width="60">
+				    拼音码
+					<input id="filter_PyCode" name="PyCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="bType" headeralign="center" align="center" width="60">
+				    分店类型
+					<input id="filter_bType" name="bType" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="bState" headeralign="center" align="center" width="60">
+				    分店状态
+					<input id="filter_bState" name="bState" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="AreaCode" headeralign="center" align="center" width="60">
+				    所属区域
+					<input id="filter_AreaCode" name="AreaCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ClassCode" headeralign="center" align="center" width="60">
+				    所属分类
+					<input id="filter_ClassCode" name="ClassCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="Functionary" headeralign="center" align="center" width="60">
+				    负责人
+					<input id="filter_Functionary" name="Functionary" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="FunctionaryPhone" headeralign="center" align="center" width="60">
+				    负责人电话
+					<input id="filter_FunctionaryPhone" name="FunctionaryPhone" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ContactAddress" headeralign="center" align="center" width="60">
+				    联系地址
+					<input id="filter_ContactAddress" name="ContactAddress" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="OfficePhone" headeralign="center" align="center" width="60">
+				    办公电话
+					<input id="filter_OfficePhone" name="OfficePhone" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="FaxPhone" headeralign="center" align="center" width="60">
+				    传真
+					<input id="filter_FaxPhone" name="FaxPhone" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="eMail" headeralign="center" align="center" width="60">
+				    邮箱
+					<input id="filter_eMail" name="eMail" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="Postalcode" headeralign="center" align="center" width="60">
+				    邮政编码
+					<input id="filter_Postalcode" name="Postalcode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="OpenAccount" headeralign="center" align="center" width="60">
+				    开户行
+					<input id="filter_OpenAccount" name="OpenAccount" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="BankAccount" headeralign="center" align="center" width="60">
+				    帐号
+					<input id="filter_BankAccount" name="BankAccount" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="TaxNumber" headeralign="center" align="center" width="60">
+				    税号
+					<input id="filter_TaxNumber" name="TaxNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="OpCode" headeralign="center" align="center" width="60">
+				    1经销2代销3联营
+					<input id="filter_OpCode" name="OpCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="StockVoucher" headeralign="center" align="center" width="60">
+				    普通发票增殖税发票
+					<input id="filter_StockVoucher" name="StockVoucher" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="InputTax" headeralign="center" align="center" width="60">
+				    进项税率
+					<input id="filter_InputTax" name="InputTax" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="BalanceMode" headeralign="center" align="center" width="60">
+				    预付货款货到付款实销实付扣点结算
+					<input id="filter_BalanceMode" name="BalanceMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="PayMode" headeralign="center" align="center" width="60">
+				    现金支票汇票
+					<input id="filter_PayMode" name="PayMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="BalancePeriod" headeralign="center" align="center" width="60">
+				    月结算季计算年结算
+					<input id="filter_BalancePeriod" name="BalancePeriod" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="BalanceDay" headeralign="center" align="center" width="60">
+				    31
+					<input id="filter_BalanceDay" name="BalanceDay" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="DeliveryDays" headeralign="center" align="center" width="60">
+				    送货天数
+					<input id="filter_DeliveryDays" name="DeliveryDays" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="SupplyPriceType" headeralign="center" align="center" width="60">
+				    配价方式
+					<input id="filter_SupplyPriceType" name="SupplyPriceType" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="GrossRate" headeralign="center" align="center" width="60">
+				    加价率
+					<input id="filter_GrossRate" name="GrossRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="WhCode" headeralign="center" align="center" width="60">
+				    配送仓库
+					<input id="filter_WhCode" name="WhCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="CreateDate" headeralign="center" align="center" width="60">
+				    创建时间
+					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="Operator" headeralign="center" align="center" width="60">
+				    操作员
+					<input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="Assessor" headeralign="center" align="center" width="60">
+				    审核人
+					<input id="filter_Assessor" name="Assessor" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="IfExamine" headeralign="center" align="center" width="60">
+				    0否1是
+					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="ExamineDate" headeralign="center" align="center" width="60">
+				    审核时间
+					<input id="filter_ExamineDate" name="ExamineDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="OperatorDate" headeralign="center" align="center" width="60">
+				    操作时间
+					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
+                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                    cellstyle="padding:0;">
+                    管理
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        mini.parse();
+        var grid = mini.get("datagrid1");
+        grid.load();
+        //对"createtime"字段，进行降级排序
+        grid.sortBy("Id", "desc");
+        $("#key").bind("keydown", function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        });
+        function onActionRenderer(e) {
+            var grid = e.sender;
+            var record = e.record;
+            var uid = record.Id;
+            var rowIndex = e.rowIndex;
+            if (record.IfExamine) {
+                if (record.IfExamine == "1") {
+                    return "";
+                }
+            }
+            var s = ' <a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')" >编辑</a>'
+                + ' <a class="Delete_Button" href="javascript:if(confirm(\'确定要删除这条记录吗？\')){deleteItem(\'' + uid + '\')}">删除</a>';
+            return s;
+        }
+
+        function onNoExamActionRenderer(e) {
+            var grid = e.sender;
+            var record = e.record;
+            var uid = record.Id;
+            var rowIndex = e.rowIndex;
+            var s = ' <a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')" >编辑</a>'
+                + ' <a class="Delete_Button" href="javascript:if(confirm(\'确定要删除这条记录吗？\')){deleteItem(\'' + uid + '\')}">删除</a>';
+            return s;
+        }
+
+        function remove() {
+            var rows = grid.getSelecteds();
+            if (rows.length > 0) {
+                if (confirm("确定删除选中记录？")) {
+                    var ids = [];
+                    for (var i = 0, l = rows.length; i < l; i++) {
+                        var r = rows[i];
+                        ids.push(r.Id);
+                    }
+                    var id = ids.join(',');
+                    grid.loading("操作中，请稍后......");
+                    deleteItem(id);
+                }
+            } else {
+                alert("请选中一条记录");
+            }
+        }
+        function search() {
+            var data = {};
+            if (mini.get("#ifexame") != undefined) {
+                data["IfExamine"] = mini.get("#ifexame").value;
+            }
+            if (mini.get("#keyword") != undefined) {
+                data["key"] = mini.get("#keyword").value;
+            }
+            $("#datagrid1 .mini-grid-filterRow :text:visible").each(function () {
+                if ($(this).val().length > 0) {
+                    data[$(this).prop("name")] = $(this).val();
+                }
+            });
+            grid.load(data);
+        }
+        function editRow(id) {
+			parent.showTab({ id:"BsBranchArchivesEdit",text: "分店档案管理管理", iconCls: "icon-edit", url: "/Bs/BsBranchArchivesEdit/" + id });
+        }
+        function deleteItem(id) {
+            $.ajax({
+                url: "BsBranchArchivesDelete",
+                data: { ids: id },
+                dataType: "json",
+                success: function (j) {
+                    if (j == false) {
+                        if (confirm("数据存在关联数据数据，删除后将影响整个系统运行，是否确认删除？") == true) {
+                            $.ajax({
+                                url: "BsBranchArchivesDelete",
+                                data: { ids: id, confirm: "true" },
+                                dataType: "json",
+                                success: function (r) {
+                                    grid.reload();
+                                }
+                            });
+                        }
+                    }
+                    else {
+                        grid.reload();
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+        function exame(obj, itemid, old) {
+            $.ajax({
+                url: "BsBranchArchivesDeleteExame/" + itemid,
+                success: function (j) {
+                    if (j == true) {
+                        $(obj).css("color", "green").text("是");
+                    }
+                    else {
+                        $(obj).css("color", "red").text("否");
+                    }
+                    $(obj).removeProp("onclick");
+                    $(obj).unbind("click").click(function () {
+                        exame(obj, itemid, !old)
+                    })
+                },
+                error: function () {
+                    alert("失败")
+                }
+            });
+        }
+		function showFilterRow() {
+            $("#datagrid1 .mini-grid-filterRow").toggle();
+        }
+    </script>
+</body>
+</html>
+
+
+

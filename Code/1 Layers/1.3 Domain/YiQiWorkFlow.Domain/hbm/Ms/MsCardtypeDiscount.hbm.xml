@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ms">
+  <class name="MsCardtypeDiscount" table="ms_cardtype_discount" lazy="true" >
+    <id name="Id" type="string" column="Id" >
+      <generator class="assigned" />
+    </id>
+		<property name="CardCode" column="card_code" type="string" />
+		<property name="GoodsClassCode" column="goods_class_code" type="string" />
+		<property name="GoodsClassName" column="goods_class_name" type="string" />
+		<property name="DiscountBase" column="discount_base" type="decimal" />
+		<property name="ClassDiscountRate" column="class_discount_rate" type="decimal" />
+		<property name="SysGuid" column="sys_guid" type="string" />
+    
+
+  </class>
+</hibernate-mapping>
+

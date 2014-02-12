@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Rt">
+  <class name="RtSheetPromotionGoods" table="rt_sheet_promotion_goods" lazy="true" >
+    <id name="Id" type="string" column="Id" >
+      <generator class="assigned" />
+    </id>
+		<property name="SpNumber" column="sp_number" type="string" />
+		<property name="SpBeginDate" column="sp_begin_date" type="string" />
+		<property name="SpEndDate" column="sp_end_date" type="string" />
+		<property name="SpBeginTime" column="sp_begin_time" type="string" />
+		<property name="SpEndTime" column="sp_end_time" type="string" />
+		<property name="SpW1" column="sp_w1" type="string" />
+		<property name="SpW2" column="sp_w2" type="string" />
+		<property name="SpW3" column="sp_w3" type="string" />
+		<property name="SpW4" column="sp_w4" type="string" />
+		<property name="SpW5" column="sp_w5" type="string" />
+		<property name="SpW6" column="sp_w6" type="string" />
+		<property name="SpW7" column="sp_w7" type="string" />
+		<property name="SaleMoney" column="sale_money" type="decimal" />
+		<property name="SaleDiscountRate" column="sale_discount_rate" type="decimal" />
+		<property name="Comment" column="comment" type="string" />
+		<property name="SysGuid" column="sys_guid" type="string" />
+    
+
+  </class>
+</hibernate-mapping>
+

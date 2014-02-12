@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Sys">
+  <class name="SysModule" table="sys_module" lazy="true" >
+    <id name="Id" type="string" column="window_name" >
+      <generator class="assigned" />
+    </id>
+		<property name="WindowCode" column="window_code" type="string" />
+		<property name="ModuleCode" column="module_code" type="string" />
+		<property name="ModuleName" column="module_name" type="string" />
+		<property name="ModuleChild" column="module_child" type="string" />
+		<property name="OpenMode" column="open_mode" type="string" />
+    
+
+  </class>
+</hibernate-mapping>
+

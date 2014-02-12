@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Op">
+  <class name="OpLossDetail" table="op_loss_detail" lazy="true" >
+    <id name="Id" type="string" column="Id" >
+      <generator class="assigned" />
+    </id>
+		<property name="LoNumber" column="lo_number" type="string" />
+		<property name="WhCode" column="wh_code" type="string" />
+		<property name="GoodsCode" column="goods_code" type="string" />
+		<property name="GoodsBarCode" column="goods_bar_code" type="string" />
+		<property name="PurchasePrice" column="purchase_price" type="decimal" />
+		<property name="SalePrice" column="sale_price" type="decimal" />
+		<property name="StockQty" column="stock_qty" type="decimal" />
+		<property name="DifferQty" column="differ_qty" type="decimal" />
+		<property name="PurchaseMoney" column="purchase_money" type="decimal" />
+		<property name="NontaxPurchaseMoney" column="nontax_purchase_money" type="decimal" />
+		<property name="SaleMoney" column="sale_money" type="decimal" />
+		<property name="NontaxSaleMoney" column="nontax_sale_money" type="decimal" />
+    
+
+  </class>
+</hibernate-mapping>
+

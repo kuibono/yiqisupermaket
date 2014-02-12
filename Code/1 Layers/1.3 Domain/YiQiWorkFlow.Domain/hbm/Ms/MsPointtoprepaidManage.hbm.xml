@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ms">
+  <class name="MsPointtoprepaidManage" table="ms_pointtoprepaid_manage" lazy="true" >
+    <id name="Id" type="string" column="Id" >
+      <generator class="assigned" />
+    </id>
+		<property name="NumberFlow" column="number_flow" type="decimal" />
+		<property name="ExchangeDate" column="exchange_date" type="System.DateTime" />
+		<property name="CardNumber" column="card_number" type="string" />
+		<property name="SurfaceNumber" column="surface_number" type="string" />
+		<property name="MsCode" column="ms_code" type="string" />
+		<property name="MsName" column="ms_name" type="string" />
+		<property name="CardCode" column="card_code" type="string" />
+		<property name="CardName" column="card_name" type="string" />
+		<property name="CurrentPoints" column="current_points" type="decimal" />
+		<property name="ExchangePoints" column="exchange_points" type="decimal" />
+		<property name="SurplusPoints" column="surplus_points" type="decimal" />
+		<property name="PrepaidMoney" column="prepaid_money" type="decimal" />
+		<property name="CreateDate" column="create_date" type="System.DateTime" />
+		<property name="Operator" column="operator" type="string" />
+		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
+    
+
+  </class>
+</hibernate-mapping>
+

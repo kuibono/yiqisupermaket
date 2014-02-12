@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Tg">
+  <class name="TgPushtacManage" table="tg_pushtac_manage" lazy="true" >
+    <id name="Id" type="string" column="tac_code" >
+      <generator class="assigned" />
+    </id>
+		<property name="TacName" column="tac_name" type="string" />
+		<property name="PushRate" column="push_rate" type="decimal" />
+		<property name="PushMoney" column="push_money" type="decimal" />
+    
+
+  </class>
+</hibernate-mapping>
+

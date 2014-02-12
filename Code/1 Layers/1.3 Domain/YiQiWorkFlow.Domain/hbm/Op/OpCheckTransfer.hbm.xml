@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Op">
+  <class name="OpCheckTransfer" table="op_check_transfer" lazy="true" >
+    <id name="Id" type="string" column="ck_number" >
+      <generator class="assigned" />
+    </id>
+		<property name="CkFlowNumber" column="ck_flow_number" type="decimal" />
+		<property name="bCode" column="b_code" type="string" />
+		<property name="WhCode" column="wh_code" type="string" />
+		<property name="GoodsBarCode" column="goods_bar_code" type="string" />
+		<property name="PurchasePrice" column="purchase_price" type="decimal" />
+		<property name="SalePrice" column="sale_price" type="decimal" />
+		<property name="PackCoef" column="pack_coef" type="decimal" />
+		<property name="PackQty" column="pack_qty" type="decimal" />
+		<property name="CheckQty" column="check_qty" type="decimal" />
+		<property name="StockQty" column="stock_qty" type="decimal" />
+		<property name="DifferQty" column="differ_qty" type="decimal" />
+		<property name="SysGuid" column="sys_guid" type="string" />
+    
+
+  </class>
+</hibernate-mapping>
+

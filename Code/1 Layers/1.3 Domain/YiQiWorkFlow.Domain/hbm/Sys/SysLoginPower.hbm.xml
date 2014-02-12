@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Sys">
+  <class name="SysLoginPower" table="sys_login_power" lazy="true" >
+    <id name="Id" type="string" column="em_code" >
+      <generator class="assigned" />
+    </id>
+		<property name="EmName" column="em_name" type="string" />
+		<property name="UserName" column="user_name" type="string" />
+		<property name="UserPw" column="user_pw" type="string" />
+		<property name="IfCash" column="if_cash" type="string" />
+		<property name="CashFunction" column="cash_function" type="string" />
+		<property name="UserState" column="user_state" type="string" />
+		<property name="MaxDiscount" column="max_discount" type="decimal" />
+    
+
+  </class>
+</hibernate-mapping>
+

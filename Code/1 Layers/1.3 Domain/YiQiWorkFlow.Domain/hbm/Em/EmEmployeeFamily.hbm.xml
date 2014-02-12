@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Em">
+  <class name="EmEmployeeFamily" table="em_employee_family" lazy="true" >
+    <id name="Id" type="string" column="Id" >
+      <generator class="assigned" />
+    </id>
+		<property name="EmCode" column="em_code" type="string" />
+		<property name="sNumber" column="s_number" type="string" />
+		<property name="MemberName" column="member_name" type="string" />
+		<property name="Relationship" column="relationship" type="string" />
+		<property name="Birthday" column="birthday" type="System.DateTime" />
+		<property name="PoliticsCode" column="politics_code" type="string" />
+		<property name="DutyCode" column="duty_code" type="string" />
+		<property name="WorkDepartment" column="work_department" type="string" />
+    
+
+  </class>
+</hibernate-mapping>
+

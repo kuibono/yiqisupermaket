@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Tf">
+  <class name="TfDataProperty" table="tf_data_property" lazy="true" >
+    <id name="Id" type="string" column="Id" >
+      <generator class="assigned" />
+    </id>
+		<property name="PropertyId" column="property_id" type="string" />
+		<property name="PropertyObject" column="property_object" type="string" />
+		<property name="PropertyName" column="property_name" type="string" />
+		<property name="PropertyType" column="property_type" type="string" />
+		<property name="PropertyIskey" column="property_iskey" type="bool" />
+		<property name="PropertyIsnullable" column="property_isnullable" type="bool" />
+		<property name="PropertyIsunqueindex" column="property_isunqueindex" type="bool" />
+		<property name="PropertyIstransfer" column="property_istransfer" type="bool" />
+		<property name="PropertyDescription" column="property_description" type="string" />
+		<property name="PropertyCondition" column="property_condition" type="string" />
+    
+
+  </class>
+</hibernate-mapping>
+
