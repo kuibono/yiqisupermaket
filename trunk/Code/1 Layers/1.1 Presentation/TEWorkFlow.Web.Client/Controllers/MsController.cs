@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 积分调整管理列表页面
+        /// <summary>
+        /// 积分调整管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsAdjustPointsList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 积分调整管理保存程序
         /// <summary>
         /// 积分调整管理保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsCancelCardManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 卡作废列表页面
+        /// <summary>
+        /// 卡作废列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsCancelCardManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 卡信息列表页面
+        /// <summary>
+        /// 卡信息列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsCardArchivesList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 卡信息保存程序
         /// <summary>
         /// 卡信息保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsCardtypeDiscountService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 卡折扣列表页面
+        /// <summary>
+        /// 卡折扣列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsCardtypeDiscountList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品折扣列表页面
+        /// <summary>
+        /// 商品折扣列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsCardtypeGoodsDiscountList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品折扣保存程序
         /// <summary>
         /// 商品折扣保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsCardtypeGoodsPointsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品积分列表页面
+        /// <summary>
+        /// 商品积分列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsCardtypeGoodsPointsList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 卡类型列表页面
+        /// <summary>
+        /// 卡类型列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsCardtypeManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 卡类型保存程序
         /// <summary>
         /// 卡类型保存程序
@@ -618,6 +695,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsCardtypePointsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 卡积分列表页面
+        /// <summary>
+        /// 卡积分列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsCardtypePointsList()
+        {
+            return View();
         }
         #endregion
 
@@ -705,6 +793,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 赠品兑换明细列表页面
+        /// <summary>
+        /// 赠品兑换明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsExchangeDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 赠品兑换明细保存程序
         /// <summary>
         /// 赠品兑换明细保存程序
@@ -786,6 +885,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsExchangeManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 赠品兑换管理列表页面
+        /// <summary>
+        /// 赠品兑换管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsExchangeManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -873,6 +983,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 卡冻结列表页面
+        /// <summary>
+        /// 卡冻结列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsFreezeCardManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 卡冻结保存程序
         /// <summary>
         /// 卡冻结保存程序
@@ -954,6 +1075,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsGiftArchivesService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 赠品档案管理列表页面
+        /// <summary>
+        /// 赠品档案管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsGiftArchivesList()
+        {
+            return View();
         }
         #endregion
 
@@ -1041,6 +1173,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 卡发放列表页面
+        /// <summary>
+        /// 卡发放列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsGrantCardManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 卡发放保存程序
         /// <summary>
         /// 卡发放保存程序
@@ -1122,6 +1265,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsLossCardManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 卡挂失列表页面
+        /// <summary>
+        /// 卡挂失列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsLossCardManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -1209,6 +1363,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 卡制作列表页面
+        /// <summary>
+        /// 卡制作列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsMadecardManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 卡制作保存程序
         /// <summary>
         /// 卡制作保存程序
@@ -1290,6 +1455,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsMemberArchivesService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 会员信息列表页面
+        /// <summary>
+        /// 会员信息列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsMemberArchivesList()
+        {
+            return View();
         }
         #endregion
 
@@ -1377,6 +1553,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 积分清零管理列表页面
+        /// <summary>
+        /// 积分清零管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsPointsClearList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 积分清零管理保存程序
         /// <summary>
         /// 积分清零管理保存程序
@@ -1458,6 +1645,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsPointtoprepaidManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 积分转储值列表页面
+        /// <summary>
+        /// 积分转储值列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsPointtoprepaidManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -1545,6 +1743,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 卡充值列表页面
+        /// <summary>
+        /// 卡充值列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsPrepaidCardManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 卡充值保存程序
         /// <summary>
         /// 卡充值保存程序
@@ -1626,6 +1835,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsReclaimCardManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 卡回收列表页面
+        /// <summary>
+        /// 卡回收列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsReclaimCardManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -1713,6 +1933,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 卡更新列表页面
+        /// <summary>
+        /// 卡更新列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsUpdateCardManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 卡更新保存程序
         /// <summary>
         /// 卡更新保存程序
@@ -1797,6 +2028,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 卡升级信息列表页面
+        /// <summary>
+        /// 卡升级信息列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsUpgradeCardDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 卡升级信息保存程序
         /// <summary>
         /// 卡升级信息保存程序
@@ -1878,6 +2120,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = MsUpgradeCardManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 卡升级列表页面
+        /// <summary>
+        /// 卡升级列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MsUpgradeCardManageList()
+        {
+            return View();
         }
         #endregion
 

@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 分店商品调价列表页面
+        /// <summary>
+        /// 分店商品调价列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsAdjustSalepriceList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 分店商品调价保存程序
         /// <summary>
         /// 分店商品调价保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BsAdjustSalepriceGoodsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 分店商品调价商品明细列表页面
+        /// <summary>
+        /// 分店商品调价商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsAdjustSalepriceGoodsList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 分店调拨商品列表页面
+        /// <summary>
+        /// 分店调拨商品列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsBranchAllotDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 分店调拨商品保存程序
         /// <summary>
         /// 分店调拨商品保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BsBranchAllotManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 分店调拨列表页面
+        /// <summary>
+        /// 分店调拨列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsBranchAllotManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 分店档案管理列表页面
+        /// <summary>
+        /// 分店档案管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsBranchArchivesList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 分店档案管理保存程序
         /// <summary>
         /// 分店档案管理保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BsBranchPriceService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 分店商品价格列表页面
+        /// <summary>
+        /// 分店商品价格列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsBranchPriceList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 分店区域列表页面
+        /// <summary>
+        /// 分店区域列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsPaAreaList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 分店区域保存程序
         /// <summary>
         /// 分店区域保存程序
@@ -618,6 +695,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BsPaBranchWarehouseService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 分店仓库设置列表页面
+        /// <summary>
+        /// 分店仓库设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsPaBranchWarehouseList()
+        {
+            return View();
         }
         #endregion
 
@@ -705,6 +793,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 分店分类列表页面
+        /// <summary>
+        /// 分店分类列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsPaClassList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 分店分类保存程序
         /// <summary>
         /// 分店分类保存程序
@@ -786,6 +885,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BsReturnDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 分店商品返货单明细列表页面
+        /// <summary>
+        /// 分店商品返货单明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsReturnDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -873,6 +983,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 分店商品返货单列表页面
+        /// <summary>
+        /// 分店商品返货单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsReturnManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 分店商品返货单保存程序
         /// <summary>
         /// 分店商品返货单保存程序
@@ -954,6 +1075,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BsReturnManageFlowService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 分店商品返货单流水列表页面
+        /// <summary>
+        /// 分店商品返货单流水列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsReturnManageFlowList()
+        {
+            return View();
         }
         #endregion
 
@@ -1041,6 +1173,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 分店订货配送单明细列表页面
+        /// <summary>
+        /// 分店订货配送单明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsSupplyDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 分店订货配送单明细保存程序
         /// <summary>
         /// 分店订货配送单明细保存程序
@@ -1125,6 +1268,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 分店商品订货配送单列表页面
+        /// <summary>
+        /// 分店商品订货配送单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsSupplyManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 分店商品订货配送单保存程序
         /// <summary>
         /// 分店商品订货配送单保存程序
@@ -1206,6 +1360,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BsSupplyManageFlowService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 分店商品订货配送单流水列表页面
+        /// <summary>
+        /// 分店商品订货配送单流水列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsSupplyManageFlowList()
+        {
+            return View();
         }
         #endregion
 

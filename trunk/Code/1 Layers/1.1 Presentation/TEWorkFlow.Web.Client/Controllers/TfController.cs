@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 通讯临时表列表页面
+        /// <summary>
+        /// 通讯临时表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TfDataDownloadList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 通讯临时表保存程序
         /// <summary>
         /// 通讯临时表保存程序
@@ -117,6 +128,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 通讯配置表表名列表页面
+        /// <summary>
+        /// 通讯配置表表名列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TfDataObjectList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 通讯配置表表名保存程序
         /// <summary>
         /// 通讯配置表表名保存程序
@@ -198,6 +220,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TfDataPropertyService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 通讯配置表字段列表页面
+        /// <summary>
+        /// 通讯配置表字段列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TfDataPropertyList()
+        {
+            return View();
         }
         #endregion
 

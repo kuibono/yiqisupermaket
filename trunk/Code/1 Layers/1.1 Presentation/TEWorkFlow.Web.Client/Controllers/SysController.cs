@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 类别权限设置列表页面
+        /// <summary>
+        /// 类别权限设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysClassPowerList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 类别权限设置保存程序
         /// <summary>
         /// 类别权限设置保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = SysDepartPowerService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 岗位权限列表页面
+        /// <summary>
+        /// 岗位权限列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysDepartPowerList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 企业设置列表页面
+        /// <summary>
+        /// 企业设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysEnterpriseArchivesList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 企业设置保存程序
         /// <summary>
         /// 企业设置保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = SysLoginPowerService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 登录权限设置列表页面
+        /// <summary>
+        /// 登录权限设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysLoginPowerList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 人员收银功能列表页面
+        /// <summary>
+        /// 人员收银功能列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysLoginPowerFunctionList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 人员收银功能保存程序
         /// <summary>
         /// 人员收银功能保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = SysModuleService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 功能模块设置列表页面
+        /// <summary>
+        /// 功能模块设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysModuleList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 模块相关信息列表页面
+        /// <summary>
+        /// 模块相关信息列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysModuleContentList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 模块相关信息保存程序
         /// <summary>
         /// 模块相关信息保存程序
@@ -618,6 +695,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = SysModulePicService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 系统模块图片列表页面
+        /// <summary>
+        /// 系统模块图片列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysModulePicList()
+        {
+            return View();
         }
         #endregion
 
@@ -705,6 +793,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 业务流程列表页面
+        /// <summary>
+        /// 业务流程列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysOperationFlowList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 业务流程保存程序
         /// <summary>
         /// 业务流程保存程序
@@ -786,6 +885,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = SysOperationFlowDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 业务流程明细列表页面
+        /// <summary>
+        /// 业务流程明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysOperationFlowDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -873,6 +983,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 流程最大编号表列表页面
+        /// <summary>
+        /// 流程最大编号表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysOperationFlowDetailMaxList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 流程最大编号表保存程序
         /// <summary>
         /// 流程最大编号表保存程序
@@ -954,6 +1075,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = SysOperationWorkerService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 业务流程人员权限列表页面
+        /// <summary>
+        /// 业务流程人员权限列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysOperationWorkerList()
+        {
+            return View();
         }
         #endregion
 
@@ -1041,6 +1173,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 部门编码表列表页面
+        /// <summary>
+        /// 部门编码表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysPaDepartmentList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 部门编码表保存程序
         /// <summary>
         /// 部门编码表保存程序
@@ -1125,6 +1268,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 打印模板设计列表页面
+        /// <summary>
+        /// 打印模板设计列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysPrintDesignList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 打印模板设计保存程序
         /// <summary>
         /// 打印模板设计保存程序
@@ -1206,6 +1360,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = SysWorkerPowerService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 人员权限列表页面
+        /// <summary>
+        /// 人员权限列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SysWorkerPowerList()
+        {
+            return View();
         }
         #endregion
 

@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 分店结算列表页面
+        /// <summary>
+        /// 分店结算列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaBranchBalanceList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 分店结算保存程序
         /// <summary>
         /// 分店结算保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BaBranchDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 分店结算明细列表页面
+        /// <summary>
+        /// 分店结算明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaBranchDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 分店代销对帐列表页面
+        /// <summary>
+        /// 分店代销对帐列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaBranchOfferAccountList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 分店代销对帐保存程序
         /// <summary>
         /// 分店代销对帐保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BaBranchOfferDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 分店代销对帐明细列表页面
+        /// <summary>
+        /// 分店代销对帐明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaBranchOfferDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 费用费用费用明细列表页面
+        /// <summary>
+        /// 费用费用费用明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaChargeDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 费用费用费用明细保存程序
         /// <summary>
         /// 费用费用费用明细保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BaChargeManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 费用管理列表页面
+        /// <summary>
+        /// 费用管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaChargeManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 客户结算列表页面
+        /// <summary>
+        /// 客户结算列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaCustomerBalanceList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 客户结算保存程序
         /// <summary>
         /// 客户结算保存程序
@@ -618,6 +695,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BaCustomerDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 客户结算明细列表页面
+        /// <summary>
+        /// 客户结算明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaCustomerDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -705,6 +793,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 租赁对帐单列表页面
+        /// <summary>
+        /// 租赁对帐单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaLeaseAccountList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 租赁对帐单保存程序
         /// <summary>
         /// 租赁对帐单保存程序
@@ -786,6 +885,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BaLeaseDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 租赁对帐单商品明细列表页面
+        /// <summary>
+        /// 租赁对帐单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaLeaseDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -873,6 +983,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 代销对账单列表页面
+        /// <summary>
+        /// 代销对账单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaOfferAccountList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 代销对账单保存程序
         /// <summary>
         /// 代销对账单保存程序
@@ -954,6 +1075,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BaOfferDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 代销对账单商品明细列表页面
+        /// <summary>
+        /// 代销对账单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaOfferDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -1041,6 +1173,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 结算对账设置列表页面
+        /// <summary>
+        /// 结算对账设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaPaAccountList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 结算对账设置保存程序
         /// <summary>
         /// 结算对账设置保存程序
@@ -1122,6 +1265,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BaPaBranchAccountService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 分店对帐设置列表页面
+        /// <summary>
+        /// 分店对帐设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaPaBranchAccountList()
+        {
+            return View();
         }
         #endregion
 
@@ -1209,6 +1363,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 费用设置列表页面
+        /// <summary>
+        /// 费用设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaPaChargeList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 费用设置保存程序
         /// <summary>
         /// 费用设置保存程序
@@ -1290,6 +1455,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BaPoolAccountService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 联营对帐单列表页面
+        /// <summary>
+        /// 联营对帐单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaPoolAccountList()
+        {
+            return View();
         }
         #endregion
 
@@ -1377,6 +1553,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 联营对帐单商品明细列表页面
+        /// <summary>
+        /// 联营对帐单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaPoolDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 联营对帐单商品明细保存程序
         /// <summary>
         /// 联营对帐单商品明细保存程序
@@ -1461,6 +1648,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 供货商结算列表页面
+        /// <summary>
+        /// 供货商结算列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaSupplierBalanceList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 供货商结算保存程序
         /// <summary>
         /// 供货商结算保存程序
@@ -1542,6 +1740,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = BaSupplierDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 供货商结算明细列表页面
+        /// <summary>
+        /// 供货商结算明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaSupplierDetailList()
+        {
+            return View();
         }
         #endregion
 

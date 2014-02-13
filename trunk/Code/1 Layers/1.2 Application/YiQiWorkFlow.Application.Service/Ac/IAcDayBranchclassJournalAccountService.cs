@@ -12,6 +12,8 @@ namespace YiQiWorkFlow.Application.Service.Ac
     {
         string Create(AcDayBranchclassJournalAccount entity);
 
+        void SaveOrUpdate(AcDayBranchclassJournalAccount entity);
+
         AcDayBranchclassJournalAccount GetById(string id);
 
         IList<AcDayBranchclassJournalAccount> GetAll();

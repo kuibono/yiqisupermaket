@@ -1,4 +1,4 @@
-@model YiQiWorkFlow.Domain.Ac.AcDayBranchclassJournalAccount
+﻿@model YiQiWorkFlow.Domain.Ac.AcDayBranchclassJournalAccount
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,13 +6,13 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "分店类别进销存"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 0:05:02";var id="@Model.Id";pageName="AcDayBranchclassJournalAccountEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "分店类别进销存"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:27";var id="@Model.Id";pageName="AcDayBranchclassJournalAccountEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData();
             $.ajax({
-                url: "SaveAcDayBranchclassJournalAccount",
+                url: "/Ac/SaveAcDayBranchclassJournalAccount",
                 type: 'post',
                 data: o,
                 cache: false,

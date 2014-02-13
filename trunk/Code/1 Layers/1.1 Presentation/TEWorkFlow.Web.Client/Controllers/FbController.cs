@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 调商品所属类别列表页面
+        /// <summary>
+        /// 调商品所属类别列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbAdjustClassList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 调商品所属类别保存程序
         /// <summary>
         /// 调商品所属类别保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbAdjustClassGoodsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 调商品所属类别商品明细列表页面
+        /// <summary>
+        /// 调商品所属类别商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbAdjustClassGoodsList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 调商品扣率列表页面
+        /// <summary>
+        /// 调商品扣率列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbAdjustPoolrateList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 调商品扣率保存程序
         /// <summary>
         /// 调商品扣率保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbAdjustPoolrateGoodsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 调商品扣率商品明细列表页面
+        /// <summary>
+        /// 调商品扣率商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbAdjustPoolrateGoodsList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 调商品进价列表页面
+        /// <summary>
+        /// 调商品进价列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbAdjustPurchasepriceList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 调商品进价保存程序
         /// <summary>
         /// 调商品进价保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbAdjustPurchasepriceGoodsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 调商品进价商品明细列表页面
+        /// <summary>
+        /// 调商品进价商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbAdjustPurchasepriceGoodsList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 调商品售价列表页面
+        /// <summary>
+        /// 调商品售价列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbAdjustSalepriceList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 调商品售价保存程序
         /// <summary>
         /// 调商品售价保存程序
@@ -618,6 +695,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbAdjustSalepriceGoodsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 调商品售价商品明细列表页面
+        /// <summary>
+        /// 调商品售价商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbAdjustSalepriceGoodsList()
+        {
+            return View();
         }
         #endregion
 
@@ -705,6 +793,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 调商品供货商列表页面
+        /// <summary>
+        /// 调商品供货商列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbAdjustSupplierList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 调商品供货商保存程序
         /// <summary>
         /// 调商品供货商保存程序
@@ -786,6 +885,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbAdjustSupplierGoodsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 调商品供货商商品明细列表页面
+        /// <summary>
+        /// 调商品供货商商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbAdjustSupplierGoodsList()
+        {
+            return View();
         }
         #endregion
 
@@ -873,6 +983,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品档案列表页面
+        /// <summary>
+        /// 商品档案列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbGoodsArchivesList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品档案保存程序
         /// <summary>
         /// 商品档案保存程序
@@ -954,6 +1075,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbGoodsArchivesBarService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品销售码列表页面
+        /// <summary>
+        /// 商品销售码列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbGoodsArchivesBarList()
+        {
+            return View();
         }
         #endregion
 
@@ -1041,6 +1173,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品捆绑列表页面
+        /// <summary>
+        /// 商品捆绑列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbGoodsArchivesBindList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品捆绑保存程序
         /// <summary>
         /// 商品捆绑保存程序
@@ -1122,6 +1265,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbGoodsArchivesLibraryService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品条码库列表页面
+        /// <summary>
+        /// 商品条码库列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbGoodsArchivesLibraryList()
+        {
+            return View();
         }
         #endregion
 
@@ -1209,6 +1363,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品部件列表页面
+        /// <summary>
+        /// 商品部件列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbGoodsArchivesPartsList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品部件保存程序
         /// <summary>
         /// 商品部件保存程序
@@ -1290,6 +1455,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbGoodsArchivesPhotoService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品视图表列表页面
+        /// <summary>
+        /// 商品视图表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbGoodsArchivesPhotoList()
+        {
+            return View();
         }
         #endregion
 
@@ -1377,6 +1553,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品供货商列表页面
+        /// <summary>
+        /// 商品供货商列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbGoodsArchivesSupplierList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品供货商保存程序
         /// <summary>
         /// 商品供货商保存程序
@@ -1458,6 +1645,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbGoodsBarCodeService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 销售编码表列表页面
+        /// <summary>
+        /// 销售编码表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbGoodsBarCodeList()
+        {
+            return View();
         }
         #endregion
 
@@ -1545,6 +1743,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 基础参数设置列表页面
+        /// <summary>
+        /// 基础参数设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbPaBaseSetList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 基础参数设置保存程序
         /// <summary>
         /// 基础参数设置保存程序
@@ -1626,6 +1835,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbPaGoodsCheckUnitService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 核算单位编码列表页面
+        /// <summary>
+        /// 核算单位编码列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbPaGoodsCheckUnitList()
+        {
+            return View();
         }
         #endregion
 
@@ -1713,6 +1933,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 柜组编码列表页面
+        /// <summary>
+        /// 柜组编码列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbPaGoodsCounterList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 柜组编码保存程序
         /// <summary>
         /// 柜组编码保存程序
@@ -1794,6 +2025,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbPaGoodsGbService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 大类编码列表页面
+        /// <summary>
+        /// 大类编码列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbPaGoodsGbList()
+        {
+            return View();
         }
         #endregion
 
@@ -1881,6 +2123,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 细类编码列表页面
+        /// <summary>
+        /// 细类编码列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbPaGoodsGlList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 细类编码保存程序
         /// <summary>
         /// 细类编码保存程序
@@ -1962,6 +2215,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbPaGoodsGmService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 中类编码列表页面
+        /// <summary>
+        /// 中类编码列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbPaGoodsGmList()
+        {
+            return View();
         }
         #endregion
 
@@ -2049,6 +2313,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 小类编码列表页面
+        /// <summary>
+        /// 小类编码列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbPaGoodsGsList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 小类编码保存程序
         /// <summary>
         /// 小类编码保存程序
@@ -2130,6 +2405,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbPaGoodsPackUnitService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 包装单位编码列表页面
+        /// <summary>
+        /// 包装单位编码列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbPaGoodsPackUnitList()
+        {
+            return View();
         }
         #endregion
 
@@ -2217,6 +2503,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 供货商类型列表页面
+        /// <summary>
+        /// 供货商类型列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbPaSupTypeList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 供货商类型保存程序
         /// <summary>
         /// 供货商类型保存程序
@@ -2301,6 +2598,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 供货商档案列表页面
+        /// <summary>
+        /// 供货商档案列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbSupplierArchivesList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 供货商档案保存程序
         /// <summary>
         /// 供货商档案保存程序
@@ -2382,6 +2690,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = FbSupplierLeaseService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 供货商租赁合同列表页面
+        /// <summary>
+        /// 供货商租赁合同列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbSupplierLeaseList()
+        {
+            return View();
         }
         #endregion
 

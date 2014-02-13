@@ -22,6 +22,7 @@
     <property name="FbGoodsArchivesService" ref="FbGoodsArchivesService" />
   </object>
   <object type="TEWorkFlow.Web.Client.Controllers.AcController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="AcBranchGoodssaleAccountService" ref="AcBranchGoodssaleAccountService" />
     <property name="AcCashierSummaryService" ref="AcCashierSummaryService" />
     <property name="AcCounterSummaryService" ref="AcCounterSummaryService" />
     <property name="AcDayBranchclassJournalAccountService" ref="AcDayBranchclassJournalAccountService" />
@@ -79,6 +80,7 @@
     <property name="BsSupplyManageFlowService" ref="BsSupplyManageFlowService" />
   </object>
   <object type="TEWorkFlow.Web.Client.Controllers.EmController, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="EmEmployeeArchivesService" ref="EmEmployeeArchivesService" />
     <property name="EmEmployeeFamilyService" ref="EmEmployeeFamilyService" />
     <property name="EmEmployeePhotoService" ref="EmEmployeePhotoService" />
     <property name="EmPaDutyService" ref="EmPaDutyService" />
