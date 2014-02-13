@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品调整单商品明细列表页面
+        /// <summary>
+        /// 商品调整单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpAdjustDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品调整单商品明细保存程序
         /// <summary>
         /// 商品调整单商品明细保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpAdjustManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品调整单列表页面
+        /// <summary>
+        /// 商品调整单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpAdjustManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品调整流水帐单列表页面
+        /// <summary>
+        /// 商品调整流水帐单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpAdjustManageFlowList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品调整流水帐单保存程序
         /// <summary>
         /// 商品调整流水帐单保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpAdjustPurchaseDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 进货成本调整批次明细列表页面
+        /// <summary>
+        /// 进货成本调整批次明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpAdjustPurchaseDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 进货成本调整单列表页面
+        /// <summary>
+        /// 进货成本调整单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpAdjustPurchaseManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 进货成本调整单保存程序
         /// <summary>
         /// 进货成本调整单保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpAllotDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品调拨单商品明细列表页面
+        /// <summary>
+        /// 商品调拨单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpAllotDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品调拨单列表页面
+        /// <summary>
+        /// 商品调拨单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpAllotManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品调拨单保存程序
         /// <summary>
         /// 商品调拨单保存程序
@@ -618,6 +695,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpAllotManageFlowService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品调拨流水帐单列表页面
+        /// <summary>
+        /// 商品调拨流水帐单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpAllotManageFlowList()
+        {
+            return View();
         }
         #endregion
 
@@ -705,6 +793,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品盘点单商品明细列表页面
+        /// <summary>
+        /// 商品盘点单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpCheckDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品盘点单商品明细保存程序
         /// <summary>
         /// 商品盘点单商品明细保存程序
@@ -786,6 +885,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpCheckManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品盘点单列表页面
+        /// <summary>
+        /// 商品盘点单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpCheckManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -873,6 +983,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 盘点库存列表页面
+        /// <summary>
+        /// 盘点库存列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpCheckStockList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 盘点库存保存程序
         /// <summary>
         /// 盘点库存保存程序
@@ -954,6 +1075,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpCheckTransferService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品盘点接转单商品汇总明细列表页面
+        /// <summary>
+        /// 商品盘点接转单商品汇总明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpCheckTransferList()
+        {
+            return View();
         }
         #endregion
 
@@ -1041,6 +1173,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品实时库存列表页面
+        /// <summary>
+        /// 商品实时库存列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpDynamicStockList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品实时库存保存程序
         /// <summary>
         /// 商品实时库存保存程序
@@ -1122,6 +1265,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpDynamicStockBranchService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品分店实时库存列表页面
+        /// <summary>
+        /// 商品分店实时库存列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpDynamicStockBranchList()
+        {
+            return View();
         }
         #endregion
 
@@ -1209,6 +1363,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品仓储实时库存列表页面
+        /// <summary>
+        /// 商品仓储实时库存列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpDynamicStockWhList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品仓储实时库存保存程序
         /// <summary>
         /// 商品仓储实时库存保存程序
@@ -1290,6 +1455,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpGoodsBatchService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品库存批次表列表页面
+        /// <summary>
+        /// 商品库存批次表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpGoodsBatchList()
+        {
+            return View();
         }
         #endregion
 
@@ -1377,6 +1553,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品损溢商品明细列表页面
+        /// <summary>
+        /// 商品损溢商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpLossDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品损溢商品明细保存程序
         /// <summary>
         /// 商品损溢商品明细保存程序
@@ -1458,6 +1645,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpLossManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品损溢列表页面
+        /// <summary>
+        /// 商品损溢列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpLossManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -1545,6 +1743,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品损溢流水帐单列表页面
+        /// <summary>
+        /// 商品损溢流水帐单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpLossManageFlowList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品损溢流水帐单保存程序
         /// <summary>
         /// 商品损溢流水帐单保存程序
@@ -1626,6 +1835,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpPaWarehouseService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 仓库参数维护列表页面
+        /// <summary>
+        /// 仓库参数维护列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpPaWarehouseList()
+        {
+            return View();
         }
         #endregion
 
@@ -1713,6 +1933,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 组合拆零管理商品明细列表页面
+        /// <summary>
+        /// 组合拆零管理商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpSplitComDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 组合拆零管理商品明细保存程序
         /// <summary>
         /// 组合拆零管理商品明细保存程序
@@ -1794,6 +2025,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpSplitComGoodsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 组合拆零商品列表页面
+        /// <summary>
+        /// 组合拆零商品列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpSplitComGoodsList()
+        {
+            return View();
         }
         #endregion
 
@@ -1881,6 +2123,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 组合拆零管理列表页面
+        /// <summary>
+        /// 组合拆零管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpSplitComManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 组合拆零管理保存程序
         /// <summary>
         /// 组合拆零管理保存程序
@@ -1962,6 +2215,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = OpSplitComManageFlowService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 组合拆零管理流水单列表页面
+        /// <summary>
+        /// 组合拆零管理流水单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OpSplitComManageFlowList()
+        {
+            return View();
         }
         #endregion
 

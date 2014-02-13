@@ -26,7 +26,15 @@ namespace YiQiWorkFlow.Application.Service.Ac
             }
             return EntityRepository.Save(entity);
         }
-
+        [Transaction]
+        public void SaveOrUpdate(AcDayBranchclassJournalAccount entity)
+        {
+            if (entity.HaveId == false)
+            {
+                entity.GenerateId();
+            }
+            EntityRepository.SaveOrUpdate(entity);
+        }
         [Transaction]
         public AcDayBranchclassJournalAccount GetById(string id)
         {

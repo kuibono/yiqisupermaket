@@ -347,14 +347,15 @@ namespace TEWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
-                {
-                    AcDayBranchclassJournalAccountService.Update(m);
-                }
-                else
-                {
-                    AcDayBranchclassJournalAccountService.Create(m);
-                }
+                AcDayBranchclassJournalAccountService.SaveOrUpdate(m);
+                //if (m.HaveId)
+                //{
+                //    AcDayBranchclassJournalAccountService.Update(m);
+                //}
+                //else
+                //{
+                //    AcDayBranchclassJournalAccountService.Create(m);
+                //}
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }

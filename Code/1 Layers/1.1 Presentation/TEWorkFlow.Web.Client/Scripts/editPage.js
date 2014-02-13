@@ -109,34 +109,35 @@ $(function () {
         });
     }
 
-    function closeTab() {
-        if (form.isChanged() || formChanged) {
-            mini.showMessageBox({
-                title: "是否保存",
-                iconCls: "mini-messagebox-question",
-                buttons: ["yes", "no", "cancel"],
-                message: pageTitle + "内容已经修改，是否在关闭前保存？",
-                callback: function (action) {
-                    if (action == "yes") {
-                        //save and close
-                        closeWithNoValidate();
-                        $("#formMain").submit();
-                    } else if (action == "no") {
-                        //close
-                        closeWithNoValidate();
-                    } else {
-                        //return false;
-                    }
-                }
-            });
-        } else {
-            closeWithNoValidate();
-        }
-    }
-    function closeWithNoValidate() {
-        parent.closeTab(pageName);
-    }
+    
     $("input:text:visible").first().focus();
 
 });
+function closeTab() {
+    if (form.isChanged() || formChanged) {
+        mini.showMessageBox({
+            title: "是否保存",
+            iconCls: "mini-messagebox-question",
+            buttons: ["yes", "no", "cancel"],
+            message: pageTitle + "内容已经修改，是否在关闭前保存？",
+            callback: function (action) {
+                if (action == "yes") {
+                    //save and close
+                    closeWithNoValidate();
+                    $("#formMain").submit();
+                } else if (action == "no") {
+                    //close
+                    closeWithNoValidate();
+                } else {
+                    //return false;
+                }
+            }
+        });
+    } else {
+        closeWithNoValidate();
+    }
+}
+function closeWithNoValidate() {
+    parent.closeTab(pageName);
+}
 

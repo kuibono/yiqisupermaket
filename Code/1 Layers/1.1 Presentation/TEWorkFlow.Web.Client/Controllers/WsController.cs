@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 客户档案列表页面
+        /// <summary>
+        /// 客户档案列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult WsCustomerArchivesList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 客户档案保存程序
         /// <summary>
         /// 客户档案保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = WsCustomerGoodsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 客户商品列表页面
+        /// <summary>
+        /// 客户商品列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult WsCustomerGoodsList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 批发订单商品明细列表页面
+        /// <summary>
+        /// 批发订单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult WsOrderDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 批发订单商品明细保存程序
         /// <summary>
         /// 批发订单商品明细保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = WsOrderManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 批发订单列表页面
+        /// <summary>
+        /// 批发订单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult WsOrderManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 客户类型列表页面
+        /// <summary>
+        /// 客户类型列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult WsPaCustomerTypeList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 客户类型保存程序
         /// <summary>
         /// 客户类型保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = WsWholesaleDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 批发销售商品明细列表页面
+        /// <summary>
+        /// 批发销售商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult WsWholesaleDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 限销商品设置列表页面
+        /// <summary>
+        /// 限销商品设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult WsWholesaleGoodsSetList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 限销商品设置保存程序
         /// <summary>
         /// 限销商品设置保存程序
@@ -621,6 +698,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 批发销售列表页面
+        /// <summary>
+        /// 批发销售列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult WsWholesaleManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 批发销售保存程序
         /// <summary>
         /// 批发销售保存程序
@@ -702,6 +790,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = WsWholesaleManageFlowService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 批发销售流水列表页面
+        /// <summary>
+        /// 批发销售流水列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult WsWholesaleManageFlowList()
+        {
+            return View();
         }
         #endregion
 

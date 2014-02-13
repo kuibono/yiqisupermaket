@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品采购单商品明细列表页面
+        /// <summary>
+        /// 商品采购单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PcPurchaseDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品采购单商品明细保存程序
         /// <summary>
         /// 商品采购单商品明细保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = PcPurchaseManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品采购单列表页面
+        /// <summary>
+        /// 商品采购单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PcPurchaseManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品入库单商品明细列表页面
+        /// <summary>
+        /// 商品入库单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PcPutinDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品入库单商品明细保存程序
         /// <summary>
         /// 商品入库单商品明细保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = PcPutinManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品入库单列表页面
+        /// <summary>
+        /// 商品入库单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PcPutinManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品出库单商品明细列表页面
+        /// <summary>
+        /// 商品出库单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PcPutoutDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品出库单商品明细保存程序
         /// <summary>
         /// 商品出库单商品明细保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = PcPutoutManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品出库单列表页面
+        /// <summary>
+        /// 商品出库单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PcPutoutManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品返货单商品明细列表页面
+        /// <summary>
+        /// 商品返货单商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PcReturnDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品返货单商品明细保存程序
         /// <summary>
         /// 商品返货单商品明细保存程序
@@ -618,6 +695,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = PcReturnManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 商品返货单列表页面
+        /// <summary>
+        /// 商品返货单列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PcReturnManageList()
+        {
+            return View();
         }
         #endregion
 

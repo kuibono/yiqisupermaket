@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 人员档案列表页面
+        /// <summary>
+        /// 人员档案列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EmEmployeeArchivesList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 人员档案保存程序
         /// <summary>
         /// 人员档案保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = EmEmployeeFamilyService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 人员家庭信息列表页面
+        /// <summary>
+        /// 人员家庭信息列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EmEmployeeFamilyList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 人员照片列表页面
+        /// <summary>
+        /// 人员照片列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EmEmployeePhotoList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 人员照片保存程序
         /// <summary>
         /// 人员照片保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = EmPaDutyService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 职务编码表列表页面
+        /// <summary>
+        /// 职务编码表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EmPaDutyList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 学历编码表列表页面
+        /// <summary>
+        /// 学历编码表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EmPaEducationList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 学历编码表保存程序
         /// <summary>
         /// 学历编码表保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = EmPaNationService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 民族编码表列表页面
+        /// <summary>
+        /// 民族编码表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EmPaNationList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 政治面貌编码表列表页面
+        /// <summary>
+        /// 政治面貌编码表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EmPaPoliticsList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 政治面貌编码表保存程序
         /// <summary>
         /// 政治面貌编码表保存程序
@@ -618,6 +695,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = EmPaProfessionalTitleService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 职称编码表列表页面
+        /// <summary>
+        /// 职称编码表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EmPaProfessionalTitleList()
+        {
+            return View();
         }
         #endregion
 

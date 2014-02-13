@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 讲解员结算管理列表页面
+        /// <summary>
+        /// 讲解员结算管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgExpostorBalanceList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 讲解员结算管理保存程序
         /// <summary>
         /// 讲解员结算管理保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TgExpostorBalanceDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 讲解员结算明细列表页面
+        /// <summary>
+        /// 讲解员结算明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgExpostorBalanceDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 团队结算管理列表页面
+        /// <summary>
+        /// 团队结算管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgGroupBalanceList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 团队结算管理保存程序
         /// <summary>
         /// 团队结算管理保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TgGroupBalanceDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 团队结算明细列表页面
+        /// <summary>
+        /// 团队结算明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgGroupBalanceDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 团队策略提醒列表页面
+        /// <summary>
+        /// 团队策略提醒列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgGroupCallList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 团队策略提醒保存程序
         /// <summary>
         /// 团队策略提醒保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TgGuideArchivesService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 导游人员信息列表页面
+        /// <summary>
+        /// 导游人员信息列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgGuideArchivesList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 导游结算管理列表页面
+        /// <summary>
+        /// 导游结算管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgGuideBalanceList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 导游结算管理保存程序
         /// <summary>
         /// 导游结算管理保存程序
@@ -618,6 +695,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TgGuideBalanceDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 导游结算明细列表页面
+        /// <summary>
+        /// 导游结算明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgGuideBalanceDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -705,6 +793,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 车停策略设置列表页面
+        /// <summary>
+        /// 车停策略设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgPaCarsChargeList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 车停策略设置保存程序
         /// <summary>
         /// 车停策略设置保存程序
@@ -786,6 +885,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TgPaCarsTypeService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 车型设置列表页面
+        /// <summary>
+        /// 车型设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgPaCarsTypeList()
+        {
+            return View();
         }
         #endregion
 
@@ -873,6 +983,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 团队结算设置列表页面
+        /// <summary>
+        /// 团队结算设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgPaGroupList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 团队结算设置保存程序
         /// <summary>
         /// 团队结算设置保存程序
@@ -954,6 +1075,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TgPaGroupTypeService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 团队类别列表页面
+        /// <summary>
+        /// 团队类别列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgPaGroupTypeList()
+        {
+            return View();
         }
         #endregion
 
@@ -1041,6 +1173,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 旅行社类型列表页面
+        /// <summary>
+        /// 旅行社类型列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgPaTaTypeList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 旅行社类型保存程序
         /// <summary>
         /// 旅行社类型保存程序
@@ -1122,6 +1265,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TgPushtacDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 人员提成策略明细列表页面
+        /// <summary>
+        /// 人员提成策略明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgPushtacDetailList()
+        {
+            return View();
         }
         #endregion
 
@@ -1209,6 +1363,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 人员提成策略列表页面
+        /// <summary>
+        /// 人员提成策略列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgPushtacManageList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 人员提成策略保存程序
         /// <summary>
         /// 人员提成策略保存程序
@@ -1290,6 +1455,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TgTourgroupManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 团队购物管理列表页面
+        /// <summary>
+        /// 团队购物管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgTourgroupManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -1377,6 +1553,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 旅行社档案列表页面
+        /// <summary>
+        /// 旅行社档案列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgTravelArchivesList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 旅行社档案保存程序
         /// <summary>
         /// 旅行社档案保存程序
@@ -1458,6 +1645,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TgTravelArchivesPushtacService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 旅行社提成策略列表页面
+        /// <summary>
+        /// 旅行社提成策略列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgTravelArchivesPushtacList()
+        {
+            return View();
         }
         #endregion
 
@@ -1545,6 +1743,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 旅行社结算管理列表页面
+        /// <summary>
+        /// 旅行社结算管理列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgTravelBalanceList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 旅行社结算管理保存程序
         /// <summary>
         /// 旅行社结算管理保存程序
@@ -1626,6 +1835,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = TgTravelBalanceDetailService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 旅行社结算明细列表页面
+        /// <summary>
+        /// 旅行社结算明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TgTravelBalanceDetailList()
+        {
+            return View();
         }
         #endregion
 

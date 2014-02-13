@@ -33,6 +33,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 类别促销列表页面
+        /// <summary>
+        /// 类别促销列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtClassPromotionList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 类别促销保存程序
         /// <summary>
         /// 类别促销保存程序
@@ -114,6 +125,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = RtClassPromotionBranchService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 类别促销分店列表页面
+        /// <summary>
+        /// 类别促销分店列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtClassPromotionBranchList()
+        {
+            return View();
         }
         #endregion
 
@@ -201,6 +223,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 类别促销商品明细列表页面
+        /// <summary>
+        /// 类别促销商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtClassPromotionGoodsList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 类别促销商品明细保存程序
         /// <summary>
         /// 类别促销商品明细保存程序
@@ -282,6 +315,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = RtPaFunctionService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 收银功能表列表页面
+        /// <summary>
+        /// 收银功能表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPaFunctionList()
+        {
+            return View();
         }
         #endregion
 
@@ -369,6 +413,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 付款方式列表页面
+        /// <summary>
+        /// 付款方式列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPaPaywayList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 付款方式保存程序
         /// <summary>
         /// 付款方式保存程序
@@ -450,6 +505,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = RtPaPosService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region POS机设置列表页面
+        /// <summary>
+        /// POS机设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPaPosList()
+        {
+            return View();
         }
         #endregion
 
@@ -537,6 +603,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 销售设置列表页面
+        /// <summary>
+        /// 销售设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPaSalesetList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 销售设置保存程序
         /// <summary>
         /// 销售设置保存程序
@@ -618,6 +695,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = RtPaShiftService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 销售班次列表页面
+        /// <summary>
+        /// 销售班次列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPaShiftList()
+        {
+            return View();
         }
         #endregion
 
@@ -705,6 +793,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 单品促销列表页面
+        /// <summary>
+        /// 单品促销列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPluPromotionList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 单品促销保存程序
         /// <summary>
         /// 单品促销保存程序
@@ -786,6 +885,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = RtPluPromotionBranchService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 单品促销分店列表页面
+        /// <summary>
+        /// 单品促销分店列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPluPromotionBranchList()
+        {
+            return View();
         }
         #endregion
 
@@ -873,6 +983,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 单品促销商品明细列表页面
+        /// <summary>
+        /// 单品促销商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPluPromotionGoodsList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 单品促销商品明细保存程序
         /// <summary>
         /// 单品促销商品明细保存程序
@@ -954,6 +1075,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = RtPresentPromotionService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 馈赠促销列表页面
+        /// <summary>
+        /// 馈赠促销列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPresentPromotionList()
+        {
+            return View();
         }
         #endregion
 
@@ -1041,6 +1173,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 馈赠促销分店列表页面
+        /// <summary>
+        /// 馈赠促销分店列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPresentPromotionBranchList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 馈赠促销分店保存程序
         /// <summary>
         /// 馈赠促销分店保存程序
@@ -1122,6 +1265,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = RtPresentPromotionGoodsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 馈赠促销商品明细列表页面
+        /// <summary>
+        /// 馈赠促销商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtPresentPromotionGoodsList()
+        {
+            return View();
         }
         #endregion
 
@@ -1209,6 +1363,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 销售表商品明细列表页面
+        /// <summary>
+        /// 销售表商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtRetailDetailList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 销售表商品明细保存程序
         /// <summary>
         /// 销售表商品明细保存程序
@@ -1290,6 +1455,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = RtRetailManageService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 销售主表列表页面
+        /// <summary>
+        /// 销售主表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtRetailManageList()
+        {
+            return View();
         }
         #endregion
 
@@ -1377,6 +1553,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 销售表付款表列表页面
+        /// <summary>
+        /// 销售表付款表列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtRetailPayList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 销售表付款表保存程序
         /// <summary>
         /// 销售表付款表保存程序
@@ -1458,6 +1645,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = RtSheetPromotionService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 整单促销列表页面
+        /// <summary>
+        /// 整单促销列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtSheetPromotionList()
+        {
+            return View();
         }
         #endregion
 
@@ -1545,6 +1743,17 @@ namespace TEWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 整单促销分店列表页面
+        /// <summary>
+        /// 整单促销分店列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtSheetPromotionBranchList()
+        {
+            return View();
+        }
+        #endregion
+
         #region 整单促销分店保存程序
         /// <summary>
         /// 整单促销分店保存程序
@@ -1626,6 +1835,17 @@ namespace TEWorkFlow.Web.Client.Controllers
                 m = RtSheetPromotionGoodsService.GetById(id);
             }
             return View(m);
+        }
+        #endregion
+
+        #region 整单促销商品明细列表页面
+        /// <summary>
+        /// 整单促销商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtSheetPromotionGoodsList()
+        {
+            return View();
         }
         #endregion
 
