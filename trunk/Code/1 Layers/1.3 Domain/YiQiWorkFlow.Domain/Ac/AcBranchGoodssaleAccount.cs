@@ -15,8 +15,8 @@ namespace YiQiWorkFlow.Domain.Ac
 		/// <summary>
 		/// 
 		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
+        //[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
+        //public virtual string Id{get ; set; }
 		
 		/// <summary>
 		/// 流水单号
