@@ -25,7 +25,13 @@ namespace YiQiWorkFlow.Domain.<%= StringUtil.ToPascalCase(this.SourceTable.Name.
 	///</summary>
 	public class <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> : EntityGUIDBase, IAggregateRootGUID
 	{
-		<% foreach (ColumnSchema column in this.SourceTable.Columns) {  %>
+		<% foreach (ColumnSchema column in this.SourceTable.Columns) {  
+			if(column.IsPrimaryKeyMember)
+			{
+				continue;
+				
+			}
+		%>
 		/// <summary>
 		/// <%= column.Description.Trim('\n').Trim('\r') %>
 		/// </summary>

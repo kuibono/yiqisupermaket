@@ -25,7 +25,7 @@ Description: 编辑页面
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData();
             $.ajax({
-                url: "Save<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>",
+                url: "/<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>/Save<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>",
                 type: 'post',
                 data: o,
                 cache: false,
