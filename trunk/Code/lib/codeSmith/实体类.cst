@@ -5,8 +5,6 @@ Description: 数据库实体类
 --%>
 <%@ CodeTemplate Language="C#" TargetLanguage="C#" ResponseEncoding="UTF-8" Debug="False" Description="生成数据库实体" %>
 <%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="属性" Description="要生成实体的数据表" %>
-<%@ Property Name="NameSpace" Type="System.String" Default="WanerSoft.Model" Optional="False" Category="属性" Description="实体类所在的命名空间" %>
-<%@ Property Name="opuser" Type="System.String" Default="" Optional="False" Category="属性" Description="请输入您的名字" %>
 <%@ Map Name="CSharpAlias" Src="System-CSharpAlias" Description="System to C# Type Map" %>
 <%@ Assembly Name="SchemaExplorer" %>
 <%@ Import Namespace="SchemaExplorer" %>
@@ -16,12 +14,11 @@ Description: 数据库实体类
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
 *生成时间：<%= DateTime.Now.ToLocalTime() %>
-*生成者：<%= opuser %>
 */
 using System;
 using NSH.Core.Domain;
 using YiQiWorkFlow.Domain.Basement;
-namespace <%= this.NameSpace %>
+namespace YiQiWorkFlow.Domain.<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>
 {
 	///<summary>
 	///表<%= this.SourceTable.Name %>的实体类(<%= this.SourceTable.Description %>)
@@ -69,7 +66,28 @@ namespace <%= this.NameSpace %>
 			}
 			str_attr+="Name=\""+ column.Description.Trim('\n').Trim('\r') +"\"";
 			if(column.ExtendedProperties["CS_Default"] != null &&column.ExtendedProperties["CS_Default"].Value!=null && column.ExtendedProperties["CS_Default"].Value.ToString().Trim()!=""){
-				str_attr+=",DefaultValue="+column.ExtendedProperties["CS_Default"].Value;
+				string defaultValue=column.ExtendedProperties["CS_Default"].Value.ToString();
+				
+				if(column.DataType==DbType.String||column.DataType==DbType.AnsiString)
+				{
+					defaultValue=defaultValue.Replace("(N'","\"").Replace("('","\"").Replace("')","\"");
+				}
+				if(column.DataType==DbType.Int16||column.DataType==DbType.Int32||column.DataType==DbType.Int64||column.DataType==DbType.Decimal)
+				{
+					defaultValue=defaultValue.Replace("(","").Replace(")","");
+					if(column.DataType==DbType.Decimal)
+					{
+						defaultValue=defaultValue.Trim()+"";
+					}
+				}
+				if(column.DataType==DbType.DateTime||column.DataType==DbType.DateTime2)
+				{
+					if(defaultValue.ToLower().Contains("getdate"))
+					{
+						defaultValue="DateTime.Now";
+					}
+				}
+				str_attr+=",DefaultValue="+defaultValue;
 			}
 			str_attr+=")]";
 			Response.WriteLine("		"+str_attr);
@@ -96,6 +114,7 @@ namespace <%= this.NameSpace %>
 			<% foreach (ColumnSchema column in this.SourceTable.Columns) {  
 				if(column.ExtendedProperties["CS_Default"] != null &&column.ExtendedProperties["CS_Default"].Value!=null && column.ExtendedProperties["CS_Default"].Value.ToString().Trim()!="" && column.IsPrimaryKeyMember==false){
 				string defaultValue=column.ExtendedProperties["CS_Default"].Value.ToString();
+				
 				if(column.DataType==DbType.String||column.DataType==DbType.AnsiString)
 				{
 					defaultValue=defaultValue.Replace("(N'","\"").Replace("('","\"").Replace("')","\"");

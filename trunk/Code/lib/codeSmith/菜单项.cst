@@ -1,0 +1,68 @@
+﻿<%-- 
+Name: 数据库实体类
+Author: B哥
+Description: 数据库实体类
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="C#" ResponseEncoding="UTF-8" Debug="False" Description="生成数据库实体" %>
+<%@ Property Name="TDB" Type="SchemaExplorer.TableSchemaCollection" Default="" Optional="False" Category=""%>
+<%@ Map Name="CSharpAlias" Src="System-CSharpAlias" Description="System to C# Type Map" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Assembly Name="CodeSmith.CustomProperties" %>
+<%@ Import Namespace="CodeSmith.CustomProperties" %>
+
+<%
+foreach(TableSchema table in TDB)
+{
+%>
+            r.Add(new
+            {
+                id = "<%= StringUtil.ToPascalCase(table.Name).Trim('\t').Trim('\n') %>",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "<%= StringUtil.ToPascalCase(table.Description).Trim('\t').Trim('\n') %>",
+                url = "/<%=StringUtil.ToPascalCase(table.Name.Split('_')[0])%>/<%= StringUtil.ToPascalCase(table.Name).Trim('\t').Trim('\n') %>List"
+            });
+<%
+}
+%>
+
+
+
+
+<script runat="template">
+private string _savefile;
+[Editor(typeof(FileNameEditor),typeof(System.Drawing.Design.UITypeEditor)),FileDialogAttribute(FileDialogType.Save,Title="save as",Filter="C# File|(*.cs)")]
+public string SaveFile
+{
+   get
+   {
+    return _savefile;
+   }
+   set
+   {
+    _savefile = value;
+   }
+}
+public override void Render(TextWriter tw)
+{
+   StreamWriter fs1 = new StreamWriter(_savefile,true);
+   this.Response.AddTextWriter(fs1);
+   base.Render(tw);
+   fs1.Close();
+}
+
+public string GetColunmNullable(ColumnSchema column)
+{
+	if(column.DataType==DbType.DateTime ||column.DataType==DbType.DateTime)
+	{
+		if(column.AllowDBNull)
+		{
+			return "?";
+		}
+	}
+	return "";
+}
+</script>
