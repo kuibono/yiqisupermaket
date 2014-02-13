@@ -1,0 +1,78 @@
+﻿<%-- 
+Name: 数据库实体类
+Author: B哥
+Description: 数据库实体类
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="C#" ResponseEncoding="UTF-8" Debug="False" Description="生成数据库实体" %>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="属性" Description="要生成实体的数据表" %>
+<%@ Map Name="CSharpAlias" Src="System-CSharpAlias" Description="System to C# Type Map" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Assembly Name="CodeSmith.CustomProperties" %>
+<%@ Import Namespace="CodeSmith.CustomProperties" %>
+/*
+*本代码由代码生成器自动生成，请不要更改此文件的任何代码。
+*生成时间：<%= DateTime.Now.ToLocalTime() %>
+*/
+using System.Collections.Generic;
+using YiQiWorkFlow.Domain.<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>;
+using YiQiWorkFlow.Domain.Basement;
+
+namespace YiQiWorkFlow.Application.Service.<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>
+{
+    public interface I<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Service
+    {
+        string Create(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %> entity);
+
+        <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> GetById(string id);
+
+        IList<<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>> GetAll();
+
+        void Update(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %> entity);
+
+        /// <summary>
+        /// 删除指定<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>
+        /// </summary>
+        /// <param name="entity"></param>
+        void Delete(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %> entity);
+
+        /// <summary>
+        /// <%= StringUtil.ToPascalCase(this.SourceTable.Name) %>
+        /// </summary>
+        /// <param name="entitys"></param>
+        void Delete(IEnumerable<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> entitys);
+
+
+        SearchResult<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> Search(SearchDtoBase<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> c);
+		
+		IList<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> Search(string key, int pageSize = 20, int pageIndex = 1);
+
+        void Delete(IList<string> ids);
+    }
+}
+
+
+
+<script runat="template">
+private string _savefile;
+[Editor(typeof(FileNameEditor),typeof(System.Drawing.Design.UITypeEditor)),FileDialogAttribute(FileDialogType.Save,Title="save as",Filter="C# File|(*.cs)")]
+public string SaveFile
+{
+   get
+   {
+    return _savefile;
+   }
+   set
+   {
+    _savefile = value;
+   }
+}
+public override void Render(TextWriter tw)
+{
+   StreamWriter fs1 = new StreamWriter(_savefile,true);
+   this.Response.AddTextWriter(fs1);
+   base.Render(tw);
+   fs1.Close();
+}
+</script>

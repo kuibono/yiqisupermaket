@@ -1,0 +1,61 @@
+﻿<%-- 
+Name:
+Author: 
+Description: 
+--%>
+<%@ CodeTemplate Language="C#" ResponseEncoding="UTF-8" TargetLanguage="Text" Src="" Inherits="" Debug="False" Description="Template description here." %>
+<%@ Assembly Name="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.Collections" %>
+<%@ Register Name="Model" Template="listPage.cshtml.cst" MergeProperties="False" ExcludeProperties="" %>
+<%@ Property Name="TDB" Type="SchemaExplorer.TableSchemaCollection" Default="" Optional="False" Category=""%>
+<%@ Assembly Name="CodeSmith.CustomProperties" %>
+<%@ Import Namespace="CodeSmith.CustomProperties" %>
+
+<%
+foreach(TableSchema ts in TDB)
+{
+   Model m=new Model();
+   m.ControllerName=StringUtil.ToPascalCase(ts.Name.Split('_')[0]);
+   m.SourceTable=ts;
+
+   string folder="";
+	string[] fs=this.TargetFileName.Split('\\');
+	for(int i=0;i<fs.Length-1;i++)
+	{
+		folder+=fs[i]+"\\";
+	}
+   m.SaveFile=folder +"\\"+StringUtil.ToPascalCase(ts.Name.Split('_')[0])+"\\"+StringUtil.ToPascalCase(ts.Name)+"List.cshtml";
+   m.SourceTable=ts;
+   FileInfo f=new FileInfo(m.SaveFile);
+	{
+		if(f.Directory.Exists==false)
+		{
+			f.Directory.Create();
+		}
+	}
+   m.Render(this.Response);
+
+}
+
+
+%>
+
+<script runat="template">
+   private string _filename;
+  [Editor(typeof(FileNameEditor),typeof(System.Drawing.Design.UITypeEditor)),FileDialogAttribute(FileDialogType.Save,Title="save as",Filter="C# File|(*.cs)")]
+   public string TargetFileName
+   {
+    get
+    {
+     return _filename;
+    }
+    set
+    {
+     _filename = value;
+    }
+   }
+</script>

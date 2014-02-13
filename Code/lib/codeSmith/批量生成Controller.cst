@@ -1,0 +1,156 @@
+﻿<%-- 
+Name:
+Author: 
+Description: 
+--%>
+<%@ CodeTemplate Language="C#" ResponseEncoding="UTF-8" TargetLanguage="Text" Src="" Inherits="" Debug="False" Description="Template description here." %>
+<%@ Assembly Name="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.Collections" %>
+<%@ Register Name="Model" Template="实体类.cst" MergeProperties="False" ExcludeProperties="" %>
+<%@ Property Name="TDB" Type="SchemaExplorer.TableSchemaCollection" Default="" Optional="False" Category=""%>
+<%@ Assembly Name="CodeSmith.CustomProperties" %>
+<%@ Import Namespace="CodeSmith.CustomProperties" %>
+<%@ Import Namespace="System.IO" %>
+
+using NSH.Core.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using YiQiWorkFlow.Application.Service.<%= StringUtil.ToPascalCase(TDB[0].Name.Split('_')[0]) %>;
+using YiQiWorkFlow.Domain.<%= StringUtil.ToPascalCase(TDB[0].Name.Split('_')[0]) %>;
+using YiQiWorkFlow.Domain.Basement;
+
+namespace TEWorkFlow.Web.Client.Controllers
+{
+    public class <%= StringUtil.ToPascalCase(TDB[0].Name.Split('_')[0]) %>Controller : Controller
+    {
+<%
+foreach(TableSchema ts in TDB)
+{
+%>
+        
+        #region <%= StringUtil.ToPascalCase(ts.Description) %>
+		public I<%= StringUtil.ToPascalCase(ts.Name) %>Service <%= StringUtil.ToPascalCase(ts.Name) %>Service { get; set; }
+	    #region <%= StringUtil.ToPascalCase(ts.Description) %>编辑页面
+        /// <summary>
+        /// <%= StringUtil.ToPascalCase(ts.Description) %>编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult <%= StringUtil.ToPascalCase(ts.Name) %>Edit(string id)
+        {
+            <%= StringUtil.ToPascalCase(ts.Name) %> m = <%= StringUtil.ToPascalCase(ts.Name) %>.Initial();
+            if (string.IsNullOrEmpty(id) == false)
+            {
+                m = <%= StringUtil.ToPascalCase(ts.Name) %>Service.GetById(id);
+            }
+            return View(m);
+        }
+		#endregion
+		
+		#region <%= StringUtil.ToPascalCase(ts.Description) %>列表页面
+        /// <summary>
+        /// <%= StringUtil.ToPascalCase(ts.Description) %>列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult <%= StringUtil.ToPascalCase(ts.Name) %>List()
+        {
+            return View();
+        }
+        #endregion
+		
+		#region <%= StringUtil.ToPascalCase(ts.Description) %>保存程序
+        /// <summary>
+        /// <%= StringUtil.ToPascalCase(ts.Description) %>保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult Save<%= StringUtil.ToPascalCase(ts.Name) %>(<%= StringUtil.ToPascalCase(ts.Name) %> m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    <%= StringUtil.ToPascalCase(ts.Name) %>Service.Update(m);
+                }
+                else
+                {
+                    <%= StringUtil.ToPascalCase(ts.Name) %>Service.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+		#endregion
+		
+		#region <%= StringUtil.ToPascalCase(ts.Description) %>搜索
+        /// <summary>
+        /// <%= StringUtil.ToPascalCase(ts.Description) %>搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult Search<%= StringUtil.ToPascalCase(ts.Name) %>List(SearchDtoBase<%="<"%><%= StringUtil.ToPascalCase(ts.Name) %><%=">"%> c, <%= StringUtil.ToPascalCase(ts.Name) %> s)
+        {
+            c.entity = s;
+            return Json(<%= StringUtil.ToPascalCase(ts.Name) %>Service.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region <%= StringUtil.ToPascalCase(ts.Description) %>删除
+        /// <summary>
+        /// <%= StringUtil.ToPascalCase(ts.Description) %>删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult <%= StringUtil.ToPascalCase(ts.Name) %>Delete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            <%= StringUtil.ToPascalCase(ts.Name) %>Service.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  <%= StringUtil.ToPascalCase(ts.Description) %>
+<%
+
+}
+%>
+    }
+}
+
+
+
+
+
+<script runat="template">
+   private string _filename;
+  [Editor(typeof(FileNameEditor),typeof(System.Drawing.Design.UITypeEditor)),FileDialogAttribute(FileDialogType.Save,Title="save as",Filter="C# File|(*.cs)")]
+   public string TargetFileName
+   {
+    get
+    {
+     return _filename;
+    }
+    set
+    {
+     _filename = value;
+    }
+   }
+</script>

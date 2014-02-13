@@ -1,0 +1,203 @@
+﻿<%-- 
+Name: 数据库实体类
+Author: B哥
+Description: 数据库实体类
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="C#" ResponseEncoding="UTF-8" Debug="False" Description="生成数据库实体" %>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="属性" Description="要生成实体的数据表" %>
+<%@ Map Name="CSharpAlias" Src="System-CSharpAlias" Description="System to C# Type Map" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Assembly Name="CodeSmith.CustomProperties" %>
+<%@ Import Namespace="CodeSmith.CustomProperties" %>
+/*
+*本代码由代码生成器自动生成，请不要更改此文件的任何代码。
+*生成时间：<%= DateTime.Now.ToLocalTime() %>
+*/
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System.Collections.Generic;
+using System.Linq;
+using NSH.Core.Domain;
+using Spring.Transaction.Interceptor;
+using YiQiWorkFlow.Domain.<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>;
+using YiQiWorkFlow.Domain.Basement;
+
+namespace YiQiWorkFlow.Application.Service.<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>
+{
+    public class <%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Service:I<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Service
+    {
+
+        public IRepositoryGUID<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> EntityRepository { get; set; }
+
+        [Transaction]
+        public string Create(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %> entity)
+        {
+			if (entity.HaveId == false)
+            {
+                entity.GenerateId();
+            }
+            return EntityRepository.Save(entity);
+        }
+
+        [Transaction]
+        public <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> GetById(string id)
+        {
+            return EntityRepository.Get(id);
+        }
+
+        [Transaction]
+        public IList<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> GetAll()
+        {
+            var result=EntityRepository.LinqQuery.ToList();
+           
+            return result;
+        }
+
+
+        [Transaction]
+        public void Update(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %> entity)
+        {
+            EntityRepository.Update(entity);
+        }
+
+        [Transaction]
+        public void Delete(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %> entity)
+        {
+            EntityRepository.Delete(entity);
+        }
+
+        [Transaction]
+        public void Delete(IEnumerable<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> entitys)
+        {
+            foreach (var entity in entitys)
+            {
+                EntityRepository.Delete(entity);
+            }
+        }
+
+
+        [Transaction]
+        public SearchResult<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> Search(SearchDtoBase<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> c)
+        {
+            var q = EntityRepository.LinqQuery;
+            if (c.entity != null)
+            {
+				
+				if (string.IsNullOrEmpty(c.entity.Id) == false)
+                {
+                    q = q.Where(p => p.Id.Contains(c.entity.Id));
+                }
+				<% foreach (ColumnSchema column in this.SourceTable.Columns) {  %>
+					<% if (column.SystemType.ToString()=="System.String")
+					{
+						if(column.IsPrimaryKeyMember)
+						{
+							continue;
+						}	
+					%>
+					if (string.IsNullOrEmpty(c.entity.<%= StringUtil.ToPascalCase(column.Name) %>) == false)
+					{
+						
+						q = q.Where(p => p.<%= StringUtil.ToPascalCase(column.Name) %>.Contains(c.entity.<%= StringUtil.ToPascalCase(column.Name) %>));
+					}
+					<%}
+					else if (column.SystemType.ToString()=="System.Decimal"){
+					%>
+					 if (c.entity.<%= StringUtil.ToPascalCase(column.Name) %> > 0)
+					{
+						q = q.Where(p => p.<%= StringUtil.ToPascalCase(column.Name) %> == c.entity.<%= StringUtil.ToPascalCase(column.Name) %>);
+					}
+					
+					<%}%>
+				<%}%>
+                
+            }
+			if (string.IsNullOrEmpty(c.key)==false)
+            {
+				q = from l in q
+                    where 
+                    l.Id.Contains(c.key)
+					<% foreach (ColumnSchema column in this.SourceTable.Columns) {  %>
+					<% if (column.SystemType.ToString()=="System.String")
+					{
+						if(column.IsPrimaryKeyMember)
+						{
+							continue;
+						}	
+					%>
+					|| l.<%= StringUtil.ToPascalCase(column.Name) %>.Contains(c.key)
+					<%}
+					}%>
+                    select l;
+					
+                
+            }
+            int count = q.Count();
+
+            q = q.Skip((c.pageIndex - 1) * c.pageSize).Take(c.pageSize);
+            var result = q.ToList();
+            return result.ToSearchResult(count);
+        }
+		
+		[Transaction]
+        public IList<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> Search(string key, int pageSize = 20, int pageIndex = 1)
+        {
+            var q = EntityRepository.LinqQuery;
+            if (string.IsNullOrEmpty(key)==false)
+            {
+				q = from l in q
+                    where 
+                    l.Id.Contains(key)
+					<% foreach (ColumnSchema column in this.SourceTable.Columns) {  %>
+					<% if (column.SystemType.ToString()=="System.String")
+					{%>
+					|| l.<%= StringUtil.ToPascalCase(column.Name) %>.Contains(key)
+					<%}
+					}%>
+                    select l;
+					
+                
+            }
+            q = q.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            var result = q.ToList();
+            return result.ToList();
+        }
+
+        [Transaction]
+        public void Delete(IList<string> ids)
+        {
+            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+            foreach (var each in q)
+            {
+                Delete(each);
+            }
+        }
+    }
+}
+
+
+
+
+<script runat="template">
+private string _savefile;
+[Editor(typeof(FileNameEditor),typeof(System.Drawing.Design.UITypeEditor)),FileDialogAttribute(FileDialogType.Save,Title="save as",Filter="C# File|(*.cs)")]
+public string SaveFile
+{
+   get
+   {
+    return _savefile;
+   }
+   set
+   {
+    _savefile = value;
+   }
+}
+public override void Render(TextWriter tw)
+{
+   StreamWriter fs1 = new StreamWriter(_savefile,true);
+   this.Response.AddTextWriter(fs1);
+   base.Render(tw);
+   fs1.Close();
+}
+</script>
