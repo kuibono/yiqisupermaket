@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.4 Infrastructure", "1.4 I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.5 Test", "1.5 Test", "{20F694D1-A9AF-4879-9C54-03B55B93F87A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEWorkFlow.Web.Client", "1 Layers\1.1 Presentation\TEWorkFlow.Web.Client\TEWorkFlow.Web.Client.csproj", "{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.4.1 NSH", "1.4.1 NSH", "{75DDE5DD-2291-4004-B7DF-4222D698DC44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSH.Core", "1 Layers\1.4 Infrastructure\1.4.1 NSH\NSH.Core\NSH.Core.csproj", "{DDD1A0BF-884A-4F37-8186-04B30DBAEC94}"
@@ -39,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YiQiWorkFlow.Domain", "1 La
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YiQiWorkFlow.Application.Service", "1 Layers\1.2 Application\YiQiWorkFlow.Application.Service\YiQiWorkFlow.Application.Service.csproj", "{EB392179-AE21-41E3-84EC-00F551EA9BA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YiQiWorkFlow.Web.Client", "1 Layers\1.1 Presentation\YiQiWorkFlow.Web.Client\YiQiWorkFlow.Web.Client.csproj", "{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -49,10 +49,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DDD1A0BF-884A-4F37-8186-04B30DBAEC94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DDD1A0BF-884A-4F37-8186-04B30DBAEC94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDD1A0BF-884A-4F37-8186-04B30DBAEC94}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -93,6 +89,10 @@ Global
 		{EB392179-AE21-41E3-84EC-00F551EA9BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB392179-AE21-41E3-84EC-00F551EA9BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB392179-AE21-41E3-84EC-00F551EA9BA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

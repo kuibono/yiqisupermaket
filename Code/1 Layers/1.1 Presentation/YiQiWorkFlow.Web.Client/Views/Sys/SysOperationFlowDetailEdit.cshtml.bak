@@ -1,0 +1,198 @@
+@model YiQiWorkFlow.Domain.Sys.SysOperationFlowDetail
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>业务流程明细编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "业务流程明细"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:57";var id="@Model.Id";pageName="SysOperationFlowDetailEdit"; </script>
+	<script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+            $.ajax({
+                url: "/Sys/SaveSysOperationFlowDetail",
+                type: 'post',
+                data: o,
+                cache: false,
+				dataType:"json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        closeWithNoValidate();
+                    } else {
+                        $("#Tooltip_Critical_SysOperationFlowDetail .content").first().text(r.Message);
+                        $("#Tooltip_Critical_SysOperationFlowDetail").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_SysOperationFlowDetail .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_SysOperationFlowDetail").show("fast");
+                    form.unmask();
+					$(document).scrollTop(0);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            业务流程明细编辑
+        </h1>
+        <div class="tooltip warning hidden" id="Tooltip_Warning_SysOperationFlowDetail">
+            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于业务流程明细编辑页面的警告信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip info hidden" id="Tooltip_Info_SysOperationFlowDetail">
+            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于业务流程明细编辑页面的提示信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip help hidden" id="Tooltip_Help_SysOperationFlowDetail">
+            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于业务流程明细编辑页面的帮助信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip critical hidden" id="Tooltip_Critical_SysOperationFlowDetail">
+            <img src="/images/critical.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            此处填写关于业务流程明细编辑页面的出错信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <form id="formMain" method="post" action="">
+        <fieldset>
+            <legend>基本信息</legend>
+            <div class="ablock" style="display:none">
+                <label for="Control_OperationNumber">流程编号:</label>
+                <input id="Control_OperationNumber" value="@Model.Id" name="OperationNumber" class="mini-hidden"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OperationName">流程名称:</label>
+                <input type="text"  value="@Model.OperationName" class="mini-textbox" name="OperationName" id="Control_OperationName" vtype="maxLength:50"required="true" />
+            </div>
+
+            <div class="ablock" style="display:none">
+                <label for="Control_sNumber">序号:</label>
+                <input id="Control_sNumber" value="@Model.Id" name="sNumber" class="mini-hidden"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_WindowName">窗口名称:</label>
+                <input type="text"  value="@Model.WindowName" class="mini-textbox" name="WindowName" id="Control_WindowName" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CurrentsNumber">当前序号:</label>
+                <input type="text"  value="@Model.CurrentsNumber" class="mini-textbox" name="CurrentsNumber" id="Control_CurrentsNumber" vtype="maxLength:10" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_FunctionCode">上次功能:</label>
+                <input type="text"  value="@Model.FunctionCode" class="mini-textbox" name="FunctionCode" id="Control_FunctionCode" vtype="maxLength:10" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CurrentFunctionCode">当前功能:</label>
+                <input type="text"  value="@Model.CurrentFunctionCode" class="mini-textbox" name="CurrentFunctionCode" id="Control_CurrentFunctionCode" vtype="maxLength:10"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ColumnName">字段内容:</label>
+                <input type="text"  value="@Model.ColumnName" class="mini-textbox" name="ColumnName" id="Control_ColumnName" vtype="maxLength:250"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_NextsNumber">0 为执行完成:</label>
+                <input type="text"  value="@Model.NextsNumber" class="mini-textbox" name="NextsNumber" id="Control_NextsNumber" vtype="maxLength:10" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CurrentState">0 操作未提交，1提交:</label>
+                <input type="text"  value="@Model.CurrentState" class="mini-textbox" name="CurrentState" id="Control_CurrentState" vtype="maxLength:10" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OperationState">一般，紧急:</label>
+                <input type="text"  value="@Model.OperationState" class="mini-textbox" name="OperationState" id="Control_OperationState" vtype="maxLength:10" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OperationResult">通过，不通过:</label>
+                <input type="text"  value="@Model.OperationResult" class="mini-textbox" name="OperationResult" id="Control_OperationResult" vtype="maxLength:10" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OperationOpinion">业务意见:</label>
+                <input type="text"  value="@Model.OperationOpinion" class="mini-textbox" name="OperationOpinion" id="Control_OperationOpinion" vtype="maxLength:250" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Operator">操作员:</label>
+                <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OperatorDate">操作时间:</label>
+                <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Statement">语句:</label>
+                <input type="text"  value="@Model.Statement" class="mini-textbox" name="Statement" id="Control_Statement" vtype="maxLength:250" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_StatementState">语句执行:</label>
+                <input type="text"  value="@Model.StatementState" class="mini-textbox" name="StatementState" id="Control_StatementState" vtype="maxLength:10" />
+            </div>
+
+           
+        </fieldset>
+        <div class="clear">
+        </div>
+        <div class="control-panel">
+            <div class="control-button">
+                <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+            </div>
+            <div class="botton-up">
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+

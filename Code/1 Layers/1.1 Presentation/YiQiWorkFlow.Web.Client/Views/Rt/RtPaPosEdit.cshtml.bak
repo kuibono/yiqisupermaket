@@ -1,0 +1,173 @@
+@model YiQiWorkFlow.Domain.Rt.RtPaPos
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>POS机设置编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "POS机设置"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:54";var id="@Model.Id";pageName="RtPaPosEdit"; </script>
+	<script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+            $.ajax({
+                url: "/Rt/SaveRtPaPos",
+                type: 'post',
+                data: o,
+                cache: false,
+				dataType:"json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        closeWithNoValidate();
+                    } else {
+                        $("#Tooltip_Critical_RtPaPos .content").first().text(r.Message);
+                        $("#Tooltip_Critical_RtPaPos").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_RtPaPos .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_RtPaPos").show("fast");
+                    form.unmask();
+					$(document).scrollTop(0);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            POS机设置编辑
+        </h1>
+        <div class="tooltip warning hidden" id="Tooltip_Warning_RtPaPos">
+            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于POS机设置编辑页面的警告信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip info hidden" id="Tooltip_Info_RtPaPos">
+            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于POS机设置编辑页面的提示信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip help hidden" id="Tooltip_Help_RtPaPos">
+            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于POS机设置编辑页面的帮助信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip critical hidden" id="Tooltip_Critical_RtPaPos">
+            <img src="/images/critical.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            此处填写关于POS机设置编辑页面的出错信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <form id="formMain" method="post" action="">
+        <fieldset>
+            <legend>基本信息</legend>
+            <div class="ablock" style="display:none">
+                <label for="Control_Posid">Pos机号:</label>
+                <input id="Control_Posid" value="@Model.Id" name="Posid" class="mini-hidden"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PosName">Pos名称:</label>
+                <input type="text"  value="@Model.PosName" class="mini-textbox" name="PosName" id="Control_PosName" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PosIp">PosIP:</label>
+                <input type="text"  value="@Model.PosIp" class="mini-textbox" name="PosIp" id="Control_PosIp" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PosState">Pos状态:</label>
+                <input type="text"  value="@Model.PosState" class="mini-textbox" name="PosState" id="Control_PosState" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_WhCode">销售仓库:</label>
+                <input type="text"  value="@Model.WhCode" class="mini-textbox" name="WhCode" id="Control_WhCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CdType">客显型号:</label>
+                <input type="text"  value="@Model.CdType" class="mini-textbox" name="CdType" id="Control_CdType" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CdPort">客显端口:</label>
+                <input type="text"  value="@Model.CdPort" class="mini-textbox" name="CdPort" id="Control_CdPort" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_pType">打印机型号:</label>
+                <input type="text"  value="@Model.pType" class="mini-textbox" name="pType" id="Control_pType" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_pPort">打印端口:</label>
+                <input type="text"  value="@Model.pPort" class="mini-textbox" name="pPort" id="Control_pPort" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_pWidth">打印宽度:</label>
+                <input type="text" id="Control_pWidth" name="pWidth"  value="@Model.pWidth" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CbType">钱箱型号:</label>
+                <input type="text"  value="@Model.CbType" class="mini-textbox" name="CbType" id="Control_CbType" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CbPort">钱箱端口:</label>
+                <input type="text"  value="@Model.CbPort" class="mini-textbox" name="CbPort" id="Control_CbPort" vtype="maxLength:20" />
+            </div>
+
+           
+        </fieldset>
+        <div class="clear">
+        </div>
+        <div class="control-panel">
+            <div class="control-button">
+                <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+            </div>
+            <div class="botton-up">
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+

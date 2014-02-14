@@ -1,0 +1,268 @@
+﻿@model YiQiWorkFlow.Domain.Rt.RtPaSaleset
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>销售设置编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "销售设置"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:55";var id="@Model.Id";pageName="RtPaSalesetEdit"; </script>
+	<script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+            $.ajax({
+                url: "/Rt/SaveRtPaSaleset",
+                type: 'post',
+                data: o,
+                cache: false,
+				dataType:"json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        closeWithNoValidate();
+                    } else {
+                        $("#Tooltip_Critical_RtPaSaleset .content").first().text(r.Message);
+                        $("#Tooltip_Critical_RtPaSaleset").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_RtPaSaleset .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_RtPaSaleset").show("fast");
+                    form.unmask();
+					$(document).scrollTop(0);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            销售设置编辑
+        </h1>
+        <div class="tooltip warning hidden" id="Tooltip_Warning_RtPaSaleset">
+            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于销售设置编辑页面的警告信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip info hidden" id="Tooltip_Info_RtPaSaleset">
+            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于销售设置编辑页面的提示信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip help hidden" id="Tooltip_Help_RtPaSaleset">
+            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于销售设置编辑页面的帮助信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip critical hidden" id="Tooltip_Critical_RtPaSaleset">
+            <img src="/images/critical.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            此处填写关于销售设置编辑页面的出错信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <form id="formMain" method="post" action="">
+        <fieldset>
+            <legend>基本信息</legend>
+            <div class="ablock">
+                <label for="Control_Mantissa">销售保留位数:</label>
+                <input type="text" id="Control_Mantissa" name="Mantissa"  value="@Model.Mantissa" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_MantissaMode">保留方式:</label>
+                <input type="text"  value="@Model.MantissaMode" class="mini-textbox" name="MantissaMode" id="Control_MantissaMode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfReturnSale">是否按结算键返回销售:</label>
+                <div id="Control_IfReturnSale" name="IfReturnSale" value="1" class="mini-checkbox" checked="true" readOnly="false" text="按结算键返回销售"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfNegativeStock">是否零库存销售:</label>
+                <div id="Control_IfNegativeStock" name="IfNegativeStock" value="1" class="mini-checkbox" checked="true" readOnly="false" text="零库存销售"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfReturnPayway">是否退货选择付款方式:</label>
+                <div id="Control_IfReturnPayway" name="IfReturnPayway" value="1" class="mini-checkbox" checked="true" readOnly="false" text="退货选择付款方式"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfSalesman">是否必须录入营业员:</label>
+                <div id="Control_IfSalesman" name="IfSalesman" value="1" class="mini-checkbox" checked="true" readOnly="false" text="必须录入营业员"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfCounter">是否必须录入柜台:</label>
+                <div id="Control_IfCounter" name="IfCounter" value="1" class="mini-checkbox" checked="true" readOnly="false" text="必须录入柜台"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PrintType">小票打印方式:</label>
+                <input type="text"  value="@Model.PrintType" class="mini-textbox" name="PrintType" id="Control_PrintType" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfBind">是否捆绑提示:</label>
+                <div id="Control_IfBind" name="IfBind" value="1" class="mini-checkbox" checked="true" readOnly="false" text="捆绑提示"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfEntertopay">是否回车代替小计:</label>
+                <div id="Control_IfEntertopay" name="IfEntertopay" value="1" class="mini-checkbox" checked="true" readOnly="false" text="回车代替小计"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfEntertormb">是否回车代替RMB付款:</label>
+                <div id="Control_IfEntertormb" name="IfEntertormb" value="1" class="mini-checkbox" checked="true" readOnly="false" text="回车代替RMB付款"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfEnglishSale">是否支持英文简码:</label>
+                <div id="Control_IfEnglishSale" name="IfEnglishSale" value="1" class="mini-checkbox" checked="true" readOnly="false" text="支持英文简码"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Title1">标题1:</label>
+                <input type="text"  value="@Model.Title1" class="mini-textbox" name="Title1" id="Control_Title1" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Title2">标题2:</label>
+                <input type="text"  value="@Model.Title2" class="mini-textbox" name="Title2" id="Control_Title2" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Title3">标题3:</label>
+                <input type="text"  value="@Model.Title3" class="mini-textbox" name="Title3" id="Control_Title3" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Title4">标题4:</label>
+                <input type="text"  value="@Model.Title4" class="mini-textbox" name="Title4" id="Control_Title4" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Title5">标题5:</label>
+                <input type="text"  value="@Model.Title5" class="mini-textbox" name="Title5" id="Control_Title5" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Pagefoot1">页尾1:</label>
+                <input type="text"  value="@Model.Pagefoot1" class="mini-textbox" name="Pagefoot1" id="Control_Pagefoot1" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Pagefoot2">页尾2:</label>
+                <input type="text"  value="@Model.Pagefoot2" class="mini-textbox" name="Pagefoot2" id="Control_Pagefoot2" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Pagefoot3">页尾3:</label>
+                <input type="text"  value="@Model.Pagefoot3" class="mini-textbox" name="Pagefoot3" id="Control_Pagefoot3" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Pagefoot4">页尾4:</label>
+                <input type="text"  value="@Model.Pagefoot4" class="mini-textbox" name="Pagefoot4" id="Control_Pagefoot4" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Pagefoot5">页尾5:</label>
+                <input type="text"  value="@Model.Pagefoot5" class="mini-textbox" name="Pagefoot5" id="Control_Pagefoot5" vtype="maxLength:50" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfEnName">是否打印企业名称:</label>
+                <div id="Control_IfEnName" name="IfEnName" value="1" class="mini-checkbox" checked="true" readOnly="false" text="打印企业名称"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfbName">是否打印门店名称:</label>
+                <div id="Control_IfbName" name="IfbName" value="1" class="mini-checkbox" checked="true" readOnly="false" text="打印门店名称"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfGoodsCode">是否打印商品编码:</label>
+                <div id="Control_IfGoodsCode" name="IfGoodsCode" value="1" class="mini-checkbox" checked="true" readOnly="false" text="打印商品编码"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfGoodsBarCode">是否打印商品销售码:</label>
+                <div id="Control_IfGoodsBarCode" name="IfGoodsBarCode" value="1" class="mini-checkbox" checked="true" readOnly="false" text="打印商品销售码"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfGoodsName">是否打印商品名称:</label>
+                <div id="Control_IfGoodsName" name="IfGoodsName" value="1" class="mini-checkbox" checked="true" readOnly="false" text="打印商品名称"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfGoodsSubName">是否打印商品简称:</label>
+                <div id="Control_IfGoodsSubName" name="IfGoodsSubName" value="1" class="mini-checkbox" checked="true" readOnly="false" text="打印商品简称"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfPackUnit">是否打印单位:</label>
+                <div id="Control_IfPackUnit" name="IfPackUnit" value="1" class="mini-checkbox" checked="true" readOnly="false" text="打印单位"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfPrepaid">是否打印储值卡余额:</label>
+                <div id="Control_IfPrepaid" name="IfPrepaid" value="1" class="mini-checkbox" checked="true" readOnly="false" text="打印储值卡余额"></div>
+            </div>
+
+            <div class="ablock" style="display:none">
+                <label for="Control_Id">:</label>
+                <input id="Control_Id" value="@Model.Id" name="Id" class="mini-hidden"/>
+            </div>
+
+           
+        </fieldset>
+        <div class="clear">
+        </div>
+        <div class="control-panel">
+            <div class="control-button">
+                <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+            </div>
+            <div class="botton-up">
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+

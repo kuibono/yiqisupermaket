@@ -1,0 +1,173 @@
+@model YiQiWorkFlow.Domain.Op.OpLossManage
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>商品损溢编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "商品损溢"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:53";var id="@Model.Id";pageName="OpLossManageEdit"; </script>
+	<script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+            $.ajax({
+                url: "/Op/SaveOpLossManage",
+                type: 'post',
+                data: o,
+                cache: false,
+				dataType:"json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        closeWithNoValidate();
+                    } else {
+                        $("#Tooltip_Critical_OpLossManage .content").first().text(r.Message);
+                        $("#Tooltip_Critical_OpLossManage").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_OpLossManage .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_OpLossManage").show("fast");
+                    form.unmask();
+					$(document).scrollTop(0);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            商品损溢编辑
+        </h1>
+        <div class="tooltip warning hidden" id="Tooltip_Warning_OpLossManage">
+            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于商品损溢编辑页面的警告信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip info hidden" id="Tooltip_Info_OpLossManage">
+            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于商品损溢编辑页面的提示信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip help hidden" id="Tooltip_Help_OpLossManage">
+            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于商品损溢编辑页面的帮助信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip critical hidden" id="Tooltip_Critical_OpLossManage">
+            <img src="/images/critical.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            此处填写关于商品损溢编辑页面的出错信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <form id="formMain" method="post" action="">
+        <fieldset>
+            <legend>基本信息</legend>
+            <div class="ablock" style="display:none">
+                <label for="Control_LoNumber">损溢单号:</label>
+                <input id="Control_LoNumber" value="@Model.Id" name="LoNumber" class="mini-hidden"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_LoDate">损溢日期:</label>
+                <input type="text" id="Control_LoDate" name="LoDate"  value="@Model.LoDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CkNumber">盘点单号:</label>
+                <input type="text"  value="@Model.CkNumber" class="mini-textbox" name="CkNumber" id="Control_CkNumber" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_LoType">损溢方式:</label>
+                <input type="text"  value="@Model.LoType" class="mini-textbox" name="LoType" id="Control_LoType" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_LoOrgan">损溢单位:</label>
+                <input type="text"  value="@Model.LoOrgan" class="mini-textbox" name="LoOrgan" id="Control_LoOrgan" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_WhCode">仓库编码:</label>
+                <input type="text"  value="@Model.WhCode" class="mini-textbox" name="WhCode" id="Control_WhCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CreateDate">创建时间:</label>
+                <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Operator">操作员:</label>
+                <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Assessor">审核人:</label>
+                <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfExamine">是否审核:</label>
+                <div id="Control_IfExamine" name="IfExamine" value="1" class="mini-checkbox" checked="true" readOnly="false" text="审核"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ExamineDate">审核时间:</label>
+                <input type="text" id="Control_ExamineDate" name="ExamineDate"  value="@Model.ExamineDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OperatorDate">操作时间:</label>
+                <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+           
+        </fieldset>
+        <div class="clear">
+        </div>
+        <div class="control-panel">
+            <div class="control-button">
+                <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+            </div>
+            <div class="botton-up">
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+
