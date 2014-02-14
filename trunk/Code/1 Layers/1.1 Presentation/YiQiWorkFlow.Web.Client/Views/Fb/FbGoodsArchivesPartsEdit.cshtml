@@ -1,0 +1,163 @@
+﻿@model YiQiWorkFlow.Domain.Fb.FbGoodsArchivesParts
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>商品部件编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "商品部件"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:48";var id="@Model.Id";pageName="FbGoodsArchivesPartsEdit"; </script>
+	<script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+            $.ajax({
+                url: "/Fb/SaveFbGoodsArchivesParts",
+                type: 'post',
+                data: o,
+                cache: false,
+				dataType:"json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        closeWithNoValidate();
+                    } else {
+                        $("#Tooltip_Critical_FbGoodsArchivesParts .content").first().text(r.Message);
+                        $("#Tooltip_Critical_FbGoodsArchivesParts").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_FbGoodsArchivesParts .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_FbGoodsArchivesParts").show("fast");
+                    form.unmask();
+					$(document).scrollTop(0);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            商品部件编辑
+        </h1>
+        <div class="tooltip warning hidden" id="Tooltip_Warning_FbGoodsArchivesParts">
+            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于商品部件编辑页面的警告信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip info hidden" id="Tooltip_Info_FbGoodsArchivesParts">
+            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于商品部件编辑页面的提示信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip help hidden" id="Tooltip_Help_FbGoodsArchivesParts">
+            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于商品部件编辑页面的帮助信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip critical hidden" id="Tooltip_Critical_FbGoodsArchivesParts">
+            <img src="/images/critical.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            此处填写关于商品部件编辑页面的出错信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <form id="formMain" method="post" action="">
+        <fieldset>
+            <legend>基本信息</legend>
+            <div class="ablock">
+                <label for="Control_GoodsCode">商品编码:</label>
+                <input type="text"  value="@Model.GoodsCode" class="mini-textbox" name="GoodsCode" id="Control_GoodsCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsBarCode">商品销售码:</label>
+                <input type="text"  value="@Model.GoodsBarCode" class="mini-textbox" name="GoodsBarCode" id="Control_GoodsBarCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsCodePart">部件编码:</label>
+                <input type="text"  value="@Model.GoodsCodePart" class="mini-textbox" name="GoodsCodePart" id="Control_GoodsCodePart" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsBarCodePart">部件销售码:</label>
+                <input type="text"  value="@Model.GoodsBarCodePart" class="mini-textbox" name="GoodsBarCodePart" id="Control_GoodsBarCodePart" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsBarName">部件名称:</label>
+                <input type="text"  value="@Model.GoodsBarName" class="mini-textbox" name="GoodsBarName" id="Control_GoodsBarName" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PackUnitCode">包装单位:</label>
+                <input type="text"  value="@Model.PackUnitCode" class="mini-textbox" name="PackUnitCode" id="Control_PackUnitCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PartCoef">部件数量:</label>
+                <input type="text" id="Control_PartCoef" name="PartCoef"  value="@Model.PartCoef" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfExamine">是否审核:</label>
+                <div id="Control_IfExamine" name="IfExamine" value="1" class="mini-checkbox" checked="true" readOnly="false" text="审核"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_SysGuid">系统标识:</label>
+                <input type="text"  value="@Model.SysGuid" class="mini-textbox" name="SysGuid" id="Control_SysGuid" vtype="maxLength:60" />
+            </div>
+
+            <div class="ablock" style="display:none">
+                <label for="Control_Id">:</label>
+                <input id="Control_Id" value="@Model.Id" name="Id" class="mini-hidden"/>
+            </div>
+
+           
+        </fieldset>
+        <div class="clear">
+        </div>
+        <div class="control-panel">
+            <div class="control-button">
+                <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+            </div>
+            <div class="botton-up">
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+

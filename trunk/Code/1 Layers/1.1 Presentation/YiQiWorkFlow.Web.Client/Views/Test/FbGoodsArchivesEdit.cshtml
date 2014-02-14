@@ -1,0 +1,343 @@
+﻿@model YiQiWorkFlow.Domain.Archives.FbGoodsArchives
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>商品档案编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "商品档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/9 12:39:09"; var id = "@Model.Id"; pageName = "FbGoodsArchivesEdit"; </script>
+	<script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+            //var json = mini.encode([o]);
+            $.ajax({
+                url: "SaveFbGoodsArchives",
+                type: 'post',
+                data:o,
+                cache: false,
+                dataType:"json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        closeWithNoValidate();
+                    } else {
+                        $("#Tooltip_Critical_FbGoodsArchives .content").first().text(r.Message);
+                        $("#Tooltip_Critical_FbGoodsArchives").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_FbGoodsArchives .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_FbGoodsArchives").show("fast");
+                    form.unmask();
+					$(document).scrollTop(0);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            商品档案编辑
+        </h1>
+        <div class="tooltip warning hidden" id="Tooltip_Warning_FbGoodsArchives">
+            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于商品档案编辑页面的警告信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip info hidden" id="Tooltip_Info_FbGoodsArchives">
+            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于商品档案编辑页面的提示信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip help hidden" id="Tooltip_Help_FbGoodsArchives">
+            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于商品档案编辑页面的帮助信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip critical hidden" id="Tooltip_Critical_FbGoodsArchives">
+            <img src="/images/critical.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            此处填写关于商品档案编辑页面的出错信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <form id="formMain" method="post" action="">
+        <fieldset>
+            <legend>基本信息</legend>
+            <div class="ablock" style="display:none">
+                <label for="Control_GoodsCode">商品编码:</label>
+                <input id="Control_GoodsCode" value="@Model.Id" name="GoodsCode" class="mini-hidden"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsBarCode">商品销售码:</label>
+                <input type="text"  value="@Model.GoodsBarCode" class="mini-textbox" name="GoodsBarCode" id="Control_GoodsBarCode" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsSubCode">商品简码:</label>
+                <input type="text"  value="@Model.GoodsSubCode" class="mini-textbox" name="GoodsSubCode" id="Control_GoodsSubCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GbCode">大类:</label>
+                <input type="text"  value="@Model.GbCode" class="mini-textbox" name="GbCode" id="Control_GbCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GmCode">中类:</label>
+                <input type="text"  value="@Model.GmCode" class="mini-textbox" name="GmCode" id="Control_GmCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GsCode">小类:</label>
+                <input type="text"  value="@Model.GsCode" class="mini-textbox" name="GsCode" id="Control_GsCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GlCode">细类:</label>
+                <input type="text"  value="@Model.GlCode" class="mini-textbox" name="GlCode" id="Control_GlCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsType">商品类型:</label>
+                <input type="text"  value="@Model.GoodsType" class="mini-textbox" name="GoodsType" id="Control_GoodsType" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CheckMode">核算方式:</label>
+                <input type="text"  value="@Model.CheckMode" class="mini-textbox" name="CheckMode" id="Control_CheckMode" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_SupCode">供货商编码:</label>
+                <input type="text"  value="@Model.SupCode" class="mini-textbox" name="SupCode" id="Control_SupCode" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OpCode">经营方式:</label>
+                <input type="text"  value="@Model.OpCode" class="mini-textbox" name="OpCode" id="Control_OpCode" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PoolRate">扣率:</label>
+                <input type="text" id="Control_PoolRate" name="PoolRate"  value="@Model.PoolRate" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsName">商品名称:</label>
+                <input type="text"  value="@Model.GoodsName" class="mini-textbox" name="GoodsName" id="Control_GoodsName" vtype="maxLength:50"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsSubName">商品简称:</label>
+                <input type="text"  value="@Model.GoodsSubName" class="mini-textbox" name="GoodsSubName" id="Control_GoodsSubName" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PyCode">拼音码:</label>
+                <input type="text"  value="@Model.PyCode" class="mini-textbox" name="PyCode" id="Control_PyCode" vtype="maxLength:250" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsState">1正常，2淘汰，3禁采销售，4禁采禁销，5废除:</label>
+                <input type="text"  value="@Model.GoodsState" class="mini-textbox" name="GoodsState" id="Control_GoodsState" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ProducingArea">产地:</label>
+                <input type="text"  value="@Model.ProducingArea" class="mini-textbox" name="ProducingArea" id="Control_ProducingArea" vtype="maxLength:100" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ArticleNumber">货号:</label>
+                <input type="text"  value="@Model.ArticleNumber" class="mini-textbox" name="ArticleNumber" id="Control_ArticleNumber" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Specification">规格:</label>
+                <input type="text"  value="@Model.Specification" class="mini-textbox" name="Specification" id="Control_Specification" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ShelfLife">保质期:</label>
+                <input type="text"  value="@Model.ShelfLife" class="mini-textbox" name="ShelfLife" id="Control_ShelfLife" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PackUnitCode">包装单位:</label>
+                <input type="text"  value="@Model.PackUnitCode" class="mini-textbox" name="PackUnitCode" id="Control_PackUnitCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OfferMode">供货方式:</label>
+                <input type="text"  value="@Model.OfferMode" class="mini-textbox" name="OfferMode" id="Control_OfferMode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PackCoef">包装系数:</label>
+                <input type="text" id="Control_PackCoef" name="PackCoef"  value="@Model.PackCoef" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OfferMin">最小订量:</label>
+                <input type="text" id="Control_OfferMin" name="OfferMin"  value="@Model.OfferMin" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_InputTax">进项税率:</label>
+                <input type="text" id="Control_InputTax" name="InputTax"  value="@Model.InputTax" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OutputTax">销项税率:</label>
+                <input type="text" id="Control_OutputTax" name="OutputTax"  value="@Model.OutputTax" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_StockUpperLimit">库存上限:</label>
+                <input type="text" id="Control_StockUpperLimit" name="StockUpperLimit"  value="@Model.StockUpperLimit" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_StockLowerLimit">库存下限:</label>
+                <input type="text" id="Control_StockLowerLimit" name="StockLowerLimit"  value="@Model.StockLowerLimit" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_UnderFloorCode">所属楼层:</label>
+                <input type="text"  value="@Model.UnderFloorCode" class="mini-textbox" name="UnderFloorCode" id="Control_UnderFloorCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_UnderCounterCode">所属柜台:</label>
+                <input type="text"  value="@Model.UnderCounterCode" class="mini-textbox" name="UnderCounterCode" id="Control_UnderCounterCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CheckUnitCode">核算单位:</label>
+                <input type="text"  value="@Model.CheckUnitCode" class="mini-textbox" name="CheckUnitCode" id="Control_CheckUnitCode" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PurchasePrice">含税进价:</label>
+                <input type="text" id="Control_PurchasePrice" name="PurchasePrice"  value="@Model.PurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_NontaxPurchasePrice">不含税进价:</label>
+                <input type="text" id="Control_NontaxPurchasePrice" name="NontaxPurchasePrice"  value="@Model.NontaxPurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_AvgCost">平均成本:</label>
+                <input type="text" id="Control_AvgCost" name="AvgCost"  value="@Model.AvgCost" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_NontaxAvgCost">不含税平均成本:</label>
+                <input type="text" id="Control_NontaxAvgCost" name="NontaxAvgCost"  value="@Model.NontaxAvgCost" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GrossRate">毛利率:</label>
+                <input type="text" id="Control_GrossRate" name="GrossRate"  value="@Model.GrossRate" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_SalePrice">销售价:</label>
+                <input type="text" id="Control_SalePrice" name="SalePrice"  value="@Model.SalePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_VipPrice">会员价:</label>
+                <input type="text" id="Control_VipPrice" name="VipPrice"  value="@Model.VipPrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_TradePrice">批发价:</label>
+                <input type="text" id="Control_TradePrice" name="TradePrice"  value="@Model.TradePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PushRate">营业员提成:</label>
+                <input type="text" id="Control_PushRate" name="PushRate"  value="@Model.PushRate" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_CreateDate">创建时间:</label>
+                <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Operator">操作员:</label>
+                <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Assessor">审核人:</label>
+                <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfExamine">是否审核:</label>
+                <div id="Control_IfExamine" name="IfExamine" value="1" class="mini-checkbox" checked="true" readOnly="false" text="审核"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ExamineDate">审核时间:</label>
+                <input type="text" id="Control_ExamineDate" name="ExamineDate"  value="@Model.ExamineDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OperatorDate">操作时间:</label>
+                <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+           
+        </fieldset>
+        <div class="clear">
+        </div>
+        <div class="control-panel">
+            <div class="control-button">
+                <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+            </div>
+            <div class="botton-up">
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

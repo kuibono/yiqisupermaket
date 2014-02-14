@@ -1,0 +1,253 @@
+@model YiQiWorkFlow.Domain.Rt.RtRetailDetail
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>销售表商品明细编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "销售表商品明细"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:56";var id="@Model.Id";pageName="RtRetailDetailEdit"; </script>
+	<script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+            $.ajax({
+                url: "/Rt/SaveRtRetailDetail",
+                type: 'post',
+                data: o,
+                cache: false,
+				dataType:"json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        closeWithNoValidate();
+                    } else {
+                        $("#Tooltip_Critical_RtRetailDetail .content").first().text(r.Message);
+                        $("#Tooltip_Critical_RtRetailDetail").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_RtRetailDetail .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_RtRetailDetail").show("fast");
+                    form.unmask();
+					$(document).scrollTop(0);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            销售表商品明细编辑
+        </h1>
+        <div class="tooltip warning hidden" id="Tooltip_Warning_RtRetailDetail">
+            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于销售表商品明细编辑页面的警告信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip info hidden" id="Tooltip_Info_RtRetailDetail">
+            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于销售表商品明细编辑页面的提示信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip help hidden" id="Tooltip_Help_RtRetailDetail">
+            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于销售表商品明细编辑页面的帮助信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip critical hidden" id="Tooltip_Critical_RtRetailDetail">
+            <img src="/images/critical.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            此处填写关于销售表商品明细编辑页面的出错信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <form id="formMain" method="post" action="">
+        <fieldset>
+            <legend>基本信息</legend>
+            <div class="ablock">
+                <label for="Control_SaFlowNumber">流水号:</label>
+                <input type="text" id="Control_SaFlowNumber" name="SaFlowNumber"  value="@Model.SaFlowNumber" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_RtNumber">销售单号:</label>
+                <input type="text"  value="@Model.RtNumber" class="mini-textbox" name="RtNumber" id="Control_RtNumber" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_sNumber">序号:</label>
+                <input type="text"  value="@Model.sNumber" class="mini-textbox" name="sNumber" id="Control_sNumber" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_RtDate">销售时间:</label>
+                <input type="text" id="Control_RtDate" name="RtDate"  value="@Model.RtDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_RtType">销售方式:</label>
+                <input type="text"  value="@Model.RtType" class="mini-textbox" name="RtType" id="Control_RtType" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_WhCode">仓库编码:</label>
+                <input type="text"  value="@Model.WhCode" class="mini-textbox" name="WhCode" id="Control_WhCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_bCode">分店编码:</label>
+                <input type="text"  value="@Model.bCode" class="mini-textbox" name="bCode" id="Control_bCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Posid">Pos机号:</label>
+                <input type="text"  value="@Model.Posid" class="mini-textbox" name="Posid" id="Control_Posid" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsCode">商品编码:</label>
+                <input type="text"  value="@Model.GoodsCode" class="mini-textbox" name="GoodsCode" id="Control_GoodsCode" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_GoodsBarCode">商品销售码:</label>
+                <input type="text"  value="@Model.GoodsBarCode" class="mini-textbox" name="GoodsBarCode" id="Control_GoodsBarCode" vtype="maxLength:20"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_SalePrice">原销售单价:</label>
+                <input type="text" id="Control_SalePrice" name="SalePrice"  value="@Model.SalePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_RealPrice">销售单价:</label>
+                <input type="text" id="Control_RealPrice" name="RealPrice"  value="@Model.RealPrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_SaleQty">数量:</label>
+                <input type="text" id="Control_SaleQty" name="SaleQty"  value="@Model.SaleQty" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_SaleMoney">销售金额:</label>
+                <input type="text" id="Control_SaleMoney" name="SaleMoney"  value="@Model.SaleMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_DiscountMoney">折扣金额:</label>
+                <input type="text" id="Control_DiscountMoney" name="DiscountMoney"  value="@Model.DiscountMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PurchaseQty">单品数量:</label>
+                <input type="text" id="Control_PurchaseQty" name="PurchaseQty"  value="@Model.PurchaseQty" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_pSalePrice">单品单价:</label>
+                <input type="text" id="Control_pSalePrice" name="pSalePrice"  value="@Model.pSalePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_pSaleMoney">单品金额:</label>
+                <input type="text" id="Control_pSaleMoney" name="pSaleMoney"  value="@Model.pSaleMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_pDiscountMoney">单品折扣:</label>
+                <input type="text" id="Control_pDiscountMoney" name="pDiscountMoney"  value="@Model.pDiscountMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Cashier">收银员:</label>
+                <input type="text"  value="@Model.Cashier" class="mini-textbox" name="Cashier" id="Control_Cashier" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Salesman">营业员:</label>
+                <input type="text"  value="@Model.Salesman" class="mini-textbox" name="Salesman" id="Control_Salesman" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_UnderCounterCode">柜台:</label>
+                <input type="text"  value="@Model.UnderCounterCode" class="mini-textbox" name="UnderCounterCode" id="Control_UnderCounterCode" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_PoolRate">促销扣率 :</label>
+                <input type="text" id="Control_PoolRate" name="PoolRate"  value="@Model.PoolRate" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ShiftDate">班次时间:</label>
+                <input type="text" id="Control_ShiftDate" name="ShiftDate"  value="@Model.ShiftDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfPromotion">是否促销:</label>
+                <div id="Control_IfPromotion" name="IfPromotion" value="1" class="mini-checkbox" checked="true" readOnly="false" text="促销"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_OwnerType">从属类型:</label>
+                <input type="text"  value="@Model.OwnerType" class="mini-textbox" name="OwnerType" id="Control_OwnerType" vtype="maxLength:2" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_SysGuid">系统标识:</label>
+                <input type="text"  value="@Model.SysGuid" class="mini-textbox" name="SysGuid" id="Control_SysGuid" vtype="maxLength:60" />
+            </div>
+
+            <div class="ablock" style="display:none">
+                <label for="Control_Id">:</label>
+                <input id="Control_Id" value="@Model.Id" name="Id" class="mini-hidden"/>
+            </div>
+
+           
+        </fieldset>
+        <div class="clear">
+        </div>
+        <div class="control-panel">
+            <div class="control-button">
+                <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+            </div>
+            <div class="botton-up">
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+

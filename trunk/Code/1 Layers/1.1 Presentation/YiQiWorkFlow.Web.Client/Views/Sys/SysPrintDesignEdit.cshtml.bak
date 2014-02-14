@@ -1,0 +1,198 @@
+@model YiQiWorkFlow.Domain.Sys.SysPrintDesign
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>打印模板设计编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "打印模板设计"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:57";var id="@Model.Id";pageName="SysPrintDesignEdit"; </script>
+	<script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+            $.ajax({
+                url: "/Sys/SaveSysPrintDesign",
+                type: 'post',
+                data: o,
+                cache: false,
+				dataType:"json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        closeWithNoValidate();
+                    } else {
+                        $("#Tooltip_Critical_SysPrintDesign .content").first().text(r.Message);
+                        $("#Tooltip_Critical_SysPrintDesign").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_SysPrintDesign .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_SysPrintDesign").show("fast");
+                    form.unmask();
+					$(document).scrollTop(0);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            打印模板设计编辑
+        </h1>
+        <div class="tooltip warning hidden" id="Tooltip_Warning_SysPrintDesign">
+            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于打印模板设计编辑页面的警告信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip info hidden" id="Tooltip_Info_SysPrintDesign">
+            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于打印模板设计编辑页面的提示信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip help hidden" id="Tooltip_Help_SysPrintDesign">
+            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            	此处填写关于打印模板设计编辑页面的帮助信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip critical hidden" id="Tooltip_Critical_SysPrintDesign">
+            <img src="/images/critical.png" alt="Warning" height="48" width="48" />
+			<p class="content">
+            此处填写关于打印模板设计编辑页面的出错信息
+			</p>
+            <div class="button-close">
+                x</div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <form id="formMain" method="post" action="">
+        <fieldset>
+            <legend>基本信息</legend>
+            <div class="ablock">
+                <label for="Control_DwObject">打印数据窗口:</label>
+                <input type="text"  value="@Model.DwObject" class="mini-textbox" name="DwObject" id="Control_DwObject" vtype="maxLength:100"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_TemplateName">模板名称:</label>
+                <input type="text"  value="@Model.TemplateName" class="mini-textbox" name="TemplateName" id="Control_TemplateName" vtype="maxLength:100"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfMain">是否主模板:</label>
+                <div id="Control_IfMain" name="IfMain" value="1" class="mini-checkbox" checked="true" readOnly="false" text="主模板"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_DataObject">数据对象:</label>
+                <input type="text"  value="@Model.DataObject" class="mini-textbox" name="DataObject" id="Control_DataObject" vtype="maxLength:100"required="true" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ObContent">文本内容:</label>
+                <input type="text"  value="@Model.ObContent" class="mini-textbox" name="ObContent" id="Control_ObContent" vtype="maxLength:100" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ObFontFace">字体类型:</label>
+                <input type="text"  value="@Model.ObFontFace" class="mini-textbox" name="ObFontFace" id="Control_ObFontFace" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ObFontHeight">字体高度:</label>
+                <input type="text" id="Control_ObFontHeight" name="ObFontHeight"  value="@Model.ObFontHeight" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ObFontWeight">字体粗细:</label>
+                <input type="text" id="Control_ObFontWeight" name="ObFontWeight"  value="@Model.ObFontWeight" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ObFontItalic">是否斜体:</label>
+                <input type="text"  value="@Model.ObFontItalic" class="mini-textbox" name="ObFontItalic" id="Control_ObFontItalic" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ObFontUnderline">是否下划线:</label>
+                <input type="text"  value="@Model.ObFontUnderline" class="mini-textbox" name="ObFontUnderline" id="Control_ObFontUnderline" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ObColor">字体颜色:</label>
+                <input type="text" id="Control_ObColor" name="ObColor"  value="@Model.ObColor" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_IfVisible">是否隐藏:</label>
+                <div id="Control_IfVisible" name="IfVisible" value="1" class="mini-checkbox" checked="true" readOnly="false" text="隐藏"></div>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Obx">x:</label>
+                <input type="text" id="Control_Obx" name="Obx"  value="@Model.Obx" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_Oby">y:</label>
+                <input type="text" id="Control_Oby" name="Oby"  value="@Model.Oby" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ObWidth">宽:</label>
+                <input type="text" id="Control_ObWidth" name="ObWidth"  value="@Model.ObWidth" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_ObHeight">高:</label>
+                <input type="text" id="Control_ObHeight" name="ObHeight"  value="@Model.ObHeight" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock" style="display:none">
+                <label for="Control_Id">:</label>
+                <input id="Control_Id" value="@Model.Id" name="Id" class="mini-hidden"/>
+            </div>
+
+           
+        </fieldset>
+        <div class="clear">
+        </div>
+        <div class="control-panel">
+            <div class="control-button">
+                <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+            </div>
+            <div class="botton-up">
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+
