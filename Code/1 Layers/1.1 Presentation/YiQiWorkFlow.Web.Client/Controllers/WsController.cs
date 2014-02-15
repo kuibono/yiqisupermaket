@@ -782,12 +782,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult WsWholesaleManageFlowEdit(int id)
+        public ActionResult WsWholesaleManageFlowEdit(int? id)
         {
             WsWholesaleManageFlow m = WsWholesaleManageFlow.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = WsWholesaleManageFlowService.GetById(id);
+                m = WsWholesaleManageFlowService.GetById(id.Value);
             }
             return View(m);
         }

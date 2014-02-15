@@ -402,12 +402,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult BaChargeDetailEdit(int id)
+        public ActionResult BaChargeDetailEdit(int? id)
         {
             BaChargeDetail m = BaChargeDetail.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = BaChargeDetailService.GetById(id);
+                m = BaChargeDetailService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1447,12 +1447,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult BaPaSubjectEdit(int id)
+        public ActionResult BaPaSubjectEdit(int? id)
         {
             BaPaSubject m = BaPaSubject.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = BaPaSubjectService.GetById(id);
+                m = BaPaSubjectService.GetById(id.Value);
             }
             return View(m);
         }

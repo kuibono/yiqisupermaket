@@ -212,12 +212,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpAdjustManageFlowEdit(int id)
+        public ActionResult OpAdjustManageFlowEdit(int? id)
         {
             OpAdjustManageFlow m = OpAdjustManageFlow.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = OpAdjustManageFlowService.GetById(id);
+                m = OpAdjustManageFlowService.GetById(id.Value);
             }
             return View(m);
         }
@@ -687,12 +687,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpAllotManageFlowEdit(int id)
+        public ActionResult OpAllotManageFlowEdit(int? id)
         {
             OpAllotManageFlow m = OpAllotManageFlow.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = OpAllotManageFlowService.GetById(id);
+                m = OpAllotManageFlowService.GetById(id.Value);
             }
             return View(m);
         }
@@ -782,12 +782,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpCheckDetailEdit(int id)
+        public ActionResult OpCheckDetailEdit(int? id)
         {
             OpCheckDetail m = OpCheckDetail.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = OpCheckDetailService.GetById(id);
+                m = OpCheckDetailService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1067,12 +1067,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpCheckTransferEdit(int id)
+        public ActionResult OpCheckTransferEdit(int? id)
         {
             OpCheckTransfer m = OpCheckTransfer.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = OpCheckTransferService.GetById(id);
+                m = OpCheckTransferService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1447,12 +1447,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpGoodsBatchEdit(int id)
+        public ActionResult OpGoodsBatchEdit(int? id)
         {
             OpGoodsBatch m = OpGoodsBatch.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = OpGoodsBatchService.GetById(id);
+                m = OpGoodsBatchService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1732,12 +1732,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpLossManageFlowEdit(int id)
+        public ActionResult OpLossManageFlowEdit(int? id)
         {
             OpLossManageFlow m = OpLossManageFlow.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = OpLossManageFlowService.GetById(id);
+                m = OpLossManageFlowService.GetById(id.Value);
             }
             return View(m);
         }
@@ -2207,12 +2207,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpSplitComManageFlowEdit(int id)
+        public ActionResult OpSplitComManageFlowEdit(int? id)
         {
             OpSplitComManageFlow m = OpSplitComManageFlow.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = OpSplitComManageFlowService.GetById(id);
+                m = OpSplitComManageFlowService.GetById(id.Value);
             }
             return View(m);
         }
