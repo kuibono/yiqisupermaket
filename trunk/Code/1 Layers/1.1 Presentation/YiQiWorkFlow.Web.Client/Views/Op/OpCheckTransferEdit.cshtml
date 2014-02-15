@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "商品盘点接转单商品汇总明细"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:52";var id="@Model.Id";pageName="OpCheckTransferEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "商品盘点接转单商品汇总明细"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:53";var id="@Model.Id";pageName="OpCheckTransferEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -95,12 +95,12 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_CkFlowNumber">流水单号:</label>
-                <input type="text" id="Control_CkFlowNumber" name="CkFlowNumber"  value="@Model.CkFlowNumber" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input id="Control_CkFlowNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock" style="display:none">
                 <label for="Control_CkNumber">盘点单号:</label>
-                <input id="Control_CkNumber" value="@Model.Id" name="CkNumber" class="mini-hidden"/>
+                <input id="Control_CkNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">
@@ -115,7 +115,7 @@
 
             <div class="ablock" style="display:none">
                 <label for="Control_GoodsCode">商品编码:</label>
-                <input id="Control_GoodsCode" value="@Model.Id" name="GoodsCode" class="mini-hidden"/>
+                <input id="Control_GoodsCode" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">

@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,7 +71,6 @@ namespace YiQiWorkFlow.Application.Service.Rt
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
@@ -82,147 +82,118 @@ namespace YiQiWorkFlow.Application.Service.Rt
 					
 					if (string.IsNullOrEmpty(c.entity.MantissaMode) == false)
 					{
-						
 						q = q.Where(p => p.MantissaMode.Contains(c.entity.MantissaMode));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfReturnSale) == false)
 					{
-						
 						q = q.Where(p => p.IfReturnSale.Contains(c.entity.IfReturnSale));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfNegativeStock) == false)
 					{
-						
 						q = q.Where(p => p.IfNegativeStock.Contains(c.entity.IfNegativeStock));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfReturnPayway) == false)
 					{
-						
 						q = q.Where(p => p.IfReturnPayway.Contains(c.entity.IfReturnPayway));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfSalesman) == false)
 					{
-						
 						q = q.Where(p => p.IfSalesman.Contains(c.entity.IfSalesman));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfCounter) == false)
 					{
-						
 						q = q.Where(p => p.IfCounter.Contains(c.entity.IfCounter));
 					}
 					if (string.IsNullOrEmpty(c.entity.PrintType) == false)
 					{
-						
 						q = q.Where(p => p.PrintType.Contains(c.entity.PrintType));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfBind) == false)
 					{
-						
 						q = q.Where(p => p.IfBind.Contains(c.entity.IfBind));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfEntertopay) == false)
 					{
-						
 						q = q.Where(p => p.IfEntertopay.Contains(c.entity.IfEntertopay));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfEntertormb) == false)
 					{
-						
 						q = q.Where(p => p.IfEntertormb.Contains(c.entity.IfEntertormb));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfEnglishSale) == false)
 					{
-						
 						q = q.Where(p => p.IfEnglishSale.Contains(c.entity.IfEnglishSale));
 					}
 					if (string.IsNullOrEmpty(c.entity.Title1) == false)
 					{
-						
 						q = q.Where(p => p.Title1.Contains(c.entity.Title1));
 					}
 					if (string.IsNullOrEmpty(c.entity.Title2) == false)
 					{
-						
 						q = q.Where(p => p.Title2.Contains(c.entity.Title2));
 					}
 					if (string.IsNullOrEmpty(c.entity.Title3) == false)
 					{
-						
 						q = q.Where(p => p.Title3.Contains(c.entity.Title3));
 					}
 					if (string.IsNullOrEmpty(c.entity.Title4) == false)
 					{
-						
 						q = q.Where(p => p.Title4.Contains(c.entity.Title4));
 					}
 					if (string.IsNullOrEmpty(c.entity.Title5) == false)
 					{
-						
 						q = q.Where(p => p.Title5.Contains(c.entity.Title5));
 					}
 					if (string.IsNullOrEmpty(c.entity.Pagefoot1) == false)
 					{
-						
 						q = q.Where(p => p.Pagefoot1.Contains(c.entity.Pagefoot1));
 					}
 					if (string.IsNullOrEmpty(c.entity.Pagefoot2) == false)
 					{
-						
 						q = q.Where(p => p.Pagefoot2.Contains(c.entity.Pagefoot2));
 					}
 					if (string.IsNullOrEmpty(c.entity.Pagefoot3) == false)
 					{
-						
 						q = q.Where(p => p.Pagefoot3.Contains(c.entity.Pagefoot3));
 					}
 					if (string.IsNullOrEmpty(c.entity.Pagefoot4) == false)
 					{
-						
 						q = q.Where(p => p.Pagefoot4.Contains(c.entity.Pagefoot4));
 					}
 					if (string.IsNullOrEmpty(c.entity.Pagefoot5) == false)
 					{
-						
 						q = q.Where(p => p.Pagefoot5.Contains(c.entity.Pagefoot5));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfEnName) == false)
 					{
-						
 						q = q.Where(p => p.IfEnName.Contains(c.entity.IfEnName));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfbName) == false)
 					{
-						
 						q = q.Where(p => p.IfbName.Contains(c.entity.IfbName));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfGoodsCode) == false)
 					{
-						
 						q = q.Where(p => p.IfGoodsCode.Contains(c.entity.IfGoodsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfGoodsBarCode) == false)
 					{
-						
 						q = q.Where(p => p.IfGoodsBarCode.Contains(c.entity.IfGoodsBarCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfGoodsName) == false)
 					{
-						
 						q = q.Where(p => p.IfGoodsName.Contains(c.entity.IfGoodsName));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfGoodsSubName) == false)
 					{
-						
 						q = q.Where(p => p.IfGoodsSubName.Contains(c.entity.IfGoodsSubName));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfPackUnit) == false)
 					{
-						
 						q = q.Where(p => p.IfPackUnit.Contains(c.entity.IfPackUnit));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfPrepaid) == false)
 					{
-						
 						q = q.Where(p => p.IfPrepaid.Contains(c.entity.IfPrepaid));
 					}
                 
@@ -310,7 +281,6 @@ namespace YiQiWorkFlow.Application.Service.Rt
 					|| l.IfGoodsSubName.Contains(key)
 					|| l.IfPackUnit.Contains(key)
 					|| l.IfPrepaid.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

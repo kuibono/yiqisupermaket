@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Rt
     public class RtRetailDetailService:IRtRetailDetailService
     {
 
-        public IRepositoryGUID<RtRetailDetail> EntityRepository { get; set; }
+        public IRepository<RtRetailDetail> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(RtRetailDetail entity)
+        public int Create(RtRetailDetail entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public RtRetailDetail GetById(string id)
+        public RtRetailDetail GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,54 +67,36 @@ namespace YiQiWorkFlow.Application.Service.Rt
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
-					 if (c.entity.SaFlowNumber > 0)
-					{
-						q = q.Where(p => p.SaFlowNumber == c.entity.SaFlowNumber);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.RtNumber) == false)
 					{
-						
 						q = q.Where(p => p.RtNumber.Contains(c.entity.RtNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.sNumber) == false)
 					{
-						
 						q = q.Where(p => p.sNumber.Contains(c.entity.sNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.RtType) == false)
 					{
-						
 						q = q.Where(p => p.RtType.Contains(c.entity.RtType));
 					}
 					if (string.IsNullOrEmpty(c.entity.WhCode) == false)
 					{
-						
 						q = q.Where(p => p.WhCode.Contains(c.entity.WhCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.bCode) == false)
 					{
-						
 						q = q.Where(p => p.bCode.Contains(c.entity.bCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.Posid) == false)
 					{
-						
 						q = q.Where(p => p.Posid.Contains(c.entity.Posid));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsCode.Contains(c.entity.GoodsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsBarCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsBarCode.Contains(c.entity.GoodsBarCode));
 					}
 					 if (c.entity.SalePrice > 0)
@@ -167,17 +146,14 @@ namespace YiQiWorkFlow.Application.Service.Rt
 					
 					if (string.IsNullOrEmpty(c.entity.Cashier) == false)
 					{
-						
 						q = q.Where(p => p.Cashier.Contains(c.entity.Cashier));
 					}
 					if (string.IsNullOrEmpty(c.entity.Salesman) == false)
 					{
-						
 						q = q.Where(p => p.Salesman.Contains(c.entity.Salesman));
 					}
 					if (string.IsNullOrEmpty(c.entity.UnderCounterCode) == false)
 					{
-						
 						q = q.Where(p => p.UnderCounterCode.Contains(c.entity.UnderCounterCode));
 					}
 					 if (c.entity.PoolRate > 0)
@@ -187,17 +163,14 @@ namespace YiQiWorkFlow.Application.Service.Rt
 					
 					if (string.IsNullOrEmpty(c.entity.IfPromotion) == false)
 					{
-						
 						q = q.Where(p => p.IfPromotion.Contains(c.entity.IfPromotion));
 					}
 					if (string.IsNullOrEmpty(c.entity.OwnerType) == false)
 					{
-						
 						q = q.Where(p => p.OwnerType.Contains(c.entity.OwnerType));
 					}
 					if (string.IsNullOrEmpty(c.entity.SysGuid) == false)
 					{
-						
 						q = q.Where(p => p.SysGuid.Contains(c.entity.SysGuid));
 					}
                 
@@ -206,7 +179,7 @@ namespace YiQiWorkFlow.Application.Service.Rt
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.RtNumber.Contains(c.key)
 					|| l.sNumber.Contains(c.key)
 					|| l.RtType.Contains(c.key)
@@ -240,7 +213,7 @@ namespace YiQiWorkFlow.Application.Service.Rt
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
+					1==0
 					|| l.RtNumber.Contains(key)
 					|| l.sNumber.Contains(key)
 					|| l.RtType.Contains(key)
@@ -255,7 +228,6 @@ namespace YiQiWorkFlow.Application.Service.Rt
 					|| l.IfPromotion.Contains(key)
 					|| l.OwnerType.Contains(key)
 					|| l.SysGuid.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 
@@ -268,7 +240,8 @@ namespace YiQiWorkFlow.Application.Service.Rt
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

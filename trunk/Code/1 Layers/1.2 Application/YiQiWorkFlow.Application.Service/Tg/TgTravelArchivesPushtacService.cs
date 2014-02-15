@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,24 +71,20 @@ namespace YiQiWorkFlow.Application.Service.Tg
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.TaCode) == false)
 					{
-						
 						q = q.Where(p => p.TaCode.Contains(c.entity.TaCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsClassCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsClassCode.Contains(c.entity.GoodsClassCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsClassName) == false)
 					{
-						
 						q = q.Where(p => p.GoodsClassName.Contains(c.entity.GoodsClassName));
 					}
 					 if (c.entity.PushRate > 0)
@@ -133,7 +130,6 @@ namespace YiQiWorkFlow.Application.Service.Tg
 					|| l.TaCode.Contains(key)
 					|| l.GoodsClassCode.Contains(key)
 					|| l.GoodsClassName.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

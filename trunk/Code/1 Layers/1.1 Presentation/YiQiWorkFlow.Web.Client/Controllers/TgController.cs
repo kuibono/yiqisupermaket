@@ -402,10 +402,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult TgGroupCallEdit(string id)
+        public ActionResult TgGroupCallEdit(int id)
         {
             TgGroupCall m = TgGroupCall.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = TgGroupCallService.GetById(id);
             }
@@ -497,10 +497,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult TgGuideArchivesEdit(string id)
+        public ActionResult TgGuideArchivesEdit(int id)
         {
             TgGuideArchives m = TgGuideArchives.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = TgGuideArchivesService.GetById(id);
             }
@@ -1447,10 +1447,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult TgTourgroupManageEdit(string id)
+        public ActionResult TgTourgroupManageEdit(int id)
         {
             TgTourgroupManage m = TgTourgroupManage.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = TgTourgroupManageService.GetById(id);
             }

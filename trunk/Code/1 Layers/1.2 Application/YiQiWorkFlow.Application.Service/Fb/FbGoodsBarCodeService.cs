@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,74 +71,60 @@ namespace YiQiWorkFlow.Application.Service.Fb
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.GoodsCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsCode.Contains(c.entity.GoodsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsBarCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsBarCode.Contains(c.entity.GoodsBarCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsSubCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsSubCode.Contains(c.entity.GoodsSubCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsName) == false)
 					{
-						
 						q = q.Where(p => p.GoodsName.Contains(c.entity.GoodsName));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsSubName) == false)
 					{
-						
 						q = q.Where(p => p.GoodsSubName.Contains(c.entity.GoodsSubName));
 					}
 					if (string.IsNullOrEmpty(c.entity.PyCode) == false)
 					{
-						
 						q = q.Where(p => p.PyCode.Contains(c.entity.PyCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GbCode) == false)
 					{
-						
 						q = q.Where(p => p.GbCode.Contains(c.entity.GbCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GmCode) == false)
 					{
-						
 						q = q.Where(p => p.GmCode.Contains(c.entity.GmCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GsCode) == false)
 					{
-						
 						q = q.Where(p => p.GsCode.Contains(c.entity.GsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GlCode) == false)
 					{
-						
 						q = q.Where(p => p.GlCode.Contains(c.entity.GlCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.OwnerType) == false)
 					{
-						
 						q = q.Where(p => p.OwnerType.Contains(c.entity.OwnerType));
 					}
 					if (string.IsNullOrEmpty(c.entity.SupCode) == false)
 					{
-						
 						q = q.Where(p => p.SupCode.Contains(c.entity.SupCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.OpCode) == false)
 					{
-						
 						q = q.Where(p => p.OpCode.Contains(c.entity.OpCode));
 					}
 					 if (c.entity.PoolRate > 0)
@@ -152,17 +139,14 @@ namespace YiQiWorkFlow.Application.Service.Fb
 					
 					if (string.IsNullOrEmpty(c.entity.PackUnitCode) == false)
 					{
-						
 						q = q.Where(p => p.PackUnitCode.Contains(c.entity.PackUnitCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.QtyType) == false)
 					{
-						
 						q = q.Where(p => p.QtyType.Contains(c.entity.QtyType));
 					}
 					if (string.IsNullOrEmpty(c.entity.PriceType) == false)
 					{
-						
 						q = q.Where(p => p.PriceType.Contains(c.entity.PriceType));
 					}
 					 if (c.entity.SalePrice > 0)
@@ -182,7 +166,6 @@ namespace YiQiWorkFlow.Application.Service.Fb
 					
 					if (string.IsNullOrEmpty(c.entity.GoodsState) == false)
 					{
-						
 						q = q.Where(p => p.GoodsState.Contains(c.entity.GoodsState));
 					}
                 
@@ -246,7 +229,6 @@ namespace YiQiWorkFlow.Application.Service.Fb
 					|| l.QtyType.Contains(key)
 					|| l.PriceType.Contains(key)
 					|| l.GoodsState.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

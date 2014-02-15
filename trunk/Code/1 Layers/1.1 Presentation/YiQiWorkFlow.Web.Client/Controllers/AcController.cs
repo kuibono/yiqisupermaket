@@ -22,12 +22,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcBranchGoodssaleAccountEdit(string id)
+        public ActionResult AcBranchGoodssaleAccountEdit(int? id)
         {
             AcBranchGoodssaleAccount m = AcBranchGoodssaleAccount.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcBranchGoodssaleAccountService.GetById(id);
+                m = AcBranchGoodssaleAccountService.GetById(id.Value);
             }
             return View(m);
         }
@@ -117,12 +117,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcCashierSummaryEdit(string id)
+        public ActionResult AcCashierSummaryEdit(int? id)
         {
             AcCashierSummary m = AcCashierSummary.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcCashierSummaryService.GetById(id);
+                m = AcCashierSummaryService.GetById(id.Value);
             }
             return View(m);
         }
@@ -212,12 +212,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcCounterSummaryEdit(string id)
+        public ActionResult AcCounterSummaryEdit(int? id)
         {
             AcCounterSummary m = AcCounterSummary.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcCounterSummaryService.GetById(id);
+                m = AcCounterSummaryService.GetById(id.Value);
             }
             return View(m);
         }
@@ -307,12 +307,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcDayBranchclassJournalAccountEdit(string id)
+        public ActionResult AcDayBranchclassJournalAccountEdit(int? id)
         {
             AcDayBranchclassJournalAccount m = AcDayBranchclassJournalAccount.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcDayBranchclassJournalAccountService.GetById(id);
+                m = AcDayBranchclassJournalAccountService.GetById(id.Value);
             }
             return View(m);
         }
@@ -347,15 +347,14 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                AcDayBranchclassJournalAccountService.SaveOrUpdate(m);
-                //if (m.HaveId)
-                //{
-                //    AcDayBranchclassJournalAccountService.Update(m);
-                //}
-                //else
-                //{
-                //    AcDayBranchclassJournalAccountService.Create(m);
-                //}
+                if (m.HaveId)
+                {
+                    AcDayBranchclassJournalAccountService.Update(m);
+                }
+                else
+                {
+                    AcDayBranchclassJournalAccountService.Create(m);
+                }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -403,12 +402,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcDayBranchgoodsJournalAccountEdit(string id)
+        public ActionResult AcDayBranchgoodsJournalAccountEdit(int? id)
         {
             AcDayBranchgoodsJournalAccount m = AcDayBranchgoodsJournalAccount.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcDayBranchgoodsJournalAccountService.GetById(id);
+                m = AcDayBranchgoodsJournalAccountService.GetById(id.Value);
             }
             return View(m);
         }
@@ -498,12 +497,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcDayClassJournalAccountEdit(string id)
+        public ActionResult AcDayClassJournalAccountEdit(int? id)
         {
             AcDayClassJournalAccount m = AcDayClassJournalAccount.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcDayClassJournalAccountService.GetById(id);
+                m = AcDayClassJournalAccountService.GetById(id.Value);
             }
             return View(m);
         }
@@ -593,12 +592,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcDayGoodsJournalAccountEdit(string id)
+        public ActionResult AcDayGoodsJournalAccountEdit(int? id)
         {
             AcDayGoodsJournalAccount m = AcDayGoodsJournalAccount.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcDayGoodsJournalAccountService.GetById(id);
+                m = AcDayGoodsJournalAccountService.GetById(id.Value);
             }
             return View(m);
         }
@@ -783,12 +782,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcDayGoodsstockJournalAccountEdit(string id)
+        public ActionResult AcDayGoodsstockJournalAccountEdit(int? id)
         {
             AcDayGoodsstockJournalAccount m = AcDayGoodsstockJournalAccount.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcDayGoodsstockJournalAccountService.GetById(id);
+                m = AcDayGoodsstockJournalAccountService.GetById(id.Value);
             }
             return View(m);
         }
@@ -973,12 +972,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcGoodssaleAccountEdit(string id)
+        public ActionResult AcGoodssaleAccountEdit(int? id)
         {
             AcGoodssaleAccount m = AcGoodssaleAccount.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcGoodssaleAccountService.GetById(id);
+                m = AcGoodssaleAccountService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1060,6 +1059,101 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion
         #endregion  商品销售帐表
 
+        #region 商品销售帐表Tg
+        public IAcGoodssaleAccountTgService AcGoodssaleAccountTgService { get; set; }
+        #region 商品销售帐表Tg编辑页面
+        /// <summary>
+        /// 商品销售帐表Tg编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult AcGoodssaleAccountTgEdit(int? id)
+        {
+            AcGoodssaleAccountTg m = AcGoodssaleAccountTg.Initial();
+            if (id.HasValue && id > 0)
+            {
+                m = AcGoodssaleAccountTgService.GetById(id.Value);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 商品销售帐表Tg列表页面
+        /// <summary>
+        /// 商品销售帐表Tg列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AcGoodssaleAccountTgList()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 商品销售帐表Tg保存程序
+        /// <summary>
+        /// 商品销售帐表Tg保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SaveAcGoodssaleAccountTg(AcGoodssaleAccountTg m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    AcGoodssaleAccountTgService.Update(m);
+                }
+                else
+                {
+                    AcGoodssaleAccountTgService.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 商品销售帐表Tg搜索
+        /// <summary>
+        /// 商品销售帐表Tg搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchAcGoodssaleAccountTgList(SearchDtoBase<AcGoodssaleAccountTg> c, AcGoodssaleAccountTg s)
+        {
+            c.entity = s;
+            return Json(AcGoodssaleAccountTgService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 商品销售帐表Tg删除
+        /// <summary>
+        /// 商品销售帐表Tg删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult AcGoodssaleAccountTgDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            AcGoodssaleAccountTgService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  商品销售帐表Tg
+
         #region 类别进销存月帐
         public IAcMonthClassJournalAccountService AcMonthClassJournalAccountService { get; set; }
         #region 类别进销存月帐编辑页面
@@ -1068,12 +1162,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcMonthClassJournalAccountEdit(string id)
+        public ActionResult AcMonthClassJournalAccountEdit(int? id)
         {
             AcMonthClassJournalAccount m = AcMonthClassJournalAccount.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcMonthClassJournalAccountService.GetById(id);
+                m = AcMonthClassJournalAccountService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1163,12 +1257,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcMonthGoodsJournalAccountEdit(string id)
+        public ActionResult AcMonthGoodsJournalAccountEdit(int? id)
         {
             AcMonthGoodsJournalAccount m = AcMonthGoodsJournalAccount.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcMonthGoodsJournalAccountService.GetById(id);
+                m = AcMonthGoodsJournalAccountService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1543,12 +1637,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcPeriodTimeSummaryEdit(string id)
+        public ActionResult AcPeriodTimeSummaryEdit(int? id)
         {
             AcPeriodTimeSummary m = AcPeriodTimeSummary.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcPeriodTimeSummaryService.GetById(id);
+                m = AcPeriodTimeSummaryService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1638,12 +1732,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcSalesmanSummaryEdit(string id)
+        public ActionResult AcSalesmanSummaryEdit(int? id)
         {
             AcSalesmanSummary m = AcSalesmanSummary.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcSalesmanSummaryService.GetById(id);
+                m = AcSalesmanSummaryService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1828,12 +1922,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult AcSupplierJournalEdit(string id)
+        public ActionResult AcSupplierJournalEdit(int? id)
         {
             AcSupplierJournal m = AcSupplierJournal.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id.HasValue && id > 0)
             {
-                m = AcSupplierJournalService.GetById(id);
+                m = AcSupplierJournalService.GetById(id.Value);
             }
             return View(m);
         }

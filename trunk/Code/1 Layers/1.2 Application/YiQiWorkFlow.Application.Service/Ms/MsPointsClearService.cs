@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Ms
     public class MsPointsClearService:IMsPointsClearService
     {
 
-        public IRepositoryGUID<MsPointsClear> EntityRepository { get; set; }
+        public IRepository<MsPointsClear> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(MsPointsClear entity)
+        public int Create(MsPointsClear entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public MsPointsClear GetById(string id)
+        public MsPointsClear GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,19 +67,8 @@ namespace YiQiWorkFlow.Application.Service.Ms
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
-					 if (c.entity.NumberFlow > 0)
-					{
-						q = q.Where(p => p.NumberFlow == c.entity.NumberFlow);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
                 
@@ -91,7 +77,7 @@ namespace YiQiWorkFlow.Application.Service.Ms
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.Operator.Contains(c.key)
                     select l;
 					
@@ -112,9 +98,8 @@ namespace YiQiWorkFlow.Application.Service.Ms
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
+					1==0
 					|| l.Operator.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 
@@ -127,7 +112,8 @@ namespace YiQiWorkFlow.Application.Service.Ms
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

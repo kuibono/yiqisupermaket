@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ac">
+  <class name="AcGoodssaleAccountTg" table="ac_goodssale_account_tg" lazy="true" >
+    <id name="Id" type="int" column="rt_flow_number" >
+	    <generator class="increment" />
+    </id>
+	<property name="EnCode" column="en_code" type="string" />
+	<property name="WhCode" column="wh_code" type="string" />
+	<property name="RtDate" column="rt_date" type="string" />
+	<property name="GoodsCode" column="goods_code" type="string" />
+	<property name="GoodsBarCode" column="goods_bar_code" type="string" />
+	<property name="OpCode" column="op_code" type="string" />
+	<property name="SalePrice" column="sale_price" type="decimal" />
+	<property name="SaleQty" column="sale_qty" type="decimal" />
+	<property name="SaleMoney" column="sale_money" type="decimal" />
+	<property name="DiscountMoney" column="discount_money" type="decimal" />
+	<property name="NontaxSaleMoney" column="nontax_sale_money" type="decimal" />
+	<property name="PurchasePrice" column="purchase_price" type="decimal" />
+	<property name="NontaxPurchasePrice" column="nontax_purchase_price" type="decimal" />
+	<property name="CostMoney" column="cost_money" type="decimal" />
+	<property name="NontaxCostMoney" column="nontax_cost_money" type="decimal" />
+	<property name="GrossMoney" column="gross_money" type="decimal" />
+	<property name="NontaxGrossMoney" column="nontax_gross_money" type="decimal" />
+	<property name="SupCode" column="sup_code" type="string" />
+	<property name="PoolRate" column="pool_rate" type="decimal" />
+	<property name="OutputTax" column="output_tax" type="decimal" />
+	<property name="IfPromotion" column="if_promotion" type="string" />
+  </class>
+</hibernate-mapping>
+

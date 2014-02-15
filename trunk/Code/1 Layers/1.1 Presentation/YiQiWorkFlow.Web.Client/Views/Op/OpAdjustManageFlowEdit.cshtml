@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "商品调整流水帐单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:51";var id="@Model.Id";pageName="OpAdjustManageFlowEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "商品调整流水帐单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:52";var id="@Model.Id";pageName="OpAdjustManageFlowEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -95,12 +95,12 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_AdFlowNumber">流水单号:</label>
-                <input type="text" id="Control_AdFlowNumber" name="AdFlowNumber"  value="@Model.AdFlowNumber" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input id="Control_AdFlowNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock" style="display:none">
                 <label for="Control_AdjustNumber">调整单号:</label>
-                <input id="Control_AdjustNumber" value="@Model.Id" name="AdjustNumber" class="mini-hidden"/>
+                <input id="Control_AdjustNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">

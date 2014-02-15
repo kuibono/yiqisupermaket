@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "功能模块设置"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:57";var id="@Model.Id";pageName="SysModuleEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "功能模块设置"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:57";var id="@Model.Id";pageName="SysModuleEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -100,7 +100,7 @@
 
             <div class="ablock" style="display:none">
                 <label for="Control_WindowName">窗口名称:</label>
-                <input id="Control_WindowName" value="@Model.Id" name="WindowName" class="mini-hidden"/>
+                <input id="Control_WindowName" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">
@@ -120,7 +120,7 @@
 
             <div class="ablock" style="display:none">
                 <label for="Control_FunctionCode">窗口功能:</label>
-                <input id="Control_FunctionCode" value="@Model.Id" name="FunctionCode" class="mini-hidden"/>
+                <input id="Control_FunctionCode" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">

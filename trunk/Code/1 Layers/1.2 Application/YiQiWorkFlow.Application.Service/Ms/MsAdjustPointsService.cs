@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Ms
     public class MsAdjustPointsService:IMsAdjustPointsService
     {
 
-        public IRepositoryGUID<MsAdjustPoints> EntityRepository { get; set; }
+        public IRepository<MsAdjustPoints> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(MsAdjustPoints entity)
+        public int Create(MsAdjustPoints entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public MsAdjustPoints GetById(string id)
+        public MsAdjustPoints GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,44 +67,28 @@ namespace YiQiWorkFlow.Application.Service.Ms
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
-					 if (c.entity.NumberFlow > 0)
-					{
-						q = q.Where(p => p.NumberFlow == c.entity.NumberFlow);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.CardNumber) == false)
 					{
-						
 						q = q.Where(p => p.CardNumber.Contains(c.entity.CardNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.SurfaceNumber) == false)
 					{
-						
 						q = q.Where(p => p.SurfaceNumber.Contains(c.entity.SurfaceNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.MsCode) == false)
 					{
-						
 						q = q.Where(p => p.MsCode.Contains(c.entity.MsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.MsName) == false)
 					{
-						
 						q = q.Where(p => p.MsName.Contains(c.entity.MsName));
 					}
 					if (string.IsNullOrEmpty(c.entity.CardCode) == false)
 					{
-						
 						q = q.Where(p => p.CardCode.Contains(c.entity.CardCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.CardName) == false)
 					{
-						
 						q = q.Where(p => p.CardName.Contains(c.entity.CardName));
 					}
 					 if (c.entity.CurrentPoints > 0)
@@ -142,12 +123,10 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.IfModifyPw) == false)
 					{
-						
 						q = q.Where(p => p.IfModifyPw.Contains(c.entity.IfModifyPw));
 					}
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
                 
@@ -156,7 +135,7 @@ namespace YiQiWorkFlow.Application.Service.Ms
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.CardNumber.Contains(c.key)
 					|| l.SurfaceNumber.Contains(c.key)
 					|| l.MsCode.Contains(c.key)
@@ -184,7 +163,7 @@ namespace YiQiWorkFlow.Application.Service.Ms
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
+					1==0
 					|| l.CardNumber.Contains(key)
 					|| l.SurfaceNumber.Contains(key)
 					|| l.MsCode.Contains(key)
@@ -193,7 +172,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					|| l.CardName.Contains(key)
 					|| l.IfModifyPw.Contains(key)
 					|| l.Operator.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 
@@ -206,7 +184,8 @@ namespace YiQiWorkFlow.Application.Service.Ms
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

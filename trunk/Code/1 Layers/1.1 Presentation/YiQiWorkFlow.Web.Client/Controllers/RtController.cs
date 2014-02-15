@@ -1352,10 +1352,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult RtRetailDetailEdit(string id)
+        public ActionResult RtRetailDetailEdit(int id)
         {
             RtRetailDetail m = RtRetailDetail.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = RtRetailDetailService.GetById(id);
             }
@@ -1439,6 +1439,101 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion
         #endregion  销售表商品明细
 
+        #region 收银日志
+        public IRtRetailLogService RtRetailLogService { get; set; }
+        #region 收银日志编辑页面
+        /// <summary>
+        /// 收银日志编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult RtRetailLogEdit(int id)
+        {
+            RtRetailLog m = RtRetailLog.Initial();
+            if (id > 0)
+            {
+                m = RtRetailLogService.GetById(id);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 收银日志列表页面
+        /// <summary>
+        /// 收银日志列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RtRetailLogList()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 收银日志保存程序
+        /// <summary>
+        /// 收银日志保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SaveRtRetailLog(RtRetailLog m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    RtRetailLogService.Update(m);
+                }
+                else
+                {
+                    RtRetailLogService.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 收银日志搜索
+        /// <summary>
+        /// 收银日志搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchRtRetailLogList(SearchDtoBase<RtRetailLog> c, RtRetailLog s)
+        {
+            c.entity = s;
+            return Json(RtRetailLogService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 收银日志删除
+        /// <summary>
+        /// 收银日志删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult RtRetailLogDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            RtRetailLogService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  收银日志
+
         #region 销售主表
         public IRtRetailManageService RtRetailManageService { get; set; }
         #region 销售主表编辑页面
@@ -1447,10 +1542,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult RtRetailManageEdit(string id)
+        public ActionResult RtRetailManageEdit(int id)
         {
             RtRetailManage m = RtRetailManage.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = RtRetailManageService.GetById(id);
             }
@@ -1542,10 +1637,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult RtRetailPayEdit(string id)
+        public ActionResult RtRetailPayEdit(int id)
         {
             RtRetailPay m = RtRetailPay.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = RtRetailPayService.GetById(id);
             }

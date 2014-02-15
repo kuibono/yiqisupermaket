@@ -2,40 +2,38 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Rt">
   <class name="RtPaSaleset" table="rt_pa_saleset" lazy="true" >
     <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="Mantissa" column="mantissa" type="decimal" />
-		<property name="MantissaMode" column="mantissa_mode" type="string" />
-		<property name="IfReturnSale" column="if_return_sale" type="string" />
-		<property name="IfNegativeStock" column="if_negative_stock" type="string" />
-		<property name="IfReturnPayway" column="if_return_payway" type="string" />
-		<property name="IfSalesman" column="if_salesman" type="string" />
-		<property name="IfCounter" column="if_counter" type="string" />
-		<property name="PrintType" column="print_type" type="string" />
-		<property name="IfBind" column="if_bind" type="string" />
-		<property name="IfEntertopay" column="if_entertopay" type="string" />
-		<property name="IfEntertormb" column="if_entertormb" type="string" />
-		<property name="IfEnglishSale" column="if_english_sale" type="string" />
-		<property name="Title1" column="title1" type="string" />
-		<property name="Title2" column="title2" type="string" />
-		<property name="Title3" column="title3" type="string" />
-		<property name="Title4" column="title4" type="string" />
-		<property name="Title5" column="title5" type="string" />
-		<property name="Pagefoot1" column="pagefoot1" type="string" />
-		<property name="Pagefoot2" column="pagefoot2" type="string" />
-		<property name="Pagefoot3" column="pagefoot3" type="string" />
-		<property name="Pagefoot4" column="pagefoot4" type="string" />
-		<property name="Pagefoot5" column="pagefoot5" type="string" />
-		<property name="IfEnName" column="if_en_name" type="string" />
-		<property name="IfbName" column="if_b_name" type="string" />
-		<property name="IfGoodsCode" column="if_goods_code" type="string" />
-		<property name="IfGoodsBarCode" column="if_goods_bar_code" type="string" />
-		<property name="IfGoodsName" column="if_goods_name" type="string" />
-		<property name="IfGoodsSubName" column="if_goods_sub_name" type="string" />
-		<property name="IfPackUnit" column="if_pack_unit" type="string" />
-		<property name="IfPrepaid" column="if_prepaid" type="string" />
-    
-
+	<property name="Mantissa" column="mantissa" type="decimal" />
+	<property name="MantissaMode" column="mantissa_mode" type="string" />
+	<property name="IfReturnSale" column="if_return_sale" type="string" />
+	<property name="IfNegativeStock" column="if_negative_stock" type="string" />
+	<property name="IfReturnPayway" column="if_return_payway" type="string" />
+	<property name="IfSalesman" column="if_salesman" type="string" />
+	<property name="IfCounter" column="if_counter" type="string" />
+	<property name="PrintType" column="print_type" type="string" />
+	<property name="IfBind" column="if_bind" type="string" />
+	<property name="IfEntertopay" column="if_entertopay" type="string" />
+	<property name="IfEntertormb" column="if_entertormb" type="string" />
+	<property name="IfEnglishSale" column="if_english_sale" type="string" />
+	<property name="Title1" column="title1" type="string" />
+	<property name="Title2" column="title2" type="string" />
+	<property name="Title3" column="title3" type="string" />
+	<property name="Title4" column="title4" type="string" />
+	<property name="Title5" column="title5" type="string" />
+	<property name="Pagefoot1" column="pagefoot1" type="string" />
+	<property name="Pagefoot2" column="pagefoot2" type="string" />
+	<property name="Pagefoot3" column="pagefoot3" type="string" />
+	<property name="Pagefoot4" column="pagefoot4" type="string" />
+	<property name="Pagefoot5" column="pagefoot5" type="string" />
+	<property name="IfEnName" column="if_en_name" type="string" />
+	<property name="IfbName" column="if_b_name" type="string" />
+	<property name="IfGoodsCode" column="if_goods_code" type="string" />
+	<property name="IfGoodsBarCode" column="if_goods_bar_code" type="string" />
+	<property name="IfGoodsName" column="if_goods_name" type="string" />
+	<property name="IfGoodsSubName" column="if_goods_sub_name" type="string" />
+	<property name="IfPackUnit" column="if_pack_unit" type="string" />
+	<property name="IfPrepaid" column="if_prepaid" type="string" />
   </class>
 </hibernate-mapping>
 

@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:32
 */
 using System;
 using NSH.Core.Domain;
@@ -12,12 +12,6 @@ namespace YiQiWorkFlow.Domain.Rt
 	///</summary>
 	public class RtPaShift : EntityGUIDBase, IAggregateRootGUID
 	{
-		/// <summary>
-		/// 班次编码
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="班次编码")]
-		public virtual string ShiftCode{get ; set; }
-		
 		/// <summary>
 		/// 班次名称
 		/// </summary>

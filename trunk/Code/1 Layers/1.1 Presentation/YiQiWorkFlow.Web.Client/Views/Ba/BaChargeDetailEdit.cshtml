@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "费用费用费用明细"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:38";var id="@Model.Id";pageName="BaChargeDetailEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "费用费用费用明细"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:36";var id="@Model.Id";pageName="BaChargeDetailEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -100,7 +100,7 @@
 
             <div class="ablock">
                 <label for="Control_NumberFlow">流水号:</label>
-                <input type="text" id="Control_NumberFlow" name="NumberFlow"  value="@Model.NumberFlow" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input id="Control_NumberFlow" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">
@@ -121,11 +121,6 @@
             <div class="ablock">
                 <label for="Control_Comment">备注:</label>
                 <input type="text"  value="@Model.Comment" class="mini-textbox" name="Comment" id="Control_Comment" vtype="maxLength:50" />
-            </div>
-
-            <div class="ablock" style="display:none">
-                <label for="Control_Id">:</label>
-                <input id="Control_Id" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
            

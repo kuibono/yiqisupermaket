@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,64 +71,52 @@ namespace YiQiWorkFlow.Application.Service.Tf
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.ObjectId) == false)
 					{
-						
 						q = q.Where(p => p.ObjectId.Contains(c.entity.ObjectId));
 					}
 					if (string.IsNullOrEmpty(c.entity.ObjectName) == false)
 					{
-						
 						q = q.Where(p => p.ObjectName.Contains(c.entity.ObjectName));
 					}
 					if (string.IsNullOrEmpty(c.entity.ObjectMain) == false)
 					{
-						
 						q = q.Where(p => p.ObjectMain.Contains(c.entity.ObjectMain));
 					}
 					if (string.IsNullOrEmpty(c.entity.ObjectMaincolumn) == false)
 					{
-						
 						q = q.Where(p => p.ObjectMaincolumn.Contains(c.entity.ObjectMaincolumn));
 					}
 					if (string.IsNullOrEmpty(c.entity.ObjectForeigncolumn) == false)
 					{
-						
 						q = q.Where(p => p.ObjectForeigncolumn.Contains(c.entity.ObjectForeigncolumn));
 					}
 					if (string.IsNullOrEmpty(c.entity.ObjectDump) == false)
 					{
-						
 						q = q.Where(p => p.ObjectDump.Contains(c.entity.ObjectDump));
 					}
 					if (string.IsNullOrEmpty(c.entity.ObjectKeycolumn) == false)
 					{
-						
 						q = q.Where(p => p.ObjectKeycolumn.Contains(c.entity.ObjectKeycolumn));
 					}
 					if (string.IsNullOrEmpty(c.entity.ObjectBranchcodecolumn) == false)
 					{
-						
 						q = q.Where(p => p.ObjectBranchcodecolumn.Contains(c.entity.ObjectBranchcodecolumn));
 					}
 					if (string.IsNullOrEmpty(c.entity.ObjectDescription) == false)
 					{
-						
 						q = q.Where(p => p.ObjectDescription.Contains(c.entity.ObjectDescription));
 					}
 					if (string.IsNullOrEmpty(c.entity.ObjectDirection) == false)
 					{
-						
 						q = q.Where(p => p.ObjectDirection.Contains(c.entity.ObjectDirection));
 					}
 					if (string.IsNullOrEmpty(c.entity.ObjectCondition) == false)
 					{
-						
 						q = q.Where(p => p.ObjectCondition.Contains(c.entity.ObjectCondition));
 					}
                 
@@ -179,7 +168,6 @@ namespace YiQiWorkFlow.Application.Service.Tf
 					|| l.ObjectDescription.Contains(key)
 					|| l.ObjectDirection.Contains(key)
 					|| l.ObjectCondition.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

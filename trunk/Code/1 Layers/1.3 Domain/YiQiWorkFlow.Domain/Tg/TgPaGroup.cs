@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:33
 */
 using System;
 using NSH.Core.Domain;
@@ -41,12 +41,6 @@ namespace YiQiWorkFlow.Domain.Tg
 		/// </summary>
 		[Validate(ValidateType.IsDecimal ,Name="当前销售流水")]
 		public virtual decimal CurrentRtFlowNumber{get ; set; }
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
 		
 		protected override void Validate()
         {

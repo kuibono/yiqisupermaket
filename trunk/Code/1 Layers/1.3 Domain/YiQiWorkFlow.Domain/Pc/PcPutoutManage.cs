@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:31
 */
 using System;
 using NSH.Core.Domain;
@@ -10,20 +10,8 @@ namespace YiQiWorkFlow.Domain.Pc
 	///<summary>
 	///表pc_putout_manage的实体类(商品出库单)
 	///</summary>
-	public class PcPutoutManage : EntityGUIDBase, IAggregateRootGUID
+	public class PcPutoutManage : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal PoFlowNumber{get ; set; }
-		
-		/// <summary>
-		/// 出库单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="出库单号")]
-		public virtual string PoNumber{get ; set; }
-		
 		/// <summary>
 		/// 供货商编码
 		/// </summary>
@@ -153,7 +141,6 @@ namespace YiQiWorkFlow.Domain.Pc
         public static PcPutoutManage Initial()
         {
             PcPutoutManage m = new PcPutoutManage();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.PcForm="1";
 			m.bCode="0000";
 			m.IfAblebalance="0";

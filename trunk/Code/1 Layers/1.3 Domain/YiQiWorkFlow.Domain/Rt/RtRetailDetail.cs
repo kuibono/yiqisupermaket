@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:32
 */
 using System;
 using NSH.Core.Domain;
@@ -10,14 +10,8 @@ namespace YiQiWorkFlow.Domain.Rt
 	///<summary>
 	///表rt_retail_detail的实体类(销售表_商品明细)
 	///</summary>
-	public class RtRetailDetail : EntityGUIDBase, IAggregateRootGUID
+	public class RtRetailDetail : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水号")]
-		public virtual decimal SaFlowNumber{get ; set; }
-		
 		/// <summary>
 		/// 销售单号
 		/// </summary>
@@ -174,12 +168,6 @@ namespace YiQiWorkFlow.Domain.Rt
 		[Validate(ValidateType.NoValidate,Name="系统标识")]
 		public virtual string SysGuid{get ; set; }
 		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
-		
 		protected override void Validate()
         {
         }
@@ -195,7 +183,6 @@ namespace YiQiWorkFlow.Domain.Rt
         public static RtRetailDetail Initial()
         {
             RtRetailDetail m = new RtRetailDetail();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}

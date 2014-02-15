@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:31
 */
 using System;
 using NSH.Core.Domain;
@@ -10,38 +10,8 @@ namespace YiQiWorkFlow.Domain.Op
 	///<summary>
 	///表op_goods_batch的实体类(商品库存批次表)
 	///</summary>
-	public class OpGoodsBatch : EntityGUIDBase, IAggregateRootGUID
+	public class OpGoodsBatch : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal BaFlowNumber{get ; set; }
-		
-		/// <summary>
-		/// 企业编码
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="企业编码")]
-		public virtual string EnCode{get ; set; }
-		
-		/// <summary>
-		/// 仓库编码
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="仓库编码")]
-		public virtual string WhCode{get ; set; }
-		
-		/// <summary>
-		/// 商品编码
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="商品编码")]
-		public virtual string GoodsCode{get ; set; }
-		
-		/// <summary>
-		/// 批次编号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="批次编号")]
-		public virtual decimal BatchNumber{get ; set; }
-		
 		/// <summary>
 		/// 商品销售码
 		/// </summary>
@@ -147,7 +117,6 @@ namespace YiQiWorkFlow.Domain.Op
         public static OpGoodsBatch Initial()
         {
             OpGoodsBatch m = new OpGoodsBatch();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.PurchasePrice=0M;
 			m.NontaxPurchasePrice=0M;
 			m.PurchaseQty=0M;

@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "POS机设置"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:54";var id="@Model.Id";pageName="RtPaPosEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "POS机设置"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:55";var id="@Model.Id";pageName="RtPaPosEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -95,7 +95,7 @@
             <legend>基本信息</legend>
             <div class="ablock" style="display:none">
                 <label for="Control_Posid">Pos机号:</label>
-                <input id="Control_Posid" value="@Model.Id" name="Posid" class="mini-hidden"/>
+                <input id="Control_Posid" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">
@@ -141,6 +141,21 @@
             <div class="ablock">
                 <label for="Control_pWidth">打印宽度:</label>
                 <input type="text" id="Control_pWidth" name="pWidth"  value="@Model.pWidth" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+            </div>
+
+            <div class="ablock">
+                <label for="Control_pType1">打印机型号1:</label>
+                <input type="text"  value="@Model.pType1" class="mini-textbox" name="pType1" id="Control_pType1" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_pPort1">打印端口1:</label>
+                <input type="text"  value="@Model.pPort1" class="mini-textbox" name="pPort1" id="Control_pPort1" vtype="maxLength:20" />
+            </div>
+
+            <div class="ablock">
+                <label for="Control_pWidth1">打印宽度1:</label>
+                <input type="text" id="Control_pWidth1" name="pWidth1"  value="@Model.pWidth1" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">

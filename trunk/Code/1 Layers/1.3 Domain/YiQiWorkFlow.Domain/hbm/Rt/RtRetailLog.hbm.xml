@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Rt">
+  <class name="RtRetailLog" table="rt_retail_log" lazy="true" >
+    <id name="Id" type="int" column="sa_flow_number" >
+	    <generator class="increment" />
+    </id>
+	<property name="Cashier" column="cashier" type="string" />
+	<property name="EmName" column="em_name" type="string" />
+	<property name="OperatType" column="operat_type" type="string" />
+	<property name="RtDate" column="rt_date" type="System.DateTime" />
+	<property name="GoodsCode" column="goods_code" type="string" />
+	<property name="GoodsBarCode" column="goods_bar_code" type="string" />
+	<property name="GoodsBarName" column="goods_bar_name" type="string" />
+	<property name="RealPrice" column="real_price" type="decimal" />
+	<property name="SaleQty" column="sale_qty" type="decimal" />
+	<property name="SaleMoney" column="sale_money" type="decimal" />
+	<property name="DiscountMoney" column="discount_money" type="decimal" />
+  </class>
+</hibernate-mapping>
+

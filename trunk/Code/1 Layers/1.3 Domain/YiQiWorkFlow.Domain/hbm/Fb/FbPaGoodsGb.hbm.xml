@@ -2,12 +2,10 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Fb">
   <class name="FbPaGoodsGb" table="fb_pa_goods_gb" lazy="true" >
     <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="GbCode" column="gb_code" type="string" />
-		<property name="GbName" column="gb_name" type="string" />
-    
-
+	<property name="GbCode" column="gb_code" type="string" />
+	<property name="GbName" column="gb_name" type="string" />
   </class>
 </hibernate-mapping>
 

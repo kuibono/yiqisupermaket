@@ -2,27 +2,25 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Tf">
   <class name="TfDataObject" table="tf_data_object" lazy="true" >
     <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="ObjectId" column="object_id" type="string" />
-		<property name="ObjectName" column="object_name" type="string" />
-		<property name="ObjectMain" column="object_main" type="string" />
-		<property name="ObjectMaincolumn" column="object_maincolumn" type="string" />
-		<property name="ObjectForeigncolumn" column="object_foreigncolumn" type="string" />
-		<property name="ObjectIsinsert" column="object_isinsert" type="bool" />
-		<property name="ObjectIsdelete" column="object_isdelete" type="bool" />
-		<property name="ObjectIsupdate" column="object_isupdate" type="bool" />
-		<property name="ObjectDump" column="object_dump" type="string" />
-		<property name="ObjectKeycolumn" column="object_keycolumn" type="string" />
-		<property name="ObjectBranchcodecolumn" column="object_branchcodecolumn" type="string" />
-		<property name="ObjectIsdeletedump" column="object_isdeletedump" type="bool" />
-		<property name="ObjectDescription" column="object_description" type="string" />
-		<property name="ObjectDirection" column="object_direction" type="string" />
-		<property name="ObjectIstransfer" column="object_istransfer" type="bool" />
-		<property name="ObjectCondition" column="object_condition" type="string" />
-		<property name="ObjectOrder" column="object_order" type="int" />
-    
-
+	<property name="ObjectId" column="object_id" type="string" />
+	<property name="ObjectName" column="object_name" type="string" />
+	<property name="ObjectMain" column="object_main" type="string" />
+	<property name="ObjectMaincolumn" column="object_maincolumn" type="string" />
+	<property name="ObjectForeigncolumn" column="object_foreigncolumn" type="string" />
+	<property name="ObjectIsinsert" column="object_isinsert" type="bool" />
+	<property name="ObjectIsdelete" column="object_isdelete" type="bool" />
+	<property name="ObjectIsupdate" column="object_isupdate" type="bool" />
+	<property name="ObjectDump" column="object_dump" type="string" />
+	<property name="ObjectKeycolumn" column="object_keycolumn" type="string" />
+	<property name="ObjectBranchcodecolumn" column="object_branchcodecolumn" type="string" />
+	<property name="ObjectIsdeletedump" column="object_isdeletedump" type="bool" />
+	<property name="ObjectDescription" column="object_description" type="string" />
+	<property name="ObjectDirection" column="object_direction" type="string" />
+	<property name="ObjectIstransfer" column="object_istransfer" type="bool" />
+	<property name="ObjectCondition" column="object_condition" type="string" />
+	<property name="ObjectOrder" column="object_order" type="int" />
   </class>
 </hibernate-mapping>
 

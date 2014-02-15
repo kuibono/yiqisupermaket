@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,119 +71,96 @@ namespace YiQiWorkFlow.Application.Service.Em
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.EmName) == false)
 					{
-						
 						q = q.Where(p => p.EmName.Contains(c.entity.EmName));
 					}
 					if (string.IsNullOrEmpty(c.entity.NameUsed) == false)
 					{
-						
 						q = q.Where(p => p.NameUsed.Contains(c.entity.NameUsed));
 					}
 					if (string.IsNullOrEmpty(c.entity.Sex) == false)
 					{
-						
 						q = q.Where(p => p.Sex.Contains(c.entity.Sex));
 					}
 					if (string.IsNullOrEmpty(c.entity.PoliticsCode) == false)
 					{
-						
 						q = q.Where(p => p.PoliticsCode.Contains(c.entity.PoliticsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.NationCode) == false)
 					{
-						
 						q = q.Where(p => p.NationCode.Contains(c.entity.NationCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.EducationCode) == false)
 					{
-						
 						q = q.Where(p => p.EducationCode.Contains(c.entity.EducationCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.ProfessionalTitleCode) == false)
 					{
-						
 						q = q.Where(p => p.ProfessionalTitleCode.Contains(c.entity.ProfessionalTitleCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfMarried) == false)
 					{
-						
 						q = q.Where(p => p.IfMarried.Contains(c.entity.IfMarried));
 					}
 					if (string.IsNullOrEmpty(c.entity.NativePlace) == false)
 					{
-						
 						q = q.Where(p => p.NativePlace.Contains(c.entity.NativePlace));
 					}
 					if (string.IsNullOrEmpty(c.entity.Idcard) == false)
 					{
-						
 						q = q.Where(p => p.Idcard.Contains(c.entity.Idcard));
 					}
 					if (string.IsNullOrEmpty(c.entity.FamilyPhone) == false)
 					{
-						
 						q = q.Where(p => p.FamilyPhone.Contains(c.entity.FamilyPhone));
 					}
 					if (string.IsNullOrEmpty(c.entity.Handset) == false)
 					{
-						
 						q = q.Where(p => p.Handset.Contains(c.entity.Handset));
 					}
 					if (string.IsNullOrEmpty(c.entity.eMail) == false)
 					{
-						
 						q = q.Where(p => p.eMail.Contains(c.entity.eMail));
 					}
 					if (string.IsNullOrEmpty(c.entity.FamilyAddress) == false)
 					{
-						
 						q = q.Where(p => p.FamilyAddress.Contains(c.entity.FamilyAddress));
 					}
 					if (string.IsNullOrEmpty(c.entity.Postalcode) == false)
 					{
-						
 						q = q.Where(p => p.Postalcode.Contains(c.entity.Postalcode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GraduateAcademy) == false)
 					{
-						
 						q = q.Where(p => p.GraduateAcademy.Contains(c.entity.GraduateAcademy));
 					}
 					if (string.IsNullOrEmpty(c.entity.dCode) == false)
 					{
-						
 						q = q.Where(p => p.dCode.Contains(c.entity.dCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.bCode) == false)
 					{
-						
 						q = q.Where(p => p.bCode.Contains(c.entity.bCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.DutyCode) == false)
 					{
-						
 						q = q.Where(p => p.DutyCode.Contains(c.entity.DutyCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.BankAccount) == false)
 					{
-						
 						q = q.Where(p => p.BankAccount.Contains(c.entity.BankAccount));
 					}
 					if (string.IsNullOrEmpty(c.entity.PensionAccount) == false)
 					{
-						
 						q = q.Where(p => p.PensionAccount.Contains(c.entity.PensionAccount));
 					}
 					if (string.IsNullOrEmpty(c.entity.EmState) == false)
 					{
-						
 						q = q.Where(p => p.EmState.Contains(c.entity.EmState));
 					}
 					 if (c.entity.Stature > 0)
@@ -244,7 +222,6 @@ namespace YiQiWorkFlow.Application.Service.Em
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.EmCode.Contains(key)
 					|| l.EmName.Contains(key)
 					|| l.NameUsed.Contains(key)
 					|| l.Sex.Contains(key)

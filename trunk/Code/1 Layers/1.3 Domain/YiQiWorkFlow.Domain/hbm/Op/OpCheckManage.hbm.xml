@@ -2,22 +2,20 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Op">
   <class name="OpCheckManage" table="op_check_manage" lazy="true" >
     <id name="Id" type="string" column="ck_number" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="CkDate" column="ck_date" type="System.DateTime" />
-		<property name="CkType" column="ck_type" type="string" />
-		<property name="CkOrgan" column="ck_organ" type="string" />
-		<property name="WhCode" column="wh_code" type="string" />
-		<property name="CkArea" column="ck_area" type="string" />
-		<property name="IfTransfer" column="if_transfer" type="string" />
-		<property name="CreateDate" column="create_date" type="System.DateTime" />
-		<property name="Operator" column="operator" type="string" />
-		<property name="Assessor" column="assessor" type="string" />
-		<property name="IfExamine" column="if_examine" type="string" />
-		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
-		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
-    
-
+	<property name="CkDate" column="ck_date" type="System.DateTime" />
+	<property name="CkType" column="ck_type" type="string" />
+	<property name="CkOrgan" column="ck_organ" type="string" />
+	<property name="WhCode" column="wh_code" type="string" />
+	<property name="CkArea" column="ck_area" type="string" />
+	<property name="IfTransfer" column="if_transfer" type="string" />
+	<property name="CreateDate" column="create_date" type="System.DateTime" />
+	<property name="Operator" column="operator" type="string" />
+	<property name="Assessor" column="assessor" type="string" />
+	<property name="IfExamine" column="if_examine" type="string" />
+	<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
   </class>
 </hibernate-mapping>
 

@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:30
 */
 using System;
 using NSH.Core.Domain;
@@ -10,20 +10,8 @@ namespace YiQiWorkFlow.Domain.Op
 	///<summary>
 	///表op_check_transfer的实体类(商品盘点接转单_商品汇总明细)
 	///</summary>
-	public class OpCheckTransfer : EntityGUIDBase, IAggregateRootGUID
+	public class OpCheckTransfer : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal CkFlowNumber{get ; set; }
-		
-		/// <summary>
-		/// 盘点单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="盘点单号")]
-		public virtual string CkNumber{get ; set; }
-		
 		/// <summary>
 		/// 分店编码
 		/// </summary>
@@ -35,12 +23,6 @@ namespace YiQiWorkFlow.Domain.Op
 		/// </summary>
 		[Validate(ValidateType.NoValidate,Name="仓库编码")]
 		public virtual string WhCode{get ; set; }
-		
-		/// <summary>
-		/// 商品编码
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="商品编码")]
-		public virtual string GoodsCode{get ; set; }
 		
 		/// <summary>
 		/// 商品销售码
@@ -111,7 +93,6 @@ namespace YiQiWorkFlow.Domain.Op
         public static OpCheckTransfer Initial()
         {
             OpCheckTransfer m = new OpCheckTransfer();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.PurchasePrice=0M;
 			m.SalePrice=0M;
 			m.PackCoef=1M;

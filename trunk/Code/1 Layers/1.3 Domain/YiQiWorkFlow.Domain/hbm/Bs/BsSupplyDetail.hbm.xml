@@ -2,29 +2,28 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Bs">
   <class name="BsSupplyDetail" table="bs_supply_detail" lazy="true" >
     <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="SpNumber" column="sp_number" type="string" />
-		<property name="WhCode" column="wh_code" type="string" />
-		<property name="bCode" column="b_code" type="string" />
-		<property name="SpState" column="sp_state" type="string" />
-		<property name="WhCodeOut" column="wh_code_out" type="string" />
-		<property name="GoodsBarCode" column="goods_bar_code" type="string" />
-		<property name="GoodsCode" column="goods_code" type="string" />
-		<property name="Specification" column="specification" type="string" />
-		<property name="PackUnitCode" column="pack_unit_code" type="string" />
-		<property name="PurchasePackQty" column="purchase_pack_qty" type="decimal" />
-		<property name="SupplyPackQty" column="supply_pack_qty" type="decimal" />
-		<property name="PutinPackQty" column="putin_pack_qty" type="decimal" />
-		<property name="PackCoef" column="pack_coef" type="decimal" />
-		<property name="PurchaseQty" column="purchase_qty" type="decimal" />
-		<property name="SupplyQty" column="supply_qty" type="decimal" />
-		<property name="PutinQty" column="putin_qty" type="decimal" />
-		<property name="SupplyPrice" column="supply_price" type="decimal" />
-		<property name="SupplyMoney" column="supply_money" type="decimal" />
-		<property name="SysGuid" column="sys_guid" type="string" />
-    
-
+	<property name="SpNumber" column="sp_number" type="string" />
+	<property name="WhCode" column="wh_code" type="string" />
+	<property name="bCode" column="b_code" type="string" />
+	<property name="SpState" column="sp_state" type="string" />
+	<property name="WhCodeOut" column="wh_code_out" type="string" />
+	<property name="GoodsBarCode" column="goods_bar_code" type="string" />
+	<property name="GoodsCode" column="goods_code" type="string" />
+	<property name="Specification" column="specification" type="string" />
+	<property name="PackUnitCode" column="pack_unit_code" type="string" />
+	<property name="PurchasePackQty" column="purchase_pack_qty" type="decimal" />
+	<property name="SupplyPackQty" column="supply_pack_qty" type="decimal" />
+	<property name="PutinPackQty" column="putin_pack_qty" type="decimal" />
+	<property name="PackCoef" column="pack_coef" type="decimal" />
+	<property name="PurchaseQty" column="purchase_qty" type="decimal" />
+	<property name="SupplyQty" column="supply_qty" type="decimal" />
+	<property name="PutinQty" column="putin_qty" type="decimal" />
+	<property name="SupplyPrice" column="supply_price" type="decimal" />
+	<property name="SupplyMoney" column="supply_money" type="decimal" />
+	<property name="DiscountMoney" column="discount_money" type="decimal" />
+	<property name="SysGuid" column="sys_guid" type="string" />
   </class>
 </hibernate-mapping>
 

@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:33
 */
 using System;
 using NSH.Core.Domain;
@@ -19,12 +19,6 @@ namespace YiQiWorkFlow.Domain.Sys
 		public virtual string WindowCode{get ; set; }
 		
 		/// <summary>
-		/// 窗口名称
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="窗口名称")]
-		public virtual string WindowName{get ; set; }
-		
-		/// <summary>
 		/// 模块代码
 		/// </summary>
 		[Validate(ValidateType.NoValidate,Name="模块代码")]
@@ -41,12 +35,6 @@ namespace YiQiWorkFlow.Domain.Sys
 		/// </summary>
 		[Validate(ValidateType.NoValidate,Name="主营业务，参数设置，查询分析")]
 		public virtual string ModuleChild{get ; set; }
-		
-		/// <summary>
-		/// 窗口功能
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="窗口功能")]
-		public virtual string FunctionCode{get ; set; }
 		
 		/// <summary>
 		/// open,opensheet

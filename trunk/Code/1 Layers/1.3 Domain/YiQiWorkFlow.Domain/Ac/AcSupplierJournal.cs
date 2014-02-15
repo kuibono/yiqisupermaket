@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:23
+*生成时间：2014/2/15 18:06:27
 */
 using System;
 using NSH.Core.Domain;
@@ -10,14 +10,8 @@ namespace YiQiWorkFlow.Domain.Ac
 	///<summary>
 	///表ac_supplier_journal的实体类(供货商流水帐)
 	///</summary>
-	public class AcSupplierJournal : EntityGUIDBase, IAggregateRootGUID
+	public class AcSupplierJournal : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal SupFlowNumber{get ; set; }
-		
 		/// <summary>
 		/// 供货商编码
 		/// </summary>
@@ -162,12 +156,6 @@ namespace YiQiWorkFlow.Domain.Ac
 		[Validate(ValidateType.IsDecimal ,Name="不含税毛利",DefaultValue=0)]
 		public virtual decimal NontaxGrossMoney{get ; set; }
 		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
-		
 		protected override void Validate()
         {
         }
@@ -183,7 +171,6 @@ namespace YiQiWorkFlow.Domain.Ac
         public static AcSupplierJournal Initial()
         {
             AcSupplierJournal m = new AcSupplierJournal();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.PurchaseQty=0M;
 			m.PurchaseMoney=0M;
 			m.NontaxPurchaseMoney=0M;

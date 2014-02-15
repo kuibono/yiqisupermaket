@@ -2,26 +2,24 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Sys">
   <class name="SysPrintDesign" table="sys_print_design" lazy="true" >
     <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="DwObject" column="dw_object" type="string" />
-		<property name="TemplateName" column="template_name" type="string" />
-		<property name="IfMain" column="if_main" type="string" />
-		<property name="DataObject" column="data_object" type="string" />
-		<property name="ObContent" column="ob_content" type="string" />
-		<property name="ObFontFace" column="ob_font_face" type="string" />
-		<property name="ObFontHeight" column="ob_font_height" type="decimal" />
-		<property name="ObFontWeight" column="ob_font_weight" type="decimal" />
-		<property name="ObFontItalic" column="ob_font_italic" type="string" />
-		<property name="ObFontUnderline" column="ob_font_underline" type="string" />
-		<property name="ObColor" column="ob_color" type="decimal" />
-		<property name="IfVisible" column="if_visible" type="string" />
-		<property name="Obx" column="ob_x" type="decimal" />
-		<property name="Oby" column="ob_y" type="decimal" />
-		<property name="ObWidth" column="ob_width" type="decimal" />
-		<property name="ObHeight" column="ob_height" type="decimal" />
-    
-
+	<property name="DwObject" column="dw_object" type="string" />
+	<property name="TemplateName" column="template_name" type="string" />
+	<property name="IfMain" column="if_main" type="string" />
+	<property name="DataObject" column="data_object" type="string" />
+	<property name="ObContent" column="ob_content" type="string" />
+	<property name="ObFontFace" column="ob_font_face" type="string" />
+	<property name="ObFontHeight" column="ob_font_height" type="decimal" />
+	<property name="ObFontWeight" column="ob_font_weight" type="decimal" />
+	<property name="ObFontItalic" column="ob_font_italic" type="string" />
+	<property name="ObFontUnderline" column="ob_font_underline" type="string" />
+	<property name="ObColor" column="ob_color" type="decimal" />
+	<property name="IfVisible" column="if_visible" type="string" />
+	<property name="Obx" column="ob_x" type="decimal" />
+	<property name="Oby" column="ob_y" type="decimal" />
+	<property name="ObWidth" column="ob_width" type="decimal" />
+	<property name="ObHeight" column="ob_height" type="decimal" />
   </class>
 </hibernate-mapping>
 

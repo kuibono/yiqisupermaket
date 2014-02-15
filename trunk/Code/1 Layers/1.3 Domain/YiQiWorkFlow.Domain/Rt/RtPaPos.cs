@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:32
 */
 using System;
 using NSH.Core.Domain;
@@ -12,12 +12,6 @@ namespace YiQiWorkFlow.Domain.Rt
 	///</summary>
 	public class RtPaPos : EntityGUIDBase, IAggregateRootGUID
 	{
-		/// <summary>
-		/// Pos机号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="Pos机号")]
-		public virtual string Posid{get ; set; }
-		
 		/// <summary>
 		/// Pos名称
 		/// </summary>
@@ -71,6 +65,24 @@ namespace YiQiWorkFlow.Domain.Rt
 		/// </summary>
 		[Validate(ValidateType.IsDecimal ,Name="打印宽度")]
 		public virtual decimal pWidth{get ; set; }
+		
+		/// <summary>
+		/// 打印机型号1
+		/// </summary>
+		[Validate(ValidateType.NoValidate,Name="打印机型号1")]
+		public virtual string pType1{get ; set; }
+		
+		/// <summary>
+		/// 打印端口1
+		/// </summary>
+		[Validate(ValidateType.NoValidate,Name="打印端口1")]
+		public virtual string pPort1{get ; set; }
+		
+		/// <summary>
+		/// 打印宽度1
+		/// </summary>
+		[Validate(ValidateType.IsDecimal ,Name="打印宽度1")]
+		public virtual decimal pWidth1{get ; set; }
 		
 		/// <summary>
 		/// 钱箱型号

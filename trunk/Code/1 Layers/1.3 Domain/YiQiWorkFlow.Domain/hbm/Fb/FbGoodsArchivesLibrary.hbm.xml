@@ -2,16 +2,14 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Fb">
   <class name="FbGoodsArchivesLibrary" table="fb_goods_archives_library" lazy="true" >
     <id name="Id" type="string" column="goods_bar_code" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="GoodsName" column="goods_name" type="string" />
-		<property name="GoodsSubName" column="goods_sub_name" type="string" />
-		<property name="ProducingArea" column="producing_area" type="string" />
-		<property name="Specification" column="specification" type="string" />
-		<property name="PackUnitCode" column="pack_unit_code" type="string" />
-		<property name="OwnerType" column="owner_type" type="string" />
-    
-
+	<property name="GoodsName" column="goods_name" type="string" />
+	<property name="GoodsSubName" column="goods_sub_name" type="string" />
+	<property name="ProducingArea" column="producing_area" type="string" />
+	<property name="Specification" column="specification" type="string" />
+	<property name="PackUnitCode" column="pack_unit_code" type="string" />
+	<property name="OwnerType" column="owner_type" type="string" />
   </class>
 </hibernate-mapping>
 

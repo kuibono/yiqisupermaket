@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,19 +71,16 @@ namespace YiQiWorkFlow.Application.Service.Op
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.AdjustNumber) == false)
 					{
-						
 						q = q.Where(p => p.AdjustNumber.Contains(c.entity.AdjustNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.WhCode) == false)
 					{
-						
 						q = q.Where(p => p.WhCode.Contains(c.entity.WhCode));
 					}
 					 if (c.entity.BatchNumber > 0)
@@ -92,22 +90,18 @@ namespace YiQiWorkFlow.Application.Service.Op
 					
 					if (string.IsNullOrEmpty(c.entity.PiNumber) == false)
 					{
-						
 						q = q.Where(p => p.PiNumber.Contains(c.entity.PiNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsCode.Contains(c.entity.GoodsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsBarCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsBarCode.Contains(c.entity.GoodsBarCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.SupCode) == false)
 					{
-						
 						q = q.Where(p => p.SupCode.Contains(c.entity.SupCode));
 					}
 					 if (c.entity.InputTax > 0)
@@ -172,7 +166,6 @@ namespace YiQiWorkFlow.Application.Service.Op
 					
 					if (string.IsNullOrEmpty(c.entity.IfAblebalance) == false)
 					{
-						
 						q = q.Where(p => p.IfAblebalance.Contains(c.entity.IfAblebalance));
 					}
 					 if (c.entity.AdjustBaMoney > 0)
@@ -182,12 +175,10 @@ namespace YiQiWorkFlow.Application.Service.Op
 					
 					if (string.IsNullOrEmpty(c.entity.IfBalance) == false)
 					{
-						
 						q = q.Where(p => p.IfBalance.Contains(c.entity.IfBalance));
 					}
 					if (string.IsNullOrEmpty(c.entity.BaNumber) == false)
 					{
-						
 						q = q.Where(p => p.BaNumber.Contains(c.entity.BaNumber));
 					}
 					 if (c.entity.BaMoney > 0)
@@ -240,7 +231,6 @@ namespace YiQiWorkFlow.Application.Service.Op
 					|| l.IfAblebalance.Contains(key)
 					|| l.IfBalance.Contains(key)
 					|| l.BaNumber.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

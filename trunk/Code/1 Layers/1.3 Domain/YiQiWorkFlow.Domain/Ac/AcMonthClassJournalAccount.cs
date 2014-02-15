@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:23
+*生成时间：2014/2/15 18:06:26
 */
 using System;
 using NSH.Core.Domain;
@@ -10,14 +10,8 @@ namespace YiQiWorkFlow.Domain.Ac
 	///<summary>
 	///表ac_month_class_journal_account的实体类(类别进销存月帐)
 	///</summary>
-	public class AcMonthClassJournalAccount : EntityGUIDBase, IAggregateRootGUID
+	public class AcMonthClassJournalAccount : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal AcFlowNumber{get ; set; }
-		
 		/// <summary>
 		/// 记账月份
 		/// </summary>
@@ -198,12 +192,6 @@ namespace YiQiWorkFlow.Domain.Ac
 		[Validate(ValidateType.IsDecimal ,Name="库存不含税金额")]
 		public virtual decimal NontaxStockMoney{get ; set; }
 		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
-		
 		protected override void Validate()
         {
         }
@@ -219,7 +207,6 @@ namespace YiQiWorkFlow.Domain.Ac
         public static AcMonthClassJournalAccount Initial()
         {
             AcMonthClassJournalAccount m = new AcMonthClassJournalAccount();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}

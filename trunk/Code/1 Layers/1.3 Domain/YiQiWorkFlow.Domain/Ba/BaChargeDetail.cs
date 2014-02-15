@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:23
+*生成时间：2014/2/15 18:06:27
 */
 using System;
 using NSH.Core.Domain;
@@ -10,19 +10,13 @@ namespace YiQiWorkFlow.Domain.Ba
 	///<summary>
 	///表ba_charge_detail的实体类(费用费用_费用明细)
 	///</summary>
-	public class BaChargeDetail : EntityGUIDBase, IAggregateRootGUID
+	public class BaChargeDetail : EntityBase, IAggregateRoot
 	{
 		/// <summary>
 		/// 收费单号
 		/// </summary>
 		[Validate(ValidateType.IsEmpty ,Name="收费单号")]
 		public virtual string ChargeNumber{get ; set; }
-		
-		/// <summary>
-		/// 流水号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水号")]
-		public virtual decimal NumberFlow{get ; set; }
 		
 		/// <summary>
 		/// 费用编码
@@ -48,12 +42,6 @@ namespace YiQiWorkFlow.Domain.Ba
 		[Validate(ValidateType.NoValidate,Name="备注")]
 		public virtual string Comment{get ; set; }
 		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
-		
 		protected override void Validate()
         {
         }
@@ -69,7 +57,6 @@ namespace YiQiWorkFlow.Domain.Ba
         public static BaChargeDetail Initial()
         {
             BaChargeDetail m = new BaChargeDetail();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}

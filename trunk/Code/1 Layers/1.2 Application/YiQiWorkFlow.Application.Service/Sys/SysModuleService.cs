@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,34 +71,28 @@ namespace YiQiWorkFlow.Application.Service.Sys
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.WindowCode) == false)
 					{
-						
 						q = q.Where(p => p.WindowCode.Contains(c.entity.WindowCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.ModuleCode) == false)
 					{
-						
 						q = q.Where(p => p.ModuleCode.Contains(c.entity.ModuleCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.ModuleName) == false)
 					{
-						
 						q = q.Where(p => p.ModuleName.Contains(c.entity.ModuleName));
 					}
 					if (string.IsNullOrEmpty(c.entity.ModuleChild) == false)
 					{
-						
 						q = q.Where(p => p.ModuleChild.Contains(c.entity.ModuleChild));
 					}
 					if (string.IsNullOrEmpty(c.entity.OpenMode) == false)
 					{
-						
 						q = q.Where(p => p.OpenMode.Contains(c.entity.OpenMode));
 					}
                 
@@ -133,11 +128,9 @@ namespace YiQiWorkFlow.Application.Service.Sys
                     where 
                     l.Id.Contains(key)
 					|| l.WindowCode.Contains(key)
-					|| l.WindowName.Contains(key)
 					|| l.ModuleCode.Contains(key)
 					|| l.ModuleName.Contains(key)
 					|| l.ModuleChild.Contains(key)
-					|| l.FunctionCode.Contains(key)
 					|| l.OpenMode.Contains(key)
                     select l;
 					

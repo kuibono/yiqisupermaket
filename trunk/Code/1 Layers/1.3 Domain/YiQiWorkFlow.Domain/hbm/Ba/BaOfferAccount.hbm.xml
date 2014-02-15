@@ -2,26 +2,24 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ba">
   <class name="BaOfferAccount" table="ba_offer_account" lazy="true" >
     <id name="Id" type="string" column="ac_number" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="AcDate" column="ac_date" type="System.DateTime" />
-		<property name="EnCode" column="en_code" type="string" />
-		<property name="SupCode" column="sup_code" type="string" />
-		<property name="BeginDate" column="begin_date" type="System.DateTime" />
-		<property name="EndDate" column="end_date" type="System.DateTime" />
-		<property name="AccountMoney" column="account_money" type="decimal" />
-		<property name="IfAblebalance" column="if_ablebalance" type="string" />
-		<property name="IfBalance" column="if_balance" type="string" />
-		<property name="BaNumber" column="ba_number" type="string" />
-		<property name="BaMoney" column="ba_money" type="decimal" />
-		<property name="CreateDate" column="create_date" type="System.DateTime" />
-		<property name="Operator" column="operator" type="string" />
-		<property name="Assessor" column="assessor" type="string" />
-		<property name="IfExamine" column="if_examine" type="string" />
-		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
-		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
-    
-
+	<property name="AcDate" column="ac_date" type="System.DateTime" />
+	<property name="EnCode" column="en_code" type="string" />
+	<property name="SupCode" column="sup_code" type="string" />
+	<property name="BeginDate" column="begin_date" type="System.DateTime" />
+	<property name="EndDate" column="end_date" type="System.DateTime" />
+	<property name="AccountMoney" column="account_money" type="decimal" />
+	<property name="IfAblebalance" column="if_ablebalance" type="string" />
+	<property name="IfBalance" column="if_balance" type="string" />
+	<property name="BaNumber" column="ba_number" type="string" />
+	<property name="BaMoney" column="ba_money" type="decimal" />
+	<property name="CreateDate" column="create_date" type="System.DateTime" />
+	<property name="Operator" column="operator" type="string" />
+	<property name="Assessor" column="assessor" type="string" />
+	<property name="IfExamine" column="if_examine" type="string" />
+	<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
   </class>
 </hibernate-mapping>
 

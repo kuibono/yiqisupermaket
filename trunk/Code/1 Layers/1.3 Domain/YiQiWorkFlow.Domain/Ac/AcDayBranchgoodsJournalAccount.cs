@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:23
+*生成时间：2014/2/15 18:06:26
 */
 using System;
 using NSH.Core.Domain;
@@ -10,14 +10,8 @@ namespace YiQiWorkFlow.Domain.Ac
 	///<summary>
 	///表ac_day_branchgoods_journal_account的实体类(分店商品进销存日帐)
 	///</summary>
-	public class AcDayBranchgoodsJournalAccount : EntityGUIDBase, IAggregateRootGUID
+	public class AcDayBranchgoodsJournalAccount : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal AcFlowNumber{get ; set; }
-		
 		/// <summary>
 		/// 记账日期
 		/// </summary>
@@ -264,12 +258,6 @@ namespace YiQiWorkFlow.Domain.Ac
 		[Validate(ValidateType.IsEmpty ,Name="供货商编码")]
 		public virtual string SupCode{get ; set; }
 		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
-		
 		protected override void Validate()
         {
         }
@@ -285,7 +273,6 @@ namespace YiQiWorkFlow.Domain.Ac
         public static AcDayBranchgoodsJournalAccount Initial()
         {
             AcDayBranchgoodsJournalAccount m = new AcDayBranchgoodsJournalAccount();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.PurchasePrice=0M;
 			m.NontaxPurchasePrice=0M;
             return m;

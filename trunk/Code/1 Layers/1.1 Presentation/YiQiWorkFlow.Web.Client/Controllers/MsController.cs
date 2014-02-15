@@ -22,10 +22,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult MsAdjustPointsEdit(string id)
+        public ActionResult MsAdjustPointsEdit(int id)
         {
             MsAdjustPoints m = MsAdjustPoints.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = MsAdjustPointsService.GetById(id);
             }
@@ -877,10 +877,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult MsExchangeManageEdit(string id)
+        public ActionResult MsExchangeManageEdit(int id)
         {
             MsExchangeManage m = MsExchangeManage.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = MsExchangeManageService.GetById(id);
             }
@@ -1542,10 +1542,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult MsPointsClearEdit(string id)
+        public ActionResult MsPointsClearEdit(int id)
         {
             MsPointsClear m = MsPointsClear.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = MsPointsClearService.GetById(id);
             }
@@ -1637,10 +1637,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult MsPointtoprepaidManageEdit(string id)
+        public ActionResult MsPointtoprepaidManageEdit(int id)
         {
             MsPointtoprepaidManage m = MsPointtoprepaidManage.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = MsPointtoprepaidManageService.GetById(id);
             }

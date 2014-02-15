@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:33
 */
 using System;
 using NSH.Core.Domain;
@@ -12,18 +12,6 @@ namespace YiQiWorkFlow.Domain.Sys
 	///</summary>
 	public class SysLoginPowerFunction : EntityGUIDBase, IAggregateRootGUID
 	{
-		/// <summary>
-		/// 人员编号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="人员编号")]
-		public virtual string EmCode{get ; set; }
-		
-		/// <summary>
-		/// 功能编码
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="功能编码")]
-		public virtual string FuncCode{get ; set; }
-		
 		/// <summary>
 		/// 是否可用
 		/// </summary>

@@ -2,12 +2,10 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Em">
   <class name="EmPaDuty" table="em_pa_duty" lazy="true" >
     <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="DutyCode" column="duty_code" type="string" />
-		<property name="DutyName" column="duty_name" type="string" />
-    
-
+	<property name="DutyCode" column="duty_code" type="string" />
+	<property name="DutyName" column="duty_name" type="string" />
   </class>
 </hibernate-mapping>
 

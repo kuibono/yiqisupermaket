@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:31
 */
 using System;
 using NSH.Core.Domain;
@@ -10,20 +10,8 @@ namespace YiQiWorkFlow.Domain.Op
 	///<summary>
 	///表op_loss_manage_flow的实体类(商品损溢流水帐单)
 	///</summary>
-	public class OpLossManageFlow : EntityGUIDBase, IAggregateRootGUID
+	public class OpLossManageFlow : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal LoFlowNumber{get ; set; }
-		
-		/// <summary>
-		/// 损溢单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="损溢单号")]
-		public virtual string LoNumber{get ; set; }
-		
 		/// <summary>
 		/// 损溢日期
 		/// </summary>
@@ -105,7 +93,6 @@ namespace YiQiWorkFlow.Domain.Op
         public static OpLossManageFlow Initial()
         {
             OpLossManageFlow m = new OpLossManageFlow();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.IfExamine="0";
             return m;
         }

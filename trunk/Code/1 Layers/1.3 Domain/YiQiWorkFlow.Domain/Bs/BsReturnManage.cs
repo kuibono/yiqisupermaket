@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:23
+*生成时间：2014/2/15 18:06:27
 */
 using System;
 using NSH.Core.Domain;
@@ -13,10 +13,10 @@ namespace YiQiWorkFlow.Domain.Bs
 	public class BsReturnManage : EntityGUIDBase, IAggregateRootGUID
 	{
 		/// <summary>
-		/// 返货单号
+		/// 配送单号
 		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="返货单号")]
-		public virtual string ReNumber{get ; set; }
+		[Validate(ValidateType.NoValidate,Name="配送单号")]
+		public virtual string SpNumber{get ; set; }
 		
 		/// <summary>
 		/// 分店编码

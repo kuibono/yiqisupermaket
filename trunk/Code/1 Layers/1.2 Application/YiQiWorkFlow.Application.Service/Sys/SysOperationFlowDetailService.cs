@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,79 +71,64 @@ namespace YiQiWorkFlow.Application.Service.Sys
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.OperationName) == false)
 					{
-						
 						q = q.Where(p => p.OperationName.Contains(c.entity.OperationName));
 					}
 					if (string.IsNullOrEmpty(c.entity.WindowName) == false)
 					{
-						
 						q = q.Where(p => p.WindowName.Contains(c.entity.WindowName));
 					}
 					if (string.IsNullOrEmpty(c.entity.CurrentsNumber) == false)
 					{
-						
 						q = q.Where(p => p.CurrentsNumber.Contains(c.entity.CurrentsNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.FunctionCode) == false)
 					{
-						
 						q = q.Where(p => p.FunctionCode.Contains(c.entity.FunctionCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.CurrentFunctionCode) == false)
 					{
-						
 						q = q.Where(p => p.CurrentFunctionCode.Contains(c.entity.CurrentFunctionCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.ColumnName) == false)
 					{
-						
 						q = q.Where(p => p.ColumnName.Contains(c.entity.ColumnName));
 					}
 					if (string.IsNullOrEmpty(c.entity.NextsNumber) == false)
 					{
-						
 						q = q.Where(p => p.NextsNumber.Contains(c.entity.NextsNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.CurrentState) == false)
 					{
-						
 						q = q.Where(p => p.CurrentState.Contains(c.entity.CurrentState));
 					}
 					if (string.IsNullOrEmpty(c.entity.OperationState) == false)
 					{
-						
 						q = q.Where(p => p.OperationState.Contains(c.entity.OperationState));
 					}
 					if (string.IsNullOrEmpty(c.entity.OperationResult) == false)
 					{
-						
 						q = q.Where(p => p.OperationResult.Contains(c.entity.OperationResult));
 					}
 					if (string.IsNullOrEmpty(c.entity.OperationOpinion) == false)
 					{
-						
 						q = q.Where(p => p.OperationOpinion.Contains(c.entity.OperationOpinion));
 					}
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
 					if (string.IsNullOrEmpty(c.entity.Statement) == false)
 					{
-						
 						q = q.Where(p => p.Statement.Contains(c.entity.Statement));
 					}
 					if (string.IsNullOrEmpty(c.entity.StatementState) == false)
 					{
-						
 						q = q.Where(p => p.StatementState.Contains(c.entity.StatementState));
 					}
                 
@@ -186,9 +172,7 @@ namespace YiQiWorkFlow.Application.Service.Sys
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.OperationNumber.Contains(key)
 					|| l.OperationName.Contains(key)
-					|| l.sNumber.Contains(key)
 					|| l.WindowName.Contains(key)
 					|| l.CurrentsNumber.Contains(key)
 					|| l.FunctionCode.Contains(key)

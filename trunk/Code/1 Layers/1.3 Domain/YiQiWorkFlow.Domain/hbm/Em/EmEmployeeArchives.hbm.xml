@@ -2,37 +2,35 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Em">
   <class name="EmEmployeeArchives" table="em_employee_archives" lazy="true" >
     <id name="Id" type="string" column="em_code" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="EmName" column="em_name" type="string" />
-		<property name="NameUsed" column="name_used" type="string" />
-		<property name="Birthday" column="birthday" type="System.DateTime" />
-		<property name="Sex" column="sex" type="string" />
-		<property name="PoliticsCode" column="politics_code" type="string" />
-		<property name="NationCode" column="nation_code" type="string" />
-		<property name="EducationCode" column="education_code" type="string" />
-		<property name="ProfessionalTitleCode" column="Professional_title_code" type="string" />
-		<property name="IfMarried" column="if_married" type="string" />
-		<property name="NativePlace" column="native_place" type="string" />
-		<property name="Idcard" column="idcard" type="string" />
-		<property name="AccedeDay" column="accede_day" type="System.DateTime" />
-		<property name="FamilyPhone" column="family_phone" type="string" />
-		<property name="Handset" column="handset" type="string" />
-		<property name="eMail" column="e_mail" type="string" />
-		<property name="FamilyAddress" column="family_address" type="string" />
-		<property name="Postalcode" column="postalcode" type="string" />
-		<property name="GraduateAcademy" column="graduate_academy" type="string" />
-		<property name="GraduateDay" column="graduate_day" type="System.DateTime" />
-		<property name="dCode" column="d_code" type="string" />
-		<property name="bCode" column="b_code" type="string" />
-		<property name="DutyCode" column="duty_code" type="string" />
-		<property name="BankAccount" column="bank_account" type="string" />
-		<property name="PensionAccount" column="pension_account" type="string" />
-		<property name="EmState" column="em_state" type="string" />
-		<property name="Stature" column="stature" type="decimal" />
-		<property name="Width" column="width" type="decimal" />
-    
-
+	<property name="EmName" column="em_name" type="string" />
+	<property name="NameUsed" column="name_used" type="string" />
+	<property name="Birthday" column="birthday" type="System.DateTime" />
+	<property name="Sex" column="sex" type="string" />
+	<property name="PoliticsCode" column="politics_code" type="string" />
+	<property name="NationCode" column="nation_code" type="string" />
+	<property name="EducationCode" column="education_code" type="string" />
+	<property name="ProfessionalTitleCode" column="Professional_title_code" type="string" />
+	<property name="IfMarried" column="if_married" type="string" />
+	<property name="NativePlace" column="native_place" type="string" />
+	<property name="Idcard" column="idcard" type="string" />
+	<property name="AccedeDay" column="accede_day" type="System.DateTime" />
+	<property name="FamilyPhone" column="family_phone" type="string" />
+	<property name="Handset" column="handset" type="string" />
+	<property name="eMail" column="e_mail" type="string" />
+	<property name="FamilyAddress" column="family_address" type="string" />
+	<property name="Postalcode" column="postalcode" type="string" />
+	<property name="GraduateAcademy" column="graduate_academy" type="string" />
+	<property name="GraduateDay" column="graduate_day" type="System.DateTime" />
+	<property name="dCode" column="d_code" type="string" />
+	<property name="bCode" column="b_code" type="string" />
+	<property name="DutyCode" column="duty_code" type="string" />
+	<property name="BankAccount" column="bank_account" type="string" />
+	<property name="PensionAccount" column="pension_account" type="string" />
+	<property name="EmState" column="em_state" type="string" />
+	<property name="Stature" column="stature" type="decimal" />
+	<property name="Width" column="width" type="decimal" />
   </class>
 </hibernate-mapping>
 

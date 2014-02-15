@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:08
+*生成时间：2014/2/15 19:01:50
 */
 using System.Collections.Generic;
 using YiQiWorkFlow.Domain.Bs;
@@ -10,9 +10,9 @@ namespace YiQiWorkFlow.Application.Service.Bs
 {
     public interface IBsReturnManageFlowService
     {
-        string Create(BsReturnManageFlow entity);
+        int Create(BsReturnManageFlow entity);
 
-        BsReturnManageFlow GetById(string id);
+        BsReturnManageFlow GetById(int id);
 
         IList<BsReturnManageFlow> GetAll();
 

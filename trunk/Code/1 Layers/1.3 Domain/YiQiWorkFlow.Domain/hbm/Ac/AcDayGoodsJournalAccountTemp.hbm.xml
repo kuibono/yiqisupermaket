@@ -2,15 +2,13 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ac">
   <class name="AcDayGoodsJournalAccountTemp" table="ac_day_goods_journal_account_temp" lazy="true" >
     <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="AcDate" column="ac_date" type="string" />
-		<property name="GoodsCode" column="goods_code" type="string" />
-		<property name="StockQty" column="stock_qty" type="decimal" />
-		<property name="StockMoney" column="stock_money" type="decimal" />
-		<property name="NontaxStockMoney" column="nontax_stock_money" type="decimal" />
-    
-
+	<property name="AcDate" column="ac_date" type="string" />
+	<property name="GoodsCode" column="goods_code" type="string" />
+	<property name="StockQty" column="stock_qty" type="decimal" />
+	<property name="StockMoney" column="stock_money" type="decimal" />
+	<property name="NontaxStockMoney" column="nontax_stock_money" type="decimal" />
   </class>
 </hibernate-mapping>
 

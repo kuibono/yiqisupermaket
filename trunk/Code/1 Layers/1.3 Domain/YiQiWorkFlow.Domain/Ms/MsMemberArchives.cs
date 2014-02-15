@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:30
 */
 using System;
 using NSH.Core.Domain;
@@ -17,12 +17,6 @@ namespace YiQiWorkFlow.Domain.Ms
 		/// </summary>
 		[Validate(ValidateType.NoValidate,Name="卡号")]
 		public virtual string CardNumber{get ; set; }
-		
-		/// <summary>
-		/// 会员编码
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="会员编码")]
-		public virtual string MsCode{get ; set; }
 		
 		/// <summary>
 		/// 会员姓名

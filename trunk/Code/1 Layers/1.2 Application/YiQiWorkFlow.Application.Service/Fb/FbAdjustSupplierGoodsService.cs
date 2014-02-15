@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,49 +71,40 @@ namespace YiQiWorkFlow.Application.Service.Fb
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.AdjustNumber) == false)
 					{
-						
 						q = q.Where(p => p.AdjustNumber.Contains(c.entity.AdjustNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsCode.Contains(c.entity.GoodsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.SupCodeOld) == false)
 					{
-						
 						q = q.Where(p => p.SupCodeOld.Contains(c.entity.SupCodeOld));
 					}
 					if (string.IsNullOrEmpty(c.entity.OpCodeOld) == false)
 					{
-						
 						q = q.Where(p => p.OpCodeOld.Contains(c.entity.OpCodeOld));
 					}
 					if (string.IsNullOrEmpty(c.entity.SupCode) == false)
 					{
-						
 						q = q.Where(p => p.SupCode.Contains(c.entity.SupCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.SupName) == false)
 					{
-						
 						q = q.Where(p => p.SupName.Contains(c.entity.SupName));
 					}
 					if (string.IsNullOrEmpty(c.entity.PyCode) == false)
 					{
-						
 						q = q.Where(p => p.PyCode.Contains(c.entity.PyCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.OpCode) == false)
 					{
-						
 						q = q.Where(p => p.OpCode.Contains(c.entity.OpCode));
 					}
 					 if (c.entity.PoolRate > 0)
@@ -122,7 +114,6 @@ namespace YiQiWorkFlow.Application.Service.Fb
 					
 					if (string.IsNullOrEmpty(c.entity.OfferMode) == false)
 					{
-						
 						q = q.Where(p => p.OfferMode.Contains(c.entity.OfferMode));
 					}
 					 if (c.entity.OfferMin > 0)
@@ -190,7 +181,6 @@ namespace YiQiWorkFlow.Application.Service.Fb
 					|| l.PyCode.Contains(key)
 					|| l.OpCode.Contains(key)
 					|| l.OfferMode.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Tg">
   <class name="TgTourgroupManage" table="tg_tourgroup_manage" lazy="true" >
-    <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+    <id name="Id" type="int" column="tg_flow_number" >
+	    <generator class="increment" />
     </id>
-		<property name="TgFlowNumber" column="tg_flow_number" type="decimal" />
-		<property name="GroupNumber" column="group_number" type="string" />
-		<property name="GroupDate" column="group_date" type="System.DateTime" />
-		<property name="GroupTypeCode" column="group_type_code" type="string" />
-		<property name="TaCode" column="ta_code" type="string" />
-		<property name="TaName" column="ta_name" type="string" />
-		<property name="TaTypeCode" column="ta_type_code" type="string" />
-		<property name="GuideCode" column="guide_code" type="string" />
-		<property name="GuideName" column="guide_name" type="string" />
-		<property name="GuideTacCode" column="guide_tac_code" type="string" />
-		<property name="GuidePushRate" column="guide_push_rate" type="decimal" />
-		<property name="GuidePushMoney" column="guide_push_money" type="decimal" />
-		<property name="PersonTimes" column="person_times" type="decimal" />
-		<property name="DiscountRate" column="discount_rate" type="decimal" />
-		<property name="ExpostorTacCode" column="expostor_tac_code" type="string" />
-		<property name="Expostor" column="expostor" type="string" />
-		<property name="ExpostorPushRate" column="expostor_push_rate" type="decimal" />
-		<property name="ExpostorPushMoney" column="expostor_push_money" type="decimal" />
-		<property name="Driver" column="driver" type="string" />
-		<property name="LicensePlate" column="license_plate" type="string" />
-		<property name="CarsGroup" column="cars_group" type="string" />
-		<property name="CarsTypeCode" column="cars_type_code" type="string" />
-		<property name="StopCharge" column="stop_charge" type="decimal" />
-		<property name="CustomerFrom" column="customer_from" type="string" />
-		<property name="Comment" column="comment" type="string" />
-		<property name="CreateDate" column="create_date" type="System.DateTime" />
-		<property name="Operator" column="operator" type="string" />
-		<property name="Assessor" column="assessor" type="string" />
-		<property name="IfExamine" column="if_examine" type="string" />
-		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
-		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
-    
-
+	<property name="GroupNumber" column="group_number" type="string" />
+	<property name="GroupDate" column="group_date" type="System.DateTime" />
+	<property name="GroupTypeCode" column="group_type_code" type="string" />
+	<property name="TaCode" column="ta_code" type="string" />
+	<property name="TaName" column="ta_name" type="string" />
+	<property name="TaTypeCode" column="ta_type_code" type="string" />
+	<property name="GuideCode" column="guide_code" type="string" />
+	<property name="GuideName" column="guide_name" type="string" />
+	<property name="GuideTacCode" column="guide_tac_code" type="string" />
+	<property name="GuidePushRate" column="guide_push_rate" type="decimal" />
+	<property name="GuidePushMoney" column="guide_push_money" type="decimal" />
+	<property name="PersonTimes" column="person_times" type="decimal" />
+	<property name="DiscountRate" column="discount_rate" type="decimal" />
+	<property name="ExpostorTacCode" column="expostor_tac_code" type="string" />
+	<property name="Expostor" column="expostor" type="string" />
+	<property name="ExpostorPushRate" column="expostor_push_rate" type="decimal" />
+	<property name="ExpostorPushMoney" column="expostor_push_money" type="decimal" />
+	<property name="Driver" column="driver" type="string" />
+	<property name="LicensePlate" column="license_plate" type="string" />
+	<property name="CarsGroup" column="cars_group" type="string" />
+	<property name="CarsTypeCode" column="cars_type_code" type="string" />
+	<property name="StopCharge" column="stop_charge" type="decimal" />
+	<property name="CustomerFrom" column="customer_from" type="string" />
+	<property name="Comment" column="comment" type="string" />
+	<property name="CreateDate" column="create_date" type="System.DateTime" />
+	<property name="Operator" column="operator" type="string" />
+	<property name="Assessor" column="assessor" type="string" />
+	<property name="IfExamine" column="if_examine" type="string" />
+	<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
   </class>
 </hibernate-mapping>
 

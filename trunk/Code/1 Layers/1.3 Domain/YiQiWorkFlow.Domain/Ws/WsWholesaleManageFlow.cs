@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:34
 */
 using System;
 using NSH.Core.Domain;
@@ -10,14 +10,8 @@ namespace YiQiWorkFlow.Domain.Ws
 	///<summary>
 	///表ws_wholesale_manage_flow的实体类(批发销售流水)
 	///</summary>
-	public class WsWholesaleManageFlow : EntityGUIDBase, IAggregateRootGUID
+	public class WsWholesaleManageFlow : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal WsFlowNumber{get ; set; }
-		
 		/// <summary>
 		/// 批发单号
 		/// </summary>
@@ -159,7 +153,6 @@ namespace YiQiWorkFlow.Domain.Ws
         public static WsWholesaleManageFlow Initial()
         {
             WsWholesaleManageFlow m = new WsWholesaleManageFlow();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.PayMode="现金";
 			m.IfExamine="0";
             return m;

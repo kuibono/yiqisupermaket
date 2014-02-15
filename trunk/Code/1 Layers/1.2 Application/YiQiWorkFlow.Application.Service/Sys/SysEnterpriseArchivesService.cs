@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,34 +71,28 @@ namespace YiQiWorkFlow.Application.Service.Sys
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.EnCode) == false)
 					{
-						
 						q = q.Where(p => p.EnCode.Contains(c.entity.EnCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.EnName) == false)
 					{
-						
 						q = q.Where(p => p.EnName.Contains(c.entity.EnName));
 					}
 					if (string.IsNullOrEmpty(c.entity.EnComName) == false)
 					{
-						
 						q = q.Where(p => p.EnComName.Contains(c.entity.EnComName));
 					}
 					if (string.IsNullOrEmpty(c.entity.EnType) == false)
 					{
-						
 						q = q.Where(p => p.EnType.Contains(c.entity.EnType));
 					}
 					if (string.IsNullOrEmpty(c.entity.EnCharacter) == false)
 					{
-						
 						q = q.Where(p => p.EnCharacter.Contains(c.entity.EnCharacter));
 					}
 					 if (c.entity.DealArea > 0)
@@ -107,17 +102,14 @@ namespace YiQiWorkFlow.Application.Service.Sys
 					
 					if (string.IsNullOrEmpty(c.entity.RegisterAddress) == false)
 					{
-						
 						q = q.Where(p => p.RegisterAddress.Contains(c.entity.RegisterAddress));
 					}
 					if (string.IsNullOrEmpty(c.entity.CurrentVersion) == false)
 					{
-						
 						q = q.Where(p => p.CurrentVersion.Contains(c.entity.CurrentVersion));
 					}
 					if (string.IsNullOrEmpty(c.entity.LastVersion) == false)
 					{
-						
 						q = q.Where(p => p.LastVersion.Contains(c.entity.LastVersion));
 					}
                 
@@ -163,7 +155,6 @@ namespace YiQiWorkFlow.Application.Service.Sys
 					|| l.RegisterAddress.Contains(key)
 					|| l.CurrentVersion.Contains(key)
 					|| l.LastVersion.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

@@ -2,12 +2,10 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Sys">
   <class name="SysPaDepartment" table="sys_pa_department" lazy="true" >
     <id name="Id" type="string" column="d_code" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="dName" column="d_name" type="string" />
-		<property name="Higher" column="higher" type="string" />
-    
-
+	<property name="dName" column="d_name" type="string" />
+	<property name="Higher" column="higher" type="string" />
   </class>
 </hibernate-mapping>
 

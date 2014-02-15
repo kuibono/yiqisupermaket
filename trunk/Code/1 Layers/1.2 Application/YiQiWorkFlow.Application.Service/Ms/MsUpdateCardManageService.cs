@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,64 +71,52 @@ namespace YiQiWorkFlow.Application.Service.Ms
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.UpdateNumber) == false)
 					{
-						
 						q = q.Where(p => p.UpdateNumber.Contains(c.entity.UpdateNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.EnCode) == false)
 					{
-						
 						q = q.Where(p => p.EnCode.Contains(c.entity.EnCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.UpdateReason) == false)
 					{
-						
 						q = q.Where(p => p.UpdateReason.Contains(c.entity.UpdateReason));
 					}
 					if (string.IsNullOrEmpty(c.entity.CardNumberOld) == false)
 					{
-						
 						q = q.Where(p => p.CardNumberOld.Contains(c.entity.CardNumberOld));
 					}
 					if (string.IsNullOrEmpty(c.entity.SurfaceNumberOld) == false)
 					{
-						
 						q = q.Where(p => p.SurfaceNumberOld.Contains(c.entity.SurfaceNumberOld));
 					}
 					if (string.IsNullOrEmpty(c.entity.CardNumber) == false)
 					{
-						
 						q = q.Where(p => p.CardNumber.Contains(c.entity.CardNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.SurfaceNumber) == false)
 					{
-						
 						q = q.Where(p => p.SurfaceNumber.Contains(c.entity.SurfaceNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.MsCode) == false)
 					{
-						
 						q = q.Where(p => p.MsCode.Contains(c.entity.MsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.CardCode) == false)
 					{
-						
 						q = q.Where(p => p.CardCode.Contains(c.entity.CardCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.CardName) == false)
 					{
-						
 						q = q.Where(p => p.CardName.Contains(c.entity.CardName));
 					}
 					if (string.IsNullOrEmpty(c.entity.CardState) == false)
 					{
-						
 						q = q.Where(p => p.CardState.Contains(c.entity.CardState));
 					}
 					 if (c.entity.TransactCharge > 0)
@@ -142,7 +131,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
                 
@@ -196,7 +184,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					|| l.CardName.Contains(key)
 					|| l.CardState.Contains(key)
 					|| l.Operator.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

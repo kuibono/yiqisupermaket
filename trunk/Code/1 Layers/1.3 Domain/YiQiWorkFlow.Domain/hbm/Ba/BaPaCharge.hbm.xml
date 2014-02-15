@@ -2,12 +2,10 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ba">
   <class name="BaPaCharge" table="ba_pa_charge" lazy="true" >
     <id name="Id" type="string" column="charge_code" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="ChargeName" column="charge_name" type="string" />
-		<property name="ChargeStandard" column="charge_standard" type="decimal" />
-    
-
+	<property name="ChargeName" column="charge_name" type="string" />
+	<property name="ChargeStandard" column="charge_standard" type="decimal" />
   </class>
 </hibernate-mapping>
 

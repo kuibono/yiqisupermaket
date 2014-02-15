@@ -60,6 +60,7 @@
     <Compile Include="Ac\AcDayGoodsstockJournalAccountService.cs" />
     <Compile Include="Ac\AcDayGoodsstockJournalAccountTempService.cs" />
     <Compile Include="Ac\AcGoodssaleAccountService.cs" />
+    <Compile Include="Ac\AcGoodssaleAccountTgService.cs" />
     <Compile Include="Ac\AcMonthClassJournalAccountService.cs" />
     <Compile Include="Ac\AcMonthGoodsJournalAccountService.cs" />
     <Compile Include="Ac\AcPaDayaccountService.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Ac\IAcDayGoodsstockJournalAccountService.cs" />
     <Compile Include="Ac\IAcDayGoodsstockJournalAccountTempService.cs" />
     <Compile Include="Ac\IAcGoodssaleAccountService.cs" />
+    <Compile Include="Ac\IAcGoodssaleAccountTgService.cs" />
     <Compile Include="Ac\IAcMonthClassJournalAccountService.cs" />
     <Compile Include="Ac\IAcMonthGoodsJournalAccountService.cs" />
     <Compile Include="Ac\IAcPaDayaccountService.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Ba\BaPaAccountService.cs" />
     <Compile Include="Ba\BaPaBranchAccountService.cs" />
     <Compile Include="Ba\BaPaChargeService.cs" />
+    <Compile Include="Ba\BaPaSubjectService.cs" />
     <Compile Include="Ba\BaPoolAccountService.cs" />
     <Compile Include="Ba\BaPoolDetailService.cs" />
     <Compile Include="Ba\BaSupplierBalanceService.cs" />
@@ -123,6 +126,7 @@
     <Compile Include="Ba\IBaPaAccountService.cs" />
     <Compile Include="Ba\IBaPaBranchAccountService.cs" />
     <Compile Include="Ba\IBaPaChargeService.cs" />
+    <Compile Include="Ba\IBaPaSubjectService.cs" />
     <Compile Include="Ba\IBaPoolAccountService.cs" />
     <Compile Include="Ba\IBaPoolDetailService.cs" />
     <Compile Include="Ba\IBaSupplierBalanceService.cs" />
@@ -142,6 +146,12 @@
     <Compile Include="Bs\BsSupplyDetailService.cs" />
     <Compile Include="Bs\BsSupplyManageFlowService.cs" />
     <Compile Include="Bs\BsSupplyManageService.cs" />
+    <Compile Include="Bs\BsSupplyPresentPromotionBranchService.cs" />
+    <Compile Include="Bs\BsSupplyPresentPromotionGoodsService.cs" />
+    <Compile Include="Bs\BsSupplyPresentPromotionService.cs" />
+    <Compile Include="Bs\BsSupplyPromotionBranchService.cs" />
+    <Compile Include="Bs\BsSupplyPromotionGoodsService.cs" />
+    <Compile Include="Bs\BsSupplyPromotionService.cs" />
     <Compile Include="Bs\IBsAdjustSalepriceGoodsService.cs" />
     <Compile Include="Bs\IBsAdjustSalepriceService.cs" />
     <Compile Include="Bs\IBsBranchAllotDetailService.cs" />
@@ -157,6 +167,12 @@
     <Compile Include="Bs\IBsSupplyDetailService.cs" />
     <Compile Include="Bs\IBsSupplyManageFlowService.cs" />
     <Compile Include="Bs\IBsSupplyManageService.cs" />
+    <Compile Include="Bs\IBsSupplyPresentPromotionBranchService.cs" />
+    <Compile Include="Bs\IBsSupplyPresentPromotionGoodsService.cs" />
+    <Compile Include="Bs\IBsSupplyPresentPromotionService.cs" />
+    <Compile Include="Bs\IBsSupplyPromotionBranchService.cs" />
+    <Compile Include="Bs\IBsSupplyPromotionGoodsService.cs" />
+    <Compile Include="Bs\IBsSupplyPromotionService.cs" />
     <Compile Include="Em\EmEmployeeArchivesService.cs" />
     <Compile Include="Em\EmEmployeeFamilyService.cs" />
     <Compile Include="Em\EmEmployeePhotoService.cs" />
@@ -192,6 +208,7 @@
     <Compile Include="Fb\FbGoodsArchivesSupplierService.cs" />
     <Compile Include="Fb\FbGoodsBarCodeService.cs" />
     <Compile Include="Fb\FbPaBaseSetService.cs" />
+    <Compile Include="Fb\FbPaGoodsBrandService.cs" />
     <Compile Include="Fb\FbPaGoodsCheckUnitService.cs" />
     <Compile Include="Fb\FbPaGoodsCounterService.cs" />
     <Compile Include="Fb\FbPaGoodsGbService.cs" />
@@ -221,6 +238,7 @@
     <Compile Include="Fb\IFbGoodsArchivesSupplierService.cs" />
     <Compile Include="Fb\IFbGoodsBarCodeService.cs" />
     <Compile Include="Fb\IFbPaBaseSetService.cs" />
+    <Compile Include="Fb\IFbPaGoodsBrandService.cs" />
     <Compile Include="Fb\IFbPaGoodsCheckUnitService.cs" />
     <Compile Include="Fb\IFbPaGoodsCounterService.cs" />
     <Compile Include="Fb\IFbPaGoodsGbService.cs" />
@@ -357,6 +375,7 @@
     <Compile Include="Rt\IRtPresentPromotionGoodsService.cs" />
     <Compile Include="Rt\IRtPresentPromotionService.cs" />
     <Compile Include="Rt\IRtRetailDetailService.cs" />
+    <Compile Include="Rt\IRtRetailLogService.cs" />
     <Compile Include="Rt\IRtRetailManageService.cs" />
     <Compile Include="Rt\IRtRetailPayService.cs" />
     <Compile Include="Rt\IRtSheetPromotionBranchService.cs" />
@@ -377,6 +396,7 @@
     <Compile Include="Rt\RtPresentPromotionGoodsService.cs" />
     <Compile Include="Rt\RtPresentPromotionService.cs" />
     <Compile Include="Rt\RtRetailDetailService.cs" />
+    <Compile Include="Rt\RtRetailLogService.cs" />
     <Compile Include="Rt\RtRetailManageService.cs" />
     <Compile Include="Rt\RtRetailPayService.cs" />
     <Compile Include="Rt\RtSheetPromotionBranchService.cs" />

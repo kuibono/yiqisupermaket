@@ -33,6 +33,7 @@
     <property name="AcDayGoodsstockJournalAccountService" ref="AcDayGoodsstockJournalAccountService" />
     <property name="AcDayGoodsstockJournalAccountTempService" ref="AcDayGoodsstockJournalAccountTempService" />
     <property name="AcGoodssaleAccountService" ref="AcGoodssaleAccountService" />
+    <property name="AcGoodssaleAccountTgService" ref="AcGoodssaleAccountTgService" />
     <property name="AcMonthClassJournalAccountService" ref="AcMonthClassJournalAccountService" />
     <property name="AcMonthGoodsJournalAccountService" ref="AcMonthGoodsJournalAccountService" />
     <property name="AcPaDayaccountService" ref="AcPaDayaccountService" />
@@ -44,6 +45,7 @@
     <property name="AcSupplierJournalService" ref="AcSupplierJournalService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.BaController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="BaBranchBalanceService" ref="BaBranchBalanceService" />
     <property name="BaBranchDetailService" ref="BaBranchDetailService" />
     <property name="BaBranchOfferAccountService" ref="BaBranchOfferAccountService" />
     <property name="BaBranchOfferDetailService" ref="BaBranchOfferDetailService" />
@@ -58,12 +60,14 @@
     <property name="BaPaAccountService" ref="BaPaAccountService" />
     <property name="BaPaBranchAccountService" ref="BaPaBranchAccountService" />
     <property name="BaPaChargeService" ref="BaPaChargeService" />
+    <property name="BaPaSubjectService" ref="BaPaSubjectService" />
     <property name="BaPoolAccountService" ref="BaPoolAccountService" />
     <property name="BaPoolDetailService" ref="BaPoolDetailService" />
     <property name="BaSupplierBalanceService" ref="BaSupplierBalanceService" />
     <property name="BaSupplierDetailService" ref="BaSupplierDetailService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.BsController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="BsAdjustSalepriceService" ref="BsAdjustSalepriceService" />
     <property name="BsAdjustSalepriceGoodsService" ref="BsAdjustSalepriceGoodsService" />
     <property name="BsBranchAllotDetailService" ref="BsBranchAllotDetailService" />
     <property name="BsBranchAllotManageService" ref="BsBranchAllotManageService" />
@@ -78,6 +82,12 @@
     <property name="BsSupplyDetailService" ref="BsSupplyDetailService" />
     <property name="BsSupplyManageService" ref="BsSupplyManageService" />
     <property name="BsSupplyManageFlowService" ref="BsSupplyManageFlowService" />
+    <property name="BsSupplyPresentPromotionService" ref="BsSupplyPresentPromotionService" />
+    <property name="BsSupplyPresentPromotionBranchService" ref="BsSupplyPresentPromotionBranchService" />
+    <property name="BsSupplyPresentPromotionGoodsService" ref="BsSupplyPresentPromotionGoodsService" />
+    <property name="BsSupplyPromotionService" ref="BsSupplyPromotionService" />
+    <property name="BsSupplyPromotionBranchService" ref="BsSupplyPromotionBranchService" />
+    <property name="BsSupplyPromotionGoodsService" ref="BsSupplyPromotionGoodsService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.EmController, YiQiWorkFlow.Web.Client" singleton="false" >
     <property name="EmEmployeeArchivesService" ref="EmEmployeeArchivesService" />
@@ -90,6 +100,7 @@
     <property name="EmPaProfessionalTitleService" ref="EmPaProfessionalTitleService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.FbController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="FbAdjustClassService" ref="FbAdjustClassService" />
     <property name="FbAdjustClassGoodsService" ref="FbAdjustClassGoodsService" />
     <property name="FbAdjustPoolrateService" ref="FbAdjustPoolrateService" />
     <property name="FbAdjustPoolrateGoodsService" ref="FbAdjustPoolrateGoodsService" />
@@ -108,6 +119,7 @@
     <property name="FbGoodsArchivesSupplierService" ref="FbGoodsArchivesSupplierService" />
     <property name="FbGoodsBarCodeService" ref="FbGoodsBarCodeService" />
     <property name="FbPaBaseSetService" ref="FbPaBaseSetService" />
+    <property name="FbPaGoodsBrandService" ref="FbPaGoodsBrandService" />
     <property name="FbPaGoodsCheckUnitService" ref="FbPaGoodsCheckUnitService" />
     <property name="FbPaGoodsCounterService" ref="FbPaGoodsCounterService" />
     <property name="FbPaGoodsGbService" ref="FbPaGoodsGbService" />
@@ -120,6 +132,7 @@
     <property name="FbSupplierLeaseService" ref="FbSupplierLeaseService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.MsController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="MsAdjustPointsService" ref="MsAdjustPointsService" />
     <property name="MsCancelCardManageService" ref="MsCancelCardManageService" />
     <property name="MsCardArchivesService" ref="MsCardArchivesService" />
     <property name="MsCardtypeDiscountService" ref="MsCardtypeDiscountService" />
@@ -144,6 +157,7 @@
     <property name="MsUpgradeCardManageService" ref="MsUpgradeCardManageService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.OpController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="OpAdjustDetailService" ref="OpAdjustDetailService" />
     <property name="OpAdjustManageService" ref="OpAdjustManageService" />
     <property name="OpAdjustManageFlowService" ref="OpAdjustManageFlowService" />
     <property name="OpAdjustPurchaseDetailService" ref="OpAdjustPurchaseDetailService" />
@@ -169,6 +183,7 @@
     <property name="OpSplitComManageFlowService" ref="OpSplitComManageFlowService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.PcController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="PcPurchaseDetailService" ref="PcPurchaseDetailService" />
     <property name="PcPurchaseManageService" ref="PcPurchaseManageService" />
     <property name="PcPutinDetailService" ref="PcPutinDetailService" />
     <property name="PcPutinManageService" ref="PcPutinManageService" />
@@ -178,6 +193,7 @@
     <property name="PcReturnManageService" ref="PcReturnManageService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.RtController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="RtClassPromotionService" ref="RtClassPromotionService" />
     <property name="RtClassPromotionBranchService" ref="RtClassPromotionBranchService" />
     <property name="RtClassPromotionGoodsService" ref="RtClassPromotionGoodsService" />
     <property name="RtPaFunctionService" ref="RtPaFunctionService" />
@@ -192,6 +208,7 @@
     <property name="RtPresentPromotionBranchService" ref="RtPresentPromotionBranchService" />
     <property name="RtPresentPromotionGoodsService" ref="RtPresentPromotionGoodsService" />
     <property name="RtRetailDetailService" ref="RtRetailDetailService" />
+    <property name="RtRetailLogService" ref="RtRetailLogService" />
     <property name="RtRetailManageService" ref="RtRetailManageService" />
     <property name="RtRetailPayService" ref="RtRetailPayService" />
     <property name="RtSheetPromotionService" ref="RtSheetPromotionService" />
@@ -199,6 +216,7 @@
     <property name="RtSheetPromotionGoodsService" ref="RtSheetPromotionGoodsService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.SysController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="SysClassPowerService" ref="SysClassPowerService" />
     <property name="SysDepartPowerService" ref="SysDepartPowerService" />
     <property name="SysEnterpriseArchivesService" ref="SysEnterpriseArchivesService" />
     <property name="SysLoginPowerService" ref="SysLoginPowerService" />
@@ -215,10 +233,12 @@
     <property name="SysWorkerPowerService" ref="SysWorkerPowerService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.TfController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="TfDataDownloadService" ref="TfDataDownloadService" />
     <property name="TfDataObjectService" ref="TfDataObjectService" />
     <property name="TfDataPropertyService" ref="TfDataPropertyService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.TgController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="TgExpostorBalanceService" ref="TgExpostorBalanceService" />
     <property name="TgExpostorBalanceDetailService" ref="TgExpostorBalanceDetailService" />
     <property name="TgGroupBalanceService" ref="TgGroupBalanceService" />
     <property name="TgGroupBalanceDetailService" ref="TgGroupBalanceDetailService" />
@@ -240,6 +260,7 @@
     <property name="TgTravelBalanceDetailService" ref="TgTravelBalanceDetailService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.WsController, YiQiWorkFlow.Web.Client" singleton="false" >
+    <property name="WsCustomerArchivesService" ref="WsCustomerArchivesService" />
     <property name="WsCustomerGoodsService" ref="WsCustomerGoodsService" />
     <property name="WsOrderDetailService" ref="WsOrderDetailService" />
     <property name="WsOrderManageService" ref="WsOrderManageService" />

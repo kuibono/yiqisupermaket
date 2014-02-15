@@ -2,48 +2,46 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ms">
   <class name="MsCardtypeManage" table="ms_cardtype_manage" lazy="true" >
     <id name="Id" type="string" column="card_code" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="CardName" column="card_name" type="string" />
-		<property name="CardType" column="card_type" type="string" />
-		<property name="CardMedium" column="card_medium" type="string" />
-		<property name="CardUsefulLife" column="card_useful_life" type="decimal" />
-		<property name="PointsUsefulLife" column="points_useful_life" type="decimal" />
-		<property name="TransactCharge" column="transact_charge" type="decimal" />
-		<property name="DepositMoney" column="deposit_money" type="decimal" />
-		<property name="IfVip" column="if_vip" type="string" />
-		<property name="IfDiscount" column="if_discount" type="string" />
-		<property name="DiscountBase" column="discount_base" type="decimal" />
-		<property name="DiscountRate" column="discount_rate" type="decimal" />
-		<property name="IfPoints" column="if_points" type="string" />
-		<property name="ExpendBase" column="expend_base" type="decimal" />
-		<property name="PointsValues" column="points_values" type="decimal" />
-		<property name="BirthdayPoints" column="birthday_points" type="decimal" />
-		<property name="IfPrepaid" column="if_prepaid" type="string" />
-		<property name="IfPrepaidPassword" column="if_prepaid_password" type="string" />
-		<property name="LimitTimes" column="limit_times" type="decimal" />
-		<property name="PrestoreMoney" column="prestore_money" type="decimal" />
-		<property name="PrestorePw" column="prestore_pw" type="string" />
-		<property name="PrepaidMin" column="prepaid_min" type="decimal" />
-		<property name="PrepaidMax" column="prepaid_max" type="decimal" />
-		<property name="IfPointToPrepaid" column="if_point_to_prepaid" type="string" />
-		<property name="PointsBase" column="points_base" type="decimal" />
-		<property name="PrepaidMoney" column="prepaid_money" type="decimal" />
-		<property name="CardNumberPrefix" column="card_number_prefix" type="string" />
-		<property name="CardNumberLen" column="card_number_len" type="decimal" />
-		<property name="RandLen" column="rand_len" type="decimal" />
-		<property name="UpgradeType" column="upgrade_type" type="string" />
-		<property name="PointsNeeds" column="points_needs" type="decimal" />
-		<property name="IfDeductPoints" column="if_deduct_points" type="string" />
-		<property name="IfAutoup" column="if_autoup" type="string" />
-		<property name="CreateDate" column="create_date" type="System.DateTime" />
-		<property name="Operator" column="operator" type="string" />
-		<property name="Assessor" column="assessor" type="string" />
-		<property name="IfExamine" column="if_examine" type="string" />
-		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
-		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
-    
-
+	<property name="CardName" column="card_name" type="string" />
+	<property name="CardType" column="card_type" type="string" />
+	<property name="CardMedium" column="card_medium" type="string" />
+	<property name="CardUsefulLife" column="card_useful_life" type="decimal" />
+	<property name="PointsUsefulLife" column="points_useful_life" type="decimal" />
+	<property name="TransactCharge" column="transact_charge" type="decimal" />
+	<property name="DepositMoney" column="deposit_money" type="decimal" />
+	<property name="IfVip" column="if_vip" type="string" />
+	<property name="IfDiscount" column="if_discount" type="string" />
+	<property name="DiscountBase" column="discount_base" type="decimal" />
+	<property name="DiscountRate" column="discount_rate" type="decimal" />
+	<property name="IfPoints" column="if_points" type="string" />
+	<property name="ExpendBase" column="expend_base" type="decimal" />
+	<property name="PointsValues" column="points_values" type="decimal" />
+	<property name="BirthdayPoints" column="birthday_points" type="decimal" />
+	<property name="IfPrepaid" column="if_prepaid" type="string" />
+	<property name="IfPrepaidPassword" column="if_prepaid_password" type="string" />
+	<property name="LimitTimes" column="limit_times" type="decimal" />
+	<property name="PrestoreMoney" column="prestore_money" type="decimal" />
+	<property name="PrestorePw" column="prestore_pw" type="string" />
+	<property name="PrepaidMin" column="prepaid_min" type="decimal" />
+	<property name="PrepaidMax" column="prepaid_max" type="decimal" />
+	<property name="IfPointToPrepaid" column="if_point_to_prepaid" type="string" />
+	<property name="PointsBase" column="points_base" type="decimal" />
+	<property name="PrepaidMoney" column="prepaid_money" type="decimal" />
+	<property name="CardNumberPrefix" column="card_number_prefix" type="string" />
+	<property name="CardNumberLen" column="card_number_len" type="decimal" />
+	<property name="RandLen" column="rand_len" type="decimal" />
+	<property name="UpgradeType" column="upgrade_type" type="string" />
+	<property name="PointsNeeds" column="points_needs" type="decimal" />
+	<property name="IfDeductPoints" column="if_deduct_points" type="string" />
+	<property name="IfAutoup" column="if_autoup" type="string" />
+	<property name="CreateDate" column="create_date" type="System.DateTime" />
+	<property name="Operator" column="operator" type="string" />
+	<property name="Assessor" column="assessor" type="string" />
+	<property name="IfExamine" column="if_examine" type="string" />
+	<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
   </class>
 </hibernate-mapping>
 

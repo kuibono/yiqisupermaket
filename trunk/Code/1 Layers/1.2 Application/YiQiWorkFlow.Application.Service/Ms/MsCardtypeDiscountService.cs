@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,24 +71,20 @@ namespace YiQiWorkFlow.Application.Service.Ms
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.CardCode) == false)
 					{
-						
 						q = q.Where(p => p.CardCode.Contains(c.entity.CardCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsClassCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsClassCode.Contains(c.entity.GoodsClassCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsClassName) == false)
 					{
-						
 						q = q.Where(p => p.GoodsClassName.Contains(c.entity.GoodsClassName));
 					}
 					 if (c.entity.DiscountBase > 0)
@@ -102,7 +99,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.SysGuid) == false)
 					{
-						
 						q = q.Where(p => p.SysGuid.Contains(c.entity.SysGuid));
 					}
                 
@@ -140,7 +136,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					|| l.GoodsClassCode.Contains(key)
 					|| l.GoodsClassName.Contains(key)
 					|| l.SysGuid.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,44 +71,36 @@ namespace YiQiWorkFlow.Application.Service.Sys
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.EmCode) == false)
 					{
-						
 						q = q.Where(p => p.EmCode.Contains(c.entity.EmCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.WindowName) == false)
 					{
-						
 						q = q.Where(p => p.WindowName.Contains(c.entity.WindowName));
 					}
 					if (string.IsNullOrEmpty(c.entity.FunctionCode) == false)
 					{
-						
 						q = q.Where(p => p.FunctionCode.Contains(c.entity.FunctionCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.Selection) == false)
 					{
-						
 						q = q.Where(p => p.Selection.Contains(c.entity.Selection));
 					}
 					if (string.IsNullOrEmpty(c.entity.ModuleCode) == false)
 					{
-						
 						q = q.Where(p => p.ModuleCode.Contains(c.entity.ModuleCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.ModuleName) == false)
 					{
-						
 						q = q.Where(p => p.ModuleName.Contains(c.entity.ModuleName));
 					}
 					if (string.IsNullOrEmpty(c.entity.ModuleChild) == false)
 					{
-						
 						q = q.Where(p => p.ModuleChild.Contains(c.entity.ModuleChild));
 					}
                 
@@ -151,7 +144,6 @@ namespace YiQiWorkFlow.Application.Service.Sys
 					|| l.ModuleCode.Contains(key)
 					|| l.ModuleName.Contains(key)
 					|| l.ModuleChild.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

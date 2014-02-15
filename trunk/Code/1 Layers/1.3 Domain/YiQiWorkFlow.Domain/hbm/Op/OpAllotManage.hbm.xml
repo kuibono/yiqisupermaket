@@ -2,24 +2,22 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Op">
   <class name="OpAllotManage" table="op_allot_manage" lazy="true" >
     <id name="Id" type="string" column="al_number" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="AlType" column="al_type" type="string" />
-		<property name="OrganOut" column="organ_out" type="string" />
-		<property name="OrganNameOut" column="organ_name_out" type="string" />
-		<property name="WhCodeOut" column="wh_code_out" type="string" />
-		<property name="OrganIn" column="organ_in" type="string" />
-		<property name="OrganNameIn" column="organ_name_in" type="string" />
-		<property name="WhCodeIn" column="wh_code_in" type="string" />
-		<property name="AlDate" column="al_date" type="System.DateTime" />
-		<property name="CreateDate" column="create_date" type="System.DateTime" />
-		<property name="Operator" column="operator" type="string" />
-		<property name="Assessor" column="assessor" type="string" />
-		<property name="IfExamine" column="if_examine" type="string" />
-		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
-		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
-    
-
+	<property name="AlType" column="al_type" type="string" />
+	<property name="OrganOut" column="organ_out" type="string" />
+	<property name="OrganNameOut" column="organ_name_out" type="string" />
+	<property name="WhCodeOut" column="wh_code_out" type="string" />
+	<property name="OrganIn" column="organ_in" type="string" />
+	<property name="OrganNameIn" column="organ_name_in" type="string" />
+	<property name="WhCodeIn" column="wh_code_in" type="string" />
+	<property name="AlDate" column="al_date" type="System.DateTime" />
+	<property name="CreateDate" column="create_date" type="System.DateTime" />
+	<property name="Operator" column="operator" type="string" />
+	<property name="Assessor" column="assessor" type="string" />
+	<property name="IfExamine" column="if_examine" type="string" />
+	<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
   </class>
 </hibernate-mapping>
 

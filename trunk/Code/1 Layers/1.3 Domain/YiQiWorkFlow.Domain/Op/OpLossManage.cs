@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:31
 */
 using System;
 using NSH.Core.Domain;
@@ -12,12 +12,6 @@ namespace YiQiWorkFlow.Domain.Op
 	///</summary>
 	public class OpLossManage : EntityGUIDBase, IAggregateRootGUID
 	{
-		/// <summary>
-		/// 损溢单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="损溢单号")]
-		public virtual string LoNumber{get ; set; }
-		
 		/// <summary>
 		/// 损溢日期
 		/// </summary>

@@ -51,6 +51,7 @@
     <Compile Include="Ac\AcDayGoodsstockJournalAccount.cs" />
     <Compile Include="Ac\AcDayGoodsstockJournalAccountTemp.cs" />
     <Compile Include="Ac\AcGoodssaleAccount.cs" />
+    <Compile Include="Ac\AcGoodssaleAccountTg.cs" />
     <Compile Include="Ac\AcMonthClassJournalAccount.cs" />
     <Compile Include="Ac\AcMonthGoodsJournalAccount.cs" />
     <Compile Include="Ac\AcPaDayaccount.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Ba\BaPaAccount.cs" />
     <Compile Include="Ba\BaPaBranchAccount.cs" />
     <Compile Include="Ba\BaPaCharge.cs" />
+    <Compile Include="Ba\BaPaSubject.cs" />
     <Compile Include="Ba\BaPoolAccount.cs" />
     <Compile Include="Ba\BaPoolDetail.cs" />
     <Compile Include="Ba\BaSupplierBalance.cs" />
@@ -98,6 +100,12 @@
     <Compile Include="Bs\BsSupplyDetail.cs" />
     <Compile Include="Bs\BsSupplyManage.cs" />
     <Compile Include="Bs\BsSupplyManageFlow.cs" />
+    <Compile Include="Bs\BsSupplyPresentPromotion.cs" />
+    <Compile Include="Bs\BsSupplyPresentPromotionBranch.cs" />
+    <Compile Include="Bs\BsSupplyPresentPromotionGoods.cs" />
+    <Compile Include="Bs\BsSupplyPromotion.cs" />
+    <Compile Include="Bs\BsSupplyPromotionBranch.cs" />
+    <Compile Include="Bs\BsSupplyPromotionGoods.cs" />
     <Compile Include="Em\EmEmployeeArchives.cs" />
     <Compile Include="Em\EmEmployeeFamily.cs" />
     <Compile Include="Em\EmEmployeePhoto.cs" />
@@ -125,6 +133,7 @@
     <Compile Include="Fb\FbGoodsArchivesSupplier.cs" />
     <Compile Include="Fb\FbGoodsBarCode.cs" />
     <Compile Include="Fb\FbPaBaseSet.cs" />
+    <Compile Include="Fb\FbPaGoodsBrand.cs" />
     <Compile Include="Fb\FbPaGoodsCheckUnit.cs" />
     <Compile Include="Fb\FbPaGoodsCounter.cs" />
     <Compile Include="Fb\FbPaGoodsGb.cs" />
@@ -206,6 +215,7 @@
     <Compile Include="Rt\RtPresentPromotionBranch.cs" />
     <Compile Include="Rt\RtPresentPromotionGoods.cs" />
     <Compile Include="Rt\RtRetailDetail.cs" />
+    <Compile Include="Rt\RtRetailLog.cs" />
     <Compile Include="Rt\RtRetailManage.cs" />
     <Compile Include="Rt\RtRetailPay.cs" />
     <Compile Include="Rt\RtSheetPromotion.cs" />
@@ -482,6 +492,18 @@
     <EmbeddedResource Include="hbm\Ws\WsWholesaleGoodsSet.hbm.xml" />
     <EmbeddedResource Include="hbm\Ws\WsWholesaleManage.hbm.xml" />
     <EmbeddedResource Include="hbm\Ws\WsWholesaleManageFlow.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="hbm\Ac\AcGoodssaleAccountTg.hbm.xml" />
+    <EmbeddedResource Include="hbm\Ba\BaPaSubject.hbm.xml" />
+    <EmbeddedResource Include="hbm\Bs\BsSupplyPresentPromotion.hbm.xml" />
+    <EmbeddedResource Include="hbm\Bs\BsSupplyPresentPromotionBranch.hbm.xml" />
+    <EmbeddedResource Include="hbm\Bs\BsSupplyPresentPromotionGoods.hbm.xml" />
+    <EmbeddedResource Include="hbm\Bs\BsSupplyPromotion.hbm.xml" />
+    <EmbeddedResource Include="hbm\Bs\BsSupplyPromotionBranch.hbm.xml" />
+    <EmbeddedResource Include="hbm\Bs\BsSupplyPromotionGoods.hbm.xml" />
+    <EmbeddedResource Include="hbm\Fb\FbPaGoodsBrand.hbm.xml" />
+    <EmbeddedResource Include="hbm\Rt\RtRetailLog.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

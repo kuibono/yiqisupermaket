@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:29
 */
 using System;
 using NSH.Core.Domain;
@@ -10,14 +10,8 @@ namespace YiQiWorkFlow.Domain.Ms
 	///<summary>
 	///表ms_adjust_points的实体类(积分调整管理)
 	///</summary>
-	public class MsAdjustPoints : EntityGUIDBase, IAggregateRootGUID
+	public class MsAdjustPoints : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水号")]
-		public virtual decimal NumberFlow{get ; set; }
-		
 		/// <summary>
 		/// 调整日期
 		/// </summary>
@@ -114,12 +108,6 @@ namespace YiQiWorkFlow.Domain.Ms
 		[Validate(ValidateType.IsDateTime ,Name="操作时间")]
 		public virtual System.DateTime? OperatorDate{get ; set; }
 		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
-		
 		protected override void Validate()
         {
         }
@@ -135,7 +123,6 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsAdjustPoints Initial()
         {
             MsAdjustPoints m = new MsAdjustPoints();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.CurrentPoints=0M;
 			m.AdjustPoints=0M;
             return m;
