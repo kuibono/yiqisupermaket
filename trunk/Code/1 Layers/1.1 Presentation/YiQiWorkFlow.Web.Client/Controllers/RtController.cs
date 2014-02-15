@@ -1352,12 +1352,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult RtRetailDetailEdit(int id)
+        public ActionResult RtRetailDetailEdit(int? id)
         {
             RtRetailDetail m = RtRetailDetail.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = RtRetailDetailService.GetById(id);
+                m = RtRetailDetailService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1447,12 +1447,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult RtRetailLogEdit(int id)
+        public ActionResult RtRetailLogEdit(int? id)
         {
             RtRetailLog m = RtRetailLog.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = RtRetailLogService.GetById(id);
+                m = RtRetailLogService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1542,12 +1542,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult RtRetailManageEdit(int id)
+        public ActionResult RtRetailManageEdit(int? id)
         {
             RtRetailManage m = RtRetailManage.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = RtRetailManageService.GetById(id);
+                m = RtRetailManageService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1637,12 +1637,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult RtRetailPayEdit(int id)
+        public ActionResult RtRetailPayEdit(int? id)
         {
             RtRetailPay m = RtRetailPay.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = RtRetailPayService.GetById(id);
+                m = RtRetailPayService.GetById(id.Value);
             }
             return View(m);
         }

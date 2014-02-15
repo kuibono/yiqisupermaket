@@ -22,12 +22,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult MsAdjustPointsEdit(int id)
+        public ActionResult MsAdjustPointsEdit(int? id)
         {
             MsAdjustPoints m = MsAdjustPoints.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = MsAdjustPointsService.GetById(id);
+                m = MsAdjustPointsService.GetById(id.Value);
             }
             return View(m);
         }
@@ -877,12 +877,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult MsExchangeManageEdit(int id)
+        public ActionResult MsExchangeManageEdit(int? id)
         {
             MsExchangeManage m = MsExchangeManage.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = MsExchangeManageService.GetById(id);
+                m = MsExchangeManageService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1542,12 +1542,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult MsPointsClearEdit(int id)
+        public ActionResult MsPointsClearEdit(int? id)
         {
             MsPointsClear m = MsPointsClear.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = MsPointsClearService.GetById(id);
+                m = MsPointsClearService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1637,12 +1637,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult MsPointtoprepaidManageEdit(int id)
+        public ActionResult MsPointtoprepaidManageEdit(int? id)
         {
             MsPointtoprepaidManage m = MsPointtoprepaidManage.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = MsPointtoprepaidManageService.GetById(id);
+                m = MsPointtoprepaidManageService.GetById(id.Value);
             }
             return View(m);
         }

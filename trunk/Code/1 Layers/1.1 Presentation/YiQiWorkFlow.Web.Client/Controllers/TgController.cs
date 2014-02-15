@@ -402,12 +402,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult TgGroupCallEdit(int id)
+        public ActionResult TgGroupCallEdit(int? id)
         {
             TgGroupCall m = TgGroupCall.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = TgGroupCallService.GetById(id);
+                m = TgGroupCallService.GetById(id.Value);
             }
             return View(m);
         }
@@ -497,12 +497,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult TgGuideArchivesEdit(int id)
+        public ActionResult TgGuideArchivesEdit(int? id)
         {
             TgGuideArchives m = TgGuideArchives.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = TgGuideArchivesService.GetById(id);
+                m = TgGuideArchivesService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1447,12 +1447,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult TgTourgroupManageEdit(int id)
+        public ActionResult TgTourgroupManageEdit(int? id)
         {
             TgTourgroupManage m = TgTourgroupManage.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = TgTourgroupManageService.GetById(id);
+                m = TgTourgroupManageService.GetById(id.Value);
             }
             return View(m);
         }

@@ -1067,12 +1067,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult BsReturnManageFlowEdit(int id)
+        public ActionResult BsReturnManageFlowEdit(int? id)
         {
             BsReturnManageFlow m = BsReturnManageFlow.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = BsReturnManageFlowService.GetById(id);
+                m = BsReturnManageFlowService.GetById(id.Value);
             }
             return View(m);
         }
@@ -1352,12 +1352,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult BsSupplyManageFlowEdit(int id)
+        public ActionResult BsSupplyManageFlowEdit(int? id)
         {
             BsSupplyManageFlow m = BsSupplyManageFlow.Initial();
-            if (id > 0)
+            if (id.HasValue && id > 0)
             {
-                m = BsSupplyManageFlowService.GetById(id);
+                m = BsSupplyManageFlowService.GetById(id.Value);
             }
             return View(m);
         }
