@@ -19,7 +19,6 @@ Description:
 foreach(TableSchema ts in TDB)
 {
    Model m=new Model();
-   m.ControllerName=StringUtil.ToPascalCase(ts.Name.Split('_')[0]);
    m.SourceTable=ts;
 
    string folder="";

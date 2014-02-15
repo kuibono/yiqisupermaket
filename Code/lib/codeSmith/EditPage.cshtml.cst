@@ -131,7 +131,7 @@ Description: 编辑页面
 private string GetTableColumnResult(ColumnSchema column)
 {
     StringBuilder sb=new StringBuilder();
-    if(column.IsPrimaryKeyMember)
+    if(IsIdentityOrPkColumn(column))
     {
         sb.AppendLine("<div class=\"ablock\" style=\"display:none\">");
         sb.AppendFormat("                <label for=\"Control_{0}\">{1}:</label>\n                ",StringUtil.ToPascalCase(column.Name),column.Description.Trim('\n').Trim('\r'));
@@ -141,7 +141,7 @@ private string GetTableColumnResult(ColumnSchema column)
         sb.AppendLine("<div class=\"ablock\">");
         sb.AppendFormat("                <label for=\"Control_{0}\">{1}:</label>\n                ",StringUtil.ToPascalCase(column.Name),column.Description.Trim('\n').Trim('\r'));
     }
-    if(column.IsPrimaryKeyMember)
+    if(IsIdentityOrPkColumn(column))
     {
         sb.AppendFormat("<input id=\"Control_{0}\" value=\"@Model.Id\" name=\"Id\" class=\"mini-hidden\"/>",StringUtil.ToPascalCase(column.Name));
     }
@@ -212,5 +212,62 @@ public override void Render(TextWriter tw)
    this.Response.AddTextWriter(fs1);
    base.Render(tw);
    fs1.Close();
+}
+public bool TableHasIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		if((bool)column.ExtendedProperties["CS_IsIdentity"].Value==true)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+public ColumnSchema GetTableIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		try
+		{
+			if((bool)column.ExtendedProperties["CS_IsIdentity"].Value==true)
+			{
+				return column;
+			}
+		}
+		catch{}
+	}
+	throw new Exception("no IdentityColumn");
+}
+public bool TableExistPk(SchemaExplorer.TableSchema table)
+{
+	return table.HasPrimaryKey;
+}
+public ColumnSchema GetTablePkColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		if(column.IsPrimaryKeyMember)
+		{
+			return column;
+		}
+	}
+	return null;
+}
+public ColumnSchema GetPkOrIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	if(TableExistPk(table))
+	{
+		return GetTablePkColumn(table);
+	}
+	if(TableHasIdentityColumn(table))
+	{
+		return GetTableIdentityColumn(table);
+	}
+	throw new Exception("No Pk");
+}
+public bool IsIdentityOrPkColumn(ColumnSchema column)
+{
+	return (bool)column.ExtendedProperties["CS_IsIdentity"].Value==true || column.IsPrimaryKeyMember;
 }
 </script>

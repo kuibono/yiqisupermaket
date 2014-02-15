@@ -23,10 +23,10 @@ namespace YiQiWorkFlow.Domain.<%= StringUtil.ToPascalCase(this.SourceTable.Name.
 	///<summary>
 	///表<%= this.SourceTable.Name %>的实体类(<%= this.SourceTable.Description %>)
 	///</summary>
-	public class <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> : EntityGUIDBase, IAggregateRootGUID
+	public class <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> : Entity<%=TableHasIdentityColumn(SourceTable)?"":"GUID"%>Base, IAggregateRoot<%=TableHasIdentityColumn(SourceTable)?"":"GUID"%>
 	{
 		<% foreach (ColumnSchema column in this.SourceTable.Columns) {  
-			if(column.IsPrimaryKeyMember)
+			if(IsIdentityOrPkColumn(column))
 			{
 				continue;
 				
@@ -116,7 +116,9 @@ namespace YiQiWorkFlow.Domain.<%= StringUtil.ToPascalCase(this.SourceTable.Name.
         public static <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> Initial()
         {
             <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> m = new <%= StringUtil.ToPascalCase(this.SourceTable.Name) %>();
+			<%if(TableHasIdentityColumn(this.SourceTable)==false){%>
             m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+			<%}%>
 			<% foreach (ColumnSchema column in this.SourceTable.Columns) {  
 				if(column.ExtendedProperties["CS_Default"] != null &&column.ExtendedProperties["CS_Default"].Value!=null && column.ExtendedProperties["CS_Default"].Value.ToString().Trim()!="" && column.IsPrimaryKeyMember==false){
 				string defaultValue=column.ExtendedProperties["CS_Default"].Value.ToString();
@@ -184,5 +186,62 @@ public string GetColunmNullable(ColumnSchema column)
 		}
 	}
 	return "";
+}
+public bool TableHasIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		if((bool)column.ExtendedProperties["CS_IsIdentity"].Value==true)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+public ColumnSchema GetTableIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		try
+		{
+			if((bool)column.ExtendedProperties["CS_IsIdentity"].Value==true)
+			{
+				return column;
+			}
+		}
+		catch{}
+	}
+	throw new Exception("no IdentityColumn");
+}
+public bool TableExistPk(SchemaExplorer.TableSchema table)
+{
+	return table.HasPrimaryKey;
+}
+public ColumnSchema GetTablePkColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		if(column.IsPrimaryKeyMember)
+		{
+			return column;
+		}
+	}
+	return null;
+}
+public ColumnSchema GetPkOrIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	if(TableExistPk(table))
+	{
+		return GetTablePkColumn(table);
+	}
+	if(TableHasIdentityColumn(table))
+	{
+		return GetTableIdentityColumn(table);
+	}
+	throw new Exception("No Pk");
+}
+public bool IsIdentityOrPkColumn(ColumnSchema column)
+{
+	return (bool)column.ExtendedProperties["CS_IsIdentity"].Value==true || column.IsPrimaryKeyMember;
 }
 </script>

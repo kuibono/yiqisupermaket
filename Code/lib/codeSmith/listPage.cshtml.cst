@@ -5,7 +5,6 @@ Description: 数据库实体类
 --%>
 <%@ CodeTemplate Language="C#" TargetLanguage="C#" ResponseEncoding="UTF-8" Debug="False" Description="生成数据库实体" %>
 <%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="属性" Description="要生成实体的数据表" %>
-<%@ Property Name="ControllerName" Type="System.String" Category="属性" Description="所用Controller名称" %>
 <%@ Map Name="CSharpAlias" Src="System-CSharpAlias" Description="System to C# Type Map" %>
 <%@ Assembly Name="SchemaExplorer" %>
 <%@ Import Namespace="SchemaExplorer" %>
@@ -142,18 +141,18 @@ Description: 数据库实体类
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Edit",text: "<%= StringUtil.ToPascalCase(this.SourceTable.Description) %>管理", iconCls: "icon-edit", url: "/<%=ControllerName%>/<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Edit/" + id });
+			parent.showTab({ id:"<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Edit",text: "<%= StringUtil.ToPascalCase(this.SourceTable.Description) %>管理", iconCls: "icon-edit", url: "/<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>/<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Edit/" + id });
         }
         function deleteItem(id) {
             $.ajax({
-                url: "<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Delete",
+                url: "/<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>/<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Delete",
                 data: { ids: id },
                 dataType: "json",
                 success: function (j) {
                     if (j == false) {
                         if (confirm("数据存在关联数据数据，删除后将影响整个系统运行，是否确认删除？") == true) {
                             $.ajax({
-                                url: "<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Delete",
+                                url: "/<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>/<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Delete",
                                 data: { ids: id, confirm: "true" },
                                 dataType: "json",
                                 success: function (r) {
@@ -172,7 +171,7 @@ Description: 数据库实体类
         }
         function exame(obj, itemid, old) {
             $.ajax({
-                url: "<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>DeleteExame/" + itemid,
+                url: "/<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>/<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>DeleteExame/" + itemid,
                 success: function (j) {
                     if (j == true) {
                         $(obj).css("color", "green").text("是");
