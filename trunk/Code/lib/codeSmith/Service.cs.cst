@@ -16,6 +16,7 @@ Description: 数据库实体类
 *生成时间：<%= DateTime.Now.ToLocalTime() %>
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -28,20 +29,24 @@ namespace YiQiWorkFlow.Application.Service.<%= StringUtil.ToPascalCase(this.Sour
     public class <%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Service:I<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Service
     {
 
-        public IRepositoryGUID<%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> EntityRepository { get; set; }
+        public IRepository<%=TableHasIdentityColumn(SourceTable)?"":"GUID"%><%="<"%><%= StringUtil.ToPascalCase(this.SourceTable.Name) %><%=">"%> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %> entity)
+        public <%=TableHasIdentityColumn(this.SourceTable)?"int":"string"%> Create(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %> entity)
         {
+			<%
+			if(TableHasIdentityColumn(this.SourceTable)==false){
+			%>
 			if (entity.HaveId == false)
             {
                 entity.GenerateId();
             }
+			<%}%>
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> GetById(string id)
+        public <%= StringUtil.ToPascalCase(this.SourceTable.Name) %> GetById(<%=TableHasIdentityColumn(this.SourceTable)?"int":"string"%> id)
         {
             return EntityRepository.Get(id);
         }
@@ -83,22 +88,26 @@ namespace YiQiWorkFlow.Application.Service.<%= StringUtil.ToPascalCase(this.Sour
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
+				<%
+				if(TableHasIdentityColumn(this.SourceTable)==false){
+				%>
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
-				<% foreach (ColumnSchema column in this.SourceTable.Columns) {  %>
-					<% if (column.SystemType.ToString()=="System.String")
-					{
-						if(column.IsPrimaryKeyMember)
+				<%}%>
+				<% foreach (ColumnSchema column in this.SourceTable.Columns) {  
+					if(IsIdentityOrPkColumn(column))
 						{
 							continue;
-						}	
+						}
+					%>
+					<% if (column.SystemType.ToString()=="System.String")
+					{
+							
 					%>
 					if (string.IsNullOrEmpty(c.entity.<%= StringUtil.ToPascalCase(column.Name) %>) == false)
 					{
-						
 						q = q.Where(p => p.<%= StringUtil.ToPascalCase(column.Name) %>.Contains(c.entity.<%= StringUtil.ToPascalCase(column.Name) %>));
 					}
 					<%}
@@ -117,8 +126,17 @@ namespace YiQiWorkFlow.Application.Service.<%= StringUtil.ToPascalCase(this.Sour
             {
 				q = from l in q
                     where 
+					<%if(TableHasIdentityColumn(this.SourceTable)==false){%>
                     l.Id.Contains(c.key)
-					<% foreach (ColumnSchema column in this.SourceTable.Columns) {  %>
+					<%}else{%>
+					1==0
+					<%}%>
+					<% foreach (ColumnSchema column in this.SourceTable.Columns) {  
+						if(IsIdentityOrPkColumn(column))
+						{
+							continue;
+						}
+						%>
 					<% if (column.SystemType.ToString()=="System.String")
 					{
 						if(column.IsPrimaryKeyMember)
@@ -148,8 +166,17 @@ namespace YiQiWorkFlow.Application.Service.<%= StringUtil.ToPascalCase(this.Sour
             {
 				q = from l in q
                     where 
+					<%if(TableHasIdentityColumn(this.SourceTable)==false){%>
                     l.Id.Contains(key)
-					<% foreach (ColumnSchema column in this.SourceTable.Columns) {  %>
+					<%}else{%>
+					1==0
+					<%}%>
+					<% foreach (ColumnSchema column in this.SourceTable.Columns) {  
+						if(IsIdentityOrPkColumn(column))
+						{
+							continue;
+						}
+					%>
 					<% if (column.SystemType.ToString()=="System.String")
 					{%>
 					|| l.<%= StringUtil.ToPascalCase(column.Name) %>.Contains(key)
@@ -167,7 +194,12 @@ namespace YiQiWorkFlow.Application.Service.<%= StringUtil.ToPascalCase(this.Sour
         [Transaction]
         public void Delete(IList<string> ids)
         {
+			<%if(TableHasIdentityColumn(this.SourceTable)==false){%>
             var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			<%}else{%>
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
+			<%}%>
             foreach (var each in q)
             {
                 Delete(each);
@@ -199,5 +231,62 @@ public override void Render(TextWriter tw)
    this.Response.AddTextWriter(fs1);
    base.Render(tw);
    fs1.Close();
+}
+public bool TableHasIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		if((bool)column.ExtendedProperties["CS_IsIdentity"].Value==true)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+public ColumnSchema GetTableIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		try
+		{
+			if((bool)column.ExtendedProperties["CS_IsIdentity"].Value==true)
+			{
+				return column;
+			}
+		}
+		catch{}
+	}
+	throw new Exception("no IdentityColumn");
+}
+public bool TableExistPk(SchemaExplorer.TableSchema table)
+{
+	return table.HasPrimaryKey;
+}
+public ColumnSchema GetTablePkColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		if(column.IsPrimaryKeyMember)
+		{
+			return column;
+		}
+	}
+	return null;
+}
+public ColumnSchema GetPkOrIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	if(TableExistPk(table))
+	{
+		return GetTablePkColumn(table);
+	}
+	if(TableHasIdentityColumn(table))
+	{
+		return GetTableIdentityColumn(table);
+	}
+	throw new Exception("No Pk");
+}
+public bool IsIdentityOrPkColumn(ColumnSchema column)
+{
+	return (bool)column.ExtendedProperties["CS_IsIdentity"].Value==true || column.IsPrimaryKeyMember;
 }
 </script>

@@ -32,6 +32,7 @@ foreach(TableSchema ts in TDB)
 %>
   </object>
   <object type="TEWorkFlow.Web.Client.Controllers.<%=newPre%>Controller, TEWorkFlow.Web.Client" singleton="false" >
+    <property name="<%= StringUtil.ToPascalCase(ts.Name) %>Service" ref="<%= StringUtil.ToPascalCase(ts.Name) %>Service" />
 <%
 	}
 %>

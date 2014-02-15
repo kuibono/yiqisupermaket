@@ -10,20 +10,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>">
   <class name="<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>" table="<%= this.SourceTable.Name %>" lazy="true" >
-    <id name="Id" type="string" column="<%= this.SourceTable.PrimaryKey.MemberColumns[0].Column.Name %>" >
-      <generator class="assigned" />
+    <id name="Id" type="<%= TableHasIdentityColumn(this.SourceTable)?"int":"string" %>" column="<%= GetPkOrIdentityColumn(this.SourceTable).Name %>" >
+    <% if(TableHasIdentityColumn(this.SourceTable)){ %>  
+	    <generator class="increment" />
+	<%} else{%>
+	    <generator class="assigned" />
+	<%}%>
     </id>
 	<% foreach (ColumnSchema column in this.SourceTable.Columns) {  %>
 		<%
-			if(column.IsPrimaryKeyMember)
+			if(IsIdentityOrPkColumn(column))
 			{
 				continue;
 			}
 		%>
-		<property name="<%= StringUtil.ToPascalCase(column.Name) %>" column="<%= column.Name %>" type="<%= CSharpAlias[column.SystemType.FullName] %>" />
+	<property name="<%= StringUtil.ToPascalCase(column.Name) %>" column="<%= column.Name %>" type="<%= CSharpAlias[column.SystemType.FullName] %>" />
 	<% } %>
-    
-
   </class>
 </hibernate-mapping>
 <script runat="template">
@@ -58,6 +60,63 @@ public string GetColunmNullable(ColumnSchema column)
 		}
 	}
 	return "";
+}
+public bool TableHasIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		if((bool)column.ExtendedProperties["CS_IsIdentity"].Value==true)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+public ColumnSchema GetTableIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		try
+		{
+			if((bool)column.ExtendedProperties["CS_IsIdentity"].Value==true)
+			{
+				return column;
+			}
+		}
+		catch{}
+	}
+	throw new Exception("no IdentityColumn");
+}
+public bool TableExistPk(SchemaExplorer.TableSchema table)
+{
+	return table.HasPrimaryKey;
+}
+public ColumnSchema GetTablePkColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		if(column.IsPrimaryKeyMember)
+		{
+			return column;
+		}
+	}
+	return null;
+}
+public ColumnSchema GetPkOrIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	if(TableExistPk(table))
+	{
+		return GetTablePkColumn(table);
+	}
+	if(TableHasIdentityColumn(table))
+	{
+		return GetTableIdentityColumn(table);
+	}
+	throw new Exception("No Pk"+table.Name);
+}
+public bool IsIdentityOrPkColumn(ColumnSchema column)
+{
+	return (bool)column.ExtendedProperties["CS_IsIdentity"].Value==true || column.IsPrimaryKeyMember;
 }
 </script>
 

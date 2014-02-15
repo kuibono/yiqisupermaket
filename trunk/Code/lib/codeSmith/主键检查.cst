@@ -51,7 +51,7 @@ public ColumnSchema GetTableIdentityColumn(SchemaExplorer.TableSchema table)
 		}
 		catch{}
 	}
-	throw new Exception("????????????");
+	throw new Exception("no IdentityColumn");
 }
 public bool TableExistPk(SchemaExplorer.TableSchema table)
 {
@@ -78,7 +78,7 @@ public ColumnSchema GetPkOrIdentityColumn(SchemaExplorer.TableSchema table)
 	{
 		return GetTableIdentityColumn(table);
 	}
-	throw new Exception("????????????????");
+	throw new Exception("No Pk");
 }
 
 </script>
