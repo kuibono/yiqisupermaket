@@ -110,7 +110,8 @@
 
             <div class="ablock">
                 <label for="Control_GbCode">大类:</label>
-                <input type="text"  value="@Model.GbCode" class="mini-textbox" name="GbCode" id="Control_GbCode" vtype="maxLength:20" />
+                <input id="Control_GbCode" value="@Model.GbCode" class="mini-combobox" name="GbCode" url="/Common/GetComboData?table=fb_pa_goods_gb&valueColumn=gb_code&textColumn=gb_name" required="true" />
+
             </div>
 
             <div class="ablock">
