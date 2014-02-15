@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Op
     public class OpAllotManageFlowService:IOpAllotManageFlowService
     {
 
-        public IRepositoryGUID<OpAllotManageFlow> EntityRepository { get; set; }
+        public IRepository<OpAllotManageFlow> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(OpAllotManageFlow entity)
+        public int Create(OpAllotManageFlow entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public OpAllotManageFlow GetById(string id)
+        public OpAllotManageFlow GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,64 +67,44 @@ namespace YiQiWorkFlow.Application.Service.Op
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
-					 if (c.entity.AlFlowNumber > 0)
-					{
-						q = q.Where(p => p.AlFlowNumber == c.entity.AlFlowNumber);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.AlType) == false)
 					{
-						
 						q = q.Where(p => p.AlType.Contains(c.entity.AlType));
 					}
 					if (string.IsNullOrEmpty(c.entity.OrganOut) == false)
 					{
-						
 						q = q.Where(p => p.OrganOut.Contains(c.entity.OrganOut));
 					}
 					if (string.IsNullOrEmpty(c.entity.OrganNameOut) == false)
 					{
-						
 						q = q.Where(p => p.OrganNameOut.Contains(c.entity.OrganNameOut));
 					}
 					if (string.IsNullOrEmpty(c.entity.WhCodeOut) == false)
 					{
-						
 						q = q.Where(p => p.WhCodeOut.Contains(c.entity.WhCodeOut));
 					}
 					if (string.IsNullOrEmpty(c.entity.OrganIn) == false)
 					{
-						
 						q = q.Where(p => p.OrganIn.Contains(c.entity.OrganIn));
 					}
 					if (string.IsNullOrEmpty(c.entity.OrganNameIn) == false)
 					{
-						
 						q = q.Where(p => p.OrganNameIn.Contains(c.entity.OrganNameIn));
 					}
 					if (string.IsNullOrEmpty(c.entity.WhCodeIn) == false)
 					{
-						
 						q = q.Where(p => p.WhCodeIn.Contains(c.entity.WhCodeIn));
 					}
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
 					if (string.IsNullOrEmpty(c.entity.Assessor) == false)
 					{
-						
 						q = q.Where(p => p.Assessor.Contains(c.entity.Assessor));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfExamine) == false)
 					{
-						
 						q = q.Where(p => p.IfExamine.Contains(c.entity.IfExamine));
 					}
                 
@@ -136,7 +113,7 @@ namespace YiQiWorkFlow.Application.Service.Op
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.AlType.Contains(c.key)
 					|| l.OrganOut.Contains(c.key)
 					|| l.OrganNameOut.Contains(c.key)
@@ -166,8 +143,7 @@ namespace YiQiWorkFlow.Application.Service.Op
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
-					|| l.AlNumber.Contains(key)
+					1==0
 					|| l.AlType.Contains(key)
 					|| l.OrganOut.Contains(key)
 					|| l.OrganNameOut.Contains(key)
@@ -190,7 +166,8 @@ namespace YiQiWorkFlow.Application.Service.Op
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

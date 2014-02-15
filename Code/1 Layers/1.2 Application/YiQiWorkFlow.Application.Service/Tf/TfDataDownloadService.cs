@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,24 +71,20 @@ namespace YiQiWorkFlow.Application.Service.Tf
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.DownloadTablename) == false)
 					{
-						
 						q = q.Where(p => p.DownloadTablename.Contains(c.entity.DownloadTablename));
 					}
 					if (string.IsNullOrEmpty(c.entity.DownloadBranchcode) == false)
 					{
-						
 						q = q.Where(p => p.DownloadBranchcode.Contains(c.entity.DownloadBranchcode));
 					}
 					if (string.IsNullOrEmpty(c.entity.DownloadKeyvalue) == false)
 					{
-						
 						q = q.Where(p => p.DownloadKeyvalue.Contains(c.entity.DownloadKeyvalue));
 					}
                 
@@ -120,7 +117,6 @@ namespace YiQiWorkFlow.Application.Service.Tf
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.DownloadId.Contains(key)
 					|| l.DownloadTablename.Contains(key)
 					|| l.DownloadBranchcode.Contains(key)
 					|| l.DownloadKeyvalue.Contains(key)

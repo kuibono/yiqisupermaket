@@ -212,10 +212,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpAdjustManageFlowEdit(string id)
+        public ActionResult OpAdjustManageFlowEdit(int id)
         {
             OpAdjustManageFlow m = OpAdjustManageFlow.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = OpAdjustManageFlowService.GetById(id);
             }
@@ -687,10 +687,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpAllotManageFlowEdit(string id)
+        public ActionResult OpAllotManageFlowEdit(int id)
         {
             OpAllotManageFlow m = OpAllotManageFlow.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = OpAllotManageFlowService.GetById(id);
             }
@@ -782,10 +782,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpCheckDetailEdit(string id)
+        public ActionResult OpCheckDetailEdit(int id)
         {
             OpCheckDetail m = OpCheckDetail.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = OpCheckDetailService.GetById(id);
             }
@@ -1067,10 +1067,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpCheckTransferEdit(string id)
+        public ActionResult OpCheckTransferEdit(int id)
         {
             OpCheckTransfer m = OpCheckTransfer.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = OpCheckTransferService.GetById(id);
             }
@@ -1447,10 +1447,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpGoodsBatchEdit(string id)
+        public ActionResult OpGoodsBatchEdit(int id)
         {
             OpGoodsBatch m = OpGoodsBatch.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = OpGoodsBatchService.GetById(id);
             }
@@ -1732,10 +1732,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpLossManageFlowEdit(string id)
+        public ActionResult OpLossManageFlowEdit(int id)
         {
             OpLossManageFlow m = OpLossManageFlow.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = OpLossManageFlowService.GetById(id);
             }
@@ -2207,10 +2207,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult OpSplitComManageFlowEdit(string id)
+        public ActionResult OpSplitComManageFlowEdit(int id)
         {
             OpSplitComManageFlow m = OpSplitComManageFlow.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = OpSplitComManageFlowService.GetById(id);
             }

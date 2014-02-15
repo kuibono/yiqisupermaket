@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:23
+*生成时间：2014/2/15 18:06:27
 */
 using System;
 using NSH.Core.Domain;
@@ -12,12 +12,6 @@ namespace YiQiWorkFlow.Domain.Ba
 	///</summary>
 	public class BaPaCharge : EntityGUIDBase, IAggregateRootGUID
 	{
-		/// <summary>
-		/// 费用编码
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="费用编码")]
-		public virtual string ChargeCode{get ; set; }
-		
 		/// <summary>
 		/// 费用名称
 		/// </summary>

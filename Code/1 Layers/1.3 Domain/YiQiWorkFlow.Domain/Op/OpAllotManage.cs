@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:30
 */
 using System;
 using NSH.Core.Domain;
@@ -12,12 +12,6 @@ namespace YiQiWorkFlow.Domain.Op
 	///</summary>
 	public class OpAllotManage : EntityGUIDBase, IAggregateRootGUID
 	{
-		/// <summary>
-		/// 调拨单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="调拨单号")]
-		public virtual string AlNumber{get ; set; }
-		
 		/// <summary>
 		/// 调拨类型
 		/// </summary>

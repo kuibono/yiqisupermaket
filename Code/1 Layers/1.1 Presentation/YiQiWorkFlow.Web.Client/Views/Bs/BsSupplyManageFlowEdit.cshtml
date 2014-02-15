@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "分店商品订货配送单流水"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:44";var id="@Model.Id";pageName="BsSupplyManageFlowEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "分店商品订货配送单流水"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:42";var id="@Model.Id";pageName="BsSupplyManageFlowEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -95,12 +95,12 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_SpFlowNumber">流水单号:</label>
-                <input type="text" id="Control_SpFlowNumber" name="SpFlowNumber"  value="@Model.SpFlowNumber" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input id="Control_SpFlowNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock" style="display:none">
                 <label for="Control_SpNumber">配送单号:</label>
-                <input id="Control_SpNumber" value="@Model.Id" name="SpNumber" class="mini-hidden"/>
+                <input id="Control_SpNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">

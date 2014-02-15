@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:23
+*生成时间：2014/2/15 18:06:27
 */
 using System;
 using NSH.Core.Domain;
@@ -121,16 +121,16 @@ namespace YiQiWorkFlow.Domain.Bs
 		public virtual decimal SupplyMoney{get ; set; }
 		
 		/// <summary>
+		/// 折扣金额
+		/// </summary>
+		[Validate(ValidateType.IsDecimal ,Name="折扣金额")]
+		public virtual decimal DiscountMoney{get ; set; }
+		
+		/// <summary>
 		/// 系统标识
 		/// </summary>
 		[Validate(ValidateType.NoValidate,Name="系统标识")]
 		public virtual string SysGuid{get ; set; }
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
 		
 		protected override void Validate()
         {

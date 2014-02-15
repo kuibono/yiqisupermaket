@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="~/Styles/demo.css" />
     <script src="~/scripts/boot.js" type="text/javascript"></script>
-    <script type="text/javascript"> var pageTitle = "POS机设置"; var pageType = "List"; var createTime = "2014/2/13 8:18:55"; var isEmployeeLogin = false; </script>
+    <script type="text/javascript"> var pageTitle = "POS机设置"; var pageType = "List"; var createTime = "2014/2/15 20:05:00"; var isEmployeeLogin = false; </script>
 </head>
 <body>
     <div style="width: 100%">
@@ -83,6 +83,18 @@
 				<div field="pWidth" headeralign="center" align="center" width="60">
 				    打印宽度
 					<input id="filter_pWidth" name="pWidth" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="pType1" headeralign="center" align="center" width="60">
+				    打印机型号1
+					<input id="filter_pType1" name="pType1" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="pPort1" headeralign="center" align="center" width="60">
+				    打印端口1
+					<input id="filter_pPort1" name="pPort1" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="pWidth1" headeralign="center" align="center" width="60">
+				    打印宽度1
+					<input id="filter_pWidth1" name="pWidth1" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
 				<div field="CbType" headeralign="center" align="center" width="60">
 				    钱箱型号
@@ -174,14 +186,14 @@
         }
         function deleteItem(id) {
             $.ajax({
-                url: "RtPaPosDelete",
+                url: "/Rt/RtPaPosDelete",
                 data: { ids: id },
                 dataType: "json",
                 success: function (j) {
                     if (j == false) {
                         if (confirm("数据存在关联数据数据，删除后将影响整个系统运行，是否确认删除？") == true) {
                             $.ajax({
-                                url: "RtPaPosDelete",
+                                url: "/Rt/RtPaPosDelete",
                                 data: { ids: id, confirm: "true" },
                                 dataType: "json",
                                 success: function (r) {
@@ -200,7 +212,7 @@
         }
         function exame(obj, itemid, old) {
             $.ajax({
-                url: "RtPaPosDeleteExame/" + itemid,
+                url: "/Rt/RtPaPosDeleteExame/" + itemid,
                 success: function (j) {
                     if (j == true) {
                         $(obj).css("color", "green").text("是");

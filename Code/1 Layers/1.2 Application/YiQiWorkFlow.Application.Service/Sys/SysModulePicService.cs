@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,24 +71,20 @@ namespace YiQiWorkFlow.Application.Service.Sys
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.ModuleCode) == false)
 					{
-						
 						q = q.Where(p => p.ModuleCode.Contains(c.entity.ModuleCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.ModuleName) == false)
 					{
-						
 						q = q.Where(p => p.ModuleName.Contains(c.entity.ModuleName));
 					}
 					if (string.IsNullOrEmpty(c.entity.PicName) == false)
 					{
-						
 						q = q.Where(p => p.PicName.Contains(c.entity.PicName));
 					}
                 
@@ -123,7 +120,6 @@ namespace YiQiWorkFlow.Application.Service.Sys
 					|| l.ModuleCode.Contains(key)
 					|| l.ModuleName.Contains(key)
 					|| l.PicName.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

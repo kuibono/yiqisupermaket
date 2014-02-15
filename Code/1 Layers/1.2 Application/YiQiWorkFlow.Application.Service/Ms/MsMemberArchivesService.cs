@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,84 +71,68 @@ namespace YiQiWorkFlow.Application.Service.Ms
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.CardNumber) == false)
 					{
-						
 						q = q.Where(p => p.CardNumber.Contains(c.entity.CardNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.MsName) == false)
 					{
-						
 						q = q.Where(p => p.MsName.Contains(c.entity.MsName));
 					}
 					if (string.IsNullOrEmpty(c.entity.Sex) == false)
 					{
-						
 						q = q.Where(p => p.Sex.Contains(c.entity.Sex));
 					}
 					if (string.IsNullOrEmpty(c.entity.PoliticsCode) == false)
 					{
-						
 						q = q.Where(p => p.PoliticsCode.Contains(c.entity.PoliticsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.NationCode) == false)
 					{
-						
 						q = q.Where(p => p.NationCode.Contains(c.entity.NationCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.EducationCode) == false)
 					{
-						
 						q = q.Where(p => p.EducationCode.Contains(c.entity.EducationCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.ProfessionalTitleCode) == false)
 					{
-						
 						q = q.Where(p => p.ProfessionalTitleCode.Contains(c.entity.ProfessionalTitleCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfMarried) == false)
 					{
-						
 						q = q.Where(p => p.IfMarried.Contains(c.entity.IfMarried));
 					}
 					if (string.IsNullOrEmpty(c.entity.NativePlace) == false)
 					{
-						
 						q = q.Where(p => p.NativePlace.Contains(c.entity.NativePlace));
 					}
 					if (string.IsNullOrEmpty(c.entity.Idcard) == false)
 					{
-						
 						q = q.Where(p => p.Idcard.Contains(c.entity.Idcard));
 					}
 					if (string.IsNullOrEmpty(c.entity.FamilyPhone) == false)
 					{
-						
 						q = q.Where(p => p.FamilyPhone.Contains(c.entity.FamilyPhone));
 					}
 					if (string.IsNullOrEmpty(c.entity.Handset) == false)
 					{
-						
 						q = q.Where(p => p.Handset.Contains(c.entity.Handset));
 					}
 					if (string.IsNullOrEmpty(c.entity.eMail) == false)
 					{
-						
 						q = q.Where(p => p.eMail.Contains(c.entity.eMail));
 					}
 					if (string.IsNullOrEmpty(c.entity.FamilyAddress) == false)
 					{
-						
 						q = q.Where(p => p.FamilyAddress.Contains(c.entity.FamilyAddress));
 					}
 					if (string.IsNullOrEmpty(c.entity.Postalcode) == false)
 					{
-						
 						q = q.Where(p => p.Postalcode.Contains(c.entity.Postalcode));
 					}
 					 if (c.entity.Stature > 0)
@@ -203,7 +188,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
                     where 
                     l.Id.Contains(key)
 					|| l.CardNumber.Contains(key)
-					|| l.MsCode.Contains(key)
 					|| l.MsName.Contains(key)
 					|| l.Sex.Contains(key)
 					|| l.PoliticsCode.Contains(key)

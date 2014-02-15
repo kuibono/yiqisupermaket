@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,44 +71,36 @@ namespace YiQiWorkFlow.Application.Service.Em
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.EmCode) == false)
 					{
-						
 						q = q.Where(p => p.EmCode.Contains(c.entity.EmCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.sNumber) == false)
 					{
-						
 						q = q.Where(p => p.sNumber.Contains(c.entity.sNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.MemberName) == false)
 					{
-						
 						q = q.Where(p => p.MemberName.Contains(c.entity.MemberName));
 					}
 					if (string.IsNullOrEmpty(c.entity.Relationship) == false)
 					{
-						
 						q = q.Where(p => p.Relationship.Contains(c.entity.Relationship));
 					}
 					if (string.IsNullOrEmpty(c.entity.PoliticsCode) == false)
 					{
-						
 						q = q.Where(p => p.PoliticsCode.Contains(c.entity.PoliticsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.DutyCode) == false)
 					{
-						
 						q = q.Where(p => p.DutyCode.Contains(c.entity.DutyCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.WorkDepartment) == false)
 					{
-						
 						q = q.Where(p => p.WorkDepartment.Contains(c.entity.WorkDepartment));
 					}
                 
@@ -151,7 +144,6 @@ namespace YiQiWorkFlow.Application.Service.Em
 					|| l.PoliticsCode.Contains(key)
 					|| l.DutyCode.Contains(key)
 					|| l.WorkDepartment.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

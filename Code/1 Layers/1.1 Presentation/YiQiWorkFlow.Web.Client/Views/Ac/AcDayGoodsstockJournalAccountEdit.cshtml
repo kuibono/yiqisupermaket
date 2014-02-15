@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "总部商品进销存日帐"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:30";var id="@Model.Id";pageName="AcDayGoodsstockJournalAccountEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "总部商品进销存日帐"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:26";var id="@Model.Id";pageName="AcDayGoodsstockJournalAccountEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -95,7 +95,7 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_AcFlowNumber">流水单号:</label>
-                <input type="text" id="Control_AcFlowNumber" name="AcFlowNumber"  value="@Model.AcFlowNumber" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input id="Control_AcFlowNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">
@@ -281,11 +281,6 @@
             <div class="ablock">
                 <label for="Control_SupCode">供货商编码:</label>
                 <input type="text"  value="@Model.SupCode" class="mini-textbox" name="SupCode" id="Control_SupCode" vtype="maxLength:20"required="true" />
-            </div>
-
-            <div class="ablock" style="display:none">
-                <label for="Control_Id">:</label>
-                <input id="Control_Id" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
            

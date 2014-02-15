@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "商品出库单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:53";var id="@Model.Id";pageName="PcPutoutManageEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "商品出库单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54";var id="@Model.Id";pageName="PcPutoutManageEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -95,12 +95,12 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_PoFlowNumber">流水单号:</label>
-                <input type="text" id="Control_PoFlowNumber" name="PoFlowNumber"  value="@Model.PoFlowNumber" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input id="Control_PoFlowNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock" style="display:none">
                 <label for="Control_PoNumber">出库单号:</label>
-                <input id="Control_PoNumber" value="@Model.Id" name="PoNumber" class="mini-hidden"/>
+                <input id="Control_PoNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">

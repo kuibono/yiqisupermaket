@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:33
 */
 using System;
 using NSH.Core.Domain;
@@ -12,12 +12,6 @@ namespace YiQiWorkFlow.Domain.Ws
 	///</summary>
 	public class WsOrderManage : EntityGUIDBase, IAggregateRootGUID
 	{
-		/// <summary>
-		/// 订货单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="订货单号")]
-		public virtual string OrderNumber{get ; set; }
-		
 		/// <summary>
 		/// 订货日期
 		/// </summary>

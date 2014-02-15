@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:23
+*生成时间：2014/2/15 18:06:27
 */
 using System;
 using NSH.Core.Domain;
@@ -12,12 +12,6 @@ namespace YiQiWorkFlow.Domain.Ba
 	///</summary>
 	public class BaCustomerBalance : EntityGUIDBase, IAggregateRootGUID
 	{
-		/// <summary>
-		/// 结算单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="结算单号")]
-		public virtual string BaNumber{get ; set; }
-		
 		/// <summary>
 		/// 结算日期
 		/// </summary>

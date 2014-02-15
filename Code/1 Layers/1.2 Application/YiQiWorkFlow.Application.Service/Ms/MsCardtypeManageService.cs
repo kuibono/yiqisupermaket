@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,24 +71,20 @@ namespace YiQiWorkFlow.Application.Service.Ms
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.CardName) == false)
 					{
-						
 						q = q.Where(p => p.CardName.Contains(c.entity.CardName));
 					}
 					if (string.IsNullOrEmpty(c.entity.CardType) == false)
 					{
-						
 						q = q.Where(p => p.CardType.Contains(c.entity.CardType));
 					}
 					if (string.IsNullOrEmpty(c.entity.CardMedium) == false)
 					{
-						
 						q = q.Where(p => p.CardMedium.Contains(c.entity.CardMedium));
 					}
 					 if (c.entity.CardUsefulLife > 0)
@@ -112,12 +109,10 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.IfVip) == false)
 					{
-						
 						q = q.Where(p => p.IfVip.Contains(c.entity.IfVip));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfDiscount) == false)
 					{
-						
 						q = q.Where(p => p.IfDiscount.Contains(c.entity.IfDiscount));
 					}
 					 if (c.entity.DiscountBase > 0)
@@ -132,7 +127,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.IfPoints) == false)
 					{
-						
 						q = q.Where(p => p.IfPoints.Contains(c.entity.IfPoints));
 					}
 					 if (c.entity.ExpendBase > 0)
@@ -152,12 +146,10 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.IfPrepaid) == false)
 					{
-						
 						q = q.Where(p => p.IfPrepaid.Contains(c.entity.IfPrepaid));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfPrepaidPassword) == false)
 					{
-						
 						q = q.Where(p => p.IfPrepaidPassword.Contains(c.entity.IfPrepaidPassword));
 					}
 					 if (c.entity.LimitTimes > 0)
@@ -172,7 +164,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.PrestorePw) == false)
 					{
-						
 						q = q.Where(p => p.PrestorePw.Contains(c.entity.PrestorePw));
 					}
 					 if (c.entity.PrepaidMin > 0)
@@ -187,7 +178,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.IfPointToPrepaid) == false)
 					{
-						
 						q = q.Where(p => p.IfPointToPrepaid.Contains(c.entity.IfPointToPrepaid));
 					}
 					 if (c.entity.PointsBase > 0)
@@ -202,7 +192,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.CardNumberPrefix) == false)
 					{
-						
 						q = q.Where(p => p.CardNumberPrefix.Contains(c.entity.CardNumberPrefix));
 					}
 					 if (c.entity.CardNumberLen > 0)
@@ -217,7 +206,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.UpgradeType) == false)
 					{
-						
 						q = q.Where(p => p.UpgradeType.Contains(c.entity.UpgradeType));
 					}
 					 if (c.entity.PointsNeeds > 0)
@@ -227,27 +215,22 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.IfDeductPoints) == false)
 					{
-						
 						q = q.Where(p => p.IfDeductPoints.Contains(c.entity.IfDeductPoints));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfAutoup) == false)
 					{
-						
 						q = q.Where(p => p.IfAutoup.Contains(c.entity.IfAutoup));
 					}
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
 					if (string.IsNullOrEmpty(c.entity.Assessor) == false)
 					{
-						
 						q = q.Where(p => p.Assessor.Contains(c.entity.Assessor));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfExamine) == false)
 					{
-						
 						q = q.Where(p => p.IfExamine.Contains(c.entity.IfExamine));
 					}
                 
@@ -294,7 +277,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.CardCode.Contains(key)
 					|| l.CardName.Contains(key)
 					|| l.CardType.Contains(key)
 					|| l.CardMedium.Contains(key)

@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,59 +71,48 @@ namespace YiQiWorkFlow.Application.Service.Fb
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.GoodsBarCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsBarCode.Contains(c.entity.GoodsBarCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsSubCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsSubCode.Contains(c.entity.GoodsSubCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GbCode) == false)
 					{
-						
 						q = q.Where(p => p.GbCode.Contains(c.entity.GbCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GmCode) == false)
 					{
-						
 						q = q.Where(p => p.GmCode.Contains(c.entity.GmCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GsCode) == false)
 					{
-						
 						q = q.Where(p => p.GsCode.Contains(c.entity.GsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GlCode) == false)
 					{
-						
 						q = q.Where(p => p.GlCode.Contains(c.entity.GlCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsType) == false)
 					{
-						
 						q = q.Where(p => p.GoodsType.Contains(c.entity.GoodsType));
 					}
 					if (string.IsNullOrEmpty(c.entity.CheckMode) == false)
 					{
-						
 						q = q.Where(p => p.CheckMode.Contains(c.entity.CheckMode));
 					}
 					if (string.IsNullOrEmpty(c.entity.SupCode) == false)
 					{
-						
 						q = q.Where(p => p.SupCode.Contains(c.entity.SupCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.OpCode) == false)
 					{
-						
 						q = q.Where(p => p.OpCode.Contains(c.entity.OpCode));
 					}
 					 if (c.entity.PoolRate > 0)
@@ -132,52 +122,42 @@ namespace YiQiWorkFlow.Application.Service.Fb
 					
 					if (string.IsNullOrEmpty(c.entity.GoodsName) == false)
 					{
-						
 						q = q.Where(p => p.GoodsName.Contains(c.entity.GoodsName));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsSubName) == false)
 					{
-						
 						q = q.Where(p => p.GoodsSubName.Contains(c.entity.GoodsSubName));
 					}
 					if (string.IsNullOrEmpty(c.entity.PyCode) == false)
 					{
-						
 						q = q.Where(p => p.PyCode.Contains(c.entity.PyCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsState) == false)
 					{
-						
 						q = q.Where(p => p.GoodsState.Contains(c.entity.GoodsState));
 					}
 					if (string.IsNullOrEmpty(c.entity.ProducingArea) == false)
 					{
-						
 						q = q.Where(p => p.ProducingArea.Contains(c.entity.ProducingArea));
 					}
 					if (string.IsNullOrEmpty(c.entity.ArticleNumber) == false)
 					{
-						
 						q = q.Where(p => p.ArticleNumber.Contains(c.entity.ArticleNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.Specification) == false)
 					{
-						
 						q = q.Where(p => p.Specification.Contains(c.entity.Specification));
 					}
 					if (string.IsNullOrEmpty(c.entity.ShelfLife) == false)
 					{
-						
 						q = q.Where(p => p.ShelfLife.Contains(c.entity.ShelfLife));
 					}
 					if (string.IsNullOrEmpty(c.entity.PackUnitCode) == false)
 					{
-						
 						q = q.Where(p => p.PackUnitCode.Contains(c.entity.PackUnitCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.OfferMode) == false)
 					{
-						
 						q = q.Where(p => p.OfferMode.Contains(c.entity.OfferMode));
 					}
 					 if (c.entity.PackCoef > 0)
@@ -212,17 +192,18 @@ namespace YiQiWorkFlow.Application.Service.Fb
 					
 					if (string.IsNullOrEmpty(c.entity.UnderFloorCode) == false)
 					{
-						
 						q = q.Where(p => p.UnderFloorCode.Contains(c.entity.UnderFloorCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.UnderCounterCode) == false)
 					{
-						
 						q = q.Where(p => p.UnderCounterCode.Contains(c.entity.UnderCounterCode));
+					}
+					if (string.IsNullOrEmpty(c.entity.BrandCode) == false)
+					{
+						q = q.Where(p => p.BrandCode.Contains(c.entity.BrandCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.CheckUnitCode) == false)
 					{
-						
 						q = q.Where(p => p.CheckUnitCode.Contains(c.entity.CheckUnitCode));
 					}
 					 if (c.entity.PurchasePrice > 0)
@@ -250,6 +231,11 @@ namespace YiQiWorkFlow.Application.Service.Fb
 						q = q.Where(p => p.GrossRate == c.entity.GrossRate);
 					}
 					
+					 if (c.entity.SupplyPrice > 0)
+					{
+						q = q.Where(p => p.SupplyPrice == c.entity.SupplyPrice);
+					}
+					
 					 if (c.entity.SalePrice > 0)
 					{
 						q = q.Where(p => p.SalePrice == c.entity.SalePrice);
@@ -272,17 +258,14 @@ namespace YiQiWorkFlow.Application.Service.Fb
 					
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
 					if (string.IsNullOrEmpty(c.entity.Assessor) == false)
 					{
-						
 						q = q.Where(p => p.Assessor.Contains(c.entity.Assessor));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfExamine) == false)
 					{
-						
 						q = q.Where(p => p.IfExamine.Contains(c.entity.IfExamine));
 					}
                 
@@ -314,6 +297,7 @@ namespace YiQiWorkFlow.Application.Service.Fb
 					|| l.OfferMode.Contains(c.key)
 					|| l.UnderFloorCode.Contains(c.key)
 					|| l.UnderCounterCode.Contains(c.key)
+					|| l.BrandCode.Contains(c.key)
 					|| l.CheckUnitCode.Contains(c.key)
 					|| l.Operator.Contains(c.key)
 					|| l.Assessor.Contains(c.key)
@@ -338,7 +322,6 @@ namespace YiQiWorkFlow.Application.Service.Fb
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.GoodsCode.Contains(key)
 					|| l.GoodsBarCode.Contains(key)
 					|| l.GoodsSubCode.Contains(key)
 					|| l.GbCode.Contains(key)
@@ -361,6 +344,7 @@ namespace YiQiWorkFlow.Application.Service.Fb
 					|| l.OfferMode.Contains(key)
 					|| l.UnderFloorCode.Contains(key)
 					|| l.UnderCounterCode.Contains(key)
+					|| l.BrandCode.Contains(key)
 					|| l.CheckUnitCode.Contains(key)
 					|| l.Operator.Contains(key)
 					|| l.Assessor.Contains(key)

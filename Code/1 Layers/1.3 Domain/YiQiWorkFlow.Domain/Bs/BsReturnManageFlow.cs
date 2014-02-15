@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:23
+*生成时间：2014/2/15 18:06:27
 */
 using System;
 using NSH.Core.Domain;
@@ -10,20 +10,8 @@ namespace YiQiWorkFlow.Domain.Bs
 	///<summary>
 	///表bs_return_manage_flow的实体类(分店商品返货单_流水)
 	///</summary>
-	public class BsReturnManageFlow : EntityGUIDBase, IAggregateRootGUID
+	public class BsReturnManageFlow : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal ReFlowNumber{get ; set; }
-		
-		/// <summary>
-		/// 返货单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="返货单号")]
-		public virtual string ReNumber{get ; set; }
-		
 		/// <summary>
 		/// 分店编码
 		/// </summary>
@@ -135,7 +123,6 @@ namespace YiQiWorkFlow.Domain.Bs
         public static BsReturnManageFlow Initial()
         {
             BsReturnManageFlow m = new BsReturnManageFlow();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.ReturnMoney=0M;
 			m.BaMoney=0M;
 			m.IfExamine="0";

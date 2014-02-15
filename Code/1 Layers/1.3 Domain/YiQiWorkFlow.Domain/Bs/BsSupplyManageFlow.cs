@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:23
+*生成时间：2014/2/15 18:06:28
 */
 using System;
 using NSH.Core.Domain;
@@ -10,20 +10,8 @@ namespace YiQiWorkFlow.Domain.Bs
 	///<summary>
 	///表bs_supply_manage_flow的实体类(分店商品订货配送单_流水)
 	///</summary>
-	public class BsSupplyManageFlow : EntityGUIDBase, IAggregateRootGUID
+	public class BsSupplyManageFlow : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal SpFlowNumber{get ; set; }
-		
-		/// <summary>
-		/// 配送单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="配送单号")]
-		public virtual string SpNumber{get ; set; }
-		
 		/// <summary>
 		/// 分店编码
 		/// </summary>
@@ -177,7 +165,6 @@ namespace YiQiWorkFlow.Domain.Bs
         public static BsSupplyManageFlow Initial()
         {
             BsSupplyManageFlow m = new BsSupplyManageFlow();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.SupplyMoney=0M;
 			m.BaMoney=0M;
 			m.PurchaseIfExamine="0";

@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:49
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,24 +71,20 @@ namespace YiQiWorkFlow.Application.Service.Ba
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.EnCode) == false)
 					{
-						
 						q = q.Where(p => p.EnCode.Contains(c.entity.EnCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.SupCode) == false)
 					{
-						
 						q = q.Where(p => p.SupCode.Contains(c.entity.SupCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.PaywayCode) == false)
 					{
-						
 						q = q.Where(p => p.PaywayCode.Contains(c.entity.PaywayCode));
 					}
 					 if (c.entity.BalanceMoney > 0)
@@ -97,17 +94,14 @@ namespace YiQiWorkFlow.Application.Service.Ba
 					
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
 					if (string.IsNullOrEmpty(c.entity.Assessor) == false)
 					{
-						
 						q = q.Where(p => p.Assessor.Contains(c.entity.Assessor));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfExamine) == false)
 					{
-						
 						q = q.Where(p => p.IfExamine.Contains(c.entity.IfExamine));
 					}
                 
@@ -143,7 +137,6 @@ namespace YiQiWorkFlow.Application.Service.Ba
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.BaNumber.Contains(key)
 					|| l.EnCode.Contains(key)
 					|| l.SupCode.Contains(key)
 					|| l.PaywayCode.Contains(key)

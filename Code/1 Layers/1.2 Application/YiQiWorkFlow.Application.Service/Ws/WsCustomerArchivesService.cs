@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,89 +71,72 @@ namespace YiQiWorkFlow.Application.Service.Ws
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.CustName) == false)
 					{
-						
 						q = q.Where(p => p.CustName.Contains(c.entity.CustName));
 					}
 					if (string.IsNullOrEmpty(c.entity.PyCode) == false)
 					{
-						
 						q = q.Where(p => p.PyCode.Contains(c.entity.PyCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.CustTypeCode) == false)
 					{
-						
 						q = q.Where(p => p.CustTypeCode.Contains(c.entity.CustTypeCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.Linkman) == false)
 					{
-						
 						q = q.Where(p => p.Linkman.Contains(c.entity.Linkman));
 					}
 					if (string.IsNullOrEmpty(c.entity.ContactPhone) == false)
 					{
-						
 						q = q.Where(p => p.ContactPhone.Contains(c.entity.ContactPhone));
 					}
 					if (string.IsNullOrEmpty(c.entity.ContactAddress) == false)
 					{
-						
 						q = q.Where(p => p.ContactAddress.Contains(c.entity.ContactAddress));
 					}
 					if (string.IsNullOrEmpty(c.entity.OfficePhone) == false)
 					{
-						
 						q = q.Where(p => p.OfficePhone.Contains(c.entity.OfficePhone));
 					}
 					if (string.IsNullOrEmpty(c.entity.FaxPhone) == false)
 					{
-						
 						q = q.Where(p => p.FaxPhone.Contains(c.entity.FaxPhone));
 					}
 					if (string.IsNullOrEmpty(c.entity.eMail) == false)
 					{
-						
 						q = q.Where(p => p.eMail.Contains(c.entity.eMail));
 					}
 					if (string.IsNullOrEmpty(c.entity.Postalcode) == false)
 					{
-						
 						q = q.Where(p => p.Postalcode.Contains(c.entity.Postalcode));
 					}
 					if (string.IsNullOrEmpty(c.entity.OpenAccount) == false)
 					{
-						
 						q = q.Where(p => p.OpenAccount.Contains(c.entity.OpenAccount));
 					}
 					if (string.IsNullOrEmpty(c.entity.BankAccount) == false)
 					{
-						
 						q = q.Where(p => p.BankAccount.Contains(c.entity.BankAccount));
 					}
 					if (string.IsNullOrEmpty(c.entity.TaxNumber) == false)
 					{
-						
 						q = q.Where(p => p.TaxNumber.Contains(c.entity.TaxNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.PayMode) == false)
 					{
-						
 						q = q.Where(p => p.PayMode.Contains(c.entity.PayMode));
 					}
 					if (string.IsNullOrEmpty(c.entity.BalanceMode) == false)
 					{
-						
 						q = q.Where(p => p.BalanceMode.Contains(c.entity.BalanceMode));
 					}
 					if (string.IsNullOrEmpty(c.entity.BalancePeriod) == false)
 					{
-						
 						q = q.Where(p => p.BalancePeriod.Contains(c.entity.BalancePeriod));
 					}
 					 if (c.entity.BalanceDay > 0)
@@ -162,27 +146,22 @@ namespace YiQiWorkFlow.Application.Service.Ws
 					
 					if (string.IsNullOrEmpty(c.entity.SalePeriod) == false)
 					{
-						
 						q = q.Where(p => p.SalePeriod.Contains(c.entity.SalePeriod));
 					}
 					if (string.IsNullOrEmpty(c.entity.Comment) == false)
 					{
-						
 						q = q.Where(p => p.Comment.Contains(c.entity.Comment));
 					}
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
 					if (string.IsNullOrEmpty(c.entity.Assessor) == false)
 					{
-						
 						q = q.Where(p => p.Assessor.Contains(c.entity.Assessor));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfExamine) == false)
 					{
-						
 						q = q.Where(p => p.IfExamine.Contains(c.entity.IfExamine));
 					}
                 
@@ -233,7 +212,6 @@ namespace YiQiWorkFlow.Application.Service.Ws
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.CustCode.Contains(key)
 					|| l.CustName.Contains(key)
 					|| l.PyCode.Contains(key)
 					|| l.CustTypeCode.Contains(key)

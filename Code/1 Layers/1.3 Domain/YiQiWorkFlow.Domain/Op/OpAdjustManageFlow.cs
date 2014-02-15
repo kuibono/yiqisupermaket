@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:30
 */
 using System;
 using NSH.Core.Domain;
@@ -10,20 +10,8 @@ namespace YiQiWorkFlow.Domain.Op
 	///<summary>
 	///表op_adjust_manage_flow的实体类(商品调整流水帐单)
 	///</summary>
-	public class OpAdjustManageFlow : EntityGUIDBase, IAggregateRootGUID
+	public class OpAdjustManageFlow : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal AdFlowNumber{get ; set; }
-		
-		/// <summary>
-		/// 调整单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="调整单号")]
-		public virtual string AdjustNumber{get ; set; }
-		
 		/// <summary>
 		/// 调整日期
 		/// </summary>
@@ -111,7 +99,6 @@ namespace YiQiWorkFlow.Domain.Op
         public static OpAdjustManageFlow Initial()
         {
             OpAdjustManageFlow m = new OpAdjustManageFlow();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.IfExamine="0";
             return m;
         }

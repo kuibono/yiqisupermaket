@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ms">
   <class name="MsPointsClear" table="ms_points_clear" lazy="true" >
-    <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+    <id name="Id" type="int" column="number_flow" >
+	    <generator class="increment" />
     </id>
-		<property name="NumberFlow" column="number_flow" type="decimal" />
-		<property name="ClearDate" column="clear_date" type="System.DateTime" />
-		<property name="Operator" column="operator" type="string" />
-		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
-    
-
+	<property name="ClearDate" column="clear_date" type="System.DateTime" />
+	<property name="Operator" column="operator" type="string" />
+	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
   </class>
 </hibernate-mapping>
 

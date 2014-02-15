@@ -42,7 +42,10 @@ namespace NSH.Core.Domain
         {
             get { return this.brokenRules; }
         }
-
+        public bool HaveId
+        {
+            get { return Id > 0; }
+        }
         public ReadOnlyCollection<BrokenRule> GetBrokenRules()
         {
             this.brokenRules.Clear();

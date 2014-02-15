@@ -1819,6 +1819,101 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion
         #endregion  基础参数设置
 
+        #region 品牌编码
+        public IFbPaGoodsBrandService FbPaGoodsBrandService { get; set; }
+        #region 品牌编码编辑页面
+        /// <summary>
+        /// 品牌编码编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult FbPaGoodsBrandEdit(string id)
+        {
+            FbPaGoodsBrand m = FbPaGoodsBrand.Initial();
+            if (string.IsNullOrEmpty(id) == false)
+            {
+                m = FbPaGoodsBrandService.GetById(id);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 品牌编码列表页面
+        /// <summary>
+        /// 品牌编码列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FbPaGoodsBrandList()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 品牌编码保存程序
+        /// <summary>
+        /// 品牌编码保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SaveFbPaGoodsBrand(FbPaGoodsBrand m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    FbPaGoodsBrandService.Update(m);
+                }
+                else
+                {
+                    FbPaGoodsBrandService.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 品牌编码搜索
+        /// <summary>
+        /// 品牌编码搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchFbPaGoodsBrandList(SearchDtoBase<FbPaGoodsBrand> c, FbPaGoodsBrand s)
+        {
+            c.entity = s;
+            return Json(FbPaGoodsBrandService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 品牌编码删除
+        /// <summary>
+        /// 品牌编码删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult FbPaGoodsBrandDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            FbPaGoodsBrandService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  品牌编码
+
         #region 核算单位编码
         public IFbPaGoodsCheckUnitService FbPaGoodsCheckUnitService { get; set; }
         #region 核算单位编码编辑页面

@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:49
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Ac
     public class AcMonthGoodsJournalAccountService:IAcMonthGoodsJournalAccountService
     {
 
-        public IRepositoryGUID<AcMonthGoodsJournalAccount> EntityRepository { get; set; }
+        public IRepository<AcMonthGoodsJournalAccount> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(AcMonthGoodsJournalAccount entity)
+        public int Create(AcMonthGoodsJournalAccount entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public AcMonthGoodsJournalAccount GetById(string id)
+        public AcMonthGoodsJournalAccount GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,19 +67,8 @@ namespace YiQiWorkFlow.Application.Service.Ac
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
-					 if (c.entity.AcFlowNumber > 0)
-					{
-						q = q.Where(p => p.AcFlowNumber == c.entity.AcFlowNumber);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.OpCode) == false)
 					{
-						
 						q = q.Where(p => p.OpCode.Contains(c.entity.OpCode));
 					}
 					 if (c.entity.PurchasePrice > 0)
@@ -237,7 +223,6 @@ namespace YiQiWorkFlow.Application.Service.Ac
 					
 					if (string.IsNullOrEmpty(c.entity.SupCode) == false)
 					{
-						
 						q = q.Where(p => p.SupCode.Contains(c.entity.SupCode));
 					}
                 
@@ -246,7 +231,7 @@ namespace YiQiWorkFlow.Application.Service.Ac
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.OpCode.Contains(c.key)
 					|| l.SupCode.Contains(c.key)
                     select l;
@@ -268,9 +253,7 @@ namespace YiQiWorkFlow.Application.Service.Ac
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
-					|| l.AcMonth.Contains(key)
-					|| l.GoodsCode.Contains(key)
+					1==0
 					|| l.OpCode.Contains(key)
 					|| l.SupCode.Contains(key)
                     select l;
@@ -285,7 +268,8 @@ namespace YiQiWorkFlow.Application.Service.Ac
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

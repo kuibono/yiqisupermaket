@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:29
 */
 using System;
 using NSH.Core.Domain;
@@ -12,12 +12,6 @@ namespace YiQiWorkFlow.Domain.Fb
 	///</summary>
 	public class FbSupplierArchives : EntityGUIDBase, IAggregateRootGUID
 	{
-		/// <summary>
-		/// 供货商编码
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="供货商编码")]
-		public virtual string SupCode{get ; set; }
-		
 		/// <summary>
 		/// 供货商名称
 		/// </summary>

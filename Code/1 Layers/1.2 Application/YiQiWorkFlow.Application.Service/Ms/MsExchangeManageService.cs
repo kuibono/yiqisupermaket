@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Ms
     public class MsExchangeManageService:IMsExchangeManageService
     {
 
-        public IRepositoryGUID<MsExchangeManage> EntityRepository { get; set; }
+        public IRepository<MsExchangeManage> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(MsExchangeManage entity)
+        public int Create(MsExchangeManage entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public MsExchangeManage GetById(string id)
+        public MsExchangeManage GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,34 +67,20 @@ namespace YiQiWorkFlow.Application.Service.Ms
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
-					 if (c.entity.ExFlowNumber > 0)
-					{
-						q = q.Where(p => p.ExFlowNumber == c.entity.ExFlowNumber);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.ExchangeNumber) == false)
 					{
-						
 						q = q.Where(p => p.ExchangeNumber.Contains(c.entity.ExchangeNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.CardNumber) == false)
 					{
-						
 						q = q.Where(p => p.CardNumber.Contains(c.entity.CardNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.MsCode) == false)
 					{
-						
 						q = q.Where(p => p.MsCode.Contains(c.entity.MsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.MsName) == false)
 					{
-						
 						q = q.Where(p => p.MsName.Contains(c.entity.MsName));
 					}
 					 if (c.entity.CurrentPoints > 0)
@@ -117,7 +100,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 					
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
                 
@@ -126,7 +108,7 @@ namespace YiQiWorkFlow.Application.Service.Ms
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.ExchangeNumber.Contains(c.key)
 					|| l.CardNumber.Contains(c.key)
 					|| l.MsCode.Contains(c.key)
@@ -151,13 +133,12 @@ namespace YiQiWorkFlow.Application.Service.Ms
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
+					1==0
 					|| l.ExchangeNumber.Contains(key)
 					|| l.CardNumber.Contains(key)
 					|| l.MsCode.Contains(key)
 					|| l.MsName.Contains(key)
 					|| l.Operator.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 
@@ -170,7 +151,8 @@ namespace YiQiWorkFlow.Application.Service.Ms
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

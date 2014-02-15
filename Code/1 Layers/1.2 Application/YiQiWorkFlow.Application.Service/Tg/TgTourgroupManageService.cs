@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Tg
     public class TgTourgroupManageService:ITgTourgroupManageService
     {
 
-        public IRepositoryGUID<TgTourgroupManage> EntityRepository { get; set; }
+        public IRepository<TgTourgroupManage> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(TgTourgroupManage entity)
+        public int Create(TgTourgroupManage entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public TgTourgroupManage GetById(string id)
+        public TgTourgroupManage GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,54 +67,36 @@ namespace YiQiWorkFlow.Application.Service.Tg
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
-					 if (c.entity.TgFlowNumber > 0)
-					{
-						q = q.Where(p => p.TgFlowNumber == c.entity.TgFlowNumber);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.GroupNumber) == false)
 					{
-						
 						q = q.Where(p => p.GroupNumber.Contains(c.entity.GroupNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.GroupTypeCode) == false)
 					{
-						
 						q = q.Where(p => p.GroupTypeCode.Contains(c.entity.GroupTypeCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.TaCode) == false)
 					{
-						
 						q = q.Where(p => p.TaCode.Contains(c.entity.TaCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.TaName) == false)
 					{
-						
 						q = q.Where(p => p.TaName.Contains(c.entity.TaName));
 					}
 					if (string.IsNullOrEmpty(c.entity.TaTypeCode) == false)
 					{
-						
 						q = q.Where(p => p.TaTypeCode.Contains(c.entity.TaTypeCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GuideCode) == false)
 					{
-						
 						q = q.Where(p => p.GuideCode.Contains(c.entity.GuideCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GuideName) == false)
 					{
-						
 						q = q.Where(p => p.GuideName.Contains(c.entity.GuideName));
 					}
 					if (string.IsNullOrEmpty(c.entity.GuideTacCode) == false)
 					{
-						
 						q = q.Where(p => p.GuideTacCode.Contains(c.entity.GuideTacCode));
 					}
 					 if (c.entity.GuidePushRate > 0)
@@ -142,12 +121,10 @@ namespace YiQiWorkFlow.Application.Service.Tg
 					
 					if (string.IsNullOrEmpty(c.entity.ExpostorTacCode) == false)
 					{
-						
 						q = q.Where(p => p.ExpostorTacCode.Contains(c.entity.ExpostorTacCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.Expostor) == false)
 					{
-						
 						q = q.Where(p => p.Expostor.Contains(c.entity.Expostor));
 					}
 					 if (c.entity.ExpostorPushRate > 0)
@@ -162,22 +139,18 @@ namespace YiQiWorkFlow.Application.Service.Tg
 					
 					if (string.IsNullOrEmpty(c.entity.Driver) == false)
 					{
-						
 						q = q.Where(p => p.Driver.Contains(c.entity.Driver));
 					}
 					if (string.IsNullOrEmpty(c.entity.LicensePlate) == false)
 					{
-						
 						q = q.Where(p => p.LicensePlate.Contains(c.entity.LicensePlate));
 					}
 					if (string.IsNullOrEmpty(c.entity.CarsGroup) == false)
 					{
-						
 						q = q.Where(p => p.CarsGroup.Contains(c.entity.CarsGroup));
 					}
 					if (string.IsNullOrEmpty(c.entity.CarsTypeCode) == false)
 					{
-						
 						q = q.Where(p => p.CarsTypeCode.Contains(c.entity.CarsTypeCode));
 					}
 					 if (c.entity.StopCharge > 0)
@@ -187,27 +160,22 @@ namespace YiQiWorkFlow.Application.Service.Tg
 					
 					if (string.IsNullOrEmpty(c.entity.CustomerFrom) == false)
 					{
-						
 						q = q.Where(p => p.CustomerFrom.Contains(c.entity.CustomerFrom));
 					}
 					if (string.IsNullOrEmpty(c.entity.Comment) == false)
 					{
-						
 						q = q.Where(p => p.Comment.Contains(c.entity.Comment));
 					}
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
 					if (string.IsNullOrEmpty(c.entity.Assessor) == false)
 					{
-						
 						q = q.Where(p => p.Assessor.Contains(c.entity.Assessor));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfExamine) == false)
 					{
-						
 						q = q.Where(p => p.IfExamine.Contains(c.entity.IfExamine));
 					}
                 
@@ -216,7 +184,7 @@ namespace YiQiWorkFlow.Application.Service.Tg
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.GroupNumber.Contains(c.key)
 					|| l.GroupTypeCode.Contains(c.key)
 					|| l.TaCode.Contains(c.key)
@@ -255,7 +223,7 @@ namespace YiQiWorkFlow.Application.Service.Tg
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
+					1==0
 					|| l.GroupNumber.Contains(key)
 					|| l.GroupTypeCode.Contains(key)
 					|| l.TaCode.Contains(key)
@@ -275,7 +243,6 @@ namespace YiQiWorkFlow.Application.Service.Tg
 					|| l.Operator.Contains(key)
 					|| l.Assessor.Contains(key)
 					|| l.IfExamine.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 
@@ -288,7 +255,8 @@ namespace YiQiWorkFlow.Application.Service.Tg
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

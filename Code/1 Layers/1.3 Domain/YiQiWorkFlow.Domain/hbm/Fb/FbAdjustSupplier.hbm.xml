@@ -2,18 +2,16 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Fb">
   <class name="FbAdjustSupplier" table="fb_adjust_supplier" lazy="true" >
     <id name="Id" type="string" column="adjust_number" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="AdjustDate" column="adjust_date" type="System.DateTime" />
-		<property name="AdjustReason" column="adjust_reason" type="string" />
-		<property name="CreateDate" column="create_date" type="System.DateTime" />
-		<property name="Operator" column="operator" type="string" />
-		<property name="Assessor" column="assessor" type="string" />
-		<property name="IfExamine" column="if_examine" type="string" />
-		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
-		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
-    
-
+	<property name="AdjustDate" column="adjust_date" type="System.DateTime" />
+	<property name="AdjustReason" column="adjust_reason" type="string" />
+	<property name="CreateDate" column="create_date" type="System.DateTime" />
+	<property name="Operator" column="operator" type="string" />
+	<property name="Assessor" column="assessor" type="string" />
+	<property name="IfExamine" column="if_examine" type="string" />
+	<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
   </class>
 </hibernate-mapping>
 

@@ -19,13 +19,13 @@ namespace NSH.Repository
             
         }
 
-        public virtual NHibernate.ISession Session
-        {
-            get
-            {
-                return Session;
-            }
-        }
+        //public virtual NHibernate.ISession Session
+        //{
+        //    get
+        //    {
+        //        return Session;
+        //    }
+        //}
 
         public virtual TEntity Get(int id)
         {

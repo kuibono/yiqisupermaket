@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,44 +71,36 @@ namespace YiQiWorkFlow.Application.Service.Tg
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.BaNumber) == false)
 					{
-						
 						q = q.Where(p => p.BaNumber.Contains(c.entity.BaNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.sNumber) == false)
 					{
-						
 						q = q.Where(p => p.sNumber.Contains(c.entity.sNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.BaNopayNumber) == false)
 					{
-						
 						q = q.Where(p => p.BaNopayNumber.Contains(c.entity.BaNopayNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.GroupNumber) == false)
 					{
-						
 						q = q.Where(p => p.GroupNumber.Contains(c.entity.GroupNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.BaItems) == false)
 					{
-						
 						q = q.Where(p => p.BaItems.Contains(c.entity.BaItems));
 					}
 					if (string.IsNullOrEmpty(c.entity.GbCode) == false)
 					{
-						
 						q = q.Where(p => p.GbCode.Contains(c.entity.GbCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GuideCode) == false)
 					{
-						
 						q = q.Where(p => p.GuideCode.Contains(c.entity.GuideCode));
 					}
 					 if (c.entity.SaleMoney > 0)
@@ -171,7 +164,6 @@ namespace YiQiWorkFlow.Application.Service.Tg
 					|| l.BaItems.Contains(key)
 					|| l.GbCode.Contains(key)
 					|| l.GuideCode.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

@@ -2,30 +2,28 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Ms">
   <class name="MsUpdateCardManage" table="ms_update_card_manage" lazy="true" >
     <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="UpdateNumber" column="update_number" type="string" />
-		<property name="EnCode" column="en_code" type="string" />
-		<property name="UpdateDate" column="update_date" type="System.DateTime" />
-		<property name="UpdateReason" column="update_reason" type="string" />
-		<property name="CardNumberOld" column="card_number_old" type="string" />
-		<property name="SurfaceNumberOld" column="surface_number_old" type="string" />
-		<property name="CardNumber" column="card_number" type="string" />
-		<property name="SurfaceNumber" column="surface_number" type="string" />
-		<property name="MsCode" column="ms_code" type="string" />
-		<property name="CardCode" column="card_code" type="string" />
-		<property name="CardName" column="card_name" type="string" />
-		<property name="CardState" column="card_state" type="string" />
-		<property name="EffectiveDate" column="effective_date" type="System.DateTime" />
-		<property name="PointsUsefulLifeDate" column="points_useful_life_date" type="System.DateTime" />
-		<property name="CardUsefulLifeDate" column="card_useful_life_date" type="System.DateTime" />
-		<property name="TransactCharge" column="transact_charge" type="decimal" />
-		<property name="DepositMoney" column="deposit_money" type="decimal" />
-		<property name="CreateDate" column="create_date" type="System.DateTime" />
-		<property name="Operator" column="operator" type="string" />
-		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
-    
-
+	<property name="UpdateNumber" column="update_number" type="string" />
+	<property name="EnCode" column="en_code" type="string" />
+	<property name="UpdateDate" column="update_date" type="System.DateTime" />
+	<property name="UpdateReason" column="update_reason" type="string" />
+	<property name="CardNumberOld" column="card_number_old" type="string" />
+	<property name="SurfaceNumberOld" column="surface_number_old" type="string" />
+	<property name="CardNumber" column="card_number" type="string" />
+	<property name="SurfaceNumber" column="surface_number" type="string" />
+	<property name="MsCode" column="ms_code" type="string" />
+	<property name="CardCode" column="card_code" type="string" />
+	<property name="CardName" column="card_name" type="string" />
+	<property name="CardState" column="card_state" type="string" />
+	<property name="EffectiveDate" column="effective_date" type="System.DateTime" />
+	<property name="PointsUsefulLifeDate" column="points_useful_life_date" type="System.DateTime" />
+	<property name="CardUsefulLifeDate" column="card_useful_life_date" type="System.DateTime" />
+	<property name="TransactCharge" column="transact_charge" type="decimal" />
+	<property name="DepositMoney" column="deposit_money" type="decimal" />
+	<property name="CreateDate" column="create_date" type="System.DateTime" />
+	<property name="Operator" column="operator" type="string" />
+	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
   </class>
 </hibernate-mapping>
 

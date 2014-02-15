@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:33
 */
 using System;
 using NSH.Core.Domain;
@@ -10,14 +10,8 @@ namespace YiQiWorkFlow.Domain.Tg
 	///<summary>
 	///表tg_tourgroup_manage的实体类(团队购物管理)
 	///</summary>
-	public class TgTourgroupManage : EntityGUIDBase, IAggregateRootGUID
+	public class TgTourgroupManage : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal TgFlowNumber{get ; set; }
-		
 		/// <summary>
 		/// 团队编号
 		/// </summary>
@@ -198,12 +192,6 @@ namespace YiQiWorkFlow.Domain.Tg
 		[Validate(ValidateType.IsDateTime ,Name="操作时间")]
 		public virtual System.DateTime? OperatorDate{get ; set; }
 		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
-		
 		protected override void Validate()
         {
         }
@@ -219,7 +207,6 @@ namespace YiQiWorkFlow.Domain.Tg
         public static TgTourgroupManage Initial()
         {
             TgTourgroupManage m = new TgTourgroupManage();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.GuidePushRate=0M;
 			m.IfExamine="0";
             return m;

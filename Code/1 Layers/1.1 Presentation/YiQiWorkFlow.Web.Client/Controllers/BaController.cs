@@ -402,10 +402,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult BaChargeDetailEdit(string id)
+        public ActionResult BaChargeDetailEdit(int id)
         {
             BaChargeDetail m = BaChargeDetail.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = BaChargeDetailService.GetById(id);
             }
@@ -1438,6 +1438,101 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         }
         #endregion
         #endregion  费用设置
+
+        #region 财务科目设置
+        public IBaPaSubjectService BaPaSubjectService { get; set; }
+        #region 财务科目设置编辑页面
+        /// <summary>
+        /// 财务科目设置编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult BaPaSubjectEdit(int id)
+        {
+            BaPaSubject m = BaPaSubject.Initial();
+            if (id > 0)
+            {
+                m = BaPaSubjectService.GetById(id);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 财务科目设置列表页面
+        /// <summary>
+        /// 财务科目设置列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BaPaSubjectList()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 财务科目设置保存程序
+        /// <summary>
+        /// 财务科目设置保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SaveBaPaSubject(BaPaSubject m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    BaPaSubjectService.Update(m);
+                }
+                else
+                {
+                    BaPaSubjectService.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 财务科目设置搜索
+        /// <summary>
+        /// 财务科目设置搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchBaPaSubjectList(SearchDtoBase<BaPaSubject> c, BaPaSubject s)
+        {
+            c.entity = s;
+            return Json(BaPaSubjectService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 财务科目设置删除
+        /// <summary>
+        /// 财务科目设置删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult BaPaSubjectDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            BaPaSubjectService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  财务科目设置
 
         #region 联营对帐单
         public IBaPoolAccountService BaPoolAccountService { get; set; }

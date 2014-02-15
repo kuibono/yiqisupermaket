@@ -2,24 +2,22 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Fb">
   <class name="FbSupplierLease" table="fb_supplier_lease" lazy="true" >
     <id name="Id" type="string" column="le_number" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="SupCode" column="sup_code" type="string" />
-		<property name="UnderCounterCode" column="under_counter_code" type="string" />
-		<property name="LeaseBeginDate" column="lease_begin_date" type="System.DateTime" />
-		<property name="LeaseEndDate" column="lease_end_date" type="System.DateTime" />
-		<property name="RentalMoney" column="rental_money" type="decimal" />
-		<property name="SaleMoney" column="sale_money" type="decimal" />
-		<property name="FloorsMoney" column="floors_money" type="decimal" />
-		<property name="RentRate" column="rent_rate" type="decimal" />
-		<property name="CreateDate" column="create_date" type="System.DateTime" />
-		<property name="Operator" column="operator" type="string" />
-		<property name="Assessor" column="assessor" type="string" />
-		<property name="IfExamine" column="if_examine" type="string" />
-		<property name="ExamineDate" column="examine_date" type="System.DateTime" />
-		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
-    
-
+	<property name="SupCode" column="sup_code" type="string" />
+	<property name="UnderCounterCode" column="under_counter_code" type="string" />
+	<property name="LeaseBeginDate" column="lease_begin_date" type="System.DateTime" />
+	<property name="LeaseEndDate" column="lease_end_date" type="System.DateTime" />
+	<property name="RentalMoney" column="rental_money" type="decimal" />
+	<property name="SaleMoney" column="sale_money" type="decimal" />
+	<property name="FloorsMoney" column="floors_money" type="decimal" />
+	<property name="RentRate" column="rent_rate" type="decimal" />
+	<property name="CreateDate" column="create_date" type="System.DateTime" />
+	<property name="Operator" column="operator" type="string" />
+	<property name="Assessor" column="assessor" type="string" />
+	<property name="IfExamine" column="if_examine" type="string" />
+	<property name="ExamineDate" column="examine_date" type="System.DateTime" />
+	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
   </class>
 </hibernate-mapping>
 

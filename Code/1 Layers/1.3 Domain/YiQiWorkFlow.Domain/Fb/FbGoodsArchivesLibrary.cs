@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:28
 */
 using System;
 using NSH.Core.Domain;
@@ -12,12 +12,6 @@ namespace YiQiWorkFlow.Domain.Fb
 	///</summary>
 	public class FbGoodsArchivesLibrary : EntityGUIDBase, IAggregateRootGUID
 	{
-		/// <summary>
-		/// 商品销售码
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="商品销售码")]
-		public virtual string GoodsBarCode{get ; set; }
-		
 		/// <summary>
 		/// 商品名称
 		/// </summary>

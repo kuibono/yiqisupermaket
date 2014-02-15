@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,49 +71,40 @@ namespace YiQiWorkFlow.Application.Service.Rt
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.PosName) == false)
 					{
-						
 						q = q.Where(p => p.PosName.Contains(c.entity.PosName));
 					}
 					if (string.IsNullOrEmpty(c.entity.PosIp) == false)
 					{
-						
 						q = q.Where(p => p.PosIp.Contains(c.entity.PosIp));
 					}
 					if (string.IsNullOrEmpty(c.entity.PosState) == false)
 					{
-						
 						q = q.Where(p => p.PosState.Contains(c.entity.PosState));
 					}
 					if (string.IsNullOrEmpty(c.entity.WhCode) == false)
 					{
-						
 						q = q.Where(p => p.WhCode.Contains(c.entity.WhCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.CdType) == false)
 					{
-						
 						q = q.Where(p => p.CdType.Contains(c.entity.CdType));
 					}
 					if (string.IsNullOrEmpty(c.entity.CdPort) == false)
 					{
-						
 						q = q.Where(p => p.CdPort.Contains(c.entity.CdPort));
 					}
 					if (string.IsNullOrEmpty(c.entity.pType) == false)
 					{
-						
 						q = q.Where(p => p.pType.Contains(c.entity.pType));
 					}
 					if (string.IsNullOrEmpty(c.entity.pPort) == false)
 					{
-						
 						q = q.Where(p => p.pPort.Contains(c.entity.pPort));
 					}
 					 if (c.entity.pWidth > 0)
@@ -120,14 +112,25 @@ namespace YiQiWorkFlow.Application.Service.Rt
 						q = q.Where(p => p.pWidth == c.entity.pWidth);
 					}
 					
+					if (string.IsNullOrEmpty(c.entity.pType1) == false)
+					{
+						q = q.Where(p => p.pType1.Contains(c.entity.pType1));
+					}
+					if (string.IsNullOrEmpty(c.entity.pPort1) == false)
+					{
+						q = q.Where(p => p.pPort1.Contains(c.entity.pPort1));
+					}
+					 if (c.entity.pWidth1 > 0)
+					{
+						q = q.Where(p => p.pWidth1 == c.entity.pWidth1);
+					}
+					
 					if (string.IsNullOrEmpty(c.entity.CbType) == false)
 					{
-						
 						q = q.Where(p => p.CbType.Contains(c.entity.CbType));
 					}
 					if (string.IsNullOrEmpty(c.entity.CbPort) == false)
 					{
-						
 						q = q.Where(p => p.CbPort.Contains(c.entity.CbPort));
 					}
                 
@@ -145,6 +148,8 @@ namespace YiQiWorkFlow.Application.Service.Rt
 					|| l.CdPort.Contains(c.key)
 					|| l.pType.Contains(c.key)
 					|| l.pPort.Contains(c.key)
+					|| l.pType1.Contains(c.key)
+					|| l.pPort1.Contains(c.key)
 					|| l.CbType.Contains(c.key)
 					|| l.CbPort.Contains(c.key)
                     select l;
@@ -167,7 +172,6 @@ namespace YiQiWorkFlow.Application.Service.Rt
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.Posid.Contains(key)
 					|| l.PosName.Contains(key)
 					|| l.PosIp.Contains(key)
 					|| l.PosState.Contains(key)
@@ -176,6 +180,8 @@ namespace YiQiWorkFlow.Application.Service.Rt
 					|| l.CdPort.Contains(key)
 					|| l.pType.Contains(key)
 					|| l.pPort.Contains(key)
+					|| l.pType1.Contains(key)
+					|| l.pPort1.Contains(key)
 					|| l.CbType.Contains(key)
 					|| l.CbPort.Contains(key)
                     select l;

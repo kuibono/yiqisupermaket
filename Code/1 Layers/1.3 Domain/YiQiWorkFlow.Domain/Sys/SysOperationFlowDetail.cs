@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:33
 */
 using System;
 using NSH.Core.Domain;
@@ -13,22 +13,10 @@ namespace YiQiWorkFlow.Domain.Sys
 	public class SysOperationFlowDetail : EntityGUIDBase, IAggregateRootGUID
 	{
 		/// <summary>
-		/// 流程编号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="流程编号")]
-		public virtual string OperationNumber{get ; set; }
-		
-		/// <summary>
 		/// 流程名称
 		/// </summary>
 		[Validate(ValidateType.IsEmpty ,Name="流程名称")]
 		public virtual string OperationName{get ; set; }
-		
-		/// <summary>
-		/// 序号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="序号")]
-		public virtual string sNumber{get ; set; }
 		
 		/// <summary>
 		/// 窗口名称

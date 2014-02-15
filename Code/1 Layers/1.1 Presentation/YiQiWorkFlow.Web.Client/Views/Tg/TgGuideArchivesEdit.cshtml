@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "导游人员信息"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/13 20:26:58";var id="@Model.Id";pageName="TgGuideArchivesEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "导游人员信息"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:59";var id="@Model.Id";pageName="TgGuideArchivesEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -95,12 +95,12 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_TgFlowNumber">流水单号:</label>
-                <input type="text" id="Control_TgFlowNumber" name="TgFlowNumber"  value="@Model.TgFlowNumber" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input id="Control_TgFlowNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock" style="display:none">
                 <label for="Control_GuideCode">人员编号:</label>
-                <input id="Control_GuideCode" value="@Model.Id" name="GuideCode" class="mini-hidden"/>
+                <input id="Control_GuideCode" value="@Model.Id" name="Id" class="mini-hidden"/>
             </div>
 
             <div class="ablock">

@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:49
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,24 +71,20 @@ namespace YiQiWorkFlow.Application.Service.Ba
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.BaNumber) == false)
 					{
-						
 						q = q.Where(p => p.BaNumber.Contains(c.entity.BaNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.OperatNumber) == false)
 					{
-						
 						q = q.Where(p => p.OperatNumber.Contains(c.entity.OperatNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.OperatType) == false)
 					{
-						
 						q = q.Where(p => p.OperatType.Contains(c.entity.OperatType));
 					}
 					 if (c.entity.PayableMoney > 0)
@@ -117,17 +114,14 @@ namespace YiQiWorkFlow.Application.Service.Ba
 					
 					if (string.IsNullOrEmpty(c.entity.MarginDeal) == false)
 					{
-						
 						q = q.Where(p => p.MarginDeal.Contains(c.entity.MarginDeal));
 					}
 					if (string.IsNullOrEmpty(c.entity.TableName) == false)
 					{
-						
 						q = q.Where(p => p.TableName.Contains(c.entity.TableName));
 					}
 					if (string.IsNullOrEmpty(c.entity.ColumnName) == false)
 					{
-						
 						q = q.Where(p => p.ColumnName.Contains(c.entity.ColumnName));
 					}
                 
@@ -169,7 +163,6 @@ namespace YiQiWorkFlow.Application.Service.Ba
 					|| l.MarginDeal.Contains(key)
 					|| l.TableName.Contains(key)
 					|| l.ColumnName.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

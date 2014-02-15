@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="~/Styles/demo.css" />
     <script src="~/scripts/boot.js" type="text/javascript"></script>
-    <script type="text/javascript"> var pageTitle = "分店商品返货单"; var pageType = "List"; var createTime = "2014/2/13 8:18:50"; var isEmployeeLogin = false; </script>
+    <script type="text/javascript"> var pageTitle = "分店商品返货单"; var pageType = "List"; var createTime = "2014/2/15 20:04:57"; var isEmployeeLogin = false; </script>
 </head>
 <body>
     <div style="width: 100%">
@@ -47,6 +47,10 @@
 				<div field="ReNumber" headeralign="center" align="center" width="60">
 				    返货单号
 					<input id="filter_ReNumber" name="ReNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="SpNumber" headeralign="center" align="center" width="60">
+				    配送单号
+					<input id="filter_SpNumber" name="SpNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
 				<div field="bCode" headeralign="center" align="center" width="60">
 				    分店编码
@@ -194,14 +198,14 @@
         }
         function deleteItem(id) {
             $.ajax({
-                url: "BsReturnManageDelete",
+                url: "/Bs/BsReturnManageDelete",
                 data: { ids: id },
                 dataType: "json",
                 success: function (j) {
                     if (j == false) {
                         if (confirm("数据存在关联数据数据，删除后将影响整个系统运行，是否确认删除？") == true) {
                             $.ajax({
-                                url: "BsReturnManageDelete",
+                                url: "/Bs/BsReturnManageDelete",
                                 data: { ids: id, confirm: "true" },
                                 dataType: "json",
                                 success: function (r) {
@@ -220,7 +224,7 @@
         }
         function exame(obj, itemid, old) {
             $.ajax({
-                url: "BsReturnManageDeleteExame/" + itemid,
+                url: "/Bs/BsReturnManageDeleteExame/" + itemid,
                 success: function (j) {
                     if (j == true) {
                         $(obj).css("color", "green").text("是");

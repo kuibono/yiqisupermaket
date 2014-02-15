@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,34 +71,28 @@ namespace YiQiWorkFlow.Application.Service.Op
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.ScNumber) == false)
 					{
-						
 						q = q.Where(p => p.ScNumber.Contains(c.entity.ScNumber));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsCode.Contains(c.entity.GoodsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsBarCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsBarCode.Contains(c.entity.GoodsBarCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.Specification) == false)
 					{
-						
 						q = q.Where(p => p.Specification.Contains(c.entity.Specification));
 					}
 					if (string.IsNullOrEmpty(c.entity.PackUnitCode) == false)
 					{
-						
 						q = q.Where(p => p.PackUnitCode.Contains(c.entity.PackUnitCode));
 					}
 					 if (c.entity.PurchaseQty > 0)
@@ -177,7 +172,6 @@ namespace YiQiWorkFlow.Application.Service.Op
 					|| l.GoodsBarCode.Contains(key)
 					|| l.Specification.Contains(key)
 					|| l.PackUnitCode.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 

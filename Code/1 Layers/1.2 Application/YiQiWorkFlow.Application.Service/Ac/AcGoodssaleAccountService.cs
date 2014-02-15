@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:49
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Ac
     public class AcGoodssaleAccountService:IAcGoodssaleAccountService
     {
 
-        public IRepositoryGUID<AcGoodssaleAccount> EntityRepository { get; set; }
+        public IRepository<AcGoodssaleAccount> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(AcGoodssaleAccount entity)
+        public int Create(AcGoodssaleAccount entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public AcGoodssaleAccount GetById(string id)
+        public AcGoodssaleAccount GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,44 +67,28 @@ namespace YiQiWorkFlow.Application.Service.Ac
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
-					 if (c.entity.RtFlowNumber > 0)
-					{
-						q = q.Where(p => p.RtFlowNumber == c.entity.RtFlowNumber);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.EnCode) == false)
 					{
-						
 						q = q.Where(p => p.EnCode.Contains(c.entity.EnCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.WhCode) == false)
 					{
-						
 						q = q.Where(p => p.WhCode.Contains(c.entity.WhCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.RtDate) == false)
 					{
-						
 						q = q.Where(p => p.RtDate.Contains(c.entity.RtDate));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsCode.Contains(c.entity.GoodsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsBarCode) == false)
 					{
-						
 						q = q.Where(p => p.GoodsBarCode.Contains(c.entity.GoodsBarCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.OpCode) == false)
 					{
-						
 						q = q.Where(p => p.OpCode.Contains(c.entity.OpCode));
 					}
 					 if (c.entity.SalePrice > 0)
@@ -167,7 +148,6 @@ namespace YiQiWorkFlow.Application.Service.Ac
 					
 					if (string.IsNullOrEmpty(c.entity.SupCode) == false)
 					{
-						
 						q = q.Where(p => p.SupCode.Contains(c.entity.SupCode));
 					}
 					 if (c.entity.PoolRate > 0)
@@ -182,7 +162,6 @@ namespace YiQiWorkFlow.Application.Service.Ac
 					
 					if (string.IsNullOrEmpty(c.entity.IfPromotion) == false)
 					{
-						
 						q = q.Where(p => p.IfPromotion.Contains(c.entity.IfPromotion));
 					}
                 
@@ -191,7 +170,7 @@ namespace YiQiWorkFlow.Application.Service.Ac
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.EnCode.Contains(c.key)
 					|| l.WhCode.Contains(c.key)
 					|| l.RtDate.Contains(c.key)
@@ -219,7 +198,7 @@ namespace YiQiWorkFlow.Application.Service.Ac
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
+					1==0
 					|| l.EnCode.Contains(key)
 					|| l.WhCode.Contains(key)
 					|| l.RtDate.Contains(key)
@@ -228,7 +207,6 @@ namespace YiQiWorkFlow.Application.Service.Ac
 					|| l.OpCode.Contains(key)
 					|| l.SupCode.Contains(key)
 					|| l.IfPromotion.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 
@@ -241,7 +219,8 @@ namespace YiQiWorkFlow.Application.Service.Ac
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

@@ -2,19 +2,17 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Sys">
   <class name="SysEnterpriseArchives" table="sys_enterprise_archives" lazy="true" >
     <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="EnCode" column="en_code" type="string" />
-		<property name="EnName" column="en_name" type="string" />
-		<property name="EnComName" column="en_com_name" type="string" />
-		<property name="EnType" column="en_type" type="string" />
-		<property name="EnCharacter" column="en_character" type="string" />
-		<property name="DealArea" column="deal_area" type="decimal" />
-		<property name="RegisterAddress" column="register_address" type="string" />
-		<property name="CurrentVersion" column="current_version" type="string" />
-		<property name="LastVersion" column="last_version" type="string" />
-    
-
+	<property name="EnCode" column="en_code" type="string" />
+	<property name="EnName" column="en_name" type="string" />
+	<property name="EnComName" column="en_com_name" type="string" />
+	<property name="EnType" column="en_type" type="string" />
+	<property name="EnCharacter" column="en_character" type="string" />
+	<property name="DealArea" column="deal_area" type="decimal" />
+	<property name="RegisterAddress" column="register_address" type="string" />
+	<property name="CurrentVersion" column="current_version" type="string" />
+	<property name="LastVersion" column="last_version" type="string" />
   </class>
 </hibernate-mapping>
 

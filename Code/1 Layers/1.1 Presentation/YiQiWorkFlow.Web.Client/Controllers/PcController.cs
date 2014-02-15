@@ -307,10 +307,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult PcPutinManageEdit(string id)
+        public ActionResult PcPutinManageEdit(int id)
         {
             PcPutinManage m = PcPutinManage.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = PcPutinManageService.GetById(id);
             }
@@ -497,10 +497,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult PcPutoutManageEdit(string id)
+        public ActionResult PcPutoutManageEdit(int id)
         {
             PcPutoutManage m = PcPutoutManage.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = PcPutoutManageService.GetById(id);
             }

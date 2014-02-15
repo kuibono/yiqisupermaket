@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="~/Styles/demo.css" />
     <script src="~/scripts/boot.js" type="text/javascript"></script>
-    <script type="text/javascript"> var pageTitle = "商品采购单"; var pageType = "List"; var createTime = "2014/2/13 8:18:54"; var isEmployeeLogin = false; </script>
+    <script type="text/javascript"> var pageTitle = "商品采购单"; var pageType = "List"; var createTime = "2014/2/15 20:05:00"; var isEmployeeLogin = false; </script>
 </head>
 <body>
     <div style="width: 100%">
@@ -206,18 +206,18 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"PcPurchaseManageEdit",text: "商品采购单管理", iconCls: "icon-edit", url: "/Pc/PcPurchaseManageEdit/" + id });
+			parent.showTab({ id:"PcPurchaseManageEdit",text: "商品采购单管理", iconCls: "icon-edit", url: "//Pc//PcPurchaseManageEdit/" + id });
         }
         function deleteItem(id) {
             $.ajax({
-                url: "PcPurchaseManageDelete",
+                url: "/Pc/PcPurchaseManageDelete",
                 data: { ids: id },
                 dataType: "json",
                 success: function (j) {
                     if (j == false) {
                         if (confirm("数据存在关联数据数据，删除后将影响整个系统运行，是否确认删除？") == true) {
                             $.ajax({
-                                url: "PcPurchaseManageDelete",
+                                url: "/Pc/PcPurchaseManageDelete",
                                 data: { ids: id, confirm: "true" },
                                 dataType: "json",
                                 success: function (r) {
@@ -236,7 +236,7 @@
         }
         function exame(obj, itemid, old) {
             $.ajax({
-                url: "PcPurchaseManageDeleteExame/" + itemid,
+                url: "/Pc/PcPurchaseManageDeleteExame/" + itemid,
                 success: function (j) {
                     if (j == true) {
                         $(obj).css("color", "green").text("是");

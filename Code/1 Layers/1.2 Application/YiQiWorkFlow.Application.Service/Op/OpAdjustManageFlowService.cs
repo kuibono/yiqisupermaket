@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Op
     public class OpAdjustManageFlowService:IOpAdjustManageFlowService
     {
 
-        public IRepositoryGUID<OpAdjustManageFlow> EntityRepository { get; set; }
+        public IRepository<OpAdjustManageFlow> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(OpAdjustManageFlow entity)
+        public int Create(OpAdjustManageFlow entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public OpAdjustManageFlow GetById(string id)
+        public OpAdjustManageFlow GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,54 +67,36 @@ namespace YiQiWorkFlow.Application.Service.Op
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
-					 if (c.entity.AdFlowNumber > 0)
-					{
-						q = q.Where(p => p.AdFlowNumber == c.entity.AdFlowNumber);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.EnCode) == false)
 					{
-						
 						q = q.Where(p => p.EnCode.Contains(c.entity.EnCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.AdjustType) == false)
 					{
-						
 						q = q.Where(p => p.AdjustType.Contains(c.entity.AdjustType));
 					}
 					if (string.IsNullOrEmpty(c.entity.AdjustOperat) == false)
 					{
-						
 						q = q.Where(p => p.AdjustOperat.Contains(c.entity.AdjustOperat));
 					}
 					if (string.IsNullOrEmpty(c.entity.WhCode) == false)
 					{
-						
 						q = q.Where(p => p.WhCode.Contains(c.entity.WhCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.AdjustReason) == false)
 					{
-						
 						q = q.Where(p => p.AdjustReason.Contains(c.entity.AdjustReason));
 					}
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
 					if (string.IsNullOrEmpty(c.entity.Assessor) == false)
 					{
-						
 						q = q.Where(p => p.Assessor.Contains(c.entity.Assessor));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfExamine) == false)
 					{
-						
 						q = q.Where(p => p.IfExamine.Contains(c.entity.IfExamine));
 					}
                 
@@ -126,7 +105,7 @@ namespace YiQiWorkFlow.Application.Service.Op
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.EnCode.Contains(c.key)
 					|| l.AdjustType.Contains(c.key)
 					|| l.AdjustOperat.Contains(c.key)
@@ -154,8 +133,7 @@ namespace YiQiWorkFlow.Application.Service.Op
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
-					|| l.AdjustNumber.Contains(key)
+					1==0
 					|| l.EnCode.Contains(key)
 					|| l.AdjustType.Contains(key)
 					|| l.AdjustOperat.Contains(key)
@@ -176,7 +154,8 @@ namespace YiQiWorkFlow.Application.Service.Op
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

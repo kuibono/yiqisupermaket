@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:49
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,14 +71,12 @@ namespace YiQiWorkFlow.Application.Service.Bs
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.WhName) == false)
 					{
-						
 						q = q.Where(p => p.WhName.Contains(c.entity.WhName));
 					}
 					 if (c.entity.WhArea > 0)
@@ -87,7 +86,6 @@ namespace YiQiWorkFlow.Application.Service.Bs
 					
 					if (string.IsNullOrEmpty(c.entity.SysGuid) == false)
 					{
-						
 						q = q.Where(p => p.SysGuid.Contains(c.entity.SysGuid));
 					}
                 
@@ -119,8 +117,6 @@ namespace YiQiWorkFlow.Application.Service.Bs
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.bCode.Contains(key)
-					|| l.WhCode.Contains(key)
 					|| l.WhName.Contains(key)
 					|| l.SysGuid.Contains(key)
                     select l;

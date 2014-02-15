@@ -1067,10 +1067,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult BsReturnManageFlowEdit(string id)
+        public ActionResult BsReturnManageFlowEdit(int id)
         {
             BsReturnManageFlow m = BsReturnManageFlow.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = BsReturnManageFlowService.GetById(id);
             }
@@ -1352,10 +1352,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="id">主键，没有就是新增</param>
         /// <returns></returns>
-        public ActionResult BsSupplyManageFlowEdit(string id)
+        public ActionResult BsSupplyManageFlowEdit(int id)
         {
             BsSupplyManageFlow m = BsSupplyManageFlow.Initial();
-            if (string.IsNullOrEmpty(id) == false)
+            if (id > 0)
             {
                 m = BsSupplyManageFlowService.GetById(id);
             }
@@ -1438,6 +1438,576 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         }
         #endregion
         #endregion  分店商品订货配送单流水
+
+        #region 配赠促销
+        public IBsSupplyPresentPromotionService BsSupplyPresentPromotionService { get; set; }
+        #region 配赠促销编辑页面
+        /// <summary>
+        /// 配赠促销编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult BsSupplyPresentPromotionEdit(string id)
+        {
+            BsSupplyPresentPromotion m = BsSupplyPresentPromotion.Initial();
+            if (string.IsNullOrEmpty(id) == false)
+            {
+                m = BsSupplyPresentPromotionService.GetById(id);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 配赠促销列表页面
+        /// <summary>
+        /// 配赠促销列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsSupplyPresentPromotionList()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 配赠促销保存程序
+        /// <summary>
+        /// 配赠促销保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SaveBsSupplyPresentPromotion(BsSupplyPresentPromotion m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    BsSupplyPresentPromotionService.Update(m);
+                }
+                else
+                {
+                    BsSupplyPresentPromotionService.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 配赠促销搜索
+        /// <summary>
+        /// 配赠促销搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchBsSupplyPresentPromotionList(SearchDtoBase<BsSupplyPresentPromotion> c, BsSupplyPresentPromotion s)
+        {
+            c.entity = s;
+            return Json(BsSupplyPresentPromotionService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 配赠促销删除
+        /// <summary>
+        /// 配赠促销删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult BsSupplyPresentPromotionDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            BsSupplyPresentPromotionService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  配赠促销
+
+        #region 配赠促销分店
+        public IBsSupplyPresentPromotionBranchService BsSupplyPresentPromotionBranchService { get; set; }
+        #region 配赠促销分店编辑页面
+        /// <summary>
+        /// 配赠促销分店编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult BsSupplyPresentPromotionBranchEdit(string id)
+        {
+            BsSupplyPresentPromotionBranch m = BsSupplyPresentPromotionBranch.Initial();
+            if (string.IsNullOrEmpty(id) == false)
+            {
+                m = BsSupplyPresentPromotionBranchService.GetById(id);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 配赠促销分店列表页面
+        /// <summary>
+        /// 配赠促销分店列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsSupplyPresentPromotionBranchList()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 配赠促销分店保存程序
+        /// <summary>
+        /// 配赠促销分店保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SaveBsSupplyPresentPromotionBranch(BsSupplyPresentPromotionBranch m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    BsSupplyPresentPromotionBranchService.Update(m);
+                }
+                else
+                {
+                    BsSupplyPresentPromotionBranchService.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 配赠促销分店搜索
+        /// <summary>
+        /// 配赠促销分店搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchBsSupplyPresentPromotionBranchList(SearchDtoBase<BsSupplyPresentPromotionBranch> c, BsSupplyPresentPromotionBranch s)
+        {
+            c.entity = s;
+            return Json(BsSupplyPresentPromotionBranchService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 配赠促销分店删除
+        /// <summary>
+        /// 配赠促销分店删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult BsSupplyPresentPromotionBranchDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            BsSupplyPresentPromotionBranchService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  配赠促销分店
+
+        #region 配赠促销商品明细
+        public IBsSupplyPresentPromotionGoodsService BsSupplyPresentPromotionGoodsService { get; set; }
+        #region 配赠促销商品明细编辑页面
+        /// <summary>
+        /// 配赠促销商品明细编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult BsSupplyPresentPromotionGoodsEdit(string id)
+        {
+            BsSupplyPresentPromotionGoods m = BsSupplyPresentPromotionGoods.Initial();
+            if (string.IsNullOrEmpty(id) == false)
+            {
+                m = BsSupplyPresentPromotionGoodsService.GetById(id);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 配赠促销商品明细列表页面
+        /// <summary>
+        /// 配赠促销商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsSupplyPresentPromotionGoodsList()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 配赠促销商品明细保存程序
+        /// <summary>
+        /// 配赠促销商品明细保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SaveBsSupplyPresentPromotionGoods(BsSupplyPresentPromotionGoods m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    BsSupplyPresentPromotionGoodsService.Update(m);
+                }
+                else
+                {
+                    BsSupplyPresentPromotionGoodsService.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 配赠促销商品明细搜索
+        /// <summary>
+        /// 配赠促销商品明细搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchBsSupplyPresentPromotionGoodsList(SearchDtoBase<BsSupplyPresentPromotionGoods> c, BsSupplyPresentPromotionGoods s)
+        {
+            c.entity = s;
+            return Json(BsSupplyPresentPromotionGoodsService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 配赠促销商品明细删除
+        /// <summary>
+        /// 配赠促销商品明细删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult BsSupplyPresentPromotionGoodsDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            BsSupplyPresentPromotionGoodsService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  配赠促销商品明细
+
+        #region 配价促销
+        public IBsSupplyPromotionService BsSupplyPromotionService { get; set; }
+        #region 配价促销编辑页面
+        /// <summary>
+        /// 配价促销编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult BsSupplyPromotionEdit(string id)
+        {
+            BsSupplyPromotion m = BsSupplyPromotion.Initial();
+            if (string.IsNullOrEmpty(id) == false)
+            {
+                m = BsSupplyPromotionService.GetById(id);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 配价促销列表页面
+        /// <summary>
+        /// 配价促销列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsSupplyPromotionList()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 配价促销保存程序
+        /// <summary>
+        /// 配价促销保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SaveBsSupplyPromotion(BsSupplyPromotion m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    BsSupplyPromotionService.Update(m);
+                }
+                else
+                {
+                    BsSupplyPromotionService.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 配价促销搜索
+        /// <summary>
+        /// 配价促销搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchBsSupplyPromotionList(SearchDtoBase<BsSupplyPromotion> c, BsSupplyPromotion s)
+        {
+            c.entity = s;
+            return Json(BsSupplyPromotionService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 配价促销删除
+        /// <summary>
+        /// 配价促销删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult BsSupplyPromotionDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            BsSupplyPromotionService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  配价促销
+
+        #region 配价促销分店
+        public IBsSupplyPromotionBranchService BsSupplyPromotionBranchService { get; set; }
+        #region 配价促销分店编辑页面
+        /// <summary>
+        /// 配价促销分店编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult BsSupplyPromotionBranchEdit(string id)
+        {
+            BsSupplyPromotionBranch m = BsSupplyPromotionBranch.Initial();
+            if (string.IsNullOrEmpty(id) == false)
+            {
+                m = BsSupplyPromotionBranchService.GetById(id);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 配价促销分店列表页面
+        /// <summary>
+        /// 配价促销分店列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsSupplyPromotionBranchList()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 配价促销分店保存程序
+        /// <summary>
+        /// 配价促销分店保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SaveBsSupplyPromotionBranch(BsSupplyPromotionBranch m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    BsSupplyPromotionBranchService.Update(m);
+                }
+                else
+                {
+                    BsSupplyPromotionBranchService.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 配价促销分店搜索
+        /// <summary>
+        /// 配价促销分店搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchBsSupplyPromotionBranchList(SearchDtoBase<BsSupplyPromotionBranch> c, BsSupplyPromotionBranch s)
+        {
+            c.entity = s;
+            return Json(BsSupplyPromotionBranchService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 配价促销分店删除
+        /// <summary>
+        /// 配价促销分店删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult BsSupplyPromotionBranchDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            BsSupplyPromotionBranchService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  配价促销分店
+
+        #region 配价促销商品明细
+        public IBsSupplyPromotionGoodsService BsSupplyPromotionGoodsService { get; set; }
+        #region 配价促销商品明细编辑页面
+        /// <summary>
+        /// 配价促销商品明细编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult BsSupplyPromotionGoodsEdit(string id)
+        {
+            BsSupplyPromotionGoods m = BsSupplyPromotionGoods.Initial();
+            if (string.IsNullOrEmpty(id) == false)
+            {
+                m = BsSupplyPromotionGoodsService.GetById(id);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 配价促销商品明细列表页面
+        /// <summary>
+        /// 配价促销商品明细列表页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BsSupplyPromotionGoodsList()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 配价促销商品明细保存程序
+        /// <summary>
+        /// 配价促销商品明细保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SaveBsSupplyPromotionGoods(BsSupplyPromotionGoods m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    BsSupplyPromotionGoodsService.Update(m);
+                }
+                else
+                {
+                    BsSupplyPromotionGoodsService.Create(m);
+                }
+                r.IsSuccess = true;
+                r.Message = "保存成功";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 配价促销商品明细搜索
+        /// <summary>
+        /// 配价促销商品明细搜索
+        /// </summary>
+        /// <param name="c">搜索dto包括keyword分页数据</param>
+        /// <param name="s">搜索内容，表数据填充</param>
+        /// <returns></returns>
+        public JsonResult SearchBsSupplyPromotionGoodsList(SearchDtoBase<BsSupplyPromotionGoods> c, BsSupplyPromotionGoods s)
+        {
+            c.entity = s;
+            return Json(BsSupplyPromotionGoodsService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 配价促销商品明细删除
+        /// <summary>
+        /// 配价促销商品明细删除
+        /// </summary>
+        /// <param name="ids">主键</param>
+        /// <returns></returns>
+        public JsonResult BsSupplyPromotionGoodsDelete(List<string> ids)
+        {
+            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            BsSupplyPromotionGoodsService.Delete(ids);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+        #endregion  配价促销商品明细
     }
 }
 

@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,59 +71,48 @@ namespace YiQiWorkFlow.Application.Service.Op
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.AlType) == false)
 					{
-						
 						q = q.Where(p => p.AlType.Contains(c.entity.AlType));
 					}
 					if (string.IsNullOrEmpty(c.entity.OrganOut) == false)
 					{
-						
 						q = q.Where(p => p.OrganOut.Contains(c.entity.OrganOut));
 					}
 					if (string.IsNullOrEmpty(c.entity.OrganNameOut) == false)
 					{
-						
 						q = q.Where(p => p.OrganNameOut.Contains(c.entity.OrganNameOut));
 					}
 					if (string.IsNullOrEmpty(c.entity.WhCodeOut) == false)
 					{
-						
 						q = q.Where(p => p.WhCodeOut.Contains(c.entity.WhCodeOut));
 					}
 					if (string.IsNullOrEmpty(c.entity.OrganIn) == false)
 					{
-						
 						q = q.Where(p => p.OrganIn.Contains(c.entity.OrganIn));
 					}
 					if (string.IsNullOrEmpty(c.entity.OrganNameIn) == false)
 					{
-						
 						q = q.Where(p => p.OrganNameIn.Contains(c.entity.OrganNameIn));
 					}
 					if (string.IsNullOrEmpty(c.entity.WhCodeIn) == false)
 					{
-						
 						q = q.Where(p => p.WhCodeIn.Contains(c.entity.WhCodeIn));
 					}
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
 					if (string.IsNullOrEmpty(c.entity.Assessor) == false)
 					{
-						
 						q = q.Where(p => p.Assessor.Contains(c.entity.Assessor));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfExamine) == false)
 					{
-						
 						q = q.Where(p => p.IfExamine.Contains(c.entity.IfExamine));
 					}
                 
@@ -162,7 +152,6 @@ namespace YiQiWorkFlow.Application.Service.Op
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.AlNumber.Contains(key)
 					|| l.AlType.Contains(key)
 					|| l.OrganOut.Contains(key)
 					|| l.OrganNameOut.Contains(key)

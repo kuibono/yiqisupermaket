@@ -1,43 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects default-lazy-init="true" xmlns="http://www.springframework.net">
   <!--Repository-->
-  <object id="AcBranchGoodssaleAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcBranchGoodssaleAccount>, NSH.Repository">
+  <object id="AcBranchGoodssaleAccountRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcBranchGoodssaleAccount>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcCashierSummaryRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcCashierSummary>, NSH.Repository">
+  <object id="AcCashierSummaryRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcCashierSummary>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcCounterSummaryRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcCounterSummary>, NSH.Repository">
+  <object id="AcCounterSummaryRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcCounterSummary>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcDayBranchclassJournalAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcDayBranchclassJournalAccount>, NSH.Repository">
+  <object id="AcDayBranchclassJournalAccountRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcDayBranchclassJournalAccount>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcDayBranchgoodsJournalAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcDayBranchgoodsJournalAccount>, NSH.Repository">
+  <object id="AcDayBranchgoodsJournalAccountRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcDayBranchgoodsJournalAccount>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcDayClassJournalAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcDayClassJournalAccount>, NSH.Repository">
+  <object id="AcDayClassJournalAccountRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcDayClassJournalAccount>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcDayGoodsJournalAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcDayGoodsJournalAccount>, NSH.Repository">
+  <object id="AcDayGoodsJournalAccountRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcDayGoodsJournalAccount>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="AcDayGoodsJournalAccountTempRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcDayGoodsJournalAccountTemp>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcDayGoodsstockJournalAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcDayGoodsstockJournalAccount>, NSH.Repository">
+  <object id="AcDayGoodsstockJournalAccountRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcDayGoodsstockJournalAccount>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="AcDayGoodsstockJournalAccountTempRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcDayGoodsstockJournalAccountTemp>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcGoodssaleAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcGoodssaleAccount>, NSH.Repository">
+  <object id="AcGoodssaleAccountRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcGoodssaleAccount>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcMonthClassJournalAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcMonthClassJournalAccount>, NSH.Repository">
+  <object id="AcGoodssaleAccountTgRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcGoodssaleAccountTg>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcMonthGoodsJournalAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcMonthGoodsJournalAccount>, NSH.Repository">
+  <object id="AcMonthClassJournalAccountRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcMonthClassJournalAccount>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="AcMonthGoodsJournalAccountRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcMonthGoodsJournalAccount>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="AcPaDayaccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcPaDayaccount>, NSH.Repository">
@@ -49,16 +52,16 @@
   <object id="AcPaSalesetRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcPaSaleset>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcPeriodTimeSummaryRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcPeriodTimeSummary>, NSH.Repository">
+  <object id="AcPeriodTimeSummaryRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcPeriodTimeSummary>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcSalesmanSummaryRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcSalesmanSummary>, NSH.Repository">
+  <object id="AcSalesmanSummaryRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcSalesmanSummary>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="AcStockAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcStockAccount>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="AcSupplierJournalRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ac.AcSupplierJournal>, NSH.Repository">
+  <object id="AcSupplierJournalRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ac.AcSupplierJournal>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="BaBranchBalanceRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ba.BaBranchBalance>, NSH.Repository">
@@ -73,7 +76,7 @@
   <object id="BaBranchOfferDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ba.BaBranchOfferDetail>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="BaChargeDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ba.BaChargeDetail>, NSH.Repository">
+  <object id="BaChargeDetailRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ba.BaChargeDetail>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="BaChargeManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ba.BaChargeManage>, NSH.Repository">
@@ -104,6 +107,9 @@
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="BaPaChargeRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ba.BaPaCharge>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BaPaSubjectRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ba.BaPaSubject>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="BaPoolAccountRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ba.BaPoolAccount>, NSH.Repository">
@@ -151,7 +157,7 @@
   <object id="BsReturnManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsReturnManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="BsReturnManageFlowRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsReturnManageFlow>, NSH.Repository">
+  <object id="BsReturnManageFlowRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Bs.BsReturnManageFlow>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="BsSupplyDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsSupplyDetail>, NSH.Repository">
@@ -160,7 +166,25 @@
   <object id="BsSupplyManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsSupplyManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="BsSupplyManageFlowRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsSupplyManageFlow>, NSH.Repository">
+  <object id="BsSupplyManageFlowRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Bs.BsSupplyManageFlow>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BsSupplyPresentPromotionRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsSupplyPresentPromotion>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BsSupplyPresentPromotionBranchRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsSupplyPresentPromotionBranch>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BsSupplyPresentPromotionGoodsRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsSupplyPresentPromotionGoods>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BsSupplyPromotionRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsSupplyPromotion>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BsSupplyPromotionBranchRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsSupplyPromotionBranch>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="BsSupplyPromotionGoodsRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Bs.BsSupplyPromotionGoods>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="EmEmployeeArchivesRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Em.EmEmployeeArchives>, NSH.Repository">
@@ -244,6 +268,9 @@
   <object id="FbPaBaseSetRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Fb.FbPaBaseSet>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
+  <object id="FbPaGoodsBrandRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Fb.FbPaGoodsBrand>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
   <object id="FbPaGoodsCheckUnitRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Fb.FbPaGoodsCheckUnit>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
@@ -274,7 +301,7 @@
   <object id="FbSupplierLeaseRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Fb.FbSupplierLease>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="MsAdjustPointsRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ms.MsAdjustPoints>, NSH.Repository">
+  <object id="MsAdjustPointsRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ms.MsAdjustPoints>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="MsCancelCardManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ms.MsCancelCardManage>, NSH.Repository">
@@ -301,7 +328,7 @@
   <object id="MsExchangeDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ms.MsExchangeDetail>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="MsExchangeManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ms.MsExchangeManage>, NSH.Repository">
+  <object id="MsExchangeManageRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ms.MsExchangeManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="MsFreezeCardManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ms.MsFreezeCardManage>, NSH.Repository">
@@ -322,10 +349,10 @@
   <object id="MsMemberArchivesRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ms.MsMemberArchives>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="MsPointsClearRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ms.MsPointsClear>, NSH.Repository">
+  <object id="MsPointsClearRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ms.MsPointsClear>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="MsPointtoprepaidManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ms.MsPointtoprepaidManage>, NSH.Repository">
+  <object id="MsPointtoprepaidManageRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ms.MsPointtoprepaidManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="MsPrepaidCardManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ms.MsPrepaidCardManage>, NSH.Repository">
@@ -349,7 +376,7 @@
   <object id="OpAdjustManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpAdjustManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="OpAdjustManageFlowRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpAdjustManageFlow>, NSH.Repository">
+  <object id="OpAdjustManageFlowRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Op.OpAdjustManageFlow>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="OpAdjustPurchaseDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpAdjustPurchaseDetail>, NSH.Repository">
@@ -364,10 +391,10 @@
   <object id="OpAllotManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpAllotManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="OpAllotManageFlowRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpAllotManageFlow>, NSH.Repository">
+  <object id="OpAllotManageFlowRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Op.OpAllotManageFlow>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="OpCheckDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpCheckDetail>, NSH.Repository">
+  <object id="OpCheckDetailRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Op.OpCheckDetail>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="OpCheckManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpCheckManage>, NSH.Repository">
@@ -376,7 +403,7 @@
   <object id="OpCheckStockRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpCheckStock>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="OpCheckTransferRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpCheckTransfer>, NSH.Repository">
+  <object id="OpCheckTransferRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Op.OpCheckTransfer>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="OpDynamicStockRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpDynamicStock>, NSH.Repository">
@@ -388,7 +415,7 @@
   <object id="OpDynamicStockWhRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpDynamicStockWh>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="OpGoodsBatchRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpGoodsBatch>, NSH.Repository">
+  <object id="OpGoodsBatchRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Op.OpGoodsBatch>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="OpLossDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpLossDetail>, NSH.Repository">
@@ -397,7 +424,7 @@
   <object id="OpLossManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpLossManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="OpLossManageFlowRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpLossManageFlow>, NSH.Repository">
+  <object id="OpLossManageFlowRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Op.OpLossManageFlow>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="OpPaWarehouseRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpPaWarehouse>, NSH.Repository">
@@ -412,7 +439,7 @@
   <object id="OpSplitComManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpSplitComManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="OpSplitComManageFlowRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Op.OpSplitComManageFlow>, NSH.Repository">
+  <object id="OpSplitComManageFlowRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Op.OpSplitComManageFlow>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="PcPurchaseDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Pc.PcPurchaseDetail>, NSH.Repository">
@@ -424,13 +451,13 @@
   <object id="PcPutinDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Pc.PcPutinDetail>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="PcPutinManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Pc.PcPutinManage>, NSH.Repository">
+  <object id="PcPutinManageRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Pc.PcPutinManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="PcPutoutDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Pc.PcPutoutDetail>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="PcPutoutManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Pc.PcPutoutManage>, NSH.Repository">
+  <object id="PcPutoutManageRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Pc.PcPutoutManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="PcReturnDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Pc.PcReturnDetail>, NSH.Repository">
@@ -481,13 +508,16 @@
   <object id="RtPresentPromotionGoodsRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Rt.RtPresentPromotionGoods>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="RtRetailDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Rt.RtRetailDetail>, NSH.Repository">
+  <object id="RtRetailDetailRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Rt.RtRetailDetail>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="RtRetailManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Rt.RtRetailManage>, NSH.Repository">
+  <object id="RtRetailLogRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Rt.RtRetailLog>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="RtRetailPayRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Rt.RtRetailPay>, NSH.Repository">
+  <object id="RtRetailManageRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Rt.RtRetailManage>, NSH.Repository">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>
+  </object>
+  <object id="RtRetailPayRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Rt.RtRetailPay>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="RtSheetPromotionRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Rt.RtSheetPromotion>, NSH.Repository">
@@ -565,10 +595,10 @@
   <object id="TgGroupBalanceDetailRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Tg.TgGroupBalanceDetail>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="TgGroupCallRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Tg.TgGroupCall>, NSH.Repository">
+  <object id="TgGroupCallRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Tg.TgGroupCall>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="TgGuideArchivesRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Tg.TgGuideArchives>, NSH.Repository">
+  <object id="TgGuideArchivesRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Tg.TgGuideArchives>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="TgGuideBalanceRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Tg.TgGuideBalance>, NSH.Repository">
@@ -598,7 +628,7 @@
   <object id="TgPushtacManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Tg.TgPushtacManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="TgTourgroupManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Tg.TgTourgroupManage>, NSH.Repository">
+  <object id="TgTourgroupManageRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Tg.TgTourgroupManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
   <object id="TgTravelArchivesRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Tg.TgTravelArchives>, NSH.Repository">
@@ -637,7 +667,7 @@
   <object id="WsWholesaleManageRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ws.WsWholesaleManage>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
-  <object id="WsWholesaleManageFlowRepository" type="NSH.Repository.RepositoryGUID&lt;YiQiWorkFlow.Domain.Ws.WsWholesaleManageFlow>, NSH.Repository">
+  <object id="WsWholesaleManageFlowRepository" type="NSH.Repository.Repository&lt;YiQiWorkFlow.Domain.Ws.WsWholesaleManageFlow>, NSH.Repository">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>
   </object>
 
@@ -674,6 +704,9 @@
   </object>
   <object id="AcGoodssaleAccountService" type="YiQiWorkFlow.Application.Service.Ac.AcGoodssaleAccountService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="AcGoodssaleAccountRepository"/>
+  </object>
+  <object id="AcGoodssaleAccountTgService" type="YiQiWorkFlow.Application.Service.Ac.AcGoodssaleAccountTgService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="AcGoodssaleAccountTgRepository"/>
   </object>
   <object id="AcMonthClassJournalAccountService" type="YiQiWorkFlow.Application.Service.Ac.AcMonthClassJournalAccountService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="AcMonthClassJournalAccountRepository"/>
@@ -747,6 +780,9 @@
   <object id="BaPaChargeService" type="YiQiWorkFlow.Application.Service.Ba.BaPaChargeService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="BaPaChargeRepository"/>
   </object>
+  <object id="BaPaSubjectService" type="YiQiWorkFlow.Application.Service.Ba.BaPaSubjectService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BaPaSubjectRepository"/>
+  </object>
   <object id="BaPoolAccountService" type="YiQiWorkFlow.Application.Service.Ba.BaPoolAccountService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="BaPoolAccountRepository"/>
   </object>
@@ -803,6 +839,24 @@
   </object>
   <object id="BsSupplyManageFlowService" type="YiQiWorkFlow.Application.Service.Bs.BsSupplyManageFlowService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="BsSupplyManageFlowRepository"/>
+  </object>
+  <object id="BsSupplyPresentPromotionService" type="YiQiWorkFlow.Application.Service.Bs.BsSupplyPresentPromotionService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BsSupplyPresentPromotionRepository"/>
+  </object>
+  <object id="BsSupplyPresentPromotionBranchService" type="YiQiWorkFlow.Application.Service.Bs.BsSupplyPresentPromotionBranchService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BsSupplyPresentPromotionBranchRepository"/>
+  </object>
+  <object id="BsSupplyPresentPromotionGoodsService" type="YiQiWorkFlow.Application.Service.Bs.BsSupplyPresentPromotionGoodsService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BsSupplyPresentPromotionGoodsRepository"/>
+  </object>
+  <object id="BsSupplyPromotionService" type="YiQiWorkFlow.Application.Service.Bs.BsSupplyPromotionService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BsSupplyPromotionRepository"/>
+  </object>
+  <object id="BsSupplyPromotionBranchService" type="YiQiWorkFlow.Application.Service.Bs.BsSupplyPromotionBranchService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BsSupplyPromotionBranchRepository"/>
+  </object>
+  <object id="BsSupplyPromotionGoodsService" type="YiQiWorkFlow.Application.Service.Bs.BsSupplyPromotionGoodsService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="BsSupplyPromotionGoodsRepository"/>
   </object>
   <object id="EmEmployeeArchivesService" type="YiQiWorkFlow.Application.Service.Em.EmEmployeeArchivesService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="EmEmployeeArchivesRepository"/>
@@ -884,6 +938,9 @@
   </object>
   <object id="FbPaBaseSetService" type="YiQiWorkFlow.Application.Service.Fb.FbPaBaseSetService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="FbPaBaseSetRepository"/>
+  </object>
+  <object id="FbPaGoodsBrandService" type="YiQiWorkFlow.Application.Service.Fb.FbPaGoodsBrandService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="FbPaGoodsBrandRepository"/>
   </object>
   <object id="FbPaGoodsCheckUnitService" type="YiQiWorkFlow.Application.Service.Fb.FbPaGoodsCheckUnitService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="FbPaGoodsCheckUnitRepository"/>
@@ -1125,6 +1182,9 @@
   <object id="RtRetailDetailService" type="YiQiWorkFlow.Application.Service.Rt.RtRetailDetailService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="RtRetailDetailRepository"/>
   </object>
+  <object id="RtRetailLogService" type="YiQiWorkFlow.Application.Service.Rt.RtRetailLogService, YiQiWorkFlow.Application.Service">
+    <property name="EntityRepository" ref="RtRetailLogRepository"/>
+  </object>
   <object id="RtRetailManageService" type="YiQiWorkFlow.Application.Service.Rt.RtRetailManageService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="RtRetailManageRepository"/>
   </object>
@@ -1281,6 +1341,9 @@
   <object id="WsWholesaleManageFlowService" type="YiQiWorkFlow.Application.Service.Ws.WsWholesaleManageFlowService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="WsWholesaleManageFlowRepository"/>
   </object>
+
+
+
 
 
 

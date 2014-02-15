@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:08
+*生成时间：2014/2/15 19:01:50
 */
 using System.Collections.Generic;
 using YiQiWorkFlow.Domain.Ac;
@@ -10,11 +10,9 @@ namespace YiQiWorkFlow.Application.Service.Ac
 {
     public interface IAcDayBranchclassJournalAccountService
     {
-        string Create(AcDayBranchclassJournalAccount entity);
+        int Create(AcDayBranchclassJournalAccount entity);
 
-        void SaveOrUpdate(AcDayBranchclassJournalAccount entity);
-
-        AcDayBranchclassJournalAccount GetById(string id);
+        AcDayBranchclassJournalAccount GetById(int id);
 
         IList<AcDayBranchclassJournalAccount> GetAll();
 

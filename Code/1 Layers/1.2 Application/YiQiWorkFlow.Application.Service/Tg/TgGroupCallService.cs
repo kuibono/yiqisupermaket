@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Tg
     public class TgGroupCallService:ITgGroupCallService
     {
 
-        public IRepositoryGUID<TgGroupCall> EntityRepository { get; set; }
+        public IRepository<TgGroupCall> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(TgGroupCall entity)
+        public int Create(TgGroupCall entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public TgGroupCall GetById(string id)
+        public TgGroupCall GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,34 +67,20 @@ namespace YiQiWorkFlow.Application.Service.Tg
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
-					 if (c.entity.TgFlowNumber > 0)
-					{
-						q = q.Where(p => p.TgFlowNumber == c.entity.TgFlowNumber);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.CallType) == false)
 					{
-						
 						q = q.Where(p => p.CallType.Contains(c.entity.CallType));
 					}
 					if (string.IsNullOrEmpty(c.entity.ItemsCode) == false)
 					{
-						
 						q = q.Where(p => p.ItemsCode.Contains(c.entity.ItemsCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.ItemsName) == false)
 					{
-						
 						q = q.Where(p => p.ItemsName.Contains(c.entity.ItemsName));
 					}
 					if (string.IsNullOrEmpty(c.entity.CallContent) == false)
 					{
-						
 						q = q.Where(p => p.CallContent.Contains(c.entity.CallContent));
 					}
                 
@@ -106,7 +89,7 @@ namespace YiQiWorkFlow.Application.Service.Tg
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.CallType.Contains(c.key)
 					|| l.ItemsCode.Contains(c.key)
 					|| l.ItemsName.Contains(c.key)
@@ -130,12 +113,11 @@ namespace YiQiWorkFlow.Application.Service.Tg
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
+					1==0
 					|| l.CallType.Contains(key)
 					|| l.ItemsCode.Contains(key)
 					|| l.ItemsName.Contains(key)
 					|| l.CallContent.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 
@@ -148,7 +130,8 @@ namespace YiQiWorkFlow.Application.Service.Tg
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

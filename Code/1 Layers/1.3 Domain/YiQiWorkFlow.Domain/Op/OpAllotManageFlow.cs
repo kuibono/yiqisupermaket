@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:30
 */
 using System;
 using NSH.Core.Domain;
@@ -10,20 +10,8 @@ namespace YiQiWorkFlow.Domain.Op
 	///<summary>
 	///表op_allot_manage_flow的实体类(商品调拨流水帐单)
 	///</summary>
-	public class OpAllotManageFlow : EntityGUIDBase, IAggregateRootGUID
+	public class OpAllotManageFlow : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal AlFlowNumber{get ; set; }
-		
-		/// <summary>
-		/// 调拨单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="调拨单号")]
-		public virtual string AlNumber{get ; set; }
-		
 		/// <summary>
 		/// 调拨类型
 		/// </summary>
@@ -123,7 +111,6 @@ namespace YiQiWorkFlow.Domain.Op
         public static OpAllotManageFlow Initial()
         {
             OpAllotManageFlow m = new OpAllotManageFlow();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.IfExamine="0";
             return m;
         }

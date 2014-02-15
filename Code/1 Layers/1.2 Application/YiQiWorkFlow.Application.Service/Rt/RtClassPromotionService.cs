@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:07
+*生成时间：2014/2/15 19:01:50
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -70,89 +71,72 @@ namespace YiQiWorkFlow.Application.Service.Rt
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
                     q = q.Where(p => p.Id.Contains(c.entity.Id));
                 }
 					if (string.IsNullOrEmpty(c.entity.EnCode) == false)
 					{
-						
 						q = q.Where(p => p.EnCode.Contains(c.entity.EnCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpBeginDate) == false)
 					{
-						
 						q = q.Where(p => p.SpBeginDate.Contains(c.entity.SpBeginDate));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpEndDate) == false)
 					{
-						
 						q = q.Where(p => p.SpEndDate.Contains(c.entity.SpEndDate));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpBeginTime) == false)
 					{
-						
 						q = q.Where(p => p.SpBeginTime.Contains(c.entity.SpBeginTime));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpEndTime) == false)
 					{
-						
 						q = q.Where(p => p.SpEndTime.Contains(c.entity.SpEndTime));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpW1) == false)
 					{
-						
 						q = q.Where(p => p.SpW1.Contains(c.entity.SpW1));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpW2) == false)
 					{
-						
 						q = q.Where(p => p.SpW2.Contains(c.entity.SpW2));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpW3) == false)
 					{
-						
 						q = q.Where(p => p.SpW3.Contains(c.entity.SpW3));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpW4) == false)
 					{
-						
 						q = q.Where(p => p.SpW4.Contains(c.entity.SpW4));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpW5) == false)
 					{
-						
 						q = q.Where(p => p.SpW5.Contains(c.entity.SpW5));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpW6) == false)
 					{
-						
 						q = q.Where(p => p.SpW6.Contains(c.entity.SpW6));
 					}
 					if (string.IsNullOrEmpty(c.entity.SpW7) == false)
 					{
-						
 						q = q.Where(p => p.SpW7.Contains(c.entity.SpW7));
 					}
 					if (string.IsNullOrEmpty(c.entity.AdjustReason) == false)
 					{
-						
 						q = q.Where(p => p.AdjustReason.Contains(c.entity.AdjustReason));
 					}
 					if (string.IsNullOrEmpty(c.entity.Operator) == false)
 					{
-						
 						q = q.Where(p => p.Operator.Contains(c.entity.Operator));
 					}
 					if (string.IsNullOrEmpty(c.entity.Assessor) == false)
 					{
-						
 						q = q.Where(p => p.Assessor.Contains(c.entity.Assessor));
 					}
 					if (string.IsNullOrEmpty(c.entity.IfExamine) == false)
 					{
-						
 						q = q.Where(p => p.IfExamine.Contains(c.entity.IfExamine));
 					}
                 
@@ -198,7 +182,6 @@ namespace YiQiWorkFlow.Application.Service.Rt
 				q = from l in q
                     where 
                     l.Id.Contains(key)
-					|| l.SpNumber.Contains(key)
 					|| l.EnCode.Contains(key)
 					|| l.SpBeginDate.Contains(key)
 					|| l.SpEndDate.Contains(key)

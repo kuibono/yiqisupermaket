@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:31
 */
 using System;
 using NSH.Core.Domain;
@@ -10,20 +10,8 @@ namespace YiQiWorkFlow.Domain.Op
 	///<summary>
 	///表op_split_com_manage_flow的实体类(组合拆零管理流水单)
 	///</summary>
-	public class OpSplitComManageFlow : EntityGUIDBase, IAggregateRootGUID
+	public class OpSplitComManageFlow : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal ScFlowNumber{get ; set; }
-		
-		/// <summary>
-		/// 处理单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty ,Name="处理单号")]
-		public virtual string ScNumber{get ; set; }
-		
 		/// <summary>
 		/// 处理日期
 		/// </summary>
@@ -135,7 +123,6 @@ namespace YiQiWorkFlow.Domain.Op
         public static OpSplitComManageFlow Initial()
         {
             OpSplitComManageFlow m = new OpSplitComManageFlow();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.IfExamine="0";
             return m;
         }

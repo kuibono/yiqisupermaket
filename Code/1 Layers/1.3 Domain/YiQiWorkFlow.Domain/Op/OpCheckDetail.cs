@@ -1,6 +1,6 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 22:55:24
+*生成时间：2014/2/15 18:06:30
 */
 using System;
 using NSH.Core.Domain;
@@ -10,14 +10,8 @@ namespace YiQiWorkFlow.Domain.Op
 	///<summary>
 	///表op_check_detail的实体类(商品盘点单_商品明细)
 	///</summary>
-	public class OpCheckDetail : EntityGUIDBase, IAggregateRootGUID
+	public class OpCheckDetail : EntityBase, IAggregateRoot
 	{
-		/// <summary>
-		/// 流水单号
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.IsDecimal ,Name="流水单号")]
-		public virtual decimal CkFlowNumber{get ; set; }
-		
 		/// <summary>
 		/// 盘点单号
 		/// </summary>
@@ -96,12 +90,6 @@ namespace YiQiWorkFlow.Domain.Op
 		[Validate(ValidateType.NoValidate,Name="系统标识")]
 		public virtual string SysGuid{get ; set; }
 		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Validate(ValidateType.IsEmpty |ValidateType.MaxLength , MaxLength = 20 ,Name="")]
-		public virtual string Id{get ; set; }
-		
 		protected override void Validate()
         {
         }
@@ -117,7 +105,6 @@ namespace YiQiWorkFlow.Domain.Op
         public static OpCheckDetail Initial()
         {
             OpCheckDetail m = new OpCheckDetail();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.PurchasePrice=0M;
 			m.SalePrice=0M;
 			m.PackCoef=1M;

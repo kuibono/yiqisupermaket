@@ -1,8 +1,9 @@
 /*
 *本代码由代码生成器自动生成，请不要更改此文件的任何代码。
-*生成时间：2014/2/12 23:42:06
+*生成时间：2014/2/15 19:01:49
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSH.Core.Domain;
@@ -15,20 +16,16 @@ namespace YiQiWorkFlow.Application.Service.Ba
     public class BaChargeDetailService:IBaChargeDetailService
     {
 
-        public IRepositoryGUID<BaChargeDetail> EntityRepository { get; set; }
+        public IRepository<BaChargeDetail> EntityRepository { get; set; }
 
         [Transaction]
-        public string Create(BaChargeDetail entity)
+        public int Create(BaChargeDetail entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
             return EntityRepository.Save(entity);
         }
 
         [Transaction]
-        public BaChargeDetail GetById(string id)
+        public BaChargeDetail GetById(int id)
         {
             return EntityRepository.Get(id);
         }
@@ -70,29 +67,16 @@ namespace YiQiWorkFlow.Application.Service.Ba
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
             {
-				
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
 					if (string.IsNullOrEmpty(c.entity.ChargeNumber) == false)
 					{
-						
 						q = q.Where(p => p.ChargeNumber.Contains(c.entity.ChargeNumber));
 					}
-					 if (c.entity.NumberFlow > 0)
-					{
-						q = q.Where(p => p.NumberFlow == c.entity.NumberFlow);
-					}
-					
 					if (string.IsNullOrEmpty(c.entity.ChargeCode) == false)
 					{
-						
 						q = q.Where(p => p.ChargeCode.Contains(c.entity.ChargeCode));
 					}
 					if (string.IsNullOrEmpty(c.entity.ChargeName) == false)
 					{
-						
 						q = q.Where(p => p.ChargeName.Contains(c.entity.ChargeName));
 					}
 					 if (c.entity.ChargeStandard > 0)
@@ -102,7 +86,6 @@ namespace YiQiWorkFlow.Application.Service.Ba
 					
 					if (string.IsNullOrEmpty(c.entity.Comment) == false)
 					{
-						
 						q = q.Where(p => p.Comment.Contains(c.entity.Comment));
 					}
                 
@@ -111,7 +94,7 @@ namespace YiQiWorkFlow.Application.Service.Ba
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
+					1==0
 					|| l.ChargeNumber.Contains(c.key)
 					|| l.ChargeCode.Contains(c.key)
 					|| l.ChargeName.Contains(c.key)
@@ -135,12 +118,11 @@ namespace YiQiWorkFlow.Application.Service.Ba
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
+					1==0
 					|| l.ChargeNumber.Contains(key)
 					|| l.ChargeCode.Contains(key)
 					|| l.ChargeName.Contains(key)
 					|| l.Comment.Contains(key)
-					|| l.Id.Contains(key)
                     select l;
 					
                 
@@ -153,7 +135,8 @@ namespace YiQiWorkFlow.Application.Service.Ba
         [Transaction]
         public void Delete(IList<string> ids)
         {
-            var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
+			var int_ids = ids.ToList().Select(p => { return Convert.ToInt32(p); }).ToList();
+            var q = EntityRepository.LinqQuery.Where(p => int_ids.Contains(p.Id));
             foreach (var each in q)
             {
                 Delete(each);

@@ -2,24 +2,22 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="YiQiWorkFlow.Domain" namespace="YiQiWorkFlow.Domain.Fb">
   <class name="FbPaBaseSet" table="fb_pa_base_set" lazy="true" >
     <id name="Id" type="string" column="Id" >
-      <generator class="assigned" />
+	    <generator class="assigned" />
     </id>
-		<property name="GoodsGbLen" column="goods_gb_len" type="decimal" />
-		<property name="GoodsGmLen" column="goods_gm_len" type="decimal" />
-		<property name="GoodsGsLen" column="goods_gs_len" type="decimal" />
-		<property name="GoodsGlLen" column="goods_gl_len" type="decimal" />
-		<property name="GoodsClassLevel" column="goods_class_level" type="decimal" />
-		<property name="GoodsLen" column="goods_len" type="decimal" />
-		<property name="GoodsPrefix" column="goods_prefix" type="string" />
-		<property name="SupLen" column="sup_len" type="decimal" />
-		<property name="SupPrefixType" column="sup_prefix_type" type="string" />
-		<property name="SupPrefixContent" column="sup_prefix_content" type="string" />
-		<property name="PurchasePreciseLen" column="purchase_precise_len" type="decimal" />
-		<property name="SalePreciseLen" column="sale_precise_len" type="decimal" />
-		<property name="Operator" column="operator" type="string" />
-		<property name="OperatorDate" column="operator_date" type="System.DateTime" />
-    
-
+	<property name="GoodsGbLen" column="goods_gb_len" type="decimal" />
+	<property name="GoodsGmLen" column="goods_gm_len" type="decimal" />
+	<property name="GoodsGsLen" column="goods_gs_len" type="decimal" />
+	<property name="GoodsGlLen" column="goods_gl_len" type="decimal" />
+	<property name="GoodsClassLevel" column="goods_class_level" type="decimal" />
+	<property name="GoodsLen" column="goods_len" type="decimal" />
+	<property name="GoodsPrefix" column="goods_prefix" type="string" />
+	<property name="SupLen" column="sup_len" type="decimal" />
+	<property name="SupPrefixType" column="sup_prefix_type" type="string" />
+	<property name="SupPrefixContent" column="sup_prefix_content" type="string" />
+	<property name="PurchasePreciseLen" column="purchase_precise_len" type="decimal" />
+	<property name="SalePreciseLen" column="sale_precise_len" type="decimal" />
+	<property name="Operator" column="operator" type="string" />
+	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
   </class>
 </hibernate-mapping>
 
