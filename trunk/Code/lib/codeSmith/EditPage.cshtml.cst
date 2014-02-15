@@ -143,7 +143,7 @@ private string GetTableColumnResult(ColumnSchema column)
     }
     if(column.IsPrimaryKeyMember)
     {
-        sb.AppendFormat("<input id=\"Control_{0}\" value=\"@Model.Id\" name=\"{0}\" class=\"mini-hidden\"/>",StringUtil.ToPascalCase(column.Name));
+        sb.AppendFormat("<input id=\"Control_{0}\" value=\"@Model.Id\" name=\"Id\" class=\"mini-hidden\"/>",StringUtil.ToPascalCase(column.Name));
     }
     else if(column.IsForeignKeyMember)
     {
