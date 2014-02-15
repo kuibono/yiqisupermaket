@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaController.cs" />
     <Compile Include="Controllers\BsController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\EmController.cs" />
     <Compile Include="Controllers\FbController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

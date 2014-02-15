@@ -5,7 +5,9 @@ using System.Web;
 using Spring.Context;
 using Spring.Context.Support;
 using Spring.Data.NHibernate.Generic;
-
+using NSH.VSTO;
+using System.Configuration;
+using System.Collections.Specialized;
 namespace YiQiWorkFlow.Web.Client.Common
 {
     public class MyEnv
@@ -135,9 +137,17 @@ namespace YiQiWorkFlow.Web.Client.Common
         {
             return (HibernateTemplate)_applicationContext.GetObject("HibernateTemplate");
         }
+        public static SqlHelper GetSqlHelper()
+        {
+            NameValueCollection cfgName = (NameValueCollection)ConfigurationSettings.GetConfig("databaseSettings");;
+            string connStr = cfgName["db.connectionString"].ToString();
+            return new SqlHelper(connStr);
+        }
+
         #endregion
     }
 
+   
     //public class Env
     //{
 
