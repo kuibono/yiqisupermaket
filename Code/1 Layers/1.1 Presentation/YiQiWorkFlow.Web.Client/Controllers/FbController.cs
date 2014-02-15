@@ -2114,7 +2114,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult FbPaGoodsGbEdit(string id)
         {
-            FbPaGoodsGb m = FbPaGoodsGb.Initial();
+            FbPaGoodsGb m = new FbPaGoodsGb();
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbPaGoodsGbService.GetById(id);
