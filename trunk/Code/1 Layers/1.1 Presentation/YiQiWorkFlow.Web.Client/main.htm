@@ -8,6 +8,22 @@
     <script type="text/javascript" src="Scripts/jquery-1.6.2.min.js"></script>
     <script type="text/javascript">
         $(function () {
+            $.getJSON("/Account/GetModelesTree", function (j) {
+                for (var i = 0; i < j.length; i++) {
+                    var node = '<li class="menu-icon-post menu-item"><div class="menu-image"></div><div class="menu-arrow"><div></div></div><a href="#">' + j[i].text + '</a><div class="submenu" style="top:' + (-30 * i) + 'px;max-height:' + ($(window).height() - 80) + 'px;overflow-y: auto;overflow-x: hidden;"><div class="submenu-head">' + j[i].text + '</div><ul>';
+                    //var node = $('<li class="menu-icon-post menu-item"><div class="menu-image"></div><div class="menu-arrow"><div></div></div><a href="#">' + j[i].text + '</a><div class="submenu"><div class="submenu-head">' + j[i].text + '</div><ul></ul></div></li>');
+                    for (var k = 0; k < j[i].menus.length; k++) {
+                        node += '<li><a name="' + j[i].menus[k].id + '" href="' + j[i].menus[k].url + '" onclick="javascript:openInTab(\'' + j[i].menus[k].id + '\',\'' + j[i].menus[k].text + '\',\'' + j[i].menus[k].url + '\');return false;">' + j[i].menus[k].text + '</a> </li>';
+                    }
+                    node += '</ul></div></li>';
+                    $(node).mouseover(function () {
+                        $("li.menu-icon-post").removeClass("open");
+                        $(this).addClass("open");
+                    }).mouseout(function () {
+                        $("li.menu-icon-post").removeClass("open");
+                    }).insertBefore("#collapse-menu");
+                }
+            });
             $("li.menu-icon-post").mouseover(function () {
                 $("li.menu-icon-post").removeClass("open");
                 $(this).addClass("open");
@@ -75,7 +91,11 @@
             $("#content").find("[id^='tab']").hide(); // Hide all content
             $("#tabs li").attr("id", ""); //Reset id's
             $("#tabs li:last").attr("id", "current");
+            $("#content div").hide();
             $("#content div:last").fadeIn();
+        }
+        function showTab(option) {
+            openInTab(option.id, option.text, option.url);
         }
     </script>
 </head>
@@ -86,63 +106,7 @@
             <div id="adminmenushadow"></div>
             <ul>
                 <li style="height: 30px;"></li>
-                <li class="menu-icon-post menu-item">
-                    <div class="menu-image">
-                    </div>
-                    <div class="menu-arrow">
-                        <div>
-                        </div>
-                    </div>
-                    <a href="#">菜单项目</a>
-                    <div class="submenu">
-                        <div class="submenu-head">
-                            菜单项目
-                        </div>
-                        <ul>
-                            <li><a name="abc" href="http://wukan.org" onclick="javascript:return false;">子项目一</a> </li>
-                            <li><a href="">子项目二</a> </li>
-                            <li><a href="">子项目三</a> </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="menu-icon-post menu-item">
-                    <div class="menu-image">
-                    </div>
-                    <div class="menu-arrow">
-                        <div>
-                        </div>
-                    </div>
-                    <a href="#">菜单项目</a>
-                    <div class="submenu">
-                        <div class="submenu-head">
-                            菜单项目
-                        </div>
-                        <ul>
-                            <li><a href="">子项目一</a> </li>
-                            <li><a href="">子项目二</a> </li>
-                            <li><a href="">子项目三</a> </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="menu-icon-post menu-item">
-                    <div class="menu-image">
-                    </div>
-                    <div class="menu-arrow">
-                        <div>
-                        </div>
-                    </div>
-                    <a href="#">菜单项目</a>
-                    <div class="submenu">
-                        <div class="submenu-head">
-                            菜单项目
-                        </div>
-                        <ul>
-                            <li><a href="">子项目一</a> </li>
-                            <li><a href="">子项目二</a> </li>
-                            <li><a href="">子项目三</a> </li>
-                        </ul>
-                    </div>
-                </li>
+                
                 <li id="collapse-menu" class="menu-item">
                     <div id="collapse-button">
                         <div></div>
@@ -193,24 +157,12 @@
             <div class="content">
                 <div class="space"></div>
                 <ul id="tabs">
-                    <li><a href="#" name="tab1">One<em></em></a></li>
-                    <li><a href="#" name="tab2">Two<em></em></a></li>
-                    <li><a href="#" name="tab3">Three<em></em></a></li>
-                    <li><a href="#" name="tab4">Four<em></em></a></li>
+                    <li><a href="#" name="tab1">空白<em></em></a></li>
                 </ul>
 
                 <div id="content">
                     <div class="tabContent" id="tab1">
-                        <iframe src="http://g.cn/" frameborder=0></iframe>
-                    </div>
-                    <div class="tabContent" id="tab2">
-                        <iframe src="http://g.cn/" frameborder=0></iframe>
-                    </div>
-                    <div class="tabContent" id="tab3">
-                        <iframe src="http://g.cn/" frameborder=0></iframe>
-                    </div>
-                    <div class="tabContent" id="tab4">
-                        <iframe src="http://g.cn/" frameborder=0></iframe>
+                        <p style="padding:20px;">连锁超市进销存系统</p>
                     </div>
                 </div>
             </div>
