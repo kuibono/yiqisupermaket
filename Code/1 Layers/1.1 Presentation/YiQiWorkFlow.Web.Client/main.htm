@@ -1,0 +1,220 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link type="text/css" rel="Stylesheet" href="Styles/reset.css" />
+    <link type="text/css" rel="Stylesheet" href="Styles/main.css" />
+    <script type="text/javascript" src="Scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("li.menu-icon-post").mouseover(function () {
+                $("li.menu-icon-post").removeClass("open");
+                $(this).addClass("open");
+            }).mouseout(function () {
+                $("li.menu-icon-post").removeClass("open");
+            });
+            $("#collapse-menu").click(function () {
+                if ($(document.body).hasClass("folded")) {
+                    $(document.body).removeClass("folded")
+                } else {
+                    $(document.body).addClass("folded")
+                }
+                resizeFrame();
+            });
+            resizeFrame();
+            $(window).resize(resizeFrame);
+            $("#content").find("[id^='tab']").hide(); // Hide all content
+            $("#tabs li:first").attr("id", "current"); // Activate the first tab
+            $("#content div.tabContent:first").fadeIn(); // Show first tab's content
+
+            $('#tabs a').click(function (e) {
+                e.preventDefault();
+                if ($(this).closest("li").attr("id") == "current") { //detection for current tab
+                    return;
+                }
+                else {
+                    $("#content").find("[id^='tab']").hide(); // Hide all content
+                    $("#tabs li").attr("id", ""); //Reset id's
+                    $(this).parent().attr("id", "current"); // Activate this
+                    $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+                }
+            });
+            $("#tabs li a em").click(function () {
+                closeTab($(this).parents("a").first().attr("name"));
+            });
+            $(".menu ul li .submenu li a").click(function () {
+                openInTab($(this).attr("name"), $(this).text(), $(this).attr("href"));
+                return false;
+            });
+        });
+
+        function resizeFrame() {
+            $("#content div iframe").each(function () {
+                $(this).height($(window).height() - 53);
+            });
+        }
+        function closeTab(name) {
+            var iscurrnt = false;
+            if ($("#tabs a[name='" + name + "']").parents("li").first().attr("id") == "current") {
+                iscurrnt = true;
+            }
+            $("#tabs a[name='" + name + "']").parents("li").remove();
+            $("#" + name).remove();
+            if (iscurrnt) {
+                $("#tabs li:last").attr("id", "current");
+                $("#content div:last").fadeIn();
+            }
+        }
+        function openInTab(name, text, url) {
+            if ($("#" + name).size() > 0) {
+                return false;
+            }
+            $("#tabs").append("<li><a href='javascript:closeTab(\"" + name + "\")' name='" + name + "'>" + text + "<em></em></a></li>");
+            $("#content").append("<div class='tabContent' id='" + name + "'><iframe frameborder=0 style='height:" + ($(window).height() - 53) + "px' src='" + url + "'></iframe></div>");
+            $("#content").find("[id^='tab']").hide(); // Hide all content
+            $("#tabs li").attr("id", ""); //Reset id's
+            $("#tabs li:last").attr("id", "current");
+            $("#content div:last").fadeIn();
+        }
+    </script>
+</head>
+<body class="folded">
+
+    <div class="wrap">
+        <div class="menu">
+            <div id="adminmenushadow"></div>
+            <ul>
+                <li style="height: 30px;"></li>
+                <li class="menu-icon-post menu-item">
+                    <div class="menu-image">
+                    </div>
+                    <div class="menu-arrow">
+                        <div>
+                        </div>
+                    </div>
+                    <a href="#">菜单项目</a>
+                    <div class="submenu">
+                        <div class="submenu-head">
+                            菜单项目
+                        </div>
+                        <ul>
+                            <li><a name="abc" href="http://wukan.org" onclick="javascript:return false;">子项目一</a> </li>
+                            <li><a href="">子项目二</a> </li>
+                            <li><a href="">子项目三</a> </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-icon-post menu-item">
+                    <div class="menu-image">
+                    </div>
+                    <div class="menu-arrow">
+                        <div>
+                        </div>
+                    </div>
+                    <a href="#">菜单项目</a>
+                    <div class="submenu">
+                        <div class="submenu-head">
+                            菜单项目
+                        </div>
+                        <ul>
+                            <li><a href="">子项目一</a> </li>
+                            <li><a href="">子项目二</a> </li>
+                            <li><a href="">子项目三</a> </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-icon-post menu-item">
+                    <div class="menu-image">
+                    </div>
+                    <div class="menu-arrow">
+                        <div>
+                        </div>
+                    </div>
+                    <a href="#">菜单项目</a>
+                    <div class="submenu">
+                        <div class="submenu-head">
+                            菜单项目
+                        </div>
+                        <ul>
+                            <li><a href="">子项目一</a> </li>
+                            <li><a href="">子项目二</a> </li>
+                            <li><a href="">子项目三</a> </li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="collapse-menu" class="menu-item">
+                    <div id="collapse-button">
+                        <div></div>
+                    </div>
+                    <span>收起菜单</span>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="top-bar">
+                <ul class="left-bar">
+                    <li class="bar-item logo first">
+                        <ul class="sub-items">
+                            <li><a href="#">关于本系统</a></li>
+                            <li><a href="#">文档</a></li>
+                            <li><a href="#">反馈</a></li>
+                        </ul>
+                    </li>
+                    <li class="bar-item last">
+                        <a href="javascript:void(0)">快捷菜单
+                        </a>
+                        <ul class="sub-items">
+                            <li><a href="#">商品档案</a></li>
+                            <li><a href="#">经销商档案</a></li>
+                            <li><a href="#">员工档案</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="right-bar">
+                    <li class="bar-item first">
+                        <a href="javascript:void(0)">功能地图</a>
+                        <div class="sub-items">
+                            <p>
+                                系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航
+                            </p>
+                        </div>
+                    </li>
+                    <li class="bar-item last">
+                        <a href="javascript:void(0)">欢迎您，张经理</a>
+                        <ul class="sub-items">
+                            <li><a href="#">个人信息</a></li>
+                            <li><a href="#">修改密码</a></li>
+                            <li><a href="#">退出系统</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="space"></div>
+                <ul id="tabs">
+                    <li><a href="#" name="tab1">One<em></em></a></li>
+                    <li><a href="#" name="tab2">Two<em></em></a></li>
+                    <li><a href="#" name="tab3">Three<em></em></a></li>
+                    <li><a href="#" name="tab4">Four<em></em></a></li>
+                </ul>
+
+                <div id="content">
+                    <div class="tabContent" id="tab1">
+                        <iframe src="http://g.cn/" frameborder=0></iframe>
+                    </div>
+                    <div class="tabContent" id="tab2">
+                        <iframe src="http://g.cn/" frameborder=0></iframe>
+                    </div>
+                    <div class="tabContent" id="tab3">
+                        <iframe src="http://g.cn/" frameborder=0></iframe>
+                    </div>
+                    <div class="tabContent" id="tab4">
+                        <iframe src="http://g.cn/" frameborder=0></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

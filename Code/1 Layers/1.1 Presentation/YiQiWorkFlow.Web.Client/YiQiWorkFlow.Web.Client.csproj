@@ -208,6 +208,7 @@
     <EmbeddedResource Include="Config\Controllers.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Content Include="main.htm" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\activate.gif" />
@@ -1001,7 +1002,21 @@
     <Content Include="Styles\email_go.png" />
     <Content Include="Styles\email_open.png" />
     <Content Include="Styles\header.gif" />
+    <Content Include="Styles\images\arrows.png" />
+    <Content Include="Styles\images\icons.png" />
+    <Content Include="Styles\images\logo.png" />
+    <Content Include="Styles\images\menu-shadow.png" />
+    <Content Include="Styles\images\menu.png" />
+    <Content Include="Styles\images\tab-bg.png" />
+    <Content Include="Styles\images\tabBg.png" />
+    <Content Include="Styles\images\tabs_close.gif" />
+    <Content Include="Styles\images\tab_bg.png" />
+    <Content Include="Styles\images\tab_left.png" />
+    <Content Include="Styles\images\tab_left_active.png" />
+    <Content Include="Styles\images\tab_right.png" />
+    <Content Include="Styles\images\tab_right_active.png" />
     <Content Include="Styles\login.css" />
+    <Content Include="Styles\main.css" />
     <Content Include="Styles\reset.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Web.config">
