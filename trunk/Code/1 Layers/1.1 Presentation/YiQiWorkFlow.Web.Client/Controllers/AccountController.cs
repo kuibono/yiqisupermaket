@@ -17,686 +17,2070 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 {
     public class AccountController : Controller
     {
-        //public IUserService UserService { get; set; }
 
-        //public ISysLoginPowerService SysLoginPowerService { get; set; }
-        //public ISysmodulecontentService SysmodulecontentService { get; set; }
-        //public IBsPaClassService BsPaClassService { get; set; }
-        //public IBsPaAreaService BsPaAreaService { get; set; }
-        //public ISysPaDepartmentService SysPaDepartmentService { get; set; }
-        //public ISysEnterpriseArchivesService SysEnterpriseArchivesService { get; set; }
-        //public IFbPaBaseSetService FbPaBaseSetService { get; set; }
-        //public IEmemployeearchiveService EmemployeearchiveService { get; set; }
-        //public IFbSupplierArchivesService FbSupplierArchivesService { get; set; }
-        //public ActionResult IniAll()
-        //{
-        //    IniUser();
-        //    IniUserS();
-        //    InISysPaClassAndArea();
-        //    InISysModule();
-        //    return Json("成功", JsonRequestBehavior.AllowGet);
-        //}
-
-        //public ActionResult IniUser()
-        //{
-        //    SysLoginPower u = new SysLoginPower();
-        //    u.Emname = "管理员";
-        //    u.Id = "default";
-        //    u.Ifcash = "false";
-        //    u.Maxdiscount = 0;
-        //    u.UserType = 0;
-        //    u.Username = "sysadmin";
-        //    u.Userpw = "1";
-        //    u.Userstate = "0";
-        //    SysLoginPowerService.Create(u);
-        //    return null;
-        //}
-
-        //public ActionResult IniUserS()
-        //{
-        //    for (int i = 0; i < 50; i++)
-        //    {
-        //        SysLoginPower u = new SysLoginPower();
-        //        u.Emname = "管理员" + i;
-        //        u.Id = i.ToString();
-        //        u.Ifcash = "false";
-        //        u.Maxdiscount = 0;
-        //        u.UserType = i % 2;
-        //        u.Username = "user" + i;
-        //        u.Userpw = "1";
-        //        u.Userstate = "0";
-        //        SysLoginPowerService.Create(u);
-        //    }
-
-        //    return null;
-        //}
-
-        //public ActionResult InISysPaClassAndArea()
-        //{
-        //    BsPaAreaService.Create(new BsPaArea() { Id = "1", AreaName = "中山" });
-        //    BsPaAreaService.Create(new BsPaArea() { Id = "2", AreaName = "西岗" });
-        //    BsPaAreaService.Create(new BsPaArea() { Id = "3", AreaName = "沙河口" });
-        //    BsPaAreaService.Create(new BsPaArea() { Id = "4", AreaName = "甘井子" });
-        //    BsPaAreaService.Create(new BsPaArea() { Id = "5", AreaName = "开发区" });
-        //    BsPaAreaService.Create(new BsPaArea() { Id = "6", AreaName = "金州" });
-        //    BsPaAreaService.Create(new BsPaArea() { Id = "7", AreaName = "旅顺" });
-
-        //    BsPaClassService.Create(new BsPaClass() { Id = "1", ClassName = "直营店" });
-        //    BsPaClassService.Create(new BsPaClass() { Id = "2", ClassName = "加盟店" });
-        //    return null;
-        //}
-
-        //public ActionResult InISysModule()
-        //{
-        //    Sysmodulecontent m1 = new Sysmodulecontent();
-        //    m1.Icon = "";
-        //    m1.Id = "root";
-        //    m1.ParentId = "";
-        //    m1.Url = "";
-        //    m1.Windowname = "root";
-        //    m1.SupplierVisible = true;
-        //    m1.EmployeeVisible = true;
-
-        //    SysmodulecontentService.Create(m1);
-
-        //    #region 员工菜单
-
-        //    #region 数据查询
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-search",
-        //        Id = "em-query",
-        //        ParentId = "root",
-        //        Url = "",
-        //        Windowname = "数据查询",
-        //        EmployeeVisible = true,
-        //        Index = 1
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "report-supplier-purchase",
-        //        ParentId = "em-query",
-        //        Url = "/Report/SupplierPurchase",
-        //        Windowname = "供货商订单查询统计",
-        //        Index = 11,
-        //        EmployeeVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "report-supplier-purchase-history",
-        //        ParentId = "em-query",
-        //        Url = "/Report/SupplierPurchaseHistory",
-        //        Windowname = "供货商历史订单查询",
-        //        Index = 12,
-        //        EmployeeVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "report-branch-purchase",
-        //        ParentId = "em-query",
-        //        Url = "/Report/BranchPurchase",
-        //        Windowname = "分店订单查询统计",
-        //        Index = 13,
-        //        EmployeeVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "report-branch-purchase-history",
-        //        ParentId = "em-query",
-        //        Url = "/Report/BranchPurchaseHistory",
-        //        Windowname = "分店历史订单查询",
-        //        Index = 14,
-        //        EmployeeVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "report-branch-goods",
-        //        ParentId = "em-query",
-        //        Url = "/Query/BranchPurchaseGoods",
-        //        Windowname = "分店商品统计",
-        //        Index = 15,
-        //        EmployeeVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "report-branch-goods-retail",
-        //        ParentId = "em-query",
-        //        Url = "/Report/BranchRetail/",
-        //        Windowname = "分店销售数据统计",
-        //        Index = 16,
-        //        EmployeeVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "report-branch-purchase-retail-compare",
-        //        ParentId = "em-query",
-        //        Url = "/Report/BranchPurchaseRetailCompare/",
-        //        Windowname = "分店采购销售对比",
-        //        Index = 17,
-        //        EmployeeVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-        //    #endregion
-
-        //    #region 档案管理
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-vcard",
-        //        Id = "archives",
-        //        ParentId = "root",
-        //        Url = "",
-        //        Windowname = "档案管理",
-        //        EmployeeVisible = true,
-        //        Index = 2
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-vcard-edit",
-        //        Id = "user_archives",
-        //        ParentId = "archives",
-        //        Url = "/Archives/EmployeeList",
-        //        Windowname = "公司人员档案",
-        //        Index = 11,
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-user-suit",
-        //        Id = "supplier_archives",
-        //        ParentId = "archives",
-        //        Url = "/Archives/SupplierList",
-        //        Windowname = "供应商档案",
-        //        Index = 12,
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-chart-organisation",
-        //        Id = "branch_archives",
-        //        ParentId = "archives",
-        //        Url = "/Archives/BranchList",
-        //        Windowname = "连锁店档案",
-        //        Index = 13,
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    //m1 = new Sysmodulecontent()
-        //    //{
-        //    //    Icon = "icon-cart",
-        //    //    Id = "goods_archives",
-        //    //    ParentId = "archives",
-        //    //    Url = "/Archives/GoodsList",
-        //    //    Windowname = "商品档案",
-        //    //    Index = 14,
-        //    //    EmployeeVisible = true,
-        //    //    SupplierVisible = false
-        //    //};
-        //    //SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "goods_archivestree",
-        //        ParentId = "archives",
-        //        Url = "/Archives/GoodsListTree",
-        //        Windowname = "商品档案",
-        //        Index = 15,
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-chart-organisation",
-        //        Id = "SupplierBranchRelationManagement",
-        //        ParentId = "archives",
-        //        Url = "/Archives/SupplierBranchRelationManagement",
-        //        Windowname = "供货商分店关系管理",
-        //        Index = 16,
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false
-        //    };
-        //    SysmodulecontentService.Create(m1);
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-chart-organisation",
-        //        Id = "BranchSupplierRelationManagement",
-        //        ParentId = "archives",
-        //        Url = "/Archives/BranchSupplierRelationManagement",
-        //        Windowname = "分店供货商关系管理",
-        //        Index = 16,
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false
-        //    };
-        //    SysmodulecontentService.Create(m1);
-        //    #endregion
-
-        //    #region 补货管理
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-car",
-        //        Id = "business-em",
-        //        ParentId = "root",
-        //        Url = "",
-        //        Windowname = "补货管理",
-        //        EmployeeVisible = true,
-        //        Index = 3
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart-add",
-        //        Id = "business-supplement",
-        //        ParentId = "business-em",
-        //        Url = "/Business/SupplementList",
-        //        Windowname = "产品补货",
-        //        EmployeeVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-        //    #endregion
-
-        //    #region 系统设置
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-node",
-        //        Id = "system",
-        //        ParentId = "root",
-        //        Url = "",
-        //        Windowname = "系统设置",
-        //        EmployeeVisible = true,
-        //        Index = 4
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    //m1 = new Sysmodulecontent()
-        //    //{
-        //    //    Icon = "icon-user",
-        //    //    Id = "users",
-        //    //    ParentId = "system",
-        //    //    Url = "/Home/List",
-        //    //    Windowname = "用户管理",
-        //    //    EmployeeVisible = true,
-        //    //    SupplierVisible = true
-        //    //};
-        //    //SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-bricks",
-        //        Id = "suptypelist",
-        //        ParentId = "system",
-        //        Url = "/Category/SupTypeList",
-        //        Windowname = "行业管理",
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false,
-        //        Index = 41
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-brick",
-        //        Id = "paclasslist",
-        //        ParentId = "system",
-        //        Url = "/Category/PaClassList",
-        //        Windowname = "分店类型",
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false,
-        //        Index = 42
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-group-link",
-        //        Id = "empapoliticslist",
-        //        ParentId = "system",
-        //        Url = "/Category/EmPaPoliticsList",
-        //        Windowname = "员工政治面貌",
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false,
-        //        Index = 43
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-map",
-        //        Id = "BsAreaList",
-        //        ParentId = "system",
-        //        Url = "/Category/BsPaAreaList",
-        //        Windowname = "区域管理",
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false,
-        //        Index = 44
-        //    };
-        //    SysmodulecontentService.Create(m1);
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-drive-user",
-        //        Id = "nationlist",
-        //        ParentId = "system",
-        //        Url = "/Category/NationList",
-        //        Windowname = "员工民族",
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false,
-        //        Index = 45
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-coins",
-        //        Id = "classlist",
-        //        ParentId = "system",
-        //        Url = "/Category/ClassList",
-        //        Windowname = "商品分类",
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false,
-        //        Index = 46
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cog-edit",
-        //        Id = "bussiness-setting",
-        //        ParentId = "system",
-        //        Url = "/Account/BaseSetting/",
-        //        Windowname = "业务设置",
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false,
-        //        OpenInNewWindow = true,
-        //        Index = 47
-        //    };
-        //    SysmodulecontentService.Create(m1);
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-edit",
-        //        Id = "websystem-setting",
-        //        ParentId = "system",
-        //        Url = "/Account/SysSetting/",
-        //        Windowname = "系统设置",
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false,
-        //        OpenInNewWindow = true,
-        //        Index = 48
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-bell",
-        //        Id = "system-postlist",
-        //        ParentId = "system",
-        //        Url = "/Home/PostList/",
-        //        Windowname = "公告管理",
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false,
-        //        OpenInNewWindow = false,
-        //        Index = 48
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-bell",
-        //        Id = "system-branchpostlist",
-        //        ParentId = "system",
-        //        Url = "/Home/BranchPostList/",
-        //        Windowname = "分店通知",
-        //        EmployeeVisible = true,
-        //        SupplierVisible = false,
-        //        OpenInNewWindow = false,
-        //        Index = 49
-        //    };
-        //    SysmodulecontentService.Create(m1);
-        //    #endregion
-
-        //    #endregion
+        public JsonResult GetModelesTree()
+        {
+            var results = new List<object>();
 
 
 
+            var ac= new List<object>();
+            var ba=new List<object>();
+            var bs = new List<object>();
+            var em = new List<object>();
+            var fb = new List<object>();
+            var ms = new List<object>();
+            var op = new List<object>();
+            var pc = new List<object>();
+            var rt = new List<object>();
+            var sys = new List<object>();
+            var tf = new List<object>();
+            var tg = new List<object>();
+            var ws = new List<object>();
 
 
+            ac.Add(new
+            {
+                id = "1",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "",
+                text = "档案",
+                url = ""
+            });
 
-        //    #region 业务管理
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-car",
-        //        Id = "business",
-        //        ParentId = "root",
-        //        Url = "",
-        //        Windowname = "业务管理",
-        //        SupplierVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
+            ac.Add(new
+            {
+                id = "AcBranchGoodssaleAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店商品销售帐表",
+                url = "/Ac/AcBranchGoodssaleAccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcCashierSummary",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "收银员销售汇总",
+                url = "/Ac/AcCashierSummaryList"
+            });
+            ac.Add(new
+            {
+                id = "AcCounterSummary",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "柜组销售汇总",
+                url = "/Ac/AcCounterSummaryList"
+            });
+            ac.Add(new
+            {
+                id = "AcDayBranchclassJournalAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店类别进销存",
+                url = "/Ac/AcDayBranchclassJournalAccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcDayBranchgoodsJournalAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店商品进销存日帐",
+                url = "/Ac/AcDayBranchgoodsJournalAccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcDayClassJournalAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "类别进销存日帐",
+                url = "/Ac/AcDayClassJournalAccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcDayGoodsJournalAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品进销存日帐",
+                url = "/Ac/AcDayGoodsJournalAccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcDayGoodsJournalAccountTemp",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品进销存日帐临时表",
+                url = "/Ac/AcDayGoodsJournalAccountTempList"
+            });
+            ac.Add(new
+            {
+                id = "AcDayGoodsstockJournalAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "总部商品进销存日帐",
+                url = "/Ac/AcDayGoodsstockJournalAccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcDayGoodsstockJournalAccountTemp",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "总部商品进销存日帐临时表",
+                url = "/Ac/AcDayGoodsstockJournalAccountTempList"
+            });
+            ac.Add(new
+            {
+                id = "AcGoodssaleAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品销售帐表",
+                url = "/Ac/AcGoodssaleAccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcMonthClassJournalAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "类别进销存月帐",
+                url = "/Ac/AcMonthClassJournalAccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcMonthGoodsJournalAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品进销存月帐",
+                url = "/Ac/AcMonthGoodsJournalAccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcPaDayaccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "日帐设置",
+                url = "/Ac/AcPaDayaccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcPaDayaccountStock",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "总部日帐设置",
+                url = "/Ac/AcPaDayaccountStockList"
+            });
+            ac.Add(new
+            {
+                id = "AcPaSaleset",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "销售记账设置",
+                url = "/Ac/AcPaSalesetList"
+            });
+            ac.Add(new
+            {
+                id = "AcPeriodTimeSummary",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "客流销售汇总",
+                url = "/Ac/AcPeriodTimeSummaryList"
+            });
+            ac.Add(new
+            {
+                id = "AcSalesmanSummary",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "营业员销售汇总",
+                url = "/Ac/AcSalesmanSummaryList"
+            });
+            ac.Add(new
+            {
+                id = "AcStockAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品帐务库存",
+                url = "/Ac/AcStockAccountList"
+            });
+            ac.Add(new
+            {
+                id = "AcSupplierJournal",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "供货商流水帐",
+                url = "/Ac/AcSupplierJournalList"
+            });
 
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "business-purchase",
-        //        ParentId = "business",
-        //        Url = "/Business/PurchaseList",
-        //        Windowname = "超市订单",
-        //        SupplierVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
+            ba.Add(new
+            {
+                id = "BaBranchBalance",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店结算",
+                url = "/Ba/BaBranchBalanceList"
+            });
+            ba.Add(new
+            {
+                id = "BaBranchDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店结算明细",
+                url = "/Ba/BaBranchDetailList"
+            });
+            ba.Add(new
+            {
+                id = "BaBranchOfferAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店代销对帐",
+                url = "/Ba/BaBranchOfferAccountList"
+            });
+            ba.Add(new
+            {
+                id = "BaBranchOfferDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店代销对帐明细",
+                url = "/Ba/BaBranchOfferDetailList"
+            });
+            ba.Add(new
+            {
+                id = "BaChargeDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "费用费用费用明细",
+                url = "/Ba/BaChargeDetailList"
+            });
+            ba.Add(new
+            {
+                id = "BaChargeManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "费用管理",
+                url = "/Ba/BaChargeManageList"
+            });
+            ba.Add(new
+            {
+                id = "BaCustomerBalance",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "客户结算",
+                url = "/Ba/BaCustomerBalanceList"
+            });
+            ba.Add(new
+            {
+                id = "BaCustomerDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "客户结算明细",
+                url = "/Ba/BaCustomerDetailList"
+            });
+            ba.Add(new
+            {
+                id = "BaLeaseAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "租赁对帐单",
+                url = "/Ba/BaLeaseAccountList"
+            });
+            ba.Add(new
+            {
+                id = "BaLeaseDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "租赁对帐单商品明细",
+                url = "/Ba/BaLeaseDetailList"
+            });
+            ba.Add(new
+            {
+                id = "BaOfferAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "代销对账单",
+                url = "/Ba/BaOfferAccountList"
+            });
+            ba.Add(new
+            {
+                id = "BaOfferDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "代销对账单商品明细",
+                url = "/Ba/BaOfferDetailList"
+            });
+            ba.Add(new
+            {
+                id = "BaPaAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "结算对账设置",
+                url = "/Ba/BaPaAccountList"
+            });
+            ba.Add(new
+            {
+                id = "BaPaBranchAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店对帐设置",
+                url = "/Ba/BaPaBranchAccountList"
+            });
+            ba.Add(new
+            {
+                id = "BaPaCharge",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "费用设置",
+                url = "/Ba/BaPaChargeList"
+            });
+            ba.Add(new
+            {
+                id = "BaPoolAccount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "联营对帐单",
+                url = "/Ba/BaPoolAccountList"
+            });
+            ba.Add(new
+            {
+                id = "BaPoolDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "联营对帐单商品明细",
+                url = "/Ba/BaPoolDetailList"
+            });
+            ba.Add(new
+            {
+                id = "BaSupplierBalance",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "供货商结算",
+                url = "/Ba/BaSupplierBalanceList"
+            });
+            ba.Add(new
+            {
+                id = "BaSupplierDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "供货商结算明细",
+                url = "/Ba/BaSupplierDetailList"
+            });
+            bs.Add(new
+            {
+                id = "BsAdjustSaleprice",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店商品调价",
+                url = "/Bs/BsAdjustSalepriceList"
+            });
+            bs.Add(new
+            {
+                id = "BsAdjustSalepriceGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店商品调价商品明细",
+                url = "/Bs/BsAdjustSalepriceGoodsList"
+            });
+            bs.Add(new
+            {
+                id = "BsBranchAllotDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店调拨商品",
+                url = "/Bs/BsBranchAllotDetailList"
+            });
+            bs.Add(new
+            {
+                id = "BsBranchAllotManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店调拨",
+                url = "/Bs/BsBranchAllotManageList"
+            });
+            bs.Add(new
+            {
+                id = "BsBranchArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店档案管理",
+                url = "/Bs/BsBranchArchivesList"
+            });
+            bs.Add(new
+            {
+                id = "BsBranchPrice",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店商品价格",
+                url = "/Bs/BsBranchPriceList"
+            });
+            bs.Add(new
+            {
+                id = "BsPaArea",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店区域",
+                url = "/Bs/BsPaAreaList"
+            });
+            bs.Add(new
+            {
+                id = "BsPaBranchWarehouse",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店仓库设置",
+                url = "/Bs/BsPaBranchWarehouseList"
+            });
+            bs.Add(new
+            {
+                id = "BsPaClass",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店分类",
+                url = "/Bs/BsPaClassList"
+            });
+            bs.Add(new
+            {
+                id = "BsReturnDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店商品返货单明细",
+                url = "/Bs/BsReturnDetailList"
+            });
+            bs.Add(new
+            {
+                id = "BsReturnManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店商品返货单",
+                url = "/Bs/BsReturnManageList"
+            });
+            bs.Add(new
+            {
+                id = "BsReturnManageFlow",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店商品返货单流水",
+                url = "/Bs/BsReturnManageFlowList"
+            });
+            bs.Add(new
+            {
+                id = "BsSupplyDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店订货配送单明细",
+                url = "/Bs/BsSupplyDetailList"
+            });
+            bs.Add(new
+            {
+                id = "BsSupplyManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店商品订货配送单",
+                url = "/Bs/BsSupplyManageList"
+            });
+            bs.Add(new
+            {
+                id = "BsSupplyManageFlow",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "分店商品订货配送单流水",
+                url = "/Bs/BsSupplyManageFlowList"
+            });
 
-        //    //m1 = new Sysmodulecontent()
-        //    //{
-        //    //    Icon = "icon-cart-delete",
-        //    //    Id = "business-return",
-        //    //    ParentId = "business",
-        //    //    Url = "/Business/ReturnList",
-        //    //    Windowname = "产品退货",
-        //    //    SupplierVisible = true
-        //    //};
-        //    //SysmodulecontentService.Create(m1);
+            em.Add(new
+            {
+                id = "EmEmployeeArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "人员档案",
+                url = "/Em/EmEmployeeArchivesList"
+            });
+            em.Add(new
+            {
+                id = "EmEmployeeFamily",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "人员家庭信息",
+                url = "/Em/EmEmployeeFamilyList"
+            });
+            em.Add(new
+            {
+                id = "EmEmployeePhoto",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "人员照片",
+                url = "/Em/EmEmployeePhotoList"
+            });
+            em.Add(new
+            {
+                id = "EmPaDuty",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "职务编码表",
+                url = "/Em/EmPaDutyList"
+            });
+            em.Add(new
+            {
+                id = "EmPaEducation",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "学历编码表",
+                url = "/Em/EmPaEducationList"
+            });
+            em.Add(new
+            {
+                id = "EmPaNation",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "民族编码表",
+                url = "/Em/EmPaNationList"
+            });
+            em.Add(new
+            {
+                id = "EmPaPolitics",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "政治面貌编码表",
+                url = "/Em/EmPaPoliticsList"
+            });
+            em.Add(new
+            {
+                id = "EmPaProfessionalTitle",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "职称编码表",
+                url = "/Em/EmPaProfessionalTitleList"
+            });
+            fb.Add(new
+            {
+                id = "FbAdjustClass",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "调商品所属类别",
+                url = "/Fb/FbAdjustClassList"
+            });
+            fb.Add(new
+            {
+                id = "FbAdjustClassGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "调商品所属类别商品明细",
+                url = "/Fb/FbAdjustClassGoodsList"
+            });
+            fb.Add(new
+            {
+                id = "FbAdjustPoolrate",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "调商品扣率",
+                url = "/Fb/FbAdjustPoolrateList"
+            });
+            fb.Add(new
+            {
+                id = "FbAdjustPoolrateGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "调商品扣率商品明细",
+                url = "/Fb/FbAdjustPoolrateGoodsList"
+            });
+            fb.Add(new
+            {
+                id = "FbAdjustPurchaseprice",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "调商品进价",
+                url = "/Fb/FbAdjustPurchasepriceList"
+            });
+            fb.Add(new
+            {
+                id = "FbAdjustPurchasepriceGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "调商品进价商品明细",
+                url = "/Fb/FbAdjustPurchasepriceGoodsList"
+            });
+            fb.Add(new
+            {
+                id = "FbAdjustSaleprice",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "调商品售价",
+                url = "/Fb/FbAdjustSalepriceList"
+            });
+            fb.Add(new
+            {
+                id = "FbAdjustSalepriceGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "调商品售价商品明细",
+                url = "/Fb/FbAdjustSalepriceGoodsList"
+            });
+            fb.Add(new
+            {
+                id = "FbAdjustSupplier",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "调商品供货商",
+                url = "/Fb/FbAdjustSupplierList"
+            });
+            fb.Add(new
+            {
+                id = "FbAdjustSupplierGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "调商品供货商商品明细",
+                url = "/Fb/FbAdjustSupplierGoodsList"
+            });
+            fb.Add(new
+            {
+                id = "FbGoodsArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品档案",
+                url = "/Fb/FbGoodsArchivesList"
+            });
+            fb.Add(new
+            {
+                id = "FbGoodsArchivesBar",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品销售码",
+                url = "/Fb/FbGoodsArchivesBarList"
+            });
+            fb.Add(new
+            {
+                id = "FbGoodsArchivesBind",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品捆绑",
+                url = "/Fb/FbGoodsArchivesBindList"
+            });
+            fb.Add(new
+            {
+                id = "FbGoodsArchivesLibrary",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品条码库",
+                url = "/Fb/FbGoodsArchivesLibraryList"
+            });
+            fb.Add(new
+            {
+                id = "FbGoodsArchivesParts",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品部件",
+                url = "/Fb/FbGoodsArchivesPartsList"
+            });
+            fb.Add(new
+            {
+                id = "FbGoodsArchivesPhoto",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品视图表",
+                url = "/Fb/FbGoodsArchivesPhotoList"
+            });
+            fb.Add(new
+            {
+                id = "FbGoodsArchivesSupplier",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品供货商",
+                url = "/Fb/FbGoodsArchivesSupplierList"
+            });
+            fb.Add(new
+            {
+                id = "FbGoodsBarCode",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "销售编码表",
+                url = "/Fb/FbGoodsBarCodeList"
+            });
+            fb.Add(new
+            {
+                id = "FbPaBaseSet",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "基础参数设置",
+                url = "/Fb/FbPaBaseSetList"
+            });
+            fb.Add(new
+            {
+                id = "FbPaGoodsCheckUnit",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "核算单位编码",
+                url = "/Fb/FbPaGoodsCheckUnitList"
+            });
+            fb.Add(new
+            {
+                id = "FbPaGoodsCounter",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "柜组编码",
+                url = "/Fb/FbPaGoodsCounterList"
+            });
+            fb.Add(new
+            {
+                id = "FbPaGoodsGb",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "大类编码",
+                url = "/Fb/FbPaGoodsGbList"
+            });
+            fb.Add(new
+            {
+                id = "FbPaGoodsGl",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "细类编码",
+                url = "/Fb/FbPaGoodsGlList"
+            });
+            fb.Add(new
+            {
+                id = "FbPaGoodsGm",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "中类编码",
+                url = "/Fb/FbPaGoodsGmList"
+            });
+            fb.Add(new
+            {
+                id = "FbPaGoodsGs",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "小类编码",
+                url = "/Fb/FbPaGoodsGsList"
+            });
+            fb.Add(new
+            {
+                id = "FbPaGoodsPackUnit",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "包装单位编码",
+                url = "/Fb/FbPaGoodsPackUnitList"
+            });
+            fb.Add(new
+            {
+                id = "FbPaSupType",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "供货商类型",
+                url = "/Fb/FbPaSupTypeList"
+            });
+            fb.Add(new
+            {
+                id = "FbSupplierArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "供货商档案",
+                url = "/Fb/FbSupplierArchivesList"
+            });
+            fb.Add(new
+            {
+                id = "FbSupplierLease",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "供货商租赁合同",
+                url = "/Fb/FbSupplierLeaseList"
+            });
+            ms.Add(new
+            {
+                id = "MsAdjustPoints",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "积分调整管理",
+                url = "/Ms/MsAdjustPointsList"
+            });
+            ms.Add(new
+            {
+                id = "MsCancelCardManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡作废",
+                url = "/Ms/MsCancelCardManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsCardArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡信息",
+                url = "/Ms/MsCardArchivesList"
+            });
+            ms.Add(new
+            {
+                id = "MsCardtypeDiscount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡折扣",
+                url = "/Ms/MsCardtypeDiscountList"
+            });
+            ms.Add(new
+            {
+                id = "MsCardtypeGoodsDiscount",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品折扣",
+                url = "/Ms/MsCardtypeGoodsDiscountList"
+            });
+            ms.Add(new
+            {
+                id = "MsCardtypeGoodsPoints",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品积分",
+                url = "/Ms/MsCardtypeGoodsPointsList"
+            });
+            ms.Add(new
+            {
+                id = "MsCardtypeManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡类型",
+                url = "/Ms/MsCardtypeManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsCardtypePoints",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡积分",
+                url = "/Ms/MsCardtypePointsList"
+            });
+            ms.Add(new
+            {
+                id = "MsExchangeDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "赠品兑换明细",
+                url = "/Ms/MsExchangeDetailList"
+            });
+            ms.Add(new
+            {
+                id = "MsExchangeManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "赠品兑换管理",
+                url = "/Ms/MsExchangeManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsFreezeCardManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡冻结",
+                url = "/Ms/MsFreezeCardManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsGiftArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "赠品档案管理",
+                url = "/Ms/MsGiftArchivesList"
+            });
+            ms.Add(new
+            {
+                id = "MsGrantCardManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡发放",
+                url = "/Ms/MsGrantCardManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsLossCardManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡挂失",
+                url = "/Ms/MsLossCardManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsMadecardManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡制作",
+                url = "/Ms/MsMadecardManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsMemberArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "会员信息",
+                url = "/Ms/MsMemberArchivesList"
+            });
+            ms.Add(new
+            {
+                id = "MsPointsClear",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "积分清零管理",
+                url = "/Ms/MsPointsClearList"
+            });
+            ms.Add(new
+            {
+                id = "MsPointtoprepaidManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "积分转储值",
+                url = "/Ms/MsPointtoprepaidManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsPrepaidCardManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡充值",
+                url = "/Ms/MsPrepaidCardManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsReclaimCardManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡回收",
+                url = "/Ms/MsReclaimCardManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsUpdateCardManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡更新",
+                url = "/Ms/MsUpdateCardManageList"
+            });
+            ms.Add(new
+            {
+                id = "MsUpgradeCardDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡升级信息",
+                url = "/Ms/MsUpgradeCardDetailList"
+            });
+            ms.Add(new
+            {
+                id = "MsUpgradeCardManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "卡升级",
+                url = "/Ms/MsUpgradeCardManageList"
+            });
+            op.Add(new
+            {
+                id = "OpAdjustDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品调整单商品明细",
+                url = "/Op/OpAdjustDetailList"
+            });
+            op.Add(new
+            {
+                id = "OpAdjustManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品调整单",
+                url = "/Op/OpAdjustManageList"
+            });
+            op.Add(new
+            {
+                id = "OpAdjustManageFlow",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品调整流水帐单",
+                url = "/Op/OpAdjustManageFlowList"
+            });
+            op.Add(new
+            {
+                id = "OpAdjustPurchaseDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "进货成本调整批次明细",
+                url = "/Op/OpAdjustPurchaseDetailList"
+            });
+            op.Add(new
+            {
+                id = "OpAdjustPurchaseManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "进货成本调整单",
+                url = "/Op/OpAdjustPurchaseManageList"
+            });
+            op.Add(new
+            {
+                id = "OpAllotDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品调拨单商品明细",
+                url = "/Op/OpAllotDetailList"
+            });
+            op.Add(new
+            {
+                id = "OpAllotManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品调拨单",
+                url = "/Op/OpAllotManageList"
+            });
+            op.Add(new
+            {
+                id = "OpAllotManageFlow",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品调拨流水帐单",
+                url = "/Op/OpAllotManageFlowList"
+            });
+            op.Add(new
+            {
+                id = "OpCheckDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品盘点单商品明细",
+                url = "/Op/OpCheckDetailList"
+            });
+            op.Add(new
+            {
+                id = "OpCheckManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品盘点单",
+                url = "/Op/OpCheckManageList"
+            });
+            op.Add(new
+            {
+                id = "OpCheckStock",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "盘点库存",
+                url = "/Op/OpCheckStockList"
+            });
+            op.Add(new
+            {
+                id = "OpCheckTransfer",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品盘点接转单商品汇总明细",
+                url = "/Op/OpCheckTransferList"
+            });
+            op.Add(new
+            {
+                id = "OpDynamicStock",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品实时库存",
+                url = "/Op/OpDynamicStockList"
+            });
+            op.Add(new
+            {
+                id = "OpDynamicStockBranch",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品分店实时库存",
+                url = "/Op/OpDynamicStockBranchList"
+            });
+            op.Add(new
+            {
+                id = "OpDynamicStockWh",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品仓储实时库存",
+                url = "/Op/OpDynamicStockWhList"
+            });
+            op.Add(new
+            {
+                id = "OpGoodsBatch",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品库存批次表",
+                url = "/Op/OpGoodsBatchList"
+            });
+            op.Add(new
+            {
+                id = "OpLossDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品损溢商品明细",
+                url = "/Op/OpLossDetailList"
+            });
+            op.Add(new
+            {
+                id = "OpLossManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品损溢",
+                url = "/Op/OpLossManageList"
+            });
+            op.Add(new
+            {
+                id = "OpLossManageFlow",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品损溢流水帐单",
+                url = "/Op/OpLossManageFlowList"
+            });
+            op.Add(new
+            {
+                id = "OpPaWarehouse",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "仓库参数维护",
+                url = "/Op/OpPaWarehouseList"
+            });
+            op.Add(new
+            {
+                id = "OpSplitComDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "组合拆零管理商品明细",
+                url = "/Op/OpSplitComDetailList"
+            });
+            op.Add(new
+            {
+                id = "OpSplitComGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "组合拆零商品",
+                url = "/Op/OpSplitComGoodsList"
+            });
+            op.Add(new
+            {
+                id = "OpSplitComManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "组合拆零管理",
+                url = "/Op/OpSplitComManageList"
+            });
+            op.Add(new
+            {
+                id = "OpSplitComManageFlow",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "组合拆零管理流水单",
+                url = "/Op/OpSplitComManageFlowList"
+            });
+            pc.Add(new
+            {
+                id = "PcPurchaseDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品采购单商品明细",
+                url = "/Pc/PcPurchaseDetailList"
+            });
+            pc.Add(new
+            {
+                id = "PcPurchaseManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品采购单",
+                url = "/Pc/PcPurchaseManageList"
+            });
+            pc.Add(new
+            {
+                id = "PcPutinDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品入库单商品明细",
+                url = "/Pc/PcPutinDetailList"
+            });
+            pc.Add(new
+            {
+                id = "PcPutinManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品入库单",
+                url = "/Pc/PcPutinManageList"
+            });
+            pc.Add(new
+            {
+                id = "PcPutoutDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品出库单商品明细",
+                url = "/Pc/PcPutoutDetailList"
+            });
+            pc.Add(new
+            {
+                id = "PcPutoutManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品出库单",
+                url = "/Pc/PcPutoutManageList"
+            });
+            pc.Add(new
+            {
+                id = "PcReturnDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品返货单商品明细",
+                url = "/Pc/PcReturnDetailList"
+            });
+            pc.Add(new
+            {
+                id = "PcReturnManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "商品返货单",
+                url = "/Pc/PcReturnManageList"
+            });
+            rt.Add(new
+            {
+                id = "RtClassPromotion",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "类别促销",
+                url = "/Rt/RtClassPromotionList"
+            });
+            rt.Add(new
+            {
+                id = "RtClassPromotionBranch",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "类别促销分店",
+                url = "/Rt/RtClassPromotionBranchList"
+            });
+            rt.Add(new
+            {
+                id = "RtClassPromotionGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "类别促销商品明细",
+                url = "/Rt/RtClassPromotionGoodsList"
+            });
+            rt.Add(new
+            {
+                id = "RtPaFunction",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "收银功能表",
+                url = "/Rt/RtPaFunctionList"
+            });
+            rt.Add(new
+            {
+                id = "RtPaPayway",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "付款方式",
+                url = "/Rt/RtPaPaywayList"
+            });
+            rt.Add(new
+            {
+                id = "RtPaPos",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "POS机设置",
+                url = "/Rt/RtPaPosList"
+            });
+            rt.Add(new
+            {
+                id = "RtPaSaleset",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "销售设置",
+                url = "/Rt/RtPaSalesetList"
+            });
+            rt.Add(new
+            {
+                id = "RtPaShift",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "销售班次",
+                url = "/Rt/RtPaShiftList"
+            });
+            rt.Add(new
+            {
+                id = "RtPluPromotion",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "单品促销",
+                url = "/Rt/RtPluPromotionList"
+            });
+            rt.Add(new
+            {
+                id = "RtPluPromotionBranch",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "单品促销分店",
+                url = "/Rt/RtPluPromotionBranchList"
+            });
+            rt.Add(new
+            {
+                id = "RtPluPromotionGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "单品促销商品明细",
+                url = "/Rt/RtPluPromotionGoodsList"
+            });
+            rt.Add(new
+            {
+                id = "RtPresentPromotion",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "馈赠促销",
+                url = "/Rt/RtPresentPromotionList"
+            });
+            rt.Add(new
+            {
+                id = "RtPresentPromotionBranch",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "馈赠促销分店",
+                url = "/Rt/RtPresentPromotionBranchList"
+            });
+            rt.Add(new
+            {
+                id = "RtPresentPromotionGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "馈赠促销商品明细",
+                url = "/Rt/RtPresentPromotionGoodsList"
+            });
+            rt.Add(new
+            {
+                id = "RtRetailDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "销售表商品明细",
+                url = "/Rt/RtRetailDetailList"
+            });
+            rt.Add(new
+            {
+                id = "RtRetailManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "销售主表",
+                url = "/Rt/RtRetailManageList"
+            });
+            rt.Add(new
+            {
+                id = "RtRetailPay",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "销售表付款表",
+                url = "/Rt/RtRetailPayList"
+            });
+            rt.Add(new
+            {
+                id = "RtSheetPromotion",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "整单促销",
+                url = "/Rt/RtSheetPromotionList"
+            });
+            rt.Add(new
+            {
+                id = "RtSheetPromotionBranch",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "整单促销分店",
+                url = "/Rt/RtSheetPromotionBranchList"
+            });
+            rt.Add(new
+            {
+                id = "RtSheetPromotionGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "整单促销商品明细",
+                url = "/Rt/RtSheetPromotionGoodsList"
+            });
 
-        //    //m1 = new Sysmodulecontent()
-        //    //{
-        //    //    Icon = "icon-cart-add",
-        //    //    Id = "business-supplement",
-        //    //    ParentId = "business",
-        //    //    Url = "/Business/SupplementList",
-        //    //    Windowname = "产品补货",
-        //    //    EmployeeVisible = true,
-        //    //    SupplierVisible = false
-        //    //};
-        //    //SysmodulecontentService.Create(m1);
+            sys.Add(new
+            {
+                id = "SysClassPower",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "类别权限设置",
+                url = "/Sys/SysClassPowerList"
+            });
+            sys.Add(new
+            {
+                id = "SysDepartPower",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "岗位权限",
+                url = "/Sys/SysDepartPowerList"
+            });
+            sys.Add(new
+            {
+                id = "SysEnterpriseArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "企业设置",
+                url = "/Sys/SysEnterpriseArchivesList"
+            });
+            sys.Add(new
+            {
+                id = "SysLoginPower",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "登录权限设置",
+                url = "/Sys/SysLoginPowerList"
+            });
+            sys.Add(new
+            {
+                id = "SysLoginPowerFunction",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "人员收银功能",
+                url = "/Sys/SysLoginPowerFunctionList"
+            });
+            sys.Add(new
+            {
+                id = "SysModule",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "功能模块设置",
+                url = "/Sys/SysModuleList"
+            });
+            sys.Add(new
+            {
+                id = "SysModuleContent",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "模块相关信息",
+                url = "/Sys/SysModuleContentList"
+            });
+            sys.Add(new
+            {
+                id = "SysModulePic",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "系统模块图片",
+                url = "/Sys/SysModulePicList"
+            });
+            sys.Add(new
+            {
+                id = "SysOperationFlow",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "业务流程",
+                url = "/Sys/SysOperationFlowList"
+            });
+            sys.Add(new
+            {
+                id = "SysOperationFlowDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "业务流程明细",
+                url = "/Sys/SysOperationFlowDetailList"
+            });
+            sys.Add(new
+            {
+                id = "SysOperationFlowDetailMax",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "流程最大编号表",
+                url = "/Sys/SysOperationFlowDetailMaxList"
+            });
+            sys.Add(new
+            {
+                id = "SysOperationWorker",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "业务流程人员权限",
+                url = "/Sys/SysOperationWorkerList"
+            });
+            sys.Add(new
+            {
+                id = "SysPaDepartment",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "部门编码表",
+                url = "/Sys/SysPaDepartmentList"
+            });
+            sys.Add(new
+            {
+                id = "SysPrintDesign",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "打印模板设计",
+                url = "/Sys/SysPrintDesignList"
+            });
+            sys.Add(new
+            {
+                id = "SysWorkerPower",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "人员权限",
+                url = "/Sys/SysWorkerPowerList"
+            });
+            tf.Add(new
+            {
+                id = "TfDataDownload",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "通讯临时表",
+                url = "/Tf/TfDataDownloadList"
+            });
+            tf.Add(new
+            {
+                id = "TfDataObject",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "通讯配置表表名",
+                url = "/Tf/TfDataObjectList"
+            });
+            tf.Add(new
+            {
+                id = "TfDataProperty",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "通讯配置表字段",
+                url = "/Tf/TfDataPropertyList"
+            });
+            tg.Add(new
+            {
+                id = "TgExpostorBalance",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "讲解员结算管理",
+                url = "/Tg/TgExpostorBalanceList"
+            });
+            tg.Add(new
+            {
+                id = "TgExpostorBalanceDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "讲解员结算明细",
+                url = "/Tg/TgExpostorBalanceDetailList"
+            });
+            tg.Add(new
+            {
+                id = "TgGroupBalance",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "团队结算管理",
+                url = "/Tg/TgGroupBalanceList"
+            });
+            tg.Add(new
+            {
+                id = "TgGroupBalanceDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "团队结算明细",
+                url = "/Tg/TgGroupBalanceDetailList"
+            });
+            tg.Add(new
+            {
+                id = "TgGroupCall",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "团队策略提醒",
+                url = "/Tg/TgGroupCallList"
+            });
+            tg.Add(new
+            {
+                id = "TgGuideArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "导游人员信息",
+                url = "/Tg/TgGuideArchivesList"
+            });
+            tg.Add(new
+            {
+                id = "TgGuideBalance",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "导游结算管理",
+                url = "/Tg/TgGuideBalanceList"
+            });
+            tg.Add(new
+            {
+                id = "TgGuideBalanceDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "导游结算明细",
+                url = "/Tg/TgGuideBalanceDetailList"
+            });
+            tg.Add(new
+            {
+                id = "TgPaCarsCharge",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "车停策略设置",
+                url = "/Tg/TgPaCarsChargeList"
+            });
+            tg.Add(new
+            {
+                id = "TgPaCarsType",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "车型设置",
+                url = "/Tg/TgPaCarsTypeList"
+            });
+            tg.Add(new
+            {
+                id = "TgPaGroup",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "团队结算设置",
+                url = "/Tg/TgPaGroupList"
+            });
+            tg.Add(new
+            {
+                id = "TgPaGroupType",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "团队类别",
+                url = "/Tg/TgPaGroupTypeList"
+            });
+            tg.Add(new
+            {
+                id = "TgPaTaType",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "旅行社类型",
+                url = "/Tg/TgPaTaTypeList"
+            });
+            tg.Add(new
+            {
+                id = "TgPushtacDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "人员提成策略明细",
+                url = "/Tg/TgPushtacDetailList"
+            });
+            tg.Add(new
+            {
+                id = "TgPushtacManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "人员提成策略",
+                url = "/Tg/TgPushtacManageList"
+            });
+            tg.Add(new
+            {
+                id = "TgTourgroupManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "团队购物管理",
+                url = "/Tg/TgTourgroupManageList"
+            });
+            tg.Add(new
+            {
+                id = "TgTravelArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "旅行社档案",
+                url = "/Tg/TgTravelArchivesList"
+            });
+            tg.Add(new
+            {
+                id = "TgTravelArchivesPushtac",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "旅行社提成策略",
+                url = "/Tg/TgTravelArchivesPushtacList"
+            });
+            tg.Add(new
+            {
+                id = "TgTravelBalance",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "旅行社结算管理",
+                url = "/Tg/TgTravelBalanceList"
+            });
+            tg.Add(new
+            {
+                id = "TgTravelBalanceDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "旅行社结算明细",
+                url = "/Tg/TgTravelBalanceDetailList"
+            });
+            ws.Add(new
+            {
+                id = "WsCustomerArchives",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "客户档案",
+                url = "/Ws/WsCustomerArchivesList"
+            });
+            ws.Add(new
+            {
+                id = "WsCustomerGoods",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "客户商品",
+                url = "/Ws/WsCustomerGoodsList"
+            });
+            ws.Add(new
+            {
+                id = "WsOrderDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "批发订单商品明细",
+                url = "/Ws/WsOrderDetailList"
+            });
+            ws.Add(new
+            {
+                id = "WsOrderManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "批发订单",
+                url = "/Ws/WsOrderManageList"
+            });
+            ws.Add(new
+            {
+                id = "WsPaCustomerType",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "客户类型",
+                url = "/Ws/WsPaCustomerTypeList"
+            });
+            ws.Add(new
+            {
+                id = "WsWholesaleDetail",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "批发销售商品明细",
+                url = "/Ws/WsWholesaleDetailList"
+            });
+            ws.Add(new
+            {
+                id = "WsWholesaleGoodsSet",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "限销商品设置",
+                url = "/Ws/WsWholesaleGoodsSetList"
+            });
+            ws.Add(new
+            {
+                id = "WsWholesaleManage",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "批发销售",
+                url = "/Ws/WsWholesaleManageList"
+            });
+            ws.Add(new
+            {
+                id = "WsWholesaleManageFlow",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "1",
+                text = "批发销售流水",
+                url = "/Ws/WsWholesaleManageFlowList"
+            });
 
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "query-goods",
-        //        ParentId = "business",
-        //        Url = "/Query/GoodsArchiveList",
-        //        Windowname = "产品管理",
-        //        Index = 24,
-        //        EmployeeVisible = false,
-        //        SupplierVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "query-supplier_branch",
-        //        ParentId = "business",
-        //        Url = "/Archives/BranchList",
-        //        Windowname = "分店查看",
-        //        Index = 25,
-        //        EmployeeVisible = false,
-        //        SupplierVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    #endregion
-
-        //    #region 数据查询
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-search",
-        //        Id = "query",
-        //        ParentId = "root",
-        //        Url = "",
-        //        Windowname = "数据查询",
-        //        SupplierVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "report-branch-purchase-sup",
-        //        ParentId = "query",
-        //        Url = "/Report/BranchPurchase",
-        //        Windowname = "分店订单查询统计",
-        //        Index = 31,
-        //        SupplierVisible = true,
-        //        EmployeeVisible = false
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "report-branch-purchase-sup-history",
-        //        ParentId = "query",
-        //        Url = "/Report/BranchPurchaseHistory",
-        //        Windowname = "分店历史订单查询",
-        //        Index = 32,
-        //        SupplierVisible = true
-        //    };
-        //    SysmodulecontentService.Create(m1);
-
-        //    m1 = new Sysmodulecontent()
-        //    {
-        //        Icon = "icon-cart",
-        //        Id = "report-branch-goods-sup",
-        //        ParentId = "query",
-        //        Url = "/Query/BranchPurchaseGoods",
-        //        Windowname = "分店商品统计",
-        //        Index = 33,
-        //        SupplierVisible = true,
-        //        EmployeeVisible = false
-        //    };
-        //    SysmodulecontentService.Create(m1);
-        //    //m1 = new Sysmodulecontent()
-        //    //{
-        //    //    Icon = "icon-cart",
-        //    //    Id = "query-purchase",
-        //    //    ParentId = "query",
-        //    //    Url = "/Query/PurchaseQuery",
-        //    //    Windowname = "超市订单",
-        //    //    Index = 21,
-        //    //    SupplierVisible = true
-        //    //};
-        //    //SysmodulecontentService.Create(m1);
-
-        //    //m1 = new Sysmodulecontent()
-        //    //{
-        //    //    Icon = "icon-cart",
-        //    //    Id = "query-branch-order-purchase",
-        //    //    ParentId = "query",
-        //    //    Url = "/Query/BranchPurchaseOrder",
-        //    //    Windowname = "分店订货单据",
-        //    //    Index = 21,
-        //    //    SupplierVisible = true
-        //    //};
-        //    //SysmodulecontentService.Create(m1);
-
-        //    //m1 = new Sysmodulecontent()
-        //    //{
-        //    //    Icon = "icon-cart",
-        //    //    Id = "query-branch-order-goods",
-        //    //    ParentId = "query",
-        //    //    Url = "/Query/BranchPurchaseGoods",
-        //    //    Windowname = "分店订货商品",
-        //    //    Index = 33,
-        //    //    SupplierVisible = true,
-        //    //    EmployeeVisible = false
-        //    //};
-        //    //SysmodulecontentService.Create(m1);
-
-        //    //m1 = new Sysmodulecontent()
-        //    //{
-        //    //    Icon = "icon-cart",
-        //    //    Id = "query-branch-order-supplier",
-        //    //    ParentId = "query",
-        //    //    Url = "/Query/BranchPurchaseSupplier",
-        //    //    Windowname = "分店供货商订货",
-        //    //    Index = 23,
-        //    //    EmployeeVisible = true,
-        //    //    SupplierVisible = true
-        //    //};
-        //    //SysmodulecontentService.Create(m1);
-
-
-
-        //    #endregion
-
-        //    return null;
-        //}
+            results.Add(new{
+                id = "ac",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "AC",
+                menus=ac
+            });
+            results.Add(new{
+                id = "ba",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "BA",
+                menus=ba
+            });
+            results.Add(new{
+                id = "bs",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "BS",
+                menus=bs
+            });
+            results.Add(new{
+                id = "em",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "EM",
+                menus=em
+            });
+            results.Add(new{
+                id = "fb",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "FB",
+                menus=fb
+            });
+            results.Add(new{
+                id = "ms",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "MS",
+                menus=ms
+            });
+            results.Add(new{
+                id = "op",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "OP",
+                menus=op
+            });
+            results.Add(new{
+                id = "pc",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "PC",
+                menus=pc
+            });
+            results.Add(new{
+                id = "rt",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "RT",
+                menus=rt
+            });
+            results.Add(new{
+                id = "sys",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "sys",
+                menus=sys
+            });
+            results.Add(new{
+                id = "tf",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "TF",
+                menus=tf
+            });
+            results.Add(new{
+                id = "tg",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "TG",
+                menus=tg
+            });
+            results.Add(new
+            {
+                id = "ws",
+                iconCls = "icon-add",
+                newwindow = false,
+                pid = "0",
+                text = "WS",
+                menus = ws
+            });
+            return Json(results, JsonRequestBehavior.AllowGet);
+        }
 
         public JsonResult GetModules()
         {
-            //if (Session[AuthorizeSettings.SessionUserType] == null)
-            //{
-            //    return Json("", JsonRequestBehavior.AllowGet);
-            //}
-            //if (Session[AuthorizeSettings.SessionUserType].ToString() == "0")
-            //{
-            //    return Json(
-            //        SysmodulecontentService.ModelListToDto(
-            //            SysmodulecontentService.GetAll().Where(p => p.ParentId.Length > 0 && p.EmployeeVisible).OrderBy(p => p.Index).ToList()
-            //            ),
-            //        JsonRequestBehavior.AllowGet);
-            //}
-            //else if (Session[AuthorizeSettings.SessionUserType].ToString() == "1")
-            //{
-            //    return Json(
-            //        SysmodulecontentService.ModelListToDto(
-            //            SysmodulecontentService.GetAll().Where(p => p.ParentId.Length > 0 && p.SupplierVisible).OrderBy(p => p.Index).ToList()
-            //            ),
-            //        JsonRequestBehavior.AllowGet);
-            //}
-            //else
-            //{
-            //    return Json("", JsonRequestBehavior.AllowGet);
-            //}
+            
             var r = new List<object>();
             r.Add(new
             {
