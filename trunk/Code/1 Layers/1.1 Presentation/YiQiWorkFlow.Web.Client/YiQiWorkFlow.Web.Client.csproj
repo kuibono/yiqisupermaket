@@ -1535,6 +1535,7 @@
     <Content Include="Views\Fb\FbPaGoodsBrandList.cshtml" />
     <Content Include="Views\Rt\RtRetailLogEdit.cshtml" />
     <Content Include="Views\Rt\RtRetailLogList.cshtml" />
+    <None Include="Views\Home\Index.cshtml.bak" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

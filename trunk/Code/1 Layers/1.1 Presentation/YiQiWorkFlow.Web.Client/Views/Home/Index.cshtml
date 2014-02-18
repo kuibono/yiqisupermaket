@@ -1,240 +1,172 @@
-﻿@{
-    Layout = null;
-}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<html>
 <head>
-    <title>xxx超市连锁店有限公司</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="~/Styles/demo.css" />
-    <script src="~/scripts/boot.js" type="text/javascript"></script>
-    
+    <title></title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/reset.css" />
+    <link type="text/css" rel="Stylesheet" href="/Styles/main.css" />
+    <script type="text/javascript" src="/Scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.getJSON("/Account/GetModelesTree", function (j) {
+                for (var i = 0; i < j.length; i++) {
+                    var tree_node = '<h1>' + j[i].text + '</h1><ul>';
+                    var node = '<li class="menu-icon-post menu-item"><div class="menu-image"></div><div class="menu-arrow"><div></div></div><a href="#">' + j[i].text + '</a><div class="submenu" style="top:' + (-30 * i) + 'px;max-height:' + ($(window).height() - 80) + 'px;overflow-y: auto;overflow-x: hidden;"><div class="submenu-head">' + j[i].text + '</div><ul>';
+                    for (var k = 0; k < j[i].menus.length; k++) {
+                        var subItem = '<li><a name="' + j[i].menus[k].id + '" href="' + j[i].menus[k].url + '" onclick="javascript:openInTab(\'' + j[i].menus[k].id + '\',\'' + j[i].menus[k].text + '\',\'' + j[i].menus[k].url + '\');return false;">' + j[i].menus[k].text + '</a> </li>';
+                        node += subItem;
+                        tree_node += subItem;
+                    }
+                    tree_node += '<li class="clear"></li></ul><div class="clear"></div>';
+                    node += '</ul></div></li>';
+                    $(tree_node).appendTo(".site-map:first");
+                    $(node).mouseover(function () {
+                        $("li.menu-icon-post").removeClass("open");
+                        $(this).addClass("open");
+                    }).mouseout(function () {
+                        $("li.menu-icon-post").removeClass("open");
+                    }).insertBefore("#collapse-menu");
+                }
+            });
+            $("li.menu-icon-post").mouseover(function () {
+                $("li.menu-icon-post").removeClass("open");
+                $(this).addClass("open");
+            }).mouseout(function () {
+                $("li.menu-icon-post").removeClass("open");
+            });
+            $("#collapse-menu").click(function () {
+                if ($(document.body).hasClass("folded")) {
+                    $(document.body).removeClass("folded")
+                } else {
+                    $(document.body).addClass("folded")
+                }
+                resizeFrame();
+            });
+            resizeFrame();
+            $(window).resize(resizeFrame);
+            $("#content").find("[id^='tab']").hide(); // Hide all content
+            $("#tabs li:first").attr("id", "current"); // Activate the first tab
+            $("#content div.tabContent:first").fadeIn(); // Show first tab's content
+
+            $('#tabs a').click(function (e) {
+                e.preventDefault();
+                if ($(this).closest("li").attr("id") == "current") { //detection for current tab
+                    return;
+                }
+                else {
+                    $("#content").find("[id^='tab']").hide(); // Hide all content
+                    $("#tabs li").attr("id", ""); //Reset id's
+                    $(this).parent().attr("id", "current"); // Activate this
+                    $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+                }
+            });
+            $("#tabs li a em").click(function () {
+                closeTab($(this).parents("a").first().attr("name"));
+            });
+            $(".menu ul li .submenu li a").click(function () {
+                openInTab($(this).attr("name"), $(this).text(), $(this).attr("href"));
+                return false;
+            });
+        });
+
+        function resizeFrame() {
+            $("#content div iframe").each(function () {
+                $(this).height($(window).height() - 53);
+            });
+        }
+        function closeTab(name) {
+            var iscurrnt = false;
+            if ($("#tabs a[name='" + name + "']").parents("li").first().attr("id") == "current") {
+                iscurrnt = true;
+            }
+            $("#tabs a[name='" + name + "']").parents("li").remove();
+            $("#" + name).remove();
+            if (iscurrnt) {
+                $("#tabs li:last").attr("id", "current");
+                $("#content div:last").fadeIn();
+            }
+        }
+        function openInTab(name, text, url) {
+            if ($("#" + name).size() > 0) {
+                return false;
+            }
+            $("#tabs").append("<li><a href='javascript:closeTab(\"" + name + "\")' name='" + name + "'>" + text + "<em></em></a></li>");
+            $("#content").append("<div class='tabContent' id='" + name + "'><iframe frameborder=0 style='height:" + ($(window).height() - 53) + "px' src='" + url + "'></iframe></div>");
+            $("#content").find("[id^='tab']").hide(); // Hide all content
+            $("#tabs li").attr("id", ""); //Reset id's
+            $("#tabs li:last").attr("id", "current");
+            $("#content div").hide();
+            $("#content div:last").fadeIn();
+        }
+        function showTab(option) {
+            openInTab(option.id, option.text, option.url);
+        }
+    </script>
 </head>
 <body>
-    <!--Layout-->
-    <div id="layout1" class="mini-layout fill">
-        <div class="header" region="north" height="70" showsplit="false" showheader="false" style=" overflow:hidden;">
-            <div style="float:right; min-width:360px;width:360px;height:100%; background-image:url(/Images/bannerRight.jpg);background-repeat:no-repeat;">
-               
-            </div>
-            <div style="float: left;min-width:209px;width:500px;height:100%; /*background-image:url(/Images/bannerLeft.jpg);*/ background-repeat:no-repeat;">
-                <h1 style="margin: 0; padding: 15px;margin-top:10px; cursor: default; font-family: 微软雅黑,黑体,宋体;color:#FFF;">
-                   @* @Model.TempString*@
-                </h1>
-            </div>
-            <div style="position: absolute; top: 18px; right: 10px;">
-                
-                <a class="mini-button mini-button-iconTop" iconcls="icon-bell"
-                        onclick="showBlank" plain="true">公告</a>
-                <a class="mini-button mini-button-iconTop" iconcls="icon-group-key" onclick="showChangePassWindow"
-                    plain="true">修改密码</a> 
-                @if (YiQiWorkFlow.Web.Client.Common.MyEnv.IsEmployeeLogin && false)
-                {
-                    <a class="mini-button mini-button-iconTop" iconcls="icon-cog-edit" onclick="showBusinessSettingWindow"
-                        plain="true">业务设置</a> 
-                    <a class="mini-button mini-button-iconTop" iconcls="icon-edit" onclick="showSettingWindow"
-                        plain="true">系统设置</a> 
-                }
-                <a class="mini-button mini-button-iconTop" iconcls="icon-close" onclick="onLogOut"
-                    plain="true">退出</a>
-            </div>
-        </div>
-        <div title="south" region="south" showsplit="false" showheader="false" height="30">
-            <div style="line-height: 28px; text-align: center; cursor: default">
-                xxx有限公司 &copy; 2015 版权所有</div>
-        </div>
-        <div title="center" region="center" style="border: 0;" bodystyle="overflow:hidden;">
-            <!--Splitter-->
-            <div class="mini-splitter fill" borderstyle="border:0;">
-                <div size="180" maxsize="250" minsize="100" showcollapsebutton="true" style="border: 0;">
-                    <!--OutlookTree-->
-                    <div id="leftTree" class="mini-outlookmenu" url="/Account/GetModules/" onitemclick="onItemSelect"
-                        textfield="text" idfield="id" parentfield="pid" expandonload="true">
+
+    <div class="wrap">
+        <div class="menu">
+            <div id="adminmenushadow"></div>
+            <ul>
+                <li style="height: 30px;"></li>
+
+                <li id="collapse-menu" class="menu-item">
+                    <div id="collapse-button">
+                        <div></div>
                     </div>
-                </div>
-                <div showcollapsebutton="false" style="noborder">
-                    <!--Tabs-->
-                    <div id="mainTabs" class="mini-tabs " activeindex="0" style="width: 100%; height: 100%;"
-                        plain="false">
-                        <div title="空白" url="about:blank" id="tab_blank" iconcls="icon-bell">
+                    <span>收起菜单</span>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="top-bar">
+                <ul class="left-bar">
+                    <li class="bar-item logo first">
+                        <ul class="sub-items">
+                            <li><a href="#">关于本系统</a></li>
+                            <li><a href="#">文档</a></li>
+                            <li><a href="#">反馈</a></li>
+                        </ul>
+                    </li>
+                    <li class="bar-item last">
+                        <a href="javascript:void(0)">快捷菜单
+                        </a>
+                        <ul class="sub-items">
+                            <li><a href="#">商品档案</a></li>
+                            <li><a href="#">经销商档案</a></li>
+                            <li><a href="#">员工档案</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="right-bar">
+                    <li class="bar-item first">
+                        <a href="javascript:void(0)">功能地图</a>
+                        <div class="sub-items site-map">
                         </div>
+                    </li>
+                    <li class="bar-item last">
+                        <a href="javascript:void(0)">欢迎您，张经理</a>
+                        <ul class="sub-items">
+                            <li><a href="#">个人信息</a></li>
+                            <li><a href="#">修改密码</a></li>
+                            <li><a href="#">退出系统</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="space"></div>
+                <ul id="tabs">
+                    <li><a href="#" name="tab1">空白<em></em></a></li>
+                </ul>
+
+                <div id="content">
+                    <div class="tabContent" id="tab1">
+                        <p style="padding: 20px;">连锁超市进销存系统</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        mini.parse();
-        var tree = mini.get("leftTree");
-
-        function onItemSelect(e) {
-            var tabs = mini.get("mainTabs");
-            var node = e.item;
-            var id = "tab$" + node.id;
-            if (node.newwindow == true) {
-                openWindow(node.url, node.text, node.iconCls);
-                return false;
-            }
-            var tab = tabs.getTab(id);
-            //tabs.removeTab(tab);
-            if (!tab) {
-                tab = {};
-                tab.name = id;
-                tab.title = node.text;
-                tab.iconCls = node.iconCls;
-                tab.showCloseButton = true;
-
-                //这里拼接了url，实际项目，应该从后台直接获得完整的url地址
-                if (node.url) {
-                    tab.url = node.url;
-                }
-                else {
-                    tab.url = mini_JSPath + "../../docs/api/" + node.id + ".html";
-                }
-                tabs.addTab(tab);
-            }
-            else {
-                tabs.reloadTab(tab);
-            }
-            tabs.activeTab(tab);
-        }
-        function showTab(node) {
-            var tabs = mini.get("mainTabs");
-            var id = "tab$" + node.id;
-            if (node.newwindow == true) {
-                openWindow(node.url, node.text, node.iconCls);
-                return false;
-            }
-            var tab = tabs.getTab(id);
-            //tabs.removeTab(tab);
-            if (!tab) {
-                tab = {};
-                tab.name = id;
-                tab.title = node.text;
-                tab.iconCls = node.iconCls;
-                tab.showCloseButton = true;
-
-                //这里拼接了url，实际项目，应该从后台直接获得完整的url地址
-                if (node.url) {
-                    tab.url = node.url;
-                }
-                else {
-                    tab.url = mini_JSPath + "../../docs/api/" + node.id + ".html";
-                }
-                tabs.addTab(tab);
-            }
-            tabs.activeTab(tab);
-        }
-        function closeTab(_id) {
-            var tabs = mini.get("mainTabs");
-            var id = "tab$" + _id;
-            var tab = tabs.getTab(id);
-            if (!tab) {
-            } else {
-                tabs.removeTab(tab);
-            }
-        }
-
-        function onNodeSelect(e) {
-            var node = e.node;
-            var isLeaf = e.isLeaf;
-
-            if (isLeaf) {
-                showTab(node);
-            }
-        }
-
-
-        function onClick(e) {
-            var text = this.getText();
-            alert(text);
-        }
-        function showBlank(e) {
-            var tabs = mini.get("mainTabs");
-            var tab = tabs.getTab(0);
-            tabs.activeTab(tab);
-            tabs.reloadTab(tab);
-        }
-
-        function showSettingWindow(e) {
-            mini.open({
-                url: "/Account/SysSetting/",
-                title: "系统设置",
-                iconCls: "icon-edit",
-                allowResize: false,
-                width: 650,
-                height: 200,
-                onload: function () {
-                    //var iframe = this.getIFrameEl();
-                    //var data = { action: "new" };
-                    //iframe.contentWindow.SetData(data);
-                },
-                ondestroy: function (action) {
-                    location.href = location.href;
-                }
-            });
-        }
-        function showBusinessSettingWindow() {
-            mini.open({
-                url: "/Account/BaseSetting/",
-                title: "基础参数设置",
-                iconCls: "icon-edit",
-                allowResize: false,
-                width: 680,
-                height: 270,
-                onload: function () {
-                    //var iframe = this.getIFrameEl();
-                    //var data = { action: "new" };
-                    //iframe.contentWindow.SetData(data);
-                },
-                ondestroy: function (action) {
-                }
-            });
-        }
-
-        function showChangePassWindow() {
-            mini.open({
-                url: "/Account/ChangePassword/",
-                title: "修改密码",
-                iconCls: "icon-group-key",
-                allowResize: false,
-                width: 250,
-                height: 170,
-                onload: function () {
-                    //var iframe = this.getIFrameEl();
-                    //var data = { action: "new" };
-                    //iframe.contentWindow.SetData(data);
-                },
-                ondestroy: function (action) {
-                }
-            });
-        }
-
-        function openWindow(u, t, i) {
-            mini.open({
-                url: u,
-                title: t,
-                iconCls: i,
-                allowResize: false,
-                width: 680,
-                height: 270,
-                onload: function () {
-                    //var iframe = this.getIFrameEl();
-                    //var data = { action: "new" };
-                    //iframe.contentWindow.SetData(data);
-                },
-                ondestroy: function (action) {
-                }
-            });
-        }
-
-        function onLogOut(e) {
-            location.href = "/Account/Logout/"
-        }
-        function onQuickClick(e) {
-            tree.expandPath("datagrid");
-            tree.selectNode("datagrid");
-        }
-    </script>
 </body>
 </html>

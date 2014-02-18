@@ -26,6 +26,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             string textColumn = "";
             for (int i = 0; i < Request.QueryString.Count; i++)
             {
+                if (Request.QueryString.Keys[i].ToLower() == "_")
+                {
+                    continue;
+                }
                 if (Request.QueryString.Keys[i].ToLower() == "table")
                 {
                     table = Request.QueryString[i].ToString();
