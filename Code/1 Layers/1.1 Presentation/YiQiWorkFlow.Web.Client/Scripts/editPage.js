@@ -114,6 +114,8 @@ $(function () {
 
 });
 function closeTab() {
+    var form = new mini.Form("#formMain"); // default form
+
     if (form.isChanged() || formChanged) {
         mini.showMessageBox({
             title: "是否保存",
