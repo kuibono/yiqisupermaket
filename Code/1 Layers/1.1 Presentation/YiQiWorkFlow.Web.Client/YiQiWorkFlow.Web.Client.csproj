@@ -1041,7 +1041,6 @@
     <Folder Include="Scripts\miniui\themes\gray\images\splitter\" />
     <Folder Include="Scripts\miniui\themes\gray\images\tabs\" />
     <Folder Include="Scripts\miniui\themes\gray\images\treegrid\" />
-    <Folder Include="Views\Archives\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\1.2 Application\YiQiWorkFlow.Application.Service\YiQiWorkFlow.Application.Service.csproj">
