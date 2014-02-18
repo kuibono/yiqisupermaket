@@ -38,163 +38,51 @@
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchFbGoodsArchivesList"
             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true">
+            pagesize="20" multiselect="true" showFilterRow="true" frozenStartColumn="1" frozenEndColumn="4">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="GoodsCode" headeralign="center" align="center" width="60">
+				<div field="GoodsCode" headeralign="center" align="center" width="80">
 				    商品编码
 					<input id="filter_GoodsCode" name="GoodsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="GoodsBarCode" headeralign="center" align="center" width="60">
+				<div field="GoodsBarCode" headeralign="center" align="center" width="80">
 				    商品销售码
 					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="GoodsSubCode" headeralign="center" align="center" width="60">
-				    商品简码
-					<input id="filter_GoodsSubCode" name="GoodsSubCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GbCode" headeralign="center" align="center" width="60">
-				    大类
-					<input id="filter_GbCode" name="GbCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GmCode" headeralign="center" align="center" width="60">
-				    中类
-					<input id="filter_GmCode" name="GmCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GsCode" headeralign="center" align="center" width="60">
-				    小类
-					<input id="filter_GsCode" name="GsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GlCode" headeralign="center" align="center" width="60">
-				    细类
-					<input id="filter_GlCode" name="GlCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GoodsType" headeralign="center" align="center" width="60">
-				    商品类型
-					<input id="filter_GoodsType" name="GoodsType" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CheckMode" headeralign="center" align="center" width="60">
-				    核算方式
-					<input id="filter_CheckMode" name="CheckMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SupCode" headeralign="center" align="center" width="60">
-				    供货商编码
-					<input id="filter_SupCode" name="SupCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OpCode" headeralign="center" align="center" width="60">
-				    经营方式
-					<input id="filter_OpCode" name="OpCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PoolRate" headeralign="center" align="center" width="60">
-				    扣率
-					<input id="filter_PoolRate" name="PoolRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GoodsName" headeralign="center" align="center" width="60">
+                <div field="GoodsName" headeralign="center" align="center" width="80">
 				    商品名称
 					<input id="filter_GoodsName" name="GoodsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="GoodsSubName" headeralign="center" align="center" width="60">
-				    商品简称
-					<input id="filter_GoodsSubName" name="GoodsSubName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PyCode" headeralign="center" align="center" width="60">
-				    拼音码
-					<input id="filter_PyCode" name="PyCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GoodsState" headeralign="center" align="center" width="60">
-				    1正常2淘汰3禁采销售4禁采禁销5废除
+				<div field="GoodsState" headeralign="center" align="center" width="80">
+				    商品状态
 					<input id="filter_GoodsState" name="GoodsState" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="ProducingArea" headeralign="center" align="center" width="60">
-				    产地
-					<input id="filter_ProducingArea" name="ProducingArea" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				<div field="GoodsType" headeralign="center" align="center" width="80">
+				    商品类型
+					<input id="filter_GoodsType" name="GoodsType" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="ArticleNumber" headeralign="center" align="center" width="60">
-				    货号
-					<input id="filter_ArticleNumber" name="ArticleNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                <div field="SupCode" headeralign="center" align="center" width="80">
+				    供货商编码
+					<input id="filter_SupCode" name="SupCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="Specification" headeralign="center" align="center" width="60">
-				    规格
-					<input id="filter_Specification" name="Specification" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                <div field="OpCode" headeralign="center" align="center" width="70">
+				    经营方式
+					<input id="filter_OpCode" name="OpCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="ShelfLife" headeralign="center" align="center" width="60">
-				    保质期
-					<input id="filter_ShelfLife" name="ShelfLife" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                <div field="PoolRate" headeralign="center" align="center" width="60">
+				    扣率
+					<input id="filter_PoolRate" name="PoolRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="PackUnitCode" headeralign="center" align="center" width="60">
-				    包装单位
-					<input id="filter_PackUnitCode" name="PackUnitCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OfferMode" headeralign="center" align="center" width="60">
-				    供货方式
-					<input id="filter_OfferMode" name="OfferMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PackCoef" headeralign="center" align="center" width="60">
-				    包装系数
-					<input id="filter_PackCoef" name="PackCoef" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OfferMin" headeralign="center" align="center" width="60">
-				    最小订量
-					<input id="filter_OfferMin" name="OfferMin" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="InputTax" headeralign="center" align="center" width="60">
-				    进项税率
-					<input id="filter_InputTax" name="InputTax" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OutputTax" headeralign="center" align="center" width="60">
-				    销项税率
-					<input id="filter_OutputTax" name="OutputTax" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="StockUpperLimit" headeralign="center" align="center" width="60">
-				    库存上限
-					<input id="filter_StockUpperLimit" name="StockUpperLimit" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="StockLowerLimit" headeralign="center" align="center" width="60">
-				    库存下限
-					<input id="filter_StockLowerLimit" name="StockLowerLimit" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="UnderFloorCode" headeralign="center" align="center" width="60">
-				    所属楼层
-					<input id="filter_UnderFloorCode" name="UnderFloorCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="UnderCounterCode" headeralign="center" align="center" width="60">
-				    所属柜台
-					<input id="filter_UnderCounterCode" name="UnderCounterCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="BrandCode" headeralign="center" align="center" width="60">
-				    所属品牌
-					<input id="filter_BrandCode" name="BrandCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CheckUnitCode" headeralign="center" align="center" width="60">
-				    核算单位
-					<input id="filter_CheckUnitCode" name="CheckUnitCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PurchasePrice" headeralign="center" align="center" width="60">
+				<div field="PurchasePrice" headeralign="center" align="center" width="80">
 				    含税进价
 					<input id="filter_PurchasePrice" name="PurchasePrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
+				<div field="NontaxPurchasePrice" headeralign="center" align="center" width="100">
 				    不含税进价
 					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="AvgCost" headeralign="center" align="center" width="60">
-				    平均成本
-					<input id="filter_AvgCost" name="AvgCost" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="NontaxAvgCost" headeralign="center" align="center" width="60">
-				    不含税平均成本
-					<input id="filter_NontaxAvgCost" name="NontaxAvgCost" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GrossRate" headeralign="center" align="center" width="60">
-				    毛利率
-					<input id="filter_GrossRate" name="GrossRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SupplyPrice" headeralign="center" align="center" width="60">
-				    配送价
-					<input id="filter_SupplyPrice" name="SupplyPrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
 				<div field="SalePrice" headeralign="center" align="center" width="60">
 				    销售价
@@ -208,33 +96,45 @@
 				    批发价
 					<input id="filter_TradePrice" name="TradePrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="PushRate" headeralign="center" align="center" width="60">
-				    营业员提成
-					<input id="filter_PushRate" name="PushRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				<div field="ProducingArea" headeralign="center" align="center" width="60">
+				    产地
+					<input id="filter_ProducingArea" name="ProducingArea" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="CreateDate" headeralign="center" align="center" width="60">
-				    创建时间
-					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				<div field="ArticleNumber" headeralign="center" align="center" width="60">
+				    货号
+					<input id="filter_ArticleNumber" name="ArticleNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="Operator" headeralign="center" align="center" width="60">
-				    操作员
-					<input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				<div field="Specification" headeralign="center" align="center" width="60">
+				    规格
+					<input id="filter_Specification" name="Specification" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="Assessor" headeralign="center" align="center" width="60">
-				    审核人
-					<input id="filter_Assessor" name="Assessor" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                <div field="ShelfLife" headeralign="center" align="center" width="60">
+				    保质期
+					<input id="filter_ShelfLife" name="ShelfLife" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="IfExamine" headeralign="center" align="center" width="60">
-				    是否审核
-					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				<div field="PackUnitCode" headeralign="center" align="center" width="80">
+				    包装单位
+					<input id="filter_PackUnitCode" name="PackUnitCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="ExamineDate" headeralign="center" align="center" width="60">
-				    审核时间
-					<input id="filter_ExamineDate" name="ExamineDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				<div field="OfferMode" headeralign="center" align="center" width="80">
+				    供货方式
+					<input id="filter_OfferMode" name="OfferMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="OperatorDate" headeralign="center" align="center" width="60">
-				    操作时间
-					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				<div field="PackCoef" headeralign="center" align="center" width="80">
+				    包装系数
+					<input id="filter_PackCoef" name="PackCoef" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="OfferMin" headeralign="center" align="center" width="80">
+				    最小订量
+					<input id="filter_OfferMin" name="OfferMin" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="GrossRate" headeralign="center" align="center" width="70">
+				    毛利率
+					<input id="filter_GrossRate" name="GrossRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+				<div field="GoodsSubName" headeralign="center" align="center" width="80">
+				    商品简称
+					<input id="filter_GoodsSubName" name="GoodsSubName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
                 <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
                 <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
