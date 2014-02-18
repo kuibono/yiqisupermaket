@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title></title>
@@ -10,12 +9,16 @@
         $(function () {
             $.getJSON("/Account/GetModelesTree", function (j) {
                 for (var i = 0; i < j.length; i++) {
+                    var tree_node = '<h1>' + j[i].text + '</h1><ul>';
                     var node = '<li class="menu-icon-post menu-item"><div class="menu-image"></div><div class="menu-arrow"><div></div></div><a href="#">' + j[i].text + '</a><div class="submenu" style="top:' + (-30 * i) + 'px;max-height:' + ($(window).height() - 80) + 'px;overflow-y: auto;overflow-x: hidden;"><div class="submenu-head">' + j[i].text + '</div><ul>';
-                    //var node = $('<li class="menu-icon-post menu-item"><div class="menu-image"></div><div class="menu-arrow"><div></div></div><a href="#">' + j[i].text + '</a><div class="submenu"><div class="submenu-head">' + j[i].text + '</div><ul></ul></div></li>');
                     for (var k = 0; k < j[i].menus.length; k++) {
-                        node += '<li><a name="' + j[i].menus[k].id + '" href="' + j[i].menus[k].url + '" onclick="javascript:openInTab(\'' + j[i].menus[k].id + '\',\'' + j[i].menus[k].text + '\',\'' + j[i].menus[k].url + '\');return false;">' + j[i].menus[k].text + '</a> </li>';
+                        var subItem='<li><a name="' + j[i].menus[k].id + '" href="' + j[i].menus[k].url + '" onclick="javascript:openInTab(\'' + j[i].menus[k].id + '\',\'' + j[i].menus[k].text + '\',\'' + j[i].menus[k].url + '\');return false;">' + j[i].menus[k].text + '</a> </li>';
+                        node += subItem;
+                        tree_node += subItem;
                     }
+                    tree_node += '<li class="clear"></li></ul><div class="clear"></div>';
                     node += '</ul></div></li>';
+                    $(tree_node).appendTo(".site-map:first");
                     $(node).mouseover(function () {
                         $("li.menu-icon-post").removeClass("open");
                         $(this).addClass("open");
@@ -106,7 +109,7 @@
             <div id="adminmenushadow"></div>
             <ul>
                 <li style="height: 30px;"></li>
-                
+
                 <li id="collapse-menu" class="menu-item">
                     <div id="collapse-button">
                         <div></div>
@@ -138,10 +141,7 @@
                 <ul class="right-bar">
                     <li class="bar-item first">
                         <a href="javascript:void(0)">功能地图</a>
-                        <div class="sub-items">
-                            <p>
-                                系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航系统导航
-                            </p>
+                        <div class="sub-items site-map">
                         </div>
                     </li>
                     <li class="bar-item last">
@@ -162,7 +162,7 @@
 
                 <div id="content">
                     <div class="tabContent" id="tab1">
-                        <p style="padding:20px;">连锁超市进销存系统</p>
+                        <p style="padding: 20px;">连锁超市进销存系统</p>
                     </div>
                 </div>
             </div>

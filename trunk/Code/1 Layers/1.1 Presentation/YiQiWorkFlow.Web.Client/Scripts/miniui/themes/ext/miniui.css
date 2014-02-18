@@ -172,6 +172,7 @@ table
 .mini-toolbar
 {
     border:solid 1px #909aa6;
+    border-width:0px 1px 1px 1px;
     padding:3px;   
     _padding-bottom:4px;
     /*background:#E7EAEE url(images/toolbar/toolbar.png) repeat-x 0 0;*/
