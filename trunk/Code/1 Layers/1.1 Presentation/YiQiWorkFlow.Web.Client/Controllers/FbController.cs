@@ -975,9 +975,14 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult FbGoodsArchivesEdit(string id)
         {
             FbGoodsArchives m = FbGoodsArchives.Initial();
+
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbGoodsArchivesService.GetById(id);
+            }
+            else
+            {
+                m.GoodsSubCode = FbGoodsArchives.GenerateSubCode();
             }
             return View(m);
         }
