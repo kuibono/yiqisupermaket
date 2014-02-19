@@ -82,6 +82,19 @@
             var tab = mini.get("tabs1");
             tab.activeTab(tab.getTab(index));
         }
+        function onFileSelect(e) {
+            //alert("选择文件");
+        }
+        function onUploadSuccess(e) {
+            alert("上传成功：" + e.serverData);
+            this.setText("");
+        }
+        function onUploadError(e) {
+        }
+        function startUpload() {
+            var fileupload = mini.get("filter_Photo");
+            fileupload.startUpload();
+        }
         $(function () {
             $("#btnAddSupplier").click(function () {
                 activeTab(0);
@@ -600,7 +613,8 @@
                                 </div>
                                 <div field="Photo" headeralign="center" align="center" width="60">
                                     图片
-					<input id="filter_Photo" name="Photo" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                    <input id="filter_Photo" property="editor"  style="width: 100%;" class="mini-fileupload" name="Photo" limitType="*.txt" flashUrl="/Scripts/swfupload/swfupload.swf" uploadUrl="upload.aspx" onuploadsuccess="onUploadSuccess"  onuploaderror="onUploadError" onfileselect="onFileSelect" />
+					
                                 </div>
                                 <div field="PhotoType" headeralign="center" align="center" width="60">
                                     图片类型
