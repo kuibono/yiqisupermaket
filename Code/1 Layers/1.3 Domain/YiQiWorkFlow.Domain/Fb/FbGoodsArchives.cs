@@ -329,6 +329,11 @@ namespace YiQiWorkFlow.Domain.Fb
 			m.IfExamine="0";
             return m;
         }
+
+        public static string GenerateSubCode()
+        {
+            return (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString().Substring(7,10);
+        }
 	}
 	 
 }

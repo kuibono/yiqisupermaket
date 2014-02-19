@@ -36,14 +36,15 @@
             });
         }
         function onGbValuechanged(e) {
-            var gbCombo=mini.get("Control_GbCode");
-            var gmCombo=mini.get("Control_GmCode");
-            var gsCombo=mini.get("Control_GsCode");
+            var gbCombo = mini.get("Control_GbCode");
+            var gmCombo = mini.get("Control_GmCode");
+            var gsCombo = mini.get("Control_GsCode");
             var glCombo = mini.get("Control_GlCode");
 
             var gbValue = gbCombo.getValue();
             gmCombo.setValue("");
-            gmCombo.setUrl("/Common/GetComboData?table=fb_pa_goods_gm&valueColumn=gm_code&textColumn=gm_name&gb_code="+gbValue);
+            gmCombo.setUrl("/Common/GetComboData?table=fb_pa_goods_gm&valueColumn=gm_code&textColumn=gm_name&gb_code=" + gbValue);
+            generateId();
         }
         function onGmValuechanged(e) {
             var gbCombo = mini.get("Control_GbCode");
@@ -54,6 +55,7 @@
             var gmValue = gmCombo.getValue();
             gsCombo.setValue("");
             gsCombo.setUrl("/Common/GetComboData?table=fb_pa_goods_gs&valueColumn=gs_code&textColumn=gs_name&gm_code=" + gmValue);
+            generateId();
         }
         function onGsValuechanged(e) {
             var gbCombo = mini.get("Control_GbCode");
@@ -64,9 +66,55 @@
             var gsValue = gmCombo.getValue();
             glCombo.setValue("");
             glCombo.setUrl("/Common/GetComboData?table=fb_pa_goods_gl&valueColumn=gl_code&textColumn=gl_name&gs_code=" + gsValue);
+            generateId();
+        }
+        function onGlValuechanged(e) {
+            generateId();
+        }
+        function generateId() {
+            var gbCombo = mini.get("Control_GbCode");
+            var gmCombo = mini.get("Control_GmCode");
+            var gsCombo = mini.get("Control_GsCode");
+            var glCombo = mini.get("Control_GlCode");
+            mini.get("#Control_GoodsCode").setValue(gbCombo.getValue() + gmCombo.getValue() + gsCombo.getValue() + glCombo.getValue() + mini.get("Control_GoodsSubCode").getValue());
+        }
+        function activeTab(index) {
+            var tab = mini.get("tabs1");
+            tab.activeTab(tab.getTab(index));
         }
         $(function () {
-            //mini.get("Control_GoodsType").data=
+            $("#btnAddSupplier").click(function () {
+                activeTab(0);
+                var grid = mini.get("grid1");
+                var row = {};
+                grid.addRow(row, 0);
+                grid.cancelEdit();
+                grid.beginEditRow(row);
+            });
+            $("#btnAddSaleCode").click(function () {
+                activeTab(1);
+                var grid = mini.get("grid2");
+                var row = {};
+                grid.addRow(row, 0);
+                grid.cancelEdit();
+                grid.beginEditRow(row);
+            });
+            $("#btnAddBind").click(function () {
+                activeTab(2);
+                var grid = mini.get("grid3");
+                var row = {};
+                grid.addRow(row, 0);
+                grid.cancelEdit();
+                grid.beginEditRow(row);
+            });
+            $("#btnAddImage").click(function () {
+                activeTab(3);
+                var grid = mini.get("grid4");
+                var row = {};
+                grid.addRow(row, 0);
+                grid.cancelEdit();
+                grid.beginEditRow(row);
+            });
         });
     </script>
 </head>
@@ -143,7 +191,7 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_GlCode">细类:</label>
-                    <input type="text"  value="@Model.GlCode" class="mini-combobox" name="GlCode" id="Control_GlCode" required="true" />
+                    <input type="text"  value="@Model.GlCode" class="mini-combobox" name="GlCode" id="Control_GlCode" onvaluechanged="onGlValuechanged" required="true" />
                 </div>
                 <div class="ablock">
                     <label for="Control_GoodsCode">商品编码:</label>
@@ -151,7 +199,7 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_GoodsSubCode">商品简码:</label>
-                    <input type="text"  value="@Model.GoodsSubCode" class="mini-textbox" name="GoodsSubCode" id="Control_GoodsSubCode" vtype="maxLength:20" />
+                    <input type="text"  value="@Model.GoodsSubCode" class="mini-textbox" name="GoodsSubCode" id="Control_GoodsSubCode" enabled="false" vtype="maxLength:20" />
                 </div>
                 <div class="ablock">
                     <label for="Control_GoodsBarCode">商品销售码:</label>
@@ -176,7 +224,7 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_UnderCounterCode">所属柜台:</label>
-                    <input type="text"  value="@Model.UnderCounterCode" class="mini-textbox" name="UnderCounterCode" id="Control_UnderCounterCode" vtype="maxLength:20" />
+                    <input type="text"  value="@Model.UnderCounterCode" class="mini-combobox" name="UnderCounterCode" id="Control_UnderCounterCode" url="/Common/GetComboData?table=fb_pa_goods_counter&valueColumn=counter_code&textColumn=counter_name" vtype="maxLength:20" />
                 </div>
                 <div class="ablock">
                     <label for="Control_GoodsName">商品名称:</label>
@@ -204,7 +252,7 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_PackUnitCode">包装单位:</label>
-                    <input type="text"  value="@Model.PackUnitCode" class="mini-textbox" name="PackUnitCode" id="Control_PackUnitCode" vtype="maxLength:20" />
+                    <input type="text"  value="@Model.PackUnitCode" class="mini-combobox" name="PackUnitCode" id="Control_PackUnitCode" url="/Common/GetComboData?table=fb_pa_goods_pack_unit&valueColumn=pack_unit_code&textColumn=pack_unit_name" vtype="maxLength:20" />
                 </div>
                 <div class="ablock">
                     <label for="Control_ShelfLife">保质期:</label>
@@ -345,6 +393,229 @@
                     <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
             </fieldset>
+            <div id="tabs1" class="mini-tabs" activeindex="0" style="width: 100%; height: 200px;" plain="false">
+                <div title="供货商信息">
+                    <div class="mini-fit">
+                        <div id="grid1" class="mini-datagrid" url="SearchFbGoodsArchivesSupplierList"
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
+                            <div property="columns">
+                                <div type="indexcolumn" width="30">
+                                </div>
+                                <div type="checkcolumn" width="30">
+                                </div>
+                                <div field="SupCode" headeralign="center" align="center" width="60">
+                                    供货商编码
+					<input id="filter_SupCode" name="SupCode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="SupName" headeralign="center" align="center" width="60">
+                                    供货商名称
+					<input id="filter_SupName" name="SupName" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="PyCode" headeralign="center" align="center" width="60">
+                                    拼音码
+					<input id="filter_PyCode" name="PyCode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="OpCode" headeralign="center" align="center" width="60">
+                                    经营方式
+					<input id="filter_OpCode" name="OpCode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="PoolRate" headeralign="center" align="center" width="60">
+                                    扣率
+					<input id="filter_PoolRate" name="PoolRate" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="OfferMode" headeralign="center" align="center" width="60">
+                                    供货方式
+					<input id="filter_OfferMode" name="OfferMode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="OfferMin" headeralign="center" align="center" width="60">
+                                    最小订量
+					<input id="filter_OfferMin" name="OfferMin" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="InputTax" headeralign="center" align="center" width="60">
+                                    进项税率
+					<input id="filter_InputTax" name="InputTax" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="PurchasePrice" headeralign="center" align="center" width="60">
+                                    含税进价
+					<input id="filter_PurchasePrice" name="PurchasePrice" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
+                                    不含税进价
+					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="IfMainSupplier" headeralign="center" align="center" width="60">
+                                    0否1是
+					<input id="filter_IfMainSupplier" name="IfMainSupplier" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="IfExamine" headeralign="center" align="center" width="60">
+                                    是否审核
+					<input id="filter_IfExamine" name="IfExamine" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                                    cellstyle="padding:0;">
+                                    管理
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div title="销售码信息">
+                    <div class="mini-fit">
+                        <div id="grid2" class="mini-datagrid" url="SearchFbGoodsArchivesBarList"
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
+                            <div property="columns">
+                                <div type="indexcolumn" width="30">
+                                </div>
+                                <div type="checkcolumn" width="30">
+                                </div>
+                                <div field="GoodsBarCode" headeralign="center" align="center" width="60">
+                                    商品销售码
+					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="GoodsBarName" headeralign="center" align="center" width="60">
+                                    销售名称
+					<input id="filter_GoodsBarName" name="GoodsBarName" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="PackUnitCode" headeralign="center" align="center" width="60">
+                                    包装单位
+					<input id="filter_PackUnitCode" name="PackUnitCode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="PackCoef" headeralign="center" align="center" width="60">
+                                    包装系数
+					<input id="filter_PackCoef" name="PackCoef" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="QtyType" headeralign="center" align="center" width="60">
+                                    计量方式
+					<input id="filter_QtyType" name="QtyType" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="PriceType" headeralign="center" align="center" width="60">
+                                    计价方式
+					<input id="filter_PriceType" name="PriceType" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="SalePrice" headeralign="center" align="center" width="60">
+                                    销售价
+					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="VipPrice" headeralign="center" align="center" width="60">
+                                    会员价
+					<input id="filter_VipPrice" name="VipPrice" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="TradePrice" headeralign="center" align="center" width="60">
+                                    批发价
+					<input id="filter_TradePrice" name="TradePrice" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="PushRate" headeralign="center" align="center" width="60">
+                                    营业员提成
+					<input id="filter_PushRate" name="PushRate" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="IfMainBar" headeralign="center" align="center" width="60">
+                                    是否主销售码
+					<input id="filter_IfMainBar" name="IfMainBar" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="IfExamine" headeralign="center" align="center" width="60">
+                                    是否审核
+					<input id="filter_IfExamine" name="IfExamine" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                                    cellstyle="padding:0;">
+                                    管理
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div title="捆绑商品信息">
+                    <div class="mini-fit">
+                        <div id="grid3" class="mini-datagrid" url="SearchFbGoodsArchivesBindList"
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
+                            <div property="columns">
+                                <div type="indexcolumn" width="30">
+                                </div>
+                                <div type="checkcolumn" width="30">
+                                </div>
+                                <div field="GoodsBarCode" headeralign="center" align="center" width="60">
+                                    捆绑商品销售码
+					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="GoodsCodeBind" headeralign="center" align="center" width="60">
+                                    商品编码
+					<input id="filter_GoodsCodeBind" name="GoodsCodeBind" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="GoodsBarCodeBind" headeralign="center" align="center" width="60">
+                                    商品销售码
+					<input id="filter_GoodsBarCodeBind" name="GoodsBarCodeBind" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="GoodsBarName" headeralign="center" align="center" width="60">
+                                    销售名称
+					<input id="filter_GoodsBarName" name="GoodsBarName" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="PackUnitCode" headeralign="center" align="center" width="60">
+                                    包装单位
+					<input id="filter_PackUnitCode" name="PackUnitCode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="BindCoef" headeralign="center" align="center" width="60">
+                                    捆绑系数
+					<input id="filter_BindCoef" name="BindCoef" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="SalePrice" headeralign="center" align="center" width="60">
+                                    销售价
+					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="BindSalePrice" headeralign="center" align="center" width="60">
+                                    捆绑销售价
+					<input id="filter_BindSalePrice" name="BindSalePrice" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="IfExamine" headeralign="center" align="center" width="60">
+                                    是否审核
+					<input id="filter_IfExamine" name="IfExamine" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="SaleMoney" headeralign="center" align="center" width="60">
+                                    捆绑商品销售价
+					<input id="filter_SaleMoney" name="SaleMoney" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                                    cellstyle="padding:0;">
+                                    管理
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div title="商品图片信息">
+                    <div class="mini-fit">
+                        <div id="grid4" class="mini-datagrid" url="SearchFbGoodsArchivesPhotoList"
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
+                            <div property="columns">
+                                <div type="indexcolumn" width="30">
+                                </div>
+                                <div type="checkcolumn" width="30">
+                                </div>
+                                <div field="sNumber" headeralign="center" align="center" width="60">
+                                    序号
+					<input id="filter_sNumber" name="sNumber" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="Photo" headeralign="center" align="center" width="60">
+                                    图片
+					<input id="filter_Photo" name="Photo" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div field="PhotoType" headeralign="center" align="center" width="60">
+                                    图片类型
+					<input id="filter_PhotoType" name="PhotoType" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                                </div>
+                                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                                    cellstyle="padding:0;">
+                                    管理
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="clear">
             </div>
             <div class="control-panel">
@@ -352,6 +623,10 @@
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
                     <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+                    <input type="button" class="myButton" id="btnAddSupplier" value="增加供货商" />
+                    <input type="button" class="myButton" id="btnAddSaleCode" value="增加销售码" />
+                    <input type="button" class="myButton" id="btnAddBind" value="增加捆绑商品" />
+                    <input type="button" class="myButton" id="btnAddImage" value="增加图片" />
                 </div>
                 <div class="botton-up">
                 </div>
