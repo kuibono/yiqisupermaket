@@ -32,6 +32,31 @@ namespace NSH.Core.Domain
             }
         }
 
+        #region miniui 数据行状态
+        public virtual string _state { get; set; }
+
+        public virtual bool IsDelete
+        {
+            get
+            {
+                return _state == "removed";
+            }
+        }
+        public virtual bool IsAdded
+        {
+            get
+            {
+                return _state == "added";
+            }
+        }
+        public virtual bool IsUpdated
+        {
+            get
+            {
+                return _state == "modified";
+            }
+        }
+        #endregion
 
         #region Validation and Broken Rules
 
@@ -131,7 +156,7 @@ namespace NSH.Core.Domain
                 //获取验证特性
                 object[] validateContent = property.GetCustomAttributes(typeof(ValidateAttribute), true);
 
-                string name="";
+                string name = "";
                 try
                 {
                     name = ((ValidateAttribute)(validateContent[0])).Name;

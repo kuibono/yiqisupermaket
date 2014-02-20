@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using YiQiWorkFlow.Application.Service.Fb;
 using YiQiWorkFlow.Domain.Fb;
 using YiQiWorkFlow.Domain.Basement;
@@ -1017,13 +1018,77 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                FbGoodsArchivesService.SaveOrUpdate(m);
+
+                var jser = new JavaScriptSerializer();
+                var suppliers = jser.Deserialize<List<FbGoodsArchivesSupplier>>(Request["suppliers"]);
+                var saleCodes = jser.Deserialize<List<FbGoodsArchivesBar>>(Request["saleCode"]);
+                var binding = jser.Deserialize<List<FbGoodsArchivesBind>>(Request["binding"]);
+                var images = jser.Deserialize<List<FbGoodsArchivesPhoto>>(Request["images"]);
+
+                foreach (var item in suppliers)
                 {
-                    FbGoodsArchivesService.Update(m);
+                    if (item.IsAdded)
+                    {
+                        item.GoodsCode = m.Id;
+                        FbGoodsArchivesSupplierService.Create(item);
+                    }
+                    if (item.IsDelete)
+                    {
+                        FbGoodsArchivesSupplierService.Delete(item);
+                    }
+                    if (item.IsUpdated)
+                    {
+                        FbGoodsArchivesSupplierService.Update(item);
+                    }
                 }
-                else
+                foreach (var item in saleCodes)
                 {
-                    FbGoodsArchivesService.Create(m);
+                    if (item.IsAdded)
+                    {
+                        item.GoodsCode = m.Id;
+                        FbGoodsArchivesBarService.Create(item);
+                    }
+                    if (item.IsDelete)
+                    {
+                        FbGoodsArchivesBarService.Delete(item);
+                    }
+                    if (item.IsUpdated)
+                    {
+                        FbGoodsArchivesBarService.Update(item);
+                    }
+                }
+                foreach (var item in binding)
+                {
+                    if (item.IsAdded)
+                    {
+                        item.GoodsCode = m.Id;
+                        FbGoodsArchivesBindService.Create(item);
+                    }
+                    if (item.IsDelete)
+                    {
+                        FbGoodsArchivesBindService.Delete(item);
+                    }
+                    if (item.IsUpdated)
+                    {
+                        FbGoodsArchivesBindService.Update(item);
+                    }
+                }
+                foreach (var item in images)
+                {
+                    if (item.IsAdded)
+                    {
+                        item.GoodsCode = m.Id;
+                        FbGoodsArchivesPhotoService.Create(item);
+                    }
+                    if (item.IsDelete)
+                    {
+                        FbGoodsArchivesPhotoService.Delete(item);
+                    }
+                    if (item.IsUpdated)
+                    {
+                        FbGoodsArchivesPhotoService.Update(item);
+                    }
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";

@@ -8,9 +8,26 @@
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
     <script type="text/javascript"> var pageTitle = "商品档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:47"; var id = "@Model.Id"; pageName = "FbGoodsArchivesEdit"; </script>
     <script type="text/javascript">
+        var activeGrid;
         function SaveData() {
+
+            var grid1 = mini.get("grid1");
+            var grid2 = mini.get("grid2");
+            var grid3 = mini.get("grid3");
+            var grid4 = mini.get("grid4");
+            grid1.commitEdit();
+            grid2.commitEdit();
+            grid3.commitEdit();
+            grid4.commitEdit();
+
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData();
+
+            o["suppliers"] = mini.encode(grid1.getChanges());
+            o["saleCode"] = mini.encode(grid2.getChanges());
+            o["binding"] = mini.encode(grid3.getChanges());
+            o["images"] = mini.encode(grid4.getChanges());
+
             $.ajax({
                 url: "/Fb/SaveFbGoodsArchives",
                 type: 'post',
@@ -95,6 +112,34 @@
             var fileupload = mini.get("filter_Photo");
             fileupload.startUpload();
         }
+        function newRow(grid) {
+            var row = {};
+            grid.addRow(row, 0);
+            grid.cancelEdit();
+            grid.beginEditRow(row);
+
+            $("#"+grid.id).find("input:text:first").focus();
+        }        function getActiveGrid() {
+            var grid1 = mini.get("grid1");
+            var grid2 = mini.get("grid2");
+            var grid3 = mini.get("grid3");
+            var grid4 = mini.get("grid4");
+            var tab = mini.get("tabs1");
+            switch (tab.activeIndex) {
+                case 0:
+                    activeGrid = grid1;
+                    break;
+                case 1:
+                    activeGrid = grid2;
+                    break;
+                case 1:
+                    activeGrid = grid3;
+                    break;
+                case 1:
+                    activeGrid = grid4;
+                    break;
+            }
+        }
         $(function () {
             $("#btnAddSupplier").click(function () {
                 activeTab(0);
@@ -128,6 +173,31 @@
                 grid.cancelEdit();
                 grid.beginEditRow(row);
             });
+
+            mini.get("grid1").reload();
+            mini.get("grid2").reload();
+            mini.get("grid3").reload();
+            mini.get("grid4").reload();
+
+            //grids
+
+            jQuery.hotkeys.add('return', function () {
+                $(document).scrollTop(999999);
+                getActiveGrid();
+
+                if (activeGrid.isEditing()) {
+                    activeGrid.commitEdit();
+                }
+                newRow(activeGrid);
+            });
+            jQuery.hotkeys.add('esc', function () {
+                getActiveGrid();
+                activeGrid.reload();
+            });
+            jQuery.hotkeys.add('del', function () {
+                getActiveGrid();
+                activeGrid.removeRows(activeGrid.getSelecteds());
+            });
         });
     </script>
 </head>
@@ -196,15 +266,15 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_GmCode">中类:</label>
-                    <input type="text"  value="@Model.GmCode" class="mini-combobox" name="GmCode"  id="Control_GmCode" onvaluechanged="onGmValuechanged" required="true" />
+                    <input type="text"  value="@Model.GmCode" class="mini-combobox" name="GmCode" url="/Common/GetComboData?table=fb_pa_goods_gm&valueColumn=gm_code&textColumn=gm_name"  id="Control_GmCode" onvaluechanged="onGmValuechanged" required="true" />
                 </div>
                 <div class="ablock">
                     <label for="Control_GsCode">小类:</label>
-                    <input type="text"  value="@Model.GsCode" class="mini-combobox" name="GsCode" id="Control_GsCode" onvaluechanged="onGsValuechanged" required="true" />
+                    <input type="text"  value="@Model.GsCode" class="mini-combobox" name="GsCode" url="/Common/GetComboData?table=fb_pa_goods_gs&valueColumn=gs_code&textColumn=gs_name" id="Control_GsCode" onvaluechanged="onGsValuechanged" required="true" />
                 </div>
                 <div class="ablock">
                     <label for="Control_GlCode">细类:</label>
-                    <input type="text"  value="@Model.GlCode" class="mini-combobox" name="GlCode" id="Control_GlCode" onvaluechanged="onGlValuechanged" required="true" />
+                    <input type="text"  value="@Model.GlCode" class="mini-combobox" name="GlCode" url="/Common/GetComboData?table=fb_pa_goods_gl&valueColumn=gl_code&textColumn=gl_name" id="Control_GlCode" onvaluechanged="onGlValuechanged" required="true" />
                 </div>
                 <div class="ablock">
                     <label for="Control_GoodsCode">商品编码:</label>
@@ -409,7 +479,7 @@
             <div id="tabs1" class="mini-tabs" activeindex="0" style="width: 100%; height: 200px;" plain="false">
                 <div title="供货商信息">
                     <div class="mini-fit">
-                        <div id="grid1" class="mini-datagrid" url="SearchFbGoodsArchivesSupplierList"
+                        <div id="grid1" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesSupplierList?GoodsCode=@Model.Id"
                             style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
@@ -475,7 +545,7 @@
                 </div>
                 <div title="销售码信息">
                     <div class="mini-fit">
-                        <div id="grid2" class="mini-datagrid" url="SearchFbGoodsArchivesBarList"
+                        <div id="grid2" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesBarList?GoodsCode=@Model.Id"
                             style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
@@ -541,7 +611,7 @@
                 </div>
                 <div title="捆绑商品信息">
                     <div class="mini-fit">
-                        <div id="grid3" class="mini-datagrid" url="SearchFbGoodsArchivesBindList"
+                        <div id="grid3" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesBindList?GoodsCode=@Model.Id"
                             style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
@@ -600,7 +670,7 @@
                 </div>
                 <div title="商品图片信息">
                     <div class="mini-fit">
-                        <div id="grid4" class="mini-datagrid" url="SearchFbGoodsArchivesPhotoList"
+                        <div id="grid4" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesPhotoList?GoodsCode=@Model.Id"
                             style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
