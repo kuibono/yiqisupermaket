@@ -33,6 +33,31 @@ namespace NSH.Core.Domain
             }
         }
 
+        #region miniui 数据行状态
+        public virtual string _state { get; set; }
+
+        public virtual bool IsDelete
+        {
+            get
+            {
+                return _state == "removed";
+            }
+        }
+        public virtual bool IsAdded
+        {
+            get
+            {
+                return _state == "added";
+            }
+        }
+        public virtual bool IsUpdated
+        {
+            get
+            {
+                return _state == "modified";
+            }
+        }
+        #endregion
 
         #region Validation and Broken Rules
 

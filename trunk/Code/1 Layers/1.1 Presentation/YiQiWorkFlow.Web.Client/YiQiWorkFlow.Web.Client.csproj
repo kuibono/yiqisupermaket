@@ -296,6 +296,7 @@
     <Content Include="Scripts\editPage.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
+    <Content Include="Scripts\jquery.hotkeys.js" />
     <Content Include="Scripts\jquery.PrintArea.js" />
     <Content Include="Scripts\miniui\locale\en_US.js" />
     <Content Include="Scripts\miniui\locale\zh_CN.js" />

@@ -48,6 +48,11 @@ namespace YiQiWorkFlow.Application.Service.Fb
         {
             EntityRepository.Update(entity);
         }
+        [Transaction]
+        public void SaveOrUpdate(FbGoodsArchives entity)
+        {
+            EntityRepository.SaveOrUpdate(entity);
+        }
 
         [Transaction]
         public void Delete(FbGoodsArchives entity)
