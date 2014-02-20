@@ -140,6 +140,19 @@
                     break;
             }
         }
+        function grid1Click(e) {
+            mini.get("grid1").beginEditRow(e.row);
+        }
+        function grid2Click(e) {
+            mini.get("grid2").beginEditRow(e.row);
+        }
+        function grid3Click(e) {
+            mini.get("grid3").beginEditRow(e.row);
+        }
+        function grid4Click(e) {
+            mini.get("grid4").beginEditRow(e.row);
+        }
+
         $(function () {
             $("#btnAddSupplier").click(function () {
                 activeTab(0);
@@ -480,7 +493,7 @@
                 <div title="供货商信息">
                     <div class="mini-fit">
                         <div id="grid1" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesSupplierList?GoodsCode=@Model.Id"
-                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid1Click">
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
                                 </div>
@@ -546,7 +559,7 @@
                 <div title="销售码信息">
                     <div class="mini-fit">
                         <div id="grid2" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesBarList?GoodsCode=@Model.Id"
-                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid2Click">
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
                                 </div>
@@ -612,7 +625,7 @@
                 <div title="捆绑商品信息">
                     <div class="mini-fit">
                         <div id="grid3" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesBindList?GoodsCode=@Model.Id"
-                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid3Click">
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
                                 </div>
@@ -671,7 +684,7 @@
                 <div title="商品图片信息">
                     <div class="mini-fit">
                         <div id="grid4" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesPhotoList?GoodsCode=@Model.Id"
-                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true">
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid4Click">
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
                                 </div>
