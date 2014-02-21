@@ -1028,6 +1028,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
                 foreach (var item in suppliers)
                 {
+                    if (string.IsNullOrEmpty(item.SupCode))
+                    {
+                        continue;
+                    }
                     if (item.IsAdded)
                     {
                         item.GoodsCode = m.Id;
@@ -1044,6 +1048,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 foreach (var item in saleCodes)
                 {
+                    if (string.IsNullOrEmpty(item.GoodsBarCode))
+                    {
+                        continue;
+                    }
                     if (item.IsAdded)
                     {
                         item.GoodsCode = m.Id;
@@ -1060,6 +1068,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 foreach (var item in binding)
                 {
+                    if (string.IsNullOrEmpty(item.GoodsCodeBind))
+                    {
+                        continue;
+                    }
                     if (item.IsAdded)
                     {
                         item.GoodsCode = m.Id;
@@ -1076,6 +1088,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 foreach (var item in images)
                 {
+                    if (string.IsNullOrEmpty(item.sNumber))
+                    {
+                        continue;
+                    }
                     if (item.IsAdded)
                     {
                         item.GoodsCode = m.Id;
