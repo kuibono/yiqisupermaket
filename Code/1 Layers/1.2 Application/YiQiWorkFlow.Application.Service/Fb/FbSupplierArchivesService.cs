@@ -10,7 +10,8 @@ using NSH.Core.Domain;
 using Spring.Transaction.Interceptor;
 using YiQiWorkFlow.Domain.Fb;
 using YiQiWorkFlow.Domain.Basement;
-
+using System.Web.Script.Serialization;
+using System.IO;
 namespace YiQiWorkFlow.Application.Service.Fb
 {
     public class FbSupplierArchivesService:IFbSupplierArchivesService
@@ -25,7 +26,9 @@ namespace YiQiWorkFlow.Application.Service.Fb
             {
                 entity.GenerateId();
             }
-            return EntityRepository.Save(entity);
+            string result = EntityRepository.Save(entity);
+            SaveAllToJson();
+            return result;
         }
 
         [Transaction]
@@ -44,9 +47,34 @@ namespace YiQiWorkFlow.Application.Service.Fb
 
 
         [Transaction]
+        public void SaveOrUpdate(FbSupplierArchives entity)
+        {
+            EntityRepository.SaveOrUpdate(entity);
+            SaveAllToJson();
+        }
+        [Transaction]
         public void Update(FbSupplierArchives entity)
         {
             EntityRepository.Update(entity);
+            SaveAllToJson();
+        }
+        /// <summary>
+        /// 保存为 /Data/FbSupplierArchives.json
+        /// </summary>
+        public void SaveAllToJson()
+        {
+            JavaScriptSerializer jser = new JavaScriptSerializer();
+            string json = jser.Serialize(GetAll());
+            string file = System.Web.HttpContext.Current.Server.MapPath("/Data/FbSupplierArchives.json");
+            FileInfo _file = new FileInfo(file);
+            if (_file.Directory.Exists == false)
+            {
+                _file.Directory.Create();
+            }
+            using (StreamWriter writer = new StreamWriter(file))
+            {
+                writer.Write(json);
+            }
         }
 
         [Transaction]

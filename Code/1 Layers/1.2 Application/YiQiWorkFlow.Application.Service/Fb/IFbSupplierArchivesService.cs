@@ -18,6 +18,8 @@ namespace YiQiWorkFlow.Application.Service.Fb
 
         void Update(FbSupplierArchives entity);
 
+        void SaveOrUpdate(FbSupplierArchives entity);
+
         /// <summary>
         /// 删除指定FbSupplierArchives
         /// </summary>
