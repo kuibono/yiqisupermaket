@@ -61,6 +61,7 @@ namespace YiQiWorkFlow.Application.Service.Fb
         /// <summary>
         /// 保存为 /Data/FbSupplierArchives.json
         /// </summary>
+        [Transaction]
         public void SaveAllToJson()
         {
             JavaScriptSerializer jser = new JavaScriptSerializer();

@@ -2771,6 +2771,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult FbSupplierArchivesEdit(string id)
         {
             FbSupplierArchives m = FbSupplierArchives.Initial();
+            m.Id = null;
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbSupplierArchivesService.GetById(id);
@@ -2808,6 +2809,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+
                 if (m.HaveId)
                 {
                     FbSupplierArchivesService.Update(m);
