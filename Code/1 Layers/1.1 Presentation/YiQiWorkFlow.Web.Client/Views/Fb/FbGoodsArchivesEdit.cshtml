@@ -118,8 +118,9 @@
             grid.cancelEdit();
             grid.beginEditRow(row);
 
-            $("#"+grid.id).find("input:visible").eq(2).focus()
-        }        function getActiveGrid() {
+            $("#" + grid.id).find("input:visible").eq(2).focus()
+        }
+        function getActiveGrid() {
             var grid1 = mini.get("grid1");
             var grid2 = mini.get("grid2");
             var grid3 = mini.get("grid3");
@@ -154,9 +155,18 @@
         }
 
         function onSupnameChanged(e) {
-            $("#grid1 input[name='SupName']:first").val(e.selected.SupName);
-            $("#grid1 input[name='PyCode']:first").val(e.selected.PyCode);
+            //$("#grid1 input[name='SupName']:first").val(e.selected.SupName);
+            //$("#grid1 input[name='SupName']:first").parents(".mini-grid-editor").find("input:hidden").val(e.selected.SupName);
+            mini.getbyName("SupName", "grid1").setValue(e.selected.SupName);
+            mini.getbyName("PyCode", "grid1").setValue(e.selected.PyCode);
+            //$("#grid1 input[name='PyCode']:first").val(e.selected.PyCode);
             $("#grid1 input[name='OpCode']:first").focus();
+        }
+        function onBindValuechanged(e) {
+            mini.getbyName("GoodsBarCodeBind", "grid3").setValue(e.selected.GoodsBarCode);
+            mini.getbyName("GoodsBarName", "grid3").setValue(e.selected.GoodsName);
+            mini.getbyName("PackUnitCode", "grid3").setValue(e.selected.PackUnitCode);
+            mini.getbyName("SalePrice", "grid3").setValue(e.selected.SalePrice);
         }
         $(function () {
             $("#btnAddSupplier").click(function () {
@@ -215,7 +225,8 @@
             jQuery.hotkeys.add('del', function () {
                 getActiveGrid();
                 activeGrid.removeRows(activeGrid.getSelecteds());
-            });
+            });
+
         });
     </script>
 </head>
@@ -506,15 +517,15 @@
                                 </div>
                                 <div field="SupCode" headeralign="center" align="center" width="60">
                                     供货商
-					<input id="filter_SupCode" name="SupCode" property="editor" class="mini-combobox" valueField="Id" textField="SupName" pinyinField="PyCode" url="/Data/FbSupplierArchives.js" allowInput="true" onvaluechanged="onSupnameChanged" style="width: 100%;" />
+					<input id="filter_SupCode" name="SupCode" property="editor" class="mini-combobox" valuefield="Id" textfield="SupName" pinyinfield="PyCode" url="/Data/FbSupplierArchives.js" allowinput="true" onvaluechanged="onSupnameChanged" style="width: 100%;" />
                                 </div>
                                 <div field="SupName" headeralign="center" align="center" width="60">
                                     供货商名称
-					<input id="filter_SupName" name="SupName" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
+					<input id="filter_SupName" name="SupName" property="editor" class="mini-textbox" enabled="true" style="width: 100%;" />
                                 </div>
                                 <div field="PyCode" headeralign="center" align="center" width="60">
                                     拼音码
-					<input id="filter_PyCode" name="PyCode" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
+					<input id="filter_PyCode" name="PyCode" property="editor" class="mini-textbox" enabled="true" style="width: 100%;" />
                                 </div>
                                 <div field="OpCode" headeralign="center" align="center" width="60">
                                     经营方式
@@ -546,11 +557,12 @@
                                 </div>
                                 <div field="IfMainSupplier" headeralign="center" align="center" width="60">
                                     主供货商
-                                    <div id="filter_IfMainSupplier"  property="editor"  name="IfMainSupplier" value="1" class="mini-checkbox" checked="true" readonly="false"></div>
+                                    <div id="filter_IfMainSupplier" property="editor" name="IfMainSupplier" value="1" class="mini-checkbox" checked="true" readonly="false"></div>
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60">
                                     是否审核
-                                    <div id="Control_IfExamine"  property="editor"  name="IfExamine" value="1" class="mini-checkbox" checked="true" readonly="false"></div>
+                                    <div id="Control_IfExamine" property="editor" name="IfExamine" value="1" class="mini-checkbox" checked="true" readonly="false"></div>
+
                                 </div>
 
                             </div>
@@ -592,27 +604,27 @@
                                 </div>
                                 <div field="SalePrice" headeralign="center" align="center" width="60">
                                     销售价
-					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" style="width: 100%;" />
                                 </div>
                                 <div field="VipPrice" headeralign="center" align="center" width="60">
                                     会员价
-					<input id="filter_VipPrice" name="VipPrice" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_VipPrice" name="VipPrice" property="editor" class="mini-spinner" style="width: 100%;" />
                                 </div>
                                 <div field="TradePrice" headeralign="center" align="center" width="60">
                                     批发价
-					<input id="filter_TradePrice" name="TradePrice" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_TradePrice" name="TradePrice" property="editor" class="mini-spinner" style="width: 100%;" />
                                 </div>
                                 <div field="PushRate" headeralign="center" align="center" width="60">
                                     营业员提成
-					<input id="filter_PushRate" name="PushRate" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_PushRate" name="PushRate" property="editor" class="mini-spinner" style="width: 100%;" />
                                 </div>
                                 <div field="IfMainBar" headeralign="center" align="center" width="60">
                                     是否主销售码
-					<input id="filter_IfMainBar" name="IfMainBar" property="editor" class="mini-textbox" style="width: 100%;" />
+                                    <div id="filter_IfMainBar" property="editor" name="IfMainBar" value="1" class="mini-checkbox" checked="false" readonly="false"></div>
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60">
                                     是否审核
-					<input id="filter_IfExamine" name="IfExamine" property="editor" class="mini-textbox" style="width: 100%;" />
+					<div id="Control_IfExamine" property="editor" name="IfExamine" value="1" class="mini-checkbox" checked="true" readonly="false"></div>
                                 </div>
 
                             </div>
@@ -628,13 +640,14 @@
                                 </div>
                                 <div type="checkcolumn" width="30">
                                 </div>
+
+                                <div field="GoodsCodeBind" headeralign="center" align="center" width="60">
+                                    商品编码
+					<input id="filter_GoodsCodeBind" name="GoodsCodeBind" property="editor" class="mini-autocomplete" required="true" valueField="Id" textField="GoodsName" url="/Fb/SearchFbGoodsArchivesListForList" onvaluechanged="onBindValuechanged" style="width: 100%;" />
+                                </div>
                                 <div field="GoodsBarCode" headeralign="center" align="center" width="60">
                                     捆绑商品销售码
 					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" style="width: 100%;" />
-                                </div>
-                                <div field="GoodsCodeBind" headeralign="center" align="center" width="60">
-                                    商品编码
-					<input id="filter_GoodsCodeBind" name="GoodsCodeBind" property="editor" class="mini-textbox" style="width: 100%;" />
                                 </div>
                                 <div field="GoodsBarCodeBind" headeralign="center" align="center" width="60">
                                     商品销售码
@@ -654,19 +667,19 @@
                                 </div>
                                 <div field="SalePrice" headeralign="center" align="center" width="60">
                                     销售价
-					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" style="width: 100%;" />
                                 </div>
                                 <div field="BindSalePrice" headeralign="center" align="center" width="60">
                                     捆绑销售价
-					<input id="filter_BindSalePrice" name="BindSalePrice" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_BindSalePrice" name="BindSalePrice" property="editor" class="mini-spinner" style="width: 100%;" />
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60">
                                     是否审核
-					<input id="filter_IfExamine" name="IfExamine" property="editor" class="mini-textbox" style="width: 100%;" />
+					<div id="Control_IfExamine" property="editor" name="IfExamine" value="1" class="mini-checkbox" checked="true" readonly="false"></div>
                                 </div>
                                 <div field="SaleMoney" headeralign="center" align="center" width="60">
                                     捆绑商品销售价
-					<input id="filter_SaleMoney" name="SaleMoney" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_SaleMoney" name="SaleMoney" property="editor" class="mini-spinner" style="width: 100%;" />
                                 </div>
                             </div>
                         </div>
@@ -684,12 +697,12 @@
                                 </div>
                                 <div field="sNumber" headeralign="center" align="center" width="60">
                                     序号
-					<input id="filter_sNumber" name="sNumber" property="editor" class="mini-textbox" style="width: 100%;" />
+					                <input id="filter_sNumber" name="sNumber" property="editor" class="mini-textbox" style="width: 100%;" />
                                 </div>
                                 <div field="Photo" headeralign="center" align="center" width="60">
                                     图片
-                                    <input id="filter_Photo" property="editor"  style="width: 100%;" class="mini-fileupload" name="Photo" limitType="*.txt" flashUrl="/Scripts/swfupload/swfupload.swf" uploadUrl="upload.aspx" onuploadsuccess="onUploadSuccess"  onuploaderror="onUploadError" onfileselect="onFileSelect" />
-					
+                                    <input id="filter_Photo" property="editor" style="width: 100%;" class="mini-fileupload" name="Photo" limittype="*.txt" flashurl="/Scripts/swfupload/swfupload.swf" uploadurl="upload.aspx" onuploadsuccess="onUploadSuccess" onuploaderror="onUploadError" onfileselect="onFileSelect" />
+
                                 </div>
                                 <div field="PhotoType" headeralign="center" align="center" width="60">
                                     图片类型
