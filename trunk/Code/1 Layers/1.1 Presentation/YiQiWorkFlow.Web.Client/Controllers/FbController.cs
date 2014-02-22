@@ -1125,6 +1125,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(FbGoodsArchivesService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult SearchFbGoodsArchivesListForList(SearchDtoBase<FbGoodsArchives> c, FbGoodsArchives s)
+        {
+            c.entity = s;
+            return Json(FbGoodsArchivesService.Search(c).data, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region 商品档案删除
