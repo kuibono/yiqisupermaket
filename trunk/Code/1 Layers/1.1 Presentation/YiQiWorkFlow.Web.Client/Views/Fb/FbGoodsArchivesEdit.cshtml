@@ -6,7 +6,8 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "商品档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:47"; var id = "@Model.Id"; pageName = "FbGoodsArchivesEdit"; </script>
+    <script type="text/javascript" src="/Scripts/swfupload/swfupload.js"></script>
+    <script type="text/javascript"> var pageTitle = "商品档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:47"; var id = "@Model.Id"; pageName = "FbGoodsArchivesEdit";var isNew=@Model.IsAdded.ToString().ToLower(); </script>
     <script type="text/javascript">
         var activeGrid;
         function SaveData() {
@@ -101,6 +102,8 @@
         }
         function onFileSelect(e) {
             //alert("选择文件");
+            var fileupload = mini.getbyName("Photo","grid4");
+            fileupload.startUpload();
         }
         function onUploadSuccess(e) {
             alert("上传成功：" + e.serverData);
@@ -109,7 +112,7 @@
         function onUploadError(e) {
         }
         function startUpload() {
-            var fileupload = mini.get("filter_Photo");
+            var fileupload =mini.getbyName("Photo","grid4");
             fileupload.startUpload();
         }
         function newRow(grid) {
@@ -168,6 +171,11 @@
             mini.getbyName("PackUnitCode", "grid3").setValue(e.selected.PackUnitCode);
             mini.getbyName("SalePrice", "grid3").setValue(e.selected.SalePrice);
         }
+        function onImageRenderer(e){
+            var grid = e.sender;
+            var record = e.record;
+            return "<img src='/Common/GetImageFromDb?table=Fb_Goods_Archives_Photo&imgcolumn=Photo&idcolumn=id&idvalue="+record.Id+"' style='height:30px;' />";
+        }
         $(function () {
             $("#btnAddSupplier").click(function () {
                 activeTab(0);
@@ -207,6 +215,10 @@
             mini.get("grid3").reload();
             mini.get("grid4").reload();
 
+            if(isNew){
+                var tab = mini.get("tabs1");
+                tab.getTab(3).enabled=false;
+            }
             //grids
 
             jQuery.hotkeys.add('return', function () {
@@ -699,18 +711,14 @@
                                     序号
 					                <input id="filter_sNumber" name="sNumber" property="editor" class="mini-textbox" style="width: 100%;" />
                                 </div>
-                                <div field="Photo" headeralign="center" align="center" width="60">
+                                <div field="Photo" headeralign="center" align="center" width="60" renderer="onImageRenderer">
                                     图片
-                                    <input id="filter_Photo" property="editor" style="width: 100%;" class="mini-fileupload" name="Photo" limittype="*.txt" flashurl="/Scripts/swfupload/swfupload.swf" uploadurl="upload.aspx" onuploadsuccess="onUploadSuccess" onuploaderror="onUploadError" onfileselect="onFileSelect" />
+                                    <input id="filter_Photo" property="editor" style="width: 100%;" class="mini-fileupload" name="Photo" limittype="*.*" flashurl="/Scripts/swfupload/swfupload.swf" uploadurl="/Common/SaveImageToDb?table=Fb_Goods_Archives_Photo&imgcolumn=Photo&Goods_Code=@Model.Id&s_Number=0&idcolumn=id" onuploadsuccess="onUploadSuccess" onuploaderror="onUploadError" onfileselect="onFileSelect" />
 
                                 </div>
                                 <div field="PhotoType" headeralign="center" align="center" width="60">
                                     图片类型
 					<input id="filter_PhotoType" name="PhotoType" property="editor" class="mini-textbox" style="width: 100%;" />
-                                </div>
-                                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                                    cellstyle="padding:0;">
-                                    管理
                                 </div>
 
                             </div>
