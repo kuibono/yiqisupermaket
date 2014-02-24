@@ -15,13 +15,13 @@
                     <td>
                         <a class="mini-button" iconcls="icon-add" onclick="editRow('')" plain="true">增加</a>
                         <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">高级检索</a>
+                        <a class="mini-button" iconCls="icon-edit" onclick="edit()" plain="true">编辑</a>
+                        <a class="mini-button" iconCls="icon-remove" onclick="remove()" plain="true">删除</a> 
                     </td>
                     <td style="white-space: nowrap;" align="right">
                         <table>
                             <tr>
-                                <td>
-                                    <input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
-                                </td>
+                                
                                 <td>
                                     <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
                                 </td>
@@ -52,16 +52,13 @@
 				    政治面貌名称
 					<input id="filter_PoliticsName" name="PoliticsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="Id" headeralign="center" align="center" width="60">
-				    
-					<input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
+				
                 <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
-                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+               <!--<div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
                     cellstyle="padding:0;">
                     管理
                 </div>
-
+                -->
             </div>
         </div>
     </div>
@@ -184,6 +181,19 @@
         }
 		function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
+        }
+        function edit() {
+            var rows = grid.getSelecteds();
+            if (rows.length > 0) {
+                if (rows.length > 1) {
+                    alert("只能选中一条记录");
+                } else {
+                    editRow(rows[0].Id);
+                }
+            } else {
+                alert("请选中一条记录");
+            }
+
         }
     </script>
 </body>

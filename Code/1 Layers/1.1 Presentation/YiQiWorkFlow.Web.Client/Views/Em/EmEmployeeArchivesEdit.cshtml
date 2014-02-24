@@ -110,12 +110,12 @@
 
             <div class="ablock">
                 <label for="Control_Birthday">出生日期:</label>
-                <input type="text" id="Control_Birthday" name="Birthday"  value="@Model.Birthday" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                <input type="text" id="Control_Birthday" name="Birthday"  value="@Model.Birthday" class="mini-datepicker"  format="yyyy-MM-dd"   showOkButton="true" showClearButton="true" required="false" />
             </div>
 
             <div class="ablock">
                 <label for="Control_Sex">性别:</label>
-                <input type="text"  value="@Model.Sex" class="mini-textbox" name="Sex" id="Control_Sex" vtype="maxLength:20" />
+                <input type="text"  value="@Model.Sex" class="mini-combobox" data="[{id:0,text:'男'},{id:1,text:'女'}]"  name="Sex" id="Control_Sex" vtype="maxLength:20" />
             </div>
 
             <div class="ablock">
@@ -155,7 +155,7 @@
 
             <div class="ablock">
                 <label for="Control_AccedeDay">就职日期:</label>
-                <input type="text" id="Control_AccedeDay" name="AccedeDay"  value="@Model.AccedeDay" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                <input type="text" id="Control_AccedeDay" name="AccedeDay"  value="@Model.AccedeDay" class="mini-datepicker"  format="yyyy-MM-dd"   showOkButton="true" showClearButton="true" required="false" />
             </div>
 
             <div class="ablock">
@@ -190,7 +190,7 @@
 
             <div class="ablock">
                 <label for="Control_GraduateDay">毕业时间:</label>
-                <input type="text" id="Control_GraduateDay" name="GraduateDay"  value="@Model.GraduateDay" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                <input type="text" id="Control_GraduateDay" name="GraduateDay"  value="@Model.GraduateDay" class="mini-datepicker"  format="yyyy-MM-dd"  showOkButton="true" showClearButton="true" required="false" />
             </div>
 
             <div class="ablock">
