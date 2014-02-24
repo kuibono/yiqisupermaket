@@ -8,7 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using YiQiWorkFlow.Web.Client.Common;
-
+using YiQiWorkFlow.Web.Client.Common;
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
     public class CommonController : Controller
@@ -80,35 +80,64 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             string table = "";
             string imgColumn = "";
             string idColumn = "";
-            for (int i = 0; i < Request.QueryString.Count; i++)
+            string typeColumn = "";
+            string numberColumn = "";
+            foreach(var item in Request.GetData())
+            //for (int i = 0; i < Request.GetData().Count; i++)
             {
-                if (Request.QueryString.Keys[i].ToLower() == "_")
+                //Request.GetData()[i].
+                if (item.Key.ToLower() == "_"
+                    || item.Key.ToLower() == "filename"
+                    || item.Key.ToLower() == "0"
+                    || item.Key.ToLower() == "1"
+                    || item.Key.ToLower() == "2"
+                    || item.Key.ToLower() == "3"
+                    || item.Key.ToLower() == "4"
+                    || item.Key.ToLower() == "5"
+                    || item.Key.ToLower() == "6"
+                    || item.Key.ToLower() == "7"
+                    || item.Key.ToLower() == "escapedatetimetokens"
+                    || item.Key.ToLower() == "upload"
+                    )
                 {
                     continue;
                 }
-                if (Request.QueryString.Keys[i].ToLower() == "table")
+
+                if (item.Key.ToLower() == "table")
                 {
-                    table = Request.QueryString[i].ToString();
+                    table = item.Value.ToString();
                 }
-                else if (Request.QueryString.Keys[i].ToLower() == "imgcolumn")
+                else if (item.Key.ToLower() == "imgcolumn")
                 {
-                    imgColumn = Request.QueryString[i].ToString();
+                    imgColumn = item.Value.ToString();
                 }
-                else if (Request.QueryString.Keys[i].ToLower() == "idcolumn")
+                else if (item.Key.ToLower() == "idcolumn")
                 {
-                    idColumn = Request.QueryString[i].ToString();
+                    idColumn = item.Value.ToString();
+                }
+                else if (item.Key.ToLower() == "typecolumn")
+                {
+                    typeColumn = item.Value.ToString();
                 }
                 else
                 {
-                    dic.Add(Request.QueryString.Keys[i].ToLower(), Request.QueryString[i].ToString());
+                    dic.Add(item.Key.ToLower(), item.Value.ToString());
                 }
             }
 
             StringBuilder sql = new StringBuilder();
             string columnNames=imgColumn+","+idColumn+",";
             string columnVars = "@" + imgColumn + ",@" + idColumn + ",";
-
-
+            if (string.IsNullOrEmpty(typeColumn) == false)
+            {
+                columnNames += typeColumn + ",";
+                columnVars += "@" + typeColumn + ",";
+            }
+            //if (string.IsNullOrEmpty(numberColumn) == false)
+            //{
+            //    columnNames += numberColumn + ",";
+            //    columnVars += "@" + numberColumn + ",";
+            //}
             foreach(var item in dic)
             {
                 columnNames+=item.Key+",";
@@ -133,6 +162,18 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 IdPar.Value = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString();
                 pars.Add(IdPar);
 
+                if (string.IsNullOrEmpty(typeColumn) == false)
+                {
+                    SqlParameter typePar = new SqlParameter("@" + typeColumn, SqlDbType.VarChar);
+                    typePar.Value = Path.GetExtension(Request.Files[0].FileName).Replace(".","");
+                    pars.Add(typePar);
+                }
+                //if (string.IsNullOrEmpty(numberColumn) == false)
+                //{
+                //    SqlParameter numberPar = new SqlParameter("@" + numberColumn, SqlDbType.VarChar);
+                //    numberPar.Value = MyEnv.GetSqlHelper().ExecuteScalar(CommandType.Text,string.Format("select max({0}) from "))
+                //    pars.Add(numberPar);
+                //}
                 foreach(var item in dic)
                 {
                     SqlParameter par = new SqlParameter(item.Key,SqlDbType.VarChar); 

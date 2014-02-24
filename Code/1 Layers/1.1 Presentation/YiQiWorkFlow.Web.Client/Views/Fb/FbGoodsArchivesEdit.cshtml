@@ -103,11 +103,11 @@
         function onFileSelect(e) {
             //alert("选择文件");
             var fileupload = mini.getbyName("Photo","grid4");
-            fileupload.startUpload();
+            fileupload.addPostParam("s_Number",mini.get("grid4").totalCount.toString());
+            //fileupload.startUpload();
         }
         function onUploadSuccess(e) {
-            alert("上传成功：" + e.serverData);
-            this.setText("");
+            mini.get("grid4").reload();
         }
         function onUploadError(e) {
         }
@@ -122,6 +122,7 @@
             grid.beginEditRow(row);
 
             $("#" + grid.id).find("input:visible").eq(2).focus()
+            mini.getbyName("Photo",grid.id).uploadurl=getUploadUrl();
         }
         function getActiveGrid() {
             var grid1 = mini.get("grid1");
@@ -175,6 +176,10 @@
             var grid = e.sender;
             var record = e.record;
             return "<img src='/Common/GetImageFromDb?table=Fb_Goods_Archives_Photo&imgcolumn=Photo&idcolumn=id&idvalue="+record.Id+"' style='height:30px;' />";
+        }
+        function getUploadUrl(){
+            var grid=mini.get("grid4");
+            return "/Common/SaveImageToDb?table=Fb_Goods_Archives_Photo&imgcolumn=Photo&Goods_Code=@Model.Id&s_Number="+grid.totalCount+"&idcolumn=id&typecolumn=PhotoType";
         }
         $(function () {
             $("#btnAddSupplier").click(function () {
@@ -713,7 +718,7 @@
                                 </div>
                                 <div field="Photo" headeralign="center" align="center" width="60" renderer="onImageRenderer">
                                     图片
-                                    <input id="filter_Photo" property="editor" style="width: 100%;" class="mini-fileupload" name="Photo" limittype="*.*" flashurl="/Scripts/swfupload/swfupload.swf" uploadurl="/Common/SaveImageToDb?table=Fb_Goods_Archives_Photo&imgcolumn=Photo&Goods_Code=@Model.Id&s_Number=0&idcolumn=id" onuploadsuccess="onUploadSuccess" onuploaderror="onUploadError" onfileselect="onFileSelect" />
+                                    <input id="filter_Photo" property="editor" style="width: 100%;" class="mini-fileupload" name="Photo" limittype="*.*" flashurl="/Scripts/swfupload/swfupload.swf" uploadurl="/Common/SaveImageToDb?table=Fb_Goods_Archives_Photo&imgcolumn=Photo&Goods_Code=@Model.Id&idcolumn=id&typecolumn=Photo_Type" onuploadsuccess="onUploadSuccess" onuploaderror="onUploadError" onfileselect="onFileSelect" />
 
                                 </div>
                                 <div field="PhotoType" headeralign="center" align="center" width="60">
