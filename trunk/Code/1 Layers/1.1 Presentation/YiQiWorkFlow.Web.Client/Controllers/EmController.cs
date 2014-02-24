@@ -24,7 +24,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult EmEmployeeArchivesEdit(string id)
         {
-            EmEmployeeArchives m = EmEmployeeArchives.Initial();
+            EmEmployeeArchives m = new EmEmployeeArchives();
+
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = EmEmployeeArchivesService.GetById(id);
@@ -62,6 +63,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                
                 if (m.HaveId)
                 {
                     EmEmployeeArchivesService.Update(m);
@@ -309,7 +311,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult EmPaDutyEdit(string id)
         {
-            EmPaDuty m = EmPaDuty.Initial();
+            EmPaDuty m = new EmPaDuty();
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = EmPaDutyService.GetById(id);
@@ -388,7 +390,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
-            EmPaDutyService.Delete(ids);
+            String idStr = ids[0];
+            String[] sid = idStr.Split(',');
+            List<String> list = new List<string>();
+            for (int i = 0, l = sid.Length; i < l; i++)
+            {
+                list.Add(sid[i]);
+            }
+            EmPaDutyService.Delete(list);
+           // EmPaDutyService.Delete(ids);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -404,7 +414,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult EmPaEducationEdit(string id)
         {
-            EmPaEducation m = EmPaEducation.Initial();
+            EmPaEducation m = new EmPaEducation();
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = EmPaEducationService.GetById(id);
@@ -483,7 +493,16 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
-            EmPaEducationService.Delete(ids);
+
+            String idStr = ids[0];
+            String[] sid = idStr.Split(',');
+            List<String> list = new List<string>();
+            for (int i = 0, l = sid.Length; i < l; i++)
+            {
+                list.Add(sid[i]); 
+            }
+            EmPaEducationService.Delete(list);
+
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -499,7 +518,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult EmPaNationEdit(string id)
         {
-            EmPaNation m = EmPaNation.Initial();
+            EmPaNation m = new  EmPaNation();
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = EmPaNationService.GetById(id);
@@ -578,7 +597,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
-            EmPaNationService.Delete(ids);
+            String idStr = ids[0];
+            String[] sid = idStr.Split(',');
+            List<String> list = new List<string>();
+            for (int i = 0, l = sid.Length; i < l; i++)
+            {
+                list.Add(sid[i]);
+            }
+            EmPaNationService.Delete(list);
+           // EmPaNationService.Delete(ids);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -594,7 +621,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult EmPaPoliticsEdit(string id)
         {
-            EmPaPolitics m = EmPaPolitics.Initial();
+            EmPaPolitics m = new EmPaPolitics();
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = EmPaPoliticsService.GetById(id);
@@ -673,7 +700,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
-            EmPaPoliticsService.Delete(ids);
+            String idStr = ids[0];
+            String[] sid = idStr.Split(',');
+            List<String> list = new List<string>();
+            for (int i = 0, l = sid.Length; i < l; i++)
+            {
+                list.Add(sid[i]);
+            }
+            EmPaPoliticsService.Delete(list);
+           // EmPaPoliticsService.Delete(ids);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -689,7 +724,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult EmPaProfessionalTitleEdit(string id)
         {
-            EmPaProfessionalTitle m = EmPaProfessionalTitle.Initial();
+            EmPaProfessionalTitle m = new EmPaProfessionalTitle();
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = EmPaProfessionalTitleService.GetById(id);
@@ -768,7 +803,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
-            EmPaProfessionalTitleService.Delete(ids);
+            String idStr = ids[0];
+            String[] sid = idStr.Split(',');
+            List<String> list = new List<string>();
+            for (int i = 0, l = sid.Length; i < l; i++)
+            {
+                list.Add(sid[i]);
+            }
+            EmPaProfessionalTitleService.Delete(list);
+           // EmPaProfessionalTitleService.Delete(ids);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
