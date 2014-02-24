@@ -158,6 +158,7 @@
     <Compile Include="Common\AuthorizeSettings.cs" />
     <Compile Include="Common\ConfigReader.cs" />
     <Compile Include="Common\EmployeeAuthorizeAttribute.cs" />
+    <Compile Include="Common\HttpExtend.cs" />
     <Compile Include="Common\ImageResult.cs" />
     <Compile Include="Common\JsonNetResult.cs">
       <SubType>Code</SubType>
