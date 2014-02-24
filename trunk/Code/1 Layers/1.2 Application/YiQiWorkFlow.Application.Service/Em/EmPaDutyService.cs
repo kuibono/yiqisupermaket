@@ -70,11 +70,7 @@ namespace YiQiWorkFlow.Application.Service.Em
         {
             var q = EntityRepository.LinqQuery;
             if (c.entity != null)
-            {
-				if (string.IsNullOrEmpty(c.entity.Id) == false)
-                {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
-                }
+            { 
 					if (string.IsNullOrEmpty(c.entity.DutyCode) == false)
 					{
 						q = q.Where(p => p.DutyCode.Contains(c.entity.DutyCode));
@@ -89,8 +85,7 @@ namespace YiQiWorkFlow.Application.Service.Em
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(c.key)
-					|| l.DutyCode.Contains(c.key)
+                    l.DutyCode.Contains(c.key)
 					|| l.DutyName.Contains(c.key)
                     select l;
 					
@@ -111,8 +106,7 @@ namespace YiQiWorkFlow.Application.Service.Em
             {
 				q = from l in q
                     where 
-                    l.Id.Contains(key)
-					|| l.DutyCode.Contains(key)
+                     l.DutyCode.Contains(key)
 					|| l.DutyName.Contains(key)
                     select l;
 					
