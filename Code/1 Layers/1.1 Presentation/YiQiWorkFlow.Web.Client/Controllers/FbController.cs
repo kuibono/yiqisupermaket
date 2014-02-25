@@ -1090,7 +1090,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 foreach (var item in images)
                 {
-                    if (string.IsNullOrEmpty(item.sNumber))
+                    if (string.IsNullOrEmpty(item.PhotoType))
                     {
                         continue;
                     }

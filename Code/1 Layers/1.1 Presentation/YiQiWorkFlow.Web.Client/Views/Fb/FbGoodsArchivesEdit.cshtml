@@ -107,7 +107,11 @@
             //fileupload.setPostParams({
             //    "s_Number":mini.get("grid4").totalCount.toString()
             //});
-            fileupload.addPostParam("s_Number",mini.get("grid4").totalCount.toString());
+            var idx=mini.getbyName("sNumber","grid4").getValue();
+            if(idx.length==0){
+                idx=mini.get("grid4").totalCount.toString();
+            }
+            fileupload.addPostParam("s_Number",idx);
             fileupload.startUpload();
         }
         function onUploadSuccess(e) {
@@ -722,7 +726,7 @@
                                 </div>
                                 <div field="Photo" headeralign="center" align="center" width="60" renderer="onImageRenderer">
                                     图片
-                                    <input id="filter_Photo" property="editor" style="width: 100%;" class="mini-fileupload" name="Photo" limittype="*.*" flashurl="/Scripts/swfupload/swfupload.swf" uploadurl="/Common/SaveImageToDb?table=Fb_Goods_Archives_Photo&imgcolumn=Photo&Goods_Code=@Model.Id&idcolumn=id&typecolumn=Photo_Type" onuploadsuccess="onUploadSuccess" onuploaderror="onUploadError" onfileselect="onFileSelect" />
+                                    <input id="filter_Photo" property="editor" style="width: 100%;" class="mini-fileupload" name="Photo" limittype="图片文件|.jpg;*.gif;*.png;*.bmp" flashurl="/Scripts/swfupload/swfupload.swf" uploadurl="/Common/SaveImageToDb?table=Fb_Goods_Archives_Photo&imgcolumn=Photo&Goods_Code=@Model.Id&idcolumn=id&typecolumn=Photo_Type" onuploadsuccess="onUploadSuccess" onuploaderror="onUploadError" onfileselect="onFileSelect" />
 
                                 </div>
                                 <div field="PhotoType" headeralign="center" align="center" width="60">
