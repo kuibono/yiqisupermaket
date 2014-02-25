@@ -153,7 +153,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 SqlParameter param = new SqlParameter("@"+imgColumn,SqlDbType.VarBinary, Request.Files[0].ContentLength); 
                 Stream ImageStream = Request.Files[0].InputStream;
+                
                 Byte[] ImageCount = new Byte[Request.Files[0].ContentLength];//调用方法转化二进制数据
+                Request.Files[0].InputStream.Read(ImageCount, 0, ImageCount.Length);
                 param.Value=ImageCount;
                 pars.Add(param);
                 //cmd.Parameters.Add(param);
