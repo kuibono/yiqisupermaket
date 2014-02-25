@@ -140,6 +140,12 @@ function closeTab() {
     }
 }
 function closeWithNoValidate() {
-    parent.closeTab(pageName);
+    if (window.top.location.href = location.href) {
+        window.opener = null;
+        window.open('', '_self');
+        window.close();
+    } else {
+        parent.closeTab(pageName);
+    }
 }
 
