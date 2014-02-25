@@ -24,11 +24,11 @@ namespace YiQiWorkFlow.Domain.Fb
 		[Validate(ValidateType.NoValidate,Name="序号")]
 		public virtual string sNumber{get ; set; }
 		
-		/// <summary>
-		/// 图片
-		/// </summary>
-		[Validate(ValidateType.NoValidate,Name="图片")]
-		public virtual byte[] Photo{get ; set; }
+        ///// <summary>
+        ///// 图片
+        ///// </summary>
+        //[Validate(ValidateType.NoValidate,Name="图片")]
+        //public virtual byte[] Photo{get ; set; }
 		
 		/// <summary>
 		/// 图片类型

@@ -6,7 +6,7 @@
     </id>
 	<property name="GoodsCode" column="goods_code" type="string" />
 	<property name="sNumber" column="s_number" type="string" />
-	<property name="Photo" column="photo" type="Byte[]" />
+	<!--<property name="Photo" column="photo" type="Byte[]" />-->
 	<property name="PhotoType" column="photo_type" type="string" />
   </class>
 </hibernate-mapping>
