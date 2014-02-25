@@ -102,9 +102,13 @@
         }
         function onFileSelect(e) {
             //alert("选择文件");
-            var fileupload = mini.getbyName("Photo","grid4");
+            //var fileupload = mini.getbyName("Photo","grid4");
+            var fileupload = e.sender.swfUpload;
+            //fileupload.setPostParams({
+            //    "s_Number":mini.get("grid4").totalCount.toString()
+            //});
             fileupload.addPostParam("s_Number",mini.get("grid4").totalCount.toString());
-            //fileupload.startUpload();
+            fileupload.startUpload();
         }
         function onUploadSuccess(e) {
             mini.get("grid4").reload();
