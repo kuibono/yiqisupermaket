@@ -367,6 +367,24 @@ body .mini-buttonedit *
 {
     margin-right:18px;
 }
+.mini-pager .mini-button {
+    padding: 0;
+    border: 1px solid #A9ACB5;
+    background: none;
+    font-size: 9pt;
+    font-family: Tahoma,Verdana,宋体;
+    line-height: 22px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    zoom: 1;
+    cursor: pointer;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    vertical-align: middle;
+    outline: none;
+    border:0;
+}
 .mini-button
 {
     /*-webkit-border-radius: 3px;
@@ -385,7 +403,7 @@ body .mini-buttonedit *
     background-image: -o-linear-gradient(top,#4b9cd7,#3892d3 50%,#358ac8 51%,#3892d3);
     background-image: linear-gradient(top,#4b9cd7,#3892d3 50%,#358ac8 51%,#3892d3);
     color:#FFF !important;
-    border-color: #126daf;*/
+    border-color: #126daf;
     padding: 0;
     border: 1px solid #A9ACB5;
     background: #EBEDF2 url(images/button/button.png) repeat-x 0 0;
@@ -400,7 +418,25 @@ body .mini-buttonedit *
     -khtml-user-select: none;
     -moz-user-select: none;
     vertical-align: middle;
-    outline: none;
+    outline: none;*/
+    -moz-box-shadow: 0px 1px 0px 0px #f0f7fa;
+-webkit-box-shadow: 0px 1px 0px 0px #f0f7fa;
+box-shadow: 0px 1px 0px 0px #f0f7fa;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #33bdef), color-stop(1, #019ad2));
+background: -moz-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+background: -webkit-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+background: -o-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+background: -ms-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33bdef', endColorstr='#019ad2',GradientType=0);
+background-color: #33bdef;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+border: 1px solid #057fd0;
+display: inline-block;
+cursor: pointer;
+color: #ffffff;
 }
 .mini-button, a.mini-button
 {
@@ -415,11 +451,19 @@ body a:hover.mini-button
     background-image:-webkit-linear-gradient(top,#4792c8,#3386c2 50%,#307fb8 51%,#3386c2);
     background-image:-moz-linear-gradient(top,#4792c8,#3386c2 50%,#307fb8 51%,#3386c2);
     background-image:-o-linear-gradient(top,#4792c8,#3386c2 50%,#307fb8 51%,#3386c2);
-    background-image:linear-gradient(top,#4792c8,#3386c2 50%,#307fb8 51%,#3386c2)*/
+    background-image:linear-gradient(top,#4792c8,#3386c2 50%,#307fb8 51%,#3386c2)
     padding: 0;
     border: 1px solid #A9ACB5;
     background: #dde6fe url(images/button/hover.png) repeat-x 0 0;
-    text-decoration: none;
+    text-decoration: none;*/
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #019ad2), color-stop(1, #33bdef));
+    background: -moz-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+    background: -webkit-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+    background: -o-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+    background: -ms-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+    background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#019ad2', endColorstr='#33bdef',GradientType=0);
+    background-color: #019ad2;
 }
 .mini-button-text
 {   
@@ -432,12 +476,14 @@ body a:hover.mini-button
     padding:3px 8px 2px 8px\9;    
     +padding:3px 8px 2px 8px;  
     _padding:2px 8px 2px 8px;  
+    color: #FFF;
 }
 .mini-button .mini-button-icon
 {
     padding-left:25px;
     background-position: 6px 50%;        
     background-repeat:no-repeat;    
+    color: #FFF;
 }
 .mini-button .mini-button-iconOnly
 {
@@ -1211,7 +1257,8 @@ input.mini-textarea
     overflow:hidden;
     font-size:9pt;
     font-family:Tahoma, Verdana, 宋体;   
-    position:relative;         
+    position:relative; 
+    margin-top: 5px;        
 }
 .mini-tabs-table
 {
@@ -1230,8 +1277,12 @@ input.mini-textarea
 }
 .mini-tabs-headers
 {
-    border:solid 1px #999999;border-bottom-width:0;
-    padding-top:2px;background:#157fcc repeat-x 0 0;
+    width: auto;
+padding: 0;
+padding-top: 1px;
+position: relative;
+top: 0px;
+zoom: 1;
 }
 .mini-tabs-position-bottom .mini-tabs-headers
 {
@@ -1336,8 +1387,8 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 }
 .mini-tabs-space
 {
-    width:5px;
-    border-bottom:solid 1px #999999;
+    width: 3px;
+    border-bottom: solid 1px #999999;
 }
 .mini-tabs-space div{
     height:1px;width:5px;overflow:hidden;
@@ -1353,32 +1404,15 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 
 .mini-tab
 {   
-    color: #201F35;  
+    background: #EBEBEE url(images/tabs/tab.png) repeat-x 0 0;
+    color: #201F35;
     border: 1px solid #999999;
     color: black;
     font: 9pt Tahoma;
     padding: 3px 10px 3px 10px;
     text-align: center;
-    cursor:pointer;
-    white-space:nowrap;
-    border-bottom: 0 solid #157fcc;
-    border-color: #157fcc;
--moz-border-radius-topleft: 3px;
--webkit-border-top-left-radius: 3px;
-border-top-left-radius: 3px;
--moz-border-radius-topright: 3px;
--webkit-border-top-right-radius: 3px;
-border-top-right-radius: 3px;
--moz-border-radius-bottomright: 0;
--webkit-border-bottom-right-radius: 0;
-border-bottom-right-radius: 0;
--moz-border-radius-bottomleft: 0;
--webkit-border-bottom-left-radius: 0;
-border-bottom-left-radius: 0;
-border-width: 0 0 0 0;
-border-style: solid;
-background-color: #4b9cd7;
-    color:#FFF;
+    cursor: pointer;
+    white-space: nowrap;
 }
 .mini-tab-hover
 {    
@@ -1387,32 +1421,9 @@ background-color: #4b9cd7;
 }
 .mini-tab-active
 {
-    /*
     border-bottom:solid 1px white;
     background:white;
     cursor:default;
-    */
-    border-bottom: 0 solid #add2ed;
-    background-color: #add2ed;
-    border-color: #157fcc;
-    moz-border-radius-topleft: 3px;
-    -webkit-border-top-left-radius: 3px;
-    border-top-left-radius: 3px;
-    -moz-border-radius-topright: 3px;
-    -webkit-border-top-right-radius: 3px;
-    border-top-right-radius: 3px;
-    -moz-border-radius-bottomright: 0;
-    -webkit-border-bottom-right-radius: 0;
-    border-bottom-right-radius: 0;
-    -moz-border-radius-bottomleft: 0;
-    -webkit-border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-width: 0 0 0 0;
-    border-style: solid;
-    background-image:none;
-    padding: 8px 12px 7px 12px;
-    color:#157fcc;
-    font-weight:bold;
 }
 .mini-tab-body
 {
