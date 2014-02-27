@@ -141,7 +141,7 @@ namespace YiQiWorkFlow.Domain.Fb
 		/// <summary>
 		/// 31
 		/// </summary>
-		[Validate(ValidateType.IsDecimal ,Name="31",DefaultValue=1)]
+        [Validate(ValidateType.IsDecimal, Name = "31", DefaultValue = 31)]
 		public virtual decimal BalanceDay{get ; set; }
 		
 		/// <summary>
@@ -207,7 +207,7 @@ namespace YiQiWorkFlow.Domain.Fb
 		/// <summary>
 		/// 操作时间
 		/// </summary>
-		[Validate(ValidateType.IsDateTime ,Name="操作时间")]
+        [Validate(ValidateType.IsDateTime, Name = "操作时间", DefaultValue = DateTime.Now)]
 		public virtual System.DateTime? OperatorDate{get ; set; }
 		
 		protected override void Validate()
@@ -231,11 +231,12 @@ namespace YiQiWorkFlow.Domain.Fb
 			m.BalanceMode="货到付款";
 			m.PayMode="现金";
 			m.BalancePeriod="月结算";
-			m.BalanceDay=1M;
+            m.BalanceDay = 31;
 			m.OfferMode="1";
 			m.DeliveryDays=0M;
 			m.PoolRate=0M;
 			m.IfExamine="0";
+            m.CreateDate = DateTime.Now;
             return m;
         }
 	}

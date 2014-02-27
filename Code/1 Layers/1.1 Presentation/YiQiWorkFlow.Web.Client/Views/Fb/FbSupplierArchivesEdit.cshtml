@@ -93,9 +93,9 @@
         <form id="formMain" method="post" action="">
         <fieldset>
             <legend>基本信息</legend>
-            <div class="ablock" style="display:none">
+            <div class="ablock">
                 <label for="Control_SupCode">供货商编码:</label>
-                <input id="Control_SupCode" value="@Model.Id" name="Id" class="mini-hidden"/>
+                <input id="Control_SupCode" value="@Model.Id" name="Id" class="mini-textbox" enabled="false"/>
             </div>
 
             <div class="ablock">
@@ -110,7 +110,7 @@
 
             <div class="ablock">
                 <label for="Control_SupTypeCode">供货商类型:</label>
-                <input type="text"  value="@Model.SupTypeCode" class="mini-textbox" name="SupTypeCode" id="Control_SupTypeCode" vtype="maxLength:20" />
+                <input type="text"  value="@Model.SupTypeCode" class="mini-combobox" name="SupTypeCode" url="/Common/GetComboData?table=fb_pa_sup_type&valueColumn=sup_type_code&textColumn=sup_type_name" id="Control_SupTypeCode" required="true" />
             </div>
 
             <div class="ablock">
@@ -174,13 +174,13 @@
             </div>
 
             <div class="ablock">
-                <label for="Control_OpCode">1经销，2代销，3联营:</label>
-                <input type="text"  value="@Model.OpCode" class="mini-textbox" name="OpCode" id="Control_OpCode" vtype="maxLength:20"required="true" />
+                <label for="Control_OpCode">经营方式:</label>
+                <input type="text"  value="@Model.OpCode" class="mini-combobox" name="OpCode" id="Control_OpCode" required="true" data="[{id:1,text:'经销'},{id:2,text:'代销'},{id:3,text:'联营'}]" showNullItem="true" />
             </div>
 
             <div class="ablock">
-                <label for="Control_StockVoucher">普通发票，增殖税发票:</label>
-                <input type="text"  value="@Model.StockVoucher" class="mini-textbox" name="StockVoucher" id="Control_StockVoucher" vtype="maxLength:20" />
+                <label for="Control_StockVoucher">进货凭证:</label>
+                <input type="text"  value="@Model.StockVoucher" class="mini-combobox" name="StockVoucher" id="Control_StockVoucher" required="true" data="[{id:'普通发票',text:'普通发票'},{id:'增值税发票',text:'增值税发票'}]" valueField="text" showNullItem="true" />
             </div>
 
             <div class="ablock">
@@ -189,23 +189,24 @@
             </div>
 
             <div class="ablock">
-                <label for="Control_BalanceMode">预付货款，货到付款，实销实付，扣点结算:</label>
-                <input type="text"  value="@Model.BalanceMode" class="mini-textbox" name="BalanceMode" id="Control_BalanceMode" vtype="maxLength:20" />
+                <label for="Control_BalanceMode">结算方式:</label>
+                <input type="text"  value="@Model.BalanceMode" class="mini-combobox" name="BalanceMode" id="Control_BalanceMode" required="true" data="[{id:'预付货款',text:'预付货款'},{id:'货到付款',text:'货到付款'},{id:'实销实付',text:'实销实付'},{id:'扣点结算',text:'扣点结算'}]" valueField="text" showNullItem="true" />
             </div>
 
             <div class="ablock">
-                <label for="Control_PayMode">现金，支票，汇票:</label>
-                <input type="text"  value="@Model.PayMode" class="mini-textbox" name="PayMode" id="Control_PayMode" vtype="maxLength:20" />
+                <label for="Control_PayMode">付款方式:</label>
+                <input type="text"  value="@Model.PayMode" class="mini-combobox" name="PayMode" id="Control_PayMode" required="true" data="[{id:'现金',text:'现金'},{id:'支票',text:'支票'},{id:'汇票',text:'汇票'}]" valueField="text" showNullItem="true" />
             </div>
 
             <div class="ablock">
-                <label for="Control_BalancePeriod">月结算，季计算，年结算:</label>
-                <input type="text"  value="@Model.BalancePeriod" class="mini-textbox" name="BalancePeriod" id="Control_BalancePeriod" vtype="maxLength:20" />
+                <label for="Control_BalancePeriod">结算账期:</label>
+                <input type="text"  value="@Model.BalancePeriod" class="mini-combobox" name="BalancePeriod" id="Control_BalancePeriod" required="true" data="[{id:'月结算',text:'月结算'},{id:'季计算',text:'季计算'},{id:'年结算',text:'年结算'}]" valueField="text" showNullItem="true" />
+            
             </div>
 
             <div class="ablock">
-                <label for="Control_BalanceDay">31:</label>
-                <input type="text" id="Control_BalanceDay" name="BalanceDay"  value="@Model.BalanceDay" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <label for="Control_BalanceDay">结算日:</label>
+                <input type="text" id="Control_BalanceDay" name="BalanceDay"  value="@Model.BalanceDay" class="mini-spinner" minValue="0" maxValue="31" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
@@ -249,8 +250,8 @@
             </div>
 
             <div class="ablock">
-                <label for="Control_IfExamine">0否，1是:</label>
-                <div id="Control_IfExamine" name="IfExamine" value="1" class="mini-checkbox" checked="true" readOnly="false" text="0否，1是"></div>
+                <label for="Control_IfExamine">是否审核:</label>
+                <div id="Control_IfExamine" name="IfExamine" value="1" class="mini-checkbox" checked="true" readOnly="false" text="审核" trueValue="1" falseValue="0"></div>
             </div>
 
             <div class="ablock">
