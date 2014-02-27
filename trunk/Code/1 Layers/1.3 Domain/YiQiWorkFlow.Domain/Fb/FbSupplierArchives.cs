@@ -207,7 +207,7 @@ namespace YiQiWorkFlow.Domain.Fb
 		/// <summary>
 		/// 操作时间
 		/// </summary>
-        [Validate(ValidateType.IsDateTime, Name = "操作时间", DefaultValue = DateTime.Now)]
+        [Validate(ValidateType.IsDateTime, Name = "操作时间")]
 		public virtual System.DateTime? OperatorDate{get ; set; }
 		
 		protected override void Validate()

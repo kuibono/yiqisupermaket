@@ -27,6 +27,7 @@
             height: 40px;
             margin: 5px;
         }
+
 .ablock span.mini-buttonedit {
     width:99% !important;
 }
@@ -64,8 +65,7 @@
         }
         .colspan2
         {
-            height: 70px;
-            width: 405px !important;
+            width: 370px !important;
         }
         .colspan3
         {
