@@ -40,6 +40,7 @@ mini_debugger = true;
 document.write('<script src="' + bootPATH + 'jquery-1.6.2.min.js" type="text/javascript"></sc' + 'ript>');
 document.write('<script src="' + bootPATH + 'miniui/miniui.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<script src="' + bootPATH + 'jquery.hotkeys.js" type="text/javascript" ></sc' + 'ript>');
+document.write('<script src="' + bootPATH + 'category.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<link href="' + bootPATH + 'miniui/themes/ext/miniui.css" rel="stylesheet" type="text/css" />');
 document.write('<link href="' + bootPATH + 'miniui/themes/icons.css" rel="stylesheet" type="text/css" />');
 
@@ -76,10 +77,7 @@ function labelModel(form) {
         if (c.addCls) c.addCls("asLabel");          //增加asLabel外观
     }
 }
-function onExamRender(e) {
-    if (e.value == "true" || e.value == "1") return "<span style='color:green' onclick='exame(this,&#39;" + e.record.Id + "&#39;,true)'>是</span>";
-    else return "<span style='color:red' onclick='exame(this,&#39;" + e.record.Id + "&#39;,false)'>否</span>";
-}
+
 function onReadonlyExamRender(e) {
     if (e.value == "true" || e.value == "1") return "<span style='color:green'>是</span>";
     else return "<span style='color:red'>否</span>";

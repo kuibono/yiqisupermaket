@@ -50,16 +50,16 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     searchOptions.Add(Request.QueryString.Keys[i].ToLower(), Request.QueryString[i].ToString());
                 }
             }
-            
+
             string str_sql = string.Format("select {0} as value,{1} as text from {2}", valueColumn, textColumn, table);
-            if (searchOptions.Count>0)
+            if (searchOptions.Count > 0)
             {
                 str_sql += " where ";
                 foreach (var options in searchOptions)
                 {
                     str_sql += string.Format("{0}='{1}' and", options.Key, options.Value);
                 }
-                if(str_sql.EndsWith("and"))
+                if (str_sql.EndsWith("and"))
                 {
                     str_sql = str_sql.Substring(0, str_sql.Length - 3);
                 }
@@ -82,7 +82,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             string idColumn = "";
             string typeColumn = "";
             string numberColumn = "";
-            foreach(var item in Request.GetData())
+            foreach (var item in Request.GetData())
             //for (int i = 0; i < Request.GetData().Count; i++)
             {
                 //Request.GetData()[i].
@@ -126,7 +126,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
 
             StringBuilder sql = new StringBuilder();
-            string columnNames=imgColumn+","+idColumn+",";
+            string columnNames = imgColumn + "," + idColumn + ",";
             string columnVars = "@" + imgColumn + ",@" + idColumn + ",";
             if (string.IsNullOrEmpty(typeColumn) == false)
             {
@@ -138,36 +138,36 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             //    columnNames += numberColumn + ",";
             //    columnVars += "@" + numberColumn + ",";
             //}
-            foreach(var item in dic)
+            foreach (var item in dic)
             {
-                columnNames+=item.Key+",";
-                columnVars+="@"+item.Key+",";
+                columnNames += item.Key + ",";
+                columnVars += "@" + item.Key + ",";
             }
-            columnNames=columnNames.TrimEnd(',');
-            columnVars=columnVars.TrimEnd(',');
-            sql.AppendFormat("insert into {0}({1}) values({2})",table,columnNames,columnVars);
+            columnNames = columnNames.TrimEnd(',');
+            columnVars = columnVars.TrimEnd(',');
+            sql.AppendFormat("insert into {0}({1}) values({2})", table, columnNames, columnVars);
 
-            List<SqlParameter> pars=new List<SqlParameter>();
+            List<SqlParameter> pars = new List<SqlParameter>();
 
-            using(SqlCommand cmd=new SqlCommand(sql.ToString()))
+            using (SqlCommand cmd = new SqlCommand(sql.ToString()))
             {
-                SqlParameter param = new SqlParameter("@"+imgColumn,SqlDbType.VarBinary, Request.Files[0].ContentLength); 
+                SqlParameter param = new SqlParameter("@" + imgColumn, SqlDbType.VarBinary, Request.Files[0].ContentLength);
                 Stream ImageStream = Request.Files[0].InputStream;
-                
+
                 Byte[] ImageCount = new Byte[Request.Files[0].ContentLength];//调用方法转化二进制数据
                 Request.Files[0].InputStream.Read(ImageCount, 0, ImageCount.Length);
-                param.Value=ImageCount;
+                param.Value = ImageCount;
                 pars.Add(param);
                 //cmd.Parameters.Add(param);
 
-                SqlParameter IdPar = new SqlParameter("@"+idColumn, SqlDbType.VarChar);
+                SqlParameter IdPar = new SqlParameter("@" + idColumn, SqlDbType.VarChar);
                 IdPar.Value = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString();
                 pars.Add(IdPar);
 
                 if (string.IsNullOrEmpty(typeColumn) == false)
                 {
                     SqlParameter typePar = new SqlParameter("@" + typeColumn, SqlDbType.VarChar);
-                    typePar.Value = Path.GetExtension(Request.Files[0].FileName).Replace(".","");
+                    typePar.Value = Path.GetExtension(Request.Files[0].FileName).Replace(".", "");
                     pars.Add(typePar);
                 }
                 //if (string.IsNullOrEmpty(numberColumn) == false)
@@ -176,16 +176,16 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 //    numberPar.Value = MyEnv.GetSqlHelper().ExecuteScalar(CommandType.Text,string.Format("select max({0}) from "))
                 //    pars.Add(numberPar);
                 //}
-                foreach(var item in dic)
+                foreach (var item in dic)
                 {
-                    SqlParameter par = new SqlParameter(item.Key,SqlDbType.VarChar); 
-                    par.Value=item.Value;
+                    SqlParameter par = new SqlParameter(item.Key, SqlDbType.VarChar);
+                    par.Value = item.Value;
                     //cmd.Parameters.Add(par);
                     pars.Add(par);
                 }
 
-                MyEnv.GetSqlHelper().ExecuteNonQuery(CommandType.Text,sql.ToString(),pars.ToArray());
-                return Json(true,JsonRequestBehavior.AllowGet);
+                MyEnv.GetSqlHelper().ExecuteNonQuery(CommandType.Text, sql.ToString(), pars.ToArray());
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
         }
@@ -195,8 +195,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             string table = Request["table"];
             string imgcolumn = Request["imgcolumn"];
             string idColumn = Request["idcolumn"];
-            string idValue=Request["idvalue"];
-            string sql = string.Format("select {0} from {1} where {2}='{3}'",  imgcolumn,table, idColumn, idValue);
+            string idValue = Request["idvalue"];
+            string sql = string.Format("select {0} from {1} where {2}='{3}'", imgcolumn, table, idColumn, idValue);
             byte[] buffer = (byte[])MyEnv.GetSqlHelper().ExecuteScalar(CommandType.Text, sql);
             if (buffer != null)
             {
@@ -206,6 +206,43 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 return result;
             }
             return null;
+        }
+
+        public ActionResult ChangeDbValue()
+        {
+            string pkColumn = Request["pkcolumn"];
+            string table = Request["table"];
+            string[] pkValue = Request["pk"].Split(',');
+
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sb_Set = new StringBuilder();
+            StringBuilder ids = new StringBuilder();
+            foreach (string pk in pkValue)
+            {
+                ids.AppendFormat("'{0}',", pk);
+            }
+            ids = new StringBuilder(ids.ToString().TrimEnd(','));
+
+            foreach (var item in Request.GetData())
+            {
+                if (item.Key.ToLower() == "pkcolumn" || item.Key.ToLower() == "pk" || item.Key.ToLower() == "table" || item.Key.ToLower() == "_")
+                {
+                    continue;
+                }
+                sb_Set.AppendFormat("{0}='{1}',", item.Key, item.Value);
+            }
+            sb_Set = new StringBuilder(sb_Set.ToString().TrimEnd(','));
+            sb.AppendFormat("update {0} set {1} where {2} in ({3})", table, sb_Set.ToString(), pkColumn, ids.ToString());
+
+            try
+            {
+                MyEnv.GetSqlHelper().ExecuteNonQuery(CommandType.Text, sb.ToString());
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

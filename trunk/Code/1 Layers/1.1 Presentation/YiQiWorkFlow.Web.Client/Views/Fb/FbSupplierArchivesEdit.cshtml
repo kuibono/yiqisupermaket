@@ -7,35 +7,7 @@
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
     <script type="text/javascript"> var pageTitle = "供货商档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:50";var id="@Model.Id";pageName="FbSupplierArchivesEdit"; </script>
-	<script type="text/javascript">
-        function SaveData() {
-            var form = new mini.Form("#formMain"); // default form
-            var o = form.getData();
-            $.ajax({
-                url: "/Fb/SaveFbSupplierArchives",
-                type: 'post',
-                data: o,
-                cache: false,
-				dataType:"json",
-                success: function (r) {
-                    if (r.IsSuccess == true) {
-                        closeWithNoValidate();
-                    } else {
-                        $("#Tooltip_Critical_FbSupplierArchives .content").first().text(r.Message);
-                        $("#Tooltip_Critical_FbSupplierArchives").show("fast");
-                        form.unmask();
-                        $(document).scrollTop(0);
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    $("#Tooltip_Critical_FbSupplierArchives .content").first().text(jqXHR.responseText);
-                    $("#Tooltip_Critical_FbSupplierArchives").show("fast");
-                    form.unmask();
-					$(document).scrollTop(0);
-                }
-            });
-        }
-    </script>
+	<script type="text/javascript" src="/Scripts/Fb/FbSupplierArchivesEdit.js"></script>
 </head>
 <body>
     <div class="container">
@@ -175,12 +147,12 @@
 
             <div class="ablock">
                 <label for="Control_OpCode">经营方式:</label>
-                <input type="text"  value="@Model.OpCode" class="mini-combobox" name="OpCode" id="Control_OpCode" required="true" data="[{id:1,text:'经销'},{id:2,text:'代销'},{id:3,text:'联营'}]" showNullItem="true" />
+                <input type="text"  value="@Model.OpCode" class="mini-combobox" name="OpCode" id="Control_OpCode" required="true" data="[{id:1,text:'经销'},{id:2,text:'代销'},{id:3,text:'联营'},{id:4,text:'租赁'},{id:5,text:'扣率代销'}]" showNullItem="true" onvaluechanged="onOpCodeChanged" />
             </div>
 
             <div class="ablock">
                 <label for="Control_StockVoucher">进货凭证:</label>
-                <input type="text"  value="@Model.StockVoucher" class="mini-combobox" name="StockVoucher" id="Control_StockVoucher" required="true" data="[{id:'普通发票',text:'普通发票'},{id:'增值税发票',text:'增值税发票'}]" valueField="text" showNullItem="true" />
+                <input type="text"  value="@Model.StockVoucher" class="mini-combobox" name="StockVoucher" id="Control_StockVoucher" required="true" data="[{id:'普通发票',text:'普通发票'},{id:'增值税发票',text:'增值税发票'},{id:'农收购发票',text:'农收购发票'},{id:'农粮肉发票',text:'农粮肉发票'}]" valueField="text" showNullItem="true" />
             </div>
 
             <div class="ablock">
@@ -190,12 +162,12 @@
 
             <div class="ablock">
                 <label for="Control_BalanceMode">结算方式:</label>
-                <input type="text"  value="@Model.BalanceMode" class="mini-combobox" name="BalanceMode" id="Control_BalanceMode" required="true" data="[{id:'预付货款',text:'预付货款'},{id:'货到付款',text:'货到付款'},{id:'实销实付',text:'实销实付'},{id:'扣点结算',text:'扣点结算'}]" valueField="text" showNullItem="true" />
+                <input type="text"  value="@Model.BalanceMode" class="mini-combobox" name="BalanceMode" id="Control_BalanceMode" required="true" data="[{id:'预付货款',text:'预付货款'},{id:'货到付款',text:'货到付款'},{id:'实销实付',text:'实销实付'},{id:'扣点结算',text:'扣点结算'},{ id: '销售返还', text: '销售返还' }]" valueField="text" showNullItem="true" />
             </div>
 
             <div class="ablock">
                 <label for="Control_PayMode">付款方式:</label>
-                <input type="text"  value="@Model.PayMode" class="mini-combobox" name="PayMode" id="Control_PayMode" required="true" data="[{id:'现金',text:'现金'},{id:'支票',text:'支票'},{id:'汇票',text:'汇票'}]" valueField="text" showNullItem="true" />
+                <input type="text"  value="@Model.PayMode" class="mini-combobox" name="PayMode" id="Control_PayMode" required="true" data="[{id:'现金',text:'现金'},{id:'支票',text:'支票'},{id:'银行转账',text:'银行转账'},{id:'托收承付',text:'托收承付'}]" valueField="text" showNullItem="true" />
             </div>
 
             <div class="ablock">
@@ -210,8 +182,8 @@
             </div>
 
             <div class="ablock">
-                <label for="Control_OfferMode">散件，整件:</label>
-                <input type="text"  value="@Model.OfferMode" class="mini-textbox" name="OfferMode" id="Control_OfferMode" vtype="maxLength:20" />
+                <label for="Control_OfferMode">供货方式:</label>
+                <input type="text"  value="@Model.OfferMode" class="mini-combobox" name="OfferMode" id="Control_OfferMode" data="c_OfferMode" />
             </div>
 
             <div class="ablock">
@@ -250,8 +222,8 @@
             </div>
 
             <div class="ablock">
-                <label for="Control_IfExamine">是否审核:</label>
-                <div id="Control_IfExamine" name="IfExamine" value="1" class="mini-checkbox" checked="true" readOnly="false" text="审核" trueValue="1" falseValue="0"></div>
+                <label for="Control_IfExamine">审核:</label>
+                <div id="Control_IfExamine" name="IfExamine" value="@Model.IfExamine" class="mini-checkbox"  readOnly="true" text="" trueValue="1" falseValue="0"></div>
             </div>
 
             <div class="ablock">
@@ -271,6 +243,7 @@
         <div class="control-panel">
             <div class="control-button">
                 <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
                 <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
                 <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
             </div>
