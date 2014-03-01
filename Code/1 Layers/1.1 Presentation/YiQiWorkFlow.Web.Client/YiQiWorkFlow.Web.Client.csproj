@@ -294,8 +294,11 @@
     <Content Include="robot.txt" />
     <Content Include="Scripts\basic.js" />
     <Content Include="Scripts\boot.js" />
+    <Content Include="Scripts\category.js" />
     <Content Include="Scripts\dialog-edit.js" />
     <Content Include="Scripts\editPage.js" />
+    <Content Include="Scripts\Fb\FbSupplierArchivesEdit.js" />
+    <Content Include="Scripts\Fb\FbSupplierArchivesList.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <Content Include="Scripts\jquery.hotkeys.js" />

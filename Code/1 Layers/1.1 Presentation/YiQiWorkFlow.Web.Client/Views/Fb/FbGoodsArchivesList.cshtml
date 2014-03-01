@@ -51,23 +51,23 @@
                     cellstyle="padding:0;">
                     管理
                 </div>
-				<div field="Id" headeralign="center" align="center" width="80">
+				<div field="Id" headeralign="center" align="center" width="150">
 				    商品编码
 					<input id="filter_GoodsCode" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="GoodsBarCode" headeralign="center" align="center" width="80">
+				<div field="GoodsBarCode" headeralign="center" align="center" width="100">
 				    商品销售码
 					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-                <div field="GoodsName" headeralign="center" align="center" width="80">
+                <div field="GoodsName" headeralign="center" align="center" width="150">
 				    商品名称
 					<input id="filter_GoodsName" name="GoodsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="GoodsState" headeralign="center" align="center" width="80">
+				<div field="GoodsState" headeralign="center" align="center" width="80" renderer="onGoodsStateRender">
 				    商品状态
 					<input id="filter_GoodsState" name="GoodsState" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="GoodsType" headeralign="center" align="center" width="80">
+				<div field="GoodsType" headeralign="center" align="center" width="80" renderer="onGoodsTypeRender">
 				    商品类型
 					<input id="filter_GoodsType" name="GoodsType" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
@@ -75,7 +75,7 @@
 				    供货商编码
 					<input id="filter_SupCode" name="SupCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-                <div field="OpCode" headeralign="center" align="center" width="70">
+                <div field="OpCode" headeralign="center" align="center" width="70" renderer="onOpCodeRender">
 				    经营方式
 					<input id="filter_OpCode" name="OpCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>

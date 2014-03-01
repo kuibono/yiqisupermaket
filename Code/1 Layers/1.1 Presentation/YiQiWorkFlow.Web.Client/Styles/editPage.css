@@ -102,6 +102,7 @@
             left: 0px;
             background-color: #EEE;
             height: 36px;
+            z-index: 10;
         }
         .control-button
         {

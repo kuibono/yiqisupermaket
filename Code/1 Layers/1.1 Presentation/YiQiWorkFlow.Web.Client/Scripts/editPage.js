@@ -81,6 +81,7 @@ $(function () {
         return false;
     });
     $(document).keydown(function (event) {
+        //alert(event.keyCode)
         //ctrl+s
         if (event.keyCode == 83 && event.ctrlKey) {
             $("#btnFormSubmit").click();
@@ -98,6 +99,9 @@ $(function () {
         //Ctrl+Q
         else if (event.keyCode == 81 && event.ctrlKey) {
             closeTab();
+        }
+        else if (event.keyCode == 69 && event.ctrlKey) { //Ctrl+E
+            $("#btnExame").click();
         }
     });
     $("#btnClosePage").click(function () {
@@ -140,12 +144,13 @@ function closeTab() {
     }
 }
 function closeWithNoValidate() {
-    if (window.top.location.href = location.href) {
-        window.opener = null;
-        window.open('', '_self');
-        window.close();
-    } else {
-        parent.closeTab(pageName);
-    }
+    //if (window.top.location.href = location.href) {
+    //    window.opener = null;
+    //    window.open('', '_self');
+    //    window.close();
+    //} else {
+    //    parent.closeTab(pageName);
+    //}
+    parent.closeTab(pageName);
 }
 

@@ -991,6 +991,19 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 生成商品简码
+        /// <summary>
+        /// 生成商品简码
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GenerateGoodsId()
+        {
+            FbGoodsArchives m = FbGoodsArchives.Initial();
+            m.GoodsSubCode = FbGoodsArchives.GenerateSubCode();
+            return Json(m, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
         #region 商品档案列表页面
         /// <summary>
         /// 商品档案列表页面
@@ -2817,13 +2830,14 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-
+                m.OperatorDate = DateTime.Now;
                 if (m.HaveId)
                 {
                     FbSupplierArchivesService.Update(m);
                 }
                 else
                 {
+                    m.CreateDate = DateTime.Now;
                     FbSupplierArchivesService.Create(m);
                 }
                 r.IsSuccess = true;
