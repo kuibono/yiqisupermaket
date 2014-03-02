@@ -14,6 +14,8 @@ namespace YiQiWorkFlow.Application.Service.Fb
 
         FbPaBaseSet GetById(string id);
 
+        FbPaBaseSet GetFirst();
+
         IList<FbPaBaseSet> GetAll();
 
         void Update(FbPaBaseSet entity);

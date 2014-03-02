@@ -9,10 +9,11 @@ using System.Web.Script.Serialization;
 using YiQiWorkFlow.Application.Service.Fb;
 using YiQiWorkFlow.Domain.Fb;
 using YiQiWorkFlow.Domain.Basement;
+using YiQiWorkFlow.Web.Client.Common;
 
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
-    public class FbController : Controller
+    public class FbController : FbBaseController
     {
 
         #region 调商品所属类别
@@ -1841,25 +1842,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult FbPaBaseSetEdit(string id)
         {
-            FbPaBaseSet m = FbPaBaseSet.Initial();
-            if (string.IsNullOrEmpty(id) == false)
-            {
-                m = FbPaBaseSetService.GetById(id);
-            }
-            return View(m);
+            return View(FbPaBaseSetService.GetFirst());
         }
         #endregion
 
-        #region 基础参数设置列表页面
-        /// <summary>
-        /// 基础参数设置列表页面
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult FbPaBaseSetList()
-        {
-            return View();
-        }
-        #endregion
+        
 
         #region 基础参数设置保存程序
         /// <summary>
@@ -1869,6 +1856,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult SaveFbPaBaseSet(FbPaBaseSet m)
         {
+            m.OperatorDate = DateTime.Now;
             SavingResult r = new SavingResult();
 
             var vResult = m.GetValidateResult();
@@ -1885,8 +1873,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    FbPaBaseSetService.Create(m);
+                    m.Id=FbPaBaseSetService.Create(m);
                 }
+                XmlHelper.SaveSerialize(m, Server.MapPath("/Data/Cache/FbPaBaseSet.xml"));
+                CacheHelper.SetCache("FbPaBaseSet", m, Server.MapPath("/Data/Cache/FbPaBaseSet.xml"));
+
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -1894,36 +1885,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         }
         #endregion
 
-        #region 基础参数设置搜索
-        /// <summary>
-        /// 基础参数设置搜索
-        /// </summary>
-        /// <param name="c">搜索dto包括keyword分页数据</param>
-        /// <param name="s">搜索内容，表数据填充</param>
-        /// <returns></returns>
-        public JsonResult SearchFbPaBaseSetList(SearchDtoBase<FbPaBaseSet> c, FbPaBaseSet s)
-        {
-            c.entity = s;
-            return Json(FbPaBaseSetService.Search(c), JsonRequestBehavior.AllowGet);
-        }
-        #endregion
-
-        #region 基础参数设置删除
-        /// <summary>
-        /// 基础参数设置删除
-        /// </summary>
-        /// <param name="ids">主键</param>
-        /// <returns></returns>
-        public JsonResult FbPaBaseSetDelete(List<string> ids)
-        {
-            if (Request["confirm"] == null)//需要验证是否可以直接删除
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-            FbPaBaseSetService.Delete(ids);
-            return Json(true, JsonRequestBehavior.AllowGet);
-        }
-        #endregion
         #endregion  基础参数设置
 
         #region 品牌编码
