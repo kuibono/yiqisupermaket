@@ -334,6 +334,11 @@ namespace YiQiWorkFlow.Domain.Fb
         {
             return (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString().Substring(7,10);
         }
+
+        public int GetTableSerialNumber()
+        {
+            return GetTableSerialNumber("fb_goods_archives");
+        }
 	}
 	 
 }

@@ -95,7 +95,13 @@ namespace YiQiWorkFlow.Domain.Fb
 		/// </summary>
 		[Validate(ValidateType.IsDateTime ,Name="操作时间")]
 		public virtual System.DateTime? OperatorDate{get ; set; }
-		
+
+        /// <summary>
+        /// 进价是否可在档案中修改
+        /// </summary>
+        [Validate(ValidateType.NoValidate, Name = "进价是否可在档案中修改",DefaultValue="1")]
+        public virtual string IfChangePurchasePriceInArchives { get; set; }
+
 		protected override void Validate()
         {
         }
@@ -119,6 +125,7 @@ namespace YiQiWorkFlow.Domain.Fb
 			m.SupPrefixType="无";
 			m.PurchasePreciseLen=2M;
 			m.SalePreciseLen=2M;
+            m.IfChangePurchasePriceInArchives = "1";
             return m;
         }
 	}

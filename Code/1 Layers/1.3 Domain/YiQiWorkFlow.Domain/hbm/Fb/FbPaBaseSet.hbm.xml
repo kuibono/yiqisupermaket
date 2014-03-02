@@ -18,6 +18,7 @@
 	<property name="SalePreciseLen" column="sale_precise_len" type="decimal" />
 	<property name="Operator" column="operator" type="string" />
 	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
+  <property name="IfChangePurchasePriceInArchives" column="if_change_purchase_price_in_archives" type="string" />
   </class>
 </hibernate-mapping>
 

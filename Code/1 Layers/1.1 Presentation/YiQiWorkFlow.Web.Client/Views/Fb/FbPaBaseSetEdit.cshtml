@@ -114,8 +114,8 @@
             </div>
 
             <div class="ablock">
-                <label for="Control_GoodsClassLevel">1，2，3，4:</label>
-                <input type="text" id="Control_GoodsClassLevel" name="GoodsClassLevel"  value="@Model.GoodsClassLevel" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <label for="Control_GoodsClassLevel">分类级别:</label>
+                <input type="text" id="Control_GoodsClassLevel" name="GoodsClassLevel"  value="@Model.GoodsClassLevel" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
@@ -124,8 +124,8 @@
             </div>
 
             <div class="ablock">
-                <label for="Control_GoodsPrefix">大中小细:</label>
-                <input type="text"  value="@Model.GoodsPrefix" class="mini-textbox" name="GoodsPrefix" id="Control_GoodsPrefix" vtype="maxLength:20" />
+                <label for="Control_GoodsPrefix">商品编码前缀:</label>
+                <input type="text"  value="@Model.GoodsPrefix" class="mini-combobox" name="GoodsPrefix" id="Control_GoodsPrefix" data="[{id:'大',text:'大'},{id:'中',text:'中'},{id:'小',text:'小'},{id:'细',text:'细'}]" />
             </div>
 
             <div class="ablock">
@@ -134,8 +134,8 @@
             </div>
 
             <div class="ablock">
-                <label for="Control_SupPrefixType">无，经营方式，指定:</label>
-                <input type="text"  value="@Model.SupPrefixType" class="mini-textbox" name="SupPrefixType" id="Control_SupPrefixType" vtype="maxLength:20" />
+                <label for="Control_SupPrefixType">供货商编码前缀类型:</label>
+                <input type="text"  value="@Model.SupPrefixType" class="mini-combobox" name="SupPrefixType" id="Control_SupPrefixType" data="[{id:'无',text:'无'},{id:'经营方式',text:'经营方式'},{id:'指定',text:'指定'}]" />
             </div>
 
             <div class="ablock">
@@ -147,7 +147,10 @@
                 <label for="Control_PurchasePreciseLen">进价小数位数:</label>
                 <input type="text" id="Control_PurchasePreciseLen" name="PurchasePreciseLen"  value="@Model.PurchasePreciseLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
-
+            <div class="ablock">
+                <label for="Control_IfChangePurchasePriceInArchives">进价可在档案中修改:</label>
+                <div id="Control_IfChangePurchasePriceInArchives" name="IfChangePurchasePriceInArchives" value="@Model.IfChangePurchasePriceInArchives" class="mini-checkbox" readonly="false" text="可以修改" trueValue="1" falseValue="0"></div>
+            </div>
             <div class="ablock">
                 <label for="Control_SalePreciseLen">销售价小数位数:</label>
                 <input type="text" id="Control_SalePreciseLen" name="SalePreciseLen"  value="@Model.SalePreciseLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
