@@ -158,6 +158,7 @@
     <Compile Include="Common\AuthorizeSettings.cs" />
     <Compile Include="Common\ConfigReader.cs" />
     <Compile Include="Common\EmployeeAuthorizeAttribute.cs" />
+    <Compile Include="Common\FbBaseController.cs" />
     <Compile Include="Common\HttpExtend.cs" />
     <Compile Include="Common\ImageResult.cs" />
     <Compile Include="Common\JsonNetResult.cs">
@@ -1042,6 +1043,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\Cache\" />
     <Folder Include="Scripts\miniui\themes\gray\images\layout\" />
     <Folder Include="Scripts\miniui\themes\gray\images\panel\" />
     <Folder Include="Scripts\miniui\themes\gray\images\splitter\" />
@@ -1068,6 +1070,10 @@
     <ProjectReference Include="..\..\1.4 Infrastructure\1.4.1 NSH\NSH.VSTO\NSH.VSTO.csproj">
       <Project>{A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5}</Project>
       <Name>NSH.VSTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1.4 Infrastructure\1.4.1 NSH\System\Voodoo.csproj">
+      <Project>{e107df5a-351b-4981-94b3-157189de7622}</Project>
+      <Name>Voodoo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -1255,7 +1261,6 @@
     <Content Include="Views\Fb\FbGoodsBarCodeEdit.cshtml" />
     <Content Include="Views\Fb\FbGoodsBarCodeList.cshtml" />
     <Content Include="Views\Fb\FbPaBaseSetEdit.cshtml" />
-    <Content Include="Views\Fb\FbPaBaseSetList.cshtml" />
     <Content Include="Views\Fb\FbPaGoodsCheckUnitEdit.cshtml" />
     <Content Include="Views\Fb\FbPaGoodsCheckUnitList.cshtml" />
     <Content Include="Views\Fb\FbPaGoodsCounterEdit.cshtml" />

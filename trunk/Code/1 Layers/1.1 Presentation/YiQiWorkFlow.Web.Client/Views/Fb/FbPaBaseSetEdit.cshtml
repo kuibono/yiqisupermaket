@@ -19,7 +19,7 @@
 				dataType:"json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        closeWithNoValidate();
+                        alert("保存成功");
                     } else {
                         $("#Tooltip_Critical_FbPaBaseSet .content").first().text(r.Message);
                         $("#Tooltip_Critical_FbPaBaseSet").show("fast");
@@ -95,22 +95,22 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_GoodsGbLen">大类位数:</label>
-                <input type="text" id="Control_GoodsGbLen" name="GoodsGbLen"  value="@Model.GoodsGbLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_GoodsGbLen" name="GoodsGbLen"  value="@Model.GoodsGbLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_GoodsGmLen">中类位数:</label>
-                <input type="text" id="Control_GoodsGmLen" name="GoodsGmLen"  value="@Model.GoodsGmLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_GoodsGmLen" name="GoodsGmLen"  value="@Model.GoodsGmLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_GoodsGsLen">小类位数:</label>
-                <input type="text" id="Control_GoodsGsLen" name="GoodsGsLen"  value="@Model.GoodsGsLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_GoodsGsLen" name="GoodsGsLen"  value="@Model.GoodsGsLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_GoodsGlLen">细类位数:</label>
-                <input type="text" id="Control_GoodsGlLen" name="GoodsGlLen"  value="@Model.GoodsGlLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_GoodsGlLen" name="GoodsGlLen"  value="@Model.GoodsGlLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
@@ -120,7 +120,7 @@
 
             <div class="ablock">
                 <label for="Control_GoodsLen">商品流水码位数:</label>
-                <input type="text" id="Control_GoodsLen" name="GoodsLen"  value="@Model.GoodsLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_GoodsLen" name="GoodsLen"  value="@Model.GoodsLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
@@ -130,7 +130,7 @@
 
             <div class="ablock">
                 <label for="Control_SupLen">供货商流水码位数:</label>
-                <input type="text" id="Control_SupLen" name="SupLen"  value="@Model.SupLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_SupLen" name="SupLen"  value="@Model.SupLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
@@ -145,12 +145,12 @@
 
             <div class="ablock">
                 <label for="Control_PurchasePreciseLen">进价小数位数:</label>
-                <input type="text" id="Control_PurchasePreciseLen" name="PurchasePreciseLen"  value="@Model.PurchasePreciseLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_PurchasePreciseLen" name="PurchasePreciseLen"  value="@Model.PurchasePreciseLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_SalePreciseLen">销售价小数位数:</label>
-                <input type="text" id="Control_SalePreciseLen" name="SalePreciseLen"  value="@Model.SalePreciseLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_SalePreciseLen" name="SalePreciseLen"  value="@Model.SalePreciseLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">

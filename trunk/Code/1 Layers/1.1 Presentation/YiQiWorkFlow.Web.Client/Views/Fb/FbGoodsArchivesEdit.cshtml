@@ -163,7 +163,7 @@
             grid.beginEditRow(row);
 
             $("#" + grid.id).find("input:visible").eq(2).focus()
-            mini.getbyName("Photo",grid.id).uploadurl=getUploadUrl();
+            
         }
         function getActiveGrid() {
             var grid1 = mini.get("grid1");
@@ -223,10 +223,6 @@
             var grid = e.sender;
             var record = e.record;
             return "<img src='/Common/GetImageFromDb?table=Fb_Goods_Archives_Photo&imgcolumn=Photo&idcolumn=id&idvalue="+record.Id+"' style='height:30px;' />";
-        }
-        function getUploadUrl(){
-            var grid=mini.get("grid4");
-            return "/Common/SaveImageToDb?table=Fb_Goods_Archives_Photo&imgcolumn=Photo&Goods_Code=@Model.Id&s_Number="+grid.totalCount+"&idcolumn=id&typecolumn=PhotoType";
         }
         function setBindtabEnable()
         {
@@ -605,7 +601,7 @@
                                 </div>
                                 <div field="OpCode" headeralign="center" align="center" width="60">
                                     经营方式
-					<input id="filter_OpCode" name="OpCode" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_OpCode" name="OpCode" property="editor" class="mini-combobox" data="c_OpCode" style="width: 100%;" />
                                 </div>
                                 <div field="PoolRate" headeralign="center" align="center" width="60">
                                     扣率
@@ -613,7 +609,7 @@
                                 </div>
                                 <div field="OfferMode" headeralign="center" align="center" width="60">
                                     供货方式
-					<input id="filter_OfferMode" name="OfferMode" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_OfferMode" name="OfferMode" property="editor" class="mini-combobox" style="width: 100%;"  data="c_OfferMode"/>
                                 </div>
                                 <div field="OfferMin" headeralign="center" align="center" width="60">
                                     最小订量

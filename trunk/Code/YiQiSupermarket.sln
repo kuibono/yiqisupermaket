@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YiQiWorkFlow.Application.Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YiQiWorkFlow.Web.Client", "1 Layers\1.1 Presentation\YiQiWorkFlow.Web.Client\YiQiWorkFlow.Web.Client.csproj", "{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voodoo", "1 Layers\1.4 Infrastructure\1.4.1 NSH\System\Voodoo.csproj", "{E107DF5A-351B-4981-94B3-157189DE7622}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -93,6 +95,10 @@ Global
 		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44C473CA-D3D6-4AE9-A944-1DF8770B40AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E107DF5A-351B-4981-94B3-157189DE7622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E107DF5A-351B-4981-94B3-157189DE7622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E107DF5A-351B-4981-94B3-157189DE7622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E107DF5A-351B-4981-94B3-157189DE7622}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +121,7 @@ Global
 		{A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5} = {75DDE5DD-2291-4004-B7DF-4222D698DC44}
 		{0E74AF39-D8D6-4E78-8137-5F875F36A82B} = {75DDE5DD-2291-4004-B7DF-4222D698DC44}
 		{58928F36-FCEA-47D7-B311-36AC00E26A82} = {75DDE5DD-2291-4004-B7DF-4222D698DC44}
+		{E107DF5A-351B-4981-94B3-157189DE7622} = {75DDE5DD-2291-4004-B7DF-4222D698DC44}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true
