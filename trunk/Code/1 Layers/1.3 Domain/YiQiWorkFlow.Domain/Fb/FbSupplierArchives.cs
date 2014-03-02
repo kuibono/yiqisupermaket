@@ -239,6 +239,11 @@ namespace YiQiWorkFlow.Domain.Fb
             m.CreateDate = DateTime.Now;
             return m;
         }
+
+        public int GetTableSerialNumber()
+        {
+            return GetTableSerialNumber("fb_supplier_archives");
+        }
 	}
 	 
 }

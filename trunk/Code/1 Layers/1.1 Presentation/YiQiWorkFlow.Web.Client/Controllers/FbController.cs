@@ -985,7 +985,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                m.GoodsSubCode = FbGoodsArchives.GenerateSubCode();
+                m.GoodsSubCode = m.GetTableSerialNumber().ToString().FillByStrings('0',FbPaBaseSet.GoodsLen.ToInt32());
                 m._state = "added";
             }
             return View(m);
@@ -1064,6 +1064,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 foreach (var item in saleCodes)
                 {
+                    if (item.IfMainBar == "1")//主销售码的包装系数一定是1
+                    {
+                        item.PackCoef = 1;
+                    }
                     if (string.IsNullOrEmpty(item.GoodsBarCode))
                     {
                         continue;
@@ -2799,6 +2803,18 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 else
                 {
                     m.CreateDate = DateTime.Now;
+                    string pre = "";
+                    //新增供货商，生成供货商编码
+                    if (FbPaBaseSet.SupPrefixType == "经营方式")
+                    {
+                        pre = m.OpCode;
+                    }
+                    else if (FbPaBaseSet.SupPrefixType == "指定")
+                    {
+                        pre = FbPaBaseSet.SupPrefixContent;
+                    }
+                    string serNum = m.GetTableSerialNumber().ToString().FillByStrings('0', FbPaBaseSet.SupLen.ToInt32());
+                    m.Id = pre + serNum;
                     FbSupplierArchivesService.Create(m);
                 }
                 r.IsSuccess = true;

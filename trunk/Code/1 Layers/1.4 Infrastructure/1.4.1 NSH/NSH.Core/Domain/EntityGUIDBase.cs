@@ -1,7 +1,11 @@
 ﻿using NSH.Core.Domain.Validate;
+using NSH.VSTO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -314,6 +318,26 @@ namespace NSH.Core.Domain
         public void GenerateId()
         {
             this.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString();
+        }
+
+        public SqlHelper GetSqlHelper()
+        {
+            NameValueCollection cfgName = (NameValueCollection)ConfigurationSettings.GetConfig("databaseSettings"); ;
+            string connStr = cfgName["db.connectionString"].ToString();
+            return new SqlHelper(connStr);
+        }
+        public int GetTableSerialNumber(string table)
+        {
+            //try
+            //{
+                return GetSqlHelper().ExecuteScalar(CommandType.Text, string.Format("update sys_SerialNumber set SerialNumber=SerialNumber+1 where tablename='{0}';select top 1 SerialNumber from sys_SerialNumber where tablename='{0}'", table)).ToInt32();
+            //}
+            //catch
+            //{
+            //    string sql = string.Format("insert into sys_SerialNumber(tablename,SerialNumber) values('{0}',0)", table);
+            //    GetSqlHelper().ExecuteNonQuery(CommandType.Text, sql);
+            //    return GetTableSerialNumber(table);
+            //}
         }
     }
 }

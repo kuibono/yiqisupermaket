@@ -96,6 +96,12 @@
     <Compile Include="Service\LocalServiceLocator.cs" />
     <Compile Include="Service\ServiceLocatorRegister.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NSH.VSTO\NSH.VSTO.csproj">
+      <Project>{a6628a7c-e438-4db6-b7e0-fe4ed2f1f4e5}</Project>
+      <Name>NSH.VSTO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

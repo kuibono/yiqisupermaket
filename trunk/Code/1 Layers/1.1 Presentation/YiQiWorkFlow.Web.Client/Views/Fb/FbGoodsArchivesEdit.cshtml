@@ -7,7 +7,7 @@
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
     <script type="text/javascript" src="/Scripts/swfupload/swfupload.js"></script>
-    <script type="text/javascript"> var pageTitle = "商品档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:47"; var id = "@Model.Id"; pageName = "FbGoodsArchivesEdit";var isNew=@Model.IsAdded.ToString().ToLower(); </script>
+    <script type="text/javascript"> var pageTitle = "商品档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:47"; var id = "@Model.Id"; pageName = "FbGoodsArchivesEdit";var isNew=@Model.IsAdded.ToString().ToLower();var canModify=@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.IfChangePurchasePriceInArchives; </script>
     <script type="text/javascript">
         var clearExameAfterSave = true;
         var activeGrid;
@@ -228,6 +228,10 @@
         {
             mini.get("tabs1").getTab(2).enabled=(mini.get("Control_GoodsType").getValue()=="4");
         }
+        function onIfMainBarchanged(e){
+            //e.sender.getParent().data[0]["PackCoef"]="1";
+            //e.sender.getParent().setData({"PackCoef":"1"});
+        }
         $(function () {
             $("#btnAddSupplier").click(function () {
                 activeTab(0);
@@ -297,6 +301,11 @@
                 clearExameAfterSave = false;
             });
             setBindtabEnable();
+            // 是否可以直接修改售价
+            if(isNew==false && canModify==0){
+                mini.get("Control_PurchasePrice").disable();
+                mini.get("Control_NontaxPurchasePrice").disable();
+            }
         });
     </script>
 </head>
@@ -564,7 +573,7 @@
 
                 <div class="ablock">
                     <label for="Control_IfExamine">&nbsp;</label>
-                    <div id="Control_IfExamine" name="IfExamine" value="1" class="mini-checkbox" enabled="false" readonly="false" text="审核" trueValue="1" falseValue="0"></div>
+                    <div id="Control_IfExamine" name="IfExamine" value="@Model.IfExamine" class="mini-checkbox" enabled="false" readonly="false" text="审核" trueValue="1" falseValue="0"></div>
                 </div>
 
                 <div class="ablock">
@@ -692,7 +701,7 @@
                                 </div>
                                 <div field="IfMainBar" headeralign="center" align="center" width="60">
                                     是否主销售码
-                                    <div id="filter_IfMainBar" property="editor" name="IfMainBar" value="1" class="mini-checkbox" checked="false" readonly="false"></div>
+                                    <div id="filter_IfMainBar" property="editor" name="IfMainBar" value="1" class="mini-checkbox" checked="false" readonly="false" oncheckedchanged="onIfMainBarchanged"></div>
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60">
                                     是否审核

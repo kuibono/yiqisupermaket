@@ -6,6 +6,10 @@ using NSH.Core.Domain;
 using System.Collections.ObjectModel;
 using NSH.Core.Domain.Validate;
 using System.Reflection;
+using NSH.VSTO;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Data;
 
 namespace NSH.Core.Domain
 {
@@ -305,6 +309,17 @@ namespace NSH.Core.Domain
                 }
             }
             return sb.ToString();
+        }
+
+        public SqlHelper GetSqlHelper()
+        {
+            NameValueCollection cfgName = (NameValueCollection)ConfigurationSettings.GetConfig("databaseSettings"); ;
+            string connStr = cfgName["db.connectionString"].ToString();
+            return new SqlHelper(connStr);
+        }
+        public int GetTableSerialNumber(string table)
+        {
+            return GetSqlHelper().ExecuteScalar(CommandType.Text, string.Format("update sys_SerialNumber set SerialNumber=SerialNumber+1 where tablename='{0}';select top 1 SerialNumber from sys_SerialNumber where tablename='{0}'", table)).ToInt32();
         }
     }
 }
