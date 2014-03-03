@@ -296,6 +296,7 @@
     <Content Include="Scripts\basic.js" />
     <Content Include="Scripts\boot.js" />
     <Content Include="Scripts\category.js" />
+    <Content Include="Scripts\chinese2py.js" />
     <Content Include="Scripts\dialog-edit.js" />
     <Content Include="Scripts\editPage.js" />
     <Content Include="Scripts\Fb\FbSupplierArchivesEdit.js" />

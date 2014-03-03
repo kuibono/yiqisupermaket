@@ -7,6 +7,7 @@
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
     <script type="text/javascript" src="/Scripts/swfupload/swfupload.js"></script>
+    <script type="text/javascript" src="/Scripts/chinese2py.js"></script>
     <script type="text/javascript"> var pageTitle = "商品档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:47"; var id = "@Model.Id"; pageName = "FbGoodsArchivesEdit";var isNew=@Model.IsAdded.ToString().ToLower();var canModify=@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.IfChangePurchasePriceInArchives; </script>
     <script type="text/javascript">
         var clearExameAfterSave = true;
@@ -21,7 +22,11 @@
             grid2.commitEdit();
             grid3.commitEdit();
             grid4.commitEdit();
-
+            if(grid2.getData().length==0){
+                alert("必须设置销售码");
+                activeTab(1);
+                return false;
+            }
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData(true);
             if (clearExameAfterSave == true) {
@@ -232,6 +237,15 @@
             //e.sender.getParent().data[0]["PackCoef"]="1";
             //e.sender.getParent().setData({"PackCoef":"1"});
         }
+        function onGoodsBarCodeBlur(){
+            mini.getbyName("GoodsBarName","grid2").setValue(mini.get("Control_GoodsName").getValue());
+            mini.getbyName("PackUnitCode","grid2").setValue(mini.get("Control_PackUnitCode").getValue());
+        }
+        function fillSubName(){
+            mini.get("Control_GoodsSubName").setValue(mini.get("Control_GoodsName").getValue().substr(0,10));
+            mini.get("Control_PyCode").setValue(makePy(mini.get("Control_GoodsName").getValue()));
+            $("#Control_ArticleNumber input:text:first").focus();
+        }
         $(function () {
             $("#btnAddSupplier").click(function () {
                 activeTab(0);
@@ -396,7 +410,7 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_GoodsBarCode">商品销售码:</label>
-                    <input type="text"  value="@Model.GoodsBarCode" class="mini-textbox" name="GoodsBarCode" id="Control_GoodsBarCode" vtype="maxLength:20"required="true" />
+                    <input type="text"  value="@Model.GoodsBarCode" class="mini-textbox" name="GoodsBarCode" id="Control_GoodsBarCode" vtype="maxLength:20" enabled="false" />
                 </div>
                 <div class="ablock">
                     <label for="Control_GoodsState">商品状态:</label>
@@ -421,7 +435,7 @@
                 </div>
                 <div class="ablock colspan2">
                     <label for="Control_GoodsName">商品名称:</label>
-                    <input type="text"  value="@Model.GoodsName" class="mini-textbox" name="GoodsName" id="Control_GoodsName" vtype="maxLength:50"required="true" />
+                    <input type="text"  value="@Model.GoodsName" class="mini-textbox" name="GoodsName" id="Control_GoodsName" vtype="maxLength:50" required="true" onblur="fillSubName" />
                 </div>
                 <div class="ablock">
                     <label for="Control_GoodsSubName">商品简称:</label>
@@ -445,7 +459,7 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_PackUnitCode">包装单位:</label>
-                    <input type="text"  value="@Model.PackUnitCode" class="mini-combobox" name="PackUnitCode" id="Control_PackUnitCode" url="/Common/GetComboData?table=fb_pa_goods_pack_unit&valueColumn=pack_unit_code&textColumn=pack_unit_name" vtype="maxLength:20" />
+                    <input type="text"  value="@Model.PackUnitCode" class="mini-combobox" name="PackUnitCode" id="Control_PackUnitCode" url="/Common/GetComboData?table=fb_pa_goods_pack_unit&valueColumn=pack_unit_code&textColumn=pack_unit_name" />
                 </div>
                 <div class="ablock">
                     <label for="Control_ShelfLife">保质期(天):</label>
@@ -484,12 +498,12 @@
 
                 <div class="ablock">
                     <label for="Control_PackCoef">包装系数:</label>
-                    <input type="text" id="Control_PackCoef" name="PackCoef"  value="@Model.PackCoef" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                    <input type="text" id="Control_PackCoef" name="PackCoef"  value="@Model.PackCoef" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
                 </div>
 
                 <div class="ablock">
                     <label for="Control_OfferMin">最小订量:</label>
-                    <input type="text" id="Control_OfferMin" name="OfferMin"  value="@Model.OfferMin" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                    <input type="text" id="Control_OfferMin" name="OfferMin"  value="@Model.OfferMin" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
                 </div>
 
                 <div class="ablock">
@@ -503,12 +517,12 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_PurchasePrice">含税进价:</label>
-                    <input type="text" id="Control_PurchasePrice" name="PurchasePrice"  value="@Model.PurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                    <input type="text" id="Control_PurchasePrice" name="PurchasePrice"  value="@Model.PurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen"/>
                 </div>
 
                 <div class="ablock">
                     <label for="Control_NontaxPurchasePrice">不含税进价:</label>
-                    <input type="text" id="Control_NontaxPurchasePrice" name="NontaxPurchasePrice"  value="@Model.NontaxPurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                    <input type="text" id="Control_NontaxPurchasePrice" name="NontaxPurchasePrice"  value="@Model.NontaxPurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen"/>
                 </div>
                 <div class="ablock">
                     <label for="Control_GrossRate">毛利率:</label>
@@ -520,17 +534,17 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_SalePrice">销售价:</label>
-                    <input type="text" id="Control_SalePrice" name="SalePrice"  value="@Model.SalePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                    <input type="text" id="Control_SalePrice" name="SalePrice"  value="@Model.SalePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
                 </div>
 
                 <div class="ablock">
                     <label for="Control_VipPrice">会员价:</label>
-                    <input type="text" id="Control_VipPrice" name="VipPrice"  value="@Model.VipPrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                    <input type="text" id="Control_VipPrice" name="VipPrice"  value="@Model.VipPrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
                 </div>
 
                 <div class="ablock">
                     <label for="Control_TradePrice">批发价:</label>
-                    <input type="text" id="Control_TradePrice" name="TradePrice"  value="@Model.TradePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                    <input type="text" id="Control_TradePrice" name="TradePrice"  value="@Model.TradePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
                 </div>
             </fieldset>
             <fieldset>
@@ -608,7 +622,7 @@
                                     拼音码
 					<input id="filter_PyCode" name="PyCode" property="editor" class="mini-textbox" enabled="true" style="width: 100%;" />
                                 </div>
-                                <div field="OpCode" headeralign="center" align="center" width="60">
+                                <div field="OpCode" headeralign="center" align="center" width="60" renderer="onOpCodeRender">
                                     经营方式
 					<input id="filter_OpCode" name="OpCode" property="editor" class="mini-combobox" data="c_OpCode" style="width: 100%;" />
                                 </div>
@@ -630,17 +644,17 @@
                                 </div>
                                 <div field="PurchasePrice" headeralign="center" align="center" width="60">
                                     含税进价
-					<input id="filter_PurchasePrice" name="PurchasePrice" property="editor" class="mini-spinner" style="width: 100%;" />
+					<input id="filter_PurchasePrice" name="PurchasePrice" property="editor" class="mini-spinner" style="width: 100%;" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen"/>
                                 </div>
                                 <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
                                     不含税进价
-					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" class="mini-spinner" style="width: 100%;" />
+					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" class="mini-spinner" style="width: 100%;" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen"/>
                                 </div>
-                                <div field="IfMainSupplier" headeralign="center" align="center" width="60">
+                                <div field="IfMainSupplier" headeralign="center" align="center" width="60" renderer="onYesNoRender">
                                     主供货商
                                     <div id="filter_IfMainSupplier" property="editor" name="IfMainSupplier" value="1" class="mini-checkbox" checked="true" readonly="false"></div>
                                 </div>
-                                <div field="IfExamine" headeralign="center" align="center" width="60">
+                                <div field="IfExamine" headeralign="center" align="center" width="60" renderer="onExamRender">
                                     是否审核
                                     <div id="Control_IfExamine" property="editor" name="IfExamine" value="1" class="mini-checkbox" checked="true" readonly="false"></div>
 
@@ -661,7 +675,7 @@
                                 </div>
                                 <div field="GoodsBarCode" headeralign="center" align="center" width="60">
                                     商品销售码
-					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" style="width: 100%;" onblur="onGoodsBarCodeBlur"/>
                                 </div>
                                 <div field="GoodsBarName" headeralign="center" align="center" width="60">
                                     销售名称
@@ -669,11 +683,11 @@
                                 </div>
                                 <div field="PackUnitCode" headeralign="center" align="center" width="60">
                                     包装单位
-					<input id="filter_PackUnitCode" name="PackUnitCode" property="editor" class="mini-textbox" style="width: 100%;" />
+                                    <input type="text"  property="editor" value="@Model.PackUnitCode" style="width: 100%;" class="mini-combobox" name="PackUnitCode" id="filter_PackUnitCode" url="/Common/GetComboData?table=fb_pa_goods_pack_unit&valueColumn=pack_unit_code&textColumn=pack_unit_name" />
                                 </div>
                                 <div field="PackCoef" headeralign="center" align="center" width="60">
                                     包装系数
-					<input id="filter_PackCoef" name="PackCoef" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="filter_PackCoef" name="PackCoef" property="editor" class="mini-spinner" decimalPlaces="2" style="width: 100%;" />
                                 </div>
                                 <div field="QtyType" headeralign="center" align="center" width="60">
                                     计量方式
@@ -685,15 +699,15 @@
                                 </div>
                                 <div field="SalePrice" headeralign="center" align="center" width="60">
                                     销售价
-					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" style="width: 100%;" />
+					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" style="width: 100%;" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
                                 </div>
                                 <div field="VipPrice" headeralign="center" align="center" width="60">
                                     会员价
-					<input id="filter_VipPrice" name="VipPrice" property="editor" class="mini-spinner" style="width: 100%;" />
+					<input id="filter_VipPrice" name="VipPrice" property="editor" class="mini-spinner" style="width: 100%;"  decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
                                 </div>
                                 <div field="TradePrice" headeralign="center" align="center" width="60">
                                     批发价
-					<input id="filter_TradePrice" name="TradePrice" property="editor" class="mini-spinner" style="width: 100%;" />
+					<input id="filter_TradePrice" name="TradePrice" property="editor" class="mini-spinner" style="width: 100%;"  decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
                                 </div>
                                 <div field="PushRate" headeralign="center" align="center" width="60">
                                     营业员提成
@@ -701,7 +715,7 @@
                                 </div>
                                 <div field="IfMainBar" headeralign="center" align="center" width="60">
                                     是否主销售码
-                                    <div id="filter_IfMainBar" property="editor" name="IfMainBar" value="1" class="mini-checkbox" checked="false" readonly="false" oncheckedchanged="onIfMainBarchanged"></div>
+                                    <div id="filter_IfMainBar" property="editor" name="IfMainBar"  class="mini-checkbox" checked="true" readonly="false" oncheckedchanged="onIfMainBarchanged"></div>
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60">
                                     是否审核
@@ -748,15 +762,15 @@
                                 </div>
                                 <div field="SalePrice" headeralign="center" align="center" width="60">
                                     销售价
-					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" style="width: 100%;" />
+					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" style="width: 100%;" decimalPlaces="4" />
                                 </div>
                                 <div field="BindSalePrice" headeralign="center" align="center" width="60">
                                     捆绑销售价
-					<input id="filter_BindSalePrice" name="BindSalePrice" property="editor" class="mini-spinner" style="width: 100%;" />
+					<input id="filter_BindSalePrice" name="BindSalePrice" property="editor" class="mini-spinner" style="width: 100%;" decimalPlaces="4" />
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60">
                                     是否审核
-					<div id="Control_IfExamine" property="editor" name="IfExamine" value="1" class="mini-checkbox" checked="true" readonly="false"></div>
+					<div id="Control_IfExamine" property="editor" name="IfExamine" class="mini-checkbox" checked="true" readonly="false"></div>
                                 </div>
                                 <div field="SaleMoney" headeralign="center" align="center" width="60">
                                     捆绑商品销售价
