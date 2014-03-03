@@ -1034,13 +1034,33 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                FbGoodsArchivesService.SaveOrUpdate(m);
+                
 
                 var jser = new JavaScriptSerializer();
                 var suppliers = jser.Deserialize<List<FbGoodsArchivesSupplier>>(Request["suppliers"]);
                 var saleCodes = jser.Deserialize<List<FbGoodsArchivesBar>>(Request["saleCode"]);
                 var binding = jser.Deserialize<List<FbGoodsArchivesBind>>(Request["binding"]);
                 var images = jser.Deserialize<List<FbGoodsArchivesPhoto>>(Request["images"]);
+
+                if (saleCodes.Where(p => p.IfExamine == "1").Count() > 0)
+                {
+                    m.GoodsBarCode = saleCodes.First(p => p.IfExamine == "1").GoodsBarCode;
+                }
+
+                FbGoodsArchivesService.SaveOrUpdate(m);
+
+                bool mainSup = false;
+                suppliers.ForEach(p => {
+                    if (p.IfMainSupplier == "1" && mainSup==false)
+                    {
+                        mainSup = true;//主供货商出现
+                    }
+                    else
+                    {
+                        p.IfMainSupplier = "0";
+                    }
+                    
+                });
 
                 foreach (var item in suppliers)
                 {
