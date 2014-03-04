@@ -119,7 +119,7 @@
             var gsCombo = mini.get("Control_GsCode");
             var glCombo = mini.get("Control_GlCode");
 
-            var gsValue = gmCombo.getValue();
+            var gsValue = gsCombo.getValue();
             glCombo.setValue("");
             glCombo.setUrl("/Common/GetComboData?table=fb_pa_goods_gl&valueColumn=gl_code&textColumn=gl_name&gs_code=" + gsValue);
             generateId();
@@ -132,7 +132,7 @@
             var gmCombo = mini.get("Control_GmCode");
             var gsCombo = mini.get("Control_GsCode");
             var glCombo = mini.get("Control_GlCode");
-            mini.get("#Control_GoodsCode").setValue(gbCombo.getValue() + gmCombo.getValue() + gsCombo.getValue() + glCombo.getValue() + mini.get("Control_GoodsSubCode").getValue());
+            mini.get("#Control_GoodsCode").setValue(glCombo.getValue() + mini.get("Control_GoodsSubCode").getValue());
         }
         function activeTab(index) {
             var tab = mini.get("tabs1");

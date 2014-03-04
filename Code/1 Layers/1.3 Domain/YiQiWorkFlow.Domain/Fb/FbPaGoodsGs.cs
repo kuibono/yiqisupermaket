@@ -48,6 +48,10 @@ namespace YiQiWorkFlow.Domain.Fb
             m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
+        public int GetTableSerialNumber()
+        {
+            return GetTableSerialNumber("fb_pa_goods_gs");
+        }
 	}
 	 
 }

@@ -45,9 +45,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m1.Add(new { id = "110", iconCls = "icon-add", pid = "m1", text = "基础档案设置", url = "/Fb/FbPaBaseSetEdit" });
             m1.Add(new { id = "111", iconCls = "icon-add", pid = "m1", text = "供货商类型设置", url = "/Fb/FbPaSupTypeList" });
             m1.Add(new { id = "112", iconCls = "icon-add", pid = "m1", text = "商品大类设置", url = "/Fb/FbPaGoodsGbList" });
-            m1.Add(new { id = "113", iconCls = "icon-add", pid = "m1", text = "商品中类设置", url = "/Fb/FbPaGoodsMbList" });
-            m1.Add(new { id = "114", iconCls = "icon-add", pid = "m1", text = "商品小类设置", url = "/Fb/FbPaGoodsSbList" });
-            m1.Add(new { id = "115", iconCls = "icon-add", pid = "m1", text = "商品细类设置", url = "/Fb/FbPaGoodsLbList" });
+            m1.Add(new { id = "113", iconCls = "icon-add", pid = "m1", text = "商品中类设置", url = "/Fb/FbPaGoodsGmList" });
+            m1.Add(new { id = "114", iconCls = "icon-add", pid = "m1", text = "商品小类设置", url = "/Fb/FbPaGoodsGsList" });
+            m1.Add(new { id = "115", iconCls = "icon-add", pid = "m1", text = "商品细类设置", url = "/Fb/FbPaGoodsGlList" });
             m1.Add(new { id = "116", iconCls = "icon-add", pid = "m1", text = "商品包装单位设置", url = "/Fb/FbPaGoodsPackUnitList" });
             m1.Add(new { id = "117", iconCls = "icon-add", pid = "m1", text = "商品核算单位设置", url = "/Fb/FbPaGoodsCheckUnitList" });
             m1.Add(new { id = "118", iconCls = "icon-add", pid = "m1", text = "柜组编码设置", url = "/Fb/FbPaGoodsCounterList" });
