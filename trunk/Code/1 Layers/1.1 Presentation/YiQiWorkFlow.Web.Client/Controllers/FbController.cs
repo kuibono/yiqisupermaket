@@ -1047,7 +1047,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     m.GoodsBarCode = saleCodes.First(p => p.IfExamine == "1").GoodsBarCode;
                 }
 
-                FbGoodsArchivesService.SaveOrUpdate(m);
+                
 
                 bool mainSup = false;
                 suppliers.ForEach(p =>
@@ -1055,6 +1055,19 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     if (p.IfMainSupplier == "1" && mainSup == false)
                     {
                         mainSup = true;//主供货商出现
+                        m.SupCode = p.SupCode;
+                        m.OpCode = p.OpCode;
+                        m.PoolRate = p.PoolRate;
+                        m.OfferMode = p.OfferMode;
+                        //m.PackCoef=p.co
+                        m.OfferMin = p.OfferMin;
+                        m.InputTax = p.InputTax;
+                        //m.OutputTax=
+                        m.PurchasePrice = p.PurchasePrice;
+                        m.NontaxPurchasePrice = p.NontaxPurchasePrice;
+                        //m.GrossRate=p.
+                        //m.PushRate=p.
+                        //m.SalePrice=
                     }
                     else
                     {
@@ -1062,6 +1075,19 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     }
 
                 });
+                saleCodes.ForEach(p => {
+                    if (p.IfMainBar == "1")
+                    {
+                        m.GoodsBarCode = p.GoodsBarCode;
+                        m.PackCoef = p.PackCoef;
+                        m.PackUnitCode = p.PackUnitCode;
+                        m.SalePrice = p.SalePrice;
+                        m.VipPrice = p.VipPrice;
+                        m.TradePrice = p.TradePrice;
+                        m.PushRate = p.PushRate;
+                    }
+                });
+                FbGoodsArchivesService.SaveOrUpdate(m);
 
                 foreach (var item in suppliers)
                 {
@@ -1182,12 +1208,18 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult FbGoodsArchivesDelete(List<string> ids)
         {
-            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            if (Request["confirm"] == null && MyEnv.RecordExist("ac_day_goodsstock_journal_account", "goods_code",string.Join(",", ids)))//需要验证是否可以直接删除
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+                return Json(new SavingResult() {  IsSuccess=false, Message="存在关联数据，不可删除！"}, JsonRequestBehavior.AllowGet);
+            }
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("if_examine", "1");
+            if (MyEnv.RecordExist("fb_goods_archives", "goods_code", string.Join(",", ids), dic))
+            {
+                return Json(new SavingResult() { IsSuccess = false, Message = "不得删除已经审核的数据！" }, JsonRequestBehavior.AllowGet);
             }
             FbGoodsArchivesService.Delete(ids);
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(new SavingResult() { IsSuccess = true, Message = "删除成功！" }, JsonRequestBehavior.AllowGet);
         }
         #endregion
         #endregion  商品档案
@@ -2770,6 +2802,18 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
         #region 供货商档案
         public IFbSupplierArchivesService FbSupplierArchivesService { get; set; }
+
+        #region 序列化供货商列表到js文件
+        /// <summary>
+        /// 序列化供货商列表到js文件
+        /// </summary>
+        private void SuppliersToJson()
+        {
+            var suppliers = FbSupplierArchivesService.GetAll().Where(p => p.IfExamine == "1").ToList();
+            JsonHelper.SaveJsonToFile(suppliers, Server.MapPath("/Data/FbSupplierArchives.js"));
+        }
+        #endregion
+
         #region 供货商档案编辑页面
         /// <summary>
         /// 供货商档案编辑页面
@@ -2842,6 +2886,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
+            SuppliersToJson();
             return Json(r);
         }
         #endregion
@@ -2868,12 +2913,19 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult FbSupplierArchivesDelete(List<string> ids)
         {
-            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            if (Request["confirm"] == null && MyEnv.RecordExist("fb_goods_archives_supplier", "sup_code", string.Join(",", ids)))//需要验证是否可以直接删除
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+                return Json(new SavingResult {  IsSuccess=false, Message="供货商存在商品，不可删除！"}, JsonRequestBehavior.AllowGet);
+            }
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("if_examine", "1");
+            if (MyEnv.RecordExist("fb_supplier_archives", "sup_code", string.Join(",", ids), dic))
+            {
+                return Json(new SavingResult { IsSuccess = false, Message = "审核的供货商，不可删除！" }, JsonRequestBehavior.AllowGet);
             }
             FbSupplierArchivesService.Delete(ids);
-            return Json(true, JsonRequestBehavior.AllowGet);
+            SuppliersToJson();
+            return Json(new SavingResult { IsSuccess = true, Message = "删除成功！" }, JsonRequestBehavior.AllowGet);
         }
         #endregion
         #endregion  供货商档案

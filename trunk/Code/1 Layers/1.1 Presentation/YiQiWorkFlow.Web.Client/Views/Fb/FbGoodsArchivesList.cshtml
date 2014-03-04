@@ -17,7 +17,7 @@
                         <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">高级检索</a>
                         <a class="mini-button" iconcls="icon-ok" onclick="javascript:void(0)" plain="true">审核</a>
                         <a class="mini-button" iconcls="icon-coins" onclick="javascript:void(0)" plain="true">报表</a>
-                        <a class="mini-button" iconcls="icon-remove" onclick="javascript:void(0)" plain="true">删除</a>
+                        <a class="mini-button" iconcls="icon-remove" onclick="remove()" plain="true">删除</a>
                     </td>
                     <td style="white-space: nowrap;" align="right">
                         <table>
@@ -167,7 +167,7 @@
             var rowIndex = e.rowIndex;
             if (record.IfExamine) {
                 if (record.IfExamine == "1") {
-                    return "";
+                    return ' <a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')" >编辑</a>';
                 }
             }
             var s = ' <a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')" >编辑</a>'
@@ -226,17 +226,19 @@
                 data: { ids: id },
                 dataType: "json",
                 success: function (j) {
-                    if (j == false) {
-                        if (confirm("数据存在关联数据数据，删除后将影响整个系统运行，是否确认删除？") == true) {
-                            $.ajax({
-                                url: "/Fb/FbGoodsArchivesDelete",
-                                data: { ids: id, confirm: "true" },
-                                dataType: "json",
-                                success: function (r) {
-                                    grid.reload();
-                                }
-                            });
-                        }
+                    if (j.IsSuccess == false) {
+                        alert(j.Message);
+                        grid.unmask()
+                        //if (confirm("数据存在关联数据数据，删除后将影响整个系统运行，是否确认删除？") == true) {
+                        //    $.ajax({
+                        //        url: "/Fb/FbGoodsArchivesDelete",
+                        //        data: { ids: id, confirm: "true" },
+                        //        dataType: "json",
+                        //        success: function (r) {
+                        //            grid.reload();
+                        //        }
+                        //    });
+                        //}
                     }
                     else {
                         grid.reload();
