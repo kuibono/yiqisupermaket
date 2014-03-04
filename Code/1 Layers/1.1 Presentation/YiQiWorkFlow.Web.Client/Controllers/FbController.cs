@@ -2314,12 +2314,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult FbPaGoodsGbDelete(List<string> ids)
         {
-            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            if (Request["confirm"] == null && MyEnv.RecordExist("fb_pa_goods_gm", "gb_code", string.Join(",", ids)))//需要验证是否可以直接删除
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+                return Json(new SavingResult { Message="存在子类别，不得删除！",IsSuccess=false }, JsonRequestBehavior.AllowGet);
             }
             FbPaGoodsGbService.Delete(ids);
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(new SavingResult { Message = "删除成功！", IsSuccess = true }, JsonRequestBehavior.AllowGet);
         }
         #endregion
         #endregion  大类编码
@@ -2504,12 +2504,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult FbPaGoodsGmDelete(List<string> ids)
         {
-            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            if (Request["confirm"] == null && MyEnv.RecordExist("fb_pa_goods_gs", "gm_code", string.Join(",", ids)))//需要验证是否可以直接删除
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+                return Json(new SavingResult { Message = "存在子类别，不得删除！", IsSuccess = false }, JsonRequestBehavior.AllowGet);
             }
             FbPaGoodsGmService.Delete(ids);
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(new SavingResult { Message = "删除成功！", IsSuccess = true }, JsonRequestBehavior.AllowGet);
         }
         #endregion
         #endregion  中类编码
@@ -2599,12 +2599,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult FbPaGoodsGsDelete(List<string> ids)
         {
-            if (Request["confirm"] == null)//需要验证是否可以直接删除
+            if (Request["confirm"] == null && MyEnv.RecordExist("fb_pa_goods_gl", "gs_code", string.Join(",", ids)))//需要验证是否可以直接删除
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+                return Json(new SavingResult { Message = "存在子类别，不得删除！", IsSuccess = false }, JsonRequestBehavior.AllowGet);
             }
             FbPaGoodsGsService.Delete(ids);
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(new SavingResult { Message = "删除成功！", IsSuccess = true }, JsonRequestBehavior.AllowGet);
+
         }
         #endregion
         #endregion  小类编码
