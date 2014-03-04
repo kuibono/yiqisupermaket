@@ -8,7 +8,6 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using YiQiWorkFlow.Web.Client.Common;
-using YiQiWorkFlow.Web.Client.Common;
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
     public class CommonController : Controller

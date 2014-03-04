@@ -146,3 +146,12 @@ function dropSelected() {
         });
     }
 }
+
+function onSupTypeRenderer(e) {
+    for (var i = 0; i < c_FbPaSupTypes.length; i++) {
+        if (e.value == c_FbPaSupTypes[i].SupTypeCode) {
+            return c_FbPaSupTypes[i].SupTypeName;
+        }
+    }
+    return "";
+}
