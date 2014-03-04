@@ -74,17 +74,9 @@ function deleteItem(id) {
         data: { ids: id },
         dataType: "json",
         success: function (j) {
-            if (j == false) {
-                if (confirm("数据存在关联数据数据，删除后将影响整个系统运行，是否确认删除？") == true) {
-                    $.ajax({
-                        url: "/Fb/FbSupplierArchivesDelete",
-                        data: { ids: id, confirm: "true" },
-                        dataType: "json",
-                        success: function (r) {
-                            grid.reload();
-                        }
-                    });
-                }
+            if (j.IsSuccess == false) {
+                alert(j.Message);
+                grid.unmask();
             }
             else {
                 grid.reload();

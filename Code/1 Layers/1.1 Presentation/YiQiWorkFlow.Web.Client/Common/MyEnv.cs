@@ -87,40 +87,56 @@ namespace YiQiWorkFlow.Web.Client.Common
 
         #region GetServices
 
-        
+
         public static HibernateTemplate GetHibernateTemplate()
         {
             return (HibernateTemplate)_applicationContext.GetObject("HibernateTemplate");
         }
+
         public static SqlHelper GetSqlHelper()
         {
-            NameValueCollection cfgName = (NameValueCollection)ConfigurationSettings.GetConfig("databaseSettings");;
+            NameValueCollection cfgName = (NameValueCollection)ConfigurationSettings.GetConfig("databaseSettings"); ;
             string connStr = cfgName["db.connectionString"].ToString();
             return new SqlHelper(connStr);
         }
 
         #endregion
 
+        #region 检查记录是否在某表中存在
         /// <summary>
-        /// 获取某表的流水号
+        /// 检查记录是否在某表中存在
         /// </summary>
         /// <param name="table"></param>
+        /// <param name="column"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static int GetTableSerialNumber(string table)
+        public static bool RecordExist(string table, string column, string value, Dictionary<string, string> dic = null)
         {
-            try
+            var split = value.Split(',');
+            var result = "";
+            foreach (string s in split)
             {
-                return (int)GetSqlHelper().ExecuteScalar(CommandType.Text, string.Format("update sys_SerialNumber set SerialNumber=SerialNumber+1 where tablename='{0}';select SerialNumber from sys_SerialNumber where tablename='{0}'", table));
+                result += "'" + s + "',";
             }
-            catch
+            result = result.TrimEnd(',');
+
+            string strSql = string.Format("select count(0) from {0} where {1} in ({2})", table, column, result);
+            if (dic != null)
             {
-                string sql = string.Format("insert into sys_SerialNumber(tablename,SerialNumber) values('{0}',0)",table);
-                GetSqlHelper().ExecuteNonQuery(CommandType.Text, sql);
-                return GetTableSerialNumber(table);
+                foreach (var item in dic)
+                {
+                    strSql += string.Format(" and {0}=N'{1}'", item.Key, item.Value);
+                }
             }
+
+            return Convert.ToInt32(GetSqlHelper().ExecuteScalar(CommandType.Text, strSql)) > 0;
         }
+        #endregion
+
+        
+
     }
 
-   
-    
+
+
 }
