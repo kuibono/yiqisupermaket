@@ -320,6 +320,12 @@
                 mini.get("Control_PurchasePrice").disable();
                 mini.get("Control_NontaxPurchasePrice").disable();
             }
+            if(isNew==false){
+                mini.get("Control_GbCode").disable();
+                mini.get("Control_GmCode").disable();
+                mini.get("Control_GsCode").disable();
+                mini.get("Control_GlCode").disable();
+            }
         });
     </script>
 </head>
@@ -479,12 +485,12 @@
                 <legend>经营信息</legend>
                 <div class="ablock">
                     <label for="Control_SupCode">供货商编码:</label>
-                    <input type="text"  value="@Model.SupCode" class="mini-textbox" name="SupCode" id="Control_SupCode" vtype="maxLength:20"required="true" />
+                    <input type="text"  value="@Model.SupCode" class="mini-textbox" name="SupCode" id="Control_SupCode" vtype="maxLength:20" enabled="false" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_OpCode">经营方式:</label>
-                    <input type="text"  value="@Model.OpCode" class="mini-combobox" name="OpCode" id="Control_OpCode" required="true" data="c_OpCode" showNullItem="true" />
+                    <input type="text"  value="@Model.OpCode" class="mini-combobox" name="OpCode" id="Control_OpCode" enabled="false" data="c_OpCode" showNullItem="true" />
                 </div>
 
                 <div class="ablock">
