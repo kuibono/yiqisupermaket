@@ -977,7 +977,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult FbGoodsArchivesEdit(string id)
         {
             FbGoodsArchives m = FbGoodsArchives.Initial();
-            
+
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbGoodsArchivesService.GetById(id);
@@ -985,7 +985,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                m.GoodsSubCode = m.GetTableSerialNumber().ToString().FillByStrings('0',FbPaBaseSet.GoodsLen.ToInt32());
+                m.GoodsSubCode = m.GetTableSerialNumber().ToString().FillByStrings('0', FbPaBaseSet.GoodsLen.ToInt32());
                 m._state = "added";
             }
             return View(m);
@@ -1034,7 +1034,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                
+
 
                 var jser = new JavaScriptSerializer();
                 var suppliers = jser.Deserialize<List<FbGoodsArchivesSupplier>>(Request["suppliers"]);
@@ -1050,8 +1050,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 FbGoodsArchivesService.SaveOrUpdate(m);
 
                 bool mainSup = false;
-                suppliers.ForEach(p => {
-                    if (p.IfMainSupplier == "1" && mainSup==false)
+                suppliers.ForEach(p =>
+                {
+                    if (p.IfMainSupplier == "1" && mainSup == false)
                     {
                         mainSup = true;//主供货商出现
                     }
@@ -1059,7 +1060,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     {
                         p.IfMainSupplier = "0";
                     }
-                    
+
                 });
 
                 foreach (var item in suppliers)
@@ -1870,7 +1871,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         }
         #endregion
 
-        
+
 
         #region 基础参数设置保存程序
         /// <summary>
@@ -1897,7 +1898,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    m.Id=FbPaBaseSetService.Create(m);
+                    m.Id = FbPaBaseSetService.Create(m);
                 }
                 XmlHelper.SaveSerialize(m, Server.MapPath("/Data/Cache/FbPaBaseSet.xml"));
                 CacheHelper.SetCache("FbPaBaseSet", m, Server.MapPath("/Data/Cache/FbPaBaseSet.xml"));
@@ -2725,8 +2726,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    FbPaSupTypeService.Create(m);
+                    m.Id = FbPaSupTypeService.Create(m);
                 }
+                JsonHelper.SaveJsonToFile(FbPaSupTypeService.GetAll(), Server.MapPath("/Data/FbPaSupTypes.js"), "c_FbPaSupTypes");
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }

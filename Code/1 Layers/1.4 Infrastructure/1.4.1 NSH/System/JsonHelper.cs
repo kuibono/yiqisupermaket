@@ -57,6 +57,27 @@ namespace System
         }
         #endregion
 
+        #region 列表保存为Json文件
+        /// <summary>
+        /// 列表保存为Json文件
+        /// </summary>
+        /// <param name="lst"></param>
+        /// <param name="path"></param>
+        public static void SaveJsonToFile(this IEnumerable<object> lst,string path,string varName="")
+        {
+            string result = "";
+            if (varName.Length > 0)
+            {
+                result = string.Format("{0}={1};", varName, ListToJsonStr(lst));
+            }
+            else
+            {
+                result = ListToJsonStr(lst);
+            }
+            FileHelper.Write(path, result);
+        }
+        #endregion
+
         #region 实体转换为JSON
         /// <summary>
         /// 实体转换为JSON,带jsoncallback参数
