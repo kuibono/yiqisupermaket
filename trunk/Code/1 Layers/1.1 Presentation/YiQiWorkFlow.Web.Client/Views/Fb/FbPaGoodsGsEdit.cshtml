@@ -95,12 +95,12 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_GmCode">中类编码:</label>
-                <input type="text"  value="@Model.GmCode" class="mini-textbox" name="GmCode" id="Control_GmCode" vtype="maxLength:20" />
+                <input type="text"  value="@Model.GmCode" class="mini-combobox" name="GmCode" url="/Common/GetComboData?table=fb_pa_goods_gm&valueColumn=gm_code&textColumn=gm_name"  id="Control_GmCode" required="true" />
             </div>
 
             <div class="ablock">
                 <label for="Control_GsCode">小类编码:</label>
-                <input type="text"  value="@Model.GsCode" class="mini-textbox" name="GsCode" id="Control_GsCode" vtype="maxLength:20" />
+                <input type="text"  value="@Model.GsCode" class="mini-textbox" name="GsCode" id="Control_GsCode" vtype="maxLength:20" enabled="false" />
             </div>
 
             <div class="ablock">

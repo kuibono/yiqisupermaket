@@ -2240,6 +2240,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult FbPaGoodsGbEdit(string id)
         {
             FbPaGoodsGb m = new FbPaGoodsGb();
+            m.GbCode = m.GetTableSerialNumber().ToS().FillByStrings('0', FbPaBaseSet.GoodsGbLen.ToInt32());
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbPaGoodsGbService.GetById(id);
@@ -2334,7 +2335,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult FbPaGoodsGlEdit(string id)
         {
-            FbPaGoodsGl m = FbPaGoodsGl.Initial();
+            FbPaGoodsGl m = new FbPaGoodsGl();
+            m.GlCode = m.GetTableSerialNumber().ToS().FillByStrings('0', FbPaBaseSet.GoodsGlLen.ToInt32());
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbPaGoodsGlService.GetById(id);
@@ -2363,7 +2365,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult SaveFbPaGoodsGl(FbPaGoodsGl m)
         {
             SavingResult r = new SavingResult();
-
+            
             var vResult = m.GetValidateResult();
             if (vResult.IsSuccess == false)
             {
@@ -2378,6 +2380,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
+                    if (m.GlCode.Length == FbPaBaseSet.GoodsGlLen.ToInt32())
+                    {
+                        m.GlCode = m.GsCode + m.GlCode;
+                    }
                     FbPaGoodsGlService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -2429,7 +2435,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult FbPaGoodsGmEdit(string id)
         {
-            FbPaGoodsGm m = FbPaGoodsGm.Initial();
+            FbPaGoodsGm m = new FbPaGoodsGm();
+            m.GmCode = m.GetTableSerialNumber().ToS().FillByStrings('0', FbPaBaseSet.GoodsGmLen.ToInt32());
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbPaGoodsGmService.GetById(id);
@@ -2458,7 +2465,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult SaveFbPaGoodsGm(FbPaGoodsGm m)
         {
             SavingResult r = new SavingResult();
-
+            
             var vResult = m.GetValidateResult();
             if (vResult.IsSuccess == false)
             {
@@ -2473,6 +2480,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
+                    if (m.GmCode.Length == FbPaBaseSet.GoodsGmLen.ToInt32())
+                    {
+                        m.GmCode = m.GbCode + m.GmCode;
+                    }
                     FbPaGoodsGmService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -2524,7 +2535,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult FbPaGoodsGsEdit(string id)
         {
-            FbPaGoodsGs m = FbPaGoodsGs.Initial();
+            FbPaGoodsGs m = new FbPaGoodsGs();
+            m.GsCode = m.GetTableSerialNumber().ToS().FillByStrings('0', FbPaBaseSet.GoodsGsLen.ToInt32());
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbPaGoodsGsService.GetById(id);
@@ -2553,7 +2565,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult SaveFbPaGoodsGs(FbPaGoodsGs m)
         {
             SavingResult r = new SavingResult();
-
+            
             var vResult = m.GetValidateResult();
             if (vResult.IsSuccess == false)
             {
@@ -2568,6 +2580,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
+                    if (m.GsCode.Length == FbPaBaseSet.GoodsGsLen.ToInt32())
+                    {
+                        m.GsCode = m.GmCode + m.GsCode;
+                    }
                     FbPaGoodsGsService.Create(m);
                 }
                 r.IsSuccess = true;
