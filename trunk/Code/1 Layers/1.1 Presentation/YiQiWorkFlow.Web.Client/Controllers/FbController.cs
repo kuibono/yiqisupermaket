@@ -786,7 +786,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult FbAdjustSupplierEdit(string id)
         {
-            FbAdjustSupplier m = FbAdjustSupplier.Initial();
+            FbAdjustSupplier m = new FbAdjustSupplier();
+            m.AdjustDate = DateTime.Now;
+
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbAdjustSupplierService.GetById(id);
@@ -824,14 +826,37 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                m.OperatorDate = DateTime.Now;
                 if (m.HaveId)
                 {
                     FbAdjustSupplierService.Update(m);
                 }
                 else
                 {
-                    FbAdjustSupplierService.Create(m);
+                    m.CreateDate = DateTime.Now;
+                    m.Id=FbAdjustSupplierService.Create(m);
                 }
+
+                var jser = new JavaScriptSerializer();
+                var goods = jser.Deserialize<List<FbAdjustSupplierGoods>>(Request["goods"]);
+                
+                foreach (var item in goods)
+                {
+                    item.AdjustNumber = m.Id;
+                    if (item.IsAdded)
+                    {
+                        FbAdjustSupplierGoodsService.Create(item);
+                    }
+                    else if (m.IsDelete)
+                    {
+                        FbAdjustSupplierGoodsService.Delete(item);
+                    }
+                    else if (m.IsUpdated)
+                    {
+                        FbAdjustSupplierGoodsService.Update(item);
+                    }
+                }
+
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -2919,6 +2944,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         {
             c.entity = s;
             return Json(FbSupplierArchivesService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SearchFbSupplierArchivesListForList(SearchDtoBase<FbSupplierArchives> c, FbSupplierArchives s)
+        {
+            c.entity = s;
+            return Json(FbSupplierArchivesService.Search(c).data, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
