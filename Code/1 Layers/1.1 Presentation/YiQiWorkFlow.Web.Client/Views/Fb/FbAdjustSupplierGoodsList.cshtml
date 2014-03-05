@@ -38,73 +38,68 @@
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchFbAdjustSupplierGoodsList"
             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true">
+            pagesize="20" multiselect="true" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="AdjustNumber" headeralign="center" align="center" width="60">
-				    调整单号
-					<input id="filter_AdjustNumber" name="AdjustNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GoodsCode" headeralign="center" align="center" width="60">
-				    商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SupCodeOld" headeralign="center" align="center" width="60">
-				    原供货商编码
-					<input id="filter_SupCodeOld" name="SupCodeOld" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OpCodeOld" headeralign="center" align="center" width="60">
-				    原经营方式
-					<input id="filter_OpCodeOld" name="OpCodeOld" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SupCode" headeralign="center" align="center" width="60">
-				    供货商编码
-					<input id="filter_SupCode" name="SupCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SupName" headeralign="center" align="center" width="60">
-				    供货商名称
-					<input id="filter_SupName" name="SupName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PyCode" headeralign="center" align="center" width="60">
-				    拼音码
-					<input id="filter_PyCode" name="PyCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OpCode" headeralign="center" align="center" width="60">
-				    经营方式
-					<input id="filter_OpCode" name="OpCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PoolRate" headeralign="center" align="center" width="60">
-				    扣率
-					<input id="filter_PoolRate" name="PoolRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OfferMode" headeralign="center" align="center" width="60">
-				    供货方式
-					<input id="filter_OfferMode" name="OfferMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OfferMin" headeralign="center" align="center" width="60">
-				    最小订量
-					<input id="filter_OfferMin" name="OfferMin" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="InputTax" headeralign="center" align="center" width="60">
-				    进项税率
-					<input id="filter_InputTax" name="InputTax" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PurchasePrice" headeralign="center" align="center" width="60">
-				    含税进价
-					<input id="filter_PurchasePrice" name="PurchasePrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
-				    不含税进价
-					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Id" headeralign="center" align="center" width="60">
-				    
-					<input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
+                <div field="AdjustNumber" headeralign="center" align="center" width="60">
+                    调整单号
+					<input id="filter_AdjustNumber" name="AdjustNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="GoodsCode" headeralign="center" align="center" width="60">
+                    商品编码
+					<input id="filter_GoodsCode" name="GoodsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="SupCodeOld" headeralign="center" align="center" width="60">
+                    原供货商编码
+					<input id="filter_SupCodeOld" name="SupCodeOld" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="OpCodeOld" headeralign="center" align="center" width="60">
+                    原经营方式
+					<input id="filter_OpCodeOld" name="OpCodeOld" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="SupCode" headeralign="center" align="center" width="60">
+                    供货商编码
+					<input id="filter_SupCode" name="SupCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="SupName" headeralign="center" align="center" width="60">
+                    供货商名称
+					<input id="filter_SupName" name="SupName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="PyCode" headeralign="center" align="center" width="60">
+                    拼音码
+					<input id="filter_PyCode" name="PyCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="OpCode" headeralign="center" align="center" width="60">
+                    经营方式
+					<input id="filter_OpCode" name="OpCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="PoolRate" headeralign="center" align="center" width="60">
+                    扣率
+					<input id="filter_PoolRate" name="PoolRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="OfferMode" headeralign="center" align="center" width="60">
+                    供货方式
+					<input id="filter_OfferMode" name="OfferMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="OfferMin" headeralign="center" align="center" width="60">
+                    最小订量
+					<input id="filter_OfferMin" name="OfferMin" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="InputTax" headeralign="center" align="center" width="60">
+                    进项税率
+					<input id="filter_InputTax" name="InputTax" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="PurchasePrice" headeralign="center" align="center" width="60">
+                    含税进价
+					<input id="filter_PurchasePrice" name="PurchasePrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
+                    不含税进价
+					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
                 <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
                     cellstyle="padding:0;">
                     管理
