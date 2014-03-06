@@ -44,9 +44,9 @@
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="AdjustNumber" headeralign="center" align="center" width="60">
+				<div field="Id" headeralign="center" align="center" width="60">
 				    调整单号
-					<input id="filter_AdjustNumber" name="AdjustNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+					<input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
 				<div field="AdjustDate" headeralign="center" align="center" width="60">
 				    调整日期
@@ -68,7 +68,7 @@
 				    审核人
 					<input id="filter_Assessor" name="Assessor" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="IfExamine" headeralign="center" align="center" width="60">
+				<div field="IfExamine" headeralign="center" align="center" width="60"  renderer="onExamRender">
 				    是否审核
 					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>

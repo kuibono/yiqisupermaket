@@ -842,6 +842,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 
                 foreach (var item in goods)
                 {
+                    if (item.GoodsCode.IsNullOrEmpty())
+                    {
+                        continue;
+                    }
                     item.AdjustNumber = m.Id;
                     if (item.IsAdded)
                     {
@@ -855,6 +859,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     {
                         FbAdjustSupplierGoodsService.Update(item);
                     }
+                }
+
+                if (m.IfExamine == "1")
+                {
+                    //获取所有子项目
+                    FbAdjustSupplierService.ExameByNumber(m.Id);
                 }
 
                 r.IsSuccess = true;
