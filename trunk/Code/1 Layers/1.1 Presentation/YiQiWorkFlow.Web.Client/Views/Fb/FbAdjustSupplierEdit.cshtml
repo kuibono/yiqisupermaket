@@ -12,7 +12,11 @@
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData();
             var grid = mini.get("datagrid1");
-            o["goods"] = mini.encode(grid.getChanges());
+            if (grid.isEditing()) {
+                grid.commitEdit();
+            }
+            o["goods"] = mini.encode(grid.getChanges());
+
             $.ajax({
                 url: "/Fb/SaveFbAdjustSupplier",
                 type: 'post',
@@ -57,11 +61,27 @@
             mini.getbyName("InputTax", "grid1").setValue(e.selected.InputTax);
             mini.getbyName("PurchasePrice", "grid1").setValue(e.selected.PurchasePrice);
             mini.getbyName("PurchasePrice", "grid1").setValue(e.selected.PurchasePrice);
-            $("#datagrid1 input[name=PurchasePrice]").focus();
+            $("#datagrid1 input[name=PurchasePrice]").parent().find(".mini-buttonedit-input:visible:first").focus();
+        }
+        function onrowdblclick(e) {
+            var grid = mini.get("datagrid1");
+            if (grid.isEditing()) {
+                grid.commitEdit();
+            }
+            grid.beginEditRow(e.row);
+            //mini.getbyName("GoodsCode", "datagri1").focus();
+            setTimeout(function () {
+                $("#datagrid1 input[name=GoodsCode]").parent().find(".mini-buttonedit-input:visible:first").focus();
+            }, 500);
+            
         }
         $(function () {
             var grid = mini.get("datagrid1");
+            grid.reload();
             jQuery.hotkeys.add('return', function () {
+                if (grid.isEditing()) {
+                    grid.commitEdit();
+                }
                 var row = {};
                 grid.addRow(row, 0);
                 grid.cancelEdit();
@@ -70,8 +90,14 @@
             jQuery.hotkeys.add('esc', function () {
                 grid.reload();
             });
+            jQuery.hotkeys.add('del', function () {
+                grid.removeRows(grid.getSelecteds());
+            });
             $("#btnExame").click(function () {
-                mini.get("Control_IfExamine").setValue("1");                mini.get("Control_ExamineDate").setValue(new Date());            });
+                mini.get("Control_IfExamine").setValue("1");
+                mini.get("Control_ExamineDate").setValue(new Date());
+            });
+
         });
     </script>
 </head>
@@ -183,7 +209,7 @@
             </fieldset>
             <div id="datagrid1" class="mini-datagrid" url="/Fb/SearchFbAdjustSupplierGoodsList?AdjustNumber=@Model.Id"
             style="width: 100%; height: 300px;margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showfilterrow="true" showpager="false">
+            pagesize="20" multiselect="true" showfilterrow="true" showpager="false" onrowdblclick="onrowdblclick">
                 <div property="columns">
                     <div type="indexcolumn" width="30">
                     </div>
@@ -249,6 +275,10 @@
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
+                    <input type="button" class="myButton" id="btnDel" value="删除" />
+                    <input type="button" class="myButton" id="btnGoods" value="商品" />
+                    <input type="button" class="myButton" id="btnSubmit" value="提交" />
+                    <input type="button" class="myButton" id="btnPrint" value="打印" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
                     <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
                 </div>

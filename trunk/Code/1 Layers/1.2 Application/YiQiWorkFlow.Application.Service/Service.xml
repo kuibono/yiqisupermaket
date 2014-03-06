@@ -908,6 +908,9 @@
   </object>
   <object id="FbAdjustSupplierService" type="YiQiWorkFlow.Application.Service.Fb.FbAdjustSupplierService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="FbAdjustSupplierRepository"/>
+    <property name="SupplierGoodsRepository" ref="FbAdjustSupplierGoodsRepository"/>
+    <property name="GoodsSupplierRepository" ref="FbGoodsArchivesSupplierRepository"/>
+    <property name="GoodsRepository" ref="FbGoodsArchivesRepository"/>
   </object>
   <object id="FbAdjustSupplierGoodsService" type="YiQiWorkFlow.Application.Service.Fb.FbAdjustSupplierGoodsService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="FbAdjustSupplierGoodsRepository"/>

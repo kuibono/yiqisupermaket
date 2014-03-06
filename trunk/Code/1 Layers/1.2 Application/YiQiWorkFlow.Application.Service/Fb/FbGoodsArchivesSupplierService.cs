@@ -41,7 +41,7 @@ namespace YiQiWorkFlow.Application.Service.Fb
            
             return result;
         }
-
+        
 
         [Transaction]
         public void Update(FbGoodsArchivesSupplier entity)

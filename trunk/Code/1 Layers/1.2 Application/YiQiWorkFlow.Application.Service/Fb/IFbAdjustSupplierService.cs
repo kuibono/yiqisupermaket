@@ -14,6 +14,8 @@ namespace YiQiWorkFlow.Application.Service.Fb
 
         FbAdjustSupplier GetById(string id);
 
+        void ExameByNumber(string number);
+
         IList<FbAdjustSupplier> GetAll();
 
         void Update(FbAdjustSupplier entity);

@@ -17,7 +17,9 @@ namespace YiQiWorkFlow.Application.Service.Fb
     {
 
         public IRepositoryGUID<FbAdjustSupplier> EntityRepository { get; set; }
-
+        public IRepositoryGUID<FbAdjustSupplierGoods> SupplierGoodsRepository { get; set; }
+        public IRepositoryGUID<FbGoodsArchivesSupplier> GoodsSupplierRepository { get; set; }
+        public IRepositoryGUID<FbGoodsArchives> GoodsRepository { get; set; }
         [Transaction]
         public string Create(FbAdjustSupplier entity)
         {
@@ -32,6 +34,53 @@ namespace YiQiWorkFlow.Application.Service.Fb
         public FbAdjustSupplier GetById(string id)
         {
             return EntityRepository.Get(id);
+        }
+
+        [Transaction]
+        public void ExameByNumber(string number)
+        {
+            var sup_goods = SupplierGoodsRepository.LinqQuery.Where(p => p.AdjustNumber == number);
+            foreach (var item in sup_goods)
+            {
+                SupplierGoodsRepository.Update(item);
+
+                //更改商品的主供货商
+                var sups=GoodsSupplierRepository.LinqQuery.Where(p => p.GoodsCode == item.GoodsCode && p.SupCode == item.SupCodeOld);
+                foreach (var sup in sups)
+                {
+                    sup.SupCode = item.SupCode;
+                    sup.SupName = item.SupName;
+                    //sup.GoodsCode=item.GoodsCode
+                    sup.IfExamine = "1";
+                    sup.IfMainSupplier = "1";
+                    sup.InputTax = item.InputTax;
+                    sup.NontaxPurchasePrice = item.NontaxPurchasePrice;
+                    sup.OfferMin = item.OfferMin;
+                    sup.OfferMode = item.OfferMode;
+                    sup.OpCode = item.OpCode;
+                    sup.PoolRate = item.PoolRate;
+                    sup.PurchasePrice = item.PurchasePrice;
+                    sup.PyCode = item.PyCode;
+                    //sup.SupCode=
+                    GoodsSupplierRepository.Update(sup);
+
+                    //更新商品表的主供货商
+                    var goods = GoodsRepository.LinqQuery.Where(p => p.Id == item.GoodsCode);
+                    foreach (var good in goods)
+                    {
+                        good.SupCode = item.SupCode;
+                        good.InputTax = item.InputTax;
+                        good.NontaxPurchasePrice = item.NontaxPurchasePrice;
+                        good.OfferMin = item.OfferMin;
+                        good.OfferMode = item.OfferMode;
+                        good.OpCode = item.OpCode;
+                        good.PoolRate = item.PoolRate;
+                        good.PurchasePrice = item.PurchasePrice;
+                        GoodsRepository.Update(good);
+                    }
+                }
+                
+            }
         }
 
         [Transaction]
