@@ -75,6 +75,10 @@
             }, 500);
             
         }
+        function addRow(row){
+            var grid = mini.get("datagrid1");
+            grid.addRow(row, 0);
+        }
         $(function () {
             var grid = mini.get("datagrid1");
             grid.reload();
@@ -112,6 +116,30 @@
                 else{
                     closeWithNoValidate();
                 }
+            });
+            $("#btnGoods").click(function(){
+                var btnEdit = this;
+                mini.open({
+                    url: "/Common/GoodsSelector",
+                    title: "选择列表",
+                    width: 600,
+                    height: 380,
+                    ondestroy: function (action) {
+                        //if (action == "close") return false;
+                        if (action == "ok") {
+                            var iframe = this.getIFrameEl();
+                            var data = iframe.contentWindow.GetData();
+                            data = mini.clone(data);    //必须
+                            if (data) {
+                                for(var i=0;i<data.length;i++){
+                                    var row={GoodsCode:data[i].Id,SupCodeOld:data[i].SupCode,OpCodeOld:data[i].OpCode};
+                                    addRow(row);
+                                }
+                            }
+                        }
+
+                    }
+                });
             });
         });
     </script>
@@ -232,7 +260,7 @@
                     </div>
                     <div field="GoodsCode" headeralign="center" align="center" width="120">
                         商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-autocomplete" valueField="Id" textField="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
+					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowInput="true" valueField="Id" textField="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
                     </div>
                     <div field="SupCodeOld" headeralign="center" align="center" width="80">
                         原供货商编码

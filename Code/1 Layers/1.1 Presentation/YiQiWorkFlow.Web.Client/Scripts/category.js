@@ -35,3 +35,11 @@ function onGoodsStateRender(e) {
     }
     return "";
 }
+function onSupCodeRender(e) {
+    for (var i = 0; i < c_FbSupplierArchives.length; i++) {
+        if (e.value == c_FbSupplierArchives[i].Id) {
+            return c_FbSupplierArchives[i].SupName;
+        }
+    }
+    return "";
+}

@@ -14,11 +14,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
     {
         //
         // GET: /Common/
-
-        public ActionResult Index()
+        #region View
+        public ActionResult GoodsSelector()
         {
             return View();
         }
+
+        #endregion View
 
         public ActionResult GetComboData()
         {

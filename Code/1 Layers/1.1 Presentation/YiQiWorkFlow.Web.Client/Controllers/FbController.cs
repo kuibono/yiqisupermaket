@@ -2866,6 +2866,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         private void SuppliersToJson()
         {
             var suppliers = FbSupplierArchivesService.GetAll().Where(p => p.IfExamine == "1").ToList();
+            JsonHelper.SaveJsonToFile(suppliers, Server.MapPath("/Data/c_FbSupplierArchives.js"), "c_FbSupplierArchives");
             JsonHelper.SaveJsonToFile(suppliers, Server.MapPath("/Data/FbSupplierArchives.js"));
         }
         #endregion
