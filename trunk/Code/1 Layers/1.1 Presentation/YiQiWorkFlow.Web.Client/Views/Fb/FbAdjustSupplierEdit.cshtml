@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "调商品供货商"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:47"; var id = "@Model.Id"; pageName = "FbAdjustSupplierEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "调商品供货商"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:47"; var id = "@Model.Id"; pageName = "FbAdjustSupplierEdit"; var isNew=@Model.IsAdded.ToS().ToLower();</script>
     <script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -97,7 +97,22 @@
                 mini.get("Control_IfExamine").setValue("1");
                 mini.get("Control_ExamineDate").setValue(new Date());
             });
-
+            $("#btnDel").click(function () {
+                if(isNew==false){
+                    //删除
+                    $.ajax({
+                        url: "/Fb/FbAdjustSupplierDelete",
+                        data: { ids: id, confirm: "true" },
+                        dataType: "json",
+                        success: function (r) {
+                            closeWithNoValidate();
+                        }
+                    });
+                }
+                else{
+                    closeWithNoValidate();
+                }
+            });
         });
     </script>
 </head>
@@ -207,7 +222,7 @@
 
 
             </fieldset>
-            <div id="datagrid1" class="mini-datagrid" url="/Fb/SearchFbAdjustSupplierGoodsList?AdjustNumber=@Model.Id"
+            <div id="datagrid1" class="mini-datagrid" url="/Fb/SearchFbAdjustSupplierGoodsList?AdjustNumber=@(string.IsNullOrEmpty(Model.Id)?"!##$%":Model.Id)"
             style="width: 100%; height: 300px;margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
             pagesize="20" multiselect="true" showfilterrow="true" showpager="false" onrowdblclick="onrowdblclick">
                 <div property="columns">

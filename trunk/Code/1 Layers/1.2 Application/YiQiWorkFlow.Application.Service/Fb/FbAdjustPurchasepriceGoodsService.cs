@@ -73,11 +73,11 @@ namespace YiQiWorkFlow.Application.Service.Fb
             {
 				if (string.IsNullOrEmpty(c.entity.Id) == false)
                 {
-                    q = q.Where(p => p.Id.Contains(c.entity.Id));
+                    q = q.Where(p => p.Id==c.entity.Id);
                 }
 					if (string.IsNullOrEmpty(c.entity.AdjustNumber) == false)
 					{
-						q = q.Where(p => p.AdjustNumber.Contains(c.entity.AdjustNumber));
+						q = q.Where(p => p.AdjustNumber==c.entity.AdjustNumber);
 					}
 					if (string.IsNullOrEmpty(c.entity.GoodsCode) == false)
 					{
