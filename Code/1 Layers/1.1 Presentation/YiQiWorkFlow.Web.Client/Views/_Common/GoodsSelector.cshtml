@@ -109,14 +109,20 @@
         }
         function onCancel() {
             CloseWindow("cancel");
-        }        function CloseWindow(action) {
+        }
+        function CloseWindow(action) {
             if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
             else window.close();
-        }        function GetData() {
+        }
+        function GetData() {
             var row = grid.getSelecteds();
             return row;
-        }        $(function () {
-            $("#datagrid1 .mini-grid-filterRow").show();        });
+        }
+
+        $(function () {
+            $("#datagrid1 .mini-grid-filterRow").show();
+        });
+
     </script>
 </body>
 </html>

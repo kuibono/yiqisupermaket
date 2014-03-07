@@ -1050,6 +1050,7 @@
     <Folder Include="Scripts\miniui\themes\gray\images\splitter\" />
     <Folder Include="Scripts\miniui\themes\gray\images\tabs\" />
     <Folder Include="Scripts\miniui\themes\gray\images\treegrid\" />
+    <Folder Include="Views\common\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\1.2 Application\YiQiWorkFlow.Application.Service\YiQiWorkFlow.Application.Service.csproj">
@@ -1546,7 +1547,7 @@
     <Content Include="Views\Fb\FbPaGoodsBrandList.cshtml" />
     <Content Include="Views\Rt\RtRetailLogEdit.cshtml" />
     <Content Include="Views\Rt\RtRetailLogList.cshtml" />
-    <Content Include="Views\Common\GoodsSelector.cshtml" />
+    <Content Include="Views\_Common\GoodsSelector.cshtml" />
     <None Include="Views\Home\Index.cshtml.bak" />
   </ItemGroup>
   <ItemGroup>
