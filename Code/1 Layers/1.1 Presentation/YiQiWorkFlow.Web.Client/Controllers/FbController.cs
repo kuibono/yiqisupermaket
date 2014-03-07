@@ -793,6 +793,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = FbAdjustSupplierService.GetById(id);
             }
+            else
+            {
+                m._state = "added";
+            }
             return View(m);
         }
         #endregion

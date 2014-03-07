@@ -10,6 +10,7 @@ using NSH.Core.Domain;
 using Spring.Transaction.Interceptor;
 using YiQiWorkFlow.Domain.Fb;
 using YiQiWorkFlow.Domain.Basement;
+using System.Data;
 
 namespace YiQiWorkFlow.Application.Service.Fb
 {
@@ -190,6 +191,7 @@ namespace YiQiWorkFlow.Application.Service.Fb
             var q = EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id));
             foreach (var each in q)
             {
+                (new FbAdjustSupplier()).GetSqlHelper().ExecuteNonQuery(CommandType.Text, string.Format("delete from fb_adjust_supplier_goods where adjust_number=N'{0}'", each.Id));
                 Delete(each);
             }
         }
