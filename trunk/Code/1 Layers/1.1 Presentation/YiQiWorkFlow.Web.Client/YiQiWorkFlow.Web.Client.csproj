@@ -1546,6 +1546,7 @@
     <Content Include="Views\Fb\FbPaGoodsBrandList.cshtml" />
     <Content Include="Views\Rt\RtRetailLogEdit.cshtml" />
     <Content Include="Views\Rt\RtRetailLogList.cshtml" />
+    <Content Include="Views\Common\GoodsSelector.cshtml" />
     <None Include="Views\Home\Index.cshtml.bak" />
   </ItemGroup>
   <ItemGroup>
