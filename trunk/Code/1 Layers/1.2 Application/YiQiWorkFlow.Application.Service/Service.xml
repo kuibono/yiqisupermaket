@@ -899,12 +899,17 @@
   </object>
   <object id="FbAdjustPurchasepriceService" type="YiQiWorkFlow.Application.Service.Fb.FbAdjustPurchasepriceService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="FbAdjustPurchasepriceRepository"/>
+    <property name="PurchaseGoodsRepository" ref="FbAdjustPurchasepriceGoodsRepository"/>
+    <property name="GoodsSupplierRepository" ref="FbGoodsArchivesSupplierRepository"/>
+    <property name="GoodsRepository" ref="FbGoodsArchivesRepository"/>
   </object>
   <object id="FbAdjustPurchasepriceGoodsService" type="YiQiWorkFlow.Application.Service.Fb.FbAdjustPurchasepriceGoodsService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="FbAdjustPurchasepriceGoodsRepository"/>
   </object>
   <object id="FbAdjustSalepriceService" type="YiQiWorkFlow.Application.Service.Fb.FbAdjustSalepriceService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="FbAdjustSalepriceRepository"/>
+    <property name="SaleGoodsRepository" ref="FbAdjustSalepriceGoodsRepository"/>
+    <property name="GoodsRepository" ref="FbGoodsArchivesRepository"/>
   </object>
   <object id="FbAdjustSalepriceGoodsService" type="YiQiWorkFlow.Application.Service.Fb.FbAdjustSalepriceGoodsService, YiQiWorkFlow.Application.Service">
     <property name="EntityRepository" ref="FbAdjustSalepriceGoodsRepository"/>

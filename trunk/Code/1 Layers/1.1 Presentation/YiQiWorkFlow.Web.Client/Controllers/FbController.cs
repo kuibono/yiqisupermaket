@@ -442,10 +442,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult FbAdjustPurchasepriceEdit(string id)
         {
-            FbAdjustPurchaseprice m = FbAdjustPurchaseprice.Initial();
+            FbAdjustPurchaseprice m = new FbAdjustPurchaseprice();
+            m.AdjustDate = DateTime.Now;
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbAdjustPurchasepriceService.GetById(id);
+            }
+            else
+            {
+                m._state = "added";
             }
             return View(m);
         }
@@ -487,6 +492,35 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 else
                 {
                     FbAdjustPurchasepriceService.Create(m);
+                }
+                var jser = new JavaScriptSerializer();
+                var goods = jser.Deserialize<List<FbAdjustPurchasepriceGoods>>(Request["goods"]);
+
+                foreach (var item in goods)
+                {
+                    if (item.GoodsCode.IsNullOrEmpty())
+                    {
+                        continue;
+                    }
+                    item.AdjustNumber = m.Id;
+                    if (item.IsAdded)
+                    {
+                        FbAdjustPurchasepriceGoodsService.Create(item);
+                    }
+                    else if (m.IsDelete)
+                    {
+                        FbAdjustPurchasepriceGoodsService.Delete(item);
+                    }
+                    else if (m.IsUpdated)
+                    {
+                        FbAdjustPurchasepriceGoodsService.Update(item);
+                    }
+                }
+
+                if (m.IfExamine == "1")
+                {
+                    //获取所有子项目
+                    FbAdjustPurchasepriceService.ExameByNumber(m.Id);
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
@@ -632,10 +666,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult FbAdjustSalepriceEdit(string id)
         {
-            FbAdjustSaleprice m = FbAdjustSaleprice.Initial();
+            FbAdjustSaleprice m = new FbAdjustSaleprice();
+            m.AdjustDate = DateTime.Now;
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbAdjustSalepriceService.GetById(id);
+            }
+            else
+            {
+                m._state = "added";
             }
             return View(m);
         }
@@ -677,6 +716,35 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 else
                 {
                     FbAdjustSalepriceService.Create(m);
+                }
+                var jser = new JavaScriptSerializer();
+                var goods = jser.Deserialize<List<FbAdjustSalepriceGoods>>(Request["goods"]);
+
+                foreach (var item in goods)
+                {
+                    if (item.GoodsCode.IsNullOrEmpty())
+                    {
+                        continue;
+                    }
+                    item.AdjustNumber = m.Id;
+                    if (item.IsAdded)
+                    {
+                        FbAdjustSalepriceGoodsService.Create(item);
+                    }
+                    else if (m.IsDelete)
+                    {
+                        FbAdjustSalepriceGoodsService.Delete(item);
+                    }
+                    else if (m.IsUpdated)
+                    {
+                        FbAdjustSalepriceGoodsService.Update(item);
+                    }
+                }
+
+                if (m.IfExamine == "1")
+                {
+                    //获取所有子项目
+                    FbAdjustSalepriceService.ExameByNumber(m.Id);
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";

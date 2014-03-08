@@ -17,6 +17,9 @@ namespace YiQiWorkFlow.Application.Service.Fb
     {
 
         public IRepositoryGUID<FbAdjustPurchaseprice> EntityRepository { get; set; }
+        public IRepositoryGUID<FbAdjustPurchasepriceGoods> PurchaseGoodsRepository { get; set; }
+        public IRepositoryGUID<FbGoodsArchivesSupplier> GoodsSupplierRepository { get; set; }
+        public IRepositoryGUID<FbGoodsArchives> GoodsRepository { get; set; }
 
         [Transaction]
         public string Create(FbAdjustPurchaseprice entity)
@@ -40,6 +43,28 @@ namespace YiQiWorkFlow.Application.Service.Fb
             var result=EntityRepository.LinqQuery.ToList();
            
             return result;
+        }
+        [Transaction]
+        public void ExameByNumber(string id)
+        {
+            var purchaseGoods = PurchaseGoodsRepository.LinqQuery.Where(p => p.AdjustNumber == id);
+            foreach (var purchasegood in purchaseGoods)
+            {
+                var goods = GoodsRepository.LinqQuery.Where(p => p.Id == purchasegood.GoodsCode).ToList();
+                goods.ForEach(p =>
+                {
+                    p.PurchasePrice = purchasegood.PurchasePrice;
+                    p.NontaxPurchasePrice = purchasegood.NontaxPurchasePrice;
+                    GoodsRepository.Update(p);
+                });
+                var goodssup = GoodsSupplierRepository.LinqQuery.Where(p => p.GoodsCode == purchasegood.GoodsCode && p.SupCode == purchasegood.SupCode && p.IfMainSupplier == "1").ToList();
+                goodssup.ForEach(p =>
+                {
+                    p.PurchasePrice = purchasegood.PurchasePrice;
+                    p.NontaxPurchasePrice = purchasegood.NontaxPurchasePrice;
+                    GoodsSupplierRepository.Update(p);
+                });
+            }
         }
 
 

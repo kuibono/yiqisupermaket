@@ -118,7 +118,7 @@
             $("#btnGoods").click(function () {
                 var btnEdit = this;
                 mini.open({
-                    url: "/Common/GoodsSelector",
+                    url: "/Common/GoodsSelector?OpCode=3",
                     title: "选择列表",
                     width: 600,
                     height: 380,
@@ -251,7 +251,7 @@
 
 
             </fieldset>
-            <div id="datagrid1" class="mini-datagrid" url="/Fb/SearchFbAdjustPoolrateGoodsList?OpCode=3&AdjustNumber=@(string.IsNullOrEmpty(Model.Id)?"!##$%":Model.Id)"
+            <div id="datagrid1" class="mini-datagrid" url="/Fb/SearchFbAdjustPoolrateGoodsList?AdjustNumber=@(string.IsNullOrEmpty(Model.Id)?"!##$%":Model.Id)"
             style="width: 100%;height: 300px;margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
             pagesize="20" multiselect="true" showfilterrow="true" showpager="false" onrowdblclick="onrowdblclick">
             <div property="columns">
@@ -261,7 +261,7 @@
                 </div>
 				<div field="GoodsCode" headeralign="center" align="center" width="60">
 				    商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowInput="true" valueField="Id" textField="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
+					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowInput="true" valueField="Id" textField="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList?OpCode=3" style="width: 100%;" />
 				</div>
 				<div field="SupCode" headeralign="center" align="center" width="60">
 				    供货商编码
