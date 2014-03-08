@@ -16,6 +16,8 @@ namespace YiQiWorkFlow.Application.Service.Fb
 
         IList<FbAdjustPurchaseprice> GetAll();
 
+        void ExameByNumber(string id);
+
         void Update(FbAdjustPurchaseprice entity);
 
         /// <summary>

@@ -17,6 +17,10 @@ namespace YiQiWorkFlow.Application.Service.Fb
     {
 
         public IRepositoryGUID<FbAdjustSaleprice> EntityRepository { get; set; }
+        public IRepositoryGUID<FbAdjustSalepriceGoods> SaleGoodsRepository { get; set; }
+        //public IRepositoryGUID<FbGoodsArchivesSupplier> GoodsSupplierRepository { get; set; }
+        public IRepositoryGUID<FbGoodsArchives> GoodsRepository { get; set; }
+
 
         [Transaction]
         public string Create(FbAdjustSaleprice entity)
@@ -32,6 +36,34 @@ namespace YiQiWorkFlow.Application.Service.Fb
         public FbAdjustSaleprice GetById(string id)
         {
             return EntityRepository.Get(id);
+        }
+
+        [Transaction]
+        public void ExameByNumber(string id)
+        {
+            var saleGoods = SaleGoodsRepository.LinqQuery.Where(p => p.AdjustNumber == id);
+            foreach (var salegood in saleGoods)
+            {
+                var goods = GoodsRepository.LinqQuery.Where(p => p.Id == salegood.GoodsCode).ToList();
+                goods.ForEach(p =>
+                {
+                    p.SalePrice = salegood.SalePrice;
+                    p.VipPrice = salegood.VipPrice;
+                    p.TradePrice = salegood.TradePrice;
+                    //p.StockQty
+                    //p.LossMoney
+                    //p.NontaxLossMoney=
+                    GoodsRepository.Update(p);
+                });
+                //var goodssup = GoodsSupplierRepository.LinqQuery.Where(p => p.GoodsCode == salegood.GoodsCode && p.IfMainSupplier == "1").ToList();
+                //goodssup.ForEach(p =>
+                //{
+                //    p.sa = salegood.SalePrice;
+                //    p.VipPrice = salegood.VipPrice;
+                //    p.TradePrice = salegood.TradePrice;
+                //    GoodsSupplierRepository.Update(p);
+                //});
+            }
         }
 
         [Transaction]

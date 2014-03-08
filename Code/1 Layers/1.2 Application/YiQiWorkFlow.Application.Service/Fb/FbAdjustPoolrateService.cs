@@ -52,10 +52,6 @@ namespace YiQiWorkFlow.Application.Service.Fb
                     p.PoolRate = rategood.PoolRate;
                     GoodsSupplierRepository.Update(p);
                 });
-                //foreach (var good in goods)
-                //{
-                //    good.
-                //}
             }
         }
 
