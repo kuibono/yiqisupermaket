@@ -17,6 +17,8 @@ namespace YiQiWorkFlow.Application.Service.Fb
     {
 
         public IRepositoryGUID<FbAdjustClass> EntityRepository { get; set; }
+        public IRepositoryGUID<FbAdjustClassGoods> ClassGoodsRepository { get; set; }
+        public IRepositoryGUID<FbGoodsArchives> GoodsRepository { get; set; }
 
         [Transaction]
         public string Create(FbAdjustClass entity)
@@ -32,6 +34,25 @@ namespace YiQiWorkFlow.Application.Service.Fb
         public FbAdjustClass GetById(string id)
         {
             return EntityRepository.Get(id);
+        }
+
+        [Transaction]
+        public void ExameByNumber(string id)
+        {
+            var classGoods = ClassGoodsRepository.LinqQuery.Where(p => p.AdjustNumber == id);
+            foreach (var classgood in classGoods)
+            {
+                var goods = GoodsRepository.LinqQuery.Where(p => p.Id == classgood.GoodsCode).ToList();
+                goods.ForEach(p =>
+                {
+                    p.GbCode = classgood.GbCode;
+                    p.GmCode = classgood.GmCode;
+                    p.GsCode = classgood.GsCode;
+                    p.GlCode = classgood.GlCode;
+
+                    GoodsRepository.Update(p);
+                });
+            }
         }
 
         [Transaction]
