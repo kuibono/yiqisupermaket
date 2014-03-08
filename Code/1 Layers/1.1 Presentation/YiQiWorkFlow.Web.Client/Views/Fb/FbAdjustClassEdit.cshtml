@@ -117,7 +117,8 @@
             var gsValue = gsCombo.getValue();
             glCombo.setValue("");
             glCombo.setUrl("/Common/GetComboData?table=fb_pa_goods_gl&valueColumn=gl_code&textColumn=gl_name&gs_code=" + gsValue);
-        }
+        }
+
         $(function () {
             var grid = mini.get("datagrid1");
             grid.reload();

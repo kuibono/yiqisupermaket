@@ -10,11 +10,136 @@ using YiQiWorkFlow.Application.Service.Fb;
 using YiQiWorkFlow.Domain.Fb;
 using YiQiWorkFlow.Domain.Basement;
 using YiQiWorkFlow.Web.Client.Common;
+using System.Data;
 
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
     public class FbController : FbBaseController
     {
+        #region 修改商品编码
+
+        #region 商品编码修改页面
+        public ActionResult FbAdjustGoodsCode()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 商品编码修改保存
+        public ActionResult SaveAdjustGoodsCode(string codeType, string GoodsCode, string newCode)
+        {
+            NSH.VSTO.SqlHelper Helper = (new FbGoodsArchives()).GetSqlHelper();
+            string sql = "";
+            if (codeType == "0")
+            {
+                //修改商品编码
+                string strExist = string.Format("select count(0) from fb_goods_bar_code where goods_code =N'{0}'", newCode);
+                if (Convert.ToInt32((new FbGoodsArchives()).GetSqlHelper().ExecuteScalar(CommandType.Text, strExist)) > 0)
+                {
+                    return Json(new SavingResult { IsSuccess = false, Message = "新编码已经存在不能进行更新！" }, JsonRequestBehavior.AllowGet);
+                }
+                sql = string.Format(@"
+                    update fb_goods_archives_bind set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ms_exchange_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update pc_return_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ac_day_goods_journal_account set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update op_goods_batch set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ws_customer_goods set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ba_offer_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ms_gift_archives set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ws_wholesale_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update fb_goods_bar_code set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update fb_goods_archives_supplier set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ba_pool_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update rt_plu_promotion_goods set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update op_dynamic_stock_branch set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ac_salesman_summary set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ws_order_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ac_stock_account set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update fb_adjust_class_goods set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update op_check_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update pc_putout_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update rt_retail_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update op_check_transfer set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update fb_adjust_poolrate_goods set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ws_wholesale_goods_set set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update op_dynamic_stock set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ac_goodssale_account set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update fb_adjust_purchaseprice_goods set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update pc_putin_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update pc_purchase_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update bs_return_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ba_branch_offer_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update fb_goods_archives_bar set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update fb_adjust_supplier_goods set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update op_adjust_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update rt_present_promotion_goods set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update bs_supply_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update op_loss_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update fb_adjust_saleprice_goods set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ac_month_goods_journal_account set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update op_allot_detail set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update fb_goods_archives set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update op_dynamic_stock_wh set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update fb_goods_archives_bind set goods_code_bind =  N'{0}' where goods_code_bind =  N'{1}';
+	                update rt_present_promotion_goods set goods_code_present =  N'{0}' where goods_code_present =  N'{1}';
+	                update fb_goods_archives_photo set goods_code =  N'{0}' where goods_code =  N'{1}';
+	                update ac_supplier_journal set goods_code =  N'{0}' where goods_code =  N'{1}';
+                ", newCode, GoodsCode);
+            }
+            else
+            {
+                //修改销售码
+                string strExist = string.Format("select count(0) from fb_goods_bar_code where goods_bar_code =N'{0}'", newCode);
+                if (Convert.ToInt32((new FbGoodsArchives()).GetSqlHelper().ExecuteScalar(CommandType.Text, strExist)) > 0)
+                {
+                    return Json(new SavingResult { IsSuccess = false, Message = "新编码已经存在不能进行更新！" }, JsonRequestBehavior.AllowGet);
+                }
+                sql = string.Format(@"
+                        update fb_goods_archives_bind set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update ws_order_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update bs_supply_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update pc_purchase_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update pc_return_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update rt_present_promotion_goods set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update ws_wholesale_goods_set set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update op_check_transfer set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update op_allot_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update pc_putout_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update fb_adjust_saleprice_goods set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update rt_retail_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update op_loss_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update ws_customer_goods set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update ws_wholesale_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update ac_goodssale_account set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update pc_putin_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update rt_plu_promotion_goods set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update ac_salesman_summary set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update op_check_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update bs_return_detail set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update fb_goods_archives_bind set goods_bar_code_bind = N'{0}' where goods_bar_code_bind = N'{1}';
+	                    update rt_present_promotion_goods set goods_bar_code_present = N'{0}' where goods_bar_code_present = N'{1}';
+	                    update fb_goods_bar_code set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update fb_goods_archives_bar set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update fb_goods_archives_bar set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update op_goods_batch set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+	                    update fb_goods_archives set goods_bar_code = N'{0}' where goods_bar_code = N'{1}';
+                     update ac_supplier_journal set goods_bar_code = N'{0}' where goods_code = N'{1}';
+                    ", newCode, GoodsCode);
+            }
+            try
+            {
+                Helper.ExecuteNonQuery(CommandType.Text, sql);
+                return Json(new SavingResult { IsSuccess=true, Message="保存成功" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new SavingResult { IsSuccess = false, Message = ex.Message}, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #endregion
 
         #region 调商品所属类别
         public IFbAdjustClassService FbAdjustClassService { get; set; }
@@ -978,12 +1103,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 else
                 {
                     m.CreateDate = DateTime.Now;
-                    m.Id=FbAdjustSupplierService.Create(m);
+                    m.Id = FbAdjustSupplierService.Create(m);
                 }
 
                 var jser = new JavaScriptSerializer();
                 var goods = jser.Deserialize<List<FbAdjustSupplierGoods>>(Request["goods"]);
-                
+
                 foreach (var item in goods)
                 {
                     if (item.GoodsCode.IsNullOrEmpty())
@@ -1226,7 +1351,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     m.GoodsBarCode = saleCodes.First(p => p.IfExamine == "1").GoodsBarCode;
                 }
 
-                
+
 
                 bool mainSup = false;
                 suppliers.ForEach(p =>
@@ -1254,7 +1379,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     }
 
                 });
-                saleCodes.ForEach(p => {
+                saleCodes.ForEach(p =>
+                {
                     if (p.IfMainBar == "1")
                     {
                         m.GoodsBarCode = p.GoodsBarCode;
@@ -1387,9 +1513,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult FbGoodsArchivesDelete(List<string> ids)
         {
-            if (Request["confirm"] == null && MyEnv.RecordExist("ac_day_goodsstock_journal_account", "goods_code",string.Join(",", ids)))//需要验证是否可以直接删除
+            if (Request["confirm"] == null && MyEnv.RecordExist("ac_day_goodsstock_journal_account", "goods_code", string.Join(",", ids)))//需要验证是否可以直接删除
             {
-                return Json(new SavingResult() {  IsSuccess=false, Message="存在关联数据，不可删除！"}, JsonRequestBehavior.AllowGet);
+                return Json(new SavingResult() { IsSuccess = false, Message = "存在关联数据，不可删除！" }, JsonRequestBehavior.AllowGet);
             }
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("if_examine", "1");
@@ -2496,7 +2622,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         {
             if (Request["confirm"] == null && MyEnv.RecordExist("fb_pa_goods_gm", "gb_code", string.Join(",", ids)))//需要验证是否可以直接删除
             {
-                return Json(new SavingResult { Message="存在子类别，不得删除！",IsSuccess=false }, JsonRequestBehavior.AllowGet);
+                return Json(new SavingResult { Message = "存在子类别，不得删除！", IsSuccess = false }, JsonRequestBehavior.AllowGet);
             }
             FbPaGoodsGbService.Delete(ids);
             return Json(new SavingResult { Message = "删除成功！", IsSuccess = true }, JsonRequestBehavior.AllowGet);
@@ -2544,7 +2670,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult SaveFbPaGoodsGl(FbPaGoodsGl m)
         {
             SavingResult r = new SavingResult();
-            
+
             var vResult = m.GetValidateResult();
             if (vResult.IsSuccess == false)
             {
@@ -2644,7 +2770,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult SaveFbPaGoodsGm(FbPaGoodsGm m)
         {
             SavingResult r = new SavingResult();
-            
+
             var vResult = m.GetValidateResult();
             if (vResult.IsSuccess == false)
             {
@@ -2744,7 +2870,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult SaveFbPaGoodsGs(FbPaGoodsGs m)
         {
             SavingResult r = new SavingResult();
-            
+
             var vResult = m.GetValidateResult();
             if (vResult.IsSuccess == false)
             {
@@ -3117,7 +3243,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         {
             if (Request["confirm"] == null && MyEnv.RecordExist("fb_goods_archives_supplier", "sup_code", string.Join(",", ids)))//需要验证是否可以直接删除
             {
-                return Json(new SavingResult {  IsSuccess=false, Message="供货商存在商品，不可删除！"}, JsonRequestBehavior.AllowGet);
+                return Json(new SavingResult { IsSuccess = false, Message = "供货商存在商品，不可删除！" }, JsonRequestBehavior.AllowGet);
             }
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("if_examine", "1");
