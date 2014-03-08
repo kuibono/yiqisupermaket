@@ -216,10 +216,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult FbAdjustPoolrateEdit(string id)
         {
-            FbAdjustPoolrate m = FbAdjustPoolrate.Initial();
+            FbAdjustPoolrate m = new FbAdjustPoolrate();
+            m.AdjustDate = DateTime.Now;
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbAdjustPoolrateService.GetById(id);
+            }
+            else
+            {
+                m._state = "added";
             }
             return View(m);
         }
@@ -262,6 +267,37 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 {
                     FbAdjustPoolrateService.Create(m);
                 }
+
+                var jser = new JavaScriptSerializer();
+                var goods = jser.Deserialize<List<FbAdjustPoolrateGoods>>(Request["goods"]);
+
+                foreach (var item in goods)
+                {
+                    if (item.GoodsCode.IsNullOrEmpty())
+                    {
+                        continue;
+                    }
+                    item.AdjustNumber = m.Id;
+                    if (item.IsAdded)
+                    {
+                        FbAdjustPoolrateGoodsService.Create(item);
+                    }
+                    else if (m.IsDelete)
+                    {
+                        FbAdjustPoolrateGoodsService.Delete(item);
+                    }
+                    else if (m.IsUpdated)
+                    {
+                        FbAdjustPoolrateGoodsService.Update(item);
+                    }
+                }
+
+                if (m.IfExamine == "1")
+                {
+                    //获取所有子项目
+                    FbAdjustPoolrateService.ExameByNumber(m.Id);
+                }
+
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
