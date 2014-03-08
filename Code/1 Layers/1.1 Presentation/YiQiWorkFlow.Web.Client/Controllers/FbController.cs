@@ -16,6 +16,45 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 {
     public class FbController : FbBaseController
     {
+        #region 树数据源
+
+        #region 类别树
+
+        public ActionResult GetClassTree()
+        {
+            var gb = FbPaGoodsGbService.GetAll();
+            var gm = FbPaGoodsGmService.GetAll();
+            var gs = FbPaGoodsGsService.GetAll();
+            var gl = FbPaGoodsGlService.GetAll();
+
+            var tGb = gb.Select(p => new
+            {
+                id = p.GbCode,
+                text = p.GbName,
+                children = gm.Where(m => m.GbCode == p.GbCode).Select(m => new
+                {
+                    id = m.GmCode,
+                    text = m.GmName,
+                    children = gs.Where(s => s.GmCode == m.GmCode).Select(s => new
+                    {
+                        id = s.GsCode,
+                        text = s.GsName,
+                        children = gl.Where(l => l.GsCode == s.GsCode).Select(l => new { 
+                            id=l.GlCode,
+                            text=l.GlName
+                        })
+                    })
+                }).ToList()
+            }).ToList();
+
+            return Json(tGb, JsonRequestBehavior.AllowGet);
+
+        }
+
+        #endregion
+
+        #endregion
+
         #region 修改商品编码
 
         #region 商品编码修改页面
