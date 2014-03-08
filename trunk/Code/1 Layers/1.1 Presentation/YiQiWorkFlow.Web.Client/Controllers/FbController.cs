@@ -26,10 +26,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult FbAdjustClassEdit(string id)
         {
-            FbAdjustClass m = FbAdjustClass.Initial();
+            FbAdjustClass m = new FbAdjustClass();
+            m.AdjustDate = DateTime.Now;
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = FbAdjustClassService.GetById(id);
+            }
+            else
+            {
+                m._state = "added";
             }
             return View(m);
         }
@@ -72,6 +77,37 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 {
                     FbAdjustClassService.Create(m);
                 }
+
+                var jser = new JavaScriptSerializer();
+                var goods = jser.Deserialize<List<FbAdjustClassGoods>>(Request["goods"]);
+
+                foreach (var item in goods)
+                {
+                    if (item.GoodsCode.IsNullOrEmpty())
+                    {
+                        continue;
+                    }
+                    item.AdjustNumber = m.Id;
+                    if (item.IsAdded)
+                    {
+                        FbAdjustClassGoodsService.Create(item);
+                    }
+                    else if (m.IsDelete)
+                    {
+                        FbAdjustClassGoodsService.Delete(item);
+                    }
+                    else if (m.IsUpdated)
+                    {
+                        FbAdjustClassGoodsService.Update(item);
+                    }
+                }
+
+                if (m.IfExamine == "1")
+                {
+                    //获取所有子项目
+                    FbAdjustClassService.ExameByNumber(m.Id);
+                }
+
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }

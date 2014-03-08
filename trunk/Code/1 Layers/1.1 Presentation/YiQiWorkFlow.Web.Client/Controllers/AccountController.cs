@@ -37,9 +37,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m1.Add(new { id = "102", iconCls = "icon-add", pid = "m1", text = "商品档案管理", url = "/Fb/FbGoodsArchivesList" });
             m1.Add(new { id = "103", iconCls = "icon-add", pid = "m1", text = "商品供货商调整", url = "/Fb/FbAdjustSupplierEdit" });
             m1.Add(new { id = "104", iconCls = "icon-add", pid = "m1", text = "商品扣率调整", url = "/Fb/FbAdjustPoolrateEdit" });
-            m1.Add(new { id = "105", iconCls = "icon-add", pid = "m1", text = "商品进价调整", url = "/Fb/FbAdjustPurchasepriceList" });
-            m1.Add(new { id = "106", iconCls = "icon-add", pid = "m1", text = "商品售价调整", url = "/Fb/FbAdjustSalepriceList" });
-            m1.Add(new { id = "107", iconCls = "icon-add", pid = "m1", text = "商品类别调整", url = "" });
+            m1.Add(new { id = "105", iconCls = "icon-add", pid = "m1", text = "商品进价调整", url = "/Fb/FbAdjustPurchasepriceEdit" });
+            m1.Add(new { id = "106", iconCls = "icon-add", pid = "m1", text = "商品售价调整", url = "/Fb/FbAdjustSalepriceEdit" });
+            m1.Add(new { id = "107", iconCls = "icon-add", pid = "m1", text = "商品类别调整", url = "/Fb/FbAdjustClassEdit" });
             m1.Add(new { id = "108", iconCls = "icon-add", pid = "m1", text = "商品编码更新", url = "" });
             m1.Add(new { id = "109", iconCls = "icon-add", pid = "m1", text = "商品信息查询", url = "" });
             m1.Add(new { id = "110", iconCls = "icon-add", pid = "m1", text = "基础档案设置", url = "/Fb/FbPaBaseSetEdit" });
