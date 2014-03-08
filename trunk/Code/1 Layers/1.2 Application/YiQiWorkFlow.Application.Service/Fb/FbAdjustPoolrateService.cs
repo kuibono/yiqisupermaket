@@ -17,6 +17,9 @@ namespace YiQiWorkFlow.Application.Service.Fb
     {
 
         public IRepositoryGUID<FbAdjustPoolrate> EntityRepository { get; set; }
+        public IRepositoryGUID<FbAdjustPoolrateGoods> PoolrateGoodsRepository { get; set; }
+        public IRepositoryGUID<FbGoodsArchivesSupplier> GoodsSupplierRepository { get; set; }
+        public IRepositoryGUID<FbGoodsArchives> GoodsRepository { get; set; }
 
         [Transaction]
         public string Create(FbAdjustPoolrate entity)
@@ -32,6 +35,28 @@ namespace YiQiWorkFlow.Application.Service.Fb
         public FbAdjustPoolrate GetById(string id)
         {
             return EntityRepository.Get(id);
+        }
+        [Transaction]
+        public void ExameByNumber(string id)
+        {
+            var poolRateGoods = PoolrateGoodsRepository.LinqQuery.Where(p => p.AdjustNumber == id);
+            foreach (var rategood in poolRateGoods)
+            {
+                var goods = GoodsRepository.LinqQuery.Where(p => p.Id == rategood.GoodsCode).ToList();
+                goods.ForEach(p => {
+                    p.PoolRate = rategood.PoolRate;
+                    GoodsRepository.Update(p);
+                });
+                var goodssup = GoodsSupplierRepository.LinqQuery.Where(p => p.GoodsCode == rategood.GoodsCode && p.SupCode == rategood.SupCode && p.IfMainSupplier=="1").ToList();
+                goodssup.ForEach(p => {
+                    p.PoolRate = rategood.PoolRate;
+                    GoodsSupplierRepository.Update(p);
+                });
+                //foreach (var good in goods)
+                //{
+                //    good.
+                //}
+            }
         }
 
         [Transaction]

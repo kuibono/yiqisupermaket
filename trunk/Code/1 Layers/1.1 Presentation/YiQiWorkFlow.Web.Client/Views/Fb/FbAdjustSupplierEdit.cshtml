@@ -111,6 +111,7 @@
             $("#btnExame").click(function () {
                 mini.get("Control_IfExamine").setValue("1");
                 mini.get("Control_ExamineDate").setValue(new Date());
+                SaveData();
             });
             $("#btnDel").click(function () {
                 if(isNew==false){

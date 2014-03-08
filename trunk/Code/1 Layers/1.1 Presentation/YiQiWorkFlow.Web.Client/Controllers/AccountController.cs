@@ -36,7 +36,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m1.Add(new { id = "101", iconCls = "icon-add", pid = "m1", text = "供货商档案管理", url = "/Fb/FbSupplierArchivesList" });
             m1.Add(new { id = "102", iconCls = "icon-add", pid = "m1", text = "商品档案管理", url = "/Fb/FbGoodsArchivesList" });
             m1.Add(new { id = "103", iconCls = "icon-add", pid = "m1", text = "商品供货商调整", url = "/Fb/FbAdjustSupplierEdit" });
-            m1.Add(new { id = "104", iconCls = "icon-add", pid = "m1", text = "商品扣率调整", url = "/Fb/FbAdjustPoolrateList" });
+            m1.Add(new { id = "104", iconCls = "icon-add", pid = "m1", text = "商品扣率调整", url = "/Fb/FbAdjustPoolrateEdit" });
             m1.Add(new { id = "105", iconCls = "icon-add", pid = "m1", text = "商品进价调整", url = "/Fb/FbAdjustPurchasepriceList" });
             m1.Add(new { id = "106", iconCls = "icon-add", pid = "m1", text = "商品售价调整", url = "/Fb/FbAdjustSalepriceList" });
             m1.Add(new { id = "107", iconCls = "icon-add", pid = "m1", text = "商品类别调整", url = "" });

@@ -14,6 +14,8 @@ namespace YiQiWorkFlow.Application.Service.Fb
 
         FbAdjustPoolrate GetById(string id);
 
+        void ExameByNumber(string id);
+
         IList<FbAdjustPoolrate> GetAll();
 
         void Update(FbAdjustPoolrate entity);
