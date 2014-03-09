@@ -59,6 +59,106 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
         #endregion
 
+        #region 修改商品属性
+        public ActionResult FbAdjustGoodsPropty()
+        {
+            return View();
+        }
+
+        public ActionResult SaveFbAdjustGoodsPropty()
+        {
+            string GoodsType = getRequestValue("GoodsType");
+            string CheckMode = getRequestValue("CheckMode");
+            string CheckUnitCode = getRequestValue("CheckUnitCode");
+            string UnderCounterCode = getRequestValue("UnderCounterCode");
+            string ArticleNumber = getRequestValue("ArticleNumber");
+            string ProducingArea = getRequestValue("ProducingArea");
+            string Specification = getRequestValue("Specification");
+            string PackUnitCode = getRequestValue("PackUnitCode");
+            string ShelfLife = getRequestValue("ShelfLife");
+            string StockUpperLimit = getRequestValue("StockUpperLimit");
+            string StockLowerLimit = getRequestValue("StockLowerLimit");
+            string IfExamine = getRequestValue("IfExamine");
+
+            var jser = new JavaScriptSerializer();
+            var goods = jser.Deserialize<List<FbGoodsArchives>>(Request["goods"]);
+
+            foreach (var good in goods)
+            {
+                var dataGood = FbGoodsArchivesService.GetById(good.Id);
+                if (string.IsNullOrEmpty(GoodsType) == false)
+                {
+                    dataGood.GoodsType = GoodsType;
+                }
+                if (string.IsNullOrEmpty(CheckMode) == false)
+                {
+                    dataGood.CheckMode = CheckMode;
+                }
+                if (string.IsNullOrEmpty(CheckUnitCode) == false)
+                {
+                    dataGood.CheckUnitCode = CheckUnitCode;
+                }
+                if (string.IsNullOrEmpty(UnderCounterCode) == false)
+                {
+                    dataGood.UnderCounterCode = UnderCounterCode;
+                }
+                if (string.IsNullOrEmpty(ArticleNumber) == false)
+                {
+                    dataGood.ArticleNumber = ArticleNumber;
+                }
+                if (string.IsNullOrEmpty(ProducingArea) == false)
+                {
+                    dataGood.ProducingArea = ProducingArea;
+                }
+                if (string.IsNullOrEmpty(Specification) == false)
+                {
+                    dataGood.Specification = Specification;
+                }
+                if (string.IsNullOrEmpty(PackUnitCode) == false)
+                {
+                    dataGood.PackUnitCode = PackUnitCode;
+                }
+                if (string.IsNullOrEmpty(ShelfLife) == false)
+                {
+                    dataGood.ShelfLife = ShelfLife;
+                }
+                if (string.IsNullOrEmpty(GoodsType) == false)
+                {
+                    dataGood.StockUpperLimit = StockUpperLimit.ToDecimal();
+                }
+                if (string.IsNullOrEmpty(GoodsType) == false)
+                {
+                    dataGood.StockLowerLimit = StockLowerLimit.ToDecimal();
+                }
+                if (string.IsNullOrEmpty(IfExamine) == false)
+                {
+                    dataGood.IfExamine = IfExamine;
+                }
+                FbGoodsArchivesService.Update(dataGood);
+            }
+            return Json(new SavingResult { IsSuccess=true,Message="保存成功！" }, JsonRequestBehavior.AllowGet);
+        }
+
+        private string getRequestValue(string key)
+        {
+            if (Request[key] == null)
+                return "";
+            if (Request[key].Split(',').Contains("on") == false)
+                return "";
+
+            var items = Request[key].Split(',');
+            if (items.Count() <= 1)
+            {
+                return "";
+            }
+            else
+            {
+                return items.Where(p => p != "on").First();
+            }
+        }
+
+        #endregion
+
         #region 修改商品编码
 
         #region 商品编码修改页面
