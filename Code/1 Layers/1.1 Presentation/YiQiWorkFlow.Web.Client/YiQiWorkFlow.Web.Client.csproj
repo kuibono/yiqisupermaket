@@ -1549,6 +1549,7 @@
     <Content Include="Views\Common\GoodsSelector.cshtml" />
     <Content Include="Views\Fb\FbAdjustGoodsCode.cshtml" />
     <Content Include="Views\Fb\FbGoodsArchiveSearch.cshtml" />
+    <Content Include="Views\Fb\FbAdjustGoodsPropty.cshtml" />
     <None Include="Views\Home\Index.cshtml.bak" />
   </ItemGroup>
   <ItemGroup>
