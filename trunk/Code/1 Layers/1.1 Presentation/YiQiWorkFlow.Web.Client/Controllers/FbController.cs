@@ -31,17 +31,21 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 id = p.GbCode,
                 text = p.GbName,
+                type = "GbCode",
                 children = gm.Where(m => m.GbCode == p.GbCode).Select(m => new
                 {
                     id = m.GmCode,
                     text = m.GmName,
+                    type = "GmCode",
                     children = gs.Where(s => s.GmCode == m.GmCode).Select(s => new
                     {
                         id = s.GsCode,
                         text = s.GsName,
+                        type = "GsCode",
                         children = gl.Where(l => l.GsCode == s.GsCode).Select(l => new { 
                             id=l.GlCode,
-                            text=l.GlName
+                            text=l.GlName,
+                            type = "GlCode"
                         })
                     })
                 }).ToList()
@@ -1359,6 +1363,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         }
         #endregion
 
+        #region 商品检索
+        public ActionResult FbGoodsArchiveSearch()
+        {
+            return View();
+        }
+        #endregion
+
         #region 商品档案保存程序
         /// <summary>
         /// 商品档案保存程序
@@ -2117,6 +2128,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         {
             c.entity = s;
             return Json(FbGoodsArchivesSupplierService.Search(c), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SearchFbGoodsArchivesSupplierListData(SearchDtoBase<FbGoodsArchivesSupplier> c, FbGoodsArchivesSupplier s)
+        {
+            c.entity = s;
+            return Json(FbGoodsArchivesSupplierService.Search(c).data, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
