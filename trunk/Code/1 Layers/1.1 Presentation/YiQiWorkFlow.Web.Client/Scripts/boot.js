@@ -41,7 +41,7 @@ document.write('<script src="' + bootPATH + 'jquery-1.6.2.min.js" type="text/jav
 document.write('<script src="' + bootPATH + 'miniui/miniui.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<script src="' + bootPATH + 'jquery.hotkeys.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<script src="' + bootPATH + 'category.js" type="text/javascript" ></sc' + 'ript>');
-document.write('<link href="' + bootPATH + 'miniui/themes/ext/miniui.css" rel="stylesheet" type="text/css" />');
+document.write('<link href="' + bootPATH + 'miniui/themes/default/miniui.css" rel="stylesheet" type="text/css" />');
 document.write('<link href="' + bootPATH + 'miniui/themes/icons.css" rel="stylesheet" type="text/css" />');
 
 //skin
