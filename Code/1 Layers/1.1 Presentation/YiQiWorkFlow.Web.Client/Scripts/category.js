@@ -6,6 +6,7 @@ var c_BalancePeriod = [{ id: '月结算', text: '月结算' }, { id: '季计算'
 var c_OfferMode = [{ id: '散件', text: '散件' }, { id: '整件', text: '整件' }];
 var c_GoodsType = [{ id: '1', text: '普通商品' }, { id: '2', text: '散货商品' }, { id: '4', text: '捆绑商品' }];
 var c_GoodsState = [{ id: 1, text: '正常' }, { id: 2, text: '淘汰' }, { id: 3, text: '禁采销售' }, { id: 4, text: '禁采禁销' }, { id: 5, text: '废除' }];
+var c_PcForm = [{ id: 1, text: '普通订货' }, { id: 2, text: '开放订货' }, { id: 3, text: '促销订货' }, { id: 4, text: '赠品订货' }];
 function onExamRender(e) {
     if (e.value == "true" || e.value == "1") return "审核";
     else if (e.value == "false" || e.value == "0") return "未审核";
@@ -39,6 +40,14 @@ function onSupCodeRender(e) {
     for (var i = 0; i < c_FbSupplierArchives.length; i++) {
         if (e.value == c_FbSupplierArchives[i].Id) {
             return c_FbSupplierArchives[i].SupName;
+        }
+    }
+    return "";
+}
+function onPcFormRender(e) {
+    for (var i = 0; i < c_PcForm.length; i++) {
+        if (e.value == c_PcForm[i].id) {
+            return c_PcForm[i].text;
         }
     }
     return "";

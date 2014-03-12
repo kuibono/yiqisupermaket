@@ -527,7 +527,7 @@ body .mini-button-disabled *
 
 .mini-textbox
 {
-    width:125px;
+    width: 100% !important;
     height:21px;
     display:inline-block;
       
