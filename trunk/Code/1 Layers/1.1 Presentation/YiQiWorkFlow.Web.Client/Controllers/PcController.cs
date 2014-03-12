@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using YiQiWorkFlow.Application.Service.Pc;
 using YiQiWorkFlow.Domain.Pc;
 using YiQiWorkFlow.Domain.Basement;
+using System.Web.Script.Serialization;
 
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
@@ -120,6 +121,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult PcPurchaseManageEdit(string id)
         {
             PcPurchaseManage m = PcPurchaseManage.Initial();
+            m.Id = "";
+            m.PurchaseDate = DateTime.Now;
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = PcPurchaseManageService.GetById(id);
@@ -157,14 +160,35 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                m.OperatorDate = DateTime.Now;
                 if (m.HaveId)
                 {
                     PcPurchaseManageService.Update(m);
                 }
                 else
                 {
-                    PcPurchaseManageService.Create(m);
+                    m.CreateDate = DateTime.Now;
+                    m.Id=PcPurchaseManageService.Create(m);
                 }
+
+                //PcPurchaseDetail
+                var jser = new JavaScriptSerializer();
+                var suppliers = jser.Deserialize<List<PcPurchaseDetail>>(Request["goods"]).ToList();
+                suppliers.ForEach(p => {
+                    p.PcNumber = m.Id;
+                    if (p.IsAdded)
+                    {
+                        PcPurchaseDetailService.Create(p);
+                    }
+                    if (p.IsDelete)
+                    {
+                        PcPurchaseDetailService.Delete(p);
+                    }
+                    if (p.IsUpdated)
+                    {
+                        PcPurchaseDetailService.Update(p);
+                    }
+                });
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }

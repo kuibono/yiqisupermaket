@@ -11,6 +11,46 @@
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData();
+
+            var grid1 = mini.get("datagrid1");
+            var goods = mini.encode(grid1.getChanges());
+            if (goods.length == 0) {
+                alert("必须设置采购商品！");
+                return false;
+            }
+            for (var i = 0; i < goods.length; i++) {
+                if (goods[i].PurchaseQty == undefined || goods[i].PurchaseQty == 0) {
+                    alert("单品数量不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].PutinQty == undefined || goods[i].PutinQty == 0) {
+                    alert("入库数量不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].SalePrice == undefined || goods[i].SalePrice == 0) {
+                    alert("销售价格不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].PurchasePrice == undefined || goods[i].PurchasePrice == 0) {
+                    alert("含税进价不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].NontaxPurchasePrice == undefined || goods[i].NontaxPurchasePrice == 0) {
+                    alert("不含税进价不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].PurchaseMoney == undefined || goods[i].PurchaseMoney == 0) {
+                    alert("含税金额不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].NontaxPurchaseMoney == undefined || goods[i].NontaxPurchaseMoney == 0) {
+                    alert("不含税金额不能为空或者0！");
+                    return false;
+                }
+
+            }
+            o["goods"] = goods;
+
             $.ajax({
                 url: "/Pc/SavePcPurchaseManage",
                 type: 'post',
@@ -19,7 +59,7 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        closeWithNoValidate();
+                        $("#btnQuery").click();
                     } else {
                         $("#Tooltip_Critical_PcPurchaseManage .content").first().text(r.Message);
                         $("#Tooltip_Critical_PcPurchaseManage").show("fast");
@@ -35,6 +75,149 @@
                 }
             });
         }
+
+        function onGoodsChanged(e) {
+            mini.getbyName("GoodsBarCode", "datagrid1").setValue(e.selected.GoodsBarCode);
+            mini.getbyName("Specification", "datagrid1").setValue(e.selected.Specification);
+            mini.getbyName("PackUnitCode", "datagrid1").setValue(e.selected.PackUnitCode);
+            mini.getbyName("OfferMin", "datagrid1").setValue(e.selected.OfferMin);
+            mini.getbyName("StockQty", "datagrid1").setValue(e.selected.StockQty);
+            mini.getbyName("OrderQty", "datagrid1").setValue(e.selected.OrderQty);
+            mini.getbyName("PackQty", "datagrid1").setValue(e.selected.PackQty);
+            mini.getbyName("PackCoef", "datagrid1").setValue(e.selected.PackCoef);
+            mini.getbyName("PurchaseQty", "datagrid1").setValue(e.selected.PurchaseQty);
+            mini.getbyName("PutinQty", "datagrid1").setValue(e.selected.PutinQty);
+            mini.getbyName("SalePrice", "datagrid1").setValue(e.selected.SalePrice);
+            mini.getbyName("PurchasePrice", "datagrid1").setValue(e.selected.PurchasePrice);
+            mini.getbyName("NontaxPurchasePrice", "datagrid1").setValue(e.selected.NontaxPurchasePrice);
+            mini.getbyName("PurchaseMoney", "datagrid1").setValue(0);
+            mini.getbyName("NontaxPurchaseMoney", "datagrid1").setValue(0);
+            mini.getbyName("ProduceDate", "datagrid1").setValue(e.selected.ProduceDate);
+
+            mini.getbyName("PurchaseQty", "datagrid1").focus();
+            //$(mini.getbyName("PurchaseQty", "datagrid1")).select();
+
+        }
+        function addRow(row) {
+            var grid = mini.get("datagrid1");
+            grid.addRow(row, 0);
+
+        }
+        function onrowdblclick(e) {
+            var grid = mini.get("datagrid1");
+            if (grid.isEditing()) {
+                grid.commitEdit();
+            }
+            grid.beginEditRow(e.row);
+            //mini.getbyName("GoodsCode", "datagri1").focus();
+            setTimeout(function () {
+                mini.getbyName("GoodsCode", "datagrid1").focus();
+            }, 500);
+
+        }
+
+        $(function () {
+            var grid = mini.get("datagrid1");
+            grid.reload();
+            jQuery.hotkeys.add('return', function () {
+                if (mini.get("filter_SupCode").getValue().length == 0) {
+                    alert("必须先设置供货商");
+                    return false;
+                }
+                if (grid.isEditing()) {
+                    grid.commitEdit();
+                }
+                var row = {};
+                grid.addRow(row, 0);
+                grid.cancelEdit();
+                grid.beginEditRow(row);
+                mini.getbyName("GoodsCode", "datagrid1").setUrl("/Fb/SearchFbGoodsArchivesListForList?SupCode=" + mini.get("filter_SupCode").getValue());
+                setTimeout(function () {
+                    mini.getbyName("GoodsCode", "datagrid1").focus();
+                }, 500);
+            });
+            jQuery.hotkeys.add('esc', function () {
+                grid.reload();
+            });
+            jQuery.hotkeys.add('del', function () {
+                grid.removeRows(grid.getSelecteds());
+            });
+
+            $("#btnExame").click(function () {
+                mini.get("Control_IfExamine").setValue("1");
+                mini.get("Control_ExamineDate").setValue(new Date());
+                //SaveData();
+            });
+            $("#btnInStock").click(function () {
+                mini.get("Control_IfPutin").setValue("1");
+                mini.get("Control_PutinDate").setValue(new Date());
+            });
+            $("#btnDel").click(function () {
+                if (isNew == false) {
+                    //删除
+                    $.ajax({
+                        url: "/Fb/FbAdjustClassDelete",
+                        data: { ids: id, confirm: "true" },
+                        dataType: "json",
+                        success: function (r) {
+                            closeWithNoValidate();
+                        }
+                    });
+                }
+                else {
+                    closeWithNoValidate();
+                }
+            });
+            $("#btnGoods").click(function () {
+                var btnEdit = this;
+                if (mini.get("filter_SupCode").getValue().length == 0) {
+                    alert("必须先设置供货商");
+                    return false;
+                }
+                mini.open({
+                    url: "/Common/GoodsSelector?OpCode=3",
+                    title: "选择列表",
+                    width: 600,
+                    height: 380,
+                    ondestroy: function (action) {
+                        //if (action == "close") return false;
+                        if (action == "ok") {
+                            var iframe = this.getIFrameEl();
+                            var data = iframe.contentWindow.GetData();
+                            data = mini.clone(data);    //必须
+                            if (data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    var row = {
+                                        GoodsCode: data[i].Id,
+                                        GoodsBarCode: data[i].GoodsBarCode,
+                                        Specification: data[i].Specification,
+                                        PackUnitCode: data[i].PackUnitCode,
+                                        OfferMin: data[i].OfferMin,
+                                        StockQty: data[i].StockQty,
+                                        OrderQty: data[i].OrderQty,
+                                        PackQty: data[i].PackQty,
+                                        PackCoef: data[i].PackCoef,
+                                        PurchaseQty: data[i].PurchaseQty,
+                                        PutinQty: data[i].PutinQty,
+                                        SalePrice: data[i].SalePrice,
+                                        PurchasePrice: data[i].PurchasePrice,
+                                        NontaxPurchasePrice: data[i].NontaxPurchasePrice,
+                                        PurchaseMoney: data[i].PurchaseMoney,
+                                        NontaxPurchaseMoney: data[i].NontaxPurchaseMoney,
+                                        ProduceDate: data[i].ProduceDate
+                                    };
+                                    addRow(row);
+                                }
+                            }
+                        }
+
+                    }
+                });
+            });
+            $("#btnQuery").click(function () {
+                location.href = "/Pc/PcPurchaseManageList";
+            });
+        });
     </script>
 </head>
 <body>
@@ -96,14 +279,14 @@
         <form id="formMain" method="post" action="">
             <fieldset>
                 <legend>基本信息</legend>
-                <div class="ablock" style="display: none">
+                <div class="ablock">
                     <label for="Control_PcNumber">采购单号:</label>
-                    <input id="Control_PcNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
+                    <input id="Control_PcNumber" value="@Model.Id" name="Id" class="mini-textbox" enabled="false"/>
                 </div>
 
                 <div class="ablock">
                     <label for="Control_SupCode">供货商编码:</label>
-                    <input type="text"  value="@Model.SupCode" class="mini-textbox" name="SupCode" id="Control_SupCode" vtype="maxLength:20"required="true" />
+                    <input id="filter_SupCode" value="@Model.SupCode" name="SupCode" class="mini-combobox" valuefield="Id" textfield="SupName" pinyinfield="PyCode" url="/Data/FbSupplierArchives.js" allowinput="true" style="width: 100%;" />
                 </div>
 
                 <div class="ablock">
@@ -113,17 +296,17 @@
 
                 <div class="ablock">
                     <label for="Control_PcForm">采购形式:</label>
-                    <input type="text"  value="@Model.PcForm" class="mini-textbox" name="PcForm" id="Control_PcForm" vtype="maxLength:20" />
+                    <input name="PcType" class="mini-combobox"  value="@Model.PcForm"  emptyText="请选择..." data="c_PcForm"  allowInput="false" showNullItem="true" nullItemText="请选择..." required="true"/>
                 </div>
 
                 <div class="ablock">
                     <label for="Control_dCode">部门编码:</label>
-                    <input type="text"  value="@Model.dCode" class="mini-textbox" name="dCode" id="Control_dCode" vtype="maxLength:50"required="true" />
+                    <input type="text"  value="@Model.dCode" class="mini-combobox" name="dCode" id="Control_dCode" url="/Common/GetComboData?table=sys_pa_department&valueColumn=d_code&textColumn=d_name" required="true" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_bCode">门店编码:</label>
-                    <input type="text"  value="@Model.bCode" class="mini-textbox" name="bCode" id="Control_bCode" vtype="maxLength:20" />
+                    <input type="text"  value="@Model.bCode" class="mini-combobox" name="bCode" id="Control_bCode" url="/Common/GetComboData?table=bs_branch_archives&valueColumn=b_code&textColumn=b_name" required="true" />
                 </div>
 
                 <div class="ablock">
@@ -133,7 +316,7 @@
 
                 <div class="ablock">
                     <label for="Control_PcMode">采购方式:</label>
-                    <input type="text"  value="@Model.PcMode" class="mini-textbox" name="PcMode" id="Control_PcMode" vtype="maxLength:20" />
+                    <input type="text"  value="传真" enabled="false" class="mini-textbox" name="PcMode" id="Control_PcMode" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
@@ -163,12 +346,12 @@
 
                 <div class="ablock">
                     <label for="Control_IfPutin">是否入库:</label>
-                    <div id="Control_IfPutin" name="IfPutin" value="1" class="mini-checkbox" checked="true" readonly="false" text="入库"></div>
+                    <div id="Control_IfPutin" name="IfPutin" value="@Model.IfPutin" class="mini-checkbox" trueValue="1" falseValue="0" enabled="false" text="入库"></div>
                 </div>
 
                 <div class="ablock">
                     <label for="Control_PutinDate">入库日期:</label>
-                    <input type="text" id="Control_PutinDate" name="PutinDate"  value="@Model.PutinDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                    <input type="text" id="Control_PutinDate" name="PutinDate"  value="@Model.PutinDate" class="mini-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
 
                 <div class="ablock">
@@ -176,27 +359,27 @@
                     <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_Operator">操作员:</label>
                     <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_Assessor">审核人:</label>
-                    <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
+                    <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" enabled="false" id="Control_Assessor" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_IfExamine">是否审核:</label>
-                    <div id="Control_IfExamine" name="IfExamine" value="1" class="mini-checkbox" checked="true" readonly="false" text="审核"></div>
+                    <div id="Control_IfExamine" name="@Model.IfExamine"  class="mini-checkbox" trueValue="1" falseValue="0" enabled="false" text="审核"></div>
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_ExamineDate">审核时间:</label>
-                    <input type="text" id="Control_ExamineDate" name="ExamineDate"  value="@Model.ExamineDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                    <input type="text" id="Control_ExamineDate" name="ExamineDate"  value="@Model.ExamineDate" enabled="false" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_OperatorDate">操作时间:</label>
                     <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
@@ -204,9 +387,9 @@
 
             </fieldset>
 
-            <div id="datagrid1" class="mini-datagrid" url="SearchPcPurchaseDetailList"
+            <div id="datagrid1" class="mini-datagrid" url="/Pc/SearchPcPurchaseDetailList?PcNumber=@(string.IsNullOrEmpty(Model.Id) ? "!##$%" : Model.Id)"
                 style="width: 100%; height: 250px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-                pagesize="20" multiselect="true" showfilterrow="false" showPager="false">
+                pagesize="20" multiselect="true" showfilterrow="false" showPager="false" onrowdblclick="onrowdblclick">
                 <div property="columns">
                     <div type="indexcolumn" width="30">
                     </div>
@@ -214,71 +397,81 @@
                     </div>
                     <div field="GoodsCode" headeralign="center" align="center" width="60">
                         商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<div id="filter_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
+                        <div property="columns">
+                            <div header="条形码" field="GoodsBarCode">
+                            </div>
+                            <div header="拼音码" field="PyCode">
+                            </div>
+                            <div header="名称" field="GoodsName">
+                            </div>
+                        </div>
+
+                    </div>
                     </div>
                     <div field="GoodsBarCode" headeralign="center" align="center" width="60">
                         商品销售码
-					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_GoodsBarCode" name="GoodsBarCode" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
                     </div>
                     <div field="Specification" headeralign="center" align="center" width="60">
                         规格
-					<input id="filter_Specification" name="Specification" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_Specification" name="Specification" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
                     </div>
                     <div field="PackUnitCode" headeralign="center" align="center" width="60">
                         包装单位
-					<input id="filter_PackUnitCode" name="PackUnitCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PackUnitCode" name="PackUnitCode" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
                     </div>
                     <div field="OfferMin" headeralign="center" align="center" width="60">
                         最小订量
-					<input id="filter_OfferMin" name="OfferMin" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_OfferMin" name="OfferMin" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
                     <div field="StockQty" headeralign="center" align="center" width="60">
                         库存数量
-					<input id="filter_StockQty" name="StockQty" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_StockQty" name="StockQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
                     <div field="OrderQty" headeralign="center" align="center" width="60">
                         在途数量
-					<input id="filter_OrderQty" name="OrderQty" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_OrderQty" name="OrderQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
                     <div field="PackQty" headeralign="center" align="center" width="60">
                         整件数量
-					<input id="filter_PackQty" name="PackQty" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PackQty" name="PackQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
                     <div field="PackCoef" headeralign="center" align="center" width="60">
                         包装系数
-					<input id="filter_PackCoef" name="PackCoef" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PackCoef" name="PackCoef" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
                     <div field="PurchaseQty" headeralign="center" align="center" width="60">
                         单品数量
-					<input id="filter_PurchaseQty" name="PurchaseQty" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PurchaseQty" name="PurchaseQty" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
                     <div field="PutinQty" headeralign="center" align="center" width="60">
                         入库数量
-					<input id="filter_PutinQty" name="PutinQty" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PutinQty" name="PutinQty" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
                     <div field="SalePrice" headeralign="center" align="center" width="60">
                         销售价
-					<input id="filter_SalePrice" name="SalePrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_SalePrice" name="SalePrice" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
                     <div field="PurchasePrice" headeralign="center" align="center" width="60">
                         含税进价
-					<input id="filter_PurchasePrice" name="PurchasePrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PurchasePrice" name="PurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
                     <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
                         不含税进价
-					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
                     <div field="PurchaseMoney" headeralign="center" align="center" width="60">
                         含税金额
-					<input id="filter_PurchaseMoney" name="PurchaseMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PurchaseMoney" name="PurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
                     <div field="NontaxPurchaseMoney" headeralign="center" align="center" width="60">
                         不含税金额
-					<input id="filter_NontaxPurchaseMoney" name="NontaxPurchaseMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_NontaxPurchaseMoney" name="NontaxPurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
                     <div field="ProduceDate" headeralign="center" align="center" width="60">
                         生产日期
-					<input id="filter_ProduceDate" name="ProduceDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_ProduceDate" name="ProduceDate" class="mini-datepicker" property="editor" style="width: 100%;" />
                     </div>
                 </div>
             </div>
@@ -287,6 +480,12 @@
             <div class="control-panel">
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                    <input type="button" class="myButton" id="btnGoods" value="商品" />
+                    <input type="button" class="myButton" id="btnInStock" value="入库" />
+                    <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
+                    <input type="button" class="myButton" id="btnSearch" value="查询" />
+                    <input type="button" class="myButton" id="btnSubmit" value="提交" />
+                    <input type="button" class="myButton" id="btnPrint" value="打印" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
                     <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
                 </div>
