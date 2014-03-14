@@ -17,6 +17,14 @@ namespace YiQiWorkFlow.Domain.Pc
 		/// </summary>
 		[Validate(ValidateType.IsEmpty ,Name="供货商编码")]
 		public virtual string SupCode{get ; set; }
+
+        /// <summary>
+        /// 供货商名称
+        /// </summary>
+        [Validate(ValidateType.IsEmpty, Name = "供货商名称")]
+        public virtual string SupName { get; set; }
+
+
 		
 		/// <summary>
 		/// 企业编码
@@ -35,13 +43,25 @@ namespace YiQiWorkFlow.Domain.Pc
 		/// </summary>
 		[Validate(ValidateType.IsEmpty ,Name="部门编码")]
 		public virtual string dCode{get ; set; }
-		
+
+        /// <summary>
+        /// 部门名称
+        /// </summary>
+        [Validate(ValidateType.IsEmpty, Name = "部门名称")]
+        public virtual string dName { get; set; }
+
 		/// <summary>
 		/// 门店编码
 		/// </summary>
 		[Validate(ValidateType.NoValidate,Name="门店编码",DefaultValue="0000")]
 		public virtual string bCode{get ; set; }
-		
+
+        /// <summary>
+        /// 门店名称
+        /// </summary>
+        [Validate(ValidateType.NoValidate, Name = "门店名称", DefaultValue = "0000")]
+        public virtual string bName { get; set; }
+
 		/// <summary>
 		/// 采购类型
 		/// </summary>
