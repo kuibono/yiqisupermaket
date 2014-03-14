@@ -20,7 +20,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
+                                    <input id="ifexame" class="mini-combobox" data="[{id:"",text:'所有'},{id:0,text:'否'},{id:1,text:'是'},{id:-1,text:'废除'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
                                 </td>
                                 <td>
                                     <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
@@ -38,11 +38,15 @@
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchPcPurchaseManageList"
             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true">
+            pagesize="20" multiselect="true" showFilterRow="true" frozenStartColumn="0" frozenEndColumn="8">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
+                </div>
+                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                    cellstyle="padding:0;">
+                    管理
                 </div>
 				<div field="PcNumber" headeralign="center" align="center" width="60">
 				    采购单号
@@ -52,21 +56,33 @@
 				    供货商编码
 					<input id="filter_SupCode" name="SupCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="EnCode" headeralign="center" align="center" width="60">
-				    企业编码
-					<input id="filter_EnCode" name="EnCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PcForm" headeralign="center" align="center" width="60">
-				    采购形式
-					<input id="filter_PcForm" name="PcForm" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                <div field="SupName" headeralign="center" align="center" width="60">
+				    供货商名称
+					<input id="filter_SupName" name="SupName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
 				<div field="dCode" headeralign="center" align="center" width="60">
 				    部门编码
 					<input id="filter_dCode" name="dCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
+                <div field="dCode" headeralign="center" align="center" width="60">
+				    部门名称
+					<input id="filter_dName" name="dName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
 				<div field="bCode" headeralign="center" align="center" width="60">
 				    门店编码
 					<input id="filter_bCode" name="bCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+                <div field="bCode" headeralign="center" align="center" width="60">
+				    门店名称
+					<input id="filter_bName" name="bName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+                <div field="WhCode" headeralign="center" align="center" width="60">
+				    仓库编码/名称
+					<input id="filter_WhCode" name="WhCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+                <div field="PcForm" headeralign="center" align="center" width="60" renderer="onPcFormRender">
+				    采购形式
+					<input id="filter_PcForm" name="PcForm" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
 				<div field="PcType" headeralign="center" align="center" width="60">
 				    采购类型
@@ -76,10 +92,7 @@
 				    采购方式
 					<input id="filter_PcMode" name="PcMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="WhCode" headeralign="center" align="center" width="60">
-				    仓库编码
-					<input id="filter_WhCode" name="WhCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
+				
 				<div field="PurchaseDate" headeralign="center" align="center" width="60">
 				    采购日期
 					<input id="filter_PurchaseDate" name="PurchaseDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
@@ -90,7 +103,7 @@
 				</div>
 				<div field="IfCheck" headeralign="center" align="center" width="60">
 				    是否验收
-					<input id="filter_IfCheck" name="IfCheck" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                    <input id="filter_IfCheck" name="IfCheck" property="filter" class="mini-combobox" data="[{id:'',text:'所有'},{id:0,text:'否'},{id:1,text:'是'}]" style="width:100%;" onvaluechanged="search" />
 				</div>
 				<div field="CheckDate" headeralign="center" align="center" width="60">
 				    验收日期
@@ -98,7 +111,7 @@
 				</div>
 				<div field="IfPutin" headeralign="center" align="center" width="60">
 				    是否入库
-					<input id="filter_IfPutin" name="IfPutin" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                    <input id="filter_IfPutin" name="IfPutin" property="filter" class="mini-combobox" data="[{id:'',text:'所有'},{id:0,text:'否'},{id:1,text:'是'}]" style="width:100%;" onvaluechanged="search" />
 				</div>
 				<div field="PutinDate" headeralign="center" align="center" width="60">
 				    入库日期
@@ -118,21 +131,14 @@
 				</div>
 				<div field="IfExamine" headeralign="center" align="center" width="60">
 				    是否审核
-					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="ExamineDate" headeralign="center" align="center" width="60">
-				    审核时间
-					<input id="filter_ExamineDate" name="ExamineDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+					<input id="Filter_ifexame" name="IfExamine" property="filter" class="mini-combobox" data="[{id:'',text:'所有'},{id:0,text:'否'},{id:1,text:'是'},{id:'-1',text:'废除'}]" style="width:100%;" onvaluechanged="search" />
 				</div>
 				<div field="OperatorDate" headeralign="center" align="center" width="60">
 				    操作时间
 					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
                 <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
-                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                    cellstyle="padding:0;">
-                    管理
-                </div>
+                
 
             </div>
         </div>
