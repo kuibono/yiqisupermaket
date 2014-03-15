@@ -49,6 +49,27 @@ namespace YiQiWorkFlow.Domain.Basement
         public string key { get; set; }
 
         public T entity { get; set; }
+
+        public DateTime? OperatorDateH { get; set; }
+        public DateTime? OperatorDateL { get; set; }
+
+        public DateTime? ExamineDateH { get; set; }
+        public DateTime? ExamineDateL { get; set; }
+
+        public DateTime? CreateDateH { get; set; }
+        public DateTime? CreateDateL { get; set; }
+
+        public DateTime? PutinDateH { get; set; }
+        public DateTime? PutinDateL { get; set; }
+
+        public DateTime? CheckDateH { get; set; }
+        public DateTime? CheckDateL { get; set; }
+
+        public DateTime? PurchaseDateH { get; set; }
+        public DateTime? PurchaseDateL { get; set; }
+
+        public DateTime? RtDateH { get; set; }
+        public DateTime? RtDateL { get; set; }
     }
 
     public class SearchDtoBaseTest

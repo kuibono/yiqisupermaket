@@ -14,8 +14,8 @@
 
             var grid1 = mini.get("datagrid1");
             grid1.commitEdit();
-            var goods = mini.encode(grid1.getChanges());
-            if (goods.length == 0) {
+            var goods = grid1.getChanges();
+            if (grid1.data.length == 0) {
                 alert("必须设置采购商品！");
                 return false;
             }
@@ -50,7 +50,7 @@
                 }
 
             }
-            o["goods"] = goods;
+            o["goods"] = mini.encode(goods);
 
             $.ajax({
                 url: "/Pc/SavePcPurchaseManage",
@@ -60,7 +60,7 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        $("#btnQuery").click();
+                        location.href = "/Pc/PcPurchaseManageList";
                     } else {
                         $("#Tooltip_Critical_PcPurchaseManage .content").first().text(r.Message);
                         $("#Tooltip_Critical_PcPurchaseManage").show("fast");
@@ -117,13 +117,13 @@
 
         }
         function supCodeChanged(e) {
-            mini.get("control_SipName").setValue(e.selected.SupName);
+            mini.get("control_SupName").setValue(e.selected.SupName);
         }
         function ondCodeChanged(e) {
-            min.get("control_dName").setValue(e.selected.dName);
+            min.get("control_dName").setValue(e.selected.text);
         }
         function onbCodeChanged(e) {
-            min.get("control_bName").setValue(e.selected.bName);
+            min.get("control_bName").setValue(e.selected.text);
         }
         $(function () {
             var grid = mini.get("datagrid1");
@@ -296,7 +296,7 @@
                 <div class="ablock">
                     <label for="Control_SupCode">供货商编码:</label>
                     <input id="filter_SupCode" value="@Model.SupCode" name="SupCode" class="mini-combobox" onvaluechanged="supCodeChanged" valuefield="Id" textfield="SupName" pinyinfield="PyCode" url="/Data/FbSupplierArchives.js" allowinput="true" style="width: 100%;" />
-                    <input id="control_SipName" value="@Model.SupName" name="SupName" class="mini-hidden" />
+                    <input id="control_SupName" value="@Model.SupName" name="SupName" class="mini-hidden" />
                 </div>
 
                 <div class="ablock">
@@ -306,18 +306,18 @@
 
                 <div class="ablock">
                     <label for="Control_PcForm">采购形式:</label>
-                    <input name="PcType" class="mini-combobox"  value="@Model.PcForm"  emptyText="请选择..." data="c_PcForm"  allowInput="false" showNullItem="true" nullItemText="请选择..." required="true"/>
+                    <input name="PcForm" class="mini-combobox"  value="@Model.PcForm"  emptyText="请选择..." data="c_PcForm"  allowInput="false" showNullItem="true" nullItemText="请选择..." required="true"/>
                 </div>
 
                 <div class="ablock">
                     <label for="Control_dCode">部门编码:</label>
-                    <input type="text"  value="@Model.dCode" class="mini-combobox" name="dCode" id="Control_dCode" onvaluechanged="ondCodeChanged" url="/Common/GetComboData?table=sys_pa_department&valueColumn=d_code&textColumn=d_name" required="true" />
+                    <input type="text"  value="@Model.dCode" class="mini-combobox" name="dCode" id="Control_dCode" url="/Common/GetComboData?table=sys_pa_department&valueColumn=d_code&textColumn=d_name" required="true" />
                     <input id="control_dName" value="@Model.dName" name="dName" class="mini-hidden" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_bCode">门店编码:</label>
-                    <input type="text"  value="@Model.bCode" class="mini-combobox" name="bCode" id="Control_bCode" onvaluechanged="onbCodechanged" url="/Common/GetComboData?table=bs_branch_archives&valueColumn=b_code&textColumn=b_name" required="true" />
+                    <input type="text"  value="@Model.bCode" class="mini-combobox" name="bCode" id="Control_bCode" url="/Common/GetComboData?table=bs_branch_archives&valueColumn=b_code&textColumn=b_name" required="true" />
                     <input id="control_bName" value="@Model.bName" name="bName" class="mini-hidden" />
                 </div>
 
@@ -348,7 +348,7 @@
 
                 <div class="ablock">
                     <label for="Control_IfCheck">是否验收:</label>
-                    <div id="Control_IfCheck" name="IfCheck" value="1" class="mini-checkbox" checked="true" readonly="false" text="验收"></div>
+                    <div id="Control_IfCheck" name="IfCheck" value="@Model.IfCheck" trueValue="1" falseValue="0"  class="mini-checkbox" readonly="false" text="验收"></div>
                 </div>
 
                 <div class="ablock">
@@ -383,7 +383,7 @@
 
                 <div class="ablock" style="display: none">
                     <label for="Control_IfExamine">是否审核:</label>
-                    <div id="Control_IfExamine" name="@Model.IfExamine"  class="mini-checkbox" trueValue="1" falseValue="0" enabled="false" text="审核"></div>
+                    <div id="Control_IfExamine" name="IfExamine" value="@Model.IfExamine"  class="mini-checkbox" trueValue="1" falseValue="0" enabled="false" text="审核"></div>
                 </div>
 
                 <div class="ablock" style="display: none">
