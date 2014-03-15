@@ -14,14 +14,12 @@
                 <tr>
                     <td>
                         <a class="mini-button" iconcls="icon-add" onclick="editRow('')" plain="true">增加</a>
+                        <a class="mini-button" iconcls="icon-print" onclick="return false" plain="true">打印</a>
                         <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">高级检索</a>
                     </td>
                     <td style="white-space: nowrap;" align="right">
                         <table>
                             <tr>
-                                <td>
-                                    <input id="ifexame" class="mini-combobox" data="[{id:"",text:'所有'},{id:0,text:'否'},{id:1,text:'是'},{id:-1,text:'废除'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
-                                </td>
                                 <td>
                                     <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
                                 </td>
@@ -36,9 +34,9 @@
         </div>
     </div>
     <div class="mini-fit">
-        <div id="datagrid1" class="mini-datagrid" url="SearchPcPurchaseManageList"
+        <div id="datagrid1" class="mini-datagrid" url="/Pc/SearchPcPurchaseManageList"
             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true" frozenStartColumn="0" frozenEndColumn="8">
+            pagesize="20" multiselect="true" showFilterRow="true" frozenStartColumn="0" frozenEndColumn="9">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
@@ -48,9 +46,9 @@
                     cellstyle="padding:0;">
                     管理
                 </div>
-				<div field="PcNumber" headeralign="center" align="center" width="60">
+				<div field="Id" headeralign="center" align="center" width="140">
 				    采购单号
-					<input id="filter_PcNumber" name="PcNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+					<input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
 				<div field="SupCode" headeralign="center" align="center" width="60">
 				    供货商编码
@@ -101,17 +99,17 @@
 				    预计到货日期
 					<input id="filter_ExpectArriveDate" name="ExpectArriveDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="IfCheck" headeralign="center" align="center" width="60">
+				<div field="IfCheck" headeralign="center" align="center" width="60" renderer="onYesNoRender">
 				    是否验收
-                    <input id="filter_IfCheck" name="IfCheck" property="filter" class="mini-combobox" data="[{id:'',text:'所有'},{id:0,text:'否'},{id:1,text:'是'}]" style="width:100%;" onvaluechanged="search" />
+                    <input id="filter_IfCheck" name="IfCheck" property="filter" class="mini-combobox" data="c_YesNoAll" style="width:100%;" onvaluechanged="search" />
 				</div>
 				<div field="CheckDate" headeralign="center" align="center" width="60">
 				    验收日期
 					<input id="filter_CheckDate" name="CheckDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="IfPutin" headeralign="center" align="center" width="60">
+				<div field="IfPutin" headeralign="center" align="center" width="60" renderer="onYesNoRender">
 				    是否入库
-                    <input id="filter_IfPutin" name="IfPutin" property="filter" class="mini-combobox" data="[{id:'',text:'所有'},{id:0,text:'否'},{id:1,text:'是'}]" style="width:100%;" onvaluechanged="search" />
+                    <input id="filter_IfPutin" name="IfPutin" property="filter" class="mini-combobox" data="c_YesNoAll" style="width:100%;" onvaluechanged="search" />
 				</div>
 				<div field="PutinDate" headeralign="center" align="center" width="60">
 				    入库日期
@@ -129,7 +127,7 @@
 				    审核人
 					<input id="filter_Assessor" name="Assessor" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="IfExamine" headeralign="center" align="center" width="60">
+				<div field="IfExamine" headeralign="center" align="center" width="60" renderer="onExamRender">
 				    是否审核
 					<input id="Filter_ifexame" name="IfExamine" property="filter" class="mini-combobox" data="[{id:'',text:'所有'},{id:0,text:'否'},{id:1,text:'是'},{id:'-1',text:'废除'}]" style="width:100%;" onvaluechanged="search" />
 				</div>
@@ -198,13 +196,10 @@
         }
         function search() {
             var data = {};
-            if (mini.get("#ifexame") != undefined) {
-                data["IfExamine"] = mini.get("#ifexame").value;
-            }
             if (mini.get("#keyword") != undefined) {
                 data["key"] = mini.get("#keyword").value;
             }
-            $("#datagrid1 .mini-grid-filterRow :text:visible").each(function () {
+            $("#datagrid1 .mini-grid-filterRow :input").each(function () {
                 if ($(this).val().length > 0) {
                     data[$(this).prop("name")] = $(this).val();
                 }
