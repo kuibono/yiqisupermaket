@@ -5,11 +5,14 @@
 using System.Collections.Generic;
 using YiQiWorkFlow.Domain.Fb;
 using YiQiWorkFlow.Domain.Basement;
+using NSH.Core.Domain;
 
 namespace YiQiWorkFlow.Application.Service.Fb
 {
     public interface IFbGoodsArchivesService
     {
+        IRepositoryGUID<FbGoodsArchives> GetEntityRepository();
+
         string Create(FbGoodsArchives entity);
 
         FbGoodsArchives GetById(string id);

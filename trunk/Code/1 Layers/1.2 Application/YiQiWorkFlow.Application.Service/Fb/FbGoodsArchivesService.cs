@@ -18,6 +18,11 @@ namespace YiQiWorkFlow.Application.Service.Fb
 
         public IRepositoryGUID<FbGoodsArchives> EntityRepository { get; set; }
 
+        public IRepositoryGUID<FbGoodsArchives> GetEntityRepository()
+        {
+            return this.EntityRepository;
+        }
+
         [Transaction]
         public string Create(FbGoodsArchives entity)
         {
