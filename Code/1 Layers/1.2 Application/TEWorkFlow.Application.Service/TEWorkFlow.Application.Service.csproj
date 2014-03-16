@@ -152,10 +152,6 @@
       <Project>{A6628A7C-E438-4DB6-B7E0-FE4ED2F1F4E5}</Project>
       <Name>NSH.VSTO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TeWorkFlow.Application.DataEntity\TeWorkFlow.Application.DataEntity.csproj">
-      <Project>{23FE64BD-6763-4A42-9236-1CD48A017FE3}</Project>
-      <Name>TeWorkFlow.Application.DataEntity</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Service.xml">
