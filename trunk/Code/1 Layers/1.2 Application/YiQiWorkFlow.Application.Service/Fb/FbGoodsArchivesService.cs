@@ -18,11 +18,6 @@ namespace YiQiWorkFlow.Application.Service.Fb
 
         public IRepositoryGUID<FbGoodsArchives> EntityRepository { get; set; }
 
-        public IRepositoryGUID<FbGoodsArchives> GetEntityRepository()
-        {
-            return this.EntityRepository;
-        }
-
         [Transaction]
         public string Create(FbGoodsArchives entity)
         {
@@ -45,6 +40,10 @@ namespace YiQiWorkFlow.Application.Service.Fb
             var result=EntityRepository.LinqQuery.ToList();
            
             return result;
+        }
+        public IList<FbGoodsArchives> GetsById(IList<string> ids)
+        {
+            return EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id)).ToList();
         }
 
 

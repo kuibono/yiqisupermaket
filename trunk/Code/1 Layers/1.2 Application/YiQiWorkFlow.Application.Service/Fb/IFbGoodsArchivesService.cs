@@ -11,13 +11,13 @@ namespace YiQiWorkFlow.Application.Service.Fb
 {
     public interface IFbGoodsArchivesService
     {
-        IRepositoryGUID<FbGoodsArchives> GetEntityRepository();
 
         string Create(FbGoodsArchives entity);
 
         FbGoodsArchives GetById(string id);
 
         IList<FbGoodsArchives> GetAll();
+        IList<FbGoodsArchives> GetsById(IList<string> ids);
 
         void Update(FbGoodsArchives entity);
 

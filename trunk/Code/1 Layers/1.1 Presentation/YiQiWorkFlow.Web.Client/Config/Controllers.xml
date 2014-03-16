@@ -184,6 +184,7 @@
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.PcController, YiQiWorkFlow.Web.Client" singleton="false" >
     <property name="FbGoodsArchivesService" ref="FbGoodsArchivesService" />
+    <property name="FbSupplierArchivesService" ref="FbSupplierArchivesService" />
     <property name="PcPurchaseDetailService" ref="PcPurchaseDetailService" />
     <property name="PcPurchaseManageService" ref="PcPurchaseManageService" />
     <property name="PcPutinDetailService" ref="PcPutinDetailService" />
