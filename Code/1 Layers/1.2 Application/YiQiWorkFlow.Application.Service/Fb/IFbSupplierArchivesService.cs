@@ -14,6 +14,8 @@ namespace YiQiWorkFlow.Application.Service.Fb
 
         FbSupplierArchives GetById(string id);
 
+        IList<FbSupplierArchives> GetById(IList<string> ids);
+
         IList<FbSupplierArchives> GetAll();
 
         void Update(FbSupplierArchives entity);

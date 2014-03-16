@@ -9,6 +9,7 @@ using NSH.VSTO;
 using System.Configuration;
 using System.Collections.Specialized;
 using System.Data;
+using YiQiWorkFlow.Domain.Basement;
 namespace YiQiWorkFlow.Web.Client.Common
 {
     public class MyEnv
@@ -101,6 +102,9 @@ namespace YiQiWorkFlow.Web.Client.Common
         }
 
         #endregion
+
+
+        
 
         #region 检查记录是否在某表中存在
         /// <summary>

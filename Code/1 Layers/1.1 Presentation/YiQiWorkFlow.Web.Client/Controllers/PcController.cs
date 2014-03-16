@@ -11,6 +11,7 @@ using YiQiWorkFlow.Domain.Basement;
 using System.Web.Script.Serialization;
 using YiQiWorkFlow.Application.Service.Fb;
 using YiQiWorkFlow.Domain.Fb;
+using YiQiWorkFlow.Web.Client.Common;
 
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
@@ -240,6 +241,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
         #region 商品辅助订货
         IFbGoodsArchivesService FbGoodsArchivesService { get; set; }
+        IFbSupplierArchivesService FbSupplierArchivesService { get; set; }
         public ActionResult PcPurchaseManageGoodsEdit()
         {
             return View();
@@ -250,7 +252,17 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             //PcPurchaseDetail
             var jser = new JavaScriptSerializer();
             var goods = jser.Deserialize<List<PcPurchaseDetail>>(Request["goods"]).ToList();
-            var goodsArchives = FbGoodsArchivesService.GetEntityRepository().LinqQuery.Where(p => goods.Select(x => x.GoodsCode).ToList().Contains(p.Id)).ToList();
+
+
+            //YiQiEntities3 ef = new YiQiEntities3();
+            
+            //var goodsArchives = (from l in ef.fb_goods_archives where goods.Select(x => x.GoodsCode).ToList().Contains(l.goods_code) select l).ToList();
+            
+            var goodIds=goods.Select(x => x.GoodsCode).ToList();
+
+            var goodsArchives = FbGoodsArchivesService.GetsById(goodIds);
+
+            var goodsSuppliers = FbSupplierArchivesService.GetById(goodsArchives.Select(p => p.SupCode).ToList());
 
             goodsArchives.GroupBy(p => p.SupCode).ToList().ForEach(p => {
                 PcPurchaseManage pc = new PcPurchaseManage();
@@ -259,10 +271,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 pc.WhCode = manage.WhCode;
                 pc.PurchaseDate = DateTime.Now;
                 pc.IfExamine = "0";
+                pc.SupCode = p.Key;
+                pc.SupName = goodsSuppliers.FirstOrDefault(x => x.Id == p.Key).SupName;
                 pc.Id = PcPurchaseManageService.Create(pc);
                 
                 string supcode = p.Key;
-                var subGoods = goods.Where(x => p.Select(q => q.Id).Contains(x.GoodsCode));
+                var subGoods = from l in goods
+                               from s in p
+                               where l.GoodsCode==s.Id
+                               select l;
                 subGoods.ToList().ForEach(x => {
                     if (pc.PcForm == "4")
                     {
@@ -276,7 +293,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 });
             });
 
-            return Json(new SavingResult { IsSuccess=false, Message="保存成功" }, JsonRequestBehavior.AllowGet);
+            return Json(new SavingResult { IsSuccess=true, Message="保存成功" }, JsonRequestBehavior.AllowGet);
         }
 
         #endregion

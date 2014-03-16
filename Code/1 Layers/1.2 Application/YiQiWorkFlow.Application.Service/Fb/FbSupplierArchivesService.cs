@@ -37,6 +37,11 @@ namespace YiQiWorkFlow.Application.Service.Fb
             return EntityRepository.Get(id);
         }
 
+        public IList<FbSupplierArchives> GetById(IList<string> ids)
+        {
+            return EntityRepository.LinqQuery.Where(p => ids.Contains(p.Id)).ToList();
+        }
+
         [Transaction]
         public IList<FbSupplierArchives> GetAll()
         {
