@@ -1,0 +1,394 @@
+﻿@model YiQiWorkFlow.Domain.Pc.PcPurchaseManage
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>商品采购单编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "商品采购单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = ""; pageName = "PcPurchaseManageGoodsEdit"; </script>
+    <script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+
+            var grid1 = mini.get("datagrid1");
+            grid1.commitEdit();
+            var goods = grid1.getChanges();
+            if (grid1.data.length == 0) {
+                alert("必须设置采购商品！");
+                return false;
+            }
+            for (var i = 0; i < goods.length; i++) {
+                if (goods[i].PurchaseQty == undefined || goods[i].PurchaseQty == 0) {
+                    alert("单品数量不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].PutinQty == undefined || goods[i].PutinQty == 0) {
+                    alert("入库数量不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].SalePrice == undefined || goods[i].SalePrice == 0) {
+                    alert("销售价格不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].PurchasePrice == undefined || goods[i].PurchasePrice == 0) {
+                    alert("含税进价不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].NontaxPurchasePrice == undefined || goods[i].NontaxPurchasePrice == 0) {
+                    alert("不含税进价不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].PurchaseMoney == undefined || goods[i].PurchaseMoney == 0) {
+                    alert("含税金额不能为空或者0！");
+                    return false;
+                }
+                if (goods[i].NontaxPurchaseMoney == undefined || goods[i].NontaxPurchaseMoney == 0) {
+                    alert("不含税金额不能为空或者0！");
+                    return false;
+                }
+
+            }
+            o["goods"] = mini.encode(goods);
+
+            $.ajax({
+                url: "/Pc/SavePcPurchaseManageGoods",
+                type: 'post',
+                data: o,
+                cache: false,
+                dataType: "json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        location.href = "/Pc/PcPurchaseManageList";
+                    } else {
+                        $("#Tooltip_Critical_PcPurchaseManage .content").first().text(r.Message);
+                        $("#Tooltip_Critical_PcPurchaseManage").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_PcPurchaseManage .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_PcPurchaseManage").show("fast");
+                    form.unmask();
+                    $(document).scrollTop(0);
+                }
+            });
+        }
+
+        function onGoodsChanged(e) {
+            mini.getbyName("GoodsBarCode", "datagrid1").setValue(e.selected.GoodsBarCode);
+            mini.getbyName("Specification", "datagrid1").setValue(e.selected.Specification);
+            mini.getbyName("PackUnitCode", "datagrid1").setValue(e.selected.PackUnitCode);
+            mini.getbyName("OfferMin", "datagrid1").setValue(e.selected.OfferMin);
+            mini.getbyName("StockQty", "datagrid1").setValue(e.selected.StockQty);
+            mini.getbyName("OrderQty", "datagrid1").setValue(e.selected.OrderQty);
+            mini.getbyName("PackQty", "datagrid1").setValue(e.selected.PackQty);
+            mini.getbyName("PackCoef", "datagrid1").setValue(e.selected.PackCoef);
+            mini.getbyName("PurchaseQty", "datagrid1").setValue(e.selected.PurchaseQty);
+            mini.getbyName("PutinQty", "datagrid1").setValue(e.selected.PutinQty);
+            mini.getbyName("SalePrice", "datagrid1").setValue(e.selected.SalePrice);
+            mini.getbyName("PurchasePrice", "datagrid1").setValue(e.selected.PurchasePrice);
+            mini.getbyName("NontaxPurchasePrice", "datagrid1").setValue(e.selected.NontaxPurchasePrice);
+            mini.getbyName("PurchaseMoney", "datagrid1").setValue(0);
+            mini.getbyName("NontaxPurchaseMoney", "datagrid1").setValue(0);
+            mini.getbyName("ProduceDate", "datagrid1").setValue(e.selected.ProduceDate);
+
+            mini.getbyName("PurchaseQty", "datagrid1").focus();
+            //$(mini.getbyName("PurchaseQty", "datagrid1")).select();
+
+        }
+        function addRow(row) {
+            var grid = mini.get("datagrid1");
+            grid.addRow(row, 0);
+
+        }
+        function onrowdblclick(e) {
+            var grid = mini.get("datagrid1");
+            if (grid.isEditing()) {
+                grid.commitEdit();
+            }
+            grid.beginEditRow(e.row);
+            //mini.getbyName("GoodsCode", "datagri1").focus();
+            setTimeout(function () {
+                mini.getbyName("GoodsCode", "datagrid1").focus();
+            }, 500);
+
+        }
+        function supCodeChanged(e) {
+            mini.get("control_SupName").setValue(e.selected.SupName);
+        }
+        function ondCodeChanged(e) {
+            min.get("control_dName").setValue(e.selected.text);
+        }
+        function onbCodeChanged(e) {
+            min.get("control_bName").setValue(e.selected.text);
+        }
+        $(function () {
+            var grid = mini.get("datagrid1");
+            grid.reload();
+            jQuery.hotkeys.add('return', function () {
+                if (grid.isEditing()) {
+                    grid.commitEdit();
+                }
+                var row = {};
+                grid.addRow(row, 0);
+                grid.cancelEdit();
+                grid.beginEditRow(row);
+                mini.getbyName("GoodsCode", "datagrid1").setUrl("/Fb/SearchFbGoodsArchivesListForList?SupCode=" + mini.get("filter_SupCode").getValue());
+                setTimeout(function () {
+                    mini.getbyName("GoodsCode", "datagrid1").focus();
+                }, 500);
+            });
+            jQuery.hotkeys.add('esc', function () {
+                grid.reload();
+            });
+            jQuery.hotkeys.add('del', function () {
+                grid.removeRows(grid.getSelecteds());
+            });
+
+            $("#btnExame").click(function () {
+                mini.get("Control_IfExamine").setValue("1");
+                mini.get("Control_ExamineDate").setValue(new Date());
+                //SaveData();
+            });
+            $("#btnInStock").click(function () {
+                mini.get("Control_IfPutin").setValue("1");
+                mini.get("Control_PutinDate").setValue(new Date());
+            });
+            
+            $("#btnGoods").click(function () {
+                var btnEdit = this;
+                mini.open({
+                    url: "/Common/GoodsSelector?OpCode=3",
+                    title: "选择列表",
+                    width: 600,
+                    height: 380,
+                    ondestroy: function (action) {
+                        //if (action == "close") return false;
+                        if (action == "ok") {
+                            var iframe = this.getIFrameEl();
+                            var data = iframe.contentWindow.GetData();
+                            data = mini.clone(data);    //必须
+                            if (data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    var row = {
+                                        GoodsCode: data[i].Id,
+                                        GoodsBarCode: data[i].GoodsBarCode,
+                                        Specification: data[i].Specification,
+                                        PackUnitCode: data[i].PackUnitCode,
+                                        OfferMin: data[i].OfferMin,
+                                        StockQty: data[i].StockQty,
+                                        OrderQty: data[i].OrderQty,
+                                        PackQty: data[i].PackQty,
+                                        PackCoef: data[i].PackCoef,
+                                        PurchaseQty: data[i].PurchaseQty,
+                                        PutinQty: data[i].PutinQty,
+                                        SalePrice: data[i].SalePrice,
+                                        PurchasePrice: data[i].PurchasePrice,
+                                        NontaxPurchasePrice: data[i].NontaxPurchasePrice,
+                                        PurchaseMoney: data[i].PurchaseMoney,
+                                        NontaxPurchaseMoney: data[i].NontaxPurchaseMoney,
+                                        ProduceDate: data[i].ProduceDate
+                                    };
+                                    addRow(row);
+                                }
+                            }
+                        }
+
+                    }
+                });
+            });
+            $("#btnQuery").click(function () {
+                location.href = "/Pc/PcPurchaseManageList";
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>商品辅助订货
+        </h1>
+        <div class="tooltip warning hidden" id="Tooltip_Warning_PcPurchaseManage">
+            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
+            <p class="content">
+                此处填写关于商品采购单编辑页面的警告信息
+            </p>
+            <div class="button-close">
+                x
+            </div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip info hidden" id="Tooltip_Info_PcPurchaseManage">
+            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
+            <p class="content">
+                此处填写关于商品采购单编辑页面的提示信息
+            </p>
+            <div class="button-close">
+                x
+            </div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip help hidden" id="Tooltip_Help_PcPurchaseManage">
+            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
+            <p class="content">
+                此处填写关于商品采购单编辑页面的帮助信息
+            </p>
+            <div class="button-close">
+                x
+            </div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <div class="tooltip critical hidden" id="Tooltip_Critical_PcPurchaseManage">
+            <img src="/images/critical.png" alt="Warning" height="48" width="48" />
+            <p class="content">
+                此处填写关于商品采购单编辑页面的出错信息
+            </p>
+            <div class="button-close">
+                x
+            </div>
+            <div class="buttonGroup">
+                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
+                <input type="button" class="myYellowButton buttonClose" value="关闭" />
+            </div>
+        </div>
+        <form id="formMain" method="post" action="">
+            <fieldset>
+                <legend>基本信息</legend>
+                
+                <div class="ablock">
+                    <label for="Control_PcForm">采购形式:</label>
+                    <input name="PcForm" class="mini-combobox"  value=""  emptyText="请选择..." data="c_PcForm"  allowInput="false" showNullItem="true" nullItemText="请选择..." required="true"/>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_dCode">部门编码:</label>
+                    <input type="text"  value="" class="mini-combobox" name="dCode" id="Control_dCode" url="/Common/GetComboData?table=sys_pa_department&valueColumn=d_code&textColumn=d_name" required="true" />
+                    <input id="control_dName" value="" name="dName" class="mini-hidden" />
+                </div>
+                <div class="ablock">
+                    <label for="Control_WhCode">仓库编码:</label>
+                    <input type="text"  value="" class="mini-textbox" name="WhCode" id="Control_WhCode" vtype="maxLength:20" />
+                </div>
+            </fieldset>
+
+            <div id="datagrid1" class="mini-datagrid" url="/Pc/SearchPcPurchaseDetailList?PcNumber=!##$%"
+                style="width: 100%; height: 250px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+                pagesize="20" multiselect="true" showfilterrow="false" showPager="false" onrowdblclick="onrowdblclick">
+                <div property="columns">
+                    <div type="indexcolumn" width="30">
+                    </div>
+                    <div type="checkcolumn" width="30">
+                    </div>
+                    <div field="GoodsCode" headeralign="center" align="center" width="60">
+                        商品编码
+					<div id="filter_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
+                        <div property="columns">
+                            <div header="条形码" field="GoodsBarCode">
+                            </div>
+                            <div header="拼音码" field="PyCode">
+                            </div>
+                            <div header="名称" field="GoodsName">
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                    <div field="GoodsBarCode" headeralign="center" align="center" width="60">
+                        商品销售码
+					<input id="filter_GoodsBarCode" name="GoodsBarCode" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="Specification" headeralign="center" align="center" width="60">
+                        规格
+					<input id="filter_Specification" name="Specification" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="PackUnitCode" headeralign="center" align="center" width="60">
+                        包装单位
+					<input id="filter_PackUnitCode" name="PackUnitCode" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="OfferMin" headeralign="center" align="center" width="60">
+                        最小订量
+					<input id="filter_OfferMin" name="OfferMin" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="StockQty" headeralign="center" align="center" width="60">
+                        库存数量
+					<input id="filter_StockQty" name="StockQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="OrderQty" headeralign="center" align="center" width="60">
+                        在途数量
+					<input id="filter_OrderQty" name="OrderQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="PackQty" headeralign="center" align="center" width="60">
+                        整件数量
+					<input id="filter_PackQty" name="PackQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="PackCoef" headeralign="center" align="center" width="60">
+                        包装系数
+					<input id="filter_PackCoef" name="PackCoef" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="PurchaseQty" headeralign="center" align="center" width="60">
+                        单品数量
+					<input id="filter_PurchaseQty" name="PurchaseQty" class="mini-spinner" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="PutinQty" headeralign="center" align="center" width="60">
+                        入库数量
+					<input id="filter_PutinQty" name="PutinQty" class="mini-spinner" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="SalePrice" headeralign="center" align="center" width="60">
+                        销售价
+					<input id="filter_SalePrice" name="SalePrice" class="mini-spinner" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="PurchasePrice" headeralign="center" align="center" width="60">
+                        含税进价
+					<input id="filter_PurchasePrice" name="PurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
+                        不含税进价
+					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="PurchaseMoney" headeralign="center" align="center" width="60">
+                        含税金额
+					<input id="filter_PurchaseMoney" name="PurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="NontaxPurchaseMoney" headeralign="center" align="center" width="60">
+                        不含税金额
+					<input id="filter_NontaxPurchaseMoney" name="NontaxPurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="ProduceDate" headeralign="center" align="center" width="60">
+                        生产日期
+					<input id="filter_ProduceDate" name="ProduceDate" class="mini-datepicker" property="editor" style="width: 100%;" />
+                    </div>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+            <div class="control-panel">
+                <div class="control-button">
+                    <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                    <input type="button" class="myButton" id="btnGoods" value="商品" />
+                    <input type="button" class="myButton" id="btnInStock" value="入库" />
+                    <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
+                    <input type="button" class="myButton" id="btnSearch" value="查询" />
+                    <input type="button" class="myButton" id="btnSubmit" value="提交" />
+                    <input type="button" class="myButton" id="btnPrint" value="打印" />
+                    <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                    <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+                </div>
+                <div class="botton-up">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

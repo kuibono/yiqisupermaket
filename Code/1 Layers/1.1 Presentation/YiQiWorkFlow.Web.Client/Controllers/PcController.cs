@@ -9,6 +9,8 @@ using YiQiWorkFlow.Application.Service.Pc;
 using YiQiWorkFlow.Domain.Pc;
 using YiQiWorkFlow.Domain.Basement;
 using System.Web.Script.Serialization;
+using YiQiWorkFlow.Application.Service.Fb;
+using YiQiWorkFlow.Domain.Fb;
 
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
@@ -175,6 +177,14 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 var jser = new JavaScriptSerializer();
                 var suppliers = jser.Deserialize<List<PcPurchaseDetail>>(Request["goods"]).ToList();
                 suppliers.ForEach(p => {
+                    //如果是赠品订货，则价格都是0
+                    if (m.PcForm == "4")
+                    {
+                        p.NontaxPurchasePrice = 0;
+                        p.PurchasePrice = 0;
+                        p.SalePrice = 0;
+                        p.PurchaseMoney = 0;
+                    }
                     p.PcNumber = m.Id;
                     if (p.IsAdded)
                     {
@@ -227,6 +237,49 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         }
         #endregion
         #endregion  商品采购单
+
+        #region 商品辅助订货
+        IFbGoodsArchivesService FbGoodsArchivesService { get; set; }
+        public ActionResult PcPurchaseManageGoodsEdit()
+        {
+            return View();
+        }
+
+        public ActionResult SavePcPurchaseManageGoods(PcPurchaseManage manage)
+        {
+            //PcPurchaseDetail
+            var jser = new JavaScriptSerializer();
+            var goods = jser.Deserialize<List<PcPurchaseDetail>>(Request["goods"]).ToList();
+            var goodsArchives = FbGoodsArchivesService.GetEntityRepository().LinqQuery.Where(p => goods.Select(x => x.GoodsCode).ToList().Contains(p.Id)).ToList();
+
+            goodsArchives.GroupBy(p => p.SupCode).ToList().ForEach(p => {
+                PcPurchaseManage pc = new PcPurchaseManage();
+                pc.PcForm = manage.PcForm;
+                pc.dCode = manage.dCode;
+                pc.WhCode = manage.WhCode;
+                pc.PurchaseDate = DateTime.Now;
+                pc.IfExamine = "0";
+                pc.Id = PcPurchaseManageService.Create(pc);
+                
+                string supcode = p.Key;
+                var subGoods = goods.Where(x => p.Select(q => q.Id).Contains(x.GoodsCode));
+                subGoods.ToList().ForEach(x => {
+                    if (pc.PcForm == "4")
+                    {
+                       x.NontaxPurchasePrice = 0;
+                       x.PurchasePrice = 0;
+                       x.SalePrice = 0;
+                       x.PurchaseMoney = 0;
+                    }
+                    x.PcNumber = pc.Id;
+                    PcPurchaseDetailService.Create(x);
+                });
+            });
+
+            return Json(new SavingResult { IsSuccess=false, Message="保存成功" }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
 
         #region 商品入库单商品明细
         public IPcPutinDetailService PcPutinDetailService { get; set; }
