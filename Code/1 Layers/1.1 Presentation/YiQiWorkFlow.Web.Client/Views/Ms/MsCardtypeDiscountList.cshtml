@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="mini-fit">
-        <div id="dgCardtypeManage" class="mini-datagrid" url="SearchMsCardtypeManageList"
+        <div id="dgCardtypeManage" class="mini-datagrid" url="SearchMsCardtypeManageList" onselectionchanged="onSelectionChanged"
             style="width: 100%; height: 50%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
             pagesize="20" multiselect="true" showfilterrow="true">
             <div property="columns">
@@ -374,6 +374,16 @@
         function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
         }
+
+        function onSelectionChanged(e) {
+        
+            var grid = e.sender;
+            var record = grid.getSelected();
+            if (record) {
+                grid.load({ cardtypeManageId : record.id });
+            }
+        }
+
     </script>
 </body>
 </html>
