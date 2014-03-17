@@ -312,6 +312,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsCardtypeDiscountService.GetById(id);
             }
+            else
+            {
+                m.Id = string.Empty;
+            }
             return View(m);
         }
         #endregion
