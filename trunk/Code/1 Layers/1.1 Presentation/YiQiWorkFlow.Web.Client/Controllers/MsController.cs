@@ -382,6 +382,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchMsCardtypeDiscountList(SearchDtoBase<MsCardtypeDiscount> c, MsCardtypeDiscount s)
         {
             c.entity = s;
+
+            string CardCode = Request["CardCode"];
+            if (!string.IsNullOrEmpty(CardCode))
+            {
+                c.entity.CardCode = CardCode;
+            }
+
             return Json(MsCardtypeDiscountService.Search(c), JsonRequestBehavior.AllowGet);
         }
         #endregion
