@@ -30,14 +30,20 @@ namespace YiQiWorkFlow.Application.Service.Ms
         /// <param name="entitys"></param>
         void Delete(IEnumerable<MsCardtypeManage> entitys);
 
-
         SearchResult<MsCardtypeManage> Search(SearchDtoBase<MsCardtypeManage> c);
-		
-		IList<MsCardtypeManage> Search(string key, int pageSize = 20, int pageIndex = 1);
+
+        IList<MsCardtypeManage> Search(string key, int pageSize = 20, int pageIndex = 1);
 
         void Delete(IList<string> ids);
+
+        #region 自定义方法
+
+        /// <summary>
+        /// 生成新的卡类型Code (规则:00001 开始 每次递增 1)
+        /// </summary>
+        /// <returns></returns>
+        string GenerateCardtypeCode();
+
+        #endregion
     }
 }
-
-
-

@@ -1,5 +1,4 @@
-﻿
-using NSH.Core.Domain;
+﻿using NSH.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 {
     public class MsController : Controller
     {
-
         #region 积分调整管理
         public IMsAdjustPointsService MsAdjustPointsService { get; set; }
         #region 积分调整管理编辑页面
@@ -638,7 +636,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    MsCardtypeManageService.Create(m);
+                    try
+                    {
+                        MsCardtypeManageService.Create(m);
+                    }
+                    catch
+                    {}
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
@@ -2200,8 +2203,3 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion  卡升级
     }
 }
-
-
-
-
-
