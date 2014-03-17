@@ -143,7 +143,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m6.Add(new { id = "207", iconCls = "icon-add", pid = "m6", text = "积分调整管理", url = "/Ms/MsAdjustPointsList" });
             m6.Add(new { id = "208", iconCls = "icon-add", pid = "m6", text = "会员消费明细查询", url = "" });
             m6.Add(new { id = "209", iconCls = "icon-add", pid = "m6", text = "会员消费汇总查询", url = "" });
-            m6.Add(new { id = "210", iconCls = "icon-add", pid = "m6", text = "会员卡信息查询", url = "" });
+            m6.Add(new { id = "210", iconCls = "icon-add", pid = "m6", text = "会员卡信息查询", url = "/Ms/MsCardArchivesList" });
             m6.Add(new { id = "211", iconCls = "icon-add", pid = "m6", text = "无消费会员查询", url = "" });
             m6.Add(new { id = "212", iconCls = "icon-add", pid = "m6", text = "会员储值消费查询", url = "" });
             m6.Add(new { id = "213", iconCls = "icon-add", pid = "m6", text = "会员储值消费汇总查询", url = "" });
