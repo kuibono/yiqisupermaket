@@ -328,11 +328,7 @@ namespace YiQiWorkFlow.Application.Service.Ms
 
         private string GetMaxCardtypeCode()
         {
-            //SearchResult<MsCardtypeManage> searchResult = Search(new SearchDtoBase<MsCardtypeManage>() { pageIndex = 1, pageSize = 1, sortOrder = "CardCode", sortField = "CardCode" });
-
-            IList<MsCardtypeManage> msCardtypeManageList = EntityRepository.Exec("SELECT MAX(CARD_CODE) FROM [ms_cardtype_manage]").ToList();
-
-            string maxCardCode = msCardtypeManageList == null || msCardtypeManageList.Count <= 0 || msCardtypeManageList[0] == null || string.IsNullOrEmpty(msCardtypeManageList[0].Id) ? string.Empty : msCardtypeManageList[0].Id;
+            string maxCardCode = EntityRepository.LinqQuery.Max(x => x.Id);
 
             if (string.IsNullOrEmpty(maxCardCode))
             {
