@@ -488,6 +488,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchMsCardtypeGoodsDiscountList(SearchDtoBase<MsCardtypeGoodsDiscount> c, MsCardtypeGoodsDiscount s)
         {
             c.entity = s;
+
+            string CardCode = Request["CardCode"];
+            if (!string.IsNullOrEmpty(CardCode))
+            {
+                c.entity.CardCode = CardCode;
+            }
+
             return Json(MsCardtypeGoodsDiscountService.Search(c), JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -587,6 +594,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchMsCardtypeGoodsPointsList(SearchDtoBase<MsCardtypeGoodsPoints> c, MsCardtypeGoodsPoints s)
         {
             c.entity = s;
+
+            string CardCode = Request["CardCode"];
+            if (!string.IsNullOrEmpty(CardCode))
+            {
+                c.entity.CardCode = CardCode;
+            }
+
             return Json(MsCardtypeGoodsPointsService.Search(c), JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -785,6 +799,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchMsCardtypePointsList(SearchDtoBase<MsCardtypePoints> c, MsCardtypePoints s)
         {
             c.entity = s;
+
+            string CardCode = Request["CardCode"];
+            if (!string.IsNullOrEmpty(CardCode))
+            {
+                c.entity.CardCode = CardCode;
+            }
+
             return Json(MsCardtypePointsService.Search(c), JsonRequestBehavior.AllowGet);
         }
         #endregion
