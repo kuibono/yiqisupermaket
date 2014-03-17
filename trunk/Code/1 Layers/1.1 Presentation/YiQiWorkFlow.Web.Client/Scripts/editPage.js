@@ -154,3 +154,12 @@ function closeWithNoValidate() {
     parent.closeTab(pageName);
 }
 
+function formatTime(item, array) {
+    if (item == null) {
+        return "";
+    }
+    var ymd = new Date();
+    ymd.setTime(parseInt(item.replace("\/Date(", "").replace(")\/", "")));
+    return ymd.toLocaleDateString();
+}
+
