@@ -10,7 +10,7 @@
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
-            var o = form.getData();
+            var o = form.getData(true);
             $.ajax({
                 url: "/Ms/SaveMsMemberArchives",
                 type: 'post',
@@ -95,7 +95,7 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_CardNumber">卡号:</label>
-                <input type="text"  value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" />
+                <input type="text"  value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" allowInput="false" />
             </div>
 
             <div class="ablock" style="display:none">
@@ -140,7 +140,7 @@
 
             <div class="ablock">
                 <label for="Control_IfMarried">婚否:</label>
-                <div id="Control_IfMarried" name="IfMarried" value="1" class="mini-checkbox" checked="true" readOnly="false" text="婚否"></div>
+                <div id="Control_IfMarried" name="IfMarried" value="1" class="mini-checkbox" trueValue="1" falseValue="0" checked="true" readOnly="false" text="婚否"></div>
             </div>
 
             <div class="ablock">

@@ -135,11 +135,8 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsMemberArchives Initial()
         {
             MsMemberArchives m = new MsMemberArchives();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}
-	 
 }
-
-

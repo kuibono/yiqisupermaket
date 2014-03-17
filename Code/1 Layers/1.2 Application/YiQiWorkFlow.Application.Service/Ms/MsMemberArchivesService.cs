@@ -21,10 +21,10 @@ namespace YiQiWorkFlow.Application.Service.Ms
         [Transaction]
         public string Create(MsMemberArchives entity)
         {
-			if (entity.HaveId == false)
-            {
-                entity.GenerateId();
-            }
+            //if (entity.HaveId == false)
+            //{
+            //    entity.GenerateId();
+            //}
             return EntityRepository.Save(entity);
         }
 
@@ -218,6 +218,37 @@ namespace YiQiWorkFlow.Application.Service.Ms
             foreach (var each in q)
             {
                 Delete(each);
+            }
+        }
+
+
+        public string GenerateMsCode()
+        {
+            string maxCardTypeCode = GetMaxMsCode();
+
+            if (string.IsNullOrEmpty(maxCardTypeCode))
+            {
+                return "00001";
+            }
+            else
+            {
+                int maxCardTypeCodeInt = Convert.ToInt32(maxCardTypeCode);
+
+                return (maxCardTypeCodeInt + 1).ToString("00000");
+            }
+        }
+
+        private string GetMaxMsCode()
+        {
+            string maxCardCode = EntityRepository.LinqQuery.Max(x => x.Id);
+
+            if (string.IsNullOrEmpty(maxCardCode))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return maxCardCode;
             }
         }
     }

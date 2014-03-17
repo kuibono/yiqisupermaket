@@ -1452,6 +1452,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsMemberArchivesService.GetById(id);
             }
+            else
+            {
+                m.Id = MsMemberArchivesService.GenerateMsCode();
+            }
             return View(m);
         }
         #endregion
