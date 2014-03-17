@@ -636,12 +636,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    try
-                    {
-                        MsCardtypeManageService.Create(m);
-                    }
-                    catch
-                    {}
+                    MsCardtypeManageService.Create(m);
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
