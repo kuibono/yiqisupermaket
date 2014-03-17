@@ -10,7 +10,7 @@
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
-            var o = form.getData();
+            var o = form.getData(true);
             $.ajax({
                 url: "/Ms/SaveMsExchangeDetail",
                 type: 'post',
