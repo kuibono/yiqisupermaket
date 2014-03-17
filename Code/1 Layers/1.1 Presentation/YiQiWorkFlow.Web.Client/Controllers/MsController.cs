@@ -411,6 +411,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsCardtypeGoodsDiscountService.GetById(id);
             }
+            else
+            {
+                m.Id = string.Empty;
+            }
             return View(m);
         }
         #endregion
@@ -505,6 +509,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsCardtypeGoodsPointsService.GetById(id);
+            }
+            else
+            {
+                m.Id = string.Empty;
             }
             return View(m);
         }
@@ -695,6 +703,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsCardtypePointsService.GetById(id);
+            }
+            else
+            {
+                m.Id = string.Empty;
             }
             return View(m);
         }

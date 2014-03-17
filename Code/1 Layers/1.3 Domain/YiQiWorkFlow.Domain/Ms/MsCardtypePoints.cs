@@ -63,11 +63,8 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsCardtypePoints Initial()
         {
             MsCardtypePoints m = new MsCardtypePoints();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}
-	 
 }
-
-
