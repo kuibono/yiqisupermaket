@@ -104,7 +104,7 @@ namespace YiQiWorkFlow.Web.Client.Common
         #endregion
 
 
-        
+
 
         #region 检查记录是否在某表中存在
         /// <summary>
@@ -137,7 +137,10 @@ namespace YiQiWorkFlow.Web.Client.Common
         }
         #endregion
 
-        
+        /// <summary>
+        /// 默认打印纸宽度（cm）
+        /// </summary>
+        public int PagerWidth { get { return 21; } }
 
     }
 
