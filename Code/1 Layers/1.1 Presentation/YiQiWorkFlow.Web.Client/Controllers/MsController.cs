@@ -122,6 +122,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsCancelCardManageService.GetById(id);
             }
+            else
+            {
+                m.Id = string.Empty;
+            }
             return View(m);
         }
         #endregion
@@ -216,6 +220,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsCardArchivesService.GetById(id);
+            }
+            else
+            {
+                m.Id = string.Empty;
             }
             return View(m);
         }
@@ -609,6 +617,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsCardtypeManageService.GetById(id);
             }
+            else
+            {
+                m.Id = string.Empty;
+            }
             return View(m);
         }
         #endregion
@@ -803,6 +815,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsExchangeDetailService.GetById(id);
             }
+            else
+            {
+                m.Id = string.Empty;
+            }
             return View(m);
         }
         #endregion
@@ -898,6 +914,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsExchangeManageService.GetById(id.Value);
             }
+            
             return View(m);
         }
         #endregion
@@ -992,6 +1009,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsFreezeCardManageService.GetById(id);
+            }
+            else
+            {
+                m.Id = string.Empty;
             }
             return View(m);
         }
@@ -1088,6 +1109,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsGiftArchivesService.GetById(id);
             }
+            else
+            {
+                m.Id = string.Empty;
+            }
             return View(m);
         }
         #endregion
@@ -1182,6 +1207,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsGrantCardManageService.GetById(id);
+            }
+            else
+            {
+                m.Id = string.Empty;
             }
             return View(m);
         }
@@ -1278,6 +1307,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsLossCardManageService.GetById(id);
             }
+            else
+            {
+                m.Id = string.Empty;
+            }
             return View(m);
         }
         #endregion
@@ -1372,6 +1405,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsMadecardManageService.GetById(id);
+            }
+            else
+            {
+                m.Id = string.Empty;
             }
             return View(m);
         }
@@ -1567,6 +1604,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsPointsClearService.GetById(id.Value);
             }
+            
             return View(m);
         }
         #endregion
@@ -1757,6 +1795,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsPrepaidCardManageService.GetById(id);
             }
+            else
+            {
+                m.Id = string.Empty;
+            }
             return View(m);
         }
         #endregion
@@ -1851,6 +1893,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsReclaimCardManageService.GetById(id);
+            }
+            else
+            {
+                m.Id = string.Empty;
             }
             return View(m);
         }
@@ -1947,6 +1993,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsUpdateCardManageService.GetById(id);
             }
+            else
+            {
+                m.Id = string.Empty;
+            }
             return View(m);
         }
         #endregion
@@ -2042,6 +2092,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsUpgradeCardDetailService.GetById(id);
             }
+            else
+            {
+                m.Id = string.Empty;
+            }
             return View(m);
         }
         #endregion
@@ -2136,6 +2190,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsUpgradeCardManageService.GetById(id);
+            }
+            else
+            {
+                m.Id = string.Empty;
             }
             return View(m);
         }
