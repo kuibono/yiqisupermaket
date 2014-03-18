@@ -27,6 +27,16 @@ namespace YiQiWorkFlow.Application.Service.Pc
             }
             return EntityRepository.Save(entity);
         }
+        [Transaction]
+        IList<PcPurchaseDetail> GetByPcNumber(string pcNnumber)
+        {
+            return EntityRepository.LinqQuery.Where(p => p.PcNumber == pcNnumber).ToList();
+        }
+        [Transaction]
+        IList<PcPurchaseDetail> GetByPcNumbers(IList<string> pcNnumbers)
+        {
+            return EntityRepository.LinqQuery.Where(p => pcNnumbers.Contains(p.PcNumber)).ToList();
+        }
 
         [Transaction]
         public PcPurchaseDetail GetById(string id)

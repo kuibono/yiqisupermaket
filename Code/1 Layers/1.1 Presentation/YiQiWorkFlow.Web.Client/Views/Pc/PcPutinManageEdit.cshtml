@@ -67,8 +67,13 @@
     <script type="text/javascript"> var pageTitle = "商品入库单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = "@Model.Id"; pageName = "PcPutinManageEdit"; </script>
     <script type="text/javascript">
         function SaveData() {
-            var form = new mini.Form("#formMain"); // default form
-            var o = form.getData();
+            //var form = new mini.Form("#formMain"); // default form
+            //var o = form.getData();
+            var o = {};
+            var pcs = [];
+            var data = mini.get("datagrid1").data;
+            pcs = mini.encode(data);
+            o["pcs"] = pcs;
             $.ajax({
                 url: "/Pc/SavePcPutinManage",
                 type: 'post',
@@ -101,7 +106,7 @@
         function print() {
             $("#printArea").printArea();
         }
-        $(function () {
+        $(document).ready(function () {
             mini.parse();            var grid = mini.get("datagrid1");
             grid.load();
 
@@ -148,6 +153,20 @@
     </script>
 </head>
 <body>
+    <div class="mini-toolbar">
+    <table style="width:100%">
+        <tr>
+            <td>
+                <a class="mini-button" plain="true" onclick="SaveData()" iconCls="icon-upload">入库</a>
+                <a class="mini-button" plain="true" onclick="print()"  iconCls="icon-print">打印</a>
+                <a class="mini-button" plain="true" id="btnClosePage" iconCls="icon-cancel">退出</a>
+            </td>
+            <td width="60">
+                 
+            </td>
+        </tr>
+    </table>
+</div>
     <div class="container mini-fit">
         <div class="mini-splitter" style="width: 100%; height: 100%">
             <div size="350" showcollapsebutton="true" style="padding: 5px;">
@@ -171,15 +190,15 @@
             </div>
             <div showcollapsebutton="true">
                 <div id="printArea" class="main" style="width: 21cm; margin: 0 auto; font-size: 12px;">
-                    <h1 style="text-align:center;color:#000; border-bottom:solid 1px #000; padding:10px;">商品验收入库单</h1>
-                    <table style="width:100%;">
+                    <h1 style="text-align:center;color:#000;  padding:10px;">商品验收入库单</h1>
+                    <table style="width:100%; font-size:12px; margin:10px 0;">
                         <tr>
                             <td>姓名：张三</td>
                             <td>姓名：张三</td>
                             <td>姓名：张三</td>
                         </tr>
                     </table>
-                    <table id="table1" bordercolor="#000" style="border: solid 1px #000; border-collapse: collapse; width: 100%; margin: 0 auto;"
+                    <table id="table1" bordercolor="#000" style="border: solid 1px #000; border-collapse: collapse; width: 100%; margin: 0 auto;font-size:12px;"
                         border="1">
                         <thead>
                             <tr>
@@ -212,22 +231,32 @@
                             </tr>
                         </thead>
                     </table>
-                    <div class="footPanel">
-                    </div>
+                    <table style="width:100%; font-size:12px; margin:10px 0;">
+                        <tr>
+                            <td style="width:33%"></td>
+                            <td style="width:33%"></td>
+                            <td style="width:33%">操作人：张三</td>
+                        </tr>
+                        <tr>
+                            <td style="width:33%"></td>
+                            <td style="width:33%"></td>
+                            <td style="width:33%">操作时间：2014年3月18日 21:21:48</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <div class="control-panel">
+@*    <div class="control-panel">
         <div class="control-button">
-            <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+            <input type="button" class="myButton" id="btnFormSubmit" value="入库(Ctrl+S)" />
             <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
             <input type="button" class="myButton" id="btnPrint" onclick="print()" value="打印" />
             <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
         </div>
         <div class="botton-up">
         </div>
-    </div>
+    </div>*@
 </body>
 </html>
 
