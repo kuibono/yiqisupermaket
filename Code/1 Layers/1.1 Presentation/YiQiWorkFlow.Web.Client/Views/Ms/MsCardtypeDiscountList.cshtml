@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="mini-fit">
-        <div id="dgCardtypeManage" class="mini-datagrid" url="SearchMsCardtypeManageList" onselectionchanged="onSelectionChanged" onload="cardtypeManageLoadSuccess" 
+        <div id="dgCardtypeManage" class="mini-datagrid" url="SearchMsCardtypeManageList" onselectionchanged="onSelectionChanged"
             style="width: 100%; height: 50%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
             pagesize="20" multiselect="false" showfilterrow="true">
             <div property="columns">
@@ -229,19 +229,6 @@
             var record = cardtypeManageGrid.getSelected();
             if (record) {
                 grid.load({ CardCode: record.Id });
-            }
-        }
-
-        function cardtypeManageLoadSuccess(e)
-        {
-            debugger;
-            var cardtypeManageGrid = e.sender;
-
-            var cardtypeManageRow = cardtypeManageGrid.getRo0(1);
-
-            if (cardtypeManageRow)
-            {
-                cardtypeManageGrid.select(cardtypeManageRow, true);
             }
         }
 

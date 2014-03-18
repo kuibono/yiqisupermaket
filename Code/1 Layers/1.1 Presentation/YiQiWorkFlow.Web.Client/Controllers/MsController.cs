@@ -409,6 +409,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
+
         #endregion  卡折扣
 
         #region 商品折扣
@@ -702,6 +703,16 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(MsCardtypeManageService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetMsCardtypeManageList()
+        {
+            var searchDtoBase = MsCardtypeManageService.Search(new SearchDtoBase<MsCardtypeManage>() { pageSize = int.MaxValue });
+
+            IList<MsCardtypeManage> msCardtypeManageList = searchDtoBase.data;
+
+            return Json(msCardtypeManageList.Select(entity => new { Id = entity.Id, CardName = entity.CardName }), JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region 卡类型删除
@@ -2302,5 +2313,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         }
         #endregion
         #endregion  卡升级
+
+        
     }
 }
