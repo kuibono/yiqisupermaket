@@ -42,6 +42,46 @@
             obj.setValue("");
         }
 
+        function search() {
+            var key = mini.get("key").getValue();
+            if (key == "") {
+                tree.clearFilter();
+            } else {
+                key = key.toLowerCase();
+                tree.filter(function (node) {
+                    var text = node.text ? node.text.toLowerCase() : "";
+                    if (text.indexOf(key) != -1) {
+                        return true;
+                    }
+                });
+            }
+        }
+
+        function onButtonEdit(e) {
+            var btnEdit = this;
+            mini.open({
+                url: "/Common/SelectTreeWindow",
+                showMaxButton: false,
+                title: "选择商品类别",
+                width: 400,
+                height: 400,
+                ondestroy: function (action) {
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);
+                        if (data) {
+                            btnEdit.setValue(data.id);
+                            btnEdit.setText(data.text);
+
+                            var txtGoodsClassName = mini.get('#Control_GoodsClassName');
+                            txtGoodsClassName.setValue(data.text);
+                        }
+                    }
+                }
+            });
+        }
+
     </script>
 </head>
 <body>
@@ -119,12 +159,15 @@
 
                 <div class="ablock">
                     <label for="Control_GoodsClassCode">商品类别:</label>
-                    <input type="text" value="@Model.GoodsClassCode" class="mini-textbox" name="GoodsClassCode" id="Control_GoodsClassCode" vtype="maxLength:20" />
+                    <!--<input type="text" value="@Model.GoodsClassCode" class="mini-textbox" name="GoodsClassCode" id="Control_GoodsClassCode" vtype="maxLength:20" />-->
+                    <input id="btnEdit1" class="mini-buttonedit" onbuttonclick="onButtonEdit" />
+
+                    <input id="control_hGoodsClassCode" value="@Model.GoodsClassCode" name="hGoodsClassCode" class="mini-hidden" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_GoodsClassName">类别名称:</label>
-                    <input type="text" value="@Model.GoodsClassName" class="mini-textbox" name="GoodsClassName" id="Control_GoodsClassName" vtype="maxLength:20" />
+                    <input type="text" value="@Model.GoodsClassName" class="mini-textbox" id="Control_GoodsClassName" name="GoodsClassName" id="Control_GoodsClassName" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">

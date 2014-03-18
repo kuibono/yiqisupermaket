@@ -20,6 +20,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return View();
         }
 
+        public ActionResult SelectTreeWindow()
+        {
+            return View();
+        }
+
         #endregion View
 
         public ActionResult GetComboData()

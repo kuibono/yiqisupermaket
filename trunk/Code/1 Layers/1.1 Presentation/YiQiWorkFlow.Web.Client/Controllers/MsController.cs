@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using YiQiWorkFlow.Application.Service.Ms;
 using YiQiWorkFlow.Domain.Ms;
 using YiQiWorkFlow.Domain.Basement;
+using System.Data;
+using YiQiWorkFlow.Web.Client.Common;
 
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
@@ -2314,6 +2316,37 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion
         #endregion  卡升级
 
-        
+        #region 商品类别
+
+        public ActionResult GetGoodTypeComboData()
+        {
+            Dictionary<string, string> searchOptions = new Dictionary<string, string>();
+            string table = "v_fb_class";
+            string valueColumn = "class_code";
+            string textColumn = "class_name";
+
+            string str_sql = string.Format("select distinct {0} as value,{1} as text from {2} where class_code <> '01' order by class_level,class_code ", valueColumn, textColumn, table);
+            if (searchOptions.Count > 0)
+            {
+                str_sql += " where ";
+                foreach (var options in searchOptions)
+                {
+                    str_sql += string.Format("{0}='{1}' and", options.Key, options.Value);
+                }
+                if (str_sql.EndsWith("and"))
+                {
+                    str_sql = str_sql.Substring(0, str_sql.Length - 3);
+                }
+            }
+            DataTable _tb = MyEnv.GetSqlHelper().ExecuteDataTable(CommandType.Text, str_sql);
+            Dictionary<string, string> result = new Dictionary<string, string>();
+            foreach (DataRow row in _tb.Rows)
+            {
+                result.Add(row["value"].ToString(), row["text"].ToString());
+            }
+            return Json(result.Select(p => new { id = p.Key, text = p.Value }), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
     }
 }

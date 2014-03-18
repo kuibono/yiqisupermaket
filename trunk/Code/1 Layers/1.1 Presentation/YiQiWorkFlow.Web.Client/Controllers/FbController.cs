@@ -52,7 +52,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }).ToList();
 
             return Json(tGb, JsonRequestBehavior.AllowGet);
-
         }
 
         #endregion
