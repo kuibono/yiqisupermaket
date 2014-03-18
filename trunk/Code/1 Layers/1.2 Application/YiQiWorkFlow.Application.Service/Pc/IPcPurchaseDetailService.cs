@@ -14,6 +14,10 @@ namespace YiQiWorkFlow.Application.Service.Pc
 
         PcPurchaseDetail GetById(string id);
 
+        IList<PcPurchaseDetail> GetByPcNumber(string pcNnumber);
+
+        IList<PcPurchaseDetail> GetByPcNumbers(IList<string> pcNnumbers);
+
         IList<PcPurchaseDetail> GetAll();
 
         void Update(PcPurchaseDetail entity);

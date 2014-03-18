@@ -23,7 +23,7 @@ return $(this).attr("rel").toLowerCase() == "stylesheet";
 doc.write('<link type="text/css" rel="stylesheet" href="' +
 $(this).attr("href") + '" >');
 });
-doc.write('<div class="' + $(ele).attr("class") + '">' + $(ele).html() + '</div>');
+doc.write('<div class="' + $(ele).attr("class") + '" style="'+ $(ele).attr("style") +'">' + $(ele).html() + '</div>');
 doc.close();
 var frameWindow = iframe.contentWindow;
 frameWindow.close();
