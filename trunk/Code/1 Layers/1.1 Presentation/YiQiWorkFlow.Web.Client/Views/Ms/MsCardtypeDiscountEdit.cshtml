@@ -11,6 +11,7 @@
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData(true);
+            
             $.ajax({
                 url: "/Ms/SaveMsCardtypeDiscount",
                 type: 'post',
@@ -72,7 +73,7 @@
                         data = mini.clone(data);
                         if (data) {
                             btnEdit.setValue(data.id);
-                            btnEdit.setText(data.text);
+                            btnEdit.setText(data.id);
 
                             var txtGoodsClassName = mini.get('#Control_GoodsClassName');
                             txtGoodsClassName.setValue(data.text);
@@ -82,6 +83,7 @@
             });
         }
 
+        
     </script>
 </head>
 <body>
@@ -144,10 +146,10 @@
             <fieldset>
                 <legend>基本信息</legend>
                 <div class="ablock">
-                    <label for="Control_CardCode">卡类型编码:</label>
+                    <label for="Control_Id">卡类型编码:</label>
                     <!--<input type="text" value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20" required="true" />-->
 
-                    <div id="Control_CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="Id" valuefield="Id"
+                    <div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="Id" valuefield="Id"
                         url="/Ms/GetMsCardtypeManageList" showclose="true" oncloseclick="onCloseClick" emptytext="请选择..." required="true" value="@Model.CardCode">
                         <div property="columns">
                             <div header="卡类型编码" field="Id"></div>
@@ -160,14 +162,14 @@
                 <div class="ablock">
                     <label for="Control_GoodsClassCode">商品类别:</label>
                     <!--<input type="text" value="@Model.GoodsClassCode" class="mini-textbox" name="GoodsClassCode" id="Control_GoodsClassCode" vtype="maxLength:20" />-->
-                    <input id="btnEdit1" class="mini-buttonedit" onbuttonclick="onButtonEdit" />
+                    <input id="btnEdit1" id="Control_GoodsClassCode" name="GoodsClassCode" class="mini-buttonedit" onbuttonclick="onButtonEdit" required="true" value="@Model.GoodsClassCode" />
 
                     <input id="control_hGoodsClassCode" value="@Model.GoodsClassCode" name="hGoodsClassCode" class="mini-hidden" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_GoodsClassName">类别名称:</label>
-                    <input type="text" value="@Model.GoodsClassName" class="mini-textbox" id="Control_GoodsClassName" name="GoodsClassName" id="Control_GoodsClassName" vtype="maxLength:20" />
+                    <input type="text" value="@Model.GoodsClassName" class="mini-textbox" id="Control_GoodsClassName" name="GoodsClassName" id="Control_GoodsClassName" vtype="maxLength:20" readonly="readonly" />
                 </div>
 
                 <div class="ablock">
