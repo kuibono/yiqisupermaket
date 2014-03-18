@@ -83,6 +83,15 @@
             });
         }
 
+        $(function(){ 
+         
+            var hGoodsClassCode = mini.get('#control_hGoodsClassCode');
+            var goodsClassCode = mini.get('#Control_GoodsClassCode');
+            if (hGoodsClassCode){
+                goodsClassCode.setValue(hGoodsClassCode.getValue());
+                goodsClassCode.text = hGoodsClassCode.getValue();
+            }
+        });
         
     </script>
 </head>
@@ -162,24 +171,24 @@
                 <div class="ablock">
                     <label for="Control_GoodsClassCode">商品类别:</label>
                     <!--<input type="text" value="@Model.GoodsClassCode" class="mini-textbox" name="GoodsClassCode" id="Control_GoodsClassCode" vtype="maxLength:20" />-->
-                    <input id="btnEdit1" id="Control_GoodsClassCode" name="GoodsClassCode" class="mini-buttonedit" onbuttonclick="onButtonEdit" required="true" value="@Model.GoodsClassCode" />
+                    <input id="Control_GoodsClassCode" name="GoodsClassCode" class="mini-buttonedit" onbuttonclick="onButtonEdit" allowInput="false" required="true" value="@Model.GoodsClassCode" text="@Model.GoodsClassCode" />
 
                     <input id="control_hGoodsClassCode" value="@Model.GoodsClassCode" name="hGoodsClassCode" class="mini-hidden" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_GoodsClassName">类别名称:</label>
-                    <input type="text" value="@Model.GoodsClassName" class="mini-textbox" id="Control_GoodsClassName" name="GoodsClassName" id="Control_GoodsClassName" vtype="maxLength:20" readonly="readonly" />
+                    <input type="text" value="@Model.GoodsClassName" class="mini-textbox" id="Control_GoodsClassName" name="GoodsClassName" vtype="maxLength:20" readonly="readonly" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_DiscountBase">折扣基数:</label>
-                    <input type="text" id="Control_DiscountBase" name="DiscountBase" value="@Model.DiscountBase" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_DiscountBase" name="DiscountBase" value="@Model.DiscountBase" class="mini-spinner" minvalue="0" maxvalue="1" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_ClassDiscountRate">类别折扣:</label>
-                    <input type="text" id="Control_ClassDiscountRate" name="ClassDiscountRate" value="@Model.ClassDiscountRate" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="4" />
+                    <input type="text" id="Control_ClassDiscountRate" name="ClassDiscountRate" value="@Model.ClassDiscountRate" class="mini-spinner" minvalue="0" maxvalue="1" decimalplaces="4" />
                 </div>
 
                 <div class="ablock">
