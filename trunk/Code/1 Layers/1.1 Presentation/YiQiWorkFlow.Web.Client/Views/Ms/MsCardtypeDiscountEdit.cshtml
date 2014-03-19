@@ -61,7 +61,7 @@
         function onButtonEdit(e) {
             var btnEdit = this;
             mini.open({
-                url: "/Common/SelectTreeWindow",
+                url: "/Common/GoodsClassSelector",
                 showMaxButton: false,
                 title: "选择商品类别",
                 width: 400,
@@ -86,10 +86,10 @@
         $(function () {
 
             var hGoodsClassCode = mini.get('#control_hGoodsClassCode');
-            var goodsClassCode = mini.get('#Control_GoodsClassCode');
-            if (hGoodsClassCode) {
-                goodsClassCode.setValue(hGoodsClassCode.getValue());
-                goodsClassCode.text = hGoodsClassCode.getValue();
+            var GoodsCode = mini.get('#Control_GoodsCode');
+            if (hGoodsCode) {
+                GoodsCode.setValue(hGoodsCode.getValue());
+                GoodsCode.text = hGoodsCode.getValue();
             }
         });
 
@@ -156,7 +156,6 @@
                 <legend>基本信息</legend>
                 <div class="ablock">
                     <label for="Control_Id">卡类型编码:</label>
-                    <!--<input type="text" value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20" required="true" />-->
 
                     <div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="Id" valuefield="Id"
                         url="/Ms/GetMsCardtypeManageList" showclose="true" oncloseclick="onCloseClick" emptytext="请选择..." required="true" value="@Model.CardCode">
@@ -169,8 +168,8 @@
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_GoodsClassCode">商品类别:</label>
-                    <!--<input type="text" value="@Model.GoodsClassCode" class="mini-textbox" name="GoodsClassCode" id="Control_GoodsClassCode" vtype="maxLength:20" />-->
+                    <label for="Control_GoodsCode">商品类别:</label>
+
                     <input id="Control_GoodsClassCode" name="GoodsClassCode" class="mini-buttonedit" onbuttonclick="onButtonEdit" allowinput="false" required="true" value="@Model.GoodsClassCode" text="@Model.GoodsClassCode" />
 
                     <input id="control_hGoodsClassCode" value="@Model.GoodsClassCode" name="hGoodsClassCode" class="mini-hidden" />
