@@ -98,7 +98,7 @@
                 <legend>基本信息</legend>
                 <div class="ablock">
                     <label for="Control_CardNumber">卡号:</label>
-                    <input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" allowinput="false" />
+                    <input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" allowinput="false" readonly="readonly" />
                 </div>
 
                 <div class="ablock" style="display: none">
@@ -118,27 +118,27 @@
 
                 <div class="ablock">
                     <label for="Control_Sex">性别:</label>
-                    <input type="text" value="@Model.Sex" class="mini-textbox" name="Sex" id="Control_Sex" vtype="maxLength:20" />
+                    <input type="text" value="@Model.Sex" class="mini-combobox" name="Sex" id="Control_Sex" data="c_Sex" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_PoliticsCode">政治面貌编码:</label>
-                    <input type="text" value="@Model.PoliticsCode" class="mini-textbox" name="PoliticsCode" id="Control_PoliticsCode" vtype="maxLength:20" />
+                    <input type="text" value="@Model.PoliticsCode" class="mini-combobox" name="PoliticsCode" id="Control_PoliticsCode" data="c_PoliticsCode" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_NationCode">民族编码:</label>
-                    <input type="text" value="@Model.NationCode" class="mini-textbox" name="NationCode" id="Control_NationCode" vtype="maxLength:20" />
+                    <input type="text" value="@Model.NationCode" class="mini-combobox" name="NationCode" id="Control_NationCode" data="c_NationCode" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_EducationCode">学历编码:</label>
-                    <input type="text" value="@Model.EducationCode" class="mini-textbox" name="EducationCode" id="Control_EducationCode" vtype="maxLength:20" />
+                    <input type="text" value="@Model.EducationCode" class="mini-combobox" name="EducationCode" id="Control_EducationCode" data="c_EducationCode" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_ProfessionalTitleCode">职称编码:</label>
-                    <input type="text" value="@Model.ProfessionalTitleCode" class="mini-textbox" name="ProfessionalTitleCode" id="Control_ProfessionalTitleCode" vtype="maxLength:20" />
+                    <input type="text" value="@Model.ProfessionalTitleCode" class="mini-combobox" name="ProfessionalTitleCode" id="Control_ProfessionalTitleCode" data="c_ProfessionalTitleCode" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
