@@ -85,9 +85,10 @@
     }
 
     function onOk() {
+        
         var node = tree.getSelectedNode();
         if (node && tree.isLeaf(node) == false) {
-            alert("不能选中父节点");
+            mini.alert("请选择商品细分类");
             return;
         }
 
