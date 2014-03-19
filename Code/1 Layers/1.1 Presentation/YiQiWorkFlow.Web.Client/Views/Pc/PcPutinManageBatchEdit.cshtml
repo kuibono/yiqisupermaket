@@ -75,7 +75,7 @@
             pcs = mini.encode(data);
             o["pcs"] = pcs;
             $.ajax({
-                url: "/Pc/SavePcPutinManage",
+                url: "/Pc/SavePcPutinBatchManage",
                 type: 'post',
                 data: o,
                 cache: false,
@@ -104,8 +104,7 @@
             $("#printArea").printArea();
         }
         $(document).ready(function () {
-            mini.parse();
-            var grid = mini.get("datagrid1");
+            mini.parse();            var grid = mini.get("datagrid1");
             grid.load();
 
             $("#btnPrint").click(function () {

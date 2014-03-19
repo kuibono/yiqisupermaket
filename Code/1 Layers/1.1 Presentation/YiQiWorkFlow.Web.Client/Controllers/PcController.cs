@@ -552,6 +552,125 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion
         #endregion  商品入库单
 
+        #region 商品入库单编辑页面
+        /// <summary>
+        /// 商品入库单编辑页面
+        /// </summary>
+        /// <param name="id">主键，没有就是新增</param>
+        /// <returns></returns>
+        public ActionResult PcPutinManageBatchEdit(int? id)
+        {
+            PcPutinManage m = PcPutinManage.Initial();
+            if (id.HasValue && id > 0)
+            {
+                m = PcPutinManageService.GetById(id.Value);
+            }
+            return View(m);
+        }
+        #endregion
+
+        #region 商品入库单保存程序
+        /// <summary>
+        /// 商品入库单保存程序
+        /// </summary>
+        /// <param name="m">表单数据</param>
+        /// <returns></returns>
+        public ActionResult SavePcPutinBatchManage(PcPutinManage m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                if (m.HaveId)
+                {
+                    PcPutinManageService.Update(m);
+                }
+                else
+                {
+                    var jser = new JavaScriptSerializer();
+                    IList<PcPurchaseManage> purchaseList = jser.Deserialize<List<PcPurchaseManage>>(Request["pcs"]).ToList();
+
+                    var purchaseDetailList = PcPurchaseDetailService.GetByPcNumbers(purchaseList.Select(p => p.Id).ToList());
+
+
+                   
+
+                    foreach (var purchase in purchaseList)
+                    {
+                        m = new PcPutinManage();
+
+                        m.BaMoney = purchaseDetailList.Sum(p => p.PurchaseMoney);
+                        m.BaNumber = "";//结算单号
+                        m.bCode = purchase.bCode;
+                        m.CheckDate = purchase.CheckDate;
+                        m.CreateDate = DateTime.Now;
+                        m.dCode = purchase.dCode;
+                        m.EnCode = purchase.EnCode;
+                        m.ExamineDate = purchase.ExamineDate;
+                        m.ExpectArriveDate = purchase.ExpectArriveDate;
+                        //m.IfAblebalance = purchase
+                        m.IfBalance = "1";
+                        m.IfExamine = "1";
+                        m.Operator = "";
+                        m.OperatorDate = DateTime.Now;
+                        m.PcForm = purchase.PcForm;
+                        m.PcMode = purchase.PcMode;
+                        m.PcType = purchase.PcType;
+                        m.PurchaseDate = purchase.PurchaseDate;
+                        m.PutinDate = DateTime.Now;
+                        m.PutinMoney = purchaseDetailList.Sum(p => p.PurchaseMoney);
+                        m.SupCode = purchase.SupCode;
+                        m.WhCode = purchase.WhCode;
+
+                        m.Id = PcPutinManageService.Create(m);
+
+                        var detailList = purchaseDetailList.Where(p => p.PcNumber == purchase.Id).ToList();
+                        foreach (var d in detailList)
+                        {
+                            PcPutinDetail pcD = new PcPutinDetail();
+                            pcD.PiNumber = m.Id.ToS();
+                            pcD.GoodsBarCode = d.GoodsBarCode;
+                            pcD.GoodsCode = d.GoodsCode;
+                            pcD.NontaxPurchaseMoney = d.NontaxPurchaseMoney;
+                            pcD.NontaxPurchasePrice = d.NontaxPurchasePrice;
+                            pcD.OfferMin = d.OfferMin;
+                            //pcD.OrderQty = d.OrderQty;
+                            pcD.PackCoef = d.PackCoef;
+                            pcD.PackQty = d.PackQty;
+                            pcD.PackUnitCode = d.PackUnitCode;
+                            //pcD.PcNumber = d.PcNumber;
+                            pcD.ProduceDate = d.ProduceDate;
+                            pcD.PurchaseMoney = d.PurchaseMoney;
+                            pcD.PurchasePrice = d.PurchasePrice;
+                            pcD.PurchaseQty = d.PurchaseQty;
+                            pcD.PutinQty = d.PutinQty;
+                            pcD.SalePrice = d.SalePrice;
+                            pcD.Specification = d.Specification;
+                            //pcD.StockQty = d.StockQty;
+                            pcD.SysGuid = d.SysGuid;
+
+                            PcPutinDetailService.Create(pcD);
+                        }
+
+                    }
+                }
+                r.IsSuccess = false;
+                r.Message = "保存成功,但是需要执行入库存储过程！";
+            }
+            return Json(r);
+        }
+        #endregion
+
+        #region 商品批量入库
+
+        #endregion
+
         #region 商品出库单商品明细
         public IPcPutoutDetailService PcPutoutDetailService { get; set; }
         #region 商品出库单商品明细编辑页面
