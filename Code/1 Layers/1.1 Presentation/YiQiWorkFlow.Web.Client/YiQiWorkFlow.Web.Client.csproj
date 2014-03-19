@@ -1029,6 +1029,7 @@
     <Content Include="Styles\main.css" />
     <Content Include="Styles\reset.css" />
     <Content Include="Styles\Site.css" />
+    <Content Include="Views\Common\MemberArchivesSelector.cshtml" />
     <None Include="Views\Common\GoodsClassSelector.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
