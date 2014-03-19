@@ -955,7 +955,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsExchangeManageService.GetById(id.Value);
             }
-            
+
             return View(m);
         }
         #endregion
@@ -1645,7 +1645,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = MsPointsClearService.GetById(id.Value);
             }
-            
+
             return View(m);
         }
         #endregion
