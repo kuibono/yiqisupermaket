@@ -8,6 +8,11 @@ var c_GoodsType = [{ id: '1', text: '普通商品' }, { id: '2', text: '散货�
 var c_GoodsState = [{ id: 1, text: '正常' }, { id: 2, text: '淘汰' }, { id: 3, text: '禁采销售' }, { id: 4, text: '禁采禁销' }, { id: 5, text: '废除' }];
 var c_PcForm = [{ id: 1, text: '普通订货' }, { id: 2, text: '开放订货' }, { id: 3, text: '促销订货' }, { id: 4, text: '赠品订货' }];
 var c_YesNoAll = [{ id: '', text: '所有' }, { id: 0, text: '否' }, { id: 1, text: '是' }];
+var c_Sex = [{ id: '男', text: '男' }, { id: '女', text: '女' }];
+var c_PoliticsCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '党员' }, { id: 2, text: '团员' }, { id: 3, text: '其他' }];
+var c_NationCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '汉族' }, { id: 2, text: '满族' }, { id: 3, text: '回族' }, { id: 4, text: '其他' }];
+var c_EducationCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '博士' }, { id: 2, text: '硕士' }, { id: 3, text: '本科' }, { id: 4, text: '专科' }, { id: 5, text: '其他' }];
+var c_ProfessionalTitleCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '高级职称' }, { id: 2, text: '中级职称' }, { id: 3, text: '普通之城' }, { id: 4, text: '其他' }];
 function onExamRender(e) {
     if (e.value == "true" || e.value == "1") return "审核";
     else if (e.value == "false" || e.value == "0") return "未审核";
