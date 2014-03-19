@@ -1548,7 +1548,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                m.Id = MsMemberArchivesService.GenerateMsCode();
+                m.CardNumber = MsMemberArchivesService.GenerateMsCode();
             }
             return View(m);
         }

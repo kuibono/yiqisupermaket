@@ -21,10 +21,10 @@ namespace YiQiWorkFlow.Application.Service.Ms
         [Transaction]
         public string Create(MsMemberArchives entity)
         {
-            //if (entity.HaveId == false)
-            //{
-            //    entity.GenerateId();
-            //}
+            if (entity.HaveId == false)
+            {
+                entity.GenerateId();
+            }
             return EntityRepository.Save(entity);
         }
 
