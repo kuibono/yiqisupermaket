@@ -1555,6 +1555,7 @@
     <Content Include="Views\Fb\FbAdjustGoodsPropty.cshtml" />
     <None Include="Views\Home\Index.cshtml.bak" />
     <Content Include="Views\Pc\PcPurchaseManageGoodsEdit.cshtml" />
+    <Content Include="Views\Pc\PcPutinManageBatchEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

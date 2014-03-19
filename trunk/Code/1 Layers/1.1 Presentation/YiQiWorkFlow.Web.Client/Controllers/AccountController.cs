@@ -54,8 +54,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m1.Add(new { id = "118", iconCls = "icon-add", pid = "m1", text = "柜组编码设置", url = "/Fb/FbPaGoodsCounterList" });
             m2.Add(new { id = "119", iconCls = "icon-add", pid = "m2", text = "供货商采购管理", url = "/Pc/PcPurchaseManageList" });
             m2.Add(new { id = "120", iconCls = "icon-add", pid = "m2", text = "商品辅助订货", url = "/Pc/PcPurchaseManageGoodsEdit" });
-            m2.Add(new { id = "121", iconCls = "icon-add", pid = "m2", text = "到货验收入库", url = "/Pc/PcPutinManageList" });
-            m2.Add(new { id = "122", iconCls = "icon-add", pid = "m2", text = "采购批量入库", url = "/Pc/PcPutinManageList" });
+            m2.Add(new { id = "121", iconCls = "icon-add", pid = "m2", text = "到货验收入库", url = "/Pc/PcPutinManageEdit/" });//url = "/Pc/PcPutinManageList" });
+            m2.Add(new { id = "122", iconCls = "icon-add", pid = "m2", text = "采购批量入库", url = "/Pc/PcPutinManageBatchEdit" });
             m2.Add(new { id = "123", iconCls = "icon-add", pid = "m2", text = "供货商返货管理", url = "" });
             m2.Add(new { id = "124", iconCls = "icon-add", pid = "m2", text = "商品返货管理", url = "/Pc/PcReturnManageList" });
             m2.Add(new { id = "125", iconCls = "icon-add", pid = "m2", text = "返货批量出库", url = "/Pc/PcPutoutManageList" });
