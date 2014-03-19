@@ -1610,6 +1610,16 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(MsMemberArchivesService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetMsMemberArchivesList()
+        {
+            var searchDtoBase = MsMemberArchivesService.Search(new SearchDtoBase<MsMemberArchives>() { pageSize = int.MaxValue });
+
+            IList<MsMemberArchives> msCardtypeManageList = searchDtoBase.data;
+
+            return Json(msCardtypeManageList.Select(entity => new { id = entity.CardNumber, text = entity.MsName }), JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region 会员信息删除
