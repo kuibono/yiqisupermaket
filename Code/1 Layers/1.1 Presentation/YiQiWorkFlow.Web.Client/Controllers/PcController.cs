@@ -220,6 +220,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(PcPurchaseManageService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult SearchPcPurchaseManageListForList(SearchDtoBase<PcPurchaseManage> c, PcPurchaseManage s)
+        {
+            c.entity = s;
+            return Json(PcPurchaseManageService.Search(c).data, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region 商品采购单删除
@@ -552,6 +558,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion
         #endregion  商品入库单
 
+        #region 商品批量入库
         #region 商品入库单编辑页面
         /// <summary>
         /// 商品入库单编辑页面
@@ -599,7 +606,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     var purchaseDetailList = PcPurchaseDetailService.GetByPcNumbers(purchaseList.Select(p => p.Id).ToList());
 
 
-                   
+
 
                     foreach (var purchase in purchaseList)
                     {
@@ -666,9 +673,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return Json(r);
         }
         #endregion
-
-        #region 商品批量入库
-
         #endregion
 
         #region 商品出库单商品明细
@@ -1010,8 +1014,33 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    PcReturnManageService.Create(m);
+                    m.Id=PcReturnManageService.Create(m);
                 }
+
+                var jser = new JavaScriptSerializer();
+                var goods = jser.Deserialize<List<PcReturnDetail>>(Request["goods"]).ToList();
+                foreach (var good in goods)
+                {
+                    good.RtNumber = m.Id;
+                    if (good.GoodsCode.IsNullOrEmpty())
+                    {
+                        continue;
+                    }
+                    if (good.IsAdded)
+                    {
+                        PcReturnDetailService.Create(good);
+                    }
+                    else if (good.IsDelete)
+                    {
+                        PcReturnDetailService.Delete(good);
+                    }
+                    else if (good.IsUpdated)
+                    {
+                        PcReturnDetailService.Update(good);
+                    }
+                }
+                
+
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
