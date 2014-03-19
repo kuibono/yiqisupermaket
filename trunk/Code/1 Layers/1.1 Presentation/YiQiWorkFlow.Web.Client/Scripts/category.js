@@ -12,7 +12,8 @@ var c_Sex = [{ id: '男', text: '男' }, { id: '女', text: '女' }];
 var c_PoliticsCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '党员' }, { id: 2, text: '团员' }, { id: 3, text: '其他' }];
 var c_NationCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '汉族' }, { id: 2, text: '满族' }, { id: 3, text: '回族' }, { id: 4, text: '其他' }];
 var c_EducationCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '博士' }, { id: 2, text: '硕士' }, { id: 3, text: '本科' }, { id: 4, text: '专科' }, { id: 5, text: '其他' }];
-var c_ProfessionalTitleCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '高级职称' }, { id: 2, text: '中级职称' }, { id: 3, text: '普通之城' }, { id: 4, text: '其他' }];
+var c_ProfessionalTitleCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '高级职称' }, { id: 2, text: '中级职称' }, { id: 3, text: '普通职称' }, { id: 4, text: '其他' }];
+var c_CardState = [{ id: -1, text: '请选择...' }, { id: 0, text: '待发' }, { id: 1, text: '正常' }, { id: 2, text: '挂失' }, { id: 3, text: '废除' }];
 function onExamRender(e) {
     if (e.value == "true" || e.value == "1") return "审核";
     else if (e.value == "false" || e.value == "0") return "未审核";
