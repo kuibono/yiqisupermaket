@@ -20,7 +20,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return View();
         }
 
-        public ActionResult SelectTreeWindow()
+        public ActionResult GoodsClassSelector()
         {
             return View();
         }
