@@ -228,19 +228,19 @@ namespace YiQiWorkFlow.Application.Service.Ms
 
             if (string.IsNullOrEmpty(maxCardTypeCode))
             {
-                return "00001";
+                return "000001";
             }
             else
             {
                 int maxCardTypeCodeInt = Convert.ToInt32(maxCardTypeCode);
 
-                return (maxCardTypeCodeInt + 1).ToString("00000");
+                return (maxCardTypeCodeInt + 1).ToString("000000");
             }
         }
 
         private string GetMaxMsCode()
         {
-            string maxCardCode = EntityRepository.LinqQuery.Max(x => x.Id);
+            string maxCardCode = EntityRepository.LinqQuery.Max(x => x.CardNumber);
 
             if (string.IsNullOrEmpty(maxCardCode))
             {
