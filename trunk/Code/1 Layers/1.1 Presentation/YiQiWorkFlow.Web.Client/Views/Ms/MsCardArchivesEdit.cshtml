@@ -50,13 +50,17 @@
                         var data = iframe.contentWindow.GetData();
                         data = mini.clone(data);
                         if (data) {
-                            btnEdit.setValue(data.id);
-                            btnEdit.setText(data.text);
+                            for (var i = 0; i < data.length; i++) {
+                                btnEdit.setValue(data[i].id);
+                                btnEdit.setText(data[i].text);
 
-                            var txtMsName = mini.get('#Control_MsName');
-                            if (txtMsName) {
-                                txtMsName.setValue(data.text);
-                            }
+                                var txtMsName = mini.get('#Control_MsName');
+                                if (txtMsName) {
+                                    txtMsName.setValue(data[i].text);
+                                }
+
+                                break;
+                            };
                         }
                     }
                 }

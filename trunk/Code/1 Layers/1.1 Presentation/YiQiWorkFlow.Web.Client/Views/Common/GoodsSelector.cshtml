@@ -66,11 +66,10 @@
 
             </div>
         </div>
-        <div class="mini-toolbar" style="text-align:center;padding-top:8px;padding-bottom:8px;" borderStyle="border:0;">
+        <div class="mini-toolbar" style="text-align:center;padding-top:8px;padding-bottom:8px;" borderStyle="border:0;"></div>
         <a class="mini-button" style="width:60px;" onclick="onOk()">确定</a>
         <span style="display:inline-block;width:25px;"></span>
         <a class="mini-button" style="width:60px;" onclick="onCancel()">取消</a>
-    </div
     </div>
     <script type="text/javascript">
         mini.parse();
@@ -83,7 +82,6 @@
                 search();
             }
         });
-        
 
         function search() {
             var data = {};
@@ -100,7 +98,7 @@
             });
             grid.load(data);
         }
-        
+
         function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
         }
@@ -126,6 +124,3 @@
     </script>
 </body>
 </html>
-
-
-

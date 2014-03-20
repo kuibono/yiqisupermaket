@@ -288,13 +288,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return Json(MsCardArchivesService.Search(c), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetCardArchivesList()
+        public JsonResult GetMsCardArchivesList()
         {
             var searchDtoBase = MsCardArchivesService.Search(new SearchDtoBase<MsCardArchives>() { pageSize = int.MaxValue });
 
             IList<MsCardArchives> msCardtypeManageList = searchDtoBase.data;
 
-            return Json(msCardtypeManageList.Select(entity => new { id = entity.Id, text = entity.CardName, cardCode = entity.CardCode, surfaceNumber = entity.SurfaceNumber }), JsonRequestBehavior.AllowGet);
+            return Json(msCardtypeManageList.Select(entity => new { id = entity.Id, cardName = entity.CardName, cardCode = entity.CardCode, text = entity.SurfaceNumber,surfaceNumber = entity.SurfaceNumber, msCode = entity.MsCode, msName = entity.MsName, cardState = entity.CardState }), JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -1627,7 +1627,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
             IList<MsMemberArchives> msCardtypeManageList = searchDtoBase.data;
 
-            return Json(msCardtypeManageList.Select(entity => new { id = entity.CardNumber, text = entity.MsName, mscode = entity.Id }), JsonRequestBehavior.AllowGet);
+            return Json(msCardtypeManageList.Select(entity => new { id = entity.CardNumber, text = entity.MsName, mscode = entity.Id, cardNumber = entity.CardNumber, msName= entity.MsName, sex = entity.Sex, idCard = entity.Idcard, birthday = entity.Birthday, handSet = entity.Handset }), JsonRequestBehavior.AllowGet);
         }
 
         #endregion
