@@ -824,10 +824,77 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    PcPutoutManageService.Create(m);
+                    //PcPutoutManageService.Create(m);
+                    var jser = new JavaScriptSerializer();
+                    IList<PcReturnManage> purchaseList = jser.Deserialize<List<PcReturnManage>>(Request["pcs"]).ToList();
+
+                    var purchaseDetailList = PcReturnDetailService.GetByRtNumbers(purchaseList.Select(p => p.Id).ToList());
+
+
+                    m.BaMoney = purchaseDetailList.Sum(p => p.ReturnMoney);
+                    m.BaNumber = "";//结算单号
+                    m.bCode = purchaseList.First().bCode;
+                    //m.CheckDate = purchaseList.First().CheckDate;
+                    m.CreateDate = DateTime.Now;
+                    m.dCode = purchaseList.First().dCode;
+                    m.EnCode = purchaseList.First().EnCode;
+                    m.ExamineDate = purchaseList.First().ExamineDate;
+                    //m.ExpectArriveDate = purchaseList.First().ExpectArriveDate;
+                    //m.IfAblebalance = purchaseList.First().i
+                    m.IfBalance = "1";
+                    m.IfExamine = "1";
+                    m.Operator = "";
+                    m.OperatorDate = DateTime.Now;
+                    m.PcForm = purchaseList.First().PcForm;
+                    //m.PcMode = purchaseList.First().PcMode;
+                    //m.PcType = purchaseList.First().PcType;
+                    //m.PurchaseDate = purchaseList.First().PurchaseDate;
+                    //m.PutinDate = DateTime.Now;
+                    //m.PutinMoney = purchaseDetailList.Sum(p => p.PurchaseMoney);
+                    m.ReturnDate = purchaseList.First().ReturnDate;
+                    
+                    m.SupCode = purchaseList.First().SupCode;
+                    m.WhCode = purchaseList.First().WhCode;
+
+                    m.Id = PcPutoutManageService.Create(m);
+
+                    foreach (var purchase in purchaseList)
+                    {
+                        var detailList = purchaseDetailList.Where(p => p.RtNumber == purchase.Id).ToList();
+                        foreach (var d in detailList)
+                        {
+                            PcPutoutDetail pcD = new PcPutoutDetail();
+                            pcD.PoNumber = m.Id.ToS();
+                            pcD.GoodsBarCode = d.GoodsBarCode;
+                            pcD.GoodsCode = d.GoodsCode;
+                           // pcD.NontaxPurchaseMoney = d.NontaxPurchaseMoney;
+                            pcD.NontaxPurchasePrice = d.NontaxPurchasePrice;
+                            //pcD.OfferMin = d.OfferMin;
+                            //pcD.OrderQty = d.OrderQty;
+                            pcD.PackCoef = d.PackCoef;
+                            pcD.PackQty = d.PackQty;
+                            pcD.PackUnitCode = d.PackUnitCode;
+                            //pcD.PcNumber = d.PcNumber;
+                            //pcD.ProduceDate = d.ProduceDate;
+                            //pcD.PurchaseMoney = d.PurchaseMoney;
+                            pcD.PurchasePrice = d.PurchasePrice;
+                           // pcD.PurchaseQty = d.PurchaseQty;
+                            //pcD.PutinQty = d.PutinQty;
+                            pcD.SalePrice = d.SalePrice;
+                            pcD.Specification = d.Specification;
+                            //pcD.StockQty = d.StockQty;
+                            pcD.SysGuid = d.SysGuid;
+                            pcD.ReturnMoney = d.ReturnMoney;
+                            pcD.ReturnQty = d.ReturnQty;
+                            pcD.NontaxReturnMoney = d.NontaxReturnMoney;
+
+                            PcPutoutDetailService.Create(pcD);
+                        }
+
+                    }
                 }
-                r.IsSuccess = true;
-                r.Message = "保存成功";
+                r.IsSuccess = false;
+                r.Message = "保存成功,但是需要执行存储过程";
             }
             return Json(r);
         }

@@ -36,6 +36,8 @@ namespace YiQiWorkFlow.Application.Service.Pc
 		IList<PcReturnDetail> Search(string key, int pageSize = 20, int pageIndex = 1);
 
         void Delete(IList<string> ids);
+
+        IList<PcReturnDetail> GetByRtNumbers(List<string> list);
     }
 }
 
