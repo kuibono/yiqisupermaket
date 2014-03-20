@@ -50,14 +50,18 @@
                         var data = iframe.contentWindow.GetData();
                         data = mini.clone(data);
                         if (data) {
-                            btnEdit.setValue(data.id);
-                            btnEdit.setText(data.text);
+                            for (var i = 0; i < data.length; i++) {
+                                btnEdit.setValue(data[i].id);
+                                btnEdit.setText(data[i].text);
 
-                            try {
-                                window.frames[0].location.href = "/Ms/MsMemberArchivesEdit/" + data.mscode;
-                            } catch (e) {
+                                try {
+                                    window.frames[0].location.href = "/Ms/MsMemberArchivesEdit/" + data[i].mscode;
+                                } catch (e) {
 
-                            }
+                                }
+
+                                break;
+                            };
                         }
                     }
                 }
@@ -78,13 +82,29 @@
                         var data = iframe.contentWindow.GetData();
                         data = mini.clone(data);
                         if (data) {
-                            btnEdit.setValue(data.id);
-                            btnEdit.setText(data.id);
+                            for (var i = 0; i < data.length; i++) {
 
-                            // 赋值卡明码
-                            var txtSurfaceNumber = mini.get('#Control_SurfaceNumber');
-                            if (txtSurfaceNumber) {
-                                txtSurfaceNumber.setValue(data.surfaceNumber);
+                                btnEdit.setValue(data[0].id);
+                                btnEdit.setText(data[0].id);
+
+                                // 赋值卡明码
+                                var txtSurfaceNumber = mini.get('#Control_SurfaceNumber');
+                                if (txtSurfaceNumber) {
+                                    txtSurfaceNumber.setValue(data[0].surfaceNumber);
+                                }
+
+                                // 赋值卡类型编码
+                                var txtCardCode = mini.get('#Control_CardCode');
+                                if (txtCardCode) {
+                                    txtCardCode.setValue(data[0].cardCode);
+                                }
+                                // 赋值卡类型名称
+                                var txtCardName = mini.get('#Control_CardName');
+                                if (txtCardName) {
+                                    txtCardName.setValue(data[0].cardName);
+                                }
+
+                                break;
                             }
                         }
                     }
