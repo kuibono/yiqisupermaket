@@ -845,6 +845,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(PcPutoutManageService.Search(c), JsonRequestBehavior.AllowGet);
         }
+        public JsonResult SearchPcPutoutManageListData(SearchDtoBase<PcPutoutManage> c, PcPutoutManage s)
+        {
+            c.entity = s;
+            return Json(PcPutoutManageService.Search(c).data, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region 商品出库单删除
