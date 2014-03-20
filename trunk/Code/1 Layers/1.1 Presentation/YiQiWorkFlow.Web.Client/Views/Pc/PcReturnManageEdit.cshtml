@@ -6,7 +6,7 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "商品返货单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = "@Model.Id"; pageName = "PcReturnManageEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "商品返货单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = "@Model.Id"; pageName = "PcReturnManageEdit";var isNew=@Model.IsAdded; </script>
     <script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -38,6 +38,10 @@
                     $(document).scrollTop(0);
                 }
             });
+        }
+        function addRow(row) {
+            var grid = mini.get("datagrid1");
+            grid.addRow(row, 0);
         }
         function onPcNumberChanged(e) {
             var d = e.selected;
@@ -120,6 +124,82 @@
             });
             jQuery.hotkeys.add('del', function () {
                 grid.removeRows(grid.getSelecteds());
+            });
+            $("#btnExame").click(function () {
+                mini.get("Control_IfExamine").setValue("1");
+                mini.get("Control_ExamineDate").setValue(new Date());
+                //SaveData();
+            });
+            $("#btnRevoke").click(function () {
+                mini.get("Control_IfExamine").setValue("-1");
+                mini.get("Control_ExamineDate").setValue(new Date());
+                //SaveData();
+            });
+            $("#btnQuery").click(function () {
+                location.href = "/Pc/ReturnManageList";
+            });
+            $("#btnPrint").click(function () {
+                //打印
+            });
+            $("#btnDelete").click(function () {
+                if(isNew){
+                    closeWithNoValidate();
+                }
+                else{
+                    $.getJSON("/Pc/PcReturnManageDelete?ids=@Model.Id",function(j){
+                        if(j==true){
+                            closeWithNoValidate();
+                        }else{
+                            alert("删除失败");
+                        }
+                    });
+                }
+            });
+            $("#btnGoods").click(function () {
+                var btnEdit = this;
+                if (mini.get("filter_SupCode").getValue().length == 0) {
+                    alert("必须先设置供货商");
+                    return false;
+                }
+                mini.open({
+                    url: "/Common/GoodsSelector?OpCode=3",
+                    title: "选择列表",
+                    width: 600,
+                    height: 380,
+                    ondestroy: function (action) {
+                        //if (action == "close") return false;
+                        if (action == "ok") {
+                            var iframe = this.getIFrameEl();
+                            var data = iframe.contentWindow.GetData();
+                            data = mini.clone(data);    //必须
+                            if (data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    var row = {
+                                        GoodsCode: data[i].Id,
+                                        GoodsBarCode: data[i].GoodsBarCode,
+                                        Specification: data[i].Specification,
+                                        PackUnitCode: data[i].PackUnitCode,
+                                        OfferMin: data[i].OfferMin,
+                                        StockQty: data[i].StockQty,
+                                        OrderQty: data[i].OrderQty,
+                                        PackQty: data[i].PackQty,
+                                        PackCoef: data[i].PackCoef,
+                                        PurchaseQty: data[i].PurchaseQty,
+                                        PutinQty: data[i].PutinQty,
+                                        SalePrice: data[i].SalePrice,
+                                        PurchasePrice: data[i].PurchasePrice,
+                                        NontaxPurchasePrice: data[i].NontaxPurchasePrice,
+                                        PurchaseMoney: data[i].PurchaseMoney,
+                                        NontaxPurchaseMoney: data[i].NontaxPurchaseMoney,
+                                        ProduceDate: data[i].ProduceDate
+                                    };
+                                    addRow(row);
+                                }
+                            }
+                        }
+
+                    }
+                });
             });
         });
     </script>
@@ -342,6 +422,13 @@
             <div class="control-panel">
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                    <input type="button" class="myButton" id="btnGoods" value="商品" />
+                    <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
+                    <input type="button" class="myButton" id="btnDelete" value="删除" />
+                    <input type="button" class="myButton" id="btnPrint" value="打印" />
+                    <input type="button" class="myButton" id="btnSearch" value="查询" />
+                    <input type="button" class="myButton" id="btnRevoke" value="废除" />
+                    <input type="button" class="myButton" id="btnSubmit" value="提交" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
                     <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
                 </div>

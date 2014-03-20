@@ -162,4 +162,4 @@ function formatTime(item, array) {
     ymd.setTime(parseInt(item.replace("\/Date(", "").replace(")\/", "")));
     return ymd.toLocaleDateString();
 }
-
+
