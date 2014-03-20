@@ -27,6 +27,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
         public ActionResult MemberArchivesSelector() { return View(); }
 
+        public ActionResult CardArchivesSelector() { return View(); }
+
         #endregion View
 
         public ActionResult GetComboData()
