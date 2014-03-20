@@ -27,6 +27,11 @@ namespace YiQiWorkFlow.Application.Service.Pc
             }
             return EntityRepository.Save(entity);
         }
+         [Transaction]
+        public IList<PcReturnDetail> GetByRtNumbers(List<string> list)
+        {
+            return EntityRepository.LinqQuery.Where(p => list.Contains(p.Id)).ToList();
+        }
 
         [Transaction]
         public PcReturnDetail GetById(string id)
