@@ -14,6 +14,8 @@ var c_NationCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '汉族' }, 
 var c_EducationCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '博士' }, { id: 2, text: '硕士' }, { id: 3, text: '本科' }, { id: 4, text: '专科' }, { id: 5, text: '其他' }];
 var c_ProfessionalTitleCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '高级职称' }, { id: 2, text: '中级职称' }, { id: 3, text: '普通职称' }, { id: 4, text: '其他' }];
 var c_CardState = [{ id: -1, text: '请选择...' }, { id: 0, text: '待发' }, { id: 1, text: '正常' }, { id: 2, text: '挂失' }, { id: 3, text: '废除' }];
+var c_EnCode = [{ id: -1, text: '请选择...' }, { id: 0, text: '000001' }, { id: 1, text: '000002' }, { id: 2, text: '000003' }, { id: 3, text: '000004' }];
+var c_IfMember = [{ id: -1, text: '请选择...' }, { id: 1, text: '新会员' }, { id: 2, text: '老会员' }, { id: 2, text: '非会员' }, { id: 3, text: '000004' }];
 function onExamRender(e) {
     if (e.value == "true" || e.value == "1") return "审核";
     else if (e.value == "false" || e.value == "0") return "未审核";
