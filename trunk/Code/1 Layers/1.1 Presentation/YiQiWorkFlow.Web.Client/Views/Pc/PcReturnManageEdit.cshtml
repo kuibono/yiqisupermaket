@@ -45,7 +45,7 @@
             mini.get("Control_EnCode").setValue(d.EnCode);
             mini.get("Control_PcForm").setValue(d.PcForm);
             mini.get("Control_dCode").setValue(d.dCode);
-            mini.get("Control_dName").setValue(d.dName);
+            //mini.get("Control_dName").setValue(d.dName);
             mini.get("Control_bCode").setValue(d.bCode);
             mini.get("Control_WhCode").setValue(d.WhCode);
             $.getJSON("/Pc/SearchPcPurchaseDetailList?PcNumber=" + d.Id, function (j) {
@@ -85,6 +85,14 @@
             //setTimeout(function () {
             //    mini.getbyName("GoodsCode", "datagrid1").focus();
             //}, 500);
+
+        }
+        function PurchasePriceChanged(e) {
+            var qty = parseInt(mini.getbyName("ReturnQty", "datagrid1").getValue());
+            var price =parseFloat(mini.getbyName("PurchasePrice", "datagrid1").getValue());
+            mini.getbyName("ReturnMoney", "datagrid1").setValue(qty * price);
+        }
+        function NontaxPurchasePriceChanged(e) {
 
         }
         $(function () {
@@ -203,7 +211,7 @@
                 <div class="ablock">
                     <label for="Control_dCode">部门编码:</label>
                     <input type="text"  value="@Model.dCode" class="mini-combobox" name="dCode" id="Control_dCode" url="/Common/GetComboData?table=sys_pa_department&valueColumn=d_code&textColumn=d_name" required="true" />
-                    <input id="control_dName" value="@Model.dName" name="dName" class="mini-hidden" />
+                    <input id="control_dName" value="" name="dName" class="mini-hidden" />
                 </div>
 
                 <div class="ablock">
@@ -273,59 +281,59 @@
                     </div>
                     <div field="GoodsCode" headeralign="center" align="center" width="60">
                         商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="GoodsBarCode" headeralign="center" align="center" width="60">
                         商品销售码
-					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="Specification" headeralign="center" align="center" width="60">
                         规格
-					<input id="filter_Specification" name="Specification" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_Specification" name="Specification" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="PackUnitCode" headeralign="center" align="center" width="60">
                         包装单位
-					<input id="filter_PackUnitCode" name="PackUnitCode" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PackUnitCode" name="PackUnitCode" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="PackQty" headeralign="center" align="center" width="60">
                         整件数量
-					<input id="filter_PackQty" name="PackQty" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PackQty" name="PackQty" property="editor" class="mini-spinner" maxValue="99999" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="PackCoef" headeralign="center" align="center" width="60">
                         包装系数
-					<input id="filter_PackCoef" name="PackCoef" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PackCoef" name="PackCoef" property="editor" class="mini-spinner" maxValue="99999" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="ReturnQty" headeralign="center" align="center" width="60">
                         单品数量
-					<input id="filter_ReturnQty" name="ReturnQty" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_ReturnQty" name="ReturnQty" property="editor" class="mini-spinner" maxValue="99999" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="SalePrice" headeralign="center" align="center" width="60">
                         销售价
-					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" decimalPlaces="2" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="PurchasePrice" headeralign="center" align="center" width="60">
                         含税进价
-					<input id="filter_PurchasePrice" name="PurchasePrice" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_PurchasePrice" name="PurchasePrice" property="editor" decimalPlaces="2" onvaluechanged="PurchasePriceChanged" class="mini-spinner" style="width: 100%;" />
                     </div>
                     <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
                         不含税进价
-					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" onvaluechanged="NontaxPurchasePriceChanged" class="mini-spinner" decimalPlaces="2"  style="width: 100%;" />
                     </div>
                     <div field="ReturnMoney" headeralign="center" align="center" width="60">
                         含税金额
-					<input id="filter_ReturnMoney" name="ReturnMoney" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_ReturnMoney" name="ReturnMoney" property="editor" decimalPlaces="2" class="mini-spinner" style="width: 100%;" />
                     </div>
                     <div field="NontaxReturnMoney" headeralign="center" align="center" width="60">
                         不含税金额
-					<input id="filter_NontaxReturnMoney" name="NontaxReturnMoney" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_NontaxReturnMoney" name="NontaxReturnMoney" property="editor" class="mini-spinner" decimalPlaces="2" style="width: 100%;" />
                     </div>
                     <div field="SaleMoney" headeralign="center" align="center" width="60">
                         售价金额
-					<input id="filter_SaleMoney" name="SaleMoney" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_SaleMoney" name="SaleMoney" property="editor" class="mini-spinner" decimalPlaces="2" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="NontaxSaleMoney" headeralign="center" align="center" width="60">
                         不含税售价金额
-					<input id="filter_NontaxSaleMoney" name="NontaxSaleMoney" property="editor" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_NontaxSaleMoney" name="NontaxSaleMoney" property="editor" class="mini-spinner" decimalPlaces="2" enabled="false" style="width: 100%;" />
                     </div>
                 </div>
             </div>
