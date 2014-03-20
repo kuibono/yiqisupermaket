@@ -975,6 +975,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = PcReturnManageService.GetById(id);
             }
+            else
+            {
+                m._state = "added";
+            }
             return View(m);
         }
         #endregion
