@@ -1617,7 +1617,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
             IList<MsMemberArchives> msCardtypeManageList = searchDtoBase.data;
 
-            return Json(msCardtypeManageList.Select(entity => new { id = entity.CardNumber, text = entity.MsName }), JsonRequestBehavior.AllowGet);
+            return Json(msCardtypeManageList.Select(entity => new { id = entity.CardNumber, text = entity.MsName, mscode = entity.Id }), JsonRequestBehavior.AllowGet);
         }
 
         #endregion
