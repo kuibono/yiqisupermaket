@@ -287,6 +287,16 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(MsCardArchivesService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetCardArchivesList()
+        {
+            var searchDtoBase = MsCardArchivesService.Search(new SearchDtoBase<MsCardArchives>() { pageSize = int.MaxValue });
+
+            IList<MsCardArchives> msCardtypeManageList = searchDtoBase.data;
+
+            return Json(msCardtypeManageList.Select(entity => new { id = entity.Id, text = entity.CardName, cardCode = entity.CardCode, surfaceNumber = entity.SurfaceNumber }), JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region 卡信息删除

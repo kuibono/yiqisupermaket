@@ -53,13 +53,39 @@
                             btnEdit.setValue(data.id);
                             btnEdit.setText(data.text);
 
-                            debugger;
                             try {
                                 window.frames[0].location.href = "/Ms/MsMemberArchivesEdit/" + data.mscode;
                             } catch (e) {
 
                             }
-                            
+                        }
+                    }
+                }
+            });
+        }
+
+        function onButtonEditCard() {
+            var btnEdit = this;
+            mini.open({
+                url: "/Common/CardArchivesSelector",
+                showMaxButton: false,
+                title: "选择卡信息",
+                width: 600,
+                height: 400,
+                ondestroy: function (action) {
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);
+                        if (data) {
+                            btnEdit.setValue(data.id);
+                            btnEdit.setText(data.id);
+
+                            // 赋值卡明码
+                            var txtSurfaceNumber = mini.get('#Control_SurfaceNumber');
+                            if (txtSurfaceNumber) {
+                                txtSurfaceNumber.setValue(data.surfaceNumber);
+                            }
                         }
                     }
                 }
@@ -83,19 +109,17 @@
             }
         }
 
-        //function memberValuechanged() {
-        //    debugger;
-        //    var memberCodeCombobox = mini.get('#Control_MsCode');
-        //    if (memberCodeCombobox) {
-        //        // 呈现会员信息...
-        //        //window.frames["mainframe"].location.href = "/Ms/MsMemberArchivesEdit/" + memberCodeCombobox.getValue();
-        //        window.frames["mainframe"].location.href = "/Ms/MsMemberArchivesEdit/13952409517554948";
-        //    }
-        //}
         $(function(){ 
-            debugger;
-            var controlPanel = $(window.frames[0].document).find("#control-panel");
-            controlPanel.css('display', 'none');
+            
+            //var controlPanel = $(window.frames[0].document).find("#control-panel");
+            //controlPanel.css('display', 'none');
+
+            //var hGoodsClassCode = mini.get('#control_hCardNumber');
+            //var GoodsCode = mini.get('#Control_CardNumber');
+            //if (hGoodsCode) {
+            //    GoodsCode.setValue(hGoodsCode.getValue());
+            //    GoodsCode.text = hGoodsCode.getValue();
+            //}
         }); 
 
     </script>
@@ -176,7 +200,10 @@
 
                 <div class="ablock">
                     <label for="Control_CardNumber">卡号:</label>
-                    <input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" required="true" />
+                    <!--<input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" required="true" />-->
+                    <input id="Control_CardNumber" name="CardNumber" class="mini-buttonedit" onbuttonclick="onButtonEditCard" allowinput="false" required="true" value="@Model.CardNumber" text="@Model.CardNumber" />
+
+                    <input id="control_hCardNumber" value="@Model.CardNumber" name="hCardNumber" class="mini-hidden" />
                 </div>
 
                 <div class="ablock">
