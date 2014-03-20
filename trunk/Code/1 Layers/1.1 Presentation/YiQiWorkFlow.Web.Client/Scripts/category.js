@@ -16,6 +16,7 @@ var c_ProfessionalTitleCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '
 var c_CardState = [{ id: -1, text: '请选择...' }, { id: 0, text: '待发' }, { id: 1, text: '正常' }, { id: 2, text: '挂失' }, { id: 3, text: '废除' }];
 var c_EnCode = [{ id: -1, text: '请选择...' }, { id: 0, text: '000001' }, { id: 1, text: '000002' }, { id: 2, text: '000003' }, { id: 3, text: '000004' }];
 var c_IfMember = [{ id: -1, text: '请选择...' }, { id: 1, text: '新会员' }, { id: 2, text: '老会员' }, { id: 2, text: '非会员' }, { id: 3, text: '000004' }];
+var c_lossType = [{ id: -1, text: '请选择...' }, { id: 1, text: '电话挂失' }, { id: 2, text: '现场挂失' }];
 function onExamRender(e) {
     if (e.value == "true" || e.value == "1") return "审核";
     else if (e.value == "false" || e.value == "0") return "未审核";
