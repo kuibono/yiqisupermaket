@@ -117,7 +117,7 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsPrepaidCardManage Initial()
         {
             MsPrepaidCardManage m = new MsPrepaidCardManage();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.TotalPrepaid=0M;
 			m.CurrentPrepaid=0M;
 			m.UsePrepaid=0M;

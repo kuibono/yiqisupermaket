@@ -141,7 +141,7 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsLossCardManage Initial()
         {
             MsLossCardManage m = new MsLossCardManage();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}

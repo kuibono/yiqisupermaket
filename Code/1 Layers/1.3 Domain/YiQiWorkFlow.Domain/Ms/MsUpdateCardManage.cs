@@ -147,7 +147,7 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsUpdateCardManage Initial()
         {
             MsUpdateCardManage m = new MsUpdateCardManage();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}

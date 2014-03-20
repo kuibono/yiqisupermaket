@@ -63,7 +63,7 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsCardtypeGoodsDiscount Initial()
         {
             MsCardtypeGoodsDiscount m = new MsCardtypeGoodsDiscount();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}

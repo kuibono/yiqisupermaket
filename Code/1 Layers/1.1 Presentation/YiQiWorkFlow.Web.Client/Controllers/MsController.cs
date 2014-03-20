@@ -435,6 +435,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult MsCardtypeGoodsDiscountEdit(string id)
         {
             MsCardtypeGoodsDiscount m = MsCardtypeGoodsDiscount.Initial();
+            
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsCardtypeGoodsDiscountService.GetById(id);

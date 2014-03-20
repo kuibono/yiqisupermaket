@@ -75,7 +75,7 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsGiftArchives Initial()
         {
             MsGiftArchives m = new MsGiftArchives();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.ExchangePoints=0M;
             return m;
         }
