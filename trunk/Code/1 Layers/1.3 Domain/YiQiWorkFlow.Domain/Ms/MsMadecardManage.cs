@@ -111,7 +111,7 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsMadecardManage Initial()
         {
             MsMadecardManage m = new MsMadecardManage();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.IfExamine="0";
             return m;
         }

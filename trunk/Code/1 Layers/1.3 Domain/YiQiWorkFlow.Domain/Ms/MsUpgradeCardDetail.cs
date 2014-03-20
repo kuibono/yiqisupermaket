@@ -105,7 +105,7 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsUpgradeCardDetail Initial()
         {
             MsUpgradeCardDetail m = new MsUpgradeCardDetail();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.TotalPoints=0M;
 			m.ExchangePoints=0M;
 			m.CurrentPoints=0M;

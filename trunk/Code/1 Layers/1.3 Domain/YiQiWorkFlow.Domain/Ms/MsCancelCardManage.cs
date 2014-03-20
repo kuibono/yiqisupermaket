@@ -129,7 +129,7 @@ namespace YiQiWorkFlow.Domain.Ms
         public static MsCancelCardManage Initial()
         {
             MsCancelCardManage m = new MsCancelCardManage();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}
