@@ -118,16 +118,16 @@
             obj.setValue("");
         }
 
-        function valuechanged() {
-            var cardTypeCombobox = mini.get('#Control_CardCode');
-            var cardTypeCode = cardTypeCombobox.getText();
-            var cardNameText = mini.get('#Control_CardName');
-            if (cardTypeCode) {
-                cardNameText.setValue(cardTypeCode);
-            } else {
-                cardNameText.setText("");
-            }
-        }
+        //function valuechanged() {
+        //    var cardTypeCombobox = mini.get('#Control_CardCode');
+        //    var cardTypeCode = cardTypeCombobox.getText();
+        //    var cardNameText = mini.get('#Control_CardName');
+        //    if (cardTypeCode) {
+        //        cardNameText.setValue(cardTypeCode);
+        //    } else {
+        //        cardNameText.setText("");
+        //    }
+        //}
 
         $(function(){ 
             
@@ -242,13 +242,14 @@
 
                 <div class="ablock">
                     <label for="Control_CardCode">卡类型编码:</label>
-                    <div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="CardName" valuefield="Id"
+                    <!--<div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="CardName" valuefield="Id"
                         url="/Ms/GetMsCardtypeManageList" showclose="true" oncloseclick="onCloseClick" onvaluechanged="valuechanged" emptytext="请选择..." required="true" value="@Model.CardCode">
                         <div property="columns">
                             <div header="卡类型编码" field="Id"></div>
                             <div header="卡类型名称" field="CardName"></div>
                         </div>
-                    </div>
+                    </div>-->
+                    <input type="text"  value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20"required="true" />
                 </div>
 
                 <div class="ablock">
