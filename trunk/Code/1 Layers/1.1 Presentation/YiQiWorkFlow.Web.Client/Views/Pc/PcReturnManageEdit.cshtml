@@ -14,7 +14,7 @@
             var grid = mini.get("datagrid1");
             grid.commitEdit();
             var goods = grid.getChanges();
-            o["goods"] = goods;
+            o["goods"] = mini.encode(goods);
             $.ajax({
                 url: "/Pc/SavePcReturnManage",
                 type: 'post',
@@ -23,7 +23,7 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        closeWithNoValidate();
+                        location.href="/Pc/PcReturnManageList/";
                     } else {
                         $("#Tooltip_Critical_PcReturnManage .content").first().text(r.Message);
                         $("#Tooltip_Critical_PcReturnManage").show("fast");
@@ -200,6 +200,9 @@
 
                     }
                 });
+            });
+            $("#btnSearch").click(function(){
+                location.href="/Pc/PcReturnManageList/";
             });
         });
     </script>
