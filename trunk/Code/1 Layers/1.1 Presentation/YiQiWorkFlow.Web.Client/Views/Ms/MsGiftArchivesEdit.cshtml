@@ -60,6 +60,33 @@
                 }
             });
         }
+
+        function onButtonEditWarehouse(e) {
+            var btnEdit = this;
+            mini.open({
+                url: "/Common/WarehouseSelector",
+                showMaxButton: false,
+                title: "选择仓库",
+                width: 600,
+                height: 400,
+                ondestroy: function (action) {
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);
+                        if (data) {
+                            for (var i = 0; i < data.length; i++) {
+
+                                btnEdit.setValue(data[0].id);
+                                btnEdit.setText(data[0].text);
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -150,7 +177,8 @@
 
                 <div class="ablock">
                     <label for="Control_WhCode">仓库编码:</label>
-                    <input type="text" value="@Model.WhCode" class="mini-textbox" name="WhCode" id="Control_WhCode" vtype="maxLength:20" />
+
+                    <input id="Control_WhCode" name="WhCode" class="mini-buttonedit" onbuttonclick="onButtonEditWarehouse" allowinput="false" required="true" value="@Model.WhCode" text="@Model.WhCode" />
                 </div>
 
                 <div class="ablock">
