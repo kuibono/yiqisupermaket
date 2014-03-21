@@ -27,7 +27,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             var gs = FbPaGoodsGsService.GetAll();
             var gl = FbPaGoodsGlService.GetAll();
 
-            var tGb = gb.Select(p => new
+            var tGb = gb.Where(p => p.GbCode != "01").Select(p => new
             {
                 id = p.GbCode,
                 text = p.GbName,

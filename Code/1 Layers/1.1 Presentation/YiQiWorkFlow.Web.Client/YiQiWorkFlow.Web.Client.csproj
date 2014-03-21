@@ -1555,6 +1555,7 @@
     <Content Include="Views\Fb\FbAdjustGoodsCode.cshtml" />
     <Content Include="Views\Fb\FbGoodsArchiveSearch.cshtml" />
     <Content Include="Views\Fb\FbAdjustGoodsPropty.cshtml" />
+    <Content Include="Views\Common\EnterpriseArchivesSelector.cshtml" />
     <None Include="Views\Home\Index.cshtml.bak" />
     <Content Include="Views\Pc\PcPurchaseManageGoodsEdit.cshtml" />
     <Content Include="Views\Pc\PcPutinManageBatchEdit.cshtml" />
