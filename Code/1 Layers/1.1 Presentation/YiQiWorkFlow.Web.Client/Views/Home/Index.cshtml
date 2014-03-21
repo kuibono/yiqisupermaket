@@ -83,7 +83,8 @@
             if (iscurrnt) {
                 $("#tabs li:last").attr("id", "current");
                 $("#content div:last").fadeIn();
-                $("#content div:last iframe")[0].contentWindow.search();
+                //$("#content div:last iframe")[0].contentWindow.search();
+                $("#content div:last iframe")[0]["contentWindow"].search();
             }
         }
         function openInTab(name, text, url) {
