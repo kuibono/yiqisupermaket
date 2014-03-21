@@ -112,6 +112,32 @@
             });
         }
 
+        function onButtonEditEnterprise() {
+            var btnEdit = this;
+            mini.open({
+                url: "/Common/EnterpriseArchivesSelector",
+                showMaxButton: false,
+                title: "选择企业信息",
+                width: 600,
+                height: 400,
+                ondestroy: function (action) {
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);
+                        if (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                btnEdit.setValue(data[i].id);
+                                btnEdit.setText(data[i].text);
+
+                                break;
+                            };
+                        }
+                    }
+                }
+            });
+        }
+
         //function onCloseClick(e) {
         //    var obj = e.sender;
         //    obj.setText("");
@@ -129,8 +155,8 @@
         //    }
         //}
 
-        $(function(){ 
-            
+        $(function () {
+
             //var controlPanel = $(window.frames[0].document).find("#control-panel");
             //controlPanel.css('display', 'none');
 
@@ -140,7 +166,7 @@
             //    GoodsCode.setValue(hGoodsCode.getValue());
             //    GoodsCode.text = hGoodsCode.getValue();
             //}
-        }); 
+        });
 
     </script>
 </head>
@@ -210,7 +236,8 @@
 
                 <div class="ablock">
                     <label for="Control_EnCode">企业编码:</label>
-                    <input type="text" value="@Model.EnCode" class="mini-combobox" name="EnCode" id="Control_EnCode" data="c_EnCode" vtype="maxLength:20" required="true" />
+
+                    <input id="Control_EnCode" name="Control_EnCode" class="mini-buttonedit" onbuttonclick="onButtonEditEnterprise" allowinput="false" required="true" value="@Model.EnCode" text="@Model.EnCode" required="true" />
                 </div>
 
                 <div class="ablock">
@@ -249,7 +276,7 @@
                             <div header="卡类型名称" field="CardName"></div>
                         </div>
                     </div>-->
-                    <input type="text"  value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20"required="true" />
+                    <input type="text" value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20" required="true" />
                 </div>
 
                 <div class="ablock">

@@ -103,7 +103,7 @@
 
                 <div class="ablock">
                     <label for="Control_CardName">卡类型名称:</label>
-                    <input type="text" value="@Model.CardName" class="mini-textbox" name="CardName" id="Control_CardName" vtype="maxLength:20" />
+                    <input type="text" value="@Model.CardName" class="mini-textbox" name="CardName" id="Control_CardName" vtype="maxLength:20" required="true" />
                 </div>
 
                 <div class="ablock">
@@ -118,12 +118,12 @@
 
                 <div class="ablock">
                     <label for="Control_CardUsefulLife">卡有效期:</label>
-                    <input type="text" id="Control_CardUsefulLife" name="CardUsefulLife" value="@Model.CardUsefulLife" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
+                    <input type="text" id="Control_CardUsefulLife" name="CardUsefulLife" value="@Model.CardUsefulLife" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" required="true" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_PointsUsefulLife">积分有效期:</label>
-                    <input type="text" id="Control_PointsUsefulLife" name="PointsUsefulLife" value="@Model.PointsUsefulLife" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
+                    <input type="text" id="Control_PointsUsefulLife" name="PointsUsefulLife" value="@Model.PointsUsefulLife" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" required="true" />
                 </div>
 
                 <div class="ablock">
@@ -153,7 +153,7 @@
 
                 <div class="ablock">
                     <label for="Control_DiscountRate">折扣率:</label>
-                    <input type="text" id="Control_DiscountRate" name="DiscountRate" value="@Model.DiscountRate" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="4" />
+                    <input type="text" id="Control_DiscountRate" name="DiscountRate" value="@Model.DiscountRate" class="mini-spinner" minvalue="0.10" maxvalue="1.00" decimalplaces="2" increment="0.1"  />
                 </div>
 
                 <div class="ablock">

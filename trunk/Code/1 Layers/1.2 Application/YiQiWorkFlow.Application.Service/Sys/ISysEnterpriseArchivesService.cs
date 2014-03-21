@@ -30,14 +30,12 @@ namespace YiQiWorkFlow.Application.Service.Sys
         /// <param name="entitys"></param>
         void Delete(IEnumerable<SysEnterpriseArchives> entitys);
 
-
         SearchResult<SysEnterpriseArchives> Search(SearchDtoBase<SysEnterpriseArchives> c);
-		
-		IList<SysEnterpriseArchives> Search(string key, int pageSize = 20, int pageIndex = 1);
+
+        IList<SysEnterpriseArchives> Search(string key, int pageSize = 20, int pageIndex = 1);
 
         void Delete(IList<string> ids);
+
+        string GenerateEnterpriseCode();
     }
 }
-
-
-

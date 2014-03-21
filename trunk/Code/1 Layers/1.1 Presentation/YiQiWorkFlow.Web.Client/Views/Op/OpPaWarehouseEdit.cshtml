@@ -100,7 +100,7 @@
 
             <div class="ablock">
                 <label for="Control_WhName">仓库名称:</label>
-                <input type="text"  value="@Model.WhName" class="mini-textbox" name="WhName" id="Control_WhName" vtype="maxLength:20" />
+                <input type="text"  value="@Model.WhName" class="mini-textbox" name="WhName" id="Control_WhName" vtype="maxLength:20" required="true" />
             </div>
 
             <div class="ablock">
@@ -110,7 +110,7 @@
 
             <div class="ablock">
                 <label for="Control_IfMainWh">是否主仓库:</label>
-                <div id="Control_IfMainWh" name="IfMainWh" value="1" class="mini-checkbox" checked="true" readOnly="false" text="主仓库"></div>
+                <div id="Control_IfMainWh" name="IfMainWh" value="1" class="mini-checkbox" checked="true" readOnly="false" tureValue="1" falseValue="0" text="主仓库"></div>
             </div>
 
             <div class="ablock" style="display:none">

@@ -95,12 +95,12 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_EnCode">企业编码:</label>
-                <input type="text"  value="@Model.EnCode" class="mini-textbox" name="EnCode" id="Control_EnCode" vtype="maxLength:20" />
+                <input type="text"  value="@Model.EnCode" class="mini-textbox" name="EnCode" id="Control_EnCode" vtype="maxLength:20" readonly="readonly" />
             </div>
 
             <div class="ablock">
                 <label for="Control_EnName">企业名称:</label>
-                <input type="text"  value="@Model.EnName" class="mini-textbox" name="EnName" id="Control_EnName" vtype="maxLength:50" />
+                <input type="text"  value="@Model.EnName" class="mini-textbox" name="EnName" id="Control_EnName" vtype="maxLength:50" required="true" />
             </div>
 
             <div class="ablock">
@@ -115,7 +115,7 @@
 
             <div class="ablock">
                 <label for="Control_EnCharacter">企业性质:</label>
-                <input type="text"  value="@Model.EnCharacter" class="mini-textbox" name="EnCharacter" id="Control_EnCharacter" vtype="maxLength:50" />
+                <input type="text"  value="@Model.EnCharacter" class="mini-combobox" name="EnCharacter" id="Control_EnCharacter" data="c_EnCharacter" vtype="maxLength:50" required="true" />
             </div>
 
             <div class="ablock">
@@ -135,7 +135,7 @@
 
             <div class="ablock">
                 <label for="Control_LastVersion">最后更新版本:</label>
-                <input type="text"  value="@Model.LastVersion" class="mini-textbox" name="LastVersion" id="Control_LastVersion" vtype="maxLength:20" />
+                <input type="text"  value="@Model.LastVersion" class="mini-textbox" name="LastVersion" id="Control_LastVersion" vtype="maxLength:20" readonly="readonly" />
             </div>
 
             <div class="ablock" style="display:none">

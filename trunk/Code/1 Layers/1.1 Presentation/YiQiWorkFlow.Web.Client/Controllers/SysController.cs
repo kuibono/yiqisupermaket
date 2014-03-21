@@ -13,7 +13,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 {
     public class SysController : Controller
     {
-
         #region 类别权限设置
         public ISysClassPowerService SysClassPowerService { get; set; }
         #region 类别权限设置编辑页面
@@ -219,6 +218,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = SysEnterpriseArchivesService.GetById(id);
             }
+            else
+            {
+                m.EnCode = SysEnterpriseArchivesService.GenerateEnterpriseCode();
+                m.LastVersion = "1";
+                m.CurrentVersion = "1";
+            }
             return View(m);
         }
         #endregion
@@ -279,6 +284,16 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(SysEnterpriseArchivesService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetSysEnterpriseArchivesLis()
+        {
+            var searchDtoBase = SysEnterpriseArchivesService.Search(new SearchDtoBase<SysEnterpriseArchives>() { pageSize = int.MaxValue });
+
+            IList<SysEnterpriseArchives> sysEnterpriseArchivesList = searchDtoBase.data;
+
+            return Json(sysEnterpriseArchivesList.Select(entity => new { id = entity.EnCode, text = entity.EnName, enType = entity.EnType, enCharacter = entity.EnCharacter }), JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region 企业设置删除
@@ -1440,8 +1455,3 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion  人员权限
     }
 }
-
-
-
-
-
