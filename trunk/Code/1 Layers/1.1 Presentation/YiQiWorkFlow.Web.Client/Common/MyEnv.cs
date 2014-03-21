@@ -100,7 +100,11 @@ namespace YiQiWorkFlow.Web.Client.Common
             string connStr = cfgName["db.connectionString"].ToString();
             return new SqlHelper(connStr);
         }
-
+        public static string GetConnectionString()
+        {
+            NameValueCollection cfgName = (NameValueCollection)ConfigurationSettings.GetConfig("databaseSettings"); ;
+            return cfgName["db.connectionString"].ToString();
+        }
         #endregion
 
 

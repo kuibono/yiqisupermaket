@@ -562,6 +562,21 @@
     <Compile Include="Basement\pc_return_manage.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Basement\Report.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Report.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Basement\Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Report.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Basement\Report.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Report.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Basement\rt_class_promotion.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -668,6 +683,15 @@
     </Compile>
     <Compile Include="Basement\sys_print_design.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Basement\Sys_Report.cs">
+      <DependentUpon>Report.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Basement\Sys_Report_Column.cs">
+      <DependentUpon>Report.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Basement\Sys_Report_Marks.cs">
+      <DependentUpon>Report.tt</DependentUpon>
     </Compile>
     <Compile Include="Basement\sys_SerialNumber.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -952,6 +976,7 @@
     <Compile Include="Sys\SysOperationWorker.cs" />
     <Compile Include="Sys\SysPaDepartment.cs" />
     <Compile Include="Sys\SysPrintDesign.cs" />
+    <Compile Include="Sys\SysSerialnumber.cs" />
     <Compile Include="Sys\SysWorkerPower.cs" />
     <Compile Include="Tf\TfDataDownload.cs" />
     <Compile Include="Tf\TfDataObject.cs" />
@@ -1015,6 +1040,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="Basement\Report.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Report.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Basement\Report.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Report.edmx</DependentUpon>
+      <LastGenOutput>Report.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Basement\Report.edmx.diagram">
+      <DependentUpon>Report.edmx</DependentUpon>
+    </None>
+    <None Include="Basement\Report.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Report.edmx</DependentUpon>
+      <LastGenOutput>Report.cs</LastGenOutput>
     </None>
     <None Include="EF.edmx.diagram">
       <DependentUpon>EF.edmx</DependentUpon>
@@ -1255,6 +1297,9 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="hbm\Sys\SysSerialnumber.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

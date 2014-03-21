@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ReportModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ReportModelStoreContainer">
+          <EntitySet Name="Sys_Report" EntityType="ReportModel.Store.Sys_Report" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sys_Report_Column" EntityType="ReportModel.Store.Sys_Report_Column" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sys_Report_Marks" EntityType="ReportModel.Store.Sys_Report_Marks" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Sys_Report_Column_Sys_Report" Association="ReportModel.Store.FK_Sys_Report_Column_Sys_Report">
+            <End Role="Sys_Report" EntitySet="Sys_Report" />
+            <End Role="Sys_Report_Column" EntitySet="Sys_Report_Column" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sys_Report_Marks_Sys_Report" Association="ReportModel.Store.FK_Sys_Report_Marks_Sys_Report">
+            <End Role="Sys_Report" EntitySet="Sys_Report" />
+            <End Role="Sys_Report_Marks" EntitySet="Sys_Report_Marks" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Sys_Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubTableName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataUrl" Type="nvarchar" MaxLength="1000" />
+          <Property Name="OutKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="Header1" Type="nvarchar(max)" />
+          <Property Name="Header2" Type="nvarchar(max)" />
+          <Property Name="Header3" Type="nvarchar(max)" />
+          <Property Name="Footer1" Type="nvarchar(max)" />
+          <Property Name="Footer2" Type="nvarchar(max)" />
+          <Property Name="Footer3" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sys_Report_Column">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ReportId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Visible" Type="bit" />
+          <Property Name="Ord" Type="int" />
+        </EntityType>
+        <EntityType Name="Sys_Report_Marks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ReportId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="DataType" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_Sys_Report_Column_Sys_Report">
+          <End Role="Sys_Report" Type="ReportModel.Store.Sys_Report" Multiplicity="1" />
+          <End Role="Sys_Report_Column" Type="ReportModel.Store.Sys_Report_Column" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sys_Report">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sys_Report_Column">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sys_Report_Marks_Sys_Report">
+          <End Role="Sys_Report" Type="ReportModel.Store.Sys_Report" Multiplicity="1" />
+          <End Role="Sys_Report_Marks" Type="ReportModel.Store.Sys_Report_Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sys_Report">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sys_Report_Marks">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ReportModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="YiQiEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Sys_Report" EntityType="ReportModel.Sys_Report" />
+          <EntitySet Name="Sys_Report_Column" EntityType="ReportModel.Sys_Report_Column" />
+          <EntitySet Name="Sys_Report_Marks" EntityType="ReportModel.Sys_Report_Marks" />
+          <AssociationSet Name="FK_Sys_Report_Column_Sys_Report" Association="ReportModel.FK_Sys_Report_Column_Sys_Report">
+            <End Role="Sys_Report" EntitySet="Sys_Report" />
+            <End Role="Sys_Report_Column" EntitySet="Sys_Report_Column" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sys_Report_Marks_Sys_Report" Association="ReportModel.FK_Sys_Report_Marks_Sys_Report">
+            <End Role="Sys_Report" EntitySet="Sys_Report" />
+            <End Role="Sys_Report_Marks" EntitySet="Sys_Report_Marks" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Sys_Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="TableName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SubTableName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DataUrl" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="OutKey" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Header1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Header2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Header3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Footer1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Footer2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Footer3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Sys_Report_Column" Relationship="ReportModel.FK_Sys_Report_Column_Sys_Report" FromRole="Sys_Report" ToRole="Sys_Report_Column" />
+          <NavigationProperty Name="Sys_Report_Marks" Relationship="ReportModel.FK_Sys_Report_Marks_Sys_Report" FromRole="Sys_Report" ToRole="Sys_Report_Marks" />
+        </EntityType>
+        <EntityType Name="Sys_Report_Column">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Visible" Type="Boolean" />
+          <Property Name="Ord" Type="Int32" />
+          <NavigationProperty Name="Sys_Report" Relationship="ReportModel.FK_Sys_Report_Column_Sys_Report" FromRole="Sys_Report_Column" ToRole="Sys_Report" />
+        </EntityType>
+        <EntityType Name="Sys_Report_Marks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="DataType" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Sys_Report" Relationship="ReportModel.FK_Sys_Report_Marks_Sys_Report" FromRole="Sys_Report_Marks" ToRole="Sys_Report" />
+        </EntityType>
+        <Association Name="FK_Sys_Report_Column_Sys_Report">
+          <End Role="Sys_Report" Type="ReportModel.Sys_Report" Multiplicity="1" />
+          <End Role="Sys_Report_Column" Type="ReportModel.Sys_Report_Column" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sys_Report">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sys_Report_Column">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sys_Report_Marks_Sys_Report">
+          <End Role="Sys_Report" Type="ReportModel.Sys_Report" Multiplicity="1" />
+          <End Role="Sys_Report_Marks" Type="ReportModel.Sys_Report_Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sys_Report">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sys_Report_Marks">
+              <PropertyRef Name="ReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ReportModelStoreContainer" CdmEntityContainer="YiQiEntities5">
+          <EntitySetMapping Name="Sys_Report">
+            <EntityTypeMapping TypeName="ReportModel.Sys_Report">
+              <MappingFragment StoreEntitySet="Sys_Report">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="SubTableName" ColumnName="SubTableName" />
+                <ScalarProperty Name="DataUrl" ColumnName="DataUrl" />
+                <ScalarProperty Name="OutKey" ColumnName="OutKey" />
+                <ScalarProperty Name="Header1" ColumnName="Header1" />
+                <ScalarProperty Name="Header2" ColumnName="Header2" />
+                <ScalarProperty Name="Header3" ColumnName="Header3" />
+                <ScalarProperty Name="Footer1" ColumnName="Footer1" />
+                <ScalarProperty Name="Footer2" ColumnName="Footer2" />
+                <ScalarProperty Name="Footer3" ColumnName="Footer3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_Report_Column">
+            <EntityTypeMapping TypeName="ReportModel.Sys_Report_Column">
+              <MappingFragment StoreEntitySet="Sys_Report_Column">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+                <ScalarProperty Name="Ord" ColumnName="Ord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sys_Report_Marks">
+            <EntityTypeMapping TypeName="ReportModel.Sys_Report_Marks">
+              <MappingFragment StoreEntitySet="Sys_Report_Marks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
