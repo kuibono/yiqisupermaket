@@ -6,14 +6,14 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "商品返货单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = "@Model.Id"; pageName = "PcReturnManageEdit";var isNew=@Model.IsAdded; </script>
+    <script type="text/javascript"> var pageTitle = "商品返货单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = "@Model.Id"; pageName = "PcReturnManageEdit";var isNew=@Model.IsAdded.ToS().ToLower(); </script>
     <script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData();
             var grid = mini.get("datagrid1");
-            grid1.commitEdit();
-            var goods = grid1.getChanges();
+            grid.commitEdit();
+            var goods = grid.getChanges();
             o["goods"] = goods;
             $.ajax({
                 url: "/Pc/SavePcReturnManage",
