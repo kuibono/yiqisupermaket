@@ -19,6 +19,10 @@ namespace YiQiWorkFlow.Domain.Basement
             : base("name=YiQiEntities5")
         {
         }
+        public YiQiEntities5(string connectionString):base(connectionString)
+        {
+
+        }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

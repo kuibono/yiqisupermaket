@@ -1466,7 +1466,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
 
 
-                YiQiWorkFlow.Domain.Basement.YiQiEntities5 e = new YiQiWorkFlow.Domain.Basement.YiQiEntities5();
+                YiQiWorkFlow.Domain.Basement.YiQiEntities5 e = new YiQiWorkFlow.Domain.Basement.YiQiEntities5(MyEnv.GetConnectionString());
 
                 var report = (from l in e.Sys_Report where l.Id == id.Value select l).First();
 
