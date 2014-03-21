@@ -1894,6 +1894,16 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(OpPaWarehouseService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetOpPaWarehouseList()
+        {
+            var searchDtoBase = OpPaWarehouseService.Search(new SearchDtoBase<OpPaWarehouse>() { pageSize = int.MaxValue });
+
+            IList<OpPaWarehouse> opPaWarehouseList = searchDtoBase.data;
+
+            return Json(opPaWarehouseList.Select(entity => new { id = entity.WhCode, text = entity }), JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region 仓库参数维护删除

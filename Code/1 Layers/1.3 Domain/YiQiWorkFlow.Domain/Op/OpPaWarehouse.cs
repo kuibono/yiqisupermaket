@@ -51,7 +51,7 @@ namespace YiQiWorkFlow.Domain.Op
         public static OpPaWarehouse Initial()
         {
             OpPaWarehouse m = new OpPaWarehouse();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
 			m.WhArea=0M;
 			m.IfMainWh="0";
             return m;

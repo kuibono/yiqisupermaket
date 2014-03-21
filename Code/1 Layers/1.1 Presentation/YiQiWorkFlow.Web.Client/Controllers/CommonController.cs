@@ -30,6 +30,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return View();
         }
 
+        public ActionResult WarehouseSelector()
+        {
+            return View();
+        }
+
         public ActionResult MemberArchivesSelector() { return View(); }
 
         public ActionResult CardArchivesSelector() { return View(); }
