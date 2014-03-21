@@ -1043,6 +1043,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult PcReturnManageEdit(string id)
         {
             PcReturnManage m = PcReturnManage.Initial();
+            m.Id = "";
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = PcReturnManageService.GetById(id);
