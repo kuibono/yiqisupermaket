@@ -35,6 +35,31 @@
                 }
             });
         }
+
+        function onButtonEdit(e) {
+            var btnEdit = this;
+            mini.open({
+                url: "/Common/GoodsSelector",
+                showMaxButton: false,
+                title: "选择商品",
+                width: 600,
+                height: 400,
+                ondestroy: function (action) {
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);
+                        if (data) {
+                            btnEdit.setValue(data.id);
+                            btnEdit.setText(data.id);
+
+                            var txtGoodsName = mini.get('#Control_GoodsName');
+                            txtGoodsName.setValue(data.text);
+                        }
+                    }
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -98,17 +123,19 @@
                 <legend>基本信息</legend>
                 <div class="ablock">
                     <label for="Control_GoodsCode">商品编码:</label>
-                    <input type="text" value="@Model.GoodsCode" class="mini-textbox" name="GoodsCode" id="Control_GoodsCode" vtype="maxLength:20" required="true" />
+                    <input id="Control_GoodsCode" name="GoodsCode" class="mini-buttonedit" onbuttonclick="onButtonEdit" allowinput="false" required="true" value="@Model.GoodsCode" text="@Model.GoodsCode" />
+
+                    <input id="control_hGoodsCode" value="@Model.GoodsCode" name="hGoodsCode" class="mini-hidden" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_GoodsName">商品名称:</label>
-                    <input type="text" value="@Model.GoodsName" class="mini-textbox" name="GoodsName" id="Control_GoodsName" vtype="maxLength:50" required="true" />
+                    <input type="text" value="@Model.GoodsName" class="mini-textbox" id="Control_GoodsName" name="GoodsName" vtype="maxLength:20" readonly="readonly" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_ExchangePoints">兑换积分:</label>
-                    <input type="text" id="Control_ExchangePoints" name="ExchangePoints" value="@Model.ExchangePoints" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_ExchangePoints" name="ExchangePoints" value="@Model.ExchangePoints" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" required="true" />
                 </div>
 
                 <div class="ablock">
