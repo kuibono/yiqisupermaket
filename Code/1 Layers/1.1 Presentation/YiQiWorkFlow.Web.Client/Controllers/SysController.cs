@@ -8,6 +8,9 @@ using System.Web.Mvc;
 using YiQiWorkFlow.Application.Service.Sys;
 using YiQiWorkFlow.Domain.Sys;
 using YiQiWorkFlow.Domain.Basement;
+using YiQiWorkFlow.Web.Client.Common;
+using System.Data.Entity;
+using System.Data.Linq;
 
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
@@ -1453,5 +1456,34 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         }
         #endregion
         #endregion  人员权限
+
+        #region  打印模板设置
+
+        public ActionResult PrintSetting(int? id)
+        {
+
+            if (id.HasValue && id.Value > 0)
+            {
+
+
+                YiQiWorkFlow.Domain.Basement.YiQiEntities5 e = new YiQiWorkFlow.Domain.Basement.YiQiEntities5();
+
+                var report = (from l in e.Sys_Report where l.Id == id.Value select l).First();
+
+                var marks = (from l in e.Sys_Report_Marks where l.ReportId == id.Value select l).ToList();
+
+                var columns = (from l in e.Sys_Report_Column where l.ReportId == id.Value select l).ToList();
+
+                ViewBag.marks = marks;
+                ViewBag.columns = columns;
+                return View(report);
+            }
+            ViewBag.marks = new List<Sys_Report_Marks>();
+            ViewBag.columns = new List<Sys_Report_Column>();
+            return View(new Sys_Report());
+        }
+
+
+        #endregion
     }
 }
