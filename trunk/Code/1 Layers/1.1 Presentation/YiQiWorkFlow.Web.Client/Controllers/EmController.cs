@@ -13,7 +13,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 {
     public class EmController : Controller
     {
-
         #region 人员档案
         public IEmEmployeeArchivesService EmEmployeeArchivesService { get; set; }
         #region 人员档案编辑页面
@@ -63,7 +62,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                
+
                 if (m.HaveId)
                 {
                     EmEmployeeArchivesService.Update(m);
@@ -376,6 +375,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(EmPaDutyService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetEmPaDutyList()
+        {
+            var searchDtoBase = EmPaDutyService.Search(new SearchDtoBase<EmPaDuty>() { pageSize = int.MaxValue });
+
+            IList<EmPaDuty> msCardtypeManageList = searchDtoBase.data;
+
+            return Json(msCardtypeManageList.Select(entity => new { id = entity.DutyCode, text = entity.DutyName}), JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region 职务编码表删除
@@ -398,7 +406,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 list.Add(sid[i]);
             }
             EmPaDutyService.Delete(list);
-           // EmPaDutyService.Delete(ids);
+            // EmPaDutyService.Delete(ids);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -479,6 +487,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(EmPaEducationService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetEmPaEducationList()
+        {
+            var searchDtoBase = EmPaEducationService.Search(new SearchDtoBase<EmPaEducation>() { pageSize = int.MaxValue });
+
+            IList<EmPaEducation> emPaEducationList = searchDtoBase.data;
+
+            return Json(emPaEducationList.Select(entity => new { id = entity.EducationCode, text = entity.EducationName }), JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region 学历编码表删除
@@ -499,7 +516,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             List<String> list = new List<string>();
             for (int i = 0, l = sid.Length; i < l; i++)
             {
-                list.Add(sid[i]); 
+                list.Add(sid[i]);
             }
             EmPaEducationService.Delete(list);
 
@@ -518,7 +535,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult EmPaNationEdit(string id)
         {
-            EmPaNation m = new  EmPaNation();
+            EmPaNation m = new EmPaNation();
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = EmPaNationService.GetById(id);
@@ -583,6 +600,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(EmPaNationService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetEmPaNationList()
+        {
+            var searchDtoBase = EmPaNationService.Search(new SearchDtoBase<EmPaNation>() { pageSize = int.MaxValue });
+
+            IList<EmPaNation> emPaPoliticsList = searchDtoBase.data;
+
+            return Json(emPaPoliticsList.Select(entity => new { id = entity.NationCode, text = entity.NationName }), JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region 民族编码表删除
@@ -605,7 +631,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 list.Add(sid[i]);
             }
             EmPaNationService.Delete(list);
-           // EmPaNationService.Delete(ids);
+            // EmPaNationService.Delete(ids);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -686,6 +712,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(EmPaPoliticsService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetEmPaPoliticsList()
+        {
+            var searchDtoBase = EmPaPoliticsService.Search(new SearchDtoBase<EmPaPolitics>() { pageSize = int.MaxValue });
+
+            IList<EmPaPolitics> emPaPoliticsList = searchDtoBase.data;
+
+            return Json(emPaPoliticsList.Select(entity => new { id = entity.PoliticsCode, text = entity.PoliticsName }), JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region 政治面貌编码表删除
@@ -708,7 +743,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 list.Add(sid[i]);
             }
             EmPaPoliticsService.Delete(list);
-           // EmPaPoliticsService.Delete(ids);
+            // EmPaPoliticsService.Delete(ids);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -789,6 +824,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(EmPaProfessionalTitleService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetEmPaProfessionalTitleList()
+        {
+            var searchDtoBase = EmPaProfessionalTitleService.Search(new SearchDtoBase<EmPaProfessionalTitle>() { pageSize = int.MaxValue });
+
+            IList<EmPaProfessionalTitle> emPaProfessionalTitleList = searchDtoBase.data;
+
+            return Json(emPaProfessionalTitleList.Select(entity => new { id = entity.ProfessionalTitleCode, text = entity.ProfessionalTitleName }), JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region 职称编码表删除
@@ -811,15 +855,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 list.Add(sid[i]);
             }
             EmPaProfessionalTitleService.Delete(list);
-           // EmPaProfessionalTitleService.Delete(ids);
+            // EmPaProfessionalTitleService.Delete(ids);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
         #endregion  职称编码表
     }
 }
-
-
-
-
-

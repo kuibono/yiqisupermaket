@@ -39,7 +39,7 @@ namespace YiQiWorkFlow.Domain.Em
         public static EmPaEducation Initial()
         {
             EmPaEducation m = new EmPaEducation();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}

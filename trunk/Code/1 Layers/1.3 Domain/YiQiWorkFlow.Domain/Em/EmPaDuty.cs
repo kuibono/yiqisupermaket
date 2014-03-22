@@ -39,11 +39,8 @@ namespace YiQiWorkFlow.Domain.Em
         public static EmPaDuty Initial()
         {
             EmPaDuty m = new EmPaDuty();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}
-	 
 }
-
-
