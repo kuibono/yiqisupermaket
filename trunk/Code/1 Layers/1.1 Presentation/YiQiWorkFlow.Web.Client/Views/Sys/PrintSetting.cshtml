@@ -214,8 +214,6 @@
                 <td>
                     <ul id="header3" class="input-container">
                         @Model.Header3
-                        <li>时间：2014年3月19日14:49:20<em class="close"></em></li>
-                        <li>时间：2014年3月19日14:49:20<em class="close"></em></li>
                     </ul>
                 </td>
             </tr>
@@ -227,7 +225,16 @@
                         foreach (var c in ViewBag.columns as List<YiQiWorkFlow.Domain.Basement.Sys_Report_Column>)
                         {
                             <th>
-                                @c.Title<input name="@c.Name" type="checkbox" />
+                                @c.Title
+                                @{
+                            if (c.Visible == true)
+                            {
+                                <input name="@c.Name" type="checkbox" checked="checked" />
+                            }else{
+                                <input name="@c.Name" type="checkbox"  />
+                            }
+                                    }
+                                
                             </th>
                         }
                     }
@@ -267,7 +274,7 @@
             </tr>
         </table>
 
-        <div>
+        <div style="position:fixed; text-align:center; bottom:0px; left:0px; width:100%; background-color:#EEE;">
             <input value="保存" type="button" onclick="Save()" />
         </div>
     </div>

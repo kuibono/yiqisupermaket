@@ -837,11 +837,6 @@
     <Compile Include="Bs\BsSupplyPromotion.cs" />
     <Compile Include="Bs\BsSupplyPromotionBranch.cs" />
     <Compile Include="Bs\BsSupplyPromotionGoods.cs" />
-    <Compile Include="EF.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EF.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Em\EmEmployeeArchives.cs" />
     <Compile Include="Em\EmEmployeeFamily.cs" />
     <Compile Include="Em\EmEmployeePhoto.cs" />
@@ -1020,10 +1015,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <EmbeddedResource Include="hbm\Ms\MsAdjustPointshbm.xml" />
-    <EntityDeploy Include="EF.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EF.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <EntityDeploy Include="Basement\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -1057,9 +1048,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Report.edmx</DependentUpon>
       <LastGenOutput>Report.cs</LastGenOutput>
-    </None>
-    <None Include="EF.edmx.diagram">
-      <DependentUpon>EF.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

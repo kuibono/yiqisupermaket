@@ -105,6 +105,11 @@ namespace YiQiWorkFlow.Web.Client.Common
             NameValueCollection cfgName = (NameValueCollection)ConfigurationSettings.GetConfig("databaseSettings"); ;
             return cfgName["db.connectionString"].ToString();
         }
+
+        public static string GetEFConnectionString()
+        {
+            return string.Format("metadata=res://*/Basement.Report.csdl|res://*/Basement.Report.ssdl|res://*/Basement.Report.msl;provider=System.Data.SqlClient;provider connection string=\"data source=.;initial catalog=YiQi;persist security info=True;user id=sa;password=Admin@123;MultipleActiveResultSets=True;App=EntityFramework\"");
+        }
         #endregion
 
 
