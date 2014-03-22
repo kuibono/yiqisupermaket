@@ -75,7 +75,7 @@ namespace YiQiWorkFlow.Domain.Em
         public static EmEmployeeFamily Initial()
         {
             EmEmployeeFamily m = new EmEmployeeFamily();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
 	}

@@ -115,27 +115,27 @@
 
             <div class="ablock">
                 <label for="Control_Sex">性别:</label>
-                <input type="text"  value="@Model.Sex" class="mini-combobox" data="[{id:0,text:'男'},{id:1,text:'女'}]"  name="Sex" id="Control_Sex" vtype="maxLength:20" />
+                <input type="text"  value="@Model.Sex" class="mini-combobox" data="[{id:0,text:'男'},{id:1,text:'女'}]"  name="Sex" id="Control_Sex" vtype="maxLength:20" required="true" />
             </div>
 
             <div class="ablock">
                 <label for="Control_PoliticsCode">政治面貌编码:</label>
-                <input type="text"  value="@Model.PoliticsCode" class="mini-textbox" name="PoliticsCode" id="Control_PoliticsCode" vtype="maxLength:20" />
+                <input type="text"  value="@Model.PoliticsCode" class="mini-combobox" textfield="text" valuefield="id" emptytext="请选择..." url="/Common/GetComboData?table=em_pa_politics&textcolumn=politics_name&valuecolumn=politics_code" required="true" allowinput="false" shownullitem="true" nullitemtext="请选择..." required="true" />
             </div>
 
             <div class="ablock">
                 <label for="Control_NationCode">民族编码:</label>
-                <input type="text"  value="@Model.NationCode" class="mini-textbox" name="NationCode" id="Control_NationCode" vtype="maxLength:20" />
+                <input type="text"  value="@Model.NationCode" class="mini-combobox" textfield="text" valuefield="id" emptytext="请选择..." url="/Common/GetComboData?table=em_pa_nation&textcolumn=nation_name&valuecolumn=nation_code" required="true" allowinput="false" shownullitem="true" nullitemtext="请选择..." required="true" />
             </div>
 
             <div class="ablock">
                 <label for="Control_EducationCode">学历编码:</label>
-                <input type="text"  value="@Model.EducationCode" class="mini-textbox" name="EducationCode" id="Control_EducationCode" vtype="maxLength:20" />
+                <input type="text"  value="@Model.EducationCode" class="mini-combobox" textfield="text" valuefield="id" emptytext="请选择..." url="/Common/GetComboData?table=em_pa_education&textcolumn=education_name&valuecolumn=education_code" required="true" allowinput="false" shownullitem="true" nullitemtext="请选择..." required="true" />
             </div>
 
             <div class="ablock">
                 <label for="Control_ProfessionalTitleCode">职称编码:</label>
-                <input type="text"  value="@Model.ProfessionalTitleCode" class="mini-textbox" name="ProfessionalTitleCode" id="Control_ProfessionalTitleCode" vtype="maxLength:20" />
+                <input type="text"  value="@Model.ProfessionalTitleCode" class="mini-combobox" textfield="text" valuefield="id" emptytext="请选择..." url="/Common/GetComboData?table=em_pa_Professional_title&textcolumn=Professional_title_name&valuecolumn=Professional_title_code" required="true" allowinput="false" shownullitem="true" nullitemtext="请选择..." required="true" />
             </div>
 
             <div class="ablock">
@@ -150,7 +150,7 @@
 
             <div class="ablock">
                 <label for="Control_Idcard">身份证号:</label>
-                <input type="text"  value="@Model.Idcard" class="mini-textbox" name="Idcard" id="Control_Idcard" vtype="maxLength:20" />
+                <input type="text"  value="@Model.Idcard" class="mini-textbox" name="Idcard" id="Control_Idcard" vtype="maxLength:20" onvalidation="onIDCardsValidation" />
             </div>
 
             <div class="ablock">
@@ -205,7 +205,7 @@
 
             <div class="ablock">
                 <label for="Control_DutyCode">职务编码:</label>
-                <input type="text"  value="@Model.DutyCode" class="mini-textbox" name="DutyCode" id="Control_DutyCode" vtype="maxLength:20" />
+                <input type="text"  value="@Model.DutyCode" class="mini-combobox" textfield="text" valuefield="id" emptytext="请选择..." url="/Common/GetComboData?table=em_pa_duty&textcolumn=duty_name&valuecolumn=duty_code" required="true" allowinput="false" shownullitem="true" nullitemtext="请选择..." required="true" />
             </div>
 
             <div class="ablock">
