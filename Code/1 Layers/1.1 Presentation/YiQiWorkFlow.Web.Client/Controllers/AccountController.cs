@@ -52,6 +52,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m1.Add(new { id = "116", iconCls = "icon-add", pid = "m1", text = "商品包装单位设置", url = "/Fb/FbPaGoodsPackUnitList" });
             m1.Add(new { id = "117", iconCls = "icon-add", pid = "m1", text = "商品核算单位设置", url = "/Fb/FbPaGoodsCheckUnitList" });
             m1.Add(new { id = "118", iconCls = "icon-add", pid = "m1", text = "柜组编码设置", url = "/Fb/FbPaGoodsCounterList" });
+            
             m2.Add(new { id = "119", iconCls = "icon-add", pid = "m2", text = "供货商采购管理", url = "/Pc/PcPurchaseManageList" });
             m2.Add(new { id = "120", iconCls = "icon-add", pid = "m2", text = "商品辅助订货", url = "/Pc/PcPurchaseManageGoodsEdit" });
             m2.Add(new { id = "121", iconCls = "icon-add", pid = "m2", text = "到货验收入库", url = "/Pc/PcPutinManageEdit/" });//url = "/Pc/PcPutinManageList" });
@@ -76,6 +77,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m2.Add(new { id = "140", iconCls = "icon-add", pid = "m2", text = "供货商到货率分析", url = "" });
             m2.Add(new { id = "141", iconCls = "icon-add", pid = "m2", text = "商品保质期预警查询", url = "" });
             m2.Add(new { id = "142", iconCls = "icon-add", pid = "m2", text = "商品库存预警查询", url = "" });
+            
             m3.Add(new { id = "143", iconCls = "icon-add", pid = "m3", text = "商品移库管理", url = "" });
             m3.Add(new { id = "144", iconCls = "icon-add", pid = "m3", text = "盘点单生成", url = "" });
             m3.Add(new { id = "145", iconCls = "icon-add", pid = "m3", text = "商品盘点管理", url = "/Op/OpCheckManageList" });
@@ -88,6 +90,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m3.Add(new { id = "152", iconCls = "icon-add", pid = "m3", text = "商品调整管理", url = "" });
             m3.Add(new { id = "153", iconCls = "icon-add", pid = "m3", text = "进货成本调整", url = "" });
             m3.Add(new { id = "154", iconCls = "icon-add", pid = "m3", text = "仓库参数设置", url = "" });
+            
             m4.Add(new { id = "155", iconCls = "icon-add", pid = "m4", text = "单品促销管理", url = "" });
             m4.Add(new { id = "156", iconCls = "icon-add", pid = "m4", text = "类别促销管理", url = "" });
             m4.Add(new { id = "157", iconCls = "icon-add", pid = "m4", text = "馈赠促销管理", url = "" });
@@ -111,6 +114,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m4.Add(new { id = "175", iconCls = "icon-add", pid = "m4", text = "功能键设置", url = "" });
             m4.Add(new { id = "176", iconCls = "icon-add", pid = "m4", text = "前台付款方式设置", url = "/Rt/RtPaPaywayList" });
             m4.Add(new { id = "177", iconCls = "icon-add", pid = "m4", text = "班次设置", url = "/Rt/RtPaShiftList" });
+            
             m5.Add(new { id = "178", iconCls = "icon-add", pid = "m5", text = "客户档案管理", url = "/Ws/WsCustomerArchivesList" });
             m5.Add(new { id = "179", iconCls = "icon-add", pid = "m5", text = "客户销售管理", url = "" });
             m5.Add(new { id = "180", iconCls = "icon-add", pid = "m5", text = "客户退货管理", url = "" });
@@ -121,6 +125,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m5.Add(new { id = "185", iconCls = "icon-add", pid = "m5", text = "客户销售商品毛利分析", url = "" });
             m5.Add(new { id = "186", iconCls = "icon-add", pid = "m5", text = "客户类型设置", url = "/Ws/WsPaCustomerTypeList" });
             m5.Add(new { id = "187", iconCls = "icon-add", pid = "m5", text = "限销商品设置", url = "/Ws/WsWholesaleGoodsSetList" });
+            
             m6.Add(new { id = "188", iconCls = "icon-add", pid = "m6", text = "卡类型设置", url = "/Ms/MsCardtypeManageList" });
             m6.Add(new { id = "189", iconCls = "icon-add", pid = "m6", text = "卡折扣设置", url = "/Ms/MsCardtypeDiscountList" });
             m6.Add(new { id = "190", iconCls = "icon-add", pid = "m6", text = "卡积分设置", url = "/Ms/MsCardtypePointsList" });
@@ -150,6 +155,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m6.Add(new { id = "214", iconCls = "icon-add", pid = "m6", text = "会员消费排行", url = "" });
             m6.Add(new { id = "215", iconCls = "icon-add", pid = "m6", text = "会员积分排行", url = "" });
             m6.Add(new { id = "216", iconCls = "icon-add", pid = "m6", text = "会员积分转储值查询", url = "" });
+            
             m7.Add(new { id = "217", iconCls = "icon-add", pid = "m7", text = "分店档案管理", url = "/Bs/BsBranchArchivesList" });
             m7.Add(new { id = "218", iconCls = "icon-add", pid = "m7", text = "分店订货管理", url = "/Bs/BsSupplyManageList" });
             m7.Add(new { id = "219", iconCls = "icon-add", pid = "m7", text = "分店返货管理", url = "/Bs/BsReturnManageList" });
@@ -170,6 +176,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m7.Add(new { id = "234", iconCls = "icon-add", pid = "m7", text = "分店区域设置", url = "/Bs/BsPaAreaList" });
             m7.Add(new { id = "235", iconCls = "icon-add", pid = "m7", text = "分店分类设置", url = "/Bs/BsPaClassList" });
             m7.Add(new { id = "236", iconCls = "icon-add", pid = "m7", text = "分店仓库设置", url = "/Bs/BsPaBranchWarehouseList" });
+            
             m8.Add(new { id = "237", iconCls = "icon-add", pid = "m8", text = "帐务日结", url = "" });
             m8.Add(new { id = "238", iconCls = "icon-add", pid = "m8", text = "商品日销售汇总查询", url = "" });
             m8.Add(new { id = "239", iconCls = "icon-add", pid = "m8", text = "商品汇总查询", url = "" });
@@ -186,6 +193,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m8.Add(new { id = "250", iconCls = "icon-add", pid = "m8", text = "类别进销存日报", url = "" });
             m8.Add(new { id = "251", iconCls = "icon-add", pid = "m8", text = "类别进销存汇总", url = "" });
             m8.Add(new { id = "252", iconCls = "icon-add", pid = "m8", text = "供货商进销存日报", url = "" });
+            
             m9.Add(new { id = "253", iconCls = "icon-add", pid = "m9", text = "供货商代销对帐", url = "" });
             m9.Add(new { id = "254", iconCls = "icon-add", pid = "m9", text = "供货商联营对帐", url = "" });
             m9.Add(new { id = "255", iconCls = "icon-add", pid = "m9", text = "供货商结算确认", url = "" });
@@ -200,6 +208,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m9.Add(new { id = "264", iconCls = "icon-add", pid = "m9", text = "供货商应付帐款查询", url = "" });
             m9.Add(new { id = "265", iconCls = "icon-add", pid = "m9", text = "分店结算汇总查询", url = "" });
             m9.Add(new { id = "266", iconCls = "icon-add", pid = "m9", text = "分店结算明细查询", url = "" });
+            
             m10.Add(new { id = "267", iconCls = "icon-add", pid = "m10", text = "人员档案管理", url = "/Em/EmEmployeeArchivesList" });
             m10.Add(new { id = "268", iconCls = "icon-add", pid = "m10", text = "学历参数设置", url = "/Em/EmPaEducationList" });
             m10.Add(new { id = "269", iconCls = "icon-add", pid = "m10", text = "职称参数设置", url = "/Em/EmPaProfessionalTitleList" });
@@ -213,8 +222,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m11.Add(new { id = "277", iconCls = "icon-add", pid = "m11", text = "人员权限设置", url = "/Sys/SysWorkerPowerList" });
             m11.Add(new { id = "278", iconCls = "icon-add", pid = "m11", text = "业务流程设置", url = "/Sys/SysOperationFlowList" });
 
-
-
             results.Add(new { id = "1", iconCls = "icon-add", text = "基础档案", pid = "0", menus = m1 });
             results.Add(new { id = "2", iconCls = "icon-add", text = "采购管理", pid = "0", menus = m2 });
             results.Add(new { id = "3", iconCls = "icon-add", text = "仓库管理", pid = "0", menus = m3 });
@@ -226,7 +233,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             results.Add(new { id = "9", iconCls = "icon-add", text = "结算管理", pid = "0", menus = m9 });
             results.Add(new { id = "10", iconCls = "icon-add", text = "人力资源", pid = "0", menus = m10 });
             results.Add(new { id = "11", iconCls = "icon-add", text = "系统维护", pid = "0", menus = m11 });
-
 
             #region 旧的
             //var ac= new List<object>();
