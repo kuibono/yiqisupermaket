@@ -648,9 +648,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult MsCardtypeManageEdit(string id)
         {
             MsCardtypeManage m = MsCardtypeManage.Initial();
+
+            ViewData["CardCode"] = string.Empty;
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsCardtypeManageService.GetById(id);
+                ViewData["CardCode"] = m.Id;
             }
             else
             {
@@ -663,6 +666,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 m.DiscountRate = 1;
                 m.BirthdayPoints = 1;
                 m.UpgradeType = "1";
+                ViewData["CardCode"] = MsCardtypeManageService.GenerateCardtypeCode();
             }
             return View(m);
         }

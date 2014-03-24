@@ -96,9 +96,13 @@
         <form id="formMain" method="post" action="">
             <fieldset>
                 <legend>卡基础信息</legend>
-                <div class="ablock" style="display: none">
+                <div class="ablock">
                     <label for="Control_CardCode">卡类型编码:</label>
                     <input id="Control_CardCode" value="@Model.Id" name="Id" class="mini-hidden" />
+                    @{
+                        var cardCode = ViewData["CardCode"] == null ? string.Empty : ViewData["CardCode"].ToString();
+                    }
+                    <input type="text" value="@cardCode" class="mini-textbox" readonly="readonly" vtype="maxLength:20" required="true" />
                 </div>
 
                 <div class="ablock">
@@ -243,7 +247,7 @@
 
                 <div class="ablock">
                     <label for="Control_UpgradeType">卡升级方式:</label>
-                    <input type="text" value="@Model.UpgradeType" class="mini-textbox" name="UpgradeType" id="Control_UpgradeType" vtype="maxLength:20" />
+                    <input type="text" value="@Model.UpgradeType" class="mini-combobox" name="UpgradeType" id="Control_UpgradeType" datatype="c_UpgradeType" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
@@ -278,7 +282,7 @@
 
                 <div class="ablock">
                     <label for="Control_IfExamine">是否审核:</label>
-                    <div id="Control_IfExamine" name="IfExamine" class="mini-checkbox" value="@Model.IfExamine" truevalue="1" falsevalue="0" readonly="false" text="审核"></div>
+                    <div id="Control_IfExamine" name="IfExamine" class="mini-checkbox" value="@Model.IfExamine" truevalue="1" falsevalue="0" readonly="true" text="审核"></div>
                 </div>
 
                 <div class="ablock">
@@ -291,13 +295,13 @@
                     <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-
             </fieldset>
             <div class="clear">
             </div>
             <div class="control-panel">
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                    <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
                     <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
                 </div>

@@ -51,6 +51,7 @@ function onOpCodeChanged() {
     }
     SetPoolRateEnable();
 }
+
 function SetPoolRateEnable() {
     var opCode = mini.get("Control_OpCode");
     if (opCode.getValue() == "3" || opCode.getValue() == "5") {
@@ -64,14 +65,12 @@ function SetPoolRateEnable() {
     }
 }
 
-
-
-    $(function () {
-        SetPoolRateEnable();
-        $("#btnExame").click(function () {
-            var chk = mini.get("Control_IfExamine");
-            chk.setValue("1");
-            mini.get("Control_ExamineDate").setValue(new Date());
-            clearExameAfterSave = false;
-        });
-    })
+$(function () {
+    SetPoolRateEnable();
+    $("#btnExame").click(function () {
+        var chk = mini.get("Control_IfExamine");
+        chk.setValue("1");
+        mini.get("Control_ExamineDate").setValue(new Date());
+        clearExameAfterSave = false;
+    });
+})
