@@ -255,6 +255,7 @@
     <Compile Include="Basement\bs_supply_promotion_goods.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Basement\Command.cs" />
     <Compile Include="Basement\dtproperties.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
