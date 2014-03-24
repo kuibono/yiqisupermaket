@@ -655,6 +655,14 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             else
             {
                 m.Id = string.Empty;
+                m.CardType = "1";
+                m.CardMedium = "1";
+                m.CardUsefulLife = 365;
+                m.PointsUsefulLife = 365;
+                m.IfVip = "1";
+                m.DiscountRate = 1;
+                m.BirthdayPoints = 1;
+                m.UpgradeType = "1";
             }
             return View(m);
         }
