@@ -113,7 +113,6 @@ $(function () {
         });
     }
 
-    
     $("input:text:visible").first().focus();
 
 });
@@ -143,6 +142,7 @@ function closeTab() {
         closeWithNoValidate();
     }
 }
+
 function closeWithNoValidate() {
     //if (window.top.location.href = location.href) {
     //    window.opener = null;
