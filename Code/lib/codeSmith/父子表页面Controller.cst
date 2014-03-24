@@ -1,0 +1,233 @@
+<%-- 
+Name:
+Author: 
+Description: 
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="Text" Src="" Inherits="" Debug="True" Description="Template description here." %>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="??" Description="?????????" %>
+<%@ Property Name="SubTable" Type="SchemaExplorer.TableSchema" Category="??" Description="??" %>
+<%@ Property Name="OutKey" Type="System.String" Category="??" Description="??" %>
+<%@ Map Name="CSharpAlias" Src="System-CSharpAlias" Description="System to C# Type Map" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Assembly Name="CodeSmith.CustomProperties" %>
+<%@ Import Namespace="CodeSmith.CustomProperties" %>
+
+        public ActionResult Save<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>(<%= StringUtil.ToPascalCase(this.SourceTable.Name) %> m)
+        {
+            SavingResult r = new SavingResult();
+
+            var vResult = m.GetValidateResult();
+            if (vResult.IsSuccess == false)
+            {
+                r.IsSuccess = false;
+                r.Message = m.GetValidateMessage();
+            }
+            else
+            {
+                m.OperatorDate = DateTime.Now;
+                if (m.HaveId)
+                {
+                    <%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Service.Update(m);
+                }
+                else
+                {
+                    m.CreateDate = DateTime.Now;
+                    m.Id = <%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Service.Create(m);
+                }
+
+                //Detail
+                var jser = new JavaScriptSerializer();
+                var details = jser.Deserialize<List<<%= StringUtil.ToPascalCase(this.SubTable.Name) %>>>(Request["detail"]).ToList();
+                details.ForEach(p =>
+                {
+                    p.<%=this.OutKey%> = m.Id;
+                    if (p.IsAdded)
+                    {
+                        <%= StringUtil.ToPascalCase(this.SubTable.Name) %>Service.Create(p);
+                    }
+                    if (p.IsDelete)
+                    {
+                        <%= StringUtil.ToPascalCase(this.SubTable.Name) %>Service.Delete(p);
+                    }
+                    if (p.IsUpdated)
+                    {
+                        <%= StringUtil.ToPascalCase(this.SubTable.Name) %>Service.Update(p);
+                    }
+                });
+                r.IsSuccess = true;
+                r.Message = "????";
+            }
+            return Json(r);
+        }
+
+
+<script runat="template">
+private string GetTableColumnResult(ColumnSchema column)
+{
+    StringBuilder sb=new StringBuilder();
+    if(IsIdentityOrPkColumn(column))
+    {
+        sb.AppendLine("<div class=\"ablock\" style=\"display:none\">");
+        sb.AppendFormat("                <label for=\"Control_{0}\">{1}:</label>\n                ",StringUtil.ToPascalCase(column.Name),column.Description.Trim('\n').Trim('\r'));
+    }
+    else
+    {
+        sb.AppendLine("<div class=\"ablock\">");
+        sb.AppendFormat("                <label for=\"Control_{0}\">{1}:</label>\n                ",StringUtil.ToPascalCase(column.Name),column.Description.Trim('\n').Trim('\r'));
+    }
+    if(IsIdentityOrPkColumn(column))
+    {
+        sb.AppendFormat("<input id=\"Control_{0}\" value=\"@Model.Id\" name=\"Id\" class=\"mini-hidden\"/>",StringUtil.ToPascalCase(column.Name));
+    }
+    else if(column.IsForeignKeyMember)
+    {
+        sb.AppendFormat("<input type=\"text\" id=\"Control_{0}\" value=\"@Model.{0}\" name=\"{0}\" class=\"mini-combobox\" textField=\"text\" valueField=\"id\" emptyText=\"???...\"  url=\"../Category/GetDropItems?table=&namecolumn=&idcolumn=\" required=\"{1}\" allowInput=\"true\" showNullItem=\"true\" nullItemText=\"???...\"/>",StringUtil.ToPascalCase(column.Name),(column.AllowDBNull==false).ToString().ToLower());
+    }
+    else if(column.DataType==DbType.String||column.DataType==DbType.AnsiString)
+    {
+		if(StringUtil.ToPascalCase(column.Name)=="SupCode")
+		{
+			sb.AppendFormat("<input id=\"Control_SupCode\" name=\"SupCode\" class=\"mini-combobox\" onvaluechanged=\"supCodeChanged\" valuefield=\"Id\" textfield=\"SupName\" pinyinfield=\"PyCode\" url=\"/Data/FbSupplierArchives.js\" allowinput=\"true\" style=\"width: 100%;\" />");
+		}
+        if(column.Name.ToLower().StartsWith("if_"))
+        {
+            sb.AppendFormat("<div id=\"Control_{0}\" name=\"{0}\" value=\"@Model.{0}\" class=\"mini-checkbox\" trueValue=\"1\" falseValue=\"0\" readOnly=\"false\" text=\"{1}\"></div>",StringUtil.ToPascalCase(column.Name),column.Description.Trim('\n').Trim('\r').Replace("??",""));
+        }
+        else
+        {
+            sb.Append("<input type=\"text\"  value=\"@Model."+StringUtil.ToPascalCase(column.Name)+"\" class=\"mini-textbox\" name=\""+StringUtil.ToPascalCase(column.Name)+"\" id=\"Control_"+StringUtil.ToPascalCase(column.Name)+"\" ");
+            if(column.Size>-1)
+            {
+                sb.Append("vtype=\"maxLength:"+ column.Size +"\"");
+            }
+            if(column.AllowDBNull==false)
+            {
+                sb.Append("required=\"true\"");   
+            }
+            
+            sb.Append(" />");
+        }
+    }
+    else if(column.DataType==DbType.Boolean)
+    {
+        sb.AppendFormat("<div id=\"Control_{0}\" name=\"{0}\" class=\"mini-checkbox\" checked=\"true\" readOnly=\"false\" text=\"{1}\"></div>",StringUtil.ToPascalCase(column.Name),column.Description.Trim('\n').Trim('\r'));
+    }  
+    else if(column.DataType==DbType.DateTime || column.DataType==DbType.DateTime2)
+    {
+        sb.AppendFormat("<input type=\"text\" id=\"Control_{0}\" name=\"{0}\"  value=\"@Model.{0}\" class=\"mini-datepicker\"  format=\"yyyy-MM-dd H:mm:ss\" timeFormat=\"H:mm:ss\" showTime=\"true\" showOkButton=\"true\" showClearButton=\"true\" required=\"{1}\" />",StringUtil.ToPascalCase(column.Name),(column.AllowDBNull==false).ToString().ToLower());
+    }
+    else if(column.DataType==DbType.Int16 || column.DataType==DbType.Int32||column.DataType==DbType.Int64)
+    {
+        sb.AppendFormat("<input type=\"text\" id=\"Control_{0}\" name=\"{0}\"  value=\"@Model.{0}\" class=\"mini-spinner\" minValue=\"0\" maxValue=\"999999\" decimalPlaces=\"0\"/>",StringUtil.ToPascalCase(column.Name));
+    }
+    else if(column.DataType==DbType.Decimal)
+    {
+        sb.AppendFormat("<input type=\"text\" id=\"Control_{0}\" name=\"{0}\"  value=\"@Model.{0}\" class=\"mini-spinner\" minValue=\"0\" maxValue=\"999999\" decimalPlaces=\"{1}\"/>",StringUtil.ToPascalCase(column.Name),column.Scale);
+    }
+    else
+    {
+        sb.Append("ERROR TYPE:"+column.DataType);
+    }
+    sb.AppendLine("\n            </div>");
+    return sb.ToString();
+}
+
+private string GetGridColumn(ColumnSchema column){
+	StringBuilder sb=new StringBuilder();
+	sb.AppendFormat("<div field=\"{0}\" headeralign=\"center\" align=\"center\" width=\"60\">\n",StringUtil.ToPascalCase(column.Name));
+	sb.AppendFormat("					    {0}\n",column.Description);
+	if(column.DataType==DbType.String||column.DataType==DbType.AnsiString){
+		sb.Append("					");
+		if(StringUtil.ToPascalCase(column.Name)=="GoodsCode"){
+			sb.AppendLine("<div id=\"editor_GoodsCode\" popupwidth=\"400\" name=\"GoodsCode\" property=\"editor\" class=\"mini-combobox\" allowinput=\"true\" valuefield=\"Id\" textfield=\"GoodsName\" onvaluechanged=\"onGoodsChanged\" url=\"/Fb/SearchFbGoodsArchivesListForList\" style=\"width: 100%;\">\n                        <div property=\"columns\">                            \n<div header=\"???\" field=\"GoodsBarCode\">\n                            </div>\n                            <div header=\"???\" field=\"PyCode\">\n                            </div>\n                            <div header=\"????\" field=\"GoodsName\">\n                            </div>\n                        </div>\n                    </div>\n");
+		}
+		else if(column.Name.ToLower().StartsWith("if_"))
+        {
+			sb.AppendFormat("<div id=\"editor_{0}\" name=\"{0}\" value=\"@Model.{0}\" property=\"editor\" class=\"mini-checkbox\" trueValue=\"1\" falseValue=\"0\" readOnly=\"false\" text=\"\"></div>\n",StringUtil.ToPascalCase(column.Name));
+		}
+		
+		else{
+			sb.AppendFormat("<input id=\"editor_{0}\" name=\"{0}\" property=\"editor\" class=\"mini-textbox\" style=\"width:100%;\" />\n",StringUtil.ToPascalCase(column.Name));
+		}
+	}
+	else if(column.DataType==DbType.DateTime || column.DataType==DbType.DateTime2)
+	{
+		sb.AppendFormat("<input type=\"text\" id=\"editor_{0}\" name=\"{0}\" property=\"editor\"  value=\"@Model.{0}\" class=\"mini-datepicker\"  format=\"yyyy-MM-dd H:mm:ss\" timeFormat=\"H:mm:ss\" showTime=\"true\" showOkButton=\"true\" showClearButton=\"true\" required=\"{1}\" style=\"width: 100%;\" />\n",StringUtil.ToPascalCase(column.Name),(column.AllowDBNull==false).ToString().ToLower());
+	}
+	else if(column.DataType==DbType.Int16 || column.DataType==DbType.Int32||column.DataType==DbType.Int64)
+	{
+		sb.AppendFormat("<input type=\"text\" id=\"editor_{0}\" name=\"{0}\" property=\"editor\"  value=\"@Model.{0}\" class=\"mini-spinner\" minValue=\"0\" maxValue=\"1000\" decimalPlaces=\"0\" style=\"width: 100%;\"/>\n",StringUtil.ToPascalCase(column.Name));
+	}
+	else if(column.DataType==DbType.Decimal)
+	{
+		sb.AppendFormat("<input type=\"text\" id=\"editor_{0}\" name=\"{0}\" property=\"editor\"  value=\"@Model.{0}\" class=\"mini-spinner\" minValue=\"0\" maxValue=\"1000\" decimalPlaces=\"{1}\" style=\"width: 100%;\"/>\n",StringUtil.ToPascalCase(column.Name),column.Scale);
+	}
+	else{
+		sb.AppendLine("??????");
+	}
+	
+	sb.AppendLine("					</div>\n");
+	return sb.ToString();
+}
+
+public bool TableHasIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		if((bool)column.ExtendedProperties["CS_IsIdentity"].Value==true)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+public ColumnSchema GetTableIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		try
+		{
+			if((bool)column.ExtendedProperties["CS_IsIdentity"].Value==true)
+			{
+				return column;
+			}
+		}
+		catch{}
+	}
+	throw new Exception("no IdentityColumn");
+}
+public bool TableExistPk(SchemaExplorer.TableSchema table)
+{
+	return table.HasPrimaryKey;
+}
+public ColumnSchema GetTablePkColumn(SchemaExplorer.TableSchema table)
+{
+	foreach(ColumnSchema column in table.Columns)
+	{
+		if(column.IsPrimaryKeyMember)
+		{
+			return column;
+		}
+	}
+	return null;
+}
+public ColumnSchema GetPkOrIdentityColumn(SchemaExplorer.TableSchema table)
+{
+	if(TableExistPk(table))
+	{
+		return GetTablePkColumn(table);
+	}
+	if(TableHasIdentityColumn(table))
+	{
+		return GetTableIdentityColumn(table);
+	}
+	throw new Exception("No Pk");
+}
+public bool IsIdentityOrPkColumn(ColumnSchema column)
+{
+	return (bool)column.ExtendedProperties["CS_IsIdentity"].Value==true || column.IsPrimaryKeyMember;
+}
+</script>
