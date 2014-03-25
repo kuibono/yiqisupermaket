@@ -706,7 +706,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     // 当前操作人 操作时间
                     m.OperatorDate = DateTime.Now;
 
-                    if ((string.IsNullOrEmpty(m.IfExamine) || m.IfExamine.Equals("0")) && m.ExamineDate == null)
+                    if (!string.IsNullOrEmpty(m.IfExamine) && !m.IfExamine.Equals("0") && m.ExamineDate == null)
                     {
                         m.ExamineDate = DateTime.Now;
                     }
