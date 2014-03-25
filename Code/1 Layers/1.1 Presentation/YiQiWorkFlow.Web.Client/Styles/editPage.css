@@ -29,7 +29,7 @@
 
 .inline {
     width: 180px;
-    /*float: left;*/
+    clear:both;
     border: solid 0px #EEE;
     height: 40px;
     margin: 5px;

@@ -703,10 +703,14 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 if (m.HaveId)
                 {
+                    // 当前操作人 操作时间
+                    m.OperatorDate = DateTime.Now;
                     MsCardtypeManageService.Update(m);
                 }
                 else
                 {
+                    // 操作人 创建时间
+                    m.CreateDate = DateTime.Now;
                     MsCardtypeManageService.Create(m);
                 }
                 r.IsSuccess = true;
