@@ -39,7 +39,7 @@
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchMsCardtypeManageList"
             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showfilterrow="true" frozenStartColumn="1" frozenEndColumn="5">
+            pagesize="20" multiselect="true" showfilterrow="true" frozenStartColumn="1" frozenEndColumn="6">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
@@ -181,9 +181,9 @@
                     是否自动升级
 					<input id="filter_IfAutoup" name="IfAutoup" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CreateDate" headeralign="center" align="center" width="60">
+                <div field="CreateDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender">
                     创建时间
-					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;"  />
                 </div>
                 <div field="Operator" headeralign="center" align="center" width="60">
                     操作员
@@ -197,11 +197,11 @@
                     是否审核
 					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="ExamineDate" headeralign="center" align="center" width="60">
+                <div field="ExamineDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender">
                     审核时间
-					<input id="filter_ExamineDate" name="ExamineDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+					<input id="filter_ExamineDate" name="ExamineDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100“ />
                 </div>
-                <div field="OperatorDate" headeralign="center" align="center" width="60">
+                <div field="OperatorDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender">
                     操作时间
 					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
