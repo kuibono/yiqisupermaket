@@ -417,6 +417,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = PcPutinManageService.GetById(id.Value);
             }
+            else
+            {
+                m._state = "added";
+            }
             return View(m);
         }
         #endregion
@@ -438,6 +442,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="m">表单数据</param>
         /// <returns></returns>
+
         public ActionResult SavePcPutinManage(PcPutinManage m)
         {
             SavingResult r = new SavingResult();
@@ -450,77 +455,38 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                m.OperatorDate = DateTime.Now;
                 if (m.HaveId)
                 {
                     PcPutinManageService.Update(m);
                 }
                 else
                 {
-                    var jser = new JavaScriptSerializer();
-                    IList<PcPurchaseManage> purchaseList = jser.Deserialize<List<PcPurchaseManage>>(Request["pcs"]).ToList();
-
-                    var purchaseDetailList = PcPurchaseDetailService.GetByPcNumbers(purchaseList.Select(p => p.Id).ToList());
-
-
-                    m.BaMoney = purchaseDetailList.Sum(p => p.PurchaseMoney);
-                    m.BaNumber = "";//结算单号
-                    m.bCode = purchaseList.First().bCode;
-                    m.CheckDate = purchaseList.First().CheckDate;
                     m.CreateDate = DateTime.Now;
-                    m.dCode = purchaseList.First().dCode;
-                    m.EnCode = purchaseList.First().EnCode;
-                    m.ExamineDate = purchaseList.First().ExamineDate;
-                    m.ExpectArriveDate = purchaseList.First().ExpectArriveDate;
-                    //m.IfAblebalance = purchaseList.First()
-                    m.IfBalance = "1";
-                    m.IfExamine = "1";
-                    m.Operator = "";
-                    m.OperatorDate = DateTime.Now;
-                    m.PcForm = purchaseList.First().PcForm;
-                    m.PcMode = purchaseList.First().PcMode;
-                    m.PcType = purchaseList.First().PcType;
-                    m.PurchaseDate = purchaseList.First().PurchaseDate;
-                    m.PutinDate = DateTime.Now;
-                    m.PutinMoney = purchaseDetailList.Sum(p => p.PurchaseMoney);
-                    m.SupCode = purchaseList.First().SupCode;
-                    m.WhCode = purchaseList.First().WhCode;
-
                     m.Id = PcPutinManageService.Create(m);
-
-                    foreach (var purchase in purchaseList)
-                    {
-                        var detailList = purchaseDetailList.Where(p => p.PcNumber == purchase.Id).ToList();
-                        foreach (var d in detailList)
-                        {
-                            PcPutinDetail pcD = new PcPutinDetail();
-                            pcD.PiNumber = m.Id.ToS();
-                            pcD.GoodsBarCode = d.GoodsBarCode;
-                            pcD.GoodsCode = d.GoodsCode;
-                            pcD.NontaxPurchaseMoney = d.NontaxPurchaseMoney;
-                            pcD.NontaxPurchasePrice = d.NontaxPurchasePrice;
-                            pcD.OfferMin = d.OfferMin;
-                            //pcD.OrderQty = d.OrderQty;
-                            pcD.PackCoef = d.PackCoef;
-                            pcD.PackQty = d.PackQty;
-                            pcD.PackUnitCode = d.PackUnitCode;
-                            //pcD.PcNumber = d.PcNumber;
-                            pcD.ProduceDate = d.ProduceDate;
-                            pcD.PurchaseMoney = d.PurchaseMoney;
-                            pcD.PurchasePrice = d.PurchasePrice;
-                            pcD.PurchaseQty = d.PurchaseQty;
-                            pcD.PutinQty = d.PutinQty;
-                            pcD.SalePrice = d.SalePrice;
-                            pcD.Specification = d.Specification;
-                            //pcD.StockQty = d.StockQty;
-                            pcD.SysGuid = d.SysGuid;
-
-                            PcPutinDetailService.Create(pcD);
-                        }
-
-                    }
                 }
-                r.IsSuccess = false;
-                r.Message = "保存成功,但是需要执行入库存储过程！";
+
+                //Detail
+                var jser = new JavaScriptSerializer();
+                var details = jser.Deserialize<List<PcPutinDetail>>(Request["detail"]).ToList();
+                details.ForEach(p =>
+                {
+                    p.PiNumber = m.Id.ToS();
+                    if (p.IsAdded)
+                    {
+                        PcPutinDetailService.Create(p);
+                    }
+                    if (p.IsDelete)
+                    {
+                        PcPutinDetailService.Delete(p);
+                    }
+                    if (p.IsUpdated)
+                    {
+                        PcPutinDetailService.Update(p);
+                    }
+                });
+                r.IsSuccess = true;
+                r.Message = "保存成功";
             }
             return Json(r);
         }
