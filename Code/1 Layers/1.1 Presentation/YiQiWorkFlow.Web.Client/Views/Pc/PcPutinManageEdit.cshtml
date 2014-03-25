@@ -6,74 +6,35 @@
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery.tmpl.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.PrintArea.js"></script>
-    <style type="text/css">
-        .item {
-            padding: 5px 10px;
-            float: left;
-        }
-
-            .item:after {
-                display: block;
-                clear: both;
-            }
-
-        .label {
-            float: left;
-            text-align: right;
-        }
-
-        .text {
-            float: left;
-            text-align: left;
-            border-bottom: solid 1px #AAA;
-        }
-
-        .clear {
-            clear: both;
-        }
-
-        em.correct:after {
-            display: inline-block;
-            content: 'V';
-            color: #0F0;
-            font-style: normal;
-            font-family: sans-serif;
-        }
-
-        em.incorrect:after {
-            display: inline-block;
-            content: 'X';
-            color: #F00;
-            font-style: normal;
-            font-family: sans-serif;
-        }
-
-        html, body {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .main h1 {
-            color: #000;
-            text-align: center;
-        }
-    </style>
-    <script type="text/javascript"> var pageTitle = "商品入库单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = "@Model.Id"; pageName = "PcPutinManageEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "商品入库单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = "@Model.Id"; pageName = "PcPutinManageEdit";var isNew=@Model.IsAdded.ToString().ToLower(); </script>
     <script type="text/javascript">
         function SaveData() {
-            //var form = new mini.Form("#formMain"); // default form
-            //var o = form.getData();
-            var o = {};
-            var pcs = [];
-            var data = mini.get("datagrid1").data;
-            pcs = mini.encode(data);
-            o["pcs"] = pcs;
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+
+            var grid1 = mini.get("datagrid1");
+            grid1.commitEdit();
+            var detail = grid1.getChanges();
+            //验证子表
+            if (detail.length == 0) {
+                alert("必须设置商品明细！");
+                return false;
+            }
+            for (var i = 0; i < detail.length; i++) {
+                
+                if (detail[i].GoodsCode == undefined || detail[i].GoodsCode.length == 0) {
+                    alert("商品编码不能为空或者0！");
+                    return false;
+                }
+                
+                if (detail[i].PutinQty == undefined || detail[i].PutinQty == 0) {
+                    alert("入库数量不能为空或者0！");
+                    return false;
+                }
+            }
+            
+            o["detail"] = mini.encode(detail);
+
             $.ajax({
                 url: "/Pc/SavePcPutinManage",
                 type: 'post',
@@ -82,302 +43,455 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        closeWithNoValidate();
+                        location.href = "/Pc/PcPutinManageList";
                     } else {
-                        alert(r.Message);
+                        $("#Tooltip_Critical_PcPurchaseManage .content").first().text(r.Message);
+                        $("#Tooltip_Critical_PcPurchaseManage").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    $("#Tooltip_Critical_PcPutinManage .content").first().text(jqXHR.responseText);
-                    $("#Tooltip_Critical_PcPutinManage").show("fast");
+                    $("#Tooltip_Critical_PcPurchaseManage .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_PcPurchaseManage").show("fast");
                     form.unmask();
                     $(document).scrollTop(0);
                 }
             });
         }
-        function rowclick(e) {
-            $.getJSON("/Pc/SearchPcPurchaseDetailList?PcNumber=" + e.record.Id, function (j) {
-                $("#tr").tmpl(j).appendTo("#table1");
-            })
-        }
-        function print() {
-            $("#printArea").printArea();
-        }
-        $(document).ready(function () {
-            mini.parse();
-            var grid = mini.get("datagrid1");
-            grid.load();
 
-            $("#btnPrint").click(function () {
-                $("#printArea").printArea();
+        function onGoodsChanged(e) {
+            
+
+        }
+        function onPcNumberChanged(e){
+            mini.get("Control_SupCode").setValue(e.selected.SupCode);
+            mini.get("Control_EnCode").setValue(e.selected.EnCode);
+            mini.get("Control_PcForm").setValue(e.selected.PcForm);
+            mini.get("Control_dCode").setValue(e.selected.dCode);
+            mini.get("Control_bCode").setValue(e.selected.bCode);
+            mini.get("Control_PcType").setValue(e.selected.PcType);
+            mini.get("Control_PcMode").setValue(e.selected.PcMode);
+            mini.get("Control_WhCode").setValue(e.selected.WhCode);
+            mini.get("Control_PurchaseDate").setValue(e.selected.PurchaseDate);
+            mini.get("Control_ExpectArriveDate").setValue(e.selected.ExpectArriveDate);
+            mini.get("Control_CheckDate").setValue(e.selected.CheckDate);
+            $.getJSON("/Pc/SearchPcPurchaseDetailList?PcNumber="+e.selected.Id,function(j){
+                for(var i=0;i<j.data.length;i++){
+                    var row={
+                        PiNumber:j.data[i].PiNumber,
+                        GoodsCode:j.data[i].GoodsCode,
+                        GoodsBarCode:j.data[i].GoodsBarCode,
+                        Specification:j.data[i].Specification,
+                        PackUnitCode:j.data[i].PackUnitCode,
+                        OfferMin:j.data[i].OfferMin,
+                        PackQty:j.data[i].PackQty,
+                        PackCoef:j.data[i].PackCoef,
+                        PurchaseQty:j.data[i].PurchaseQty,
+                        PutinQty:j.data[i].PurchaseQty,
+                        SalePrice:j.data[i].SalePrice,
+                        PurchasePrice:j.data[i].PurchasePrice,
+                        NontaxPurchasePrice:j.data[i].NontaxPurchasePrice,
+                        PurchaseMoney:j.data[i].PurchaseMoney,
+                        NontaxPurchaseMoney:j.data[i].NontaxPurchaseMoney,
+                        ProduceDate:j.data[i].ProduceDate
+                    };
+                    var grid=mini.get("datagrid1");
+                    grid.addRow(row);
+                }
+            });
+        }
+        function addRow(row) {
+            var grid = mini.get("datagrid1");
+            grid.addRow(row, 0);
+
+        }
+        function onrowdblclick(e) {
+            var grid = mini.get("datagrid1");
+            if (grid.isEditing()) {
+                grid.commitEdit();
+            }
+            grid.beginEditRow(e.row);
+            setTimeout(function () {
+                //    mini.getbyName("GoodsCode", "datagrid1").focus();
+            }, 500);
+
+        }
+        $(function () {
+            var grid = mini.get("datagrid1");
+            grid.reload();
+            jQuery.hotkeys.add('return', function () {
+                //if (mini.get("filter_SupCode").getValue().length == 0) {
+                //    alert("必须选择供货商");
+                //    return false;
+                //}
+                if (grid.isEditing()) {
+                    grid.commitEdit();
+                }
+                var row = {};
+                grid.addRow(row, 0);
+                grid.cancelEdit();
+                grid.beginEditRow(row);
+                //mini.getbyName("GoodsCode", "datagrid1").setUrl("/Fb/SearchFbGoodsArchivesListForList?SupCode=" + mini.get("filter_SupCode").getValue());
+                setTimeout(function () {
+                    //    mini.getbyName("GoodsCode", "datagrid1").focus();
+                }, 500);
+            });
+            jQuery.hotkeys.add('esc', function () {
+                grid.reload();
+            });
+            jQuery.hotkeys.add('del', function () {
+                grid.removeRows(grid.getSelecteds());
+            });
+
+            $("#btnExame").click(function () {
+                var chk = mini.get("Control_IfExamine");
+                chk.setValue("1");
+                mini.get("Control_ExamineDate").setValue(new Date());
+                clearExameAfterSave = false;
+                if (isNew == false) {
+                    //立即生效
+                    $.getJSON("/Common/ChangeDbValue?table=pc_putin_manage&pkColumn=pi_number&pkValue=@Model.Id&assessor=&if_examine=1&examine_date=" + new Date(), function (r) {
+
+                    });
+                }
+                $("#btnExame").prop("disabled", true);
+            });
+            if ("@Model.IfExamine" == "1") {
+                $("#btnExame").prop("disabled", true);
+            }
+            $("#btnInStock").click(function () {
+                mini.get("Control_IfPutin").setValue("1");
+                mini.get("Control_PutinDate").setValue(new Date());
+            });
+            $("#btnDel").click(function () {
+                if (isNew == false) {
+                    //删除
+                    $.ajax({
+                        url: "/Pc/PcPutinManageDelete",
+                        data: { ids: id, confirm: "true" },
+                        dataType: "json",
+                        success: function (r) {
+                            closeWithNoValidate();
+                        }
+                    });
+                }
+                else {
+                    closeWithNoValidate();
+                }
+            });
+            $("#btnGoods").click(function () {
+                var btnEdit = this;
+                //if (mini.get("filter_SupCode").getValue().length == 0) {
+                //    alert("必须选择供货商");
+                //    return false;
+                //}
+                mini.open({
+                    url: "/Common/GoodsSelector?OpCode=3",
+                    title: "选择商品",
+                    width: 600,
+                    height: 380,
+                    ondestroy: function (action) {
+                        //if (action == "close") return false;
+                        if (action == "ok") {
+                            var iframe = this.getIFrameEl();
+                            var data = iframe.contentWindow.GetData();
+                            data = mini.clone(data);    //
+                            if (data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    var row = {
+                                        GoodsCode: data[i].Id,
+                                        GoodsBarCode: data[i].GoodsBarCode,
+                                        Specification: data[i].Specification,
+                                        PackUnitCode: data[i].PackUnitCode,
+                                        OfferMin: data[i].OfferMin,
+                                        StockQty: data[i].StockQty,
+                                        OrderQty: data[i].OrderQty,
+                                        PackQty: data[i].PackQty,
+                                        PackCoef: data[i].PackCoef,
+                                        PurchaseQty: data[i].PurchaseQty,
+                                        PutinQty: data[i].PutinQty,
+                                        SalePrice: data[i].SalePrice,
+                                        PurchasePrice: data[i].PurchasePrice,
+                                        NontaxPurchasePrice: data[i].NontaxPurchasePrice,
+                                        PurchaseMoney: data[i].PurchaseMoney,
+                                        NontaxPurchaseMoney: data[i].NontaxPurchaseMoney,
+                                        ProduceDate: data[i].ProduceDate
+                                    };
+                                    addRow(row);
+                                }
+                            }
+                        }
+
+                    }
+                });
+            });
+            $("#btnQuery").click(function () {
+                location.href = "/Pc/PcPutinManageList";
             });
         });
     </script>
-    <script id="tr" type="text/x-jquery-tmpl">
-        {{each data}}
-            <tr>
-                <td>${GoodsCode}
-                </td>
-                <td>${GoodsBarCode}
-                </td>
-                <td>商品名称
-                </td>
-                <td>${Specification}
-                </td>
-                <td>${PackUnitCode}
-                </td>
-                <td>${StockQty}
-                </td>
-                <td>${PackQty}
-                </td>
-                <td>${PackCoef}
-                </td>
-                <td>${PutinQty}
-                </td>
-                <td>${PurchasePrice}
-                </td>
-                <td>${SalePrice}
-                </td>
-                <td>${PurchaseMoney}
-                </td>
-                <td>${NontaxPurchaseMoney}
-                </td>
-            </tr>
-        {{/each}}
-        <tr>
-            <td colspan="17">总数：${total}
-            </td>
-        </tr>
-    </script>
 </head>
 <body>
-    <div class="mini-toolbar">
-    <table style="width:100%">
-        <tr>
-            <td>
-                <a class="mini-button" plain="true" onclick="SaveData()" iconCls="icon-upload">入库</a>
-                <a class="mini-button" plain="true" onclick="print()"  iconCls="icon-print">打印</a>
-                <a class="mini-button" plain="true" id="btnClosePage" iconCls="icon-cancel">退出</a>
-            </td>
-            <td width="60">
-                 
-            </td>
-        </tr>
-    </table>
-</div>
-    <div class="container mini-fit">
-        <div class="mini-splitter" style="width: 100%; height: 100%">
-            <div size="350" showcollapsebutton="true" style="padding: 5px;">
-                <div id="datagrid1" class="mini-datagrid" url="/Pc/SearchPcPurchaseManageList?IfExamine=1"
-                    style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-                    pagesize="20" multiselect="true" showfilterrow="false" onrowclick="rowclick">
-                    <div property="columns">
-                        <div type="indexcolumn" width="30">
+    <div class="container">
+        <h1>商品入库单编辑
+        </h1>
+        <form id="formMain" method="post" action="">
+            <fieldset>
+                <legend>基本信息</legend>
+
+                <div class="ablock">
+                    <label for="Control_PiFlowNumber">流水单号:</label>
+                    <input id="Control_PiFlowNumber" value="@Model.Id" name="Id" class="mini-textbox" enabled="false"/>
+                </div>
+                <div class="ablock">
+                    <label for="Control_PcNumber">采购单号:</label>
+                    <div id="Control_PcNumber" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="Id" onvaluechanged="onPcNumberChanged" url="/Pc/SearchPcPurchaseManageListForList" style="width: 100%;">
+                    </div>
+                </div>
+                <div class="ablock" style="display: none">
+                    <label for="Control_PiNumber">入库单号:</label>
+                    <input id="Control_PiNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_SupCode">供货商编码:</label>
+                    <input id="Control_SupCode" name="SupCode" class="mini-combobox" onvaluechanged="supCodeChanged" valuefield="Id" textfield="SupName" pinyinfield="PyCode" url="/Data/FbSupplierArchives.js" allowinput="true" style="width: 100%;" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_EnCode">企业编码:</label>
+                    <input type="text"  value="@Model.EnCode" class="mini-textbox" name="EnCode" id="Control_EnCode" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PcForm">采购形式:</label>
+                    <input type="text"  value="@Model.PcForm" class="mini-textbox" name="PcForm" id="Control_PcForm" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_dCode">部门编码:</label>
+                    <input type="text"  value="@Model.dCode" class="mini-textbox" name="dCode" id="Control_dCode" vtype="maxLength:50"required="true" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_bCode">门店编码:</label>
+                    <input type="text"  value="@Model.bCode" class="mini-textbox" name="bCode" id="Control_bCode" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PcType">采购类型:</label>
+                    <input type="text"  value="@Model.PcType" class="mini-textbox" name="PcType" id="Control_PcType" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PcMode">采购方式:</label>
+                    <input type="text"  value="@Model.PcMode" class="mini-textbox" name="PcMode" id="Control_PcMode" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_WhCode">仓库编码:</label>
+                    <input type="text"  value="@Model.WhCode" class="mini-textbox" name="WhCode" id="Control_WhCode" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PurchaseDate">采购日期:</label>
+                    <input type="text" id="Control_PurchaseDate" name="PurchaseDate"  value="@Model.PurchaseDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_ExpectArriveDate">预计到货日期:</label>
+                    <input type="text" id="Control_ExpectArriveDate" name="ExpectArriveDate"  value="@Model.ExpectArriveDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_CheckDate">验收日期:</label>
+                    <input type="text" id="Control_CheckDate" name="CheckDate"  value="@Model.CheckDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PutinDate">入库日期:</label>
+                    <input type="text" id="Control_PutinDate" name="PutinDate"  value="@Model.PutinDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PutinMoney">入库金额:</label>
+                    <input type="text" id="Control_PutinMoney" name="PutinMoney"  value="@Model.PutinMoney" class="mini-spinner" minValue="0" maxValue="999999" decimalPlaces="4"/>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_IfAblebalance">是否允许结算:</label>
+                    <div id="Control_IfAblebalance" name="IfAblebalance" value="@Model.IfAblebalance" class="mini-checkbox" trueValue="1" falseValue="0" readOnly="false" text="允许结算"></div>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_IfBalance">是否结算:</label>
+                    <div id="Control_IfBalance" name="IfBalance" value="@Model.IfBalance" class="mini-checkbox" trueValue="1" falseValue="0" readOnly="false" text="结算"></div>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_BaNumber">结算单号:</label>
+                    <input type="text"  value="@Model.BaNumber" class="mini-textbox" name="BaNumber" id="Control_BaNumber" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_BaMoney">结算金额:</label>
+                    <input type="text" id="Control_BaMoney" name="BaMoney"  value="@Model.BaMoney" class="mini-spinner" minValue="0" maxValue="999999" decimalPlaces="4"/>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_CreateDate">创建时间:</label>
+                    <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_Operator">操作员:</label>
+                    <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_Assessor">审核人:</label>
+                    <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_IfExamine">是否审核:</label>
+                    <div id="Control_IfExamine" name="IfExamine" value="@Model.IfExamine" class="mini-checkbox" trueValue="1" falseValue="0" readOnly="false" text="审核"></div>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_ExamineDate">审核时间:</label>
+                    <input type="text" id="Control_ExamineDate" name="ExamineDate"  value="@Model.ExamineDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_OperatorDate">操作时间:</label>
+                    <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+                </div>
+
+            </fieldset>
+
+            <div id="datagrid1" class="mini-datagrid" url="/Pc/SearchPcPutinDetailList?PiNumber=@(Model.Id <= 0 ? "!##$%" : Model.Id.ToS())"
+                style="width: 100%; height: 250px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+                pagesize="20" multiselect="true" showfilterrow="false" showPager="false" onrowdblclick="onrowdblclick">
+                <div property="columns">
+                    <div type="indexcolumn" width="30">
+                    </div>
+                    <div type="checkcolumn" width="30">
+                    </div>
+                    <div field="GoodsCode" headeralign="center" align="center" width="60">
+                        商品编码
+					<div id="editor_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
+                        <div property="columns">
+                            <div header="销售码" field="GoodsBarCode">
+                            </div>
+                            <div header="拼音码" field="PyCode">
+                            </div>
+                            <div header="商品名称" field="GoodsName">
+                            </div>
                         </div>
-                        <div type="checkcolumn" width="30">
-                        </div>
-                        <div field="Id" headeralign="center" align="center" width="150">
-                            采购单号
-                        </div>
-                        <div field="SupName" headeralign="center" align="center" width="100">
-                            供货商名称
-                        </div>
+                    </div>
+
+                    </div>
+
+
+                    <div field="GoodsBarCode" headeralign="center" align="center" width="60">
+                        商品销售码
+					<input id="editor_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="Specification" headeralign="center" align="center" width="60">
+                        规格
+					<input id="editor_Specification" name="Specification" property="editor" class="mini-textbox" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="PackUnitCode" headeralign="center" align="center" width="60">
+                        包装单位
+					<input id="editor_PackUnitCode" name="PackUnitCode" property="editor" class="mini-textbox" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="OfferMin" headeralign="center" align="center" width="60">
+                        最小订量
+                        <input type="text" id="editor_OfferMin" name="OfferMin" property="editor" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="PackQty" headeralign="center" align="center" width="60">
+                        整件数量
+                        <input type="text" id="editor_PackQty" name="PackQty" property="editor" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="4" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="PackCoef" headeralign="center" align="center" width="60">
+                        包装系数
+                        <input type="text" id="editor_PackCoef" name="PackCoef" property="editor" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="PurchaseQty" headeralign="center" align="center" width="60">
+                        单品数量
+                        <input type="text" id="editor_PurchaseQty" name="PurchaseQty" property="editor" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="4" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="PutinQty" headeralign="center" align="center" width="60">
+                        入库数量
+                        <input type="text" id="editor_PutinQty" name="PutinQty" property="editor" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="4" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="SalePrice" headeralign="center" align="center" width="60">
+                        销售价
+                        <input type="text" id="editor_SalePrice" name="SalePrice" property="editor" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="4" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="PurchasePrice" headeralign="center" align="center" width="60">
+                        含税进价
+                        <input type="text" id="editor_PurchasePrice" name="PurchasePrice" property="editor" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="6" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
+                        不含税进价
+                        <input type="text" id="editor_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="6" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="PurchaseMoney" headeralign="center" align="center" width="60">
+                        含税金额
+                        <input type="text" id="editor_PurchaseMoney" name="PurchaseMoney" property="editor" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="6" style="width: 100%;" />
+                    </div>
+
+
+                    <div field="NontaxPurchaseMoney" headeralign="center" align="center" width="60">
+                        不含税金额
+                        <input type="text" id="editor_NontaxPurchaseMoney" name="NontaxPurchaseMoney" property="editor" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="6" style="width: 100%;" />
                     </div>
 
                 </div>
             </div>
-            <div showcollapsebutton="true">
-                <div id="printArea" class="main" style="width: 21cm; margin: 0 auto; font-size: 12px;">
-                    <h1 style="text-align:center;color:#000;  padding:10px;">商品验收入库单</h1>
-                    <table style="width:100%; font-size:12px; margin:10px 0;">
-                        <tr>
-                            <td>姓名：张三</td>
-                            <td>姓名：张三</td>
-                            <td>姓名：张三</td>
-                        </tr>
-                    </table>
-                    <table id="table1" bordercolor="#000" style="border: solid 1px #000; border-collapse: collapse; width: 100%; margin: 0 auto;font-size:12px;"
-                        border="1">
-                        <thead>
-                            <tr>
-                                <th>商品编码
-                                </th>
-                                <th>商品销售码
-                                </th>
-                                <th>商品名称
-                                </th>
-                                <th>规格
-                                </th>
-                                <th>单位
-                                </th>
-                                <th>单品数量
-                                </th>
-                                <th>整件数量
-                                </th>
-                                <th>系数
-                                </th>
-                                <th>验收数量
-                                </th>
-                                <th>含税进价
-                                </th>
-                                <th>销售价
-                                </th>
-                                <th>含税金额
-                                </th>
-                                <th>售价金额
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                    <table style="width:100%; font-size:12px; margin:10px 0;">
-                        <tr>
-                            <td style="width:33%"></td>
-                            <td style="width:33%"></td>
-                            <td style="width:33%">操作人：张三</td>
-                        </tr>
-                        <tr>
-                            <td style="width:33%"></td>
-                            <td style="width:33%"></td>
-                            <td style="width:33%">操作时间：2014年3月18日 21:21:48</td>
-                        </tr>
-                    </table>
+            <div class="clear">
+            </div>
+            <div class="control-panel">
+                <div class="control-button">
+                    <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                    <input type="button" class="myButton" id="btnGoods" value="商品" />
+                    <input type="button" class="myButton" id="btnInStock" value="入库" />
+                    <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
+                    <input type="button" class="myButton" id="btnSearch" value="查询" />
+                    <input type="button" class="myButton" id="btnSubmit" value="提交" />
+                    <input type="button" class="myButton" id="btnPrint" value="打印" />
+                    <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                    <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+                </div>
+                <div class="botton-up">
                 </div>
             </div>
-        </div>
-    </div>
-<form id="formMain" method="post" action="" style="display:none">
-        <fieldset>
-            <legend>基本信息</legend>
-            <div class="ablock" style="display:none">
-                <label for="Control_PiFlowNumber">流水单号:</label>
-                <input id="Control_PiFlowNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
-            </div>
-
-            <div class="ablock" style="display:none">
-                <label for="Control_PiNumber">入库单号:</label>
-                <input id="Control_PiNumber" value="@Model.Id" name="Id" class="mini-hidden"/>
-            </div>
-
-            <div class="ablock">
-                <label for="Control_SupCode">供货商编码:</label>
-                <input type="text"  value="@Model.SupCode" class="mini-textbox" name="SupCode" id="Control_SupCode" vtype="maxLength:20"required="true" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_EnCode">企业编码:</label>
-                <input type="text"  value="@Model.EnCode" class="mini-textbox" name="EnCode" id="Control_EnCode" vtype="maxLength:20" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_PcForm">采购形式:</label>
-                <input type="text"  value="@Model.PcForm" class="mini-textbox" name="PcForm" id="Control_PcForm" vtype="maxLength:20" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_dCode">部门编码:</label>
-                <input type="text"  value="@Model.dCode" class="mini-textbox" name="dCode" id="Control_dCode" vtype="maxLength:50"required="true" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_bCode">门店编码:</label>
-                <input type="text"  value="@Model.bCode" class="mini-textbox" name="bCode" id="Control_bCode" vtype="maxLength:20" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_PcType">采购类型:</label>
-                <input type="text"  value="@Model.PcType" class="mini-textbox" name="PcType" id="Control_PcType" vtype="maxLength:20" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_PcMode">采购方式:</label>
-                <input type="text"  value="@Model.PcMode" class="mini-textbox" name="PcMode" id="Control_PcMode" vtype="maxLength:20" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_WhCode">仓库编码:</label>
-                <input type="text"  value="@Model.WhCode" class="mini-textbox" name="WhCode" id="Control_WhCode" vtype="maxLength:20" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_PurchaseDate">采购日期:</label>
-                <input type="text" id="Control_PurchaseDate" name="PurchaseDate"  value="@Model.PurchaseDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_ExpectArriveDate">预计到货日期:</label>
-                <input type="text" id="Control_ExpectArriveDate" name="ExpectArriveDate"  value="@Model.ExpectArriveDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_CheckDate">验收日期:</label>
-                <input type="text" id="Control_CheckDate" name="CheckDate"  value="@Model.CheckDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_PutinDate">入库日期:</label>
-                <input type="text" id="Control_PutinDate" name="PutinDate"  value="@Model.PutinDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_PutinMoney">入库金额:</label>
-                <input type="text" id="Control_PutinMoney" name="PutinMoney"  value="@Model.PutinMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
-            </div>
-
-            <div class="ablock">
-                <label for="Control_IfAblebalance">是否允许结算:</label>
-                <div id="Control_IfAblebalance" name="IfAblebalance" value="1" class="mini-checkbox" checked="true" readOnly="false" text="允许结算"></div>
-            </div>
-
-            <div class="ablock">
-                <label for="Control_IfBalance">是否结算:</label>
-                <div id="Control_IfBalance" name="IfBalance" value="1" class="mini-checkbox" checked="true" readOnly="false" text="结算"></div>
-            </div>
-
-            <div class="ablock">
-                <label for="Control_BaNumber">结算单号:</label>
-                <input type="text"  value="@Model.BaNumber" class="mini-textbox" name="BaNumber" id="Control_BaNumber" vtype="maxLength:20" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_BaMoney">结算金额:</label>
-                <input type="text" id="Control_BaMoney" name="BaMoney"  value="@Model.BaMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
-            </div>
-
-            <div class="ablock">
-                <label for="Control_CreateDate">创建时间:</label>
-                <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_Operator">操作员:</label>
-                <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_Assessor">审核人:</label>
-                <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_IfExamine">是否审核:</label>
-                <div id="Control_IfExamine" name="IfExamine" value="1" class="mini-checkbox" checked="true" readOnly="false" text="审核"></div>
-            </div>
-
-            <div class="ablock">
-                <label for="Control_ExamineDate">审核时间:</label>
-                <input type="text" id="Control_ExamineDate" name="ExamineDate"  value="@Model.ExamineDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
-            </div>
-
-            <div class="ablock">
-                <label for="Control_OperatorDate">操作时间:</label>
-                <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
-            </div>
-
-           
-        </fieldset>
-        <div class="clear">
-        </div>
         </form>
+    </div>
 </body>
 </html>
-
