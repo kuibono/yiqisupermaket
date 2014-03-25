@@ -97,6 +97,14 @@ function onExamineRender(e) {
     }
 }
 
+function onFormatTimeRender(e) {
+    
+    if (e.value){
+        return mini.formatDate(e.value, "yyyy-MM-dd HH:mm:ss");
+    }
+    return "";
+}
+
 // 会员管理
 
 function onCardTypeRender(e) {

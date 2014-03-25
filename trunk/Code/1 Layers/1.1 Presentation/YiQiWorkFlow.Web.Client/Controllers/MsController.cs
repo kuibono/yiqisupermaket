@@ -705,12 +705,23 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 {
                     // 当前操作人 操作时间
                     m.OperatorDate = DateTime.Now;
+
+                    if ((string.IsNullOrEmpty(m.IfExamine) || m.IfExamine.Equals("0")) && m.ExamineDate == null)
+                    {
+                        m.ExamineDate = DateTime.Now;
+                    }
                     MsCardtypeManageService.Update(m);
                 }
                 else
                 {
                     // 操作人 创建时间
                     m.CreateDate = DateTime.Now;
+
+                    if (string.IsNullOrEmpty(m.IfExamine))
+                    {
+                        m.IfExamine = "0";
+                    }
+
                     MsCardtypeManageService.Create(m);
                 }
                 r.IsSuccess = true;

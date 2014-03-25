@@ -80,6 +80,35 @@ $(function () {
         form.unmask()
         return false;
     });
+
+    $("#btnExame").click(function () {
+
+        form.validate();
+        if (form.isValid() == false) return false;
+
+        //form.loading();
+        //提交数据
+        if (ExameData) {
+            ExameData();
+        }
+        form.unmask()
+        return false;
+    });
+
+    $("#btnAbolish").click(function () {
+
+        form.validate();
+        if (form.isValid() == false) return false;
+
+        //form.loading();
+        //提交数据
+        if (AbolishData) {
+            AbolishData();
+        }
+        form.unmask()
+        return false;
+    });
+
     $(document).keydown(function (event) {
         //alert(event.keyCode)
         //ctrl+s
@@ -87,16 +116,16 @@ $(function () {
             $("#btnFormSubmit").click();
             return false;
         }
-        //enter+ctrl
+            //enter+ctrl
         else if (event.keyCode == 13 && event.ctrlKey) {
             $("#btnFormSubmit").click();
             return false;
         }
-        //esc
+            //esc
         else if (event.keyCode == 27) {
             $("#formMain input:reset").first().click();
         }
-        //Ctrl+Q
+            //Ctrl+Q
         else if (event.keyCode == 81 && event.ctrlKey) {
             closeTab();
         }
@@ -162,4 +191,3 @@ function formatTime(item, array) {
     ymd.setTime(parseInt(item.replace("\/Date(", "").replace(")\/", "")));
     return ymd.toLocaleDateString();
 }
-
