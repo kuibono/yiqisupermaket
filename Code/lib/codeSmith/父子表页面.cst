@@ -1,12 +1,12 @@
-<%-- 
+﻿<%-- 
 Name:
 Author: 
 Description: 
 --%>
-<%@ CodeTemplate Language="C#" TargetLanguage="Text" Src="" Inherits="" Debug="True" Description="Template description here." %>
-<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="??" Description="?????????" %>
-<%@ Property Name="SubTable" Type="SchemaExplorer.TableSchema" Category="??" Description="??" %>
-<%@ Property Name="OutKey" Type="System.String" Category="??" Description="??" %>
+<%@ CodeTemplate Language="C#" TargetLanguage="Text" Src="" Inherits="" ResponseEncoding="UTF-8"  Debug="True" Description="Template description here." %>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="表" Description="主表" %>
+<%@ Property Name="SubTable" Type="SchemaExplorer.TableSchema" Category="表" Description="字表" %>
+<%@ Property Name="OutKey" Type="System.String" Category="表" Description="外键" %>
 <%@ Map Name="CSharpAlias" Src="System-CSharpAlias" Description="System to C# Type Map" %>
 <%@ Assembly Name="SchemaExplorer" %>
 <%@ Import Namespace="SchemaExplorer" %>
@@ -18,11 +18,11 @@ Description:
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title><%= StringUtil.ToPascalCase(this.SourceTable.Description) %>??</title>
+    <title><%= StringUtil.ToPascalCase(this.SourceTable.Description) %>编辑</title>
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "<%= StringUtil.ToPascalCase(this.SourceTable.Description) %>"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = "@Model.Id"; pageName = "<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Edit"; </script>
+    <script type="text/javascript"> var pageTitle = "<%= StringUtil.ToPascalCase(this.SourceTable.Description) %>"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = "@Model.Id"; pageName = "<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Edit";var isNew=@Model.IsAdded.ToString().ToLower(); </script>
     <script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -31,7 +31,24 @@ Description:
             var grid1 = mini.get("datagrid1");
             grid1.commitEdit();
             var detail = grid1.getChanges();
-            //???????????
+            //验证子表
+            if (detail.length == 0) {
+                alert("必须设置<%=SubTable.Description.Trim('\r').Trim('\n') %>！");
+                return false;
+            }
+            for (var i = 0; i < detail.length; i++) {
+                <%
+                foreach(ColumnSchema col in this.SubTable.Columns){
+                %>
+                if (detail[i].<%=StringUtil.ToPascalCase(col.Name)%> == undefined || detail[i].<%=StringUtil.ToPascalCase(col.Name)%> == 0) {
+                    alert("<%=col.Description.Trim('\r').Trim('\n')%>不能为空或者0！");
+                    return false;
+                }
+                <%
+                }
+                %>
+            }
+            
             o["detail"] = mini.encode(detail);
 
             $.ajax({
@@ -84,7 +101,7 @@ Description:
             grid.reload();
             jQuery.hotkeys.add('return', function () {
                 //if (mini.get("filter_SupCode").getValue().length == 0) {
-                //    alert("?????????");
+                //    alert("必须选择供货商");
                 //    return false;
                 //}
                 if (grid.isEditing()) {
@@ -107,17 +124,28 @@ Description:
             });
 
             $("#btnExame").click(function () {
-                mini.get("Control_IfExamine").setValue("1");
+                var chk = mini.get("Control_IfExamine");
+                chk.setValue("1");
                 mini.get("Control_ExamineDate").setValue(new Date());
-                SaveData();
+                clearExameAfterSave = false;
+                if (isNew == false) {
+                    //立即生效
+                    $.getJSON("/Common/ChangeDbValue?table=<%=SourceTable.Name%>&pkColumn=<%=GetPkOrIdentityColumn(SourceTable).Name%>&pkValue=@Model.Id&assessor=&if_examine=1&examine_date=" + new Date(), function (r) {
+
+                    });
+                }
+                $("#btnExame").prop("disabled", true);
             });
+            if ("@Model.IfExamine" == "1") {
+                $("#btnExame").prop("disabled", true);
+            }
             $("#btnInStock").click(function () {
                 mini.get("Control_IfPutin").setValue("1");
                 mini.get("Control_PutinDate").setValue(new Date());
             });
             $("#btnDel").click(function () {
                 if (isNew == false) {
-                    //??
+                    //删除
                     $.ajax({
                         url: "/<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>/<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>Delete",
                         data: { ids: id, confirm: "true" },
@@ -134,12 +162,12 @@ Description:
             $("#btnGoods").click(function () {
                 var btnEdit = this;
                 //if (mini.get("filter_SupCode").getValue().length == 0) {
-                //    alert("?????????");
+                //    alert("必须选择供货商");
                 //    return false;
                 //}
                 mini.open({
                     url: "/Common/GoodsSelector?OpCode=3",
-                    title: "????",
+                    title: "选择商品",
                     width: 600,
                     height: 380,
                     ondestroy: function (action) {
@@ -147,7 +175,7 @@ Description:
                         if (action == "ok") {
                             var iframe = this.getIFrameEl();
                             var data = iframe.contentWindow.GetData();
-                            data = mini.clone(data);    //??
+                            data = mini.clone(data);    //
                             if (data) {
                                 for (var i = 0; i < data.length; i++) {
                                     var row = {
@@ -178,18 +206,18 @@ Description:
                 });
             });
             $("#btnQuery").click(function () {
-                location.href = ""/<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>/<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>"List";
+                location.href = "/<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>/<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>List";
             });
         });
     </script>
 </head>
 <body>
     <div class="container">
-        <h1><%= StringUtil.ToPascalCase(this.SourceTable.Description) %>??
+        <h1><%= StringUtil.ToPascalCase(this.SourceTable.Description) %>编辑
         </h1>
         <form id="formMain" method="post" action="">
             <fieldset>
-                <legend>????</legend>
+                <legend>基本信息</legend>
                 <% foreach (ColumnSchema column in this.SourceTable.Columns) {  %>
             	<%= GetTableColumnResult(column) %>
            		<% } %>
@@ -217,15 +245,15 @@ Description:
             </div>
             <div class="control-panel">
                 <div class="control-button">
-                    <input type="button" class="myButton" id="btnFormSubmit" value="??(Ctrl+S)" />
-                    <input type="button" class="myButton" id="btnGoods" value="??" />
-                    <input type="button" class="myButton" id="btnInStock" value="??" />
-                    <input type="button" class="myButton" id="btnExame" value="??(Ctrl+E)" />
-                    <input type="button" class="myButton" id="btnSearch" value="??" />
-                    <input type="button" class="myButton" id="btnSubmit" value="??" />
-                    <input type="button" class="myButton" id="btnPrint" value="??" />
-                    <input type="reset" class="myGrayButton" id="btnFormReset" value="??(Esc)" />
-                    <input type="button" class="myRedButton" id="btnClosePage" value="??(Ctrl+Q)" />
+                    <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                    <input type="button" class="myButton" id="btnGoods" value="商品" />
+                    <input type="button" class="myButton" id="btnInStock" value="入库" />
+                    <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
+                    <input type="button" class="myButton" id="btnSearch" value="查询" />
+                    <input type="button" class="myButton" id="btnSubmit" value="提交" />
+                    <input type="button" class="myButton" id="btnPrint" value="打印" />
+                    <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                    <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
                 </div>
                 <div class="botton-up">
                 </div>
@@ -234,6 +262,14 @@ Description:
     </div>
 </body>
 </html>
+
+<%
+foreach(ColumnSchema col in this.SubTable.Columns){
+%>
+<%=StringUtil.ToPascalCase(col.Name)%>:j.data[i].<%=StringUtil.ToPascalCase(col.Name)%>,
+<%
+}
+%>
 <script runat="template">
 private string GetTableColumnResult(ColumnSchema column)
 {
@@ -262,9 +298,9 @@ private string GetTableColumnResult(ColumnSchema column)
 		{
 			sb.AppendFormat("<input id=\"Control_SupCode\" name=\"SupCode\" class=\"mini-combobox\" onvaluechanged=\"supCodeChanged\" valuefield=\"Id\" textfield=\"SupName\" pinyinfield=\"PyCode\" url=\"/Data/FbSupplierArchives.js\" allowinput=\"true\" style=\"width: 100%;\" />");
 		}
-        if(column.Name.ToLower().StartsWith("if_"))
+        else if(column.Name.ToLower().StartsWith("if_"))
         {
-            sb.AppendFormat("<div id=\"Control_{0}\" name=\"{0}\" value=\"@Model.{0}\" class=\"mini-checkbox\" trueValue=\"1\" falseValue=\"0\" readOnly=\"false\" text=\"{1}\"></div>",StringUtil.ToPascalCase(column.Name),column.Description.Trim('\n').Trim('\r').Replace("??",""));
+            sb.AppendFormat("<div id=\"Control_{0}\" name=\"{0}\" value=\"@Model.{0}\" class=\"mini-checkbox\" trueValue=\"1\" falseValue=\"0\" readOnly=\"false\" text=\"{1}\"></div>",StringUtil.ToPascalCase(column.Name),column.Description.Trim('\n').Trim('\r').Replace("是否",""));
         }
         else
         {
@@ -312,11 +348,11 @@ private string GetGridColumn(ColumnSchema column){
 	if(column.DataType==DbType.String||column.DataType==DbType.AnsiString){
 		sb.Append("					");
 		if(StringUtil.ToPascalCase(column.Name)=="GoodsCode"){
-			sb.AppendLine("<div id=\"editor_GoodsCode\" popupwidth=\"400\" name=\"GoodsCode\" property=\"editor\" class=\"mini-combobox\" allowinput=\"true\" valuefield=\"Id\" textfield=\"GoodsName\" onvaluechanged=\"onGoodsChanged\" url=\"/Fb/SearchFbGoodsArchivesListForList\" style=\"width: 100%;\">\n                        <div property=\"columns\">                            \n<div header=\"???\" field=\"GoodsBarCode\">\n                            </div>\n                            <div header=\"???\" field=\"PyCode\">\n                            </div>\n                            <div header=\"????\" field=\"GoodsName\">\n                            </div>\n                        </div>\n                    </div>\n");
+			sb.AppendLine("<div id=\"editor_GoodsCode\" popupwidth=\"400\" name=\"GoodsCode\" property=\"editor\" class=\"mini-combobox\" allowinput=\"true\" valuefield=\"Id\" textfield=\"GoodsName\" onvaluechanged=\"onGoodsChanged\" url=\"/Fb/SearchFbGoodsArchivesListForList\" style=\"width: 100%;\">\n                        <div property=\"columns\">                            \n<div header=\"销售码\" field=\"GoodsBarCode\">\n                            </div>\n                            <div header=\"拼音码\" field=\"PyCode\">\n                            </div>\n                            <div header=\"商品名称\" field=\"GoodsName\">\n                            </div>\n                        </div>\n                    </div>\n");
 		}
 		else if(column.Name.ToLower().StartsWith("if_"))
         {
-			sb.AppendFormat("<div id=\"editor_{0}\" name=\"{0}\" value=\"@Model.{0}\" property=\"editor\" class=\"mini-checkbox\" trueValue=\"1\" falseValue=\"0\" readOnly=\"false\" text=\"\"></div>\n",StringUtil.ToPascalCase(column.Name));
+			sb.AppendFormat("<div id=\"editor_{0}\" name=\"{0}\"  property=\"editor\" class=\"mini-checkbox\" trueValue=\"1\" falseValue=\"0\" readOnly=\"false\" text=\"\"></div>\n",StringUtil.ToPascalCase(column.Name));
 		}
 		
 		else{
@@ -325,18 +361,18 @@ private string GetGridColumn(ColumnSchema column){
 	}
 	else if(column.DataType==DbType.DateTime || column.DataType==DbType.DateTime2)
 	{
-		sb.AppendFormat("<input type=\"text\" id=\"editor_{0}\" name=\"{0}\" property=\"editor\"  value=\"@Model.{0}\" class=\"mini-datepicker\"  format=\"yyyy-MM-dd H:mm:ss\" timeFormat=\"H:mm:ss\" showTime=\"true\" showOkButton=\"true\" showClearButton=\"true\" required=\"{1}\" style=\"width: 100%;\" />\n",StringUtil.ToPascalCase(column.Name),(column.AllowDBNull==false).ToString().ToLower());
+		sb.AppendFormat("<input type=\"text\" id=\"editor_{0}\" name=\"{0}\" property=\"editor\"  class=\"mini-datepicker\"  format=\"yyyy-MM-dd H:mm:ss\" timeFormat=\"H:mm:ss\" showTime=\"true\" showOkButton=\"true\" showClearButton=\"true\" required=\"{1}\" style=\"width: 100%;\" />\n",StringUtil.ToPascalCase(column.Name),(column.AllowDBNull==false).ToString().ToLower());
 	}
 	else if(column.DataType==DbType.Int16 || column.DataType==DbType.Int32||column.DataType==DbType.Int64)
 	{
-		sb.AppendFormat("<input type=\"text\" id=\"editor_{0}\" name=\"{0}\" property=\"editor\"  value=\"@Model.{0}\" class=\"mini-spinner\" minValue=\"0\" maxValue=\"1000\" decimalPlaces=\"0\" style=\"width: 100%;\"/>\n",StringUtil.ToPascalCase(column.Name));
+		sb.AppendFormat("<input type=\"text\" id=\"editor_{0}\" name=\"{0}\" property=\"editor\" class=\"mini-spinner\" minValue=\"0\" maxValue=\"1000\" decimalPlaces=\"0\" style=\"width: 100%;\"/>\n",StringUtil.ToPascalCase(column.Name));
 	}
 	else if(column.DataType==DbType.Decimal)
 	{
-		sb.AppendFormat("<input type=\"text\" id=\"editor_{0}\" name=\"{0}\" property=\"editor\"  value=\"@Model.{0}\" class=\"mini-spinner\" minValue=\"0\" maxValue=\"1000\" decimalPlaces=\"{1}\" style=\"width: 100%;\"/>\n",StringUtil.ToPascalCase(column.Name),column.Scale);
+		sb.AppendFormat("<input type=\"text\" id=\"editor_{0}\" name=\"{0}\" property=\"editor\"  class=\"mini-spinner\" minValue=\"0\" maxValue=\"1000\" decimalPlaces=\"{1}\" style=\"width: 100%;\"/>\n",StringUtil.ToPascalCase(column.Name),column.Scale);
 	}
 	else{
-		sb.AppendLine("??????");
+		sb.AppendLine("Unknown data type\n");
 	}
 	
 	sb.AppendLine("					</div>\n");
