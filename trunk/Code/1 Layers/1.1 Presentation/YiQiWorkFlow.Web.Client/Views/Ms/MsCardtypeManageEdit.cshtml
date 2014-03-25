@@ -10,6 +10,32 @@
     <script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
+
+            // 验证
+            if (mini.get('#Control_IfExamine').getValue() == "1") {
+                mini.alert("已经审核不能保存！");
+                return false;
+            }
+
+            if (mini.get('#Control_IfExamine').getValue() == "-1") {
+                mini.alert("已经废除不能保存！");
+                return false;
+            }
+
+            if (mini.get('#Control_CardUsefulLife').getValue() < mini.get('#Control_PointsUsefulLife').getValue()) {
+                mini.alert("卡有效期不能小于积分有效期！");
+                mini.get('#Control_CardUsefulLife').focus();
+                return false;
+            }
+            
+            if (mini.get('#Control_PrepaidMin').getValue() > mini.get('#Control_PrepaidMax').getValue()) {
+                mini.alert("最低充值金额不能大于最高充值金额！");
+                mini.get('#Control_PrepaidMin').focus();
+                return false;
+            }
+
+            // 判断卡类型名称是否重复
+
             var o = form.getData(true);
             $.ajax({
                 url: "/Ms/SaveMsCardtypeManage",
@@ -116,11 +142,6 @@
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_CardMedium">卡介质:</label>
-                    <input type="text" value="@Model.CardMedium" class="mini-combobox" name="CardMedium" id="Control_CardMedium" data="c_CardMedium" vtype="maxLength:20" required="true" />
-                </div>
-
-                <div class="ablock">
                     <label for="Control_CardUsefulLife">卡有效期:</label>
                     <input type="text" id="Control_CardUsefulLife" name="CardUsefulLife" value="@Model.CardUsefulLife" class="mini-spinner" minvalue="1" maxvalue="999999" allowlimitvalue="true" decimalplaces="0" required="true" emptytext="365" />
                 </div>
@@ -131,103 +152,8 @@
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_TransactCharge">办卡费用:</label>
-                    <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_DepositMoney">押金金额:</label>
-                    <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_IfVip">是否会员价:</label>
-                    <div id="Control_IfVip" name="IfVip" class="mini-checkbox" value="@Model.IfVip" truevalue="1" falsevalue="0" readonly="false" text="会员价"></div>
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_IfDiscount">是否折扣:</label>
-                    <div id="Control_IfDiscount" name="IfDiscount" class="mini-checkbox" value="@Model.IfDiscount" truevalue="1" falsevalue="0" readonly="false" text="折扣"></div>
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_DiscountBase">折扣基数:</label>
-                    <input type="text" id="Control_DiscountBase" name="DiscountBase" value="@Model.DiscountBase" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_DiscountRate">折扣率:</label>
-                    <input type="text" id="Control_DiscountRate" name="DiscountRate" value="@Model.DiscountRate" class="mini-spinner" minvalue="0.10" maxvalue="1.00" decimalplaces="2" increment="0.1" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_IfPoints">是否积分:</label>
-                    <div id="Control_IfPoints" name="IfPoints" class="mini-checkbox" truevalue="1" falsevalue="0" readonly="false" text="积分"></div>
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_ExpendBase">消费基数:</label>
-                    <input type="text" id="Control_ExpendBase" name="ExpendBase" value="@Model.ExpendBase" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_PointsValues">积分分值:</label>
-                    <input type="text" id="Control_PointsValues" name="PointsValues" value="@Model.PointsValues" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_BirthdayPoints">会员生日积分:</label>
-                    <input type="text" id="Control_BirthdayPoints" name="BirthdayPoints" value="@Model.BirthdayPoints" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_IfPrepaid">是否储值:</label>
-                    <div id="Control_IfPrepaid" name="IfPrepaid" class="mini-checkbox" value="@Model.IfPrepaid" truevalue="1" falsevalue="0" readonly="false" text="储值"></div>
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_IfPrepaidPassword">是否管理密码:</label>
-                    <div id="Control_IfPrepaidPassword" name="IfPrepaidPassword" class="mini-checkbox" value="@Model.IfPrepaidPassword" truevalue="1" falsevalue="0" readonly="false" text="管理密码"></div>
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_LimitTimes">限制次数:</label>
-                    <input type="text" id="Control_LimitTimes" name="LimitTimes" value="@Model.LimitTimes" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_PrestoreMoney">预存金额:</label>
-                    <input type="text" id="Control_PrestoreMoney" name="PrestoreMoney" value="@Model.PrestoreMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_PrestorePw">预设密码:</label>
-                    <input type="text" value="@Model.PrestorePw" class="mini-textbox" name="PrestorePw" id="Control_PrestorePw" vtype="maxLength:20" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_PrepaidMin">最低充值金额:</label>
-                    <input type="text" id="Control_PrepaidMin" name="PrepaidMin" value="@Model.PrepaidMin" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_PrepaidMax">最高充值金额:</label>
-                    <input type="text" id="Control_PrepaidMax" name="PrepaidMax" value="@Model.PrepaidMax" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_IfPointToPrepaid">是否积分转储值:</label>
-                    <div id="Control_IfPointToPrepaid" name="IfPointToPrepaid" class="mini-checkbox" value="@Model.IfPointToPrepaid" truevalue="1" falsevalue="0" readonly="false" text="积分转储值"></div>
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_PointsBase">积分基数:</label>
-                    <input type="text" id="Control_PointsBase" name="PointsBase" value="@Model.PointsBase" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_PrepaidMoney">转储值金额:</label>
-                    <input type="text" id="Control_PrepaidMoney" name="PrepaidMoney" value="@Model.PrepaidMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <label for="Control_CardMedium">卡介质:</label>
+                    <input type="text" value="@Model.CardMedium" class="mini-combobox" name="CardMedium" id="Control_CardMedium" data="c_CardMedium" vtype="maxLength:20" required="true" />
                 </div>
 
                 <div class="ablock">
@@ -242,59 +168,163 @@
 
                 <div class="ablock">
                     <label for="Control_RandLen">随机位数:</label>
-                    <input type="text" id="Control_RandLen" name="RandLen" value="@Model.RandLen" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
+                    <input type="text" id="Control_RandLen" name="RandLen" value="@Model.RandLen" class="mini-spinner" minvalue="0" maxvalue="16" decimalplaces="0" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_TransactCharge">办卡费用:</label>
+                    <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_DepositMoney">押金金额:</label>
+                    <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_UpgradeType">卡升级方式:</label>
-                    <input type="text" value="@Model.UpgradeType" class="mini-combobox" name="UpgradeType" id="Control_UpgradeType" datatype="c_UpgradeType" vtype="maxLength:20" />
+                    <input type="text" value="@Model.UpgradeType" class="mini-combobox" name="UpgradeType" id="Control_UpgradeType" data="c_UpgradeType" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_PointsNeeds">所需积分:</label>
+                    <label for="Control_PointsNeeds">升级所需积分:</label>
                     <input type="text" id="Control_PointsNeeds" name="PointsNeeds" value="@Model.PointsNeeds" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_IfDeductPoints">当前时可设:</label>
-                    <div id="Control_IfDeductPoints" name="IfDeductPoints" class="mini-checkbox" value="@Model.IfDeductPoints" truevalue="1" falsevalue="0" readonly="false" text="当前时可设"></div>
+                    <label for="Control_IfDeductPoints">是否扣除积分:</label>
+                    <div id="Control_IfDeductPoints" name="IfDeductPoints" class="mini-checkbox" value="@Model.IfDeductPoints" truevalue="1" falsevalue="0" readonly="false" text=""></div>
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_IfAutoup">是否自动升级:</label>
-                    <div id="Control_IfAutoup" name="IfAutoup" class="mini-checkbox" value="@Model.IfAutoup" truevalue="1" falsevalue="0" readonly="false" text="自动升级"></div>
+                    <label for="Control_IfAutoup">是否自动升级</label>
+                    <div id="Control_IfAutoup" name="IfAutoup" class="mini-checkbox" value="@Model.IfAutoup" truevalue="1" falsevalue="0" readonly="false" text=""></div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>卡基础信息</legend>
+
+                <div class="ablock">
+                    <label for="Control_IfVip">是否会员价:</label>
+                    <div id="Control_IfVip" name="IfVip" class="mini-checkbox" value="@Model.IfVip" truevalue="1" falsevalue="0" readonly="false" text=""></div>
                 </div>
 
                 <div class="ablock">
+                    <label for="Control_IfDiscount">是否折扣:</label>
+                    <div id="Control_IfDiscount" name="IfDiscount" class="mini-checkbox" value="@Model.IfDiscount" truevalue="1" falsevalue="0" readonly="false" text=""></div>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_DiscountBase">折扣基数:</label>
+                    <input type="text" id="Control_DiscountBase" name="DiscountBase" value="@Model.DiscountBase" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_DiscountRate">折扣率:</label>
+                    <input type="text" id="Control_DiscountRate" name="DiscountRate" value="@Model.DiscountRate" class="mini-spinner" minvalue="0.00" maxvalue="1.00" decimalplaces="2" increment="0.1" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_IfPoints">是否积分:</label>
+                    <div id="Control_IfPoints" name="IfPoints" class="mini-checkbox" truevalue="1" falsevalue="0" readonly="false" text=""></div>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_ExpendBase">消费基数:</label>
+                    <input type="text" id="Control_ExpendBase" name="ExpendBase" value="@Model.ExpendBase" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PointsValues">积分分值:</label>
+                    <input type="text" id="Control_PointsValues" name="PointsValues" value="@Model.PointsValues" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_BirthdayPoints">会员生日积分倍数:</label>
+                    <input type="text" id="Control_BirthdayPoints" name="BirthdayPoints" value="@Model.BirthdayPoints" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_IfPrepaid">是否储值:</label>
+                    <div id="Control_IfPrepaid" name="IfPrepaid" class="mini-checkbox" value="@Model.IfPrepaid" truevalue="1" falsevalue="0" readonly="false" text=""></div>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_IfPrepaidPassword">是否管理密码:</label>
+                    <div id="Control_IfPrepaidPassword" name="IfPrepaidPassword" class="mini-checkbox" value="@Model.IfPrepaidPassword" truevalue="1" falsevalue="0" readonly="false" text=""></div>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_LimitTimes">限制次数:</label>
+                    <input type="text" id="Control_LimitTimes" name="LimitTimes" value="@Model.LimitTimes" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PrestoreMoney">预存金额:</label>
+                    <input type="text" id="Control_PrestoreMoney" name="PrestoreMoney" value="@Model.PrestoreMoney" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PrestorePw">预设密码:</label>
+                    <input type="text" value="@Model.PrestorePw" class="mini-textbox" name="PrestorePw" id="Control_PrestorePw" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PrepaidMin">最低充值金额:</label>
+                    <input type="text" id="Control_PrepaidMin" name="PrepaidMin" value="@Model.PrepaidMin" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PrepaidMax">最高充值金额:</label>
+                    <input type="text" id="Control_PrepaidMax" name="PrepaidMax" value="@Model.PrepaidMax" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_IfPointToPrepaid">是否积分转储值:</label>
+                    <div id="Control_IfPointToPrepaid" name="IfPointToPrepaid" class="mini-checkbox" value="@Model.IfPointToPrepaid" truevalue="1" falsevalue="0" readonly="false" text=""></div>
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PointsBase">积分基数:</label>
+                    <input type="text" id="Control_PointsBase" name="PointsBase" value="@Model.PointsBase" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PrepaidMoney">转储值金额:</label>
+                    <input type="text" id="Control_PrepaidMoney" name="PrepaidMoney" value="@Model.PrepaidMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                </div>
+
+                <div class="ablock" style="display:none">
                     <label for="Control_CreateDate">创建时间:</label>
                     <input type="text" id="Control_CreateDate" name="CreateDate" value="@Model.CreateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_Operator">操作员:</label>
                     <input type="text" value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_Assessor">审核人:</label>
                     <input type="text" value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_IfExamine">是否审核:</label>
                     <div id="Control_IfExamine" name="IfExamine" class="mini-checkbox" value="@Model.IfExamine" truevalue="1" falsevalue="0" readonly="true" text="审核"></div>
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_ExamineDate">审核时间:</label>
                     <input type="text" id="Control_ExamineDate" name="ExamineDate" value="@Model.ExamineDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_OperatorDate">操作时间:</label>
                     <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
-
             </fieldset>
             <div class="clear">
             </div>
@@ -302,6 +332,7 @@
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
+                    <input type="button" class="myRedButton" id="btnAbolish" value="废除(Ctrl+F)" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
                     <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
                 </div>

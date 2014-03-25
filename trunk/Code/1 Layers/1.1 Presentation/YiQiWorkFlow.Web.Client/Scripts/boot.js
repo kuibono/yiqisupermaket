@@ -86,6 +86,49 @@ function onYesNoRender(e) {
     if (e.value == "true" || e.value == "1") return "是";
     else return "否";
 }
+
+function onExamineRender(e) {
+    if (e.value == "0") {
+        return "未审核";
+    } else if (e.value == "1") {
+        return "已审核";
+    } else if (e.value == "-1") {
+        return "已废除";
+    }
+}
+
+// 会员管理
+
+function onCardTypeRender(e) {
+    if (e.value == "1") {
+        return "单店使用";
+    } else if (e.value == "2") {
+        return "同城使用";
+    } else if (e.value == "3") {
+        return "异地使用";
+    }
+}
+
+function onCardMediumRender(e) {
+    if (e.value == "1") {
+        return "磁条卡";
+    } else if (e.value == "2") {
+        return "IC卡";
+    } else if (e.value == "3") {
+        return "条码卡";
+    } else if (e.value == "3") {
+        return "普通卡";
+    }
+}
+
+function onUpgradeTypeRender(e) {
+    if (e.value == "1") {
+        return "累积积分";
+    } else if (e.value == "2") {
+        return "当前积分";
+    }
+}
+
 window.onerror = function () { return true; }
 
 function onEnglishValidation(e) {

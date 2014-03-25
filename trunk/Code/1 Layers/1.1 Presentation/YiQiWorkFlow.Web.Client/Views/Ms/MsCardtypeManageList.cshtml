@@ -15,10 +15,7 @@
                     <td>
                         <a class="mini-button" iconcls="icon-add" onclick="editRow('')" plain="true">增加</a>
                         <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">高级检索</a>
-                        <!--<a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">查询</a>
-                        <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">确定</a>
-                        <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">打印</a>
-                        <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">退出</a>-->
+                        <a class="mini-button" iconcls="icon-print" onclick="return false" plain="true">打印</a>
                     </td>
                     <td style="white-space: nowrap;" align="right">
                         <table>
@@ -42,11 +39,15 @@
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchMsCardtypeManageList"
             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showfilterrow="true">
+            pagesize="20" multiselect="true" showfilterrow="true" frozenStartColumn="1" frozenEndColumn="5">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
+                </div>
+                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                    cellstyle="padding:0;">
+                    管理
                 </div>
                 <div field="Id" headeralign="center" align="center" width="60">
                     卡类型编码
@@ -56,11 +57,11 @@
                     卡类型名称
 					<input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CardType" headeralign="center" align="center" width="60">
+                <div field="CardType" headeralign="center" align="center" width="60" renderer="onCardTypeRender">
                     卡范围
 					<input id="filter_CardType" name="CardType" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CardMedium" headeralign="center" align="center" width="60">
+                <div field="CardMedium" headeralign="center" align="center" width="60" renderer="onCardMediumRender">
                     卡介质
 					<input id="filter_CardMedium" name="CardMedium" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
@@ -164,8 +165,8 @@
                     随机位数
 					<input id="filter_RandLen" name="RandLen" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="UpgradeType" headeralign="center" align="center" width="60">
-                    累计积分当前积分
+                <div field="UpgradeType" headeralign="center" align="center" width="60" renderer="onUpgradeTypeRender">
+                    卡升级方式
 					<input id="filter_UpgradeType" name="UpgradeType" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <div field="PointsNeeds" headeralign="center" align="center" width="60">
@@ -192,7 +193,7 @@
                     审核人
 					<input id="filter_Assessor" name="Assessor" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="IfExamine" headeralign="center" align="center" width="60" renderer="onYesNoRender">
+                <div field="IfExamine" headeralign="center" align="center" width="60" renderer="onExamineRender">
                     是否审核
 					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
@@ -205,10 +206,6 @@
 					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
-                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                    cellstyle="padding:0;">
-                    管理
-                </div>
 
             </div>
         </div>
@@ -230,7 +227,7 @@
             var uid = record.Id;
             var rowIndex = e.rowIndex;
             if (record.IfExamine) {
-                if (record.IfExamine == "1") {
+                if (record.IfExamine == "1" || record.IfExamine == "-1") {
                     return "";
                 }
             }
