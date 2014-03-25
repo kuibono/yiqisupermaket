@@ -77,6 +77,7 @@
             mini.get("Control_ExpectArriveDate").setValue(e.selected.ExpectArriveDate);
             mini.get("Control_CheckDate").setValue(e.selected.CheckDate);
             $.getJSON("/Pc/SearchPcPurchaseDetailList?PcNumber="+e.selected.Id,function(j){
+                j=mini.decode(j);
                 for(var i=0;i<j.data.length;i++){
                     var row={
                         PiNumber:j.data[i].PiNumber,
@@ -482,7 +483,7 @@
                     <input type="button" class="myButton" id="btnGoods" value="商品" />
                     <input type="button" class="myButton" id="btnInStock" value="入库" />
                     <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
-                    <input type="button" class="myButton" id="btnSearch" value="查询" />
+                    <input type="button" class="myButton" id="btnQuery" value="查询" />
                     <input type="button" class="myButton" id="btnSubmit" value="提交" />
                     <input type="button" class="myButton" id="btnPrint" value="打印" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />

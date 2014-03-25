@@ -456,6 +456,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             else
             {
                 m.OperatorDate = DateTime.Now;
+
+                var jser = new JavaScriptSerializer();
+                var details = jser.Deserialize<List<PcPutinDetail>>(Request["detail"]).ToList();
+
+                m.PutinMoney = details.Sum(p => p.PurchaseMoney);
                 if (m.HaveId)
                 {
                     PcPutinManageService.Update(m);
@@ -467,8 +472,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
 
                 //Detail
-                var jser = new JavaScriptSerializer();
-                var details = jser.Deserialize<List<PcPutinDetail>>(Request["detail"]).ToList();
+                
                 details.ForEach(p =>
                 {
                     p.PiNumber = m.Id.ToS();
