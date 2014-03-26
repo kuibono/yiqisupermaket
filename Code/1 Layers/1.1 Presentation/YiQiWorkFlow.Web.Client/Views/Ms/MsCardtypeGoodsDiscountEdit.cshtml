@@ -11,6 +11,19 @@
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData(true);
+
+            var grid1 = mini.get("datagrid1");
+            grid1.commitEdit();
+            var goods = grid1.data;
+            if (grid1.data.length == 0) {
+                mini.alert("必须设置折扣商品信息！");
+                return false;
+            }
+            for (var i = 0; i < goods.length; i++) {
+                // 验证
+            }
+            o["goods"] = mini.encode(goods);
+
             $.ajax({
                 url: "/Ms/SaveMsCardtypeGoodsDiscount",
                 type: 'post',
@@ -69,13 +82,60 @@
 
         $(function () {
 
-            //var hGoodsCode = mini.get('#control_hGoodsCode');
-            //var GoodsCode = mini.get('#Control_GoodsCode');
-            //if (hGoodsCode) {
-            //    GoodsCode.setValue(hGoodsCode.getValue());
-            //    GoodsCode.text = hGoodsCode.getValue();
-            //}
+            var grid = mini.get("datagrid1");
+            grid.reload();
+            jQuery.hotkeys.add('return', function () {
+                if (mini.get("Control_CardCode").getValue().length == 0) {
+                    alert("必须先设置卡类型");
+                    return false;
+                }
+                if (grid.isEditing()) {
+                    grid.commitEdit();
+                }
+                var row = {};
+                grid.addRow(row, 0);
+                grid.cancelEdit();
+                grid.beginEditRow(row);
+                //mini.getbyName("GoodsCode", "datagrid1").setUrl("/Fb/SearchFbGoodsArchivesListForList?SupCode=" + mini.get("Control_CardCode").getValue());
+                mini.getbyName("GoodsCode", "datagrid1").setUrl("/Fb/SearchFbGoodsArchivesListForList");
+                setTimeout(function () {
+                    mini.getbyName("GoodsCode", "datagrid1").focus();
+                }, 500);
+            });
+            jQuery.hotkeys.add('esc', function () {
+                grid.reload();
+            });
+            jQuery.hotkeys.add('del', function () {
+                grid.removeRows(grid.getSelecteds());
+            });
         });
+
+        function onGoodsChanged(e) {
+            mini.getbyName("GoodsCode", "datagrid1").setValue(e.selected.GoodsBarCode);
+            mini.getbyName("GoodsName", "datagrid1").setValue(e.selected.GoodsName);
+        }
+
+        function onCardTypeChanged(e) {
+            mini.get('#datagrid1').url = "/Ms/SearchMsCardtypeGoodsDiscountList?CardCode=" + mini.get("Control_CardCode").getValue();
+            mini.get('#datagrid1').reload();
+        }
+
+        function addRow(row) {
+            var grid = mini.get("datagrid1");
+            grid.addRow(row, 0);
+
+        }
+        function onrowdblclick(e) {
+            var grid = mini.get("datagrid1");
+            if (grid.isEditing()) {
+                grid.commitEdit();
+            }
+            grid.beginEditRow(e.row);
+            //mini.getbyName("GoodsCode", "datagri1").focus();
+            setTimeout(function () {
+                mini.getbyName("GoodsCode", "datagrid1").focus();
+            }, 500);
+        }
     </script>
 </head>
 <body>
@@ -139,8 +199,8 @@
                 <legend>基本信息</legend>
                 <div class="ablock">
                     <label for="Control_CardCode">卡类型编码:</label>
-                    <div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="Id" valuefield="Id"
-                        url="/Ms/GetMsCardtypeManageList" showclose="true" oncloseclick="onCloseClick" emptytext="请选择..." required="true" value="@Model.CardCode">
+                    <div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="CardName" valuefield="Id"
+                        url="/Ms/GetMsCardtypeManageList" showclose="true" oncloseclick="onCloseClick" onvaluechanged="onCardTypeChanged" emptytext="请选择..." required="true" value="@Model.CardCode">
                         <div property="columns">
                             <div header="卡类型编码" field="Id"></div>
                             <div header="卡类型名称" field="CardName"></div>
@@ -148,7 +208,7 @@
                     </div>
                 </div>
 
-                <div class="ablock">
+                <!--<div class="ablock">
                     <label for="Control_GoodsCode">商品编码:</label>
                     <input id="Control_GoodsCode" name="GoodsCode" class="mini-buttonedit" onbuttonclick="onButtonEdit" allowinput="false" required="true" value="@Model.GoodsCode" text="@Model.GoodsCode" />
 
@@ -173,7 +233,7 @@
                 <div class="ablock">
                     <label for="Control_SysGuid">系统标识:</label>
                     <input type="text" value="@Model.SysGuid" class="mini-textbox" name="SysGuid" id="Control_SysGuid" vtype="maxLength:60" />
-                </div>
+                </div>-->
 
                 <div class="ablock" style="display: none">
                     <label for="Control_Id">:</label>
@@ -182,6 +242,44 @@
 
 
             </fieldset>
+
+            <div id="datagrid1" class="mini-datagrid" url="/Ms/SearchMsCardtypeGoodsDiscountList?CardCode=@(string.IsNullOrEmpty(Model.Id) ? "" : Model.CardCode)"
+                style="width: 100%; height: 250px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+                pagesize="20" multiselect="true" showfilterrow="false" showPager="false" onrowdblclick="onrowdblclick">
+                <div property="columns">
+                    <div type="indexcolumn" width="30">
+                    </div>
+                    <div type="checkcolumn" width="30">
+                    </div>
+                    <div field="GoodsCode" headeralign="center" align="center" width="60">
+                        商品编码
+					<div id="filter_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="GoodsBarCode" textfield="GoodsBarCode" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
+                        <div property="columns">
+                            <div header="条形码" field="GoodsBarCode">
+                            </div>
+                            <div header="拼音码" field="PyCode">
+                            </div>
+                            <div header="商品名称" field="GoodsName">
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                    <div field="GoodsName" headeralign="center" align="center" width="60">
+                        商品名称
+					<input id="filter_GoodsName" name="GoodsName" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="DiscountBase" headeralign="center" align="center" width="60" class="mini-spinner"  minValue="0" maxValue="999999">
+                        折扣基数
+					<input id="filter_DiscountBase" name="DiscountBase" class="mini-spinner"  minValue="0" maxValue="999999" enabled="true" property="editor" style="width: 100%;" />
+                    </div>
+                    <div field="GoodsDiscount" headeralign="center" align="center" width="60" class="mini-spinner" minValue="0.00" maxValue="1.00" decimalPlaces="2" changeOnMousewheel="0.1">
+                        商品折扣
+					<input id="filter_GoodsDiscount" name="GoodsDiscount" class="mini-spinner" minValue="0.00" maxValue="1.00" decimalPlaces="2" changeOnMousewheel="0.1" enabled="true" property="editor" style="width: 100%;" />
+                    </div>
+                </div>
+            </div>
+
             <div class="clear">
             </div>
             <div class="control-panel">

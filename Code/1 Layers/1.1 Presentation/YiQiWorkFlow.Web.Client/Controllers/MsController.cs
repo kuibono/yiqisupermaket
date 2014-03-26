@@ -9,6 +9,7 @@ using YiQiWorkFlow.Domain.Ms;
 using YiQiWorkFlow.Domain.Basement;
 using System.Data;
 using YiQiWorkFlow.Web.Client.Common;
+using System.Web.Script.Serialization;
 
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
@@ -294,7 +295,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
             IList<MsCardArchives> msCardtypeManageList = searchDtoBase.data;
 
-            return Json(msCardtypeManageList.Select(entity => new { id = entity.Id, cardName = entity.CardName, cardCode = entity.CardCode, text = entity.SurfaceNumber,surfaceNumber = entity.SurfaceNumber, msCode = entity.MsCode, msName = entity.MsName, cardState = entity.CardState }), JsonRequestBehavior.AllowGet);
+            return Json(msCardtypeManageList.Select(entity => new { id = entity.Id, cardName = entity.CardName, cardCode = entity.CardCode, text = entity.SurfaceNumber, surfaceNumber = entity.SurfaceNumber, msCode = entity.MsCode, msName = entity.MsName, cardState = entity.CardState }), JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -435,7 +436,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult MsCardtypeGoodsDiscountEdit(string id)
         {
             MsCardtypeGoodsDiscount m = MsCardtypeGoodsDiscount.Initial();
-            
+
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsCardtypeGoodsDiscountService.GetById(id);
@@ -477,14 +478,20 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                var jser = new JavaScriptSerializer();
+                var suppliers = jser.Deserialize<List<MsCardtypeGoodsDiscount>>(Request["goods"]).ToList();
+                suppliers.ForEach(p =>
                 {
-                    MsCardtypeGoodsDiscountService.Update(m);
-                }
-                else
-                {
-                    MsCardtypeGoodsDiscountService.Create(m);
-                }
+                    if (m.HaveId)
+                    {
+                        MsCardtypeGoodsDiscountService.Update(m);
+                    }
+                    else
+                    {
+                        MsCardtypeGoodsDiscountService.Create(m);
+                    }
+                });
+                
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -1655,7 +1662,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
             IList<MsMemberArchives> msCardtypeManageList = searchDtoBase.data;
 
-            return Json(msCardtypeManageList.Select(entity => new { id = entity.CardNumber, text = entity.MsName, mscode = entity.Id, cardNumber = entity.CardNumber, msName= entity.MsName, sex = entity.Sex, idCard = entity.Idcard, birthday = entity.Birthday, handSet = entity.Handset }), JsonRequestBehavior.AllowGet);
+            return Json(msCardtypeManageList.Select(entity => new { id = entity.CardNumber, text = entity.MsName, mscode = entity.Id, cardNumber = entity.CardNumber, msName = entity.MsName, sex = entity.Sex, idCard = entity.Idcard, birthday = entity.Birthday, handSet = entity.Handset }), JsonRequestBehavior.AllowGet);
         }
 
         #endregion
