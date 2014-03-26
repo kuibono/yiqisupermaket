@@ -81,7 +81,6 @@
         }
 
         $(function () {
-            grid.hideColumn("loginnameColumn");
 
             var grid = mini.get("datagrid1");
             grid.reload();
@@ -234,13 +233,12 @@
                 <div class="ablock">
                     <label for="Control_SysGuid">系统标识:</label>
                     <input type="text" value="@Model.SysGuid" class="mini-textbox" name="SysGuid" id="Control_SysGuid" vtype="maxLength:60" />
-                </div>-->
+                </div>
 
                 <div class="ablock" style="display: none">
                     <label for="Control_Id">:</label>
                     <input id="Control_Id" value="@Model.Id" name="Id" class="mini-hidden" />
-                </div>
-
+                </div>-->
 
             </fieldset>
 
