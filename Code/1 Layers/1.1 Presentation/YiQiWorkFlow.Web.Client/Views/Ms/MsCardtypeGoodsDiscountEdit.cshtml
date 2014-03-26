@@ -81,6 +81,7 @@
         }
 
         $(function () {
+            grid.hideColumn("loginnameColumn");
 
             var grid = mini.get("datagrid1");
             grid.reload();
@@ -244,13 +245,14 @@
             </fieldset>
 
             <div id="datagrid1" class="mini-datagrid" url="/Ms/SearchMsCardtypeGoodsDiscountList?CardCode=@(string.IsNullOrEmpty(Model.Id) ? "" : Model.CardCode)"
-                style="width: 100%; height: 250px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+                style="width: 100%; height: 250px; margin-top:10px;" idfield="Id" allowresize="false" sizelist="[20,30,50,100]"
                 pagesize="20" multiselect="true" showfilterrow="false" showPager="false" onrowdblclick="onrowdblclick">
                 <div property="columns">
                     <div type="indexcolumn" width="30">
                     </div>
                     <div type="checkcolumn" width="30">
                     </div>
+                    <div field="Id" headeralign="center" align="center" width="60"></div>
                     <div field="GoodsCode" headeralign="center" align="center" width="60">
                         商品编码
 					<div id="filter_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="GoodsBarCode" textfield="GoodsBarCode" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
