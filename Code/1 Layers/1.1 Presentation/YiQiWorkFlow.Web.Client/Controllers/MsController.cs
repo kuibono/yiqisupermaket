@@ -590,14 +590,19 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                var jser = new JavaScriptSerializer();
+                var suppliers = jser.Deserialize<List<MsCardtypeGoodsDiscount>>(Request["goods"]).ToList();
+                suppliers.ForEach(p =>
                 {
-                    MsCardtypeGoodsPointsService.Update(m);
-                }
-                else
-                {
-                    MsCardtypeGoodsPointsService.Create(m);
-                }
+                    if (m.HaveId)
+                    {
+                        MsCardtypeGoodsPointsService.Update(m);
+                    }
+                    else
+                    {
+                        MsCardtypeGoodsPointsService.Create(m);
+                    }
+                });
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
