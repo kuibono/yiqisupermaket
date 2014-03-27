@@ -21,6 +21,18 @@ namespace YiQiWorkFlow.Domain.Basement
 
         public string[] valuesAry { set; get; }
 
-        public IEnumerable<GoodsClassTreeDto> children { set; get; }
+        public GoodsClassTreeDto[] children { set; get; }
+    }
+
+    public class GoodsClassDto
+    {
+        public string id { set; get; }
+        public string text { set; get; }
+        public string pid { set; get; }
+        public string type { set; get; }
+        public string level { set; get; }
+        public string value1 { set; get; }
+        public string value2 { set; get; }
+        //public string[] valuesStr { set; get; }
     }
 }
