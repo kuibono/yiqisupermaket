@@ -379,8 +379,74 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult SearchPcPutinDetailList(SearchDtoBase<PcPutinDetail> c, PcPutinDetail s)
         {
-            c.entity = s;
-            return Json(PcPutinDetailService.Search(c), JsonRequestBehavior.AllowGet);
+            //c.entity = s;
+            //return Json(PcPutinDetailService.Search(c), JsonRequestBehavior.AllowGet);
+                        c.entity = s;
+                        using (YiQiEntities e = new YiQiEntities())
+                        {
+
+                            var q = from l in e.pc_putin_detail
+                                    join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                                    from j_g in join_g.DefaultIfEmpty()
+                                    orderby l.Id
+                                    select new
+                                               {
+                                                   PiNumber = l.pi_number,
+                                                   GoodsCode = l.goods_code,
+                                                   GoodsBarCode = l.goods_bar_code,
+                                                   Specification = l.specification,
+                                                   PackUnitCode = l.pack_unit_code,
+                                                   OfferMin = l.offer_min,
+                                                   PackQty = l.pack_qty,
+                                                   PackCoef = l.pack_coef,
+                                                   PurchaseQty = l.purchase_qty,
+                                                   PutinQty = l.putin_qty,
+                                                   SalePrice = l.sale_price,
+                                                   PurchasePrice = l.purchase_price,
+                                                   NontaxPurchasePrice = l.nontax_purchase_price,
+                                                   PurchaseMoney = l.purchase_money,
+                                                   NontaxPurchaseMoney = l.nontax_purchase_money,
+                                                   ProduceDate = l.produce_date,
+                                                   SysGuid = l.sys_guid,
+                                                   Id = l.Id,
+                                                   GoodsName=j_g.goods_name
+
+                                               };
+                            if (c.entity.PiNumber.IsNullOrEmpty() == false)
+                            {
+                                q = from l in q where l.PiNumber.StartsWith(c.entity.PiNumber) select l;
+                            }
+                            if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                            {
+                                q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                            }
+                            if (c.entity.GoodsBarCode.IsNullOrEmpty() == false)
+                            {
+                                q = from l in q where l.GoodsBarCode.StartsWith(c.entity.GoodsBarCode) select l;
+                            }
+                            if (c.entity.Specification.IsNullOrEmpty() == false)
+                            {
+                                q = from l in q where l.Specification.StartsWith(c.entity.Specification) select l;
+                            }
+                            if (c.entity.PackUnitCode.IsNullOrEmpty() == false)
+                            {
+                                q = from l in q where l.PackUnitCode.StartsWith(c.entity.PackUnitCode) select l;
+                            }
+                            if (c.entity.SysGuid.IsNullOrEmpty() == false)
+                            {
+                                q = from l in q where l.SysGuid.StartsWith(c.entity.SysGuid) select l;
+                            }
+                            if (c.entity.Id.IsNullOrEmpty() == false)
+                            {
+                                q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                            }
+
+
+                            var result =
+                                new { total = q.Count(), data = q.Skip(c.pageSize * (c.pageIndex)).Take(c.pageSize).ToList() };
+
+                            return Json(result, JsonRequestBehavior.AllowGet);
+                        }
         }
         #endregion
 
