@@ -374,6 +374,7 @@
     <Compile Include="Basement\fb_supplier_lease.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Basement\GoodsClassTreeDto.cs" />
     <Compile Include="Basement\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

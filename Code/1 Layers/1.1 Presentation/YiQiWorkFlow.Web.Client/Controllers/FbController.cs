@@ -42,9 +42,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         id = s.GsCode,
                         text = s.GsName,
                         type = "GsCode",
-                        children = gl.Where(l => l.GsCode == s.GsCode).Select(l => new { 
-                            id=l.GlCode,
-                            text=l.GlName,
+                        children = gl.Where(l => l.GsCode == s.GsCode).Select(l => new
+                        {
+                            id = l.GlCode,
+                            text = l.GlName,
                             type = "GlCode"
                         })
                     })
@@ -52,6 +53,77 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }).ToList();
 
             return Json(tGb, JsonRequestBehavior.AllowGet);
+        }
+
+        //public ActionResult GetClassList()
+        //{
+        //    var gb = FbPaGoodsGbService.GetAll();
+        //    var gm = FbPaGoodsGmService.GetAll();
+        //    var gs = FbPaGoodsGsService.GetAll();
+        //    var gl = FbPaGoodsGlService.GetAll();
+
+        //    List<GoodsClassTreeDto> goodsClassTreeDtoList = new List<GoodsClassTreeDto>();
+
+        //    List<GoodsClassTreeDto> treeList = gb.Where(p => p.GbCode != "01").Select(p => new GoodsClassTreeDto()
+        //    {
+        //        id = p.GbCode,
+        //        text = p.GbName,
+        //        type = "GbCode",
+        //         level ="1",
+        //          pid = "",
+        //        children = gm.Where(m => m.GbCode == p.GbCode).Select(m => new GoodsClassTreeDto()
+        //        {
+        //            id = m.GmCode,
+        //            text = m.GmName,
+        //            type = "GmCode",
+        //            level = "2",
+        //            pid = m.GbCode,
+        //            children = gs.Where(s => s.GmCode == m.GmCode).Select(s => new GoodsClassTreeDto()
+        //            {
+        //                id = s.GsCode,
+        //                text = s.GsName,
+        //                type = "GsCode",
+        //                level = "3",
+        //                pid = s.GmCode,
+        //                children = gl.Where(l => l.GsCode == s.GsCode).Select(l => new GoodsClassTreeDto()
+        //                {
+        //                    id = l.GlCode,
+        //                    text = l.GlName,
+        //                    type = "GlCode",
+        //                    level ="4",
+        //                    pid = l.GsCode
+        //                })
+        //            })
+        //        }).ToList()
+        //    }).ToList();
+
+        //    // 循环、递归转化为List
+        //    foreach (var item in treeList)
+        //    {
+        //        if (!goodsClassTreeDtoList.Contains(item))
+        //        {
+        //            goodsClassTreeDtoList.Add(item);
+
+        //            // 递归
+        //            AddGoodsClassTreeDtoList(item.children);
+        //        }
+        //    }
+
+        //    return Json(goodsClassTreeDtoList, JsonRequestBehavior.AllowGet);
+        //}
+
+        private void AddGoodsClassTreeDtoList(IEnumerable<GoodsClassTreeDto> goodsClassTreeDtoList)
+        {
+            //foreach (var item in goodsClassTreeDtoList)
+            //{
+            //    if (!goodsClassTreeDtoList.Contains(item))
+            //    {
+            //        goodsClassTreeDtoList.Add(item);
+
+            //        // 递归
+            //        AddGoodsClassTreeDtoList(item.children);
+            //    }
+            //}
         }
 
         #endregion
@@ -135,7 +207,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 FbGoodsArchivesService.Update(dataGood);
             }
-            return Json(new SavingResult { IsSuccess=true,Message="保存成功！" }, JsonRequestBehavior.AllowGet);
+            return Json(new SavingResult { IsSuccess = true, Message = "保存成功！" }, JsonRequestBehavior.AllowGet);
         }
 
         private string getRequestValue(string key)
@@ -272,11 +344,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             try
             {
                 Helper.ExecuteNonQuery(CommandType.Text, sql);
-                return Json(new SavingResult { IsSuccess=true, Message="保存成功" }, JsonRequestBehavior.AllowGet);
+                return Json(new SavingResult { IsSuccess = true, Message = "保存成功" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return Json(new SavingResult { IsSuccess = false, Message = ex.Message}, JsonRequestBehavior.AllowGet);
+                return Json(new SavingResult { IsSuccess = false, Message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion
