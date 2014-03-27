@@ -5,6 +5,7 @@
 using System;
 using NSH.Core.Domain;
 using YiQiWorkFlow.Domain.Basement;
+using System.Collections.Generic;
 namespace YiQiWorkFlow.Domain.Ms
 {
 	///<summary>
@@ -67,4 +68,18 @@ namespace YiQiWorkFlow.Domain.Ms
             return m;
         }
 	}
+
+    public class MsCardtypePointsWithGoodsClassCodeEqualityCompare : IEqualityComparer<MsCardtypePoints>
+    {
+        public bool Equals(MsCardtypePoints x, MsCardtypePoints y)
+        {
+            return x.GoodsClassCode.Equals(y.GoodsClassCode);
+        }
+
+        public int GetHashCode(MsCardtypePoints obj)
+        {
+            int hCode = obj.CardCode.GetHashCode();
+            return hCode.GetHashCode();
+        }
+    }
 }

@@ -891,14 +891,20 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                var jser = new JavaScriptSerializer();
+                var cardtypeDiscount = jser.Deserialize<List<MsCardtypePoints>>(Request["MsCardtypePoints"]).ToList();
+                cardtypeDiscount.ForEach(p =>
                 {
-                    MsCardtypePointsService.Update(m);
-                }
-                else
-                {
-                    MsCardtypePointsService.Create(m);
-                }
+                    if (p.HaveId)
+                    {
+                        MsCardtypePointsService.Update(p);
+                    }
+                    else
+                    {
+                        MsCardtypePointsService.Create(p);
+                    }
+                });
+
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -915,6 +921,18 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult SearchMsCardtypePointsList(SearchDtoBase<MsCardtypePoints> c, MsCardtypePoints s)
         {
+            //c.entity = s;
+
+            //string CardCode = Request["CardCode"];
+            //if (!string.IsNullOrEmpty(CardCode))
+            //{
+            //    c.entity.CardCode = CardCode;
+            //}
+
+            //return Json(MsCardtypePointsService.Search(c), JsonRequestBehavior.AllowGet);
+
+            var msCardtypePointsList = new SearchResult<MsCardtypePoints>() { data = new List<MsCardtypePoints>() };
+
             c.entity = s;
 
             string CardCode = Request["CardCode"];
@@ -922,8 +940,51 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 c.entity.CardCode = CardCode;
             }
+            else
+            {
+                c.entity.CardCode = "!#$";
+            }
 
-            return Json(MsCardtypePointsService.Search(c), JsonRequestBehavior.AllowGet);
+            IList<MsCardtypePoints> tempMsCardtypeDiscountList = MsCardtypePointsService.Search(c).data;
+
+            List<GoodsClassDto> goodsClassDtoList = new List<GoodsClassDto>();
+
+            // 遍历赋值
+            goodsClassDtoList = GetGoodsClassList();
+
+            MsCardtypePointsWithGoodsClassCodeEqualityCompare compare = new MsCardtypePointsWithGoodsClassCodeEqualityCompare();
+            foreach (var item in goodsClassDtoList)
+            {
+                if (tempMsCardtypeDiscountList.Contains(new MsCardtypePoints() { GoodsClassCode = item.id }, compare))
+                {
+                    MsCardtypePoints entity = tempMsCardtypeDiscountList.FirstOrDefault(x => x.GoodsClassCode == item.id);
+
+                    if (!msCardtypePointsList.data.Contains(entity, compare))
+                    {
+                        //entity.ParentGoodsClassCode = item.pid;
+                        msCardtypePointsList.data.Add(entity);
+                    }
+                }
+                else
+                {
+                    MsCardtypePoints entity = new MsCardtypePoints()
+                    {
+                        CardCode = CardCode,
+                        ExpendBase = 0,
+                        PointsValues = 0,
+                        GoodsClassCode = item.id,
+                        GoodsClassName = item.text,
+                        //ParentGoodsClassCode = item.pid
+                    };
+
+                    if (!msCardtypePointsList.data.Contains(entity, compare))
+                    {
+                        msCardtypePointsList.data.Add(entity);
+                    }
+                }
+            }
+
+            return Json(msCardtypePointsList, JsonRequestBehavior.AllowGet);
         }
         #endregion
 

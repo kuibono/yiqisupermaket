@@ -97,13 +97,13 @@
             //    GoodsCode.text = hGoodsCode.getValue();
             //}
 
-            var grid = mini.get("datagrid1");
-            grid.reload();
-            jQuery.hotkeys.add('return', function () {
-                if (mini.get("Control_CardCode").getValue().length == 0) {
-                    alert("必须先选择卡类型");
-                    return false;
-                }
+            //var grid = mini.get("datagrid1");
+            //grid.reload();
+            //jQuery.hotkeys.add('return', function () {
+            //    if (mini.get("Control_CardCode").getValue().length == 0) {
+            //        alert("必须先选择卡类型");
+            //        return false;
+            //    }
                 //if (grid.isEditing()) {
                 //    grid.commitEdit();
                 //}
@@ -122,7 +122,7 @@
             //jQuery.hotkeys.add('del', function () {
             //    grid.removeRows(grid.getSelecteds());
             //});
-        });
+        //});
 
         //function addRow(row) {
         //    var grid = mini.get("datagrid1");
@@ -225,11 +225,11 @@
                 <!--<div class="ablock">
                     <label for="CardName">卡类别名称:</label>
                     <div id="CardName" name="CardName" class="mini-textbox" style="width: 150px;"></div>
-                    <!--<input type="text" value="@Model.GoodsClassName" class="mini-textbox" id="Control_GoodsClassName" name="GoodsClassName" vtype="maxLength:20" readonly="readonly" />-->
+                    <input type="text" value="@Model.GoodsClassName" class="mini-textbox" id="Control_GoodsClassName" name="GoodsClassName" vtype="maxLength:20" readonly="readonly" />
 
-                </div>
+                </div>-->
 
-                <div class="ablock">
+                <!--<div class="ablock">
 
                     <label for="Control_GoodsCode">商品类别:</label>
 
@@ -315,4 +315,3 @@
     </div>
 </body>
 </html>
-
