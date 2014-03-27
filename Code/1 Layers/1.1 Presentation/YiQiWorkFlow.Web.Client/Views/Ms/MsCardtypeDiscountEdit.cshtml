@@ -266,15 +266,8 @@
                     </div>-->
                     <div field="GoodsClassCode" headeralign="center" align="center" width="60">
                         商品类别编码
-					<div id="filter_GoodsClassCode" popupwidth="400" name="GoodsClassCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsClassName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
-                        <div property="columns">
-                            <div header="条形码" field="GoodsBarCode">
-                            </div>
-                            <div header="拼音码" field="PyCode">
-                            </div>
-                            <div header="名称" field="GoodsName">
-                            </div>
-                        </div>
+					<div id="filter_GoodsClassCode" popupwidth="400" name="GoodsClassCode" property="editor" class="mini-treeselect" allowinput="true" valuefield="id" textfield="text" parentField="pid" resultAsTree="false" onvaluechanged="onGoodsChanged" url="/Fb/GetGoodsClassList" style="width: 100%;">
+                        
                     </div>
                     </div>
                     <div field="GoodsClassName" headeralign="center" align="center" width="60">
