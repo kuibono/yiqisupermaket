@@ -103,21 +103,16 @@
         <form id="formMain" method="post" action="">
             <fieldset>
                 <legend>基本信息</legend>
-                <div class="ablock" style="display: none">
+                <div class="ablock">
                     <label for="Control_MdNumber">制作单号:</label>
                     <input id="Control_MdNumber" value="@Model.Id" name="Id" class="mini-hidden" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_MdDate">制作日期:</label>
-                    <input type="text" id="Control_MdDate" name="MdDate" value="@Model.MdDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_CardCode">卡类型编码:</label>
                     <!--<input type="text" value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20" required="true" />-->
 
-                    <div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="Id" valuefield="Id"
+                    <div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="CardName" valuefield="Id"
                         url="/Ms/GetMsCardtypeManageList" showclose="true" oncloseclick="onCloseClick" emptytext="请选择..." required="true" value="@Model.CardCode">
                         <div property="columns">
                             <div header="卡类型编码" field="Id"></div>
@@ -128,18 +123,23 @@
                 </div>
 
                 <div class="ablock">
+                    <label for="Control_MdDate">制作日期:</label>
+                    <input type="text" id="Control_MdDate" name="MdDate" value="@Model.MdDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
+                </div>
+
+                <div class="ablock">
                     <label for="Control_BeginCardNumber">开始卡号:</label>
                     <input type="text" id="Control_BeginCardNumber" name="BeginCardNumber" value="@Model.BeginCardNumber" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_EndCardNumber">终止卡号:</label>
-                    <input type="text" id="Control_EndCardNumber" name="EndCardNumber" value="@Model.EndCardNumber" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
+                    <label for="Control_MadeQty">制作数量:</label>
+                    <input type="text" id="Control_MadeQty" name="MadeQty" value="@Model.MadeQty" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_MadeQty">制作数量:</label>
-                    <input type="text" id="Control_MadeQty" name="MadeQty" value="@Model.MadeQty" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
+                    <label for="Control_EndCardNumber">终止卡号:</label>
+                    <input type="text" id="Control_EndCardNumber" name="EndCardNumber" value="@Model.EndCardNumber" class="mini-spinner" minvalue="0" maxvalue="1000" readonly="readonly" decimalplaces="0" />
                 </div>
 
                 <div class="ablock">
@@ -153,7 +153,7 @@
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_IfMade">是否制卡:</label>
+                    <label for="Control_IfMade">是否发放:</label>
                     <div id="Control_IfMade" name="IfMade" value="1" class="mini-checkbox" trueValue="1" falseValue="0" checked="true" readonly="false" text="制卡"></div>
                 </div>
 
@@ -194,6 +194,7 @@
             <div class="control-panel">
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                    <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
                     <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
                 </div>
