@@ -52,15 +52,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }).ToList()
             }).ToList();
 
-            return Json(tGb, JsonRequestBehavior.AllowGet);
+            return Json(tGb.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetClassList()
+        public ActionResult GetGoodsClassList()
         {
-            var gb = FbPaGoodsGbService.GetAll();
-            var gm = FbPaGoodsGmService.GetAll();
-            var gs = FbPaGoodsGsService.GetAll();
-            var gl = FbPaGoodsGlService.GetAll();
+            var gb = FbPaGoodsGbService.GetAll().Where(entity => entity.GbCode != "01").ToList();
+            var gm = FbPaGoodsGmService.GetAll().Where(entity => entity.GmCode != "01").ToList();
+            var gs = FbPaGoodsGsService.GetAll().Where(entity => entity.GsCode != "01").ToList();
+            var gl = FbPaGoodsGlService.GetAll().Where(entity => entity.GlCode != "01").ToList();
 
             List<GoodsClassDto> goodsClassDtoList = new List<GoodsClassDto>();
 
