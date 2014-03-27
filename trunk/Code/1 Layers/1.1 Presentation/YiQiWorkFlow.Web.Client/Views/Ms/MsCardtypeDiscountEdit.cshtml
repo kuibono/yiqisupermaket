@@ -105,7 +105,7 @@
                 grid.addRow(row, 0);
                 grid.cancelEdit();
                 grid.beginEditRow(row);
-                mini.getbyName("GoodsClassCode", "datagrid1").setUrl("/Ms/SearchMsCardtypeDiscountList?CardCode=" + mini.get("Control_CardCode").getValue());
+                mini.getbyName("GoodsClassCode", "datagrid1").setUrl("/Fb/GetGoodsClassList");
                 setTimeout(function () {
                     mini.getbyName("GoodsClassCode", "datagrid1").focus();
                 }, 500);
