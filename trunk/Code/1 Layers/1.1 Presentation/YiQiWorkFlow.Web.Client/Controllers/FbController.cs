@@ -132,7 +132,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
             }
 
-            return Json(goodsClassDtoList, JsonRequestBehavior.AllowGet);
+            return Json(goodsClassDtoList.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
         #endregion
