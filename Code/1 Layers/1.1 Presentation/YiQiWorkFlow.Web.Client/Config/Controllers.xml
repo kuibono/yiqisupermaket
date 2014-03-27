@@ -155,6 +155,11 @@
     <property name="MsUpdateCardManageService" ref="MsUpdateCardManageService" />
     <property name="MsUpgradeCardDetailService" ref="MsUpgradeCardDetailService" />
     <property name="MsUpgradeCardManageService" ref="MsUpgradeCardManageService" />
+
+    <property name="FbPaGoodsGbService" ref="FbPaGoodsGbService" />
+    <property name="FbPaGoodsGlService" ref="FbPaGoodsGlService" />
+    <property name="FbPaGoodsGmService" ref="FbPaGoodsGmService" />
+    <property name="FbPaGoodsGsService" ref="FbPaGoodsGsService" />
   </object>
   <object type="YiQiWorkFlow.Web.Client.Controllers.OpController, YiQiWorkFlow.Web.Client" singleton="false" >
     <property name="OpAdjustDetailService" ref="OpAdjustDetailService" />

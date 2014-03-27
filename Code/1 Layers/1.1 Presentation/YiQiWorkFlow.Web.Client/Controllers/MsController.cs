@@ -10,6 +10,7 @@ using YiQiWorkFlow.Domain.Basement;
 using System.Data;
 using YiQiWorkFlow.Web.Client.Common;
 using System.Web.Script.Serialization;
+using YiQiWorkFlow.Application.Service.Fb;
 
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
@@ -370,14 +371,20 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                var jser = new JavaScriptSerializer();
+                var cardtypeDiscount = jser.Deserialize<List<MsCardtypeDiscount>>(Request["CardtypeDiscount"]).ToList();
+                cardtypeDiscount.ForEach(p =>
                 {
-                    MsCardtypeDiscountService.Update(m);
-                }
-                else
-                {
-                    MsCardtypeDiscountService.Create(m);
-                }
+                    if (p.HaveId)
+                    {
+                        MsCardtypeDiscountService.Update(p);
+                    }
+                    else
+                    {
+                        MsCardtypeDiscountService.Create(p);
+                    }
+                });
+
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -386,6 +393,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion
 
         #region 卡折扣搜索
+
         /// <summary>
         /// 卡折扣搜索
         /// </summary>
@@ -394,6 +402,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult SearchMsCardtypeDiscountList(SearchDtoBase<MsCardtypeDiscount> c, MsCardtypeDiscount s)
         {
+            var msCardtypeDiscountList = new SearchResult<MsCardtypeDiscount>() { data = new List<MsCardtypeDiscount>() };
+
             c.entity = s;
 
             string CardCode = Request["CardCode"];
@@ -401,9 +411,53 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 c.entity.CardCode = CardCode;
             }
+            else
+            {
+                c.entity.CardCode = "!#$";
+            }
 
-            return Json(MsCardtypeDiscountService.Search(c), JsonRequestBehavior.AllowGet);
+            IList<MsCardtypeDiscount> tempMsCardtypeDiscountList = MsCardtypeDiscountService.Search(c).data;
+
+            List<GoodsClassDto> goodsClassDtoList = new List<GoodsClassDto>();
+
+            // 遍历赋值
+            goodsClassDtoList = GetGoodsClassList();
+
+            MsCardtypeDiscountWithGoodsClassCodeEqualityCompare compare = new MsCardtypeDiscountWithGoodsClassCodeEqualityCompare();
+            foreach (var item in goodsClassDtoList)
+            {
+                if (tempMsCardtypeDiscountList.Contains(new MsCardtypeDiscount() { GoodsClassCode = item.id }, compare))
+                {
+                    MsCardtypeDiscount entity = tempMsCardtypeDiscountList.FirstOrDefault(x => x.GoodsClassCode == item.id);
+
+                    if (!msCardtypeDiscountList.data.Contains(entity, compare))
+                    {
+                        //entity.ParentGoodsClassCode = item.pid;
+                        msCardtypeDiscountList.data.Add(entity);
+                    }
+                }
+                else
+                {
+                    MsCardtypeDiscount entity = new MsCardtypeDiscount()
+                    {
+                        CardCode = CardCode,
+                        ClassDiscountRate = 1,
+                        DiscountBase = 0,
+                        GoodsClassCode = item.id,
+                        GoodsClassName = item.text,
+                        //ParentGoodsClassCode = item.pid
+                    };
+
+                    if (!msCardtypeDiscountList.data.Contains(entity, compare))
+                    {
+                        msCardtypeDiscountList.data.Add(entity);
+                    }
+                }
+            }
+
+            return Json(msCardtypeDiscountList, JsonRequestBehavior.AllowGet);
         }
+
         #endregion
 
         #region 卡折扣删除
@@ -491,7 +545,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         MsCardtypeGoodsDiscountService.Create(m);
                     }
                 });
-                
+
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -2405,6 +2459,97 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 result.Add(row["value"].ToString(), row["text"].ToString());
             }
             return Json(result.Select(p => new { id = p.Key, text = p.Value }), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region 自定义方法
+
+        public IFbPaGoodsGbService FbPaGoodsGbService { get; set; }
+        public IFbPaGoodsGmService FbPaGoodsGmService { get; set; }
+        public IFbPaGoodsGsService FbPaGoodsGsService { get; set; }
+        public IFbPaGoodsGlService FbPaGoodsGlService { get; set; }
+
+        private List<GoodsClassDto> GetGoodsClassList()
+        {
+            List<GoodsClassDto> goodsClassDtoList = new List<GoodsClassDto>();
+            #region 获取商品类别信息
+
+            var gb = FbPaGoodsGbService.GetAll().Where(entity => entity.GbCode != "01").ToList();
+            var gm = FbPaGoodsGmService.GetAll().Where(entity => entity.GmCode != "01").ToList();
+            var gs = FbPaGoodsGsService.GetAll().Where(entity => entity.GsCode != "01").ToList();
+            var gl = FbPaGoodsGlService.GetAll().Where(entity => entity.GlCode != "01").ToList();
+
+            foreach (var gbItem in gb)
+            {
+                GoodsClassDto goodsClassDto = new GoodsClassDto()
+                {
+                    id = gbItem.GbCode,
+                    text = gbItem.GbName,
+                    level = "1",
+                    type = "GbCode",
+                    pid = string.Empty
+                };
+
+                if (!goodsClassDtoList.Contains(goodsClassDto))
+                {
+                    goodsClassDtoList.Add(goodsClassDto);
+                }
+            }
+
+            foreach (var gmItem in gm)
+            {
+                GoodsClassDto goodsClassDto = new GoodsClassDto()
+                {
+                    id = gmItem.GmCode,
+                    text = gmItem.GmName,
+                    level = "2",
+                    type = "GmCode",
+                    pid = gmItem.GbCode
+                };
+
+                if (!goodsClassDtoList.Contains(goodsClassDto))
+                {
+                    goodsClassDtoList.Add(goodsClassDto);
+                }
+            }
+
+            foreach (var gsItem in gs)
+            {
+                GoodsClassDto goodsClassDto = new GoodsClassDto()
+                {
+                    id = gsItem.GsCode,
+                    text = gsItem.GsName,
+                    level = "3",
+                    type = "GsCode",
+                    pid = gsItem.GmCode
+                };
+
+                if (!goodsClassDtoList.Contains(goodsClassDto))
+                {
+                    goodsClassDtoList.Add(goodsClassDto);
+                }
+            }
+
+            foreach (var glItem in gl)
+            {
+                GoodsClassDto goodsClassDto = new GoodsClassDto()
+                {
+                    id = glItem.GlCode,
+                    text = glItem.GlName,
+                    level = "4",
+                    type = "GlCode",
+                    pid = glItem.GsCode
+                };
+
+                if (!goodsClassDtoList.Contains(goodsClassDto))
+                {
+                    goodsClassDtoList.Add(goodsClassDto);
+                }
+            }
+
+            return goodsClassDtoList;
+            #endregion
         }
 
         #endregion

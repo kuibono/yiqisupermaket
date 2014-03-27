@@ -5,6 +5,7 @@
 using System;
 using NSH.Core.Domain;
 using YiQiWorkFlow.Domain.Basement;
+using System.Collections.Generic;
 namespace YiQiWorkFlow.Domain.Ms
 {
 	///<summary>
@@ -23,6 +24,7 @@ namespace YiQiWorkFlow.Domain.Ms
 		/// </summary>
 		[Validate(ValidateType.NoValidate,Name="商品类别")]
 		public virtual string GoodsClassCode{get ; set; }
+        //public virtual string ParentGoodsClassCode { get; set; }
 		
 		/// <summary>
 		/// 类别名称
@@ -66,5 +68,19 @@ namespace YiQiWorkFlow.Domain.Ms
             //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
-	}	 
+	}
+
+    public class MsCardtypeDiscountWithGoodsClassCodeEqualityCompare : IEqualityComparer<MsCardtypeDiscount>
+    {
+        public bool Equals(MsCardtypeDiscount x, MsCardtypeDiscount y)
+        {
+            return x.GoodsClassCode.Equals(y.GoodsClassCode);
+        }
+
+        public int GetHashCode(MsCardtypeDiscount obj)
+        {
+            int hCode = obj.CardCode.GetHashCode();
+            return hCode.GetHashCode();
+        }
+    }
 }
