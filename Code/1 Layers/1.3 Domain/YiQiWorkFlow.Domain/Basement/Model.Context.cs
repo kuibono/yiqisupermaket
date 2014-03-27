@@ -10,21 +10,32 @@
 namespace YiQiWorkFlow.Domain.Basement
 {
     using System;
+    using System.Collections.Specialized;
+    using System.Configuration;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class YiQiEntities3 : DbContext
+
+    public partial class YiQiEntities : DbContext
     {
-        public YiQiEntities3()
-            : base("name=YiQiEntities3")
+        private static string getConnectionString()
+        {
+            NameValueCollection cfgName = (NameValueCollection)ConfigurationSettings.GetConfig("databaseSettings");
+            string connStr = cfgName["db.connectionString"].ToString();
+            return string.Format(
+            "metadata=res://*/Basement.Model.csdl|res://*/Basement.Model.ssdl|res://*/Basement.Model.msl;provider=System.Data.SqlClient;provider connection string=\"{0};MultipleActiveResultSets=True;App=EntityFramework\"",
+            connStr);
+
+        }
+
+        public YiQiEntities()
+            : base(getConnectionString())
         {
         }
-    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public DbSet<ac_branch_goodssale_account> ac_branch_goodssale_account { get; set; }
         public DbSet<ac_cashier_summary> ac_cashier_summary { get; set; }
         public DbSet<ac_counter_summary> ac_counter_summary { get; set; }
