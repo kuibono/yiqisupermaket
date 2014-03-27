@@ -55,75 +55,84 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return Json(tGb, JsonRequestBehavior.AllowGet);
         }
 
-        //public ActionResult GetClassList()
-        //{
-        //    var gb = FbPaGoodsGbService.GetAll();
-        //    var gm = FbPaGoodsGmService.GetAll();
-        //    var gs = FbPaGoodsGsService.GetAll();
-        //    var gl = FbPaGoodsGlService.GetAll();
-
-        //    List<GoodsClassTreeDto> goodsClassTreeDtoList = new List<GoodsClassTreeDto>();
-
-        //    List<GoodsClassTreeDto> treeList = gb.Where(p => p.GbCode != "01").Select(p => new GoodsClassTreeDto()
-        //    {
-        //        id = p.GbCode,
-        //        text = p.GbName,
-        //        type = "GbCode",
-        //         level ="1",
-        //          pid = "",
-        //        children = gm.Where(m => m.GbCode == p.GbCode).Select(m => new GoodsClassTreeDto()
-        //        {
-        //            id = m.GmCode,
-        //            text = m.GmName,
-        //            type = "GmCode",
-        //            level = "2",
-        //            pid = m.GbCode,
-        //            children = gs.Where(s => s.GmCode == m.GmCode).Select(s => new GoodsClassTreeDto()
-        //            {
-        //                id = s.GsCode,
-        //                text = s.GsName,
-        //                type = "GsCode",
-        //                level = "3",
-        //                pid = s.GmCode,
-        //                children = gl.Where(l => l.GsCode == s.GsCode).Select(l => new GoodsClassTreeDto()
-        //                {
-        //                    id = l.GlCode,
-        //                    text = l.GlName,
-        //                    type = "GlCode",
-        //                    level ="4",
-        //                    pid = l.GsCode
-        //                })
-        //            })
-        //        }).ToList()
-        //    }).ToList();
-
-        //    // 循环、递归转化为List
-        //    foreach (var item in treeList)
-        //    {
-        //        if (!goodsClassTreeDtoList.Contains(item))
-        //        {
-        //            goodsClassTreeDtoList.Add(item);
-
-        //            // 递归
-        //            AddGoodsClassTreeDtoList(item.children);
-        //        }
-        //    }
-
-        //    return Json(goodsClassTreeDtoList, JsonRequestBehavior.AllowGet);
-        //}
-
-        private void AddGoodsClassTreeDtoList(IEnumerable<GoodsClassTreeDto> goodsClassTreeDtoList)
+        public ActionResult GetClassList()
         {
-            //foreach (var item in goodsClassTreeDtoList)
-            //{
-            //    if (!goodsClassTreeDtoList.Contains(item))
-            //    {
-            //        goodsClassTreeDtoList.Add(item);
+            var gb = FbPaGoodsGbService.GetAll();
+            var gm = FbPaGoodsGmService.GetAll();
+            var gs = FbPaGoodsGsService.GetAll();
+            var gl = FbPaGoodsGlService.GetAll();
 
-            //        // 递归
-            //        AddGoodsClassTreeDtoList(item.children);
-            //    }
-            //}
+            List<GoodsClassDto> goodsClassDtoList = new List<GoodsClassDto>();
+
+            foreach (var gbItem in gb)
+            {
+                GoodsClassDto goodsClassDto = new GoodsClassDto()
+                {
+                    id = gbItem.GbCode,
+                    text = gbItem.GbName,
+                    level = "1",
+                    type = "GbCode",
+                    pid = string.Empty
+                };
+
+                if (!goodsClassDtoList.Contains(goodsClassDto))
+                {
+                    goodsClassDtoList.Add(goodsClassDto);
+                }
+            }
+
+            foreach (var gmItem in gm)
+            {
+                GoodsClassDto goodsClassDto = new GoodsClassDto()
+                {
+                    id = gmItem.GmCode,
+                    text = gmItem.GmName,
+                    level = "2",
+                    type = "GmCode",
+                    pid = gmItem.GbCode
+                };
+
+                if (!goodsClassDtoList.Contains(goodsClassDto))
+                {
+                    goodsClassDtoList.Add(goodsClassDto);
+                }
+            }
+
+            foreach (var gsItem in gs)
+            {
+                GoodsClassDto goodsClassDto = new GoodsClassDto()
+                {
+                    id = gsItem.GsCode,
+                    text = gsItem.GsName,
+                    level = "3",
+                    type = "GsCode",
+                    pid = gsItem.GmCode
+                };
+
+                if (!goodsClassDtoList.Contains(goodsClassDto))
+                {
+                    goodsClassDtoList.Add(goodsClassDto);
+                }
+            }
+
+            foreach (var glItem in gl)
+            {
+                GoodsClassDto goodsClassDto = new GoodsClassDto()
+                {
+                    id = glItem.GlCode,
+                    text = glItem.GlName,
+                    level = "4",
+                    type = "GlCode",
+                    pid = glItem.GsCode
+                };
+
+                if (!goodsClassDtoList.Contains(goodsClassDto))
+                {
+                    goodsClassDtoList.Add(goodsClassDto);
+                }
+            }
+
+            return Json(goodsClassDtoList, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
