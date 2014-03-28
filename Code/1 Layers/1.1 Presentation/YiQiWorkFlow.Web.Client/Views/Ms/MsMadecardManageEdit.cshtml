@@ -9,37 +9,141 @@
     <script type="text/javascript"> var pageTitle = "卡制作"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:51"; var id = "@Model.Id"; pageName = "MsMadecardManageEdit"; </script>
     <script type="text/javascript">
         function SaveData() {
-            var form = new mini.Form("#formMain"); // default form
-            var o = form.getData(true);
-            $.ajax({
-                url: "/Ms/SaveMsMadecardManage",
-                type: 'post',
-                data: o,
-                cache: false,
-                dataType: "json",
-                success: function (r) {
-                    if (r.IsSuccess == true) {
-                        closeWithNoValidate();
-                    } else {
-                        $("#Tooltip_Critical_MsMadecardManage .content").first().text(r.Message);
+            debugger;
+            if (ValidateData()) {
+                var form = new mini.Form("#formMain"); // default form
+                var o = form.getData(true);
+                $.ajax({
+                    url: "/Ms/SaveMsMadecardManage",
+                    type: 'post',
+                    data: o,
+                    cache: false,
+                    dataType: "json",
+                    success: function (r) {
+                        if (r.IsSuccess == true) {
+                            closeWithNoValidate();
+                        } else {
+                            $("#Tooltip_Critical_MsMadecardManage .content").first().text(r.Message);
+                            $("#Tooltip_Critical_MsMadecardManage").show("fast");
+                            form.unmask();
+                            $(document).scrollTop(0);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $("#Tooltip_Critical_MsMadecardManage .content").first().text(jqXHR.responseText);
                         $("#Tooltip_Critical_MsMadecardManage").show("fast");
                         form.unmask();
                         $(document).scrollTop(0);
                     }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    $("#Tooltip_Critical_MsMadecardManage .content").first().text(jqXHR.responseText);
-                    $("#Tooltip_Critical_MsMadecardManage").show("fast");
-                    form.unmask();
-                    $(document).scrollTop(0);
-                }
-            });
+                });
+            }
+        }
+
+        function ExameData() {
+
+            var form = new mini.Form("#formMain"); // default form
+
+            // 判断是否已经保存
+            if (mini.get('#Control_MdNumber').getValue() == "") {
+                mini.alert("信息尚未保存！");
+                return false;
+            }
+
+            if (ValidateData()) {
+
+                mini.confirm("是否审核当前卡制作信息?", "审核", function (action) {
+
+                    // 设定
+                    mini.get('#Control_IfExamine').setValue("1");
+
+                    var o = form.getData(true);
+                    $.ajax({
+                        url: "/Ms/SaveMsMadecardManage",
+                        type: 'post',
+                        data: o,
+                        cache: false,
+                        dataType: "json",
+                        success: function (r) {
+                            if (r.IsSuccess == true) {
+                                mini.alert("审核成功！");
+                                closeWithNoValidate();
+                            } else {
+                                $("#Tooltip_Critical_MsCardtypeManage .content").first().text(r.Message);
+                                $("#Tooltip_Critical_MsCardtypeManage").show("fast");
+                                mini.alert("审核失败！");
+                                // 设定
+                                mini.get('#Control_IfExamine').setValue("0");
+                                form.unmask();
+                                $(document).scrollTop(0);
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $("#Tooltip_Critical_MsCardtypeManage .content").first().text(jqXHR.responseText);
+                            $("#Tooltip_Critical_MsCardtypeManage").show("fast");
+                            mini.alert("审核失败！");
+                            // 设定
+                            mini.get('#Control_IfExamine').setValue("0");
+                            form.unmask();
+                            $(document).scrollTop(0);
+                        }
+                    });
+                });
+            }
         }
 
         function onCloseClick(e) {
             var obj = e.sender;
             obj.setText("");
             obj.setValue("");
+        }
+
+        function ValidateData() {
+            // 验证
+            if (mini.get('#Control_IfExamine').getValue() == "1") {
+                mini.alert("已经审核不能保存！");
+                return false;
+            }
+
+            if (mini.get('#Control_IfExamine').getValue() == "-1") {
+                mini.alert("已经废除不能保存！");
+                return false;
+            }
+
+            return true;
+        }
+
+        function GenerateCard() {
+            var form = new mini.Form("#formMain"); // default form
+            form.validate();
+            if (form.isValid() == false) return false;
+
+            if (ValidateData()) {
+                //var form = new mini.Form("#formMain"); // default form
+                var o = form.getData(true);
+
+                // 生成卡号 验证成功保存,否则弹出错误提示
+                $.ajax({
+                    //url: "/Ms/SaveMsMadecardManage",
+                    url: "/Ms/GenerateCardArchivesListByMadeCardInfo",
+                    type: 'post',
+                    data: o,
+                    cache: false,
+                    dataType: "json",
+                    success: function (r) {
+                        debugger;
+                        var grid = mini.get('#datagrid1');
+                        
+                        grid.load(r.data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+                        $("#Tooltip_Critical_MsMadecardManage .content").first().text(jqXHR.responseText);
+                        $("#Tooltip_Critical_MsMadecardManage").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                });
+            }
         }
 
     </script>
@@ -113,7 +217,7 @@
                     <!--<input type="text" value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20" required="true" />-->
 
                     <div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="CardName" valuefield="Id"
-                        url="/Ms/GetMsCardtypeManageList" showclose="true" oncloseclick="onCloseClick" emptytext="请选择..." required="true" value="@Model.CardCode">
+                        url="/Ms/GetMsCardtypeManageList" showclose="true" oncloseclick="onCloseClick" emptytext="请选择..." value="@Model.CardCode" required="true">
                         <div property="columns">
                             <div header="卡类型编码" field="Id"></div>
                             <div header="卡类型名称" field="CardName"></div>
@@ -134,7 +238,7 @@
 
                 <div class="ablock">
                     <label for="Control_MadeQty">制作数量:</label>
-                    <input type="text" id="Control_MadeQty" name="MadeQty" value="@Model.MadeQty" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
+                    <input type="text" id="Control_MadeQty" name="MadeQty" value="@Model.MadeQty" class="mini-spinner" minvalue="1" maxvalue="9999" decimalplaces="0" />
                 </div>
 
                 <div class="ablock">
@@ -147,37 +251,37 @@
                     <input type="text" value="@Model.EffectiveType" class="mini-textbox" name="EffectiveType" id="Control_EffectiveType" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_EffectiveDate">生效日期:</label>
                     <input type="text" id="Control_EffectiveDate" name="EffectiveDate" value="@Model.EffectiveDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_IfMade">是否发放:</label>
-                    <div id="Control_IfMade" name="IfMade" value="1" class="mini-checkbox" trueValue="1" falseValue="0" checked="true" readonly="false" text="制卡"></div>
+                    <div id="Control_IfMade" name="IfMade" value="1" class="mini-checkbox" truevalue="1" falsevalue="0" checked="true" readonly="false" text="制卡"></div>
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_CreateDate">创建时间:</label>
                     <input type="text" id="Control_CreateDate" name="CreateDate" value="@Model.CreateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_Operator">操作员:</label>
                     <input type="text" value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_Assessor">审核人:</label>
                     <input type="text" value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_IfExamine">是否审核:</label>
-                    <div id="Control_IfExamine" name="IfExamine" value="1" class="mini-checkbox" trueValue="1" falseValue="0" checked="true" readonly="false" text="审核"></div>
+                    <div id="Control_IfExamine" name="IfExamine" value="@Model.IfExamine" class="mini-textbox" readonly="false" text="审核"></div>
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_ExamineDate">审核时间:</label>
                     <input type="text" id="Control_ExamineDate" name="ExamineDate" value="@Model.ExamineDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
@@ -189,10 +293,135 @@
 
 
             </fieldset>
+
+            <fieldset>
+                <legend>卡信息</legend>
+                <div id="datagrid1" class="mini-datagrid"
+                    style="width: 100%; height: 100%;" idfield="CardNumber" allowresize="false">
+                    <div property="columns">
+                        <div type="indexcolumn" width="30">
+                        </div>
+                        <div field="CardNumber" headeralign="center" align="center" width="60">
+                            卡号
+					<!--<input id="filter_CardNumber" name="CardNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="SurfaceNumber" headeralign="center" align="center" width="60">
+                            卡面明码
+					<!--<input id="filter_SurfaceNumber" name="SurfaceNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="MsCode" headeralign="center" align="center" width="60">
+                            会员编码
+					<!--<input id="filter_MsCode" name="MsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="CardCode" headeralign="center" align="center" width="60">
+                            卡类型编码
+					<!--<input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="CardName" headeralign="center" align="center" width="60">
+                            卡类型名称
+					<!--<input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="MsName" headeralign="center" align="center" width="60">
+                            会员姓名
+					<!--<input id="filter_MsName" name="MsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="CardState" headeralign="center" align="center" width="60">
+                            <!--0待发1正常2挂失3冻结4废除-->
+                            卡状态
+					<!--<input id="filter_CardState" name="CardState" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="CreateDate" headeralign="center" align="center" width="60">
+                            制卡日期
+					<!--<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="GrantDate" headeralign="center" align="center" width="60">
+                            发卡日期
+					<!--<input id="filter_GrantDate" name="GrantDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="EffectiveDate" headeralign="center" align="center" width="60">
+                            生效日期
+					<!--<input id="filter_EffectiveDate" name="EffectiveDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="PointsUsefulLifeDate" headeralign="center" align="center" width="60">
+                            积分有效期
+					<!--<input id="filter_PointsUsefulLifeDate" name="PointsUsefulLifeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="CardUsefulLifeDate" headeralign="center" align="center" width="60">
+                            卡有效期
+					<!--<input id="filter_CardUsefulLifeDate" name="CardUsefulLifeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="TransactCharge" headeralign="center" align="center" width="60">
+                            办卡费用
+					<!--<input id="filter_TransactCharge" name="TransactCharge" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="DepositMoney" headeralign="center" align="center" width="60">
+                            押金金额
+					<!--<input id="filter_DepositMoney" name="DepositMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="TotalMoney" headeralign="center" align="center" width="60">
+                            累计消费金额
+					<!--<input id="filter_TotalMoney" name="TotalMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="TotalExpendTimes" headeralign="center" align="center" width="60">
+                            累计消费次数
+					<!--<input id="filter_TotalExpendTimes" name="TotalExpendTimes" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="LastExpendMoney" headeralign="center" align="center" width="60">
+                            上次消费金额
+					<!--<input id="filter_LastExpendMoney" name="LastExpendMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="TotalPoints" headeralign="center" align="center" width="60">
+                            累计积分
+					<!--<input id="filter_TotalPoints" name="TotalPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="ExchangePoints" headeralign="center" align="center" width="60">
+                            兑换积分
+					<!--<input id="filter_ExchangePoints" name="ExchangePoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="CurrentPoints" headeralign="center" align="center" width="60">
+                            当前积分
+					<!--<input id="filter_CurrentPoints" name="CurrentPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="ClearPoints" headeralign="center" align="center" width="60">
+                            清零积分
+					<!--<input id="filter_ClearPoints" name="ClearPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="PrepaidPassword" headeralign="center" align="center" width="60">
+                            储值密码
+					<!--<input id="filter_PrepaidPassword" name="PrepaidPassword" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="TotalPrepaid" headeralign="center" align="center" width="60">
+                            累计储值金额
+					<!--<input id="filter_TotalPrepaid" name="TotalPrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="CurrentPrepaid" headeralign="center" align="center" width="60">
+                            当前储值金额
+					<!--<input id="filter_CurrentPrepaid" name="CurrentPrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="CurrentPrepaidEncrypt" headeralign="center" align="center" width="60">
+                            当前金额
+					<!--<input id="filter_CurrentPrepaidEncrypt" name="CurrentPrepaidEncrypt" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="UsePrepaid" headeralign="center" align="center" width="60">
+                            使用金额
+					<!--<input id="filter_UsePrepaid" name="UsePrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="LimitTimes" headeralign="center" align="center" width="60">
+                            限制次数
+					<!--<input id="filter_LimitTimes" name="LimitTimes" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                        <div field="SaleTimes" headeralign="center" align="center" width="60">
+                            消费次数
+					<!--<input id="filter_SaleTimes" name="SaleTimes" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
             <div class="clear">
             </div>
             <div class="control-panel">
                 <div class="control-button">
+                    <input type="button" class="myButton" id="btnGenerateCard" onclick="GenerateCard()" value="生成" />
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />

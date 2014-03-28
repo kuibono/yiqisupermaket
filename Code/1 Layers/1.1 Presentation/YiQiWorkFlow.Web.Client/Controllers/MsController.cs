@@ -299,6 +299,63 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return Json(msCardtypeManageList.Select(entity => new { id = entity.Id, cardName = entity.CardName, cardCode = entity.CardCode, text = entity.SurfaceNumber, surfaceNumber = entity.SurfaceNumber, msCode = entity.MsCode, msName = entity.MsName, cardState = entity.CardState }), JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GenerateCardArchivesListByMadeCardInfo(MsMadecardManage m)
+        {
+            List<MsCardArchives> cardArchivesList = GetMsCardArchivesByMadeInfo(m);
+
+            //return Json(new SearchResult<MsCardArchives>() { data = cardArchivesList, total = cardArchivesList.Count}, JsonRequestBehavior.AllowGet);
+
+            return new JsonNetResult(cardArchivesList.ToArray());
+        }
+
+        private List<MsCardArchives> GetMsCardArchivesByMadeInfo(MsMadecardManage m)
+        {
+            // 根据制卡信息生成虚拟卡信息集合
+            List<MsCardArchives> cardArchivesList = new List<MsCardArchives>();
+
+            if (m != null)
+            {
+
+                for (int i = 0; i < m.MadeQty; i++)
+                {
+                    string cardName = MsCardtypeManageService.GetById(m.CardCode).CardName;
+                    MsCardArchives entity = new MsCardArchives()
+                    {
+                        CardCode = m.CardCode,
+                        CardName = cardName,
+                        CardState = "0",
+                        CardUsefulLifeDate = DateTime.Now.AddYears(1),
+                        ClearPoints = 0,
+                        CreateDate = DateTime.Now,
+                        CurrentPoints = 0,
+                        CurrentPrepaid = 0,
+                        CurrentPrepaidEncrypt = "0",
+                        DepositMoney = 0,
+                        EffectiveDate = DateTime.Now.AddYears(1),
+                        ExchangePoints = 0,
+                        GrantDate = DateTime.Now.AddYears(1),
+                        LastExpendMoney = 0,
+                        LimitTimes = 0,
+                        MsCode = string.Empty,
+                        MsName = string.Empty,
+                        PointsUsefulLifeDate = DateTime.Now.AddYears(1),
+                        PrepaidPassword = string.Empty,
+                        SaleTimes = 0,
+                        SurfaceNumber = (m.BeginCardNumber + i).ToString(),
+                        TotalMoney = 0,
+                        TotalExpendTimes = 0,
+                        TotalPoints = 0,
+                        TotalPrepaid = 0,
+                        TransactCharge = 0,
+                        UsePrepaid = 0
+                    };
+
+                    cardArchivesList.Add(entity);
+                }
+            }
+            return cardArchivesList;
+        }
+
         #endregion
 
         #region 卡信息删除
@@ -1651,11 +1708,46 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 if (m.HaveId)
                 {
+                    // 当前操作人 操作时间
+                    m.OperatorDate = DateTime.Now;
+
+                    if (!string.IsNullOrEmpty(m.IfExamine) && !m.IfExamine.Equals("0") && m.ExamineDate == null)
+                    {
+                        m.ExamineDate = DateTime.Now;
+
+                        // 审核逻辑
+                        //MsMadecardManageService.ExamMadecardManage(m);
+                    }
                     MsMadecardManageService.Update(m);
                 }
                 else
                 {
+                    // 操作人 创建时间
+                    m.CreateDate = DateTime.Now;
+
+                    if (string.IsNullOrEmpty(m.IfExamine))
+                    {
+                        m.IfExamine = "0";
+                    }
+
                     MsMadecardManageService.Create(m);
+                }
+
+                //验证 待重构入Service中 运用事务机制
+
+                List<MsCardArchives> cardArchivesList = GetMsCardArchivesByMadeInfo(m);
+
+                // 保存
+                foreach (var item in cardArchivesList)
+                {
+                    if (item.HaveId)
+                    {
+                        MsCardArchivesService.Update(item);
+                    }
+                    else
+                    {
+                        MsCardArchivesService.Create(item);
+                    }
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
