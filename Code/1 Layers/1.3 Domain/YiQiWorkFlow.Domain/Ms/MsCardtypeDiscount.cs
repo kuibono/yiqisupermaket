@@ -24,7 +24,7 @@ namespace YiQiWorkFlow.Domain.Ms
 		/// </summary>
 		[Validate(ValidateType.NoValidate,Name="商品类别")]
 		public virtual string GoodsClassCode{get ; set; }
-        //public virtual string ParentGoodsClassCode { get; set; }
+        public virtual string ParentGoodsClassCode { get; set; }
 		
 		/// <summary>
 		/// 类别名称

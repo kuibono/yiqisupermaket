@@ -12,7 +12,7 @@
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData(true);
 
-            var grid1 = mini.get("datagrid1");
+            var grid1 = mini.get("treegrid1");
             grid1.commitEdit();
             var cardtypeDiscount = grid1.data;
 
@@ -89,61 +89,22 @@
             });
         }
 
-        $(function () {
-            //var hGoodsClassCode = mini.get('#control_hGoodsClassCode');
-            //var GoodsCode = mini.get('#Control_GoodsCode');
-            //if (hGoodsCode) {
-            //    GoodsCode.setValue(hGoodsClassCode.getValue());
-            //    GoodsCode.text = hGoodsCode.getValue();
-            //}
-
-            //var grid = mini.get("datagrid1");
-            //grid.reload();
-            //jQuery.hotkeys.add('return', function () {
-            //    if (mini.get("Control_CardCode").getValue().length == 0) {
-            //        alert("必须先选择卡类型");
-            //        return false;
-            //    }
-                //if (grid.isEditing()) {
-                //    grid.commitEdit();
-                //}
-                //var row = {};
-                //grid.addRow(row, 0);
-                //grid.cancelEdit();
-                //grid.beginEditRow(row);
-                ////mini.getbyName("GoodsClassCode", "datagrid1").setUrl("/Fb/GetGoodsClassList");
-                //setTimeout(function () {
-                //    mini.getbyName("GoodsClassCode", "datagrid1").focus();
-                //}, 500);
-            });
-            //jQuery.hotkeys.add('esc', function () {
-            //    grid.reload();
-            //});
-            //jQuery.hotkeys.add('del', function () {
-            //    grid.removeRows(grid.getSelecteds());
-            //});
-        //});
-
-        //function addRow(row) {
-        //    var grid = mini.get("datagrid1");
-        //    grid.addRow(row, 0);
-        //}
 
         function onrowdblclick(e) {
-            var grid = mini.get("datagrid1");
+            var grid = mini.get("treegrid1");
             if (grid.isEditing()) {
                 grid.commitEdit();
             }
             grid.beginEditRow(e.row);
             //mini.getbyName("GoodsCode", "datagri1").focus();
             setTimeout(function () {
-                mini.getbyName("DiscountBase", "datagrid1").focus();
+                mini.getbyName("DiscountBase", "treegrid1").focus();
             }, 500);
         }
 
         function onGoodsChanged(e) {
-            mini.get('#datagrid1').url = "/Ms/SearchMsCardtypeDiscountList?CardCode=" + e.selected.Id;
-            mini.get('#datagrid1').reload();
+            var url = "/Ms/SearchMsCardtypeDiscountList?CardCode=" + e.selected.Id;
+            mini.get('#treegrid1').load(url);
         }
 
     </script>
@@ -218,85 +179,32 @@
                         </div>
                     </div>
 
-                    <!--<input id="control_CardName" value="" name="control_CardName" class="mini-hidden" />-->
-
                 </div>
-
-                <!--<div class="ablock">
-                    <label for="CardName">卡类别名称:</label>
-                    <div id="CardName" name="CardName" class="mini-textbox" style="width: 150px;"></div>
-                    <input type="text" value="@Model.GoodsClassName" class="mini-textbox" id="Control_GoodsClassName" name="GoodsClassName" vtype="maxLength:20" readonly="readonly" />
-
-                </div>-->
-
-                <!--<div class="ablock">
-
-                    <label for="Control_GoodsCode">商品类别:</label>
-
-                    <input id="Control_GoodsClassCode" name="GoodsClassCode" class="mini-buttonedit" onbuttonclick="onButtonEdit" allowinput="false" required="true" value="@Model.GoodsClassCode" text="@Model.GoodsClassCode" />
-
-                    <input id="control_hGoodsClassCode" value="@Model.GoodsClassCode" name="hGoodsClassCode" class="mini-hidden" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_GoodsClassName">类别名称:</label>
-                    <input type="text" value="@Model.GoodsClassName" class="mini-textbox" id="Control_GoodsClassName" name="GoodsClassName" vtype="maxLength:20" readonly="readonly" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_DiscountBase">折扣基数:</label>
-                    <input type="text" id="Control_DiscountBase" name="DiscountBase" value="@Model.DiscountBase" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                </div>
-
-                <div class="ablock">
-                    <label for="Control_ClassDiscountRate">类别折扣:</label>
-                    <input type="text" id="Control_ClassDiscountRate" name="ClassDiscountRate" value="@Model.ClassDiscountRate" class="mini-spinner" minvalue="0" maxvalue="1" decimalplaces="2" increment="0.01" />
-                </div>
-
-                <div class="ablock" style="display: none">
-                    <label for="Control_SysGuid">系统标识:</label>
-                    <input type="text" value="@Model.SysGuid" class="mini-textbox" name="SysGuid" id="Control_SysGuid" vtype="maxLength:60" />
-                </div>
-
-                <div class="ablock" style="display: none">
-                    <label for="Control_Id">:</label>
-                    <input id="Control_Id" value="@Model.Id" name="Id" class="mini-hidden" />
-                </div>-->
 
             </fieldset>
-
-            <div id="datagrid1" class="mini-datagrid" url="/Ms/SearchMsCardtypeDiscountList?CardCode=@(string.IsNullOrEmpty(Model.CardCode) ? "!##$%" : Model.CardCode)"
-                style="width: 100%; height: 250px; margin-top:10px;" idfield="Id" allowresize="false" sizelist="[20,30,50,100]"
-                pagesize="20" multiselect="true" showfilterrow="false" showPager="false" onrowdblclick="onrowdblclick">
+            <div id="treegrid1" class="mini-treegrid" style="width: 100%; height: 280px;"
+                url="/Ms/SearchMsCardtypeDiscountList?CardCode=@(string.IsNullOrEmpty(Model.CardCode) ? "!##$%" : Model.CardCode)"
+                showtreeicon="true"
+                treecolumn="GoodsClassCode" idfield="GoodsClassCode" parentfield="ParentGoodsClassCode" resultastree="false"
+                allowresize="true" expandonload="true"
+                allowcelledit="true" allowcellselect="true">
                 <div property="columns">
-                    <div type="indexcolumn" width="30">
-                    </div>
-                    <!--<div type="checkcolumn" width="30">
-                    </div>-->
-                    <!--<div field="GoodsClassCode" headeralign="center" align="center" width="60">
-                        商品类别编码
-					<div id="filter_GoodsClassCode" popupwidth="400" name="GoodsClassCode" property="editor" class="mini-treeselect" allowinput="true" valuefield="id" textfield="text" parentField="pid" resultAsTree="false" onvaluechanged="onGoodsChanged" url="/Fb/GetGoodsClassList" style="width: 100%;">
-                    </div>
-                    </div>-->
+                    <div type="indexcolumn"></div>
                     <div field="Id" headeralign="center" align="center" width="0"></div>
-                    <div field="GoodsClassCode" headeralign="center" align="center" width="60">
+                    <div name="GoodsClassCode" field="GoodsClassCode" width="160">
                         商品类别编码
-					<div id="filter_GoodsClassCode" popupwidth="400" name="GoodsClassCode" class="mini-textbox" style="width: 100%;">
                     </div>
-                    </div>
-                    <div field="GoodsClassName" headeralign="center" align="center" width="60">
+                    <div name="GoodsClassName" field="GoodsClassName" width="160">
                         商品类别名称
-					<input id="filter_GoodsClassName" name="GoodsClassName" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
-                    <div field="DiscountBase" headeralign="center" align="center" width="60">
+                    <div field="DiscountBase" width="80">
                         折扣基数
-					<input id="filter_DiscountBase" name="DiscountBase" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2" property="editor" style="width: 100%;" />
+                        <input property="editor" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2"  style="width: 100%;" />
                     </div>
-                    <div field="ClassDiscountRate" headeralign="center" align="center" width="60">
+                    <div field="ClassDiscountRate" width="60" align="right">
                         类别折扣
-					<input id="filter_ClassDiscountRate" name="ClassDiscountRate" class="mini-spinner" minvalue="0.00" maxvalue="1.00" decimalplaces="2" increment="0.1" property="editor" style="width: 100%;" value="1.00" />
+                        <input property="editor" class="mini-spinner" minvalue="0.00" maxvalue="1.00" decimalplaces="2" increment="0.1"  style="width: 100%;" value="1.00" />
                     </div>
-                    
                 </div>
             </div>
 
