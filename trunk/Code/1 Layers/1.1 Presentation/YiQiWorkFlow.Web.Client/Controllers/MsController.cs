@@ -432,7 +432,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
                     if (!msCardtypeDiscountList.data.Contains(entity, compare))
                     {
-                        //entity.ParentGoodsClassCode = item.pid;
+                        entity.ParentGoodsClassCode = item.pid;
                         msCardtypeDiscountList.data.Add(entity);
                     }
                 }
@@ -445,7 +445,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         DiscountBase = 0,
                         GoodsClassCode = item.id,
                         GoodsClassName = item.text,
-                        //ParentGoodsClassCode = item.pid
+                        ParentGoodsClassCode = item.pid
                     };
 
                     if (!msCardtypeDiscountList.data.Contains(entity, compare))
@@ -455,7 +455,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
             }
 
-            return Json(msCardtypeDiscountList, JsonRequestBehavior.AllowGet);
+            return Json(msCardtypeDiscountList.data.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
         #endregion
