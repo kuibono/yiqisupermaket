@@ -331,10 +331,28 @@
 </head>
 <body>
     <div class="container">
-        <h1>商品档案编辑
-            <div style="display:inline-block;float:right;font-size:12px;color:#000;font-weight:normal;"><input type="checkbox" id="cloneGoodsInfomation" /><label for="cloneGoodsInfomation">保存后复制上一条信息</label></div>
-        </h1>
-        
+        <div id="toolbar1" class="mini-toolbar" style="padding: 2px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
+                        <a id="btnExame" iconcls="icon-ok" class="mini-button" plain="true" tooltip="审核(Ctrl+E)">审核</a>
+                        <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
+                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                    </td>
+                    <td>
+                        <div style="display: inline-block; float: right; font-size: 12px; color: #000; font-weight: normal;">
+                            <input type="checkbox" id="cloneGoodsInfomation" /><label for="cloneGoodsInfomation">保存后复制上一条信息</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+@*        <h1>商品档案编辑
+            
+        </h1>*@
+
         <div class="tooltip warning hidden" id="Tooltip_Warning_FbGoodsArchives">
             <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
             <p class="content">
@@ -387,6 +405,7 @@
                 <input type="button" class="myYellowButton buttonClose" value="关闭" />
             </div>
         </div>
+
         <form id="formMain" method="post" action="">
             <fieldset>
                 <legend>商品信息</legend>
@@ -638,7 +657,7 @@
                                 </div>
                                 <div field="OfferMode" headeralign="center" align="center" width="60">
                                     供货方式
-					<input id="filter_OfferMode" name="OfferMode" property="editor" class="mini-combobox" style="width: 100%;"  data="c_OfferMode"/>
+					<input id="filter_OfferMode" name="OfferMode" property="editor" class="mini-combobox" style="width: 100%;" data="c_OfferMode" />
                                 </div>
                                 <div field="OfferMin" headeralign="center" align="center" width="60">
                                     最小订量
@@ -658,11 +677,11 @@
                                 </div>
                                 <div field="IfMainSupplier" headeralign="center" align="center" width="60" renderer="onYesNoRender">
                                     主供货商
-                                    <div id="filter_IfMainSupplier" property="editor" name="IfMainSupplier" value="1" trueValue="1" falseValue="0" class="mini-checkbox" checked="true" readonly="false"></div>
+                                    <div id="filter_IfMainSupplier" property="editor" name="IfMainSupplier" value="1" truevalue="1" falsevalue="0" class="mini-checkbox" checked="true" readonly="false"></div>
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60" renderer="onExamRender">
                                     是否审核
-                                    <div id="Control_IfExamine" property="editor" name="IfExamine" value="1" class="mini-checkbox" trueValue="1" falseValue="0" checked="true" readonly="false"></div>
+                                    <div id="Control_IfExamine" property="editor" name="IfExamine" value="1" class="mini-checkbox" truevalue="1" falsevalue="0" checked="true" readonly="false"></div>
 
                                 </div>
 
@@ -681,7 +700,7 @@
                                 </div>
                                 <div field="GoodsBarCode" headeralign="center" align="center" width="60">
                                     商品销售码
-					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" style="width: 100%;" onblur="onGoodsBarCodeBlur"/>
+					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" style="width: 100%;" onblur="onGoodsBarCodeBlur" />
                                 </div>
                                 <div field="GoodsBarName" headeralign="center" align="center" width="60">
                                     销售名称
@@ -693,7 +712,7 @@
                                 </div>
                                 <div field="PackCoef" headeralign="center" align="center" width="60">
                                     包装系数
-					<input id="filter_PackCoef" name="PackCoef" property="editor" class="mini-spinner" decimalPlaces="2" style="width: 100%;" />
+					<input id="filter_PackCoef" name="PackCoef" property="editor" class="mini-spinner" decimalplaces="2" style="width: 100%;" />
                                 </div>
                                 <div field="QtyType" headeralign="center" align="center" width="60">
                                     计量方式
@@ -721,11 +740,11 @@
                                 </div>
                                 <div field="IfMainBar" headeralign="center" align="center" width="60">
                                     是否主销售码
-                                    <div id="filter_IfMainBar" property="editor" name="IfMainBar"  class="mini-checkbox" trueValue="1" falseValue="0" checked="true" readonly="false" oncheckedchanged="onIfMainBarchanged"></div>
+                                    <div id="filter_IfMainBar" property="editor" name="IfMainBar" class="mini-checkbox" truevalue="1" falsevalue="0" checked="true" readonly="false" oncheckedchanged="onIfMainBarchanged"></div>
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60">
                                     是否审核
-					<div id="Control_IfExamine" property="editor" name="IfExamine" value="1" trueValue="1" falseValue="0" class="mini-checkbox" checked="true" readonly="false"></div>
+					<div id="Control_IfExamine" property="editor" name="IfExamine" value="1" truevalue="1" falsevalue="0" class="mini-checkbox" checked="true" readonly="false"></div>
                                 </div>
 
                             </div>
@@ -744,7 +763,7 @@
 
                                 <div field="GoodsCodeBind" headeralign="center" align="center" width="60">
                                     商品编码
-					<input id="filter_GoodsCodeBind" name="GoodsCodeBind" property="editor" class="mini-autocomplete" required="true" valueField="Id" textField="GoodsName" url="/Fb/SearchFbGoodsArchivesListForList" onvaluechanged="onBindValuechanged" style="width: 100%;" />
+					<input id="filter_GoodsCodeBind" name="GoodsCodeBind" property="editor" class="mini-autocomplete" required="true" valuefield="Id" textfield="GoodsName" url="/Fb/SearchFbGoodsArchivesListForList" onvaluechanged="onBindValuechanged" style="width: 100%;" />
                                 </div>
                                 <div field="GoodsBarCode" headeralign="center" align="center" width="60">
                                     捆绑商品销售码
@@ -768,11 +787,11 @@
                                 </div>
                                 <div field="SalePrice" headeralign="center" align="center" width="60">
                                     销售价
-					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" style="width: 100%;" decimalPlaces="4" />
+					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" style="width: 100%;" decimalplaces="4" />
                                 </div>
                                 <div field="BindSalePrice" headeralign="center" align="center" width="60">
                                     捆绑销售价
-					<input id="filter_BindSalePrice" name="BindSalePrice" property="editor" class="mini-spinner" style="width: 100%;" decimalPlaces="4" />
+					<input id="filter_BindSalePrice" name="BindSalePrice" property="editor" class="mini-spinner" style="width: 100%;" decimalplaces="4" />
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60">
                                     是否审核
@@ -817,7 +836,7 @@
             </div>
             <div class="clear">
             </div>
-            <div class="control-panel">
+            @*<div class="control-panel">
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
@@ -826,7 +845,7 @@
                 </div>
                 <div class="botton-up">
                 </div>
-            </div>
+            </div>*@
         </form>
     </div>
 </body>
