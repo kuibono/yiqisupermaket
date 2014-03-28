@@ -320,9 +320,9 @@ body
     -webkit-border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
-    -moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
-    -webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    -moz-box-shadow: 3px 0px 10px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 3px 0px 10px rgba(0,0,0,0.4);
+    box-shadow: 3px 0px 10px rgba(0,0,0,0.4);
     border-color: #dfdfdf; /*margin-top: -16px;*/
 }
 .submenu .submenu-head
