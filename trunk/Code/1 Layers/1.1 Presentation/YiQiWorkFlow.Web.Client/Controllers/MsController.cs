@@ -305,7 +305,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
             //return Json(new SearchResult<MsCardArchives>() { data = cardArchivesList, total = cardArchivesList.Count}, JsonRequestBehavior.AllowGet);
 
-            return new JsonNetResult(cardArchivesList.ToArray());
+            return Content(cardArchivesList.ToJson(), "application/json");
         }
 
         private List<MsCardArchives> GetMsCardArchivesByMadeInfo(MsMadecardManage m)

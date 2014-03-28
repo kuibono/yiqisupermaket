@@ -133,7 +133,7 @@
                         debugger;
                         var grid = mini.get('#datagrid1');
                         
-                        grid.load(r.data);
+                        grid.load(r);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
 
@@ -297,13 +297,13 @@
             <fieldset>
                 <legend>卡信息</legend>
                 <div id="datagrid1" class="mini-datagrid"
-                    style="width: 100%; height: 100%;" idfield="CardNumber" allowresize="false">
+                    style="width: 100%; height: 100%;" idfield="Id" allowresize="false">
                     <div property="columns">
                         <div type="indexcolumn" width="30">
                         </div>
-                        <div field="CardNumber" headeralign="center" align="center" width="60">
+                        <div field="CardCode" headeralign="center" align="center" width="60">
                             卡号
-					<!--<input id="filter_CardNumber" name="CardNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+					<!--<input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
                         </div>
                         <div field="SurfaceNumber" headeralign="center" align="center" width="60">
                             卡面明码
