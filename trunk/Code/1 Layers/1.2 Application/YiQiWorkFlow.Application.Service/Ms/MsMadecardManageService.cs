@@ -171,9 +171,13 @@ namespace YiQiWorkFlow.Application.Service.Ms
                 Delete(each);
             }
         }
+
+        public string ExamMadecardManage(MsMadecardManage entity)
+        {
+            string result = string.Empty;
+            // 判断
+
+            return result;
+        }
     }
 }
-
-
-
-
