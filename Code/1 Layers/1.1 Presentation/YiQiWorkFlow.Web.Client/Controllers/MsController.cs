@@ -2279,6 +2279,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 else
                 {
                     MsReclaimCardManageService.Create(m);
+
+                    // 回收卡片
+                    MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
+                    if (card != null && !string.IsNullOrEmpty(card.Id))
+                    {
+                        card.CardState = "4";
+                    }
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
