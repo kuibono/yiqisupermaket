@@ -1009,6 +1009,7 @@
     <Content Include="Scripts\miniui\themes\olive2003\images\tree\treeNodeLine.gif" />
     <Content Include="Scripts\miniui\themes\olive2003\images\window\header.gif" />
     <Content Include="Scripts\miniui\themes\olive2003\skin.css" />
+    <Content Include="Scripts\miniui\themes\icons_index.css" />
     <Content Include="Scripts\swfUpload\fileprogress.js" />
     <Content Include="Scripts\swfUpload\handlers.js" />
     <Content Include="Scripts\swfUpload\swfupload.js" />
