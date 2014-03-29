@@ -1706,51 +1706,50 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
-                {
-                    // 当前操作人 操作时间
-                    m.OperatorDate = DateTime.Now;
-
-                    if (!string.IsNullOrEmpty(m.IfExamine) && !m.IfExamine.Equals("0") && m.ExamineDate == null)
-                    {
-                        m.ExamineDate = DateTime.Now;
-
-                        // 审核逻辑
-                        //MsMadecardManageService.ExamMadecardManage(m);
-                    }
-                    MsMadecardManageService.Update(m);
-                }
-                else
-                {
-                    // 操作人 创建时间
-                    m.CreateDate = DateTime.Now;
-
-                    if (string.IsNullOrEmpty(m.IfExamine))
-                    {
-                        m.IfExamine = "0";
-                    }
-
-                    MsMadecardManageService.Create(m);
-                }
-
-                //验证 待重构入Service中 运用事务机制
-
+                // 获取卡信息集合
                 List<MsCardArchives> cardArchivesList = GetMsCardArchivesByMadeInfo(m);
 
-                // 保存
-                foreach (var item in cardArchivesList)
+                // 验证是否重复卡号,没有重复保存,否则返回false 和 error message
+                string message = MsCardArchivesService.SaveList(cardArchivesList);
+
+                if (string.IsNullOrEmpty(message))
                 {
-                    if (item.HaveId)
+                    if (m.HaveId)
                     {
-                        MsCardArchivesService.Update(item);
+                        // 当前操作人 操作时间
+                        m.OperatorDate = DateTime.Now;
+
+                        if (!string.IsNullOrEmpty(m.IfExamine) && !m.IfExamine.Equals("0") && m.ExamineDate == null)
+                        {
+                            m.ExamineDate = DateTime.Now;
+
+                            // 审核逻辑
+                            //MsMadecardManageService.ExamMadecardManage(m);
+                        }
+
+                        MsMadecardManageService.Update(m);
                     }
                     else
                     {
-                        MsCardArchivesService.Create(item);
+                        // 操作人 创建时间
+                        m.CreateDate = DateTime.Now;
+
+                        if (string.IsNullOrEmpty(m.IfExamine))
+                        {
+                            m.IfExamine = "0";
+                        }
+
+                        MsMadecardManageService.Create(m);
                     }
+
+                    r.IsSuccess = true;
+                    r.Message = "保存成功";
                 }
-                r.IsSuccess = true;
-                r.Message = "保存成功";
+                else
+                {
+                    r.IsSuccess = false;
+                    r.Message = message; 
+                }
             }
             return Json(r);
         }
