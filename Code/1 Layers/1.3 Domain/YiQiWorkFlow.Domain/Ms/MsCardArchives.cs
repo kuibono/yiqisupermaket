@@ -43,7 +43,7 @@ namespace YiQiWorkFlow.Domain.Ms
         public virtual string MsName { get; set; }
 
         /// <summary>
-        /// 卡状态
+        /// 卡状态(0待发1正常2挂失3冻结4废除)
         /// </summary>
         [Validate(ValidateType.NoValidate, Name = "0待发1正常2挂失3冻结4废除")]
         public virtual string CardState { get; set; }

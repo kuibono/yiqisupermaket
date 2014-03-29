@@ -139,6 +139,16 @@
                 }
             });
         }
+
+        $(function () {
+            var lossNumber = mini.get('#Control_LossNumber').getValue();
+            if (lossNumber) {
+                // 编辑页面 保存不可用只可以审核
+                $('#btnFormSubmit').attr('disabled', "true");
+                $('#btnFormReset').attr('disabled', "true");
+            }
+        });
+
     </script>
 </head>
 <body>
@@ -233,14 +243,18 @@
 
                 <div class="ablock">
                     <label for="Control_CardNumber">卡号:</label>
-                    <input id="Control_CardNumber" name="CardNumber" class="mini-buttonedit" onbuttonclick="onButtonEditCard" allowinput="false" required="true" value="@Model.CardNumber" text="@Model.CardNumber" />
-
+                    <input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" readonly="readonly" />
                     <input id="control_hCardNumber" value="@Model.CardNumber" name="hCardNumber" class="mini-hidden" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_SurfaceNumber">卡面明码:</label>
-                    <input type="text" value="@Model.SurfaceNumber" class="mini-textbox" name="SurfaceNumber" id="Control_SurfaceNumber" vtype="maxLength:20" required="true" />
+                    <div id="Control_SurfaceNumber" name="SurfaceNumber" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="surfaceNumber" valuefield="surfaceNumber"
+                         url="/Ms/GetMsCardArchivesList?CardState=0" showclose="true" oncloseclick="onCloseClick" onvaluechanged="onvaluechanged" emptytext="请选择..." required="true" allowinput="true" value="@Model.SurfaceNumber">
+                        <div property="columns">
+                            <div header="卡面明码" field="surfaceNumber"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="ablock">
@@ -260,7 +274,7 @@
                     <input type="text" value="@Model.CardName" class="mini-textbox" name="CardName" id="Control_CardName" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_CardState">卡状态:</label>
                     <input type="text" value="@Model.CardState" class="mini-combobox" name="CardState" id="Control_CardState" data="c_CardState" vtype="maxLength:2" />
                 </div>
@@ -290,21 +304,20 @@
                     <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_CreateDate">创建时间:</label>
                     <input type="text" id="Control_CreateDate" name="CreateDate" value="@Model.CreateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_Operator">操作员:</label>
                     <input type="text" value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_OperatorDate">操作时间:</label>
                     <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
-
 
             </fieldset>
             <div class="clear">

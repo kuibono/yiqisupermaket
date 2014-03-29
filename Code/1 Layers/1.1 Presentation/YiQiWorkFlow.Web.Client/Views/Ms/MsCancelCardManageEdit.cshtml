@@ -138,34 +138,13 @@
             });
         }
 
-        //function onCloseClick(e) {
-        //    var obj = e.sender;
-        //    obj.setText("");
-        //    obj.setValue("");
-        //}
-
-        //function valuechanged() {
-        //    var cardTypeCombobox = mini.get('#Control_CardCode');
-        //    var cardTypeCode = cardTypeCombobox.getText();
-        //    var cardNameText = mini.get('#Control_CardName');
-        //    if (cardTypeCode) {
-        //        cardNameText.setValue(cardTypeCode);
-        //    } else {
-        //        cardNameText.setText("");
-        //    }
-        //}
-
         $(function () {
-
-            //var controlPanel = $(window.frames[0].document).find("#control-panel");
-            //controlPanel.css('display', 'none');
-
-            //var hGoodsClassCode = mini.get('#control_hCardNumber');
-            //var GoodsCode = mini.get('#Control_CardNumber');
-            //if (hGoodsCode) {
-            //    GoodsCode.setValue(hGoodsCode.getValue());
-            //    GoodsCode.text = hGoodsCode.getValue();
-            //}
+            var cancelNumber = mini.get('#Control_CancelNumber').getValue();
+            if (cancelNumber) {
+                // 编辑页面 保存不可用只可以审核
+                $('#btnFormSubmit').attr('disabled', "true");
+                $('#btnFormReset').attr('disabled', "true");
+            }
         });
     </script>
 </head>
@@ -249,15 +228,18 @@
 
             <div class="ablock">
                     <label for="Control_CardNumber">卡号:</label>
-                    <!--<input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" required="true" />-->
-                    <input id="Control_CardNumber" name="CardNumber" class="mini-buttonedit" onbuttonclick="onButtonEditCard" allowinput="false" required="true" value="@Model.CardNumber" text="@Model.CardNumber" />
-
-                    <input id="control_hCardNumber" value="@Model.CardNumber" name="hCardNumber" class="mini-hidden" />
+                <input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" readonly="readonly" />
+                <input id="control_hCardNumber" value="@Model.CardNumber" name="hCardNumber" class="mini-hidden" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_SurfaceNumber">卡面明码:</label>
-                    <input type="text" value="@Model.SurfaceNumber" class="mini-textbox" name="SurfaceNumber" id="Control_SurfaceNumber" vtype="maxLength:20" required="true" />
+                    <div id="Control_SurfaceNumber" name="SurfaceNumber" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="surfaceNumber" valuefield="surfaceNumber"
+                         url="/Ms/GetMsCardArchivesList?CardState=0" showclose="true" oncloseclick="onCloseClick" onvaluechanged="onvaluechanged" emptytext="请选择..." required="true" allowinput="true" value="@Model.SurfaceNumber">
+                        <div property="columns">
+                            <div header="卡面明码" field="surfaceNumber"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="ablock">
@@ -271,13 +253,7 @@
 
                 <div class="ablock">
                     <label for="Control_CardCode">卡类型编码:</label>
-                    <!--<div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="CardName" valuefield="Id"
-                        url="/Ms/GetMsCardtypeManageList" showclose="true" oncloseclick="onCloseClick" onvaluechanged="valuechanged" emptytext="请选择..." required="true" value="@Model.CardCode">
-                        <div property="columns">
-                            <div header="卡类型编码" field="Id"></div>
-                            <div header="卡类型名称" field="CardName"></div>
-                        </div>
-                    </div>-->
+                    
                     <input type="text"  value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20"required="true" />
                 </div>
 
@@ -286,9 +262,9 @@
                     <input type="text" value="@Model.CardName" class="mini-textbox" name="CardName" id="Control_CardName" vtype="maxLength:20" readonly="readonly" />
                 </div>
 
-            <div class="ablock">
+            <div class="ablock" style="display:none">
                 <label for="Control_CardState">卡状态:</label>
-                <input type="text"  value="@Model.CardState" class="mini-textbox" name="CardState" id="Control_CardState" vtype="maxLength:2" />
+                <input type="text" value="@Model.CardState" class="mini-textbox" name="CardState" id="Control_CardState" vtype="maxLength:2" />
             </div>
 
             <div class="ablock">

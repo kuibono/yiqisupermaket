@@ -53,8 +53,8 @@ namespace YiQiWorkFlow.Application.Service.Ms
         /// <returns></returns>
         bool ExamByMadeCardManage(MsMadecardManage m);
 
-        #endregion
+        MsCardArchives GetCardArchivesBySurfaceNumber(string surfaceNumber);
 
-        
+        #endregion
     }
 }
