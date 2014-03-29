@@ -120,7 +120,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                                 new { id = "171", iconCls = "icon-add", pid = "m4", text = "时段销售查询", url = "" },
                                 new { id = "172", iconCls = "icon-add", pid = "m4", text = "供货商销售汇总查询", url = "" }
                             }},
-                            new { iconCls = "icon-add", text = "参数设置",  menus = new object[]{
+                            new { iconCls = "icon-cog-edit", text = "参数设置",  menus = new object[]{
                                 new { id = "173", iconCls = "icon-add", pid = "m4", text = "销售设置", url = "/Rt/RtPaSalesetList" },
                                 new { id = "174", iconCls = "icon-add", pid = "m4", text = "POS机设置", url = "/Rt/RtPaPosList" },
                                 new { id = "175", iconCls = "icon-add", pid = "m4", text = "功能键设置", url = "" },
@@ -143,7 +143,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                                 new { id = "185", iconCls = "icon-add", pid = "m5", text = "客户销售商品毛利分析", url = "" }
 
                              }},
-                             new { iconCls = "icon-add", text = "参数设置",  menus = new object[]{
+                             new { iconCls = "icon-cog-edit", text = "参数设置",  menus = new object[]{
                                 new { id = "186", iconCls = "icon-add", pid = "m5", text = "客户类型设置", url = "/Ws/WsPaCustomerTypeList" },
                                 new { id = "187", iconCls = "icon-add", pid = "m5", text = "限销商品设置", url = "/Ws/WsWholesaleGoodsSetList" }
 
@@ -208,7 +208,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                                 new { id = "232", iconCls = "icon-add", pid = "m7", text = "分店返货商品明细查询", url = "" },
                                 new { id = "233", iconCls = "icon-add", pid = "m7", text = "分店返货汇总查询", url = "" }
                             }},
-                            new { iconCls = "icon-add", text = "参数设置",  menus = new object[]{
+                            new { iconCls = "icon-cog-edit", text = "参数设置",  menus = new object[]{
                                 new { id = "234", iconCls = "icon-add", pid = "m7", text = "分店区域设置", url = "/Bs/BsPaAreaList" },
                                 new { id = "235", iconCls = "icon-add", pid = "m7", text = "分店分类设置", url = "/Bs/BsPaClassList" },
                                 new { id = "236", iconCls = "icon-add", pid = "m7", text = "分店仓库设置", url = "/Bs/BsPaBranchWarehouseList" }
@@ -261,10 +261,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                             } }
                          } },
                          new { iconCls = "icon-user", text = "人力资源", menus = new object[]{
-                             new { iconCls = "icon-add", text = "人事档案", menus = new object[]{
+                             new { iconCls = "icon-vcard", text = "人事档案", menus = new object[]{
                                 new { id = "267", iconCls = "icon-add", pid = "m10", text = "人员档案管理", url = "/Em/EmEmployeeArchivesList" }
                              }},
-                             new { iconCls = "icon-add", text = "参数设置", menus = new object[]{
+                             new { iconCls = "icon-cog-edit", text = "参数设置", menus = new object[]{
                                 new { id = "268", iconCls = "icon-add", pid = "m10", text = "学历参数设置", url = "/Em/EmPaEducationList" },
                                 new { id = "269", iconCls = "icon-add", pid = "m10", text = "职称参数设置", url = "/Em/EmPaProfessionalTitleList" },
                                 new { id = "270", iconCls = "icon-add", pid = "m10", text = "政治面貌参数设置", url = "/Em/EmPaPoliticsList" },
