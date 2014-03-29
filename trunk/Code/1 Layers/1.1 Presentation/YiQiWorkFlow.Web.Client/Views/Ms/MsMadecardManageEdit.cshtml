@@ -9,7 +9,7 @@
     <script type="text/javascript"> var pageTitle = "卡制作"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:51"; var id = "@Model.Id"; pageName = "MsMadecardManageEdit"; </script>
     <script type="text/javascript">
         function SaveData() {
-            debugger;
+            
             if (ValidateData()) {
                 var form = new mini.Form("#formMain"); // default form
                 var o = form.getData(true);
@@ -278,7 +278,7 @@
 
                 <div class="ablock" style="display: none">
                     <label for="Control_IfExamine">是否审核:</label>
-                    <div id="Control_IfExamine" name="IfExamine" value="@Model.IfExamine" class="mini-textbox" readonly="false" text="审核"></div>
+                    <div id="Control_IfExamine" name="IfExamine" class="mini-textbox" value="@Model.IfExamine" readonly="true" text="审核"></div>
                 </div>
 
                 <div class="ablock" style="display: none">
@@ -286,11 +286,10 @@
                     <input type="text" id="Control_ExamineDate" name="ExamineDate" value="@Model.ExamineDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display: none">
                     <label for="Control_OperatorDate">操作时间:</label>
                     <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
-
 
             </fieldset>
 
@@ -421,7 +420,7 @@
             </div>
             <div class="control-panel">
                 <div class="control-button">
-                    <input type="button" class="myButton" id="btnGenerateCard" onclick="GenerateCard()" value="生成" />
+                    @*<input type="button" class="myButton" id="btnGenerateCard" onclick="GenerateCard()" value="生成" />*@
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
