@@ -276,5 +276,20 @@ namespace YiQiWorkFlow.Application.Service.Ms
 
             return result;
         }
+
+        public bool ExamByMadeCardManage(MsMadecardManage m)
+        {
+            bool result = false;
+
+            List<MsCardArchives> msCardArchivesList = EntityRepository.LinqQuery.Where(x => x.MadeNumber.Equals(m.Id)).ToList();
+
+            foreach (var item in msCardArchivesList)
+            {
+                item.CardState = "0";
+                Update(item);
+            }
+
+            return result;
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace YiQiWorkFlow.Domain.Ms
         public virtual string MsName { get; set; }
 
         /// <summary>
-        /// 0待发1正常2挂失3冻结4废除
+        /// 卡状态
         /// </summary>
         [Validate(ValidateType.NoValidate, Name = "0待发1正常2挂失3冻结4废除")]
         public virtual string CardState { get; set; }
@@ -185,6 +185,8 @@ namespace YiQiWorkFlow.Domain.Ms
         /// </summary>
         [Validate(ValidateType.IsDateTime, Name = "操作时间")]
         public virtual System.DateTime? OperatorDate { get; set; }
+
+        public virtual string MadeNumber { set; get; }
 
         protected override void Validate()
         {

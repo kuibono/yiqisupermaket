@@ -39,11 +39,22 @@ namespace YiQiWorkFlow.Application.Service.Ms
 
         #region 自定义方法
 
+        /// <summary>
+        /// 根据卡制作信息批量验证并保存
+        /// </summary>
+        /// <param name="msCardArchivesList"></param>
+        /// <returns></returns>
         string SaveList(List<MsCardArchives> msCardArchivesList);
 
+        /// <summary>
+        /// 根据卡制作信息审核,激活卡信息状态为
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        bool ExamByMadeCardManage(MsMadecardManage m);
+
         #endregion
+
+        
     }
 }
-
-
-

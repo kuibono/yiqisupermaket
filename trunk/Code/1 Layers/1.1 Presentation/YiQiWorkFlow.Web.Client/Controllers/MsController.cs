@@ -323,7 +323,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     {
                         CardCode = m.CardCode,
                         CardName = cardName,
-                        CardState = "0",
+                        CardState = "-1",
                         CardUsefulLifeDate = DateTime.Now.AddYears(1),
                         ClearPoints = 0,
                         CreateDate = DateTime.Now,
@@ -1706,30 +1706,37 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                // 获取卡信息集合
-                List<MsCardArchives> cardArchivesList = GetMsCardArchivesByMadeInfo(m);
-
-                // 验证是否重复卡号,没有重复保存,否则返回false 和 error message
-                string message = MsCardArchivesService.SaveList(cardArchivesList);
-
-                if (string.IsNullOrEmpty(message))
+                if (m.HaveId)
                 {
-                    if (m.HaveId)
+                    // 当前操作人 操作时间
+                    m.OperatorDate = DateTime.Now;
+
+                    if (!string.IsNullOrEmpty(m.IfExamine) && !m.IfExamine.Equals("0") && m.ExamineDate == null)
                     {
-                        // 当前操作人 操作时间
-                        m.OperatorDate = DateTime.Now;
+                        // 审核逻辑
+                        MsCardArchivesService.ExamByMadeCardManage(m);
 
-                        if (!string.IsNullOrEmpty(m.IfExamine) && !m.IfExamine.Equals("0") && m.ExamineDate == null)
-                        {
-                            m.ExamineDate = DateTime.Now;
-
-                            // 审核逻辑
-                            //MsMadecardManageService.ExamMadecardManage(m);
-                        }
-
-                        MsMadecardManageService.Update(m);
+                        //m.ExamineDate = DateTime.Now;
+                        MsMadecardManage entity = MsMadecardManageService.GetById(m.Id);
+                        entity.ExamineDate = DateTime.Now;
+                        entity.IfExamine = m.IfExamine;
+                        MsMadecardManageService.Update(entity);
                     }
-                    else
+
+                    r.IsSuccess = true;
+                    r.Message = "审核成功"; 
+
+                    //MsMadecardManageService.Update(m);
+                }
+                else
+                {
+                    // 获取卡信息集合
+                    List<MsCardArchives> cardArchivesList = GetMsCardArchivesByMadeInfo(m);
+
+                    // 验证是否重复卡号,没有重复保存,否则返回false 和 error message
+                    string message = MsCardArchivesService.SaveList(cardArchivesList);
+
+                    if (string.IsNullOrEmpty(message))
                     {
                         // 操作人 创建时间
                         m.CreateDate = DateTime.Now;
@@ -1740,15 +1747,21 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         }
 
                         MsMadecardManageService.Create(m);
-                    }
 
-                    r.IsSuccess = true;
-                    r.Message = "保存成功";
-                }
-                else
-                {
-                    r.IsSuccess = false;
-                    r.Message = message; 
+                        foreach (var item in cardArchivesList)
+                        {
+                            item.MadeNumber = m.Id;
+                            MsCardArchivesService.Update(item);
+                        }
+
+                        r.IsSuccess = true;
+                        r.Message = "保存成功"; 
+                    }
+                    else
+                    {
+                        r.IsSuccess = false;
+                        r.Message = message; 
+                    }
                 }
             }
             return Json(r);

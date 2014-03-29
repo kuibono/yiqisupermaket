@@ -146,6 +146,20 @@
             }
         }
 
+        $(function ()
+        {
+            var mdNumber = mini.get('#Control_MdNumber').getValue();
+            if (mdNumber) {
+                // 编辑页面 保存不可用只可以审核
+                $('#btnFormSubmit').attr('disabled', "true");
+                $('#btnFormReset').attr('disabled', "true");
+                $('#Control_CardCode').attr('disabled', "true");
+
+                var url = "/Ms/SearchMsCardArchivesList?MadeNumber=" + mini.get("Control_MdNumber").getValue();
+                mini.get('#datagrid1').load(url);
+            }
+        });
+
     </script>
 </head>
 <body>
@@ -295,7 +309,7 @@
 
             <fieldset>
                 <legend>卡信息</legend>
-                <div id="datagrid1" class="mini-datagrid"
+                <div id="datagrid1" class="mini-datagrid" url="/Ms/SearchMsCardArchivesList?MadeNumber=@(string.IsNullOrEmpty(Model.Id) ? "" : Model.Id)"
                     style="width: 100%; height: 100%;" idfield="Id" allowresize="false">
                     <div property="columns">
                         <div type="indexcolumn" width="30">
