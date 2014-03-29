@@ -11,7 +11,7 @@
             $.getJSON("/Account/GetModelesTree", function (j) {
                 for (var i = 0; i < j.length; i++) {
                     var tree_node = '<h1>' + j[i].text + '</h1><ul>';
-                    var node = '<li class="' + j[i].iconCls + ' menu-icon-post menu-item"><div class="menu-image"></div><div class="menu-arrow"><div></div></div><a href="#">' + j[i].text + '</a><div class="submenu" style="top:' + (i == 0 ? '0' : '-5') + 'px;overflow-y: auto;overflow-x: hidden;width:580px"><div class="submenu-head">' + j[i].text + '</div><ul>';
+                    var node = '<li class="' + j[i].iconCls + ' menu-icon-post menu-item"><div class="menu-image"></div><div class="menu-arrow"><div></div></div><a href="#">' + j[i].text + '</a><div class="submenu" style="top:' + (i == 0 ? '0' : '-5') + 'px;overflow-y: auto;overflow-x: hidden;width:580px"><div class="submenu-head"><div class="menu-image"></div>' + j[i].text + '</div><ul>';
                     for (var k = 0; k < j[i].menus.length; k++) {
                         //var subItem = '<li><a name="' + j[i].menus[k].id + '" href="' + j[i].menus[k].url + '" onclick="javascript:openInTab(\'' + j[i].menus[k].id + '\',\'' + j[i].menus[k].text + '\',\'' + j[i].menus[k].url + '\');return false;">' + j[i].menus[k].text + '</a> </li>';
                         var subItem = "<li class=" + j[i].menus[k].iconCls + "><div><h1 style='padding-left:6px;font-size: 14px;text-shadow: 2px 2px 1px #999;'><div class='menu-image'></div>" + j[i].menus[k].text + "</h1><ul>";
