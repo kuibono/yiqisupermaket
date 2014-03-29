@@ -33,6 +33,7 @@
 	<property name="SaleTimes" column="sale_times" type="decimal" />
 	<property name="Operator" column="operator" type="string" />
 	<property name="OperatorDate" column="operator_date" type="System.DateTime" />
+  <property name="MadeNumber" column="made_number" type="string" />
   </class>
 </hibernate-mapping>
 
