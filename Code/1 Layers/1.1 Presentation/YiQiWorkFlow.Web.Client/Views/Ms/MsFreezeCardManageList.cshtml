@@ -37,90 +37,91 @@
     </div>
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchMsFreezeCardManageList"
-            style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true">
+             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+             pagesize="20" multiselect="true" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="FreezeNumber" headeralign="center" align="center" width="60">
-				    冻结单号
-					<input id="filter_FreezeNumber" name="FreezeNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="EnCode" headeralign="center" align="center" width="60">
-				    企业编码
-					<input id="filter_EnCode" name="EnCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="FreezeDate" headeralign="center" align="center" width="60">
-				    冻结日期
-					<input id="filter_FreezeDate" name="FreezeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="FreezeReason" headeralign="center" align="center" width="60">
-				    冻结原因
-					<input id="filter_FreezeReason" name="FreezeReason" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CardNumber" headeralign="center" align="center" width="60">
-				    卡号
-					<input id="filter_CardNumber" name="CardNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SurfaceNumber" headeralign="center" align="center" width="60">
-				    卡面明码
-					<input id="filter_SurfaceNumber" name="SurfaceNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="MsCode" headeralign="center" align="center" width="60">
-				    会员编码
-					<input id="filter_MsCode" name="MsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CardCode" headeralign="center" align="center" width="60">
-				    卡类型编码
-					<input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CardName" headeralign="center" align="center" width="60">
-				    卡类型名称
-					<input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CardState" headeralign="center" align="center" width="60">
-				    0待发1正常2挂失3废除
-					<input id="filter_CardState" name="CardState" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="EffectiveDate" headeralign="center" align="center" width="60">
-				    生效日期
-					<input id="filter_EffectiveDate" name="EffectiveDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PointsUsefulLifeDate" headeralign="center" align="center" width="60">
-				    积分有效期
-					<input id="filter_PointsUsefulLifeDate" name="PointsUsefulLifeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CardUsefulLifeDate" headeralign="center" align="center" width="60">
-				    卡有效期
-					<input id="filter_CardUsefulLifeDate" name="CardUsefulLifeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="TransactCharge" headeralign="center" align="center" width="60">
-				    办卡费用
-					<input id="filter_TransactCharge" name="TransactCharge" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="DepositMoney" headeralign="center" align="center" width="60">
-				    押金金额
-					<input id="filter_DepositMoney" name="DepositMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CreateDate" headeralign="center" align="center" width="60">
-				    创建时间
-					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Operator" headeralign="center" align="center" width="60">
-				    操作员
-					<input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OperatorDate" headeralign="center" align="center" width="60">
-				    操作时间
-					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
                 <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                    cellstyle="padding:0;">
+                     cellstyle="padding:0;">
                     管理
                 </div>
+                <div field="FreezeNumber" headeralign="center" align="center" width="60">
+                    冻结单号
+                    <input id="filter_FreezeNumber" name="FreezeNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="EnCode" headeralign="center" align="center" width="60">
+                    企业编码
+                    <input id="filter_EnCode" name="EnCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="FreezeDate" headeralign="center" align="center" width="60">
+                    冻结日期
+                    <input id="filter_FreezeDate" name="FreezeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="FreezeReason" headeralign="center" align="center" width="60">
+                    冻结原因
+                    <input id="filter_FreezeReason" name="FreezeReason" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CardNumber" headeralign="center" align="center" width="60">
+                    卡号
+                    <input id="filter_CardNumber" name="CardNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="SurfaceNumber" headeralign="center" align="center" width="60">
+                    卡面明码
+                    <input id="filter_SurfaceNumber" name="SurfaceNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="MsCode" headeralign="center" align="center" width="60">
+                    会员编码
+                    <input id="filter_MsCode" name="MsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CardCode" headeralign="center" align="center" width="60">
+                    卡类型编码
+                    <input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CardName" headeralign="center" align="center" width="60">
+                    卡类型名称
+                    <input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CardState" headeralign="center" align="center" width="60">
+                    @*0待发1正常2挂失3废除*@
+                    卡状态
+                    <input id="filter_CardState" name="CardState" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="EffectiveDate" headeralign="center" align="center" width="60">
+                    生效日期
+                    <input id="filter_EffectiveDate" name="EffectiveDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="PointsUsefulLifeDate" headeralign="center" align="center" width="60">
+                    积分有效期
+                    <input id="filter_PointsUsefulLifeDate" name="PointsUsefulLifeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CardUsefulLifeDate" headeralign="center" align="center" width="60">
+                    卡有效期
+                    <input id="filter_CardUsefulLifeDate" name="CardUsefulLifeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="TransactCharge" headeralign="center" align="center" width="60">
+                    办卡费用
+                    <input id="filter_TransactCharge" name="TransactCharge" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="DepositMoney" headeralign="center" align="center" width="60">
+                    押金金额
+                    <input id="filter_DepositMoney" name="DepositMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CreateDate" headeralign="center" align="center" width="60" dateformat="yyyy-mm-dd">
+                    创建时间
+                    <input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="Operator" headeralign="center" align="center" width="60">
+                    操作员
+                    <input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="OperatorDate" headeralign="center" align="center" width="60" dateformat="yyyy-mm-dd">
+                    操作时间
+                    <input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
 
             </div>
         </div>
@@ -194,7 +195,7 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"MsFreezeCardManageEdit",text: "卡冻结管理", iconCls: "icon-edit", url: "/Ms/MsFreezeCardManageEdit/" + id });
+            parent.showTab({ id: "MsFreezeCardManageEdit", text: "卡冻结管理", iconCls: "icon-edit", url: "/Ms/MsFreezeCardManageEdit/" + id });
         }
         function deleteItem(id) {
             $.ajax({
@@ -242,12 +243,9 @@
                 }
             });
         }
-		function showFilterRow() {
+        function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
         }
     </script>
 </body>
 </html>
-
-
-

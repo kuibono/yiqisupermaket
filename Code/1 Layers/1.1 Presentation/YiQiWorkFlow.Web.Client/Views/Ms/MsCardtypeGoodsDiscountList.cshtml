@@ -37,63 +37,62 @@
     </div>
     <div class="mini-fit">
         <div id="dgCardtypeManage" class="mini-datagrid" url="SearchMsCardtypeManageList" onselectionchanged="onSelectionChanged"
-            style="width: 100%; height: 50%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="false" showfilterrow="true">
+             style="width: 100%; height: 50%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+             pagesize="20" multiselect="false" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div field="Id" headeralign="center" align="center" width="60">
                     卡类型编码
-					<input id="filter_CardCode" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                    <input id="filter_CardCode" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <div field="CardName" headeralign="center" align="center" width="60">
                     卡类型名称
-					<input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                    <input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
             </div>
         </div>
 
         <div id="datagrid1" class="mini-datagrid" url="SearchMsCardtypeGoodsDiscountList"
-            style="width: 100%; height: 50%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showfilterrow="true">
+             style="width: 100%; height: 50%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+             pagesize="20" multiselect="true" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
+                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                     cellstyle="padding:0;">
+                    管理
+                </div>
                 <div field="CardCode" headeralign="center" align="center" width="60">
                     卡类型编码
-					<input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                    <input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <div field="GoodsCode" headeralign="center" align="center" width="60">
                     商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                    <input id="filter_GoodsCode" name="GoodsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <div field="GoodsName" headeralign="center" align="center" width="60">
                     商品名称
-					<input id="filter_GoodsName" name="GoodsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                    <input id="filter_GoodsName" name="GoodsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <div field="DiscountBase" headeralign="center" align="center" width="60">
                     折扣基数
-					<input id="filter_DiscountBase" name="DiscountBase" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                    <input id="filter_DiscountBase" name="DiscountBase" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <div field="GoodsDiscountRate" headeralign="center" align="center" width="60">
                     商品折扣
-					<input id="filter_GoodsDiscountRate" name="GoodsDiscountRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                    <input id="filter_GoodsDiscountRate" name="GoodsDiscountRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <div field="SysGuid" headeralign="center" align="center" width="60">
                     系统标识
-					<input id="filter_SysGuid" name="SysGuid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                    <input id="filter_SysGuid" name="SysGuid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <div field="Id" headeralign="center" align="center" width="60">
-
                     <input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
-                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                    cellstyle="padding:0;">
-                    管理
-                </div>
 
             </div>
         </div>
