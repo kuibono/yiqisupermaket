@@ -152,6 +152,7 @@
             var mdNumber = mini.get('#Control_MdNumber').getValue();
             if (mdNumber) {
                 // 编辑页面 保存不可用只可以审核
+                $('#btnGenerateCard').attr('disabled', "true");
                 $('#btnFormSubmit').attr('disabled', "true");
                 $('#btnFormReset').attr('disabled', "true");
                 $('#Control_CardCode').attr('disabled', "true");

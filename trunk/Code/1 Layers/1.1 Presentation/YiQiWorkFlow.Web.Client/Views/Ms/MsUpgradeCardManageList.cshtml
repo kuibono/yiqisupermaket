@@ -37,42 +37,42 @@
     </div>
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchMsUpgradeCardManageList"
-            style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true">
+             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+             pagesize="20" multiselect="true" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="UpgradeNumber" headeralign="center" align="center" width="60">
-				    升级单号
-					<input id="filter_UpgradeNumber" name="UpgradeNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="EnCode" headeralign="center" align="center" width="60">
-				    企业编码
-					<input id="filter_EnCode" name="EnCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="UpgradeDate" headeralign="center" align="center" width="60">
-				    升级日期
-					<input id="filter_UpgradeDate" name="UpgradeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CreateDate" headeralign="center" align="center" width="60">
-				    创建时间
-					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Operator" headeralign="center" align="center" width="60">
-				    操作员
-					<input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OperatorDate" headeralign="center" align="center" width="60">
-				    操作时间
-					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
                 <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                    cellstyle="padding:0;">
+                     cellstyle="padding:0;">
                     管理
                 </div>
+                <div field="UpgradeNumber" headeralign="center" align="center" width="60">
+                    升级单号
+                    <input id="filter_UpgradeNumber" name="UpgradeNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="EnCode" headeralign="center" align="center" width="60">
+                    企业编码
+                    <input id="filter_EnCode" name="EnCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="UpgradeDate" headeralign="center" align="center" width="60">
+                    升级日期
+                    <input id="filter_UpgradeDate" name="UpgradeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CreateDate" headeralign="center" align="center" width="60" dateformat="yyyy-mm-dd">
+                    创建时间
+                    <input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="Operator" headeralign="center" align="center" width="60">
+                    操作员
+                    <input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="OperatorDate" headeralign="center" align="center" width="60" dateformat="yyyy-mm-dd">
+                    操作时间
+                    <input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
 
             </div>
         </div>
@@ -146,7 +146,7 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"MsUpgradeCardManageEdit",text: "卡升级管理", iconCls: "icon-edit", url: "/Ms/MsUpgradeCardManageEdit/" + id });
+            parent.showTab({ id: "MsUpgradeCardManageEdit", text: "卡升级管理", iconCls: "icon-edit", url: "/Ms/MsUpgradeCardManageEdit/" + id });
         }
         function deleteItem(id) {
             $.ajax({
@@ -194,12 +194,9 @@
                 }
             });
         }
-		function showFilterRow() {
+        function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
         }
     </script>
 </body>
 </html>
-
-
-

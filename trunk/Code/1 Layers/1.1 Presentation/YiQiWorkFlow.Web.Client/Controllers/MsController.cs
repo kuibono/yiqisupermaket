@@ -271,10 +271,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 if (m.HaveId)
                 {
+                    m.CurrentPrepaidEncrypt = m.CurrentPrepaid.ToUInt16().ToString();
                     MsCardArchivesService.Update(m);
                 }
                 else
                 {
+                    m.CurrentPrepaidEncrypt = m.CurrentPrepaid.ToUInt16().ToString();
                     MsCardArchivesService.Create(m);
                 }
                 r.IsSuccess = true;

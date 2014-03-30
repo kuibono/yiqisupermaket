@@ -37,62 +37,61 @@
     </div>
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchMsExchangeDetailList"
-            style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true">
+             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+             pagesize="20" multiselect="true" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="ExchangeNumber" headeralign="center" align="center" width="60">
-				    兑换单号
-					<input id="filter_ExchangeNumber" name="ExchangeNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="sNumber" headeralign="center" align="center" width="60">
-				    序号
-					<input id="filter_sNumber" name="sNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GoodsCode" headeralign="center" align="center" width="60">
-				    商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GoodsName" headeralign="center" align="center" width="60">
-				    商品名称
-					<input id="filter_GoodsName" name="GoodsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="ExchangeQty" headeralign="center" align="center" width="60">
-				    兑换数量
-					<input id="filter_ExchangeQty" name="ExchangeQty" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="ExchangePoints" headeralign="center" align="center" width="60">
-				    兑换积分
-					<input id="filter_ExchangePoints" name="ExchangePoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PointsTotal" headeralign="center" align="center" width="60">
-				    积分合计
-					<input id="filter_PointsTotal" name="PointsTotal" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="GrossMoney" headeralign="center" align="center" width="60">
-				    含税毛利
-					<input id="filter_GrossMoney" name="GrossMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="NontaxGrossMoney" headeralign="center" align="center" width="60">
-				    不含税毛利
-					<input id="filter_NontaxGrossMoney" name="NontaxGrossMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SysGuid" headeralign="center" align="center" width="60">
-				    系统标识
-					<input id="filter_SysGuid" name="SysGuid" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Id" headeralign="center" align="center" width="60">
-				    
-					<input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
                 <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                    cellstyle="padding:0;">
+                     cellstyle="padding:0;">
                     管理
                 </div>
+                <div field="ExchangeNumber" headeralign="center" align="center" width="60">
+                    兑换单号
+                    <input id="filter_ExchangeNumber" name="ExchangeNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="sNumber" headeralign="center" align="center" width="60">
+                    序号
+                    <input id="filter_sNumber" name="sNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="GoodsCode" headeralign="center" align="center" width="60">
+                    商品编码
+                    <input id="filter_GoodsCode" name="GoodsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="GoodsName" headeralign="center" align="center" width="60">
+                    商品名称
+                    <input id="filter_GoodsName" name="GoodsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="ExchangeQty" headeralign="center" align="center" width="60">
+                    兑换数量
+                    <input id="filter_ExchangeQty" name="ExchangeQty" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="ExchangePoints" headeralign="center" align="center" width="60">
+                    兑换积分
+                    <input id="filter_ExchangePoints" name="ExchangePoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="PointsTotal" headeralign="center" align="center" width="60">
+                    积分合计
+                    <input id="filter_PointsTotal" name="PointsTotal" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="GrossMoney" headeralign="center" align="center" width="60">
+                    含税毛利
+                    <input id="filter_GrossMoney" name="GrossMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="NontaxGrossMoney" headeralign="center" align="center" width="60">
+                    不含税毛利
+                    <input id="filter_NontaxGrossMoney" name="NontaxGrossMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="SysGuid" headeralign="center" align="center" width="60">
+                    系统标识
+                    <input id="filter_SysGuid" name="SysGuid" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="Id" headeralign="center" align="center" width="60">
+                    <input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
 
             </div>
         </div>
@@ -166,7 +165,7 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"MsExchangeDetailEdit",text: "赠品兑换明细管理", iconCls: "icon-edit", url: "/Ms/MsExchangeDetailEdit/" + id });
+            parent.showTab({ id: "MsExchangeDetailEdit", text: "赠品兑换明细管理", iconCls: "icon-edit", url: "/Ms/MsExchangeDetailEdit/" + id });
         }
         function deleteItem(id) {
             $.ajax({
@@ -214,12 +213,9 @@
                 }
             });
         }
-		function showFilterRow() {
+        function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
         }
     </script>
 </body>
 </html>
-
-
-

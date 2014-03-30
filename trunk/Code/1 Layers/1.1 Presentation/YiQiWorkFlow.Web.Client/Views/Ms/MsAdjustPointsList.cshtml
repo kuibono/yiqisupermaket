@@ -37,86 +37,86 @@
     </div>
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchMsAdjustPointsList"
-            style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true">
+             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+             pagesize="20" multiselect="true" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="NumberFlow" headeralign="center" align="center" width="60">
-				    流水号
-					<input id="filter_NumberFlow" name="NumberFlow" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="AdjustDate" headeralign="center" align="center" width="60">
-				    调整日期
-					<input id="filter_AdjustDate" name="AdjustDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CardNumber" headeralign="center" align="center" width="60">
-				    卡号
-					<input id="filter_CardNumber" name="CardNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SurfaceNumber" headeralign="center" align="center" width="60">
-				    卡面明码
-					<input id="filter_SurfaceNumber" name="SurfaceNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="MsCode" headeralign="center" align="center" width="60">
-				    会员编码
-					<input id="filter_MsCode" name="MsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="MsName" headeralign="center" align="center" width="60">
-				    会员姓名
-					<input id="filter_MsName" name="MsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CardCode" headeralign="center" align="center" width="60">
-				    卡类型编码
-					<input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CardName" headeralign="center" align="center" width="60">
-				    卡类型名称
-					<input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CurrentPoints" headeralign="center" align="center" width="60">
-				    当前积分
-					<input id="filter_CurrentPoints" name="CurrentPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="AdjustPoints" headeralign="center" align="center" width="60">
-				    调整积分
-					<input id="filter_AdjustPoints" name="AdjustPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SurplusPoints" headeralign="center" align="center" width="60">
-				    剩余积分
-					<input id="filter_SurplusPoints" name="SurplusPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CurrentMoney" headeralign="center" align="center" width="60">
-				    当前金额
-					<input id="filter_CurrentMoney" name="CurrentMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="AdjustMoney" headeralign="center" align="center" width="60">
-				    调整金额
-					<input id="filter_AdjustMoney" name="AdjustMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SurplusMoney" headeralign="center" align="center" width="60">
-				    剩余金额
-					<input id="filter_SurplusMoney" name="SurplusMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="IfModifyPw" headeralign="center" align="center" width="60">
-				    是否修改密码
-					<input id="filter_IfModifyPw" name="IfModifyPw" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Operator" headeralign="center" align="center" width="60">
-				    操作员
-					<input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OperatorDate" headeralign="center" align="center" width="60">
-				    操作时间
-					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
                 <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                    cellstyle="padding:0;">
+                     cellstyle="padding:0;">
                     管理
                 </div>
+                <div field="NumberFlow" headeralign="center" align="center" width="60">
+                    流水号
+                    <input id="filter_NumberFlow" name="NumberFlow" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="AdjustDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                    调整日期
+                    <input id="filter_AdjustDate" name="AdjustDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CardNumber" headeralign="center" align="center" width="60">
+                    卡号
+                    <input id="filter_CardNumber" name="CardNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="SurfaceNumber" headeralign="center" align="center" width="60">
+                    卡面明码
+                    <input id="filter_SurfaceNumber" name="SurfaceNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="MsCode" headeralign="center" align="center" width="60">
+                    会员编码
+                    <input id="filter_MsCode" name="MsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="MsName" headeralign="center" align="center" width="60">
+                    会员姓名
+                    <input id="filter_MsName" name="MsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CardCode" headeralign="center" align="center" width="60">
+                    卡类型编码
+                    <input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CardName" headeralign="center" align="center" width="60">
+                    卡类型名称
+                    <input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CurrentPoints" headeralign="center" align="center" width="60">
+                    当前积分
+                    <input id="filter_CurrentPoints" name="CurrentPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="AdjustPoints" headeralign="center" align="center" width="60">
+                    调整积分
+                    <input id="filter_AdjustPoints" name="AdjustPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="SurplusPoints" headeralign="center" align="center" width="60">
+                    剩余积分
+                    <input id="filter_SurplusPoints" name="SurplusPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CurrentMoney" headeralign="center" align="center" width="60">
+                    当前金额
+                    <input id="filter_CurrentMoney" name="CurrentMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="AdjustMoney" headeralign="center" align="center" width="60">
+                    调整金额
+                    <input id="filter_AdjustMoney" name="AdjustMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="SurplusMoney" headeralign="center" align="center" width="60">
+                    剩余金额
+                    <input id="filter_SurplusMoney" name="SurplusMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="IfModifyPw" headeralign="center" align="center" width="60">
+                    是否修改密码
+                    <input id="filter_IfModifyPw" name="IfModifyPw" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="Operator" headeralign="center" align="center" width="60">
+                    操作员
+                    <input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="OperatorDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                    操作时间
+                    <input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                @*<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>*@
 
             </div>
         </div>
@@ -190,7 +190,7 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"MsAdjustPointsEdit",text: "积分调整管理管理", iconCls: "icon-edit", url: "/Ms/MsAdjustPointsEdit/" + id });
+            parent.showTab({ id: "MsAdjustPointsEdit", text: "积分调整管理管理", iconCls: "icon-edit", url: "/Ms/MsAdjustPointsEdit/" + id });
         }
         function deleteItem(id) {
             $.ajax({
@@ -238,12 +238,9 @@
                 }
             });
         }
-		function showFilterRow() {
+        function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
         }
     </script>
 </body>
 </html>
-
-
-

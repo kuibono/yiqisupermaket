@@ -37,35 +37,35 @@
     </div>
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchMsPointsClearList"
-            style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true">
+             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+             pagesize="20" multiselect="true" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="NumberFlow" headeralign="center" align="center" width="60">
-				    流水号
-					<input id="filter_NumberFlow" name="NumberFlow" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="ClearDate" headeralign="center" align="center" width="60">
-				    清零日期
-					<input id="filter_ClearDate" name="ClearDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Operator" headeralign="center" align="center" width="60">
-				    操作员
-					<input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OperatorDate" headeralign="center" align="center" width="60">
-				    操作时间
-					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
                 <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                    cellstyle="padding:0;">
+                     cellstyle="padding:0;">
                     管理
                 </div>
-
+                <div field="NumberFlow" headeralign="center" align="center" width="60">
+                    流水号
+                    <input id="filter_NumberFlow" name="NumberFlow" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="ClearDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                    清零日期
+                    <input id="filter_ClearDate" name="ClearDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="Operator" headeralign="center" align="center" width="60">
+                    操作员
+                    <input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="OperatorDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                    操作时间
+                    <input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
+                
             </div>
         </div>
     </div>
@@ -138,7 +138,7 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"MsPointsClearEdit",text: "积分清零管理管理", iconCls: "icon-edit", url: "/Ms/MsPointsClearEdit/" + id });
+            parent.showTab({ id: "MsPointsClearEdit", text: "积分清零管理管理", iconCls: "icon-edit", url: "/Ms/MsPointsClearEdit/" + id });
         }
         function deleteItem(id) {
             $.ajax({
@@ -186,12 +186,9 @@
                 }
             });
         }
-		function showFilterRow() {
+        function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
         }
     </script>
 </body>
 </html>
-
-
-
