@@ -113,6 +113,7 @@
         }
 
         function GenerateCard() {
+        debugger;
             var form = new mini.Form("#formMain"); // default form
             form.validate();
             if (form.isValid() == false) return false;
@@ -310,7 +311,7 @@
             <fieldset>
                 <legend>卡信息</legend>
                 <div id="datagrid1" class="mini-datagrid" url="/Ms/SearchMsCardArchivesList?MadeNumber=@(string.IsNullOrEmpty(Model.Id) ? "" : Model.Id)"
-                    style="width: 100%; height: 100%;" idfield="Id" allowresize="false">
+                    style="width: 100%; height: 200px;" idfield="Id" allowresize="false">
                     <div property="columns">
                         <div type="indexcolumn" width="30">
                         </div>
@@ -434,7 +435,7 @@
             </div>
             <div class="control-panel">
                 <div class="control-button">
-                    @*<input type="button" class="myButton" id="btnGenerateCard" onclick="GenerateCard()" value="生成" />*@
+                    <input type="button" class="myButton" id="btnGenerateCard" onclick="GenerateCard()" value="生成" />
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />

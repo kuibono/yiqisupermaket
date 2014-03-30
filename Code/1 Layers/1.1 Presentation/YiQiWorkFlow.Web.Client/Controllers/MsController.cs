@@ -310,9 +310,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         {
             List<MsCardArchives> cardArchivesList = GetMsCardArchivesByMadeInfo(m);
 
-            //return Json(new SearchResult<MsCardArchives>() { data = cardArchivesList, total = cardArchivesList.Count}, JsonRequestBehavior.AllowGet);
-
-            return Content(cardArchivesList.ToJson(), "application/json");
+            return Json(new SearchResult<MsCardArchives>() { data = cardArchivesList, total = cardArchivesList.Count }, JsonRequestBehavior.AllowGet);
         }
 
         private List<MsCardArchives> GetMsCardArchivesByMadeInfo(MsMadecardManage m)
