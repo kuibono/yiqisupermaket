@@ -1076,6 +1076,7 @@
       <LastGenOutput>Global.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Content Include="Views\Sys\PrintSetting.cshtml" />
+    <Content Include="Views\Ms\MsMemberSaleReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

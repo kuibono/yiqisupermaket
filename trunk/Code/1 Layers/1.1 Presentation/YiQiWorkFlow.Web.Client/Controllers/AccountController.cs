@@ -174,7 +174,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
                             }},
                             new { iconCls = "icon-date-magnify", text = "查询分析",  menus = new object[]{
-                                new { id = "208", iconCls = "icon-add", pid = "m6", text = "会员消费明细查询", url = "" },
+                                new { id = "208", iconCls = "icon-add", pid = "m6", text = "会员消费明细查询", url = "Ms/MsMemberSaleReport" },
                                 new { id = "209", iconCls = "icon-add", pid = "m6", text = "会员消费汇总查询", url = "" },
                                 new { id = "210", iconCls = "icon-add", pid = "m6", text = "会员卡信息查询", url = "/Ms/MsCardArchivesList" },
                                 new { id = "211", iconCls = "icon-add", pid = "m6", text = "无消费会员查询", url = "" },
