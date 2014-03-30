@@ -228,8 +228,27 @@
 </head>
 <body>
     <div class="container">
-        <h1>商品采购单编辑
-        </h1>
+        <div id="toolbar1" class="mini-toolbar" style="padding: 2px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
+                        <a id="btnGoods" iconcls="icon-find" class="mini-button" plain="true" tooltip="商品">商品</a>
+                        <a id="btnInStock" iconcls="icon-upload" class="mini-button" plain="true" tooltip="入库">入库</a>
+                        <a id="btnExame" iconcls="icon-ok" class="mini-button" plain="true" tooltip="审核(Ctrl+E)">审核</a>
+                        <a id="btnSearch" iconcls="icon-search" class="mini-button" plain="true" tooltip="查询">查询</a>
+                        <a id="btnSubmit" iconcls="icon-upgrade" class="mini-button" plain="true" tooltip="提交">提交</a>
+                        <a id="btnPrint" iconcls="icon-printer" class="mini-button" plain="true" tooltip="打印">打印</a>
+                        <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
+                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        @*<h1>商品采购单编辑
+        </h1>*@
         <div class="tooltip warning hidden" id="Tooltip_Warning_PcPurchaseManage">
             <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
             <p class="content">
@@ -330,7 +349,7 @@
 
                 <div class="ablock">
                     <label for="Control_WhCode">仓库编码:</label>
-                    <input type="text"  value="@Model.WhCode" class="mini-textbox" name="WhCode" id="Control_WhCode" vtype="maxLength:20" />
+                    <input type="text"  value="@Model.WhCode" class="mini-combobox" name="WhCode" id="Control_WhCode" url="/Common/GetComboData?table=op_pa_warehouse&valueColumn=wh_code&textColumn=wh_name" />
                 </div>
 
                 <div class="ablock">
@@ -486,7 +505,7 @@
             </div>
             <div class="clear">
             </div>
-            <div class="control-panel">
+            @*<div class="control-panel">
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="button" class="myButton" id="btnGoods" value="商品" />
@@ -500,7 +519,7 @@
                 </div>
                 <div class="botton-up">
                 </div>
-            </div>
+            </div>*@
         </form>
     </div>
 </body>
