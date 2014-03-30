@@ -1743,7 +1743,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     }
 
                     r.IsSuccess = true;
-                    r.Message = "审核成功"; 
+                    r.Message = "审核成功";
 
                     //MsMadecardManageService.Update(m);
                 }
@@ -1774,12 +1774,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         }
 
                         r.IsSuccess = true;
-                        r.Message = "保存成功"; 
+                        r.Message = "保存成功";
                     }
                     else
                     {
                         r.IsSuccess = false;
-                        r.Message = message; 
+                        r.Message = message;
                     }
                 }
             }
@@ -2741,6 +2741,24 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
             return goodsClassDtoList;
             #endregion
+        }
+
+        #endregion
+
+        #region Report
+        
+        public ActionResult MsMemberSaleReport()
+        {
+            return View();
+        }
+
+        public ActionResult SearchMsMemberSaleReport()
+        {
+            // 获取查询条件
+
+            // 查询返回
+
+            return View();
         }
 
         #endregion
