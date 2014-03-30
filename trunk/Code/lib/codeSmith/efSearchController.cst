@@ -16,7 +16,7 @@ Description:
 <%@ Import Namespace="CodeSmith.CustomProperties" %>
 <%@ Import Namespace="System.IO" %>
             c.entity = s;
-            using (YiQiEntities3 e = new YiQiEntities3())
+            using (YiQiEntities e = new YiQiEntities())
             {
 
                 var q = from l in e.<%=SourceTable.Name%>
