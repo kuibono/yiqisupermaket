@@ -105,7 +105,10 @@
                 $("#tabs li:last").attr("id", "current");
                 $("#content div:last").fadeIn();
                 //$("#content div:last iframe")[0].contentWindow.search();
-                $("#content div:last iframe")[0]["contentWindow"].search();
+                try{
+                    $("#content div:last iframe")[0]["contentWindow"].search();
+                }
+                catch (e) { }
             }
         }
         function openInTab(name, text, url) {
