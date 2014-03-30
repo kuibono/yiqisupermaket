@@ -11,9 +11,26 @@
 </head>
 <body>
     <div class="container">
-        <h1>
+        <div id="toolbar1" class="mini-toolbar" style="padding: 2px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
+                        <a id="btnExame" iconcls="icon-ok" class="mini-button" plain="true" tooltip="审核(Ctrl+E)">审核</a>
+                        <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
+                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                    </td>
+                    <td>
+                        <div style="display: inline-block; float: right; font-size: 12px; color: #000; font-weight: normal;">
+                            <input type="checkbox" id="cloneGoodsInfomation" /><label for="cloneGoodsInfomation">保存后复制上一条信息</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        @*<h1>
             供货商档案编辑
-        </h1>
+        </h1>*@
         <div class="tooltip warning hidden" id="Tooltip_Warning_FbSupplierArchives">
             <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
 			<p class="content">
@@ -240,7 +257,7 @@
         </fieldset>
         <div class="clear">
         </div>
-        <div class="control-panel">
+        @*<div class="control-panel">
             <div class="control-button">
                 <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                 <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
@@ -249,7 +266,7 @@
             </div>
             <div class="botton-up">
             </div>
-        </div>
+        </div>*@
         </form>
     </div>
 </body>
