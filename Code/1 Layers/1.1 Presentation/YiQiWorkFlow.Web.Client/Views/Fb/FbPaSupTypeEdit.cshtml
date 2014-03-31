@@ -39,44 +39,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>
-            供货商类型编辑
-        </h1>
-        <div class="tooltip warning hidden" id="Tooltip_Warning_FbPaSupType">
-            <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
-			<p class="content">
-            	此处填写关于供货商类型编辑页面的警告信息
-			</p>
-            <div class="button-close">
-                x</div>
-            <div class="buttonGroup">
-                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
-                <input type="button" class="myYellowButton buttonClose" value="关闭" />
-            </div>
-        </div>
-        <div class="tooltip info hidden" id="Tooltip_Info_FbPaSupType">
-            <img src="/images/Info.png" alt="Warning" height="48" width="48" />
-			<p class="content">
-            	此处填写关于供货商类型编辑页面的提示信息
-			</p>
-            <div class="button-close">
-                x</div>
-            <div class="buttonGroup">
-                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
-                <input type="button" class="myYellowButton buttonClose" value="关闭" />
-            </div>
-        </div>
-        <div class="tooltip help hidden" id="Tooltip_Help_FbPaSupType">
-            <img src="/images/Help.png" alt="Warning" height="48" width="48" />
-			<p class="content">
-            	此处填写关于供货商类型编辑页面的帮助信息
-			</p>
-            <div class="button-close">
-                x</div>
-            <div class="buttonGroup">
-                <input type="button" class="myYellowButton buttonNoMoreShow" value="不再显示" />
-                <input type="button" class="myYellowButton buttonClose" value="关闭" />
-            </div>
+        <div id="toolbar1" class="mini-toolbar" style="padding: 2px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
+                        <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
+                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="tooltip critical hidden" id="Tooltip_Critical_FbPaSupType">
             <img src="/images/critical.png" alt="Warning" height="48" width="48" />
@@ -112,7 +86,7 @@
         </fieldset>
         <div class="clear">
         </div>
-        <div class="control-panel">
+        @*<div class="control-panel">
             <div class="control-button">
                 <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                 <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
@@ -120,7 +94,7 @@
             </div>
             <div class="botton-up">
             </div>
-        </div>
+        </div>*@
         </form>
     </div>
 </body>

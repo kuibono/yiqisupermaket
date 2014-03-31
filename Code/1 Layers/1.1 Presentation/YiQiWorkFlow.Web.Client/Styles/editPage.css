@@ -34,7 +34,7 @@
 }
 
 .container .colspan2 .mini-textbox {
-    width:418px !important;
+    width:448px !important;
 }
 
 .ablock span.mini-buttonedit {
@@ -49,6 +49,9 @@
             text-align: right;
             padding-right: 5px;
         }
+.ablock .mini-radiobuttonlist-item label {
+    width:auto !important;
+}
 .ablock .mini-checkbox label {
     text-align:left;
 }
@@ -81,7 +84,7 @@
         }
         .colspan2
         {
-            width: 510px !important;
+            width: 566px !important;
         }
         .colspan3
         {
