@@ -294,24 +294,23 @@
 
                 <div class="ablock">
                     <label for="Control_CardState">卡状态:</label>
-                    <input type="text" value="@Model.CardState" class="mini-textbox" name="CardState" id="Control_CardState" vtype="maxLength:2" />
+                    <input type="text" value="@Model.CardState" class="mini-textbox" name="CardState" id="Control_CardState" data="c_CardState" vtype="maxLength:2" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_CreateDate">创建时间:</label>
                     <input type="text" id="Control_CreateDate" name="CreateDate" value="@Model.CreateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_Operator">操作员:</label>
                     <input type="text" value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock" style="display:none">
                     <label for="Control_OperatorDate">操作时间:</label>
                     <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
-
 
             </fieldset>
             <div class="clear">
