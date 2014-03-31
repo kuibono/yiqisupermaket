@@ -2478,6 +2478,19 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult MsUpgradeCardDetailList()
         {
+            // 查询语句
+            //            select aa.card_number,aa.surface_number,aa.card_code as card_code_old,aa.card_name as card_name_old,bb.card_code,bb.card_name,
+            //    (case bb.if_deduct_points when '1' then bb.points_needs else 0 end) as deduct_points ,aa.total_points,aa.exchange_points,
+            //    aa.current_points,aa.clear_points,aa.card_state,'' as upgrade_number,'0' as if_select ,'0' as select_all
+            //from 
+            //(
+            //select a.card_number,a.surface_number,a.card_code,a.card_name,a.total_points,a.exchange_points,a.current_points,a.clear_points,a.card_state,b.points_needs from ms_card_archives a , ms_cardtype_manage b
+            //where a.card_code = b.card_code and a.card_state = '1' 
+            //) aa,
+            //(select card_code,card_name,points_needs,if_deduct_points from ms_cardtype_manage ) bb
+            //where bb.points_needs > aa.points_needs and bb.points_needs <= aa.current_points
+            //"  sort="card_number A deduct_points A
+
             return View();
         }
         #endregion
@@ -2490,6 +2503,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult SaveMsUpgradeCardDetail(MsUpgradeCardDetail m)
         {
+            //update ms_card_archives set card_code = :ls_card_code, card_name = :ls_card_name,
+            //    current_points = isnull(current_points,0) - :ldc_deduct_points ,
+            //    clear_points = isnull(clear_points,0) + :ldc_deduct_points,
+            //    operator = :gs_em_code ,operator_date = getdate() where card_number = :ls_card_number;
+
             SavingResult r = new SavingResult();
 
             var vResult = m.GetValidateResult();
