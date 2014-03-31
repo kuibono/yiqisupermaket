@@ -72,8 +72,7 @@
                     会员姓名
                     <input id="filter_MsName" name="MsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CardState" headeralign="center" align="center" width="60">
-                    <!--0待发1正常2挂失3冻结4废除-->
+                <div field="CardState" headeralign="center" align="center" width="60" renderer="onCardTypeRender">
                     卡状态
                     <input id="filter_CardState" name="CardState" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
