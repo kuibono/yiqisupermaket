@@ -1553,10 +1553,21 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 else
                 {
                     // 发放逻辑 1 : 更新卡状态、卡所属会员编号
+                    MsCardArchives msCardArchivesEntity = MsCardArchivesService.GetById(m.CardCode);
+                    if (msCardArchivesEntity != null && !string.IsNullOrEmpty(msCardArchivesEntity.Id))
+                    {
+                        msCardArchivesEntity.CardState = "1";
 
-                    // 发放逻辑 2 : 更新会员信息(判断是否需要新增会员)
+                        // 判断是否是发卡生效期,是则 开始赋值
 
-                    MsGrantCardManageService.Create(m);
+                        // 修改卡信息
+                        MsCardArchivesService.Update(msCardArchivesEntity);
+                    }
+
+                    // 发放逻辑 2 : 会员信息(判断是否需要新增会员)
+                    if (true)
+                    {
+                    }
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
