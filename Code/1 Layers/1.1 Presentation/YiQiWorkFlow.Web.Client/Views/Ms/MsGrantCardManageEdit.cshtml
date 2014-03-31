@@ -146,6 +146,9 @@
 
         function onvaluechanged(e) {
             debugger;
+            if (e) {
+                mini.get('#Control_CardNumber').setValue(e.Id);
+            }
             //e.selected.Id
 
             // 赋值卡信息(卡号、卡状态、生效日期、积分有效期、卡有效期、办卡费用、押金金额)
