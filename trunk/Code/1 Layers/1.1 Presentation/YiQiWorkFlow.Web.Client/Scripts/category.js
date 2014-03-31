@@ -25,6 +25,7 @@ var c_CardType = [{ id: 1, text: '单店使用' }, { id: 2, text: '同城使用'
 var c_CardMedium = [{ id: 1, text: '磁条卡' }, { id: 2, text: 'IC卡' }, { id: 3, text: '条码卡' }, { id: 4, text: '普通卡' }];
 var c_UpgradeType = [{ id: 1, text: '累计积分' }, { id: 2, text: '当前积分' }];
 var c_EffectiveType = [{ id: 1, text: "发卡生效" }, { id: 2, text: "指定生效" }];
+var c_MemberType = [{ id: 1, text: "新会员" }, { id: 2, text: "老会员" }];
 
 function onExamRender(e) {
     if (e.value == "true" || e.value == "1") return "审核";
