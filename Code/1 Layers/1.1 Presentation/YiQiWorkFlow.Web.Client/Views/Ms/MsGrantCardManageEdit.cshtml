@@ -145,15 +145,19 @@
         }
 
         function onvaluechanged(e) {
-            debugger;
             if (e) {
+                // 赋值卡信息(卡号、卡状态、卡类型信息(卡类型编码、卡类型名称)、生效日期、积分有效期、卡有效期、办卡费用、押金金额)
+
                 mini.get('#Control_CardNumber').setValue(e.Id);
+                mini.get('#Control_CardState').setValue(e.CardState);
+                mini.get('#Control_CardCode').setValue(e.CardCode);
+                mini.get('#Control_CardName').setValue(e.CardName);
+                mini.get('#Control_EffectiveDate').setValue(e.EffectiveDate);
+                mini.get('#Control_PointsUsefulLifeDate').setValue(e.PointsUsefulLifeDate);
+                mini.get('#Control_CardUsefulLifeDate').setValue(e.CardUsefulLifeDate);
+                mini.get('#Control_TransactCharge').setValue(e.TransactCharge);
+                mini.get('#Control_DepositMoney').setValue(e.DepositMoney);
             }
-            //e.selected.Id
-
-            // 赋值卡信息(卡号、卡状态、生效日期、积分有效期、卡有效期、办卡费用、押金金额)
-
-            // 赋值卡类型信息(卡类型编码、卡类型名称)
         }
 
         $(function () {
@@ -313,7 +317,7 @@
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_PointsUsefulLifeDate">积分有效期:</label>
+                    <label for="c">积分有效期:</label>
                     <input type="text" id="Control_PointsUsefulLifeDate" name="PointsUsefulLifeDate" value="@Model.PointsUsefulLifeDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" readonly="readonly"" />
                 </div>
 
