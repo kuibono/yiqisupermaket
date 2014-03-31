@@ -299,7 +299,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
             return result;
         }
 
-
         public MsCardArchives GetCardArchivesBySurfaceNumber(string surfaceNumber)
         {
             return EntityRepository.LinqQuery.FirstOrDefault(x => x.SurfaceNumber.Equals(surfaceNumber));

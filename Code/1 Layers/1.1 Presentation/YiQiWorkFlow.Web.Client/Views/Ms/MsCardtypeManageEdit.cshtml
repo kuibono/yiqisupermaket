@@ -267,17 +267,17 @@
 
                 <div class="ablock">
                     <label for="Control_CardNumberPrefix">卡号前缀:</label>
-                    <input type="text" value="@Model.CardNumberPrefix" class="mini-textbox" name="CardNumberPrefix" id="Control_CardNumberPrefix" vtype="maxLength:20" />
+                    <input type="text" value="@Model.CardNumberPrefix" class="mini-spinner" name="CardNumberPrefix" id="Control_CardNumberPrefix" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_CardNumberLen">卡流水位数:</label>
-                    <input type="text" id="Control_CardNumberLen" name="CardNumberLen" value="@Model.CardNumberLen" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
+                    <input type="text" id="Control_CardNumberLen" name="CardNumberLen" value="@Model.CardNumberLen" class="mini-spinner" minvalue="0" maxvalue="8" decimalplaces="0" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_RandLen">随机位数:</label>
-                    <input type="text" id="Control_RandLen" name="RandLen" value="@Model.RandLen" class="mini-spinner" minvalue="0" maxvalue="16" decimalplaces="0" />
+                    <input type="text" id="Control_RandLen" name="RandLen" value="@Model.RandLen" class="mini-spinner" minvalue="0" maxvalue="8" decimalplaces="0" />
                 </div>
 
                 <div class="ablock">

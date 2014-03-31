@@ -276,6 +276,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
+                    // 计算卡号
+
+
                     m.CurrentPrepaidEncrypt = m.CurrentPrepaid.ToUInt16().ToString();
                     MsCardArchivesService.Create(m);
                 }
@@ -322,25 +325,37 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
             if (m != null)
             {
+                // 获取卡类型信息 用于计算卡号 卡面明码
+                MsCardtypeManage cardType = MsCardtypeManageService.GetById(m.CardCode);
 
                 for (int i = 0; i < m.MadeQty; i++)
                 {
-                    string cardName = MsCardtypeManageService.GetById(m.CardCode).CardName;
+                    string cardName = cardType.CardName;
+                    int length = Convert.ToInt32(cardType.CardNumberLen) - cardType.CardNumberPrefix.Length - (Convert.ToInt32(m.BeginCardNumber) + i);
+                    string cardPositionStr = string.Empty;
+                    if (length > 0)
+                    {
+                        for (int j = 0; j < length; j++)
+                        {
+                            cardPositionStr += "0";
+                        }
+                    }
+
                     MsCardArchives entity = new MsCardArchives()
                     {
                         CardCode = m.CardCode,
                         CardName = cardName,
                         CardState = "-1",
-                        CardUsefulLifeDate = DateTime.Now.AddYears(1),
+                        //CardUsefulLifeDate = DateTime.Now.AddYears(1),
                         ClearPoints = 0,
                         CreateDate = DateTime.Now,
                         CurrentPoints = 0,
                         CurrentPrepaid = 0,
                         CurrentPrepaidEncrypt = "0",
                         DepositMoney = 0,
-                        EffectiveDate = DateTime.Now.AddYears(1),
+                        //EffectiveDate = DateTime.Now.AddYears(1),
                         ExchangePoints = 0,
-                        GrantDate = DateTime.Now.AddYears(1),
+                        //GrantDate = DateTime.Now.AddYears(1),
                         LastExpendMoney = 0,
                         LimitTimes = 0,
                         MsCode = string.Empty,
@@ -348,13 +363,22 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         PointsUsefulLifeDate = DateTime.Now.AddYears(1),
                         PrepaidPassword = string.Empty,
                         SaleTimes = 0,
-                        SurfaceNumber = (m.BeginCardNumber + i).ToString(),
+                        //SurfaceNumber = (m.BeginCardNumber + i).ToString(),
                         TotalMoney = 0,
                         TotalExpendTimes = 0,
                         TotalPoints = 0,
                         TotalPrepaid = 0,
                         TransactCharge = 0,
-                        UsePrepaid = 0
+                        UsePrepaid = 0,
+                        // 卡面明码 = 卡前缀&流水位数(开始卡号补充之后的长度) + 
+                        SurfaceNumber = cardType.CardNumberPrefix + cardPositionStr + (m.BeginCardNumber + i).ToString(),
+
+                        // 卡号 = 卡类型前缀 + 卡面明码 + 随机位数
+                        Id = cardType.CardNumberPrefix + (m.BeginCardNumber + i).ToString() + new Random(cardType.RandLen.ToInt32()).Next().ToString()
+
+                        // 卡有效期、积分有效期 = 制卡发放信息 + 卡类型有效期
+                        //entity.CardUsefulLifeDate = m.IfMade DateTime.Now.AddDays(cardType.CardUsefulLife),
+                        //entity.PointsUsefulLifeDate = DateTime.Now.AddDays(cardType.PointsUsefulLife)
                     };
 
                     cardArchivesList.Add(entity);
@@ -2747,7 +2771,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion
 
         #region Report
-        
+
         public ActionResult MsMemberSaleReport()
         {
             return View();
