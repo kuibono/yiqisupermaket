@@ -8,13 +8,15 @@ var c_GoodsType = [{ id: '1', text: '普通商品' }, { id: '2', text: '散货�
 var c_GoodsState = [{ id: 1, text: '正常' }, { id: 2, text: '淘汰' }, { id: 3, text: '禁采销售' }, { id: 4, text: '禁采禁销' }, { id: 5, text: '废除' }];
 var c_PcForm = [{ id: 1, text: '普通订货' }, { id: 2, text: '开放订货' }, { id: 3, text: '促销订货' }, { id: 4, text: '赠品订货' }];
 var c_YesNoAll = [{ id: '', text: '所有' }, { id: 0, text: '否' }, { id: 1, text: '是' }];
+var c_YesOrNo = [{ id: 0, text: '否' }, { id: 1, text: '是' }];
+
 var c_Sex = [{ id: '男', text: '男' }, { id: '女', text: '女' }];
 var c_PoliticsCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '党员' }, { id: 2, text: '团员' }, { id: 3, text: '其他' }];
 var c_NationCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '汉族' }, { id: 2, text: '满族' }, { id: 3, text: '回族' }, { id: 4, text: '其他' }];
 var c_EducationCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '博士' }, { id: 2, text: '硕士' }, { id: 3, text: '本科' }, { id: 4, text: '专科' }, { id: 5, text: '其他' }];
 var c_ProfessionalTitleCode = [{ id: 0, text: '请选择...' }, { id: 1, text: '高级职称' }, { id: 2, text: '中级职称' }, { id: 3, text: '普通职称' }, { id: 4, text: '其他' }];
 
-var c_CardState = [{ id: 0, text: '待发' }, { id: 1, text: '正常' }, { id: 2, text: '挂失' }, { id: 3, text: '冻结' }, { id : 4, text:'废除'}];
+var c_CardState = [{ id: 0, text: '待发' }, { id: 1, text: '正常' }, { id: 2, text: '挂失' }, { id: 3, text: '冻结' }, { id: 4, text: '废除' }];
 var c_EnCode = [{ id: 0, text: '000001' }, { id: 1, text: '000002' }, { id: 2, text: '000003' }, { id: 3, text: '000004' }];
 var c_IfMember = [{ id: 1, text: '新会员' }, { id: 2, text: '老会员' }, { id: 2, text: '非会员' }, { id: 3, text: '000004' }];
 var c_lossType = [{ id: 1, text: '电话挂失' }, { id: 2, text: '现场挂失' }];
@@ -22,6 +24,8 @@ var c_EnCharacter = [{ id: '国营企业', text: '国营企业' }, { id: '私营
 var c_CardType = [{ id: 1, text: '单店使用' }, { id: 2, text: '同城使用' }, { id: 3, text: '异地使用' }];
 var c_CardMedium = [{ id: 1, text: '磁条卡' }, { id: 2, text: 'IC卡' }, { id: 3, text: '条码卡' }, { id: 4, text: '普通卡' }];
 var c_UpgradeType = [{ id: 1, text: '累计积分' }, { id: 2, text: '当前积分' }];
+var c_EffectiveType = [{ id: 1, text: "发卡生效" }, { id: 2, text: "指定生效" }];
+
 function onExamRender(e) {
     if (e.value == "true" || e.value == "1") return "审核";
     else if (e.value == "false" || e.value == "0") return "未审核";

@@ -285,6 +285,13 @@ namespace YiQiWorkFlow.Application.Service.Ms
 
             foreach (var item in msCardArchivesList)
             {
+                // 判断制卡信息是否立即发放,生效日期
+                if (!string.IsNullOrEmpty(m.IfMade) && m.IfMade.Equals("1") && !string.IsNullOrEmpty(m.EffectiveType) && m.EffectiveType.Equals("2") && m.EffectiveDate != null)
+                {
+                    item.EffectiveDate = m.EffectiveDate;
+                }
+
+                item.CreateDate = DateTime.Now;
                 item.CardState = "0";
                 Update(item);
             }

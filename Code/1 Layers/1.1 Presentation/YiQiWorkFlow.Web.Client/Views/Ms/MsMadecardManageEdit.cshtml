@@ -264,7 +264,7 @@
 
                 <div class="ablock">
                     <label for="Control_EffectiveType">生效方式:</label>
-                    <input type="text" value="@Model.EffectiveType" class="mini-textbox" name="EffectiveType" id="Control_EffectiveType" vtype="maxLength:20" />
+                    <input type="text" value="@Model.EffectiveType" class="mini-textbox" name="EffectiveType" id="Control_EffectiveType" data="c_EffectiveType" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock" style="display: none">
@@ -272,9 +272,9 @@
                     <input type="text" id="Control_EffectiveDate" name="EffectiveDate" value="@Model.EffectiveDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock" style="display: none">
+                <div class="ablock">
                     <label for="Control_IfMade">是否发放:</label>
-                    <div id="Control_IfMade" name="IfMade" value="1" class="mini-checkbox" truevalue="1" falsevalue="0" checked="true" readonly="false" text="制卡"></div>
+                    <div id="Control_IfMade" name="IfMade" value="1" class="mini-checkbox" truevalue="1" falsevalue="0" checked="true" data="c_YesOrNo" readonly="false" text="制卡"></div>
                 </div>
 
                 <div class="ablock" style="display: none">
