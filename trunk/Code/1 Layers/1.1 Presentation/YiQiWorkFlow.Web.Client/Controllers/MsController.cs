@@ -306,9 +306,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         {
             var searchDtoBase = MsCardArchivesService.Search(new SearchDtoBase<MsCardArchives>() { pageSize = int.MaxValue });
 
-            IList<MsCardArchives> msCardtypeManageList = searchDtoBase.data;
+            IList<MsCardArchives> msCardArvhicesList = searchDtoBase.data;
 
-            return Json(msCardtypeManageList.Select(entity => new { id = entity.Id, cardName = entity.CardName, cardCode = entity.CardCode, text = entity.SurfaceNumber, surfaceNumber = entity.SurfaceNumber, msCode = entity.MsCode, msName = entity.MsName, cardState = entity.CardState }), JsonRequestBehavior.AllowGet);
+            return Json(msCardArvhicesList, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GenerateCardArchivesListByMadeCardInfo(MsMadecardManage m)

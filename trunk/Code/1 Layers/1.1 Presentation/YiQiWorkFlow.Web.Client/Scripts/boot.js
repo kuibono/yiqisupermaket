@@ -106,7 +106,6 @@ function onFormatTimeRender(e) {
 }
 
 // 会员管理
-
 function onCardTypeRender(e) {
     if (e.value == "1") {
         return "单店使用";
@@ -117,6 +116,7 @@ function onCardTypeRender(e) {
     }
 }
 
+// 卡介质
 function onCardMediumRender(e) {
     if (e.value == "1") {
         return "磁条卡";
@@ -129,11 +129,27 @@ function onCardMediumRender(e) {
     }
 }
 
+// 积分类型
 function onUpgradeTypeRender(e) {
     if (e.value == "1") {
         return "累积积分";
     } else if (e.value == "2") {
         return "当前积分";
+    }
+}
+
+// 卡状态
+function onCardTypeRender(e) {
+    if (e.value == "0") {
+        return "待发";
+    } else if (e.value == "1") {
+        return "正常";
+    } else if (e.value == "2") {
+        return "挂失";
+    } else if (e.value == "3") {
+        return "冻结";
+    } else if (e.value == "4") {
+        return "废除";
     }
 }
 
