@@ -46,23 +46,23 @@
                 height: 400,
                 ondestroy: function (action) {
                     if (action == "ok") {
-                        //var iframe = this.getIFrameEl();
-                        //var data = iframe.contentWindow.GetData();
-                        //data = mini.clone(data);
-                        //if (data) {
-                        //    for (var i = 0; i < data.length; i++) {
-                        //        btnEdit.setValue(data[i].id);
-                        //        btnEdit.setText(data[i].text);
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);
+                        if (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                btnEdit.setValue(data[i].id);
+                                btnEdit.setText(data[i].text);
 
-                        //        try {
-                        //            window.frames[0].location.href = "/Ms/MsMemberArchivesEdit/" + data[i].mscode;
-                        //        } catch (e) {
+                                try {
+                                    window.frames[0].location.href = "/Ms/MsMemberArchivesEdit/" + data[i].mscode;
+                                } catch (e) {
 
-                        //        }
+                                }
 
-                        //        break;
-                        //    };
-                        //}
+                                break;
+                            };
+                        }
                     }
                 }
             });
@@ -253,11 +253,25 @@
                 </div>
 
                 <div class="ablock">
+                    <label for="Control_MemberType">是否会员</label>
+                    <div id="Control_MemberTyper" name="MemberType" value="1" class="mini-combobox" data="c_IsNewMember"></div>
+                </div>
+                <div class="ablock">
                     <label for="Control_MsCode">会员编码:</label>
 
                     <input id="Control_MsCode" name="MsCode" class="mini-buttonedit" onbuttonclick="onButtonEdit" allowinput="false" required="true" value="@Model.MsCode" text="@Model.MsCode" />
 
                     <input id="control_hMsCode" value="@Model.MsCode" name="hMsCode" class="mini-hidden" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PrepaidPassword">储值密码:</label>
+                    <input type="text" value="@Model.PrepaidPassword" class="mini-password" name="PrepaidPassword" id="Control_PrepaidPassword" vtype="maxLength:20" />
+                </div>
+
+                <div class="ablock">
+                    <label for="Control_PrepaidPasswordAgain">确认密码:</label>
+                    <input type="text" value="@Model.PrepaidPassword" class="mini-password" name="PrepaidPassword" id="Control_PrepaidPasswordAgain" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
@@ -334,8 +348,7 @@
         <br />
 
         <!-- 会员信息iframe -->
-        @*<iframe src="/Ms/MsMemberArchivesEdit" class="mainframe" frameborder="0" width="100%" height="400px" title="会员信息"></iframe>
-        *@
+        <iframe src="/Ms/MsMemberArchivesEdit" class="mainframe" frameborder="0" width="100%" height="400px" title="会员信息"></iframe>
     </div>
 </body>
 </html>
