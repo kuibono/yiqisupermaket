@@ -1734,10 +1734,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
                     if (!string.IsNullOrEmpty(m.IfExamine) && !m.IfExamine.Equals("0") && m.ExamineDate == null)
                     {
-                        // 审核逻辑
+                        // 审核逻辑 : 制卡
                         MsCardArchivesService.ExamByMadeCardManage(m);
 
-                        //m.ExamineDate = DateTime.Now;
                         MsMadecardManage entity = MsMadecardManageService.GetById(m.Id);
                         entity.ExamineDate = DateTime.Now;
                         entity.IfExamine = m.IfExamine;
