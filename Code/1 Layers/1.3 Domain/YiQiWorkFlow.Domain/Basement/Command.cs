@@ -146,6 +146,10 @@ namespace YiQiWorkFlow.Domain.Basement
             if (reader.Read())
             {
                 SpPcUpdateStockOutResult r = new SpPcUpdateStockOutResult();
+                r.PutoutMoney = reader.GetDecimal(0);
+                r.NontaxPutoutMoney = reader.GetDecimal(1);
+                r.SaleMoney = reader.GetDecimal(2);
+                r.NontaxSaleMoney = reader.GetDecimal(3);
                 con.Close();
                 con.Dispose();
                 return r;
@@ -186,6 +190,8 @@ namespace YiQiWorkFlow.Domain.Basement
             if (reader.Read())
             {
                 SpPcUpdateStockOutBranchResult r = new SpPcUpdateStockOutBranchResult();
+                r.PutoutMoney = reader.GetDecimal(0);
+                r.NontaxPutoutMoney = reader.GetDecimal(1);
                 con.Close();
                 con.Dispose();
                 return r;
@@ -206,9 +212,19 @@ namespace YiQiWorkFlow.Domain.Basement
 
     public class SpPcUpdateStockOutResult
     {
+        public decimal PutoutMoney { get; set; }
+
+        public decimal NontaxPutoutMoney { get; set; }
+
+        public decimal SaleMoney { get; set; }
+
+        public decimal NontaxSaleMoney { get; set; }
     }
 
     public class SpPcUpdateStockOutBranchResult
     {
+        public decimal PutoutMoney { get; set; }
+
+        public decimal NontaxPutoutMoney { get; set; }
     }
 }
