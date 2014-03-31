@@ -1552,6 +1552,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
+                    // 发放逻辑 1 : 更新卡状态、卡所属会员编号
+
+                    // 发放逻辑 2 : 更新会员信息(判断是否需要新增会员)
+
                     MsGrantCardManageService.Create(m);
                 }
                 r.IsSuccess = true;
