@@ -104,6 +104,8 @@
                                     txtCardName.setValue(data[0].cardName);
                                 }
 
+                                // 卡状态、生效日期、积分有效期、卡有效期
+
                                 break;
                             }
                         }
@@ -262,7 +264,7 @@
                 <legend>基本信息</legend>
                 <div class="ablock">
                     <label for="Control_UpdateNumber">更新单号:</label>
-                    <input type="text" value="@Model.UpdateNumber" class="mini-textbox" name="UpdateNumber" id="Control_UpdateNumber" vtype="maxLength:20" required="true" />
+                    <input type="text" value="@Model.UpdateNumber" class="mini-textbox" name="UpdateNumber" id="Control_UpdateNumber" vtype="maxLength:20" readonly="readonly" />
                 </div>
 
                 <div class="ablock">
@@ -272,7 +274,7 @@
 
                 <div class="ablock">
                     <label for="Control_UpdateDate">更新日期:</label>
-                    <input type="text" id="Control_UpdateDate" name="UpdateDate" value="@Model.UpdateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
+                    <input type="text" id="Control_UpdateDate" name="UpdateDate" value="@Model.UpdateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" readonly="readonly" />
                 </div>
 
                 <div class="ablock">
@@ -282,7 +284,6 @@
 
                 <div class="ablock">
                     <label for="Control_CardNumberOld">原卡号:</label>
-                    <!--<input type="text" value="@Model.CardNumberOld" class="mini-textbox" name="CardNumberOld" id="Control_CardNumberOld" vtype="maxLength:20" required="true" />-->
 
                     <input id="Control_CardNumberOld" name="CardNumber" class="mini-buttonedit" onbuttonclick="onButtonEditCardOld" allowinput="false" required="true" value="@Model.CardNumberOld" text="@Model.CardNumberOld" />
 
@@ -296,7 +297,7 @@
 
                 <div class="ablock">
                     <label for="Control_CardNumber">卡号:</label>
-                    <!--<input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" required="true" />-->
+
                     <input id="Control_CardNumber" name="CardNumber" class="mini-buttonedit" onbuttonclick="onButtonEditCard" allowinput="false" required="true" value="@Model.CardNumber" text="@Model.CardNumber" />
 
                     <input id="control_hCardNumber" value="@Model.CardNumber" name="hCardNumber" class="mini-hidden" />
@@ -318,13 +319,7 @@
 
                 <div class="ablock">
                     <label for="Control_CardCode">卡类型编码:</label>
-                    <!--<div id="Control_CardCode" name="CardCode" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="CardName" valuefield="Id"
-                        url="/Ms/GetMsCardtypeManageList" showclose="true" oncloseclick="onCloseClick" onvaluechanged="valuechanged" emptytext="请选择..." required="true" value="@Model.CardCode">
-                        <div property="columns">
-                            <div header="卡类型编码" field="Id"></div>
-                            <div header="卡类型名称" field="CardName"></div>
-                        </div>
-                    </div>-->
+
                     <input type="text" value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20" required="true" />
                 </div>
 
@@ -335,7 +330,7 @@
 
                 <div class="ablock">
                     <label for="Control_CardState">卡状态:</label>
-                    <input type="text" value="@Model.CardState" class="mini-textbox" name="CardState" id="Control_CardState" vtype="maxLength:2" />
+                    <input type="text" value="@Model.CardState" class="mini-combobox" name="CardState" id="Control_CardState" data="c_CardState" vtype="maxLength:2" />
                 </div>
 
                 <div class="ablock">
@@ -363,17 +358,17 @@
                     <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_CreateDate">创建时间:</label>
                     <input type="text" id="Control_CreateDate" name="CreateDate" value="@Model.CreateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_Operator">操作员:</label>
                     <input type="text" value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_OperatorDate">操作时间:</label>
                     <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
