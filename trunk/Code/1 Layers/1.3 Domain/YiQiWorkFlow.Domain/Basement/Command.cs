@@ -142,6 +142,16 @@ namespace YiQiWorkFlow.Domain.Basement
             com.Parameters.Add(new SqlParameter("@adjust_operat", AdjustOperat));
             com.Parameters.Add(new SqlParameter("@sale_price", SalePrice));
 
+            decimal o1 = 0;
+            decimal o2 = 0;
+            decimal o3 = 0;
+            decimal o4 = 0;
+
+            com.Parameters.Add(new SqlParameter("@putout_money", o1));
+            com.Parameters.Add(new SqlParameter("@nontax_putout_money", o2));
+            com.Parameters.Add(new SqlParameter("@sale_money", o3));
+            com.Parameters.Add(new SqlParameter("@nontax_sale_money", o4));
+
             SqlDataReader reader = com.ExecuteReader();
             if (reader.Read())
             {
@@ -185,6 +195,14 @@ namespace YiQiWorkFlow.Domain.Basement
             com.Parameters.Add(new SqlParameter("@em_code", EmCode));
             com.Parameters.Add(new SqlParameter("@adjust_operat", AdjustOperat));
             com.Parameters.Add(new SqlParameter("@sale_price", SalePrice));
+
+            decimal o1 = 0;
+            decimal o2 = 0;
+            decimal o3 = 0;
+            decimal o4 = 0;
+
+            com.Parameters.Add(new SqlParameter("@putout_money", o1));
+            com.Parameters.Add(new SqlParameter("@nontax_putout_money", o2));
 
             SqlDataReader reader = com.ExecuteReader();
             if (reader.Read())
