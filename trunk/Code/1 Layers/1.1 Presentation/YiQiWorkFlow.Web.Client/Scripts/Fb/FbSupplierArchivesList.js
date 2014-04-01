@@ -66,7 +66,8 @@ function search() {
     grid.load(data);
 }
 function editRow(id) {
-    parent.showTab({ id: "FbSupplierArchivesEdit", text: "供货商档案管理", iconCls: "icon-edit", url: "/Fb/FbSupplierArchivesEdit/" + id });
+    //parent.showTab({ id: "FbSupplierArchivesEdit", text: "供货商档案管理", iconCls: "icon-edit", url: "/Fb/FbSupplierArchivesEdit/" + id });
+    location.href = "/Fb/FbSupplierArchivesEdit/" + id;
 }
 function deleteItem(id) {
     $.ajax({

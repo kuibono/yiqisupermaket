@@ -206,7 +206,8 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"PcPutoutManageEdit",text: "商品出库单管理", iconCls: "icon-edit", url: "//Pc//PcPutoutManageEdit/" + id });
+            //parent.showTab({ id:"PcPutoutManageEdit",text: "商品出库单管理", iconCls: "icon-edit", url: "//Pc//PcPutoutManageEdit/" + id });
+            location.href = "/Pc/PcPutoutManageEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({

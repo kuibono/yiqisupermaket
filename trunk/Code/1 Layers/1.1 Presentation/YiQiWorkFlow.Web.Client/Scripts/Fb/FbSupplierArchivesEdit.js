@@ -13,7 +13,8 @@ function SaveData() {
         dataType: "json",
         success: function (r) {
             if (r.IsSuccess == true) {
-                closeWithNoValidate();
+                //closeWithNoValidate();
+                history.go(-1);
             } else {
                 $("#Tooltip_Critical_FbSupplierArchives .content").first().text(r.Message);
                 $("#Tooltip_Critical_FbSupplierArchives").show("fast");

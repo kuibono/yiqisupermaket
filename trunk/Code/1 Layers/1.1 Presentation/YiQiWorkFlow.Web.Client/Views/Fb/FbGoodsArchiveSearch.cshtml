@@ -245,7 +245,8 @@
                 grid.load(data);
             }
             function editRow(id) {
-                parent.showTab({ id: "FbGoodsArchivesEdit", text: "商品档案管理", iconCls: "icon-edit", url: "/Fb/FbGoodsArchivesEdit/" + id });
+                //parent.showTab({ id: "FbGoodsArchivesEdit", text: "商品档案管理", iconCls: "icon-edit", url: "/Fb/FbGoodsArchivesEdit/" + id });
+                location.href = "/Fb/FbGoodsArchivesEdit/" + id;
             }
             function deleteItem(id) {
                 $.ajax({

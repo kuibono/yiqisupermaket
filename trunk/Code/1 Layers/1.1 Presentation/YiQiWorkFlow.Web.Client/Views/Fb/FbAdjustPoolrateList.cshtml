@@ -156,7 +156,8 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"FbAdjustPoolrateEdit",text: "调商品扣率管理", iconCls: "icon-edit", url: "/Fb/FbAdjustPoolrateEdit/" + id });
+            //parent.showTab({ id:"FbAdjustPoolrateEdit",text: "调商品扣率管理", iconCls: "icon-edit", url: "/Fb/FbAdjustPoolrateEdit/" + id });
+            location.href = "/Fb/FbAdjustPoolrateEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({

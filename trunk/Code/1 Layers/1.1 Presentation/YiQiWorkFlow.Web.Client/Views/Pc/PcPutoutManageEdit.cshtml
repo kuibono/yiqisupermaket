@@ -81,7 +81,8 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        closeWithNoValidate();
+                        //closeWithNoValidate();
+                        try { history.go(-1); } catch (e) { }
                     } else {
                         alert(r.Message);
                     }

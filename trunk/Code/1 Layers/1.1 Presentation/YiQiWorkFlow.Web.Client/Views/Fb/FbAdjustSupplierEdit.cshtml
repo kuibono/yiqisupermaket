@@ -36,7 +36,8 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        closeWithNoValidate();
+                        //closeWithNoValidate();
+                        try{ history.go(-1); } catch(e){}
                     } else {
                         $("#Tooltip_Critical_FbAdjustSupplier .content").first().text(r.Message);
                         $("#Tooltip_Critical_FbAdjustSupplier").show("fast");
