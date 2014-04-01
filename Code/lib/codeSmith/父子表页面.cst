@@ -59,7 +59,8 @@ Description:
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        location.href = "/<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>/<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>List";
+                        //location.href = "/<%= StringUtil.ToPascalCase(this.SourceTable.Name.Split('_')[0]) %>/<%= StringUtil.ToPascalCase(this.SourceTable.Name) %>List";
+						try{ history.go(-1); } catch(e){}
                     } else {
                         $("#Tooltip_Critical_PcPurchaseManage .content").first().text(r.Message);
                         $("#Tooltip_Critical_PcPurchaseManage").show("fast");
