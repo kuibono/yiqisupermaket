@@ -3459,8 +3459,199 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult SearchFbSupplierArchivesList(SearchDtoBase<FbSupplierArchives> c, FbSupplierArchives s)
         {
+            //c.entity = s;
+            //return Json(FbSupplierArchivesService.Search(c), JsonRequestBehavior.AllowGet);
             c.entity = s;
-            return Json(FbSupplierArchivesService.Search(c), JsonRequestBehavior.AllowGet);
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.fb_supplier_archives
+                        join type in e.fb_pa_sup_type on l.sup_type_code equals type.sup_type_code into join_type
+                        from j_type in join_type.DefaultIfEmpty()
+                        orderby l.sup_code
+                        select new
+                                   {
+                                       SupCode = l.sup_code,
+                                       SupName = l.sup_name,
+                                       PyCode = l.py_code,
+                                       SupTypeCode = l.sup_type_code,
+                                       SupType = j_type.sup_type_name,
+                                       Functionary = l.functionary,
+                                       FunctionaryPhone = l.functionary_phone,
+                                       Linkman = l.linkman,
+                                       ContactPhone = l.contact_phone,
+                                       ContactAddress = l.contact_address,
+                                       OfficePhone = l.office_phone,
+                                       FaxPhone = l.fax_phone,
+                                       eMail = l.e_mail,
+                                       Postalcode = l.postalcode,
+                                       OpenAccount = l.open_account,
+                                       BankAccount = l.bank_account,
+                                       TaxNumber = l.tax_number,
+                                       OpCode = l.op_code,
+                                       StockVoucher = l.stock_voucher,
+                                       InputTax = l.input_tax,
+                                       BalanceMode = l.balance_mode,
+                                       PayMode = l.pay_mode,
+                                       BalancePeriod = l.balance_period,
+                                       BalanceDay = l.balance_day,
+                                       OfferMode = l.offer_mode,
+                                       DeliveryDays = l.delivery_days,
+                                       PoolRate = l.pool_rate,
+                                       FloorsMoney = l.floors_money,
+                                       ExcessRate = l.excess_rate,
+                                       CreateDate = l.create_date,
+                                       Operator = l.@operator,
+                                       Assessor = l.assessor,
+                                       IfExamine = l.if_examine,
+                                       ExamineDate = l.examine_date,
+                                       OperatorDate = l.operator_date
+
+                                   };
+                if (string.IsNullOrEmpty(Request["SupType"]) == false)
+                {
+                    string supName = Request["SupType"];
+                    q = from l in q where l.SupName.StartsWith(supName) select l;
+                }
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.SupCode.StartsWith(c.entity.Id) select l;
+                }
+                if (c.entity.SupName.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.SupName.StartsWith(c.entity.SupName) select l;
+                }
+                if (c.entity.PyCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.PyCode.StartsWith(c.entity.PyCode) select l;
+                }
+                if (c.entity.SupTypeCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.SupTypeCode.StartsWith(c.entity.SupTypeCode) select l;
+                }
+                if (c.entity.Functionary.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Functionary.StartsWith(c.entity.Functionary) select l;
+                }
+                if (c.entity.FunctionaryPhone.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.FunctionaryPhone.StartsWith(c.entity.FunctionaryPhone) select l;
+                }
+                if (c.entity.Linkman.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Linkman.StartsWith(c.entity.Linkman) select l;
+                }
+                if (c.entity.ContactPhone.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.ContactPhone.StartsWith(c.entity.ContactPhone) select l;
+                }
+                if (c.entity.ContactAddress.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.ContactAddress.StartsWith(c.entity.ContactAddress) select l;
+                }
+                if (c.entity.OfficePhone.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OfficePhone.StartsWith(c.entity.OfficePhone) select l;
+                }
+                if (c.entity.FaxPhone.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.FaxPhone.StartsWith(c.entity.FaxPhone) select l;
+                }
+                if (c.entity.eMail.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.eMail.StartsWith(c.entity.eMail) select l;
+                }
+                if (c.entity.Postalcode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Postalcode.StartsWith(c.entity.Postalcode) select l;
+                }
+                if (c.entity.OpenAccount.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OpenAccount.StartsWith(c.entity.OpenAccount) select l;
+                }
+                if (c.entity.BankAccount.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.BankAccount.StartsWith(c.entity.BankAccount) select l;
+                }
+                if (c.entity.TaxNumber.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.TaxNumber.StartsWith(c.entity.TaxNumber) select l;
+                }
+                if (c.entity.OpCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OpCode.StartsWith(c.entity.OpCode) select l;
+                }
+                if (c.entity.StockVoucher.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.StockVoucher.StartsWith(c.entity.StockVoucher) select l;
+                }
+                if (c.entity.BalanceMode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.BalanceMode.StartsWith(c.entity.BalanceMode) select l;
+                }
+                if (c.entity.PayMode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.PayMode.StartsWith(c.entity.PayMode) select l;
+                }
+                if (c.entity.BalancePeriod.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.BalancePeriod.StartsWith(c.entity.BalancePeriod) select l;
+                }
+                if (c.entity.OfferMode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OfferMode.StartsWith(c.entity.OfferMode) select l;
+                }
+                if (c.entity.Operator.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Operator.StartsWith(c.entity.Operator) select l;
+                }
+                if (c.entity.Assessor.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Assessor.StartsWith(c.entity.Assessor) select l;
+                }
+                if (c.entity.IfExamine.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.IfExamine.StartsWith(c.entity.IfExamine) select l;
+                }
+
+
+                if (c.OperatorDateH.HasValue)
+                {
+                    q = from l in q where l.OperatorDate <= c.OperatorDateH select l;
+                }
+                if (c.OperatorDateL.HasValue)
+                {
+                    q = from l in q where l.OperatorDate >= c.OperatorDateL select l;
+                }
+
+
+                if (c.ExamineDateH.HasValue)
+                {
+                    q = from l in q where l.ExamineDate <= c.ExamineDateH select l;
+                }
+                if (c.OperatorDateL.HasValue)
+                {
+                    q = from l in q where l.ExamineDate >= c.ExamineDateL select l;
+                }
+
+
+                if (c.CreateDateH.HasValue)
+                {
+                    q = from l in q where l.CreateDate <= c.CreateDateH select l;
+                }
+                if (c.OperatorDateL.HasValue)
+                {
+                    q = from l in q where l.CreateDate >= c.CreateDateL select l;
+                }
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+
+
         }
         public JsonResult SearchFbSupplierArchivesListForList(SearchDtoBase<FbSupplierArchives> c, FbSupplierArchives s)
         {
