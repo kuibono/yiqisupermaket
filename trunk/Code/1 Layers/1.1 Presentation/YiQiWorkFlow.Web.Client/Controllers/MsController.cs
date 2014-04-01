@@ -296,26 +296,36 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <param name="c">搜索dto包括keyword分页数据</param>
         /// <param name="s">搜索内容，表数据填充</param>
         /// <returns></returns>
-        public JsonResult SearchMsCardArchivesList(SearchDtoBase<MsCardArchives> c, MsCardArchives s)
+        public JsonResult SearchMsCardArchivesList(SearchDtoBase<MsCardArchives> c, MsCardArchives s, MsMadecardManage m)
         {
-            c.entity = s;
-            return Json(MsCardArchivesService.Search(c), JsonRequestBehavior.AllowGet);
+            if (!string.IsNullOrEmpty(s.MadeNumber))
+            {
+                c.entity = s;
+                return Json(MsCardArchivesService.Search(c), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                //MsMadecardManage m = new MsMadecardManage();
+                return GenerateCardArchivesListByMadeCardInfo(m);
+            }
         }
 
         public JsonResult GetMsCardArchivesList()
         {
-            var searchDtoBase = MsCardArchivesService.Search(new SearchDtoBase<MsCardArchives>() { pageSize = int.MaxValue });
+            var searchDtoBase = MsCardArchivesService.Search(new SearchDtoBase<MsCardArchives>() { pageSize = int.MaxValue, entity = new MsCardArchives() { CardState = "0" } });
 
             IList<MsCardArchives> msCardArvhicesList = searchDtoBase.data;
 
             return Json(msCardArvhicesList, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GenerateCardArchivesListByMadeCardInfo(MsMadecardManage m)
+        public JsonResult GenerateCardArchivesListByMadeCardInfo(MsMadecardManage m)
         {
             List<MsCardArchives> cardArchivesList = GetMsCardArchivesByMadeInfo(m);
 
             return Json(cardArchivesList.ToArray(), JsonRequestBehavior.AllowGet);
+
+            //return Content(cardArchivesList.ToJson(), "application/json");
         }
 
         private List<MsCardArchives> GetMsCardArchivesByMadeInfo(MsMadecardManage m)
@@ -331,7 +341,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 for (int i = 0; i < m.MadeQty; i++)
                 {
                     string cardName = cardType.CardName;
-                    int length = Convert.ToInt32(cardType.CardNumberLen) - cardType.CardNumberPrefix.Length - (Convert.ToInt32(m.BeginCardNumber) + i);
+                    int length = Convert.ToInt32(cardType.CardNumberLen) - (string.IsNullOrEmpty(cardType.CardNumberPrefix) ? 0 : cardType.CardNumberPrefix.Length) - (Convert.ToInt32(m.BeginCardNumber) + i);
                     string cardPositionStr = string.Empty;
                     if (length > 0)
                     {
@@ -376,7 +386,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     if (m.EffectiveType.Equals("2") && m.EffectiveDate != null && m.EffectiveDate.HasValue)
                     {
                         entity.EffectiveDate = m.EffectiveDate;
-                        
+
                         entity.CardUsefulLifeDate = m.EffectiveDate.Value.AddDays(cardType.CardUsefulLife.ToInt32());
                         entity.CardUsefulLifeDate = m.EffectiveDate.Value.AddDays(cardType.PointsUsefulLife.ToInt32());
                     }
