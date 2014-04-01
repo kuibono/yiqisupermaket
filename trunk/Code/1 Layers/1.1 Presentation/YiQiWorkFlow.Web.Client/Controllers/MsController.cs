@@ -2807,6 +2807,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
         #region Report
 
+        #region 会员消费明细查询
+
         public ActionResult MsMemberSaleReport()
         {
             return View();
@@ -2819,7 +2821,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             // 查询返回
 
             return View();
-        }
+        } 
+
+        #endregion
 
         #endregion
     }

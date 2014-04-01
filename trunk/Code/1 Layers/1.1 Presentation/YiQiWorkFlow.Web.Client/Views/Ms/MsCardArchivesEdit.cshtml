@@ -293,16 +293,15 @@
                     <input type="text" id="Control_SaleTimes" name="SaleTimes" value="@Model.SaleTimes" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_Operator">操作员:</label>
                     <input type="text" value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_OperatorDate">操作时间:</label>
                     <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
-
 
             </fieldset>
             <div class="clear">
