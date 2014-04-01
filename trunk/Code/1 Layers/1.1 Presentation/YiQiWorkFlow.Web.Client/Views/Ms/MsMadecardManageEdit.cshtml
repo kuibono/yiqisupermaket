@@ -130,6 +130,7 @@
                     cache: false,
                     dataType: "json",
                     success: function (r) {
+                        debugger;
                         var grid = mini.get('#datagrid1');
                         grid.load(r);
                     },
@@ -140,6 +141,8 @@
                         $(document).scrollTop(0);
                     }
                 });
+                //var url = "/Ms/GenerateCardArchivesListByMadeCardInfo";
+                //mini.get('#datagrid1').load(url);
             }
         }
 
@@ -305,7 +308,7 @@
             <fieldset>
                 <legend>卡信息</legend>
                 <div id="datagrid1" class="mini-datagrid"
-                    style="width: 100%; height: 200px;" idfield="SurfaceNumber" allowresize="false" showpager="false">
+                    style="width: 100%; height: 200px;" idfield="Id" allowresize="false" showpager="false">
                     <div property="columns">
                         <div type="indexcolumn" width="30">
                         </div>
