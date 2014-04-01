@@ -315,7 +315,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         {
             List<MsCardArchives> cardArchivesList = GetMsCardArchivesByMadeInfo(m);
 
-            return Json(new SearchResult<MsCardArchives>() { data = cardArchivesList, total = cardArchivesList.Count }, JsonRequestBehavior.AllowGet);
+            return Json(cardArchivesList, JsonRequestBehavior.AllowGet);
         }
 
         private List<MsCardArchives> GetMsCardArchivesByMadeInfo(MsMadecardManage m)
@@ -346,24 +346,19 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         CardCode = m.CardCode,
                         CardName = cardName,
                         CardState = "-1",
-                        //CardUsefulLifeDate = DateTime.Now.AddYears(1),
                         ClearPoints = 0,
                         CreateDate = DateTime.Now,
                         CurrentPoints = 0,
                         CurrentPrepaid = 0,
                         CurrentPrepaidEncrypt = "0",
                         DepositMoney = 0,
-                        //EffectiveDate = DateTime.Now.AddYears(1),
                         ExchangePoints = 0,
-                        //GrantDate = DateTime.Now.AddYears(1),
                         LastExpendMoney = 0,
                         LimitTimes = 0,
                         MsCode = string.Empty,
                         MsName = string.Empty,
-                        PointsUsefulLifeDate = DateTime.Now.AddYears(1),
                         PrepaidPassword = string.Empty,
                         SaleTimes = 0,
-                        //SurfaceNumber = (m.BeginCardNumber + i).ToString(),
                         TotalMoney = 0,
                         TotalExpendTimes = 0,
                         TotalPoints = 0,
@@ -374,12 +369,22 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         SurfaceNumber = cardType.CardNumberPrefix + cardPositionStr + (m.BeginCardNumber + i).ToString(),
 
                         // 卡号 = 卡类型前缀 + 卡面明码 + 随机位数
-                        Id = cardType.CardNumberPrefix + (m.BeginCardNumber + i).ToString() + new Random(cardType.RandLen.ToInt32()).Next().ToString()
-
-                        // 卡有效期、积分有效期 = 制卡发放信息 + 卡类型有效期
-                        //entity.CardUsefulLifeDate = m.IfMade DateTime.Now.AddDays(cardType.CardUsefulLife),
-                        //entity.PointsUsefulLifeDate = DateTime.Now.AddDays(cardType.PointsUsefulLife)
+                        Id = cardType.CardNumberPrefix + (m.BeginCardNumber + i).ToString() + StaticClass.RandCode(cardType.RandLen.ToInt32())
                     };
+
+                    // 卡有效期、积分有效期 = 制卡发放信息 + 卡类型有效期(逻辑判断)
+                    if (m.EffectiveType.Equals("2") && m.EffectiveDate != null && m.EffectiveDate.HasValue)
+                    {
+                        entity.EffectiveDate = m.EffectiveDate;
+                        
+                        entity.CardUsefulLifeDate = m.EffectiveDate.Value.AddYears(cardType.CardUsefulLife.ToInt32());
+                        entity.CardUsefulLifeDate = m.EffectiveDate.Value.AddYears(cardType.PointsUsefulLife.ToInt32());
+                    }
+
+                    if (m.IfMade.Equals("1"))
+                    {
+                        entity.GrantDate = DateTime.Now;
+                    }
 
                     cardArchivesList.Add(entity);
                 }
@@ -2821,7 +2826,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             // 查询返回
 
             return View();
-        } 
+        }
 
         #endregion
 

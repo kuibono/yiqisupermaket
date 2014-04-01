@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Converters;
 using System.Collections;
+using System.Text;
 
 namespace YiQiWorkFlow.Web.Client.Common
 {
@@ -106,5 +107,17 @@ namespace YiQiWorkFlow.Web.Client.Common
         }
 
         #endregion
+
+        public static string RandCode(int N)
+        {
+            char[] arrChar = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            StringBuilder num = new StringBuilder();
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+            for (int i = 0; i < N; i++)
+            {
+                num.Append(arrChar[rnd.Next(0, arrChar.Length)].ToString());
+            }
+            return num.ToString();
+        }
     }
 }
