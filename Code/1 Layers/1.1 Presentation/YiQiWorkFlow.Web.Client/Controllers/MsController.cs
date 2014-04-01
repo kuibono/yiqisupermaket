@@ -905,7 +905,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
         public JsonResult GetMsCardtypeManageList()
         {
-            var searchDtoBase = MsCardtypeManageService.Search(new SearchDtoBase<MsCardtypeManage>() { pageSize = int.MaxValue });
+            var searchDtoBase = MsCardtypeManageService.Search(new SearchDtoBase<MsCardtypeManage>() { pageSize = int.MaxValue, entity = new MsCardtypeManage() { IfExamine = "1" } });
 
             IList<MsCardtypeManage> msCardtypeManageList = searchDtoBase.data;
 
