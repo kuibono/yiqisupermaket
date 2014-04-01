@@ -48,7 +48,8 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        location.href = "/Fb/FbAdjustClassList";
+                        //location.href = "/Fb/FbAdjustClassList";
+                        try{ history.go(-1); } catch(e){}
                     } else {
                         $("#Tooltip_Critical_FbAdjustClass .content").first().text(r.Message);
                         $("#Tooltip_Critical_FbAdjustClass").show("fast");

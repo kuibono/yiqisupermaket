@@ -23,7 +23,8 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        location.href="/Pc/PcReturnManageList/";
+                        //location.href="/Pc/PcReturnManageList/";
+                        try{ history.go(-1); } catch(e){}
                     } else {
                         $("#Tooltip_Critical_PcReturnManage .content").first().text(r.Message);
                         $("#Tooltip_Critical_PcReturnManage").show("fast");

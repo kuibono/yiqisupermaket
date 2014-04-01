@@ -158,7 +158,8 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"FbAdjustPurchasepriceEdit",text: "调商品进价管理", iconCls: "icon-edit", url: "/Fb/FbAdjustPurchasepriceEdit/" + id });
+            //parent.showTab({ id:"FbAdjustPurchasepriceEdit",text: "调商品进价管理", iconCls: "icon-edit", url: "/Fb/FbAdjustPurchasepriceEdit/" + id });
+            location.href = "/Fb/FbAdjustPurchasepriceEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({

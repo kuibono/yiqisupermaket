@@ -42,7 +42,8 @@
 				dataType:"json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        location.href = "/Fb/FbAdjustPurchasepriceList";
+                        //location.href = "/Fb/FbAdjustPurchasepriceList";
+                        try{ history.go(-1); } catch(e){}
                     } else {
                         $("#Tooltip_Critical_FbAdjustPurchaseprice .content").first().text(r.Message);
                         $("#Tooltip_Critical_FbAdjustPurchaseprice").show("fast");

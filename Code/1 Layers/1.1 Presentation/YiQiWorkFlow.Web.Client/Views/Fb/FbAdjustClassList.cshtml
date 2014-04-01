@@ -158,7 +158,8 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"FbAdjustClassEdit",text: "调商品所属类别管理", iconCls: "icon-edit", url: "/Fb/FbAdjustClassEdit/" + id });
+            //parent.showTab({ id: "FbAdjustClassEdit", text: "调商品所属类别管理", iconCls: "icon-edit", url: "/Fb/FbAdjustClassEdit/" + id });
+            location.href = "/Fb/FbAdjustClassEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({

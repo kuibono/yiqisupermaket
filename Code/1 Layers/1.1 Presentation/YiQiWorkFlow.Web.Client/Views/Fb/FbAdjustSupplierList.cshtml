@@ -156,7 +156,8 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"FbAdjustSupplierEdit",text: "调商品供货商管理", iconCls: "icon-edit", url: "/Fb/FbAdjustSupplierEdit/" + id });
+            //parent.showTab({ id:"FbAdjustSupplierEdit",text: "调商品供货商管理", iconCls: "icon-edit", url: "/Fb/FbAdjustSupplierEdit/" + id });
+            location.href = "/Fb/FbAdjustSupplierEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({

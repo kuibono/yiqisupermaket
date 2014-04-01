@@ -207,7 +207,8 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"PcPurchaseManageEdit",text: "商品采购单管理", iconCls: "icon-edit", url: "/Pc//PcPurchaseManageEdit/" + id });
+            //parent.showTab({ id:"PcPurchaseManageEdit",text: "商品采购单管理", iconCls: "icon-edit", url: "/Pc//PcPurchaseManageEdit/" + id });
+            location.href = "/Pc/PcPurchaseManageEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({

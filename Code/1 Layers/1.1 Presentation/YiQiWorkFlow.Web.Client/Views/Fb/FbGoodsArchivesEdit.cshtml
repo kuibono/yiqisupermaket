@@ -74,7 +74,8 @@
                                 mini.get("Control_TradePrice").setValue(0);
                             });
                         }else{
-                            closeWithNoValidate();
+                            //closeWithNoValidate();
+                            history.go(-1);
                         }
                     } else {
                         $("#Tooltip_Critical_FbGoodsArchives .content").first().text(r.Message);

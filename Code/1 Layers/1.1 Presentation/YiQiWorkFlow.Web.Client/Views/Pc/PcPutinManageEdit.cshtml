@@ -43,7 +43,8 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        location.href = "/Pc/PcPutinManageList";
+                        //location.href = "/Pc/PcPutinManageList";
+                        try{ history.go(-1); } catch(e){}
                     } else {
                         $("#Tooltip_Critical_PcPurchaseManage .content").first().text(r.Message);
                         $("#Tooltip_Critical_PcPurchaseManage").show("fast");
