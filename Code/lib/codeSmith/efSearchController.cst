@@ -57,11 +57,11 @@ Description:
                 <%=GenerateIfHaveColumn(SourceTable,"RtDate")%>
 
                 var result =
-                    new { total = q.Count(), data = q.Skip(c.pageSize * (c.pageIndex - 1)).Take(c.pageSize).ToList() };
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
 
                 return Json(result, JsonRequestBehavior.AllowGet);
                 
-
+		}
 
 <script runat="template">
 public bool TableHasColumn(SchemaExplorer.TableSchema table,string colName)
