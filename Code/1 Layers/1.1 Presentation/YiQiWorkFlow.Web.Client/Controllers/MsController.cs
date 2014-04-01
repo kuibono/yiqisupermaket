@@ -169,14 +169,18 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    MsCancelCardManageService.Create(m);
+                    // 判断是否可以作废
 
-                    // 冻结卡片
+                    // 作废卡片
                     MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
                     if (card != null && !string.IsNullOrEmpty(card.Id))
                     {
                         card.CardState = "4";
                     }
+
+                    MsCardArchivesService.Update(card);
+
+                    MsCancelCardManageService.Create(m);
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
@@ -1362,7 +1366,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    MsFreezeCardManageService.Create(m);
+                    // 判断是否可以冻结
 
                     // 冻结卡片
                     MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
@@ -1370,6 +1374,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     {
                         card.CardState = "3";
                     }
+
+                    MsCardArchivesService.Update(card);
+
+                    MsFreezeCardManageService.Create(m);
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
@@ -1691,7 +1699,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    MsLossCardManageService.Create(m);
+                    // 判断是否可以挂失
 
                     // 挂失卡片
                     MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
@@ -1699,6 +1707,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     {
                         card.CardState = "2";
                     }
+
+                    MsCardArchivesService.Update(card);
+
+                    MsLossCardManageService.Create(m);
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
@@ -1810,7 +1822,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     r.IsSuccess = true;
                     r.Message = "审核成功";
 
-                    //MsMadecardManageService.Update(m);
+                    MsMadecardManageService.Update(m);
                 }
                 else
                 {
@@ -2242,7 +2254,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    // 卡充值
+                    // 卡充值,获取卡类型信息,判断是否超越了充值上限(当前余额+充值金额 <= 上限)
+
 
                     MsPrepaidCardManageService.Create(m);
                 }
@@ -2347,6 +2360,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
                     // 回收卡片
                     MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
+                    
+                    // @todo主要数据清空
+
                     if (card != null && !string.IsNullOrEmpty(card.Id))
                     {
                         card.CardState = "4";
@@ -2449,6 +2465,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
+                    // 获取旧卡信息
+
+                    // 获取新卡信息
+
+                    // 复制旧卡信息,保存
+
                     MsUpdateCardManageService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -2566,6 +2588,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
+                    // 卡升级detail...
+
                     MsUpgradeCardDetailService.Create(m);
                 }
                 r.IsSuccess = true;
