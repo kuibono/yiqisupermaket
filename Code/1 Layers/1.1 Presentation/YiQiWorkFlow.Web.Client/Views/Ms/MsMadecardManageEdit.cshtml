@@ -132,8 +132,7 @@
                     success: function (r) {
                         debugger;
                         var grid = mini.get('#datagrid1');
-
-                        grid.load(r);
+                        grid.setData(r);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
 
@@ -309,121 +308,93 @@
             <fieldset>
                 <legend>卡信息</legend>
                 <div id="datagrid1" class="mini-datagrid" url='@(string.IsNullOrEmpty(Model.Id) ? "/Ms/SearchMsCardArchivesList" : "/Ms/SearchMsCardArchivesList?MadeNumber=Model.Id)")'
-                    style="width: 100%; height: 200px;" idField="Id" allowresize="false" showPager="false">
+                    style="width: 100%; height: 200px;" idfield="Id" allowresize="false" showpager="false">
                     <div property="columns">
                         <div type="indexcolumn" width="30">
                         </div>
                         <div field="Id" headeralign="center" align="center" width="60">
-                            卡号
-					<!--<input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            卡号					
                         </div>
                         <div field="SurfaceNumber" headeralign="center" align="center" width="60">
-                            卡面明码
-					<!--<input id="filter_SurfaceNumber" name="SurfaceNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            卡面明码					
                         </div>
                         <div field="MsCode" headeralign="center" align="center" width="60">
-                            会员编码
-					<!--<input id="filter_MsCode" name="MsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            会员编码					
                         </div>
                         <div field="CardCode" headeralign="center" align="center" width="60">
-                            卡类型编码
-					<!--<input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            卡类型编码					
                         </div>
                         <div field="CardName" headeralign="center" align="center" width="60">
-                            卡类型名称
-					<!--<input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            卡类型名称					
                         </div>
                         <div field="MsName" headeralign="center" align="center" width="60">
-                            会员姓名
-					<!--<input id="filter_MsName" name="MsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            会员姓名					
                         </div>
-                        <div field="CardState" headeralign="center" align="center" width="60">
-                            卡状态
-					<!--<input id="filter_CardState" name="CardState" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                        <div field="CardState" headeralign="center" align="center" width="60" data="c_CardState">
+                            卡状态					
                         </div>
                         <div field="CreateDate" headeralign="center" align="center" width="60">
-                            制卡日期
-					<!--<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            制卡日期					
                         </div>
                         <div field="GrantDate" headeralign="center" align="center" width="60">
-                            发卡日期
-					<!--<input id="filter_GrantDate" name="GrantDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            发卡日期					
                         </div>
                         <div field="EffectiveDate" headeralign="center" align="center" width="60">
-                            生效日期
-					<!--<input id="filter_EffectiveDate" name="EffectiveDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            生效日期					
                         </div>
                         <div field="PointsUsefulLifeDate" headeralign="center" align="center" width="60">
-                            积分有效期
-					<!--<input id="filter_PointsUsefulLifeDate" name="PointsUsefulLifeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            积分有效期					
                         </div>
                         <div field="CardUsefulLifeDate" headeralign="center" align="center" width="60">
-                            卡有效期
-					<!--<input id="filter_CardUsefulLifeDate" name="CardUsefulLifeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            卡有效期					
                         </div>
                         <div field="TransactCharge" headeralign="center" align="center" width="60">
-                            办卡费用
-					<!--<input id="filter_TransactCharge" name="TransactCharge" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            办卡费用					
                         </div>
                         <div field="DepositMoney" headeralign="center" align="center" width="60">
-                            押金金额
-					<!--<input id="filter_DepositMoney" name="DepositMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            押金金额					
                         </div>
                         <div field="TotalMoney" headeralign="center" align="center" width="60">
-                            累计消费金额
-					<!--<input id="filter_TotalMoney" name="TotalMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            累计消费金额					
                         </div>
                         <div field="TotalExpendTimes" headeralign="center" align="center" width="60">
-                            累计消费次数
-					<!--<input id="filter_TotalExpendTimes" name="TotalExpendTimes" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            累计消费次数					
                         </div>
                         <div field="LastExpendMoney" headeralign="center" align="center" width="60">
-                            上次消费金额
-					<!--<input id="filter_LastExpendMoney" name="LastExpendMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            上次消费金额					
                         </div>
                         <div field="TotalPoints" headeralign="center" align="center" width="60">
-                            累计积分
-					<!--<input id="filter_TotalPoints" name="TotalPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            累计积分				
                         </div>
                         <div field="ExchangePoints" headeralign="center" align="center" width="60">
-                            兑换积分
-					<!--<input id="filter_ExchangePoints" name="ExchangePoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            兑换积分				
                         </div>
                         <div field="CurrentPoints" headeralign="center" align="center" width="60">
                             当前积分
-					<!--<input id="filter_CurrentPoints" name="CurrentPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
                         </div>
                         <div field="ClearPoints" headeralign="center" align="center" width="60">
-                            清零积分
-					<!--<input id="filter_ClearPoints" name="ClearPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
+                            清零积分					
                         </div>
                         <div field="PrepaidPassword" headeralign="center" align="center" width="60">
                             储值密码
-					<!--<input id="filter_PrepaidPassword" name="PrepaidPassword" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
                         </div>
                         <div field="TotalPrepaid" headeralign="center" align="center" width="60">
                             累计储值金额
-					<!--<input id="filter_TotalPrepaid" name="TotalPrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
                         </div>
                         <div field="CurrentPrepaid" headeralign="center" align="center" width="60">
                             当前储值金额
-					<!--<input id="filter_CurrentPrepaid" name="CurrentPrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
                         </div>
                         <div field="CurrentPrepaidEncrypt" headeralign="center" align="center" width="60">
                             当前金额
-					<!--<input id="filter_CurrentPrepaidEncrypt" name="CurrentPrepaidEncrypt" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
                         </div>
                         <div field="UsePrepaid" headeralign="center" align="center" width="60">
                             使用金额
-					<!--<input id="filter_UsePrepaid" name="UsePrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
                         </div>
                         <div field="LimitTimes" headeralign="center" align="center" width="60">
                             限制次数
-					<!--<input id="filter_LimitTimes" name="LimitTimes" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
                         </div>
                         <div field="SaleTimes" headeralign="center" align="center" width="60">
                             消费次数
-					<!--<input id="filter_SaleTimes" name="SaleTimes" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />-->
                         </div>
                     </div>
                 </div>
