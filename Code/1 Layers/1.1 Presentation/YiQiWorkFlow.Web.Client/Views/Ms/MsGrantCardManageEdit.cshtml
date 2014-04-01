@@ -147,16 +147,15 @@
         function onvaluechanged(e) {
             if (e) {
                 // 赋值卡信息(卡号、卡状态、卡类型信息(卡类型编码、卡类型名称)、生效日期、积分有效期、卡有效期、办卡费用、押金金额)
-
-                mini.get('#Control_CardNumber').setValue(e.Id);
-                mini.get('#Control_CardState').setValue(e.CardState);
-                mini.get('#Control_CardCode').setValue(e.CardCode);
-                mini.get('#Control_CardName').setValue(e.CardName);
-                mini.get('#Control_EffectiveDate').setValue(e.EffectiveDate);
-                mini.get('#Control_PointsUsefulLifeDate').setValue(e.PointsUsefulLifeDate);
-                mini.get('#Control_CardUsefulLifeDate').setValue(e.CardUsefulLifeDate);
-                mini.get('#Control_TransactCharge').setValue(e.TransactCharge);
-                mini.get('#Control_DepositMoney').setValue(e.DepositMoney);
+                mini.get('#Control_CardNumber').setValue(e.selected.Id);
+                mini.get('#Control_CardState').setValue(e.selected.CardState);
+                mini.get('#Control_CardCode').setValue(e.selected.CardCode);
+                mini.get('#Control_CardName').setValue(e.selected.CardName);
+                mini.get('#Control_EffectiveDate').setValue(e.selected.EffectiveDate);
+                mini.get('#Control_PointsUsefulLifeDate').setValue(e.selected.PointsUsefulLifeDate);
+                mini.get('#Control_CardUsefulLifeDate').setValue(e.selected.CardUsefulLifeDate);
+                mini.get('#Control_TransactCharge').setValue(e.selected.TransactCharge);
+                mini.get('#Control_DepositMoney').setValue(e.selected.DepositMoney);
             }
         }
 
@@ -361,17 +360,17 @@
                             <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" readonly="readonly" />
                         </div>
 
-                        <div class="ablock" style="diplay: none">
+                        <div class="ablock" style="display: none">
                             <label for="Control_CreateDate">创建时间:</label>
                             <input type="text" id="Control_CreateDate" name="CreateDate" value="@Model.CreateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" />
                         </div>
 
-                        <div class="ablock" style="diplay: none">
+                        <div class="ablock" style="display: none">
                             <label for="Control_Operator">操作员:</label>
                             <input type="text" value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                         </div>
 
-                        <div class="ablock" style="diplay: none">
+                        <div class="ablock" style="display: none">
                             <label for="Control_OperatorDate">操作时间:</label>
                             <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                         </div>

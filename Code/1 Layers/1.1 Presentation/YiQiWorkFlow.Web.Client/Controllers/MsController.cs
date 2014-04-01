@@ -377,8 +377,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     {
                         entity.EffectiveDate = m.EffectiveDate;
                         
-                        entity.CardUsefulLifeDate = m.EffectiveDate.Value.AddYears(cardType.CardUsefulLife.ToInt32());
-                        entity.CardUsefulLifeDate = m.EffectiveDate.Value.AddYears(cardType.PointsUsefulLife.ToInt32());
+                        entity.CardUsefulLifeDate = m.EffectiveDate.Value.AddDays(cardType.CardUsefulLife.ToInt32());
+                        entity.CardUsefulLifeDate = m.EffectiveDate.Value.AddDays(cardType.PointsUsefulLife.ToInt32());
                     }
 
                     if (m.IfMade.Equals("1"))
@@ -1553,17 +1553,25 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 if (m.HaveId)
                 {
-                    MsGrantCardManageService.Update(m);
+                    //MsGrantCardManageService.Update(m);
                 }
                 else
                 {
                     // 发放逻辑 1 : 更新卡状态、卡所属会员编号
-                    MsCardArchives msCardArchivesEntity = MsCardArchivesService.GetById(m.CardCode);
+                    MsCardArchives msCardArchivesEntity = MsCardArchivesService.GetById(m.CardNumber);
                     if (msCardArchivesEntity != null && !string.IsNullOrEmpty(msCardArchivesEntity.Id))
                     {
                         msCardArchivesEntity.CardState = "1";
 
                         // 判断是否是发卡生效期,是则 开始赋值
+                        if (msCardArchivesEntity.CardUsefulLifeDate == null)
+                        {
+                            MsCardtypeManage msCardtypeManageEntity = MsCardtypeManageService.GetById(m.CardCode);
+                            msCardArchivesEntity.CardUsefulLifeDate = DateTime.Now.AddYears(msCardtypeManageEntity.CardUsefulLife.ToInt32());
+                            msCardArchivesEntity.PointsUsefulLifeDate = DateTime.Now.AddYears(msCardtypeManageEntity.CardUsefulLife.ToInt32());
+                            msCardArchivesEntity.GrantDate = DateTime.Now;
+                            msCardArchivesEntity.OperatorDate = DateTime.Now;
+                        }
 
                         // 修改卡信息
                         MsCardArchivesService.Update(msCardArchivesEntity);
@@ -1573,6 +1581,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     if (true)
                     {
                     }
+
+                    MsGrantCardManageService.Create(m);
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
