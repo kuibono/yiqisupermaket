@@ -2890,9 +2890,17 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m.CardNumber = MsMemberArchivesService.GenerateMsCode();
             }
-            return View("/Ms/UserControl/UCMemberArchives/", m);
+            return View("/Ms/UserControl/UCMemberArchives", m);
         }
 
         #endregion
+    }
+
+    public partial class UCMemberArchives : System.Web.Mvc.ViewUserControl
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // 处理会员信息数据
+        }
     }
 }
