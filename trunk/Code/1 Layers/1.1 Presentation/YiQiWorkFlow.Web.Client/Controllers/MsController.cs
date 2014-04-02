@@ -2875,5 +2875,24 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion
 
         #endregion
+
+        #region User Control
+
+        public ActionResult UCMemberArchives()
+        {
+            string id = Request["id"];
+            MsMemberArchives m = MsMemberArchives.Initial();
+            if (!string.IsNullOrEmpty(id))
+            {
+                m = MsMemberArchivesService.GetById(id);
+            }
+            else
+            {
+                m.CardNumber = MsMemberArchivesService.GenerateMsCode();
+            }
+            return View("/Ms/UserControl/UCMemberArchives/", m);
+        }
+
+        #endregion
     }
 }

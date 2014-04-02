@@ -45,25 +45,25 @@
                 width: 600,
                 height: 400,
                 ondestroy: function (action) {
-                    if (action == "ok") {
-                        var iframe = this.getIFrameEl();
-                        var data = iframe.contentWindow.GetData();
-                        data = mini.clone(data);
-                        if (data) {
-                            for (var i = 0; i < data.length; i++) {
-                                btnEdit.setValue(data[i].id);
-                                btnEdit.setText(data[i].text);
+                    //if (action == "ok") {
+                    //    var iframe = this.getIFrameEl();
+                    //    var data = iframe.contentWindow.GetData();
+                    //    data = mini.clone(data);
+                    //    if (data) {
+                    //        for (var i = 0; i < data.length; i++) {
+                    //            btnEdit.setValue(data[i].id);
+                    //            btnEdit.setText(data[i].text);
 
-                                try {
-                                    window.frames[0].location.href = "/Ms/MsMemberArchivesEdit/" + data[i].mscode;
-                                } catch (e) {
+                    //            try {
+                    //                window.frames[0].location.href = "/Ms/MsMemberArchivesEdit/" + data[i].mscode;
+                    //            } catch (e) {
 
-                                }
+                    //            }
 
-                                break;
-                            };
-                        }
-                    }
+                    //            break;
+                    //        };
+                    //    }
+                    //}
                 }
             });
         }
@@ -382,7 +382,9 @@
 
                         <legend>会员信息</legend>
                         <!-- 会员信息iframe 考虑换成ASP.NET MVC用户控件 -->
-                        <iframe src="/Ms/MsMemberArchivesEdit" class="mainframe" frameborder="0" width="100%" height="400px" title="会员信息"></iframe>
+                        <!--<iframe src="/Ms/MsMemberArchivesEdit" class="mainframe" frameborder="0" width="100%" height="400px" title="会员信息"></iframe>-->
+
+                        @Html.Partial("UCMemberArchives");
                     </fieldset>
 
                 </div>
