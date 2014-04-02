@@ -10,37 +10,18 @@ namespace YiQiWorkFlow.Web.Client.Common
     {
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            var session = filterContext.HttpContext.Session;
-            if (session == null || session[AuthorizeSettings.SessionUserType] == null)
-            {
-                string url = "/Account/Login";
-                if (Common.MyEnv.IsHistoryEmloyee)
-                {
-                    url = "/Account/ELogin";
-                }
-                filterContext.HttpContext.Response.Clear();
-                filterContext.HttpContext.Response.Write("<script type='text/javascript'>top.location.href='" + url + "';</script>");
-                filterContext.HttpContext.Response.End();
-                //filterContext.Result = new RedirectResult("~/Account/Login");
-            }
-            //if (session != null)
+            //var session = filterContext.HttpContext.Session;
+            //if (session == null || session[AuthorizeSettings.SessionUserType] == null)
             //{
-            //    if (filterContext.HttpContext.Session[AuthorizeSettings.SessionUserName] == null)
+            //    string url = "/Account/Login";
+            //    if (Common.MyEnv.IsHistoryEmloyee)
             //    {
-            //        if (filterContext.HttpContext.Request.Url != null)
-            //        {
-            //            filterContext.HttpContext.Session["url"] = filterContext.HttpContext.Request.Url.ToString();
-            //        }
-            //        filterContext.Result = new RedirectResult("~/Account/Login");
+            //        url = "/Account/ELogin";
             //    }
+            //    filterContext.HttpContext.Response.Clear();
+            //    filterContext.HttpContext.Response.Write("<script type='text/javascript'>top.location.href='" + url + "';</script>");
+            //    filterContext.HttpContext.Response.End();
             //}
-
-
-            //var controller = filterContext.RouteData.Values["controller"].ToString().ToLower();
-            //var action = filterContext.RouteData.Values["action"].ToString().ToLower();
-
-            //session[AuthorizeSettings.SessionUserName] = "sysadmin";
-            //session[AuthorizeSettings.SessionUserID] = 1;
         }
     }
 }

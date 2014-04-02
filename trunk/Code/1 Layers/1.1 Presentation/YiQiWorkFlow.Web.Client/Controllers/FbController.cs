@@ -1622,6 +1622,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         m.PushRate = p.PushRate;
                     }
                 });
+                m.OperatorDate = DateTime.Now;
+                m.Operator = MyEnv.LoginUser.Id;
+                
                 FbGoodsArchivesService.SaveOrUpdate(m);
 
                 foreach (var item in suppliers)
@@ -2465,6 +2468,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                m.Operator = MyEnv.LoginUser.Id;
+                m.OperatorDate = DateTime.Now;
                 if (m.HaveId)
                 {
                     FbPaBaseSetService.Update(m);

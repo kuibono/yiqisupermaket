@@ -230,12 +230,12 @@
 
             <div class="ablock">
                 <label for="Control_Operator">操作员:</label>
-                <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
+                <input type="text"  value="@Model.Operator" class="mini-combobox" name="Operator" id="Control_Operator" url="/Common/GetComboData?table=sys_login_power&valueColumn=em_code&textColumn=em_name"  />
             </div>
 
             <div class="ablock">
                 <label for="Control_Assessor">审核人:</label>
-                <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
+                <input type="text"  value="@Model.Assessor" class="mini-combobox" name="Assessor" id="Control_Assessor" url="/Common/GetComboData?table=sys_login_power&valueColumn=em_code&textColumn=em_name"  />
             </div>
 
             <div class="ablock">

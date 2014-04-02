@@ -89,7 +89,7 @@
 
             <div class="ablock">
                 <label for="Control_GoodsClassLevel">分类级别:</label>
-                <input type="text" id="Control_GoodsClassLevel" name="GoodsClassLevel"  value="@Model.GoodsClassLevel" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_GoodsClassLevel" name="GoodsClassLevel"  value="@Model.GoodsClassLevel" class="mini-spinner" minValue="2" maxValue="4" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
@@ -132,7 +132,7 @@
 
             <div class="ablock">
                 <label for="Control_Operator">操作员:</label>
-                <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
+                <input type="text"  value="@Model.Operator" class="mini-combobox" name="Operator" id="Control_Operator" url="/Common/GetComboData?table=sys_login_power&valueColumn=em_code&textColumn=em_name"  />
             </div>
 
             <div class="ablock">
