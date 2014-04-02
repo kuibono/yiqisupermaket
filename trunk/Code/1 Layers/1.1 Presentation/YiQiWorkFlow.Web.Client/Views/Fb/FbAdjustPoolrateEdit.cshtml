@@ -162,14 +162,13 @@
                         <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
                         <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
                     </td>
-                    <td>
-                    </td>
+                    <td></td>
                 </tr>
             </table>
         </div>
         @*<h1>调商品扣率编辑
         </h1>*@
-        
+
         <div class="tooltip critical hidden" id="Tooltip_Critical_FbAdjustPoolrate">
             <img src="/images/critical.png" alt="Warning" height="48" width="48" />
             <p class="content">
@@ -233,32 +232,38 @@
 
 
             </fieldset>
-            <div id="datagrid1" class="mini-datagrid" url="/Fb/SearchFbAdjustPoolrateGoodsList?AdjustNumber=@(string.IsNullOrEmpty(Model.Id)?"!##$%":Model.Id)"
+            <div id="datagrid1" class="mini-datagrid" url="/Fb/SearchFbAdjustPoolrateGoodsList?AdjustNumber=@(string.IsNullOrEmpty(Model.Id) ? "!##$%" : Model.Id)"
             style="width: 100%;height: 300px;margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
             pagesize="20" multiselect="true" showfilterrow="true" showpager="false" onrowdblclick="onrowdblclick">
-            <div property="columns">
-                <div type="indexcolumn" width="30">
+                <div property="columns">
+                    <div type="indexcolumn" width="30">
+                    </div>
+                    <div type="checkcolumn" width="30">
+                    </div>
+                    <div field="GoodsCode" headeralign="center" align="center" width="60">
+                        商品编码
+					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList?OpCode=3" style="width: 100%;" />
+                    </div>
+                    <div field="GoodsName" headeralign="center" align="center" width="60">
+                        商品编码
+                    </div>
+                    <div field="SupCode" headeralign="center" align="center" width="60">
+                        供货商编码
+					<input id="filter_SupCode" name="SupCode" property="editor" class="mini-textbox" enabled="false" onvaluechanged="search" style="width: 100%;" />
+                    </div>
+                    <div field="SupName" headeralign="center" align="center" width="60">
+                        供货商
+                    </div>
+                    <div field="PoolRateOld" headeralign="center" align="center" width="60">
+                        原扣率
+					<input id="filter_PoolRateOld" name="PoolRateOld" property="editor" class="mini-spinner" enabled="false" onvaluechanged="search" style="width: 100%;" />
+                    </div>
+                    <div field="PoolRate" headeralign="center" align="center" width="60">
+                        扣率
+					<input id="filter_PoolRate" name="PoolRate" property="editor" class="mini-spinner" onvaluechanged="search" style="width: 100%;" />
+                    </div>
                 </div>
-                <div type="checkcolumn" width="30">
-                </div>
-				<div field="GoodsCode" headeralign="center" align="center" width="60">
-				    商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowInput="true" valueField="Id" textField="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList?OpCode=3" style="width: 100%;" />
-				</div>
-				<div field="SupCode" headeralign="center" align="center" width="60">
-				    供货商编码
-					<input id="filter_SupCode" name="SupCode" property="editor" class="mini-textbox" enabled="false" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PoolRateOld" headeralign="center" align="center" width="60">
-				    原扣率
-					<input id="filter_PoolRateOld" name="PoolRateOld" property="editor" class="mini-spinner" enabled="false" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PoolRate" headeralign="center" align="center" width="60">
-				    扣率
-					<input id="filter_PoolRate" name="PoolRate" property="editor" class="mini-spinner" onvaluechanged="search" style="width:100%;" />
-				</div>
             </div>
-        </div>
             <div class="clear">
             </div>
             @*<div class="control-panel">

@@ -568,7 +568,89 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchFbAdjustClassGoodsList(SearchDtoBase<FbAdjustClassGoods> c, FbAdjustClassGoods s)
         {
             c.entity = s;
-            return Json(FbAdjustClassGoodsService.Search(c), JsonRequestBehavior.AllowGet);
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.fb_adjust_class_goods
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        orderby l.Id
+                        select new
+                        {
+                            AdjustNumber = l.adjust_number,
+                            GoodsCode = l.goods_code,
+                            GoodsName = j_g.goods_name,
+                            GbCodeOld = l.gb_code_old,
+                            GmCodeOld = l.gm_code_old,
+                            GsCodeOld = l.gs_code_old,
+                            GlCodeOld = l.gl_code_old,
+                            GbCode = l.gb_code,
+                            GmCode = l.gm_code,
+                            GsCode = l.gs_code,
+                            GlCode = l.gl_code,
+                            Id = l.Id
+
+                        };
+                if (c.entity.AdjustNumber.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.AdjustNumber.StartsWith(c.entity.AdjustNumber) select l;
+                }
+                if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                }
+                if (c.entity.GbCodeOld.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GbCodeOld.StartsWith(c.entity.GbCodeOld) select l;
+                }
+                if (c.entity.GmCodeOld.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GmCodeOld.StartsWith(c.entity.GmCodeOld) select l;
+                }
+                if (c.entity.GsCodeOld.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GsCodeOld.StartsWith(c.entity.GsCodeOld) select l;
+                }
+                if (c.entity.GlCodeOld.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GlCodeOld.StartsWith(c.entity.GlCodeOld) select l;
+                }
+                if (c.entity.GbCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GbCode.StartsWith(c.entity.GbCode) select l;
+                }
+                if (c.entity.GmCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GmCode.StartsWith(c.entity.GmCode) select l;
+                }
+                if (c.entity.GsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GsCode.StartsWith(c.entity.GsCode) select l;
+                }
+                if (c.entity.GlCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GlCode.StartsWith(c.entity.GlCode) select l;
+                }
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                }
+
+
+
+
+
+
+
+
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+
         }
         #endregion
 
@@ -794,7 +876,52 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchFbAdjustPoolrateGoodsList(SearchDtoBase<FbAdjustPoolrateGoods> c, FbAdjustPoolrateGoods s)
         {
             c.entity = s;
-            return Json(FbAdjustPoolrateGoodsService.Search(c), JsonRequestBehavior.AllowGet);
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.fb_adjust_poolrate_goods
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        join sup in e.fb_supplier_archives on l.sup_code equals sup.sup_code into join_s
+                        from j_s in join_s.DefaultIfEmpty()
+                        orderby l.Id
+                        select new
+                        {
+                            AdjustNumber = l.adjust_number,
+                            GoodsCode = l.goods_code,
+                            GoodsName=j_g.goods_name,
+                            SupCode = l.sup_code,
+                            SupName=j_s.sup_name,
+                            PoolRateOld = l.pool_rate_old,
+                            PoolRate = l.pool_rate,
+                            Id = l.Id
+
+                        };
+                if (c.entity.AdjustNumber.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.AdjustNumber.StartsWith(c.entity.AdjustNumber) select l;
+                }
+                if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                }
+                if (c.entity.SupCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.SupCode.StartsWith(c.entity.SupCode) select l;
+                }
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                }
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+
+
         }
         #endregion
 
@@ -1018,7 +1145,63 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchFbAdjustPurchasepriceGoodsList(SearchDtoBase<FbAdjustPurchasepriceGoods> c, FbAdjustPurchasepriceGoods s)
         {
             c.entity = s;
-            return Json(FbAdjustPurchasepriceGoodsService.Search(c), JsonRequestBehavior.AllowGet);
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.fb_adjust_purchaseprice_goods
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        join sup in e.fb_supplier_archives on l.sup_code equals sup.sup_code into join_s
+                        from j_s in join_s.DefaultIfEmpty()
+                        orderby l.Id
+                        select new
+                        {
+                            AdjustNumber = l.adjust_number,
+                            GoodsCode = l.goods_code,
+                            GoodsName = j_g.goods_name,
+                            SupName = j_s.sup_name,
+                            SupCode = l.sup_code,
+                            InputTax = l.input_tax,
+                            PurchasePriceOld = l.purchase_price_old,
+                            NontaxPurchasePriceOld = l.nontax_purchase_price_old,
+                            PurchasePrice = l.purchase_price,
+                            NontaxPurchasePrice = l.nontax_purchase_price,
+                            Id = l.Id
+
+                        };
+                if (c.entity.AdjustNumber.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.AdjustNumber.StartsWith(c.entity.AdjustNumber) select l;
+                }
+                if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                }
+                if (c.entity.SupCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.SupCode.StartsWith(c.entity.SupCode) select l;
+                }
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                }
+
+
+
+
+
+
+
+
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+
+
         }
         #endregion
 
@@ -1242,7 +1425,64 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchFbAdjustSalepriceGoodsList(SearchDtoBase<FbAdjustSalepriceGoods> c, FbAdjustSalepriceGoods s)
         {
             c.entity = s;
-            return Json(FbAdjustSalepriceGoodsService.Search(c), JsonRequestBehavior.AllowGet);
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.fb_adjust_saleprice_goods
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        orderby l.Id
+                        select new
+                        {
+                            AdjustNumber = l.adjust_number,
+                            GoodsCode = l.goods_code,
+                            GoodsName=j_g.goods_name,
+                            GoodsBarCode = l.goods_bar_code,
+                            SalePriceOld = l.sale_price_old,
+                            SalePrice = l.sale_price,
+                            VipPriceOld = l.vip_price_old,
+                            VipPrice = l.vip_price,
+                            TradePriceOld = l.trade_price_old,
+                            TradePrice = l.trade_price,
+                            StockQty = l.stock_qty,
+                            LossMoney = l.loss_money,
+                            NontaxLossMoney = l.nontax_loss_money,
+                            Id = l.Id
+
+                        };
+                if (c.entity.AdjustNumber.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.AdjustNumber.StartsWith(c.entity.AdjustNumber) select l;
+                }
+                if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                }
+                if (c.entity.GoodsBarCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsBarCode.StartsWith(c.entity.GoodsBarCode) select l;
+                }
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                }
+
+
+
+
+
+
+
+
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+
+
         }
         #endregion
 
@@ -1471,7 +1711,83 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchFbAdjustSupplierGoodsList(SearchDtoBase<FbAdjustSupplierGoods> c, FbAdjustSupplierGoods s)
         {
             c.entity = s;
-            return Json(FbAdjustSupplierGoodsService.Search(c), JsonRequestBehavior.AllowGet);
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.fb_adjust_supplier_goods
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        orderby l.Id
+                        select new
+                        {
+                            AdjustNumber = l.adjust_number,
+                            GoodsCode = l.goods_code,
+                            GoodsName=j_g.goods_name,
+                            SupCodeOld = l.sup_code_old,
+                            OpCodeOld = l.op_code_old,
+                            SupCode = l.sup_code,
+                            SupName = l.sup_name,
+                            PyCode = l.py_code,
+                            OpCode = l.op_code,
+                            PoolRate = l.pool_rate,
+                            OfferMode = l.offer_mode,
+                            OfferMin = l.offer_min,
+                            InputTax = l.input_tax,
+                            PurchasePrice = l.purchase_price,
+                            NontaxPurchasePrice = l.nontax_purchase_price,
+                            Id = l.Id
+
+                        };
+                if (c.entity.AdjustNumber.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.AdjustNumber.StartsWith(c.entity.AdjustNumber) select l;
+                }
+                if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                }
+                if (c.entity.SupCodeOld.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.SupCodeOld.StartsWith(c.entity.SupCodeOld) select l;
+                }
+                if (c.entity.OpCodeOld.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OpCodeOld.StartsWith(c.entity.OpCodeOld) select l;
+                }
+                if (c.entity.SupCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.SupCode.StartsWith(c.entity.SupCode) select l;
+                }
+                if (c.entity.SupName.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.SupName.StartsWith(c.entity.SupName) select l;
+                }
+                if (c.entity.PyCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.PyCode.StartsWith(c.entity.PyCode) select l;
+                }
+                if (c.entity.OpCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OpCode.StartsWith(c.entity.OpCode) select l;
+                }
+                if (c.entity.OfferMode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OfferMode.StartsWith(c.entity.OfferMode) select l;
+                }
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                }
+
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+
+
         }
         #endregion
 

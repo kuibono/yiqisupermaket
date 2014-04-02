@@ -292,6 +292,9 @@
                         商品编码
 					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
                     </div>
+                    <div field="GoodsName" headeralign="center" align="center" width="60">
+                        商品名称
+                    </div>
                     <div field="GbCodeOld" headeralign="center" align="center" width="60">
                         原大类
                     <input id="Control_GbCode" enabled="false" class="mini-combobox" name="GbCodeOld" property="editor" url="/Common/GetComboData?table=fb_pa_goods_gb&valueColumn=gb_code&textColumn=gb_name" onvaluechanged="onGbValuechanged" style="width: 100%;" />
