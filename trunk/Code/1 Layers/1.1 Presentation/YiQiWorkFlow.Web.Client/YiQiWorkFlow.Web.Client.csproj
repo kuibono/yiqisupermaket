@@ -215,13 +215,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Global.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ms\UserControl\UCMemberArchives.ascx.cs">
-      <DependentUpon>UCMemberArchives.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Ms\UserControl\UCMemberArchives.ascx.designer.cs">
-      <DependentUpon>UCMemberArchives.ascx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -1070,7 +1063,7 @@
     <Content Include="Views\Common\MemberArchivesSelector.cshtml" />
     <Content Include="Views\Common\CardArchivesSelector.cshtml" />
     <None Include="Views\Common\GoodsClassSelector.cshtml" />
-    <Content Include="Views\Ms\UserControl\UCMemberArchives.ascx" />
+    <Content Include="Views\Shared\UCMemberArchives.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

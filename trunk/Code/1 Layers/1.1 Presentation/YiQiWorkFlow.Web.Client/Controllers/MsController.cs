@@ -320,9 +320,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return Json(MsCardArchivesService.Search(c), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetMsCardArchivesList()
+        public JsonResult GetMsCardArchivesList(MsCardArchives m)
         {
-            var searchDtoBase = MsCardArchivesService.Search(new SearchDtoBase<MsCardArchives>() { pageSize = int.MaxValue, entity = new MsCardArchives() { CardState = "0" } });
+            var searchDtoBase = MsCardArchivesService.Search(new SearchDtoBase<MsCardArchives>() { pageSize = int.MaxValue, entity = m });
 
             IList<MsCardArchives> msCardArvhicesList = searchDtoBase.data;
 
