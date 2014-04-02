@@ -1061,6 +1061,7 @@
     <Content Include="Views\Common\MemberArchivesSelector.cshtml" />
     <Content Include="Views\Common\CardArchivesSelector.cshtml" />
     <None Include="Views\Common\GoodsClassSelector.cshtml" />
+    <Content Include="Views\Ms\UserControl\UCMemberArchives.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
