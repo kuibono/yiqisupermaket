@@ -345,7 +345,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 for (int i = 0; i < m.MadeQty; i++)
                 {
                     string cardName = cardType.CardName;
-                    int length = cardType.CardNumberLen.Length - (Convert.ToInt32(m.BeginCardNumber) + i).ToString().Length;
+                    int length = cardType.CardNumberLen.ToInt32() - (Convert.ToInt32(m.BeginCardNumber) + i).ToString().Length;
                     string cardPositionStr = string.Empty;
                     if (length > 0)
                     {
