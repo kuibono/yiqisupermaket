@@ -139,7 +139,7 @@ function onUpgradeTypeRender(e) {
 }
 
 // 卡状态
-function onCardTypeRender(e) {
+function onCardStateRender(e) {
     if (e.value == "0") {
         return "待发";
     } else if (e.value == "1") {
