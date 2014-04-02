@@ -300,7 +300,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <param name="c">搜索dto包括keyword分页数据</param>
         /// <param name="s">搜索内容，表数据填充</param>
         /// <returns></returns>
-        public JsonResult SearchMsCardArchivesList(SearchDtoBase<MsCardArchives> c, MsCardArchives s, MsMadecardManage m)
+        public JsonResult GetMsCardArchivesListByMadeNumber(SearchDtoBase<MsCardArchives> c, MsCardArchives s, MsMadecardManage m)
         {
             if (!string.IsNullOrEmpty(s.MadeNumber))
             {
@@ -312,6 +312,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 //MsMadecardManage m = new MsMadecardManage();
                 return GenerateCardArchivesListByMadeCardInfo(m);
             }
+        }
+
+        public JsonResult SearchMsCardArchivesList(SearchDtoBase<MsCardArchives> c, MsCardArchives s, MsMadecardManage m)
+        {
+            c.entity = s;
+            return Json(MsCardArchivesService.Search(c), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetMsCardArchivesList()

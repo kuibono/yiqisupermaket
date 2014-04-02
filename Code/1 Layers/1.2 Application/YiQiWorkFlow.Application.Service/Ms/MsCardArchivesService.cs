@@ -273,6 +273,7 @@ namespace YiQiWorkFlow.Application.Service.Ms
             return result;
         }
 
+        [Transaction]
         public bool ExamByMadeCardManage(MsMadecardManage m)
         {
             bool result = false;
@@ -289,7 +290,7 @@ namespace YiQiWorkFlow.Application.Service.Ms
 
                 item.CreateDate = DateTime.Now;
                 item.CardState = "0";
-                Update(item);
+                EntityRepository.Update(item);
             }
 
             return result;
