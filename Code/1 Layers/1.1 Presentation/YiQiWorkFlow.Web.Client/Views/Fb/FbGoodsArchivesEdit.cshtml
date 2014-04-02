@@ -8,7 +8,7 @@
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
     <script type="text/javascript" src="/Scripts/swfupload/swfupload.js"></script>
     <script type="text/javascript" src="/Scripts/chinese2py.js"></script>
-    <script type="text/javascript"> var pageTitle = "商品档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:47"; var id = "@Model.Id"; pageName = "FbGoodsArchivesEdit";var isNew=@Model.IsAdded.ToString().ToLower();var canModify=@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.IfChangePurchasePriceInArchives; </script>
+    <script type="text/javascript"> var pageTitle = "商品档案"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:47"; var id = "@Model.Id"; pageName = "FbGoodsArchivesEdit";var isNew=@Model.IsAdded.ToString().ToLower();var canModify=@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.IfChangePurchasePriceInArchives;var userId="@YiQiWorkFlow.Web.Client.Common.MyEnv.LoginUser.Id"; </script>
     <script type="text/javascript">
         var clearExameAfterSave = true;
         var activeGrid;
@@ -212,11 +212,8 @@
         }
 
         function onSupnameChanged(e) {
-            //$("#grid1 input[name='SupName']:first").val(e.selected.SupName);
-            //$("#grid1 input[name='SupName']:first").parents(".mini-grid-editor").find("input:hidden").val(e.selected.SupName);
             mini.getbyName("SupName", "grid1").setValue(e.selected.SupName);
             mini.getbyName("PyCode", "grid1").setValue(e.selected.PyCode);
-            //$("#grid1 input[name='PyCode']:first").val(e.selected.PyCode);
             $("#grid1 input[name='OpCode']:first").focus();
         }
         function onBindValuechanged(e) {
@@ -313,7 +310,9 @@
                 var chk=mini.get("Control_IfExamine");
                 chk.setValue("1");
                 mini.get("Control_ExamineDate").setValue(new Date());
+                mini.get("Control_Assessor").setValue(userId);
                 clearExameAfterSave = false;
+                SaveData();
             });
             setBindtabEnable();
             // 是否可以直接修改售价
@@ -603,16 +602,16 @@
 
                 <div class="ablock">
                     <label for="Control_Operator">操作员:</label>
-                    <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
+                    <input value="@Model.Operator" class="mini-combobox" name="Operator" id="Control_Operator" url="/Common/GetComboData?table=sys_login_power&valueColumn=em_code&textColumn=em_name"  />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_Assessor">审核人:</label>
-                    <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
+                    <input value="@Model.Assessor" class="mini-combobox" name="Assessor" id="Control_Assessor" url="/Common/GetComboData?table=sys_login_power&valueColumn=em_code&textColumn=em_name"  />
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_IfExamine">&nbsp;</label>
+                    <label for="Control_IfExamine">是否审核</label>
                     <div id="Control_IfExamine" name="IfExamine" value="@Model.IfExamine" class="mini-checkbox" enabled="false" readonly="false" text="审核" trueValue="1" falseValue="0"></div>
                 </div>
 

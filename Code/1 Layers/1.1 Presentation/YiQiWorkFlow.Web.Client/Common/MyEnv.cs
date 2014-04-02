@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Collections.Specialized;
 using System.Data;
 using YiQiWorkFlow.Domain.Basement;
+using YiQiWorkFlow.Domain.Sys;
 namespace YiQiWorkFlow.Web.Client.Common
 {
     public class MyEnv
@@ -17,75 +18,13 @@ namespace YiQiWorkFlow.Web.Client.Common
         private static IApplicationContext _applicationContext = ContextRegistry.GetContext();
 
 
-        public static int CurentUserType
+        public static SysLoginPower LoginUser
         {
             get
             {
-                object session = System.Web.HttpContext.Current.Session[AuthorizeSettings.SessionUserType];
-                if (session == null)
-                {
-                    return int.MinValue;
-                }
-                return Convert.ToInt32(session);
+                return new SysLoginPower { Id = "13964358278177780", EmName = "李明" };
             }
         }
-
-        public static bool IsHistoryEmloyee
-        {
-            get
-            {
-                HttpCookie cookie = HttpContext.Current.Request.Cookies["userType"];
-                if (cookie == null || cookie.Value == null)
-                {
-                    return false;
-                }
-                string value = cookie.Value.ToString();
-                if (value == "e")
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-        public static bool IsHistorySupplier
-        {
-            get
-            {
-                HttpCookie cookie = HttpContext.Current.Request.Cookies["userType"];
-                if (cookie == null || cookie.Value == null)
-                {
-                    return false;
-                }
-                string value = cookie.Value.ToString();
-                if (value == "s")
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-        public static bool IsEmployeeLogin
-        {
-            get
-            {
-                return CurentUserType == 0;
-            }
-        }
-        public static bool IsSupplierLogin
-        {
-            get
-            {
-                return CurentUserType == 1;
-            }
-        }
-
         #region GetServices
 
 
