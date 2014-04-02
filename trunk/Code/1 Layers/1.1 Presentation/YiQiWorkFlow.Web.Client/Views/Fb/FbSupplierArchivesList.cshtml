@@ -24,11 +24,11 @@
                     <td style="white-space: nowrap;" align="right">
                         <table>
                             <tr>
-                                <td>
+                                <td style="width:80px;">
                                     <input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
                                 </td>
-                                <td>
-                                    <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
+                                <td style="width:250px;">
+                                    <input id="keyword" class="mini-textbox" emptytext="请输入供货商名称、编码或者拼音码" onenter="search" />
                                 </td>
                                 <td>
                                     <a class="mini-button" onclick="search()">查询</a>
@@ -52,9 +52,9 @@
                 <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer" cellstyle="padding:0;">
                     管理
                 </div>
-				<div field="SupCode" headeralign="center" align="center" width="140">
+				<div field="Id" headeralign="center" align="center" width="140">
 				    供货商编码
-					<input id="filter_SupCode" name="SupCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+					<input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
 				<div field="SupName" headeralign="center" align="center" width="150">
 				    供货商名称

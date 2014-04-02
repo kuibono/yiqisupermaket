@@ -3471,7 +3471,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         orderby l.sup_code
                         select new
                                    {
-                                       SupCode = l.sup_code,
+                                       Id = l.sup_code,
                                        SupName = l.sup_name,
                                        PyCode = l.py_code,
                                        SupTypeCode = l.sup_type_code,
@@ -3515,7 +3515,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 if (c.entity.Id.IsNullOrEmpty() == false)
                 {
-                    q = from l in q where l.SupCode.StartsWith(c.entity.Id) select l;
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
                 }
                 if (c.entity.SupName.IsNullOrEmpty() == false)
                 {
