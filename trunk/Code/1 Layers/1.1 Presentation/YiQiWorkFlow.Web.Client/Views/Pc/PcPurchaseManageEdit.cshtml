@@ -94,6 +94,7 @@
             mini.getbyName("PurchaseMoney", "datagrid1").setValue(0);
             mini.getbyName("NontaxPurchaseMoney", "datagrid1").setValue(0);
             mini.getbyName("ProduceDate", "datagrid1").setValue(e.selected.ProduceDate);
+            mini.getbyName("GoodsName", "datagrid1").setValue(e.selected.GoodsName);
 
             mini.getbyName("PurchaseQty", "datagrid1").focus();
             //$(mini.getbyName("PurchaseQty", "datagrid1")).select();
@@ -211,7 +212,8 @@
                                         NontaxPurchasePrice: data[i].NontaxPurchasePrice,
                                         PurchaseMoney: data[i].PurchaseMoney,
                                         NontaxPurchaseMoney: data[i].NontaxPurchaseMoney,
-                                        ProduceDate: data[i].ProduceDate
+                                        ProduceDate: data[i].ProduceDate,
+                                        GoodsName:data[i].GoodsName
                                     };
                                     addRow(row);
                                 }
@@ -243,8 +245,7 @@
                         <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
                         <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
                     </td>
-                    <td>
-                    </td>
+                    <td></td>
                 </tr>
             </table>
         </div>
@@ -345,7 +346,7 @@
 
                 <div class="ablock">
                     <label for="Control_PcMode">采购方式:</label>
-                    <input type="text"  value="传真" enabled="false" class="mini-textbox" name="PcMode" id="Control_PcMode" vtype="maxLength:20" />
+                    <input type="text" value="传真" enabled="false" class="mini-textbox" name="PcMode" id="Control_PcMode" vtype="maxLength:20" />
                 </div>
 
                 <div class="ablock">
@@ -426,22 +427,26 @@
                     </div>
                     <div field="GoodsCode" headeralign="center" align="center" width="60">
                         商品编码
-					<div id="filter_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
-                        <div property="columns">
-                            <div header="条形码" field="GoodsBarCode">
+					    <div id="filter_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
+                            <div property="columns">
+                                <div header="条形码" field="GoodsBarCode">
+                                </div>
+                                <div header="拼音码" field="PyCode">
+                                </div>
+                                <div header="名称" field="GoodsName">
+                                </div>
                             </div>
-                            <div header="拼音码" field="PyCode">
-                            </div>
-                            <div header="名称" field="GoodsName">
-                            </div>
-                        </div>
-
                     </div>
+                    </div>
+                    <div field="GoodsName" headeralign="center" align="center" width="60">
+                        商品名称
+                        <input id="filter_GoodsBarCode" name="GoodsName" class="mini-textbox" enabled="false" property="editor" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="GoodsBarCode" headeralign="center" align="center" width="60">
                         商品销售码
 					<input id="filter_GoodsBarCode" name="GoodsBarCode" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
                     </div>
+
                     <div field="Specification" headeralign="center" align="center" width="60">
                         规格
 					<input id="filter_Specification" name="Specification" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
