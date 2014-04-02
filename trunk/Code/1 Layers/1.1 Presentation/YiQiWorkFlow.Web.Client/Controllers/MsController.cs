@@ -345,7 +345,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 for (int i = 0; i < m.MadeQty; i++)
                 {
                     string cardName = cardType.CardName;
-                    int length = Convert.ToInt32(cardType.CardNumberLen) - (string.IsNullOrEmpty(cardType.CardNumberPrefix) ? 0 : cardType.CardNumberPrefix.Length) - (Convert.ToInt32(m.BeginCardNumber) + i);
+                    int length = cardType.CardNumberLen.Length - (Convert.ToInt32(m.BeginCardNumber) + i).ToString().Length;
                     string cardPositionStr = string.Empty;
                     if (length > 0)
                     {
@@ -379,11 +379,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         TotalPrepaid = 0,
                         TransactCharge = 0,
                         UsePrepaid = 0,
-                        // 卡面明码 = 卡前缀&流水位数(开始卡号补充之后的长度) + 
-                        SurfaceNumber = cardType.CardNumberPrefix + cardPositionStr + (m.BeginCardNumber + i).ToString(),
+                        // 卡面明码 = 流水位数 + (开始卡号补充之后的长度) + 
+                        SurfaceNumber = cardPositionStr + (m.BeginCardNumber + i).ToString(),
 
                         // 卡号 = 卡类型前缀 + 卡面明码 + 随机位数
-                        Id = cardType.CardNumberPrefix + (m.BeginCardNumber + i).ToString() + StaticClass.RandCode(cardType.RandLen.ToInt32())
+                        Id = cardType.CardNumberPrefix + cardPositionStr + (m.BeginCardNumber + i).ToString() + StaticClass.RandCode(cardType.RandLen.ToInt32())
                     };
 
                     // 卡有效期、积分有效期 = 制卡发放信息 + 卡类型有效期(逻辑判断)

@@ -15,7 +15,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
 {
     public class MsCardArchivesService : IMsCardArchivesService
     {
-
         public IRepositoryGUID<MsCardArchives> EntityRepository { get; set; }
 
         [Transaction]
@@ -42,7 +41,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
             return result;
         }
 
-
         [Transaction]
         public void Update(MsCardArchives entity)
         {
@@ -63,7 +61,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
                 EntityRepository.Delete(entity);
             }
         }
-
 
         [Transaction]
         public SearchResult<MsCardArchives> Search(SearchDtoBase<MsCardArchives> c)
@@ -182,6 +179,10 @@ namespace YiQiWorkFlow.Application.Service.Ms
                     q = q.Where(p => p.Operator.Contains(c.entity.Operator));
                 }
 
+                if (!string.IsNullOrEmpty(c.entity.MadeNumber))
+                {
+                    q = q.Where(p => p.MadeNumber == c.entity.MadeNumber);
+                }
             }
             if (string.IsNullOrEmpty(c.key) == false)
             {
@@ -198,8 +199,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
                     || l.CurrentPrepaidEncrypt.Contains(c.key)
                     || l.Operator.Contains(c.key)
                     select l;
-
-
             }
             int count = q.Count();
 
@@ -227,8 +226,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
                     || l.CurrentPrepaidEncrypt.Contains(key)
                     || l.Operator.Contains(key)
                     select l;
-
-
             }
             q = q.Skip((pageIndex - 1) * pageSize).Take(pageSize);
             var result = q.ToList();
@@ -245,7 +242,6 @@ namespace YiQiWorkFlow.Application.Service.Ms
             }
         }
 
-
         [Transaction]
         public string SaveList(List<MsCardArchives> msCardArchivesList)
         {
@@ -261,7 +257,7 @@ namespace YiQiWorkFlow.Application.Service.Ms
                 {
                     if (EntityRepository.LinqQuery.Any(x => x.SurfaceNumber.Equals(item.SurfaceNumber)))
                     {
-                        result += "卡号码: " + item.SurfaceNumber + " 重复,无法保存" + Environment.NewLine; 
+                        result += "卡号码: " + item.SurfaceNumber + " 重复,无法保存" + Environment.NewLine;
                     }
                 }
             }

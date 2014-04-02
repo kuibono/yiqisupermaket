@@ -113,7 +113,6 @@
         }
 
         function GenerateCard() {
-            debugger;
             var form = new mini.Form("#formMain"); // default form
             form.validate();
             if (form.isValid() == false) return false;
@@ -130,7 +129,6 @@
                     cache: false,
                     dataType: "json",
                     success: function (r) {
-                        debugger;
                         var grid = mini.get('#datagrid1');
                         grid.setData(r);
                     },
@@ -307,7 +305,7 @@
 
             <fieldset>
                 <legend>卡信息</legend>
-                <div id="datagrid1" class="mini-datagrid" url='@(string.IsNullOrEmpty(Model.Id) ? "/Ms/SearchMsCardArchivesList" : "/Ms/SearchMsCardArchivesList?MadeNumber=Model.Id)")'
+                <div id="datagrid1" class="mini-datagrid" url='@("/Ms/SearchMsCardArchivesList?MadeNumber=" + @Model.Id)'
                     style="width: 100%; height: 200px;" idfield="Id" allowresize="false" showpager="false">
                     <div property="columns">
                         <div type="indexcolumn" width="30">
@@ -330,22 +328,22 @@
                         <div field="MsName" headeralign="center" align="center" width="60">
                             会员姓名					
                         </div>
-                        <div field="CardState" headeralign="center" align="center" width="60" data="c_CardState">
+                        <div field="CardState" headeralign="center" align="center" width="60" data="c_CardState" renderer="onCardStateRender">
                             卡状态					
                         </div>
-                        <div field="CreateDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                        <div field="CreateDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
                             制卡日期					
                         </div>
-                        <div field="GrantDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                        <div field="GrantDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
                             发卡日期					
                         </div>
-                        <div field="EffectiveDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                        <div field="EffectiveDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
                             生效日期					
                         </div>
-                        <div field="PointsUsefulLifeDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                        <div field="PointsUsefulLifeDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
                             积分有效期					
                         </div>
-                        <div field="CardUsefulLifeDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                        <div field="CardUsefulLifeDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
                             卡有效期					
                         </div>
                         <div field="TransactCharge" headeralign="center" align="center" width="60">
