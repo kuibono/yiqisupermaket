@@ -147,6 +147,7 @@
         function onvaluechanged(e) {
             if (e) {
                 // 赋值卡信息(卡号、卡状态、卡类型信息(卡类型编码、卡类型名称)、生效日期、积分有效期、卡有效期、办卡费用、押金金额)
+                debugger;
                 mini.get('#Control_CardNumber').setValue(e.selected.Id);
                 mini.get('#Control_CardState').setValue(e.selected.CardState);
                 mini.get('#Control_CardCode').setValue(e.selected.CardCode);
@@ -384,7 +385,7 @@
                         <!-- 会员信息iframe 考虑换成ASP.NET MVC用户控件 -->
                         <!--<iframe src="/Ms/MsMemberArchivesEdit" class="mainframe" frameborder="0" width="100%" height="400px" title="会员信息"></iframe>-->
 
-                        @Html.Partial("UserControl/UCMemberArchives");
+                        @Html.Partial("UserControl/UCMemberArchives")
                     </fieldset>
 
                 </div>
