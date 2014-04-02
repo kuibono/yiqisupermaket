@@ -1,5 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-
+﻿<%@ Control Language="C#" CodeBehind="UCMemberArchives.ascx.cs" Inherits="System.Web.Mvc.ViewUserControl" %>
 <div class="ablock">
     <label for="Control_CardNumber">卡号:</label>
     <input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" allowinput="false" readonly="readonly" />
