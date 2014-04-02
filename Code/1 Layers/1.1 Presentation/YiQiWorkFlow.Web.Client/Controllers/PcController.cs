@@ -91,7 +91,76 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchPcPurchaseDetailList(SearchDtoBase<PcPurchaseDetail> c, PcPurchaseDetail s)
         {
             c.entity = s;
-            return Json(PcPurchaseDetailService.Search(c), JsonRequestBehavior.AllowGet);
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.pc_purchase_detail
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        orderby l.Id
+                        select new
+                        {
+                            PcNumber = l.pc_number,
+                            GoodsCode = l.goods_code,
+                            GoodsName=j_g.goods_name,
+                            GoodsBarCode = l.goods_bar_code,
+                            Specification = l.specification,
+                            PackUnitCode = l.pack_unit_code,
+                            OfferMin = l.offer_min,
+                            StockQty = l.stock_qty,
+                            OrderQty = l.order_qty,
+                            PackQty = l.pack_qty,
+                            PackCoef = l.pack_coef,
+                            PurchaseQty = l.purchase_qty,
+                            PutinQty = l.putin_qty,
+                            SalePrice = l.sale_price,
+                            PurchasePrice = l.purchase_price,
+                            NontaxPurchasePrice = l.nontax_purchase_price,
+                            PurchaseMoney = l.purchase_money,
+                            NontaxPurchaseMoney = l.nontax_purchase_money,
+                            ProduceDate = l.produce_date,
+                            SysGuid = l.sys_guid,
+                            Id = l.Id
+
+                        };
+                if (c.entity.PcNumber.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.PcNumber.StartsWith(c.entity.PcNumber) select l;
+                }
+                if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                }
+                if (c.entity.GoodsBarCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsBarCode.StartsWith(c.entity.GoodsBarCode) select l;
+                }
+                if (c.entity.Specification.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Specification.StartsWith(c.entity.Specification) select l;
+                }
+                if (c.entity.PackUnitCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.PackUnitCode.StartsWith(c.entity.PackUnitCode) select l;
+                }
+                if (c.entity.SysGuid.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.SysGuid.StartsWith(c.entity.SysGuid) select l;
+                }
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                }
+
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+
+
         }
         #endregion
 
@@ -1046,7 +1115,80 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchPcReturnDetailList(SearchDtoBase<PcReturnDetail> c, PcReturnDetail s)
         {
             c.entity = s;
-            return Json(PcReturnDetailService.Search(c), JsonRequestBehavior.AllowGet);
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.pc_return_detail
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        orderby l.Id
+                        select new
+                        {
+                            RtNumber = l.rt_number,
+                            GoodsCode = l.goods_code,
+                            GoodsName=j_g.goods_name,
+                            GoodsBarCode = l.goods_bar_code,
+                            Specification = l.specification,
+                            PackUnitCode = l.pack_unit_code,
+                            PackQty = l.pack_qty,
+                            PackCoef = l.pack_coef,
+                            ReturnQty = l.return_qty,
+                            SalePrice = l.sale_price,
+                            PurchasePrice = l.purchase_price,
+                            NontaxPurchasePrice = l.nontax_purchase_price,
+                            ReturnMoney = l.return_money,
+                            NontaxReturnMoney = l.nontax_return_money,
+                            SaleMoney = l.sale_money,
+                            NontaxSaleMoney = l.nontax_sale_money,
+                            SysGuid = l.sys_guid,
+                            Id = l.Id
+
+                        };
+                if (c.entity.RtNumber.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.RtNumber.StartsWith(c.entity.RtNumber) select l;
+                }
+                if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                }
+                if (c.entity.GoodsBarCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsBarCode.StartsWith(c.entity.GoodsBarCode) select l;
+                }
+                if (c.entity.Specification.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Specification.StartsWith(c.entity.Specification) select l;
+                }
+                if (c.entity.PackUnitCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.PackUnitCode.StartsWith(c.entity.PackUnitCode) select l;
+                }
+                if (c.entity.SysGuid.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.SysGuid.StartsWith(c.entity.SysGuid) select l;
+                }
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                }
+
+
+
+
+
+
+
+
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+
+
         }
         #endregion
 

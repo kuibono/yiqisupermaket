@@ -96,7 +96,8 @@
                         NontaxPurchasePrice:j.data[i].NontaxPurchasePrice,
                         PurchaseMoney:j.data[i].PurchaseMoney,
                         NontaxPurchaseMoney:j.data[i].NontaxPurchaseMoney,
-                        ProduceDate:j.data[i].ProduceDate
+                        ProduceDate:j.data[i].ProduceDate,
+                        GoodsName: data[i].GoodsName
                     };
                     var grid=mini.get("datagrid1");
                     grid.addRow(row);
@@ -219,7 +220,8 @@
                                         PurchaseMoney: data[i].PurchaseMoney,
                                         NontaxPurchaseMoney: data[i].NontaxPurchaseMoney,
                                         ProduceDate: data[i].ProduceDate,
-                                        GoodsName:data[i].GoodsName
+                                        GoodsName:data[i].GoodsName,
+                                        GoodsName: data[i].GoodsName
                                     };
                                     addRow(row);
                                 }
@@ -413,7 +415,10 @@
                     </div>
 
                     </div>
-
+                    <div field="GoodsName" headeralign="center" align="center" width="60">
+                        商品名称
+                        <input id="filter_GoodsBarCode" name="GoodsName" class="mini-textbox" enabled="false" property="editor" enabled="false" style="width: 100%;" />
+                    </div>
                     <div field="GoodsName" headeralign="center" align="center" width="60">
                         商品销售码
 					<input id="editor_GoodsName" name="GoodsName" property="editor" enabled="false" class="mini-textbox" style="width: 100%;" />
