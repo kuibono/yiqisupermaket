@@ -2902,11 +2902,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion
     }
 
-    public partial class UCMemberArchives : System.Web.Mvc.ViewUserControl
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            // 处理会员信息数据
-        }
-    }
+    //public partial class UCMemberArchives : System.Web.Mvc.ViewUserControl
+    //{
+    //    protected void Page_Load(object sender, EventArgs e)
+    //    {
+    //        // 处理会员信息数据
+    //    }
+    //}
 }
