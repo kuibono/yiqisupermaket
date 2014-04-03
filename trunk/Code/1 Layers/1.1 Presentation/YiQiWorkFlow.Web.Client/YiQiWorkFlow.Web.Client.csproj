@@ -188,9 +188,7 @@
     <Compile Include="Controllers\EmController.cs" />
     <Compile Include="Controllers\FbController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MsController.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="Controllers\MsController.cs" />
     <Compile Include="Controllers\OpController.cs" />
     <Compile Include="Controllers\PcController.cs" />
     <Compile Include="Controllers\RtController.cs" />

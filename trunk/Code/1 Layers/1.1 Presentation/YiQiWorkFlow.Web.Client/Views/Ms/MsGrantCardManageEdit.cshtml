@@ -168,6 +168,77 @@
             }
         });
 
+        function onMemberTypeValueChanged(e) {
+            if (e) {
+                debugger;
+                if (e.selected.id == 1) {
+                    // 新会员,清空数据,右侧可以编辑
+                    mini.get('Control_MsCode').attr('readonly', '');
+                    mini.get('Control_MsName').attr('readonly', '');
+                    mini.get('Control_Birthday').attr('readonly', '');
+                    mini.get('Control_Sex').attr('readonly', '');
+                    mini.get('Control_PoliticsCode').attr('readonly', '');
+                    mini.get('Control_NationCode').attr('readonly', '');
+                    mini.get('Control_EducationCode').attr('readonly', '');
+                    mini.get('Control_ProfessionalTitleCode').attr('readonly', '');
+                    mini.get('Control_IfMarried').attr('readonly', '');
+                    mini.get('Control_NativePlace').attr('readonly', '');
+                    mini.get('Control_Idcard').attr('readonly', '');
+                    mini.get('Control_FamilyPhone').attr('readonly', '');
+                    mini.get('Control_Handset').attr('readonly', '');
+                    mini.get('Control_eMail').attr('readonly', '');
+                    mini.get('Control_FamilyAddress').attr('readonly', '');
+                    mini.get('Control_Postalcode').attr('readonly', '');
+                    mini.get('Control_Stature').attr('readonly', '');
+                    mini.get('Control_Width').attr('readonly', '');
+
+                    mini.get('Control_MsCode').setValue('');
+                    mini.get('Control_MsName').setValue('');
+                    mini.get('Control_Birthday').setValue('');
+                    mini.get('Control_Sex').setValue('');
+                    mini.get('Control_PoliticsCode').setValue('');
+                    mini.get('Control_NationCode').setValue('');
+                    mini.get('Control_EducationCode').setValue('');
+                    mini.get('Control_ProfessionalTitleCode').setValue('');
+                    mini.get('Control_IfMarried').setValue('');
+                    mini.get('Control_NativePlace').setValue('');
+                    mini.get('Control_Idcard').attr('readonly', '');
+                    mini.get('Control_FamilyPhone').attr('readonly', '');
+                    mini.get('Control_Handset').attr('readonly', '');
+                    mini.get('Control_eMail').attr('readonly', '');
+                    mini.get('Control_FamilyAddress').attr('readonly', '');
+                    mini.get('Control_Postalcode').attr('readonly', '');
+                    mini.get('Control_Stature').attr('readonly', '');
+                    mini.get('Control_Width').attr('readonly', '');
+
+                } else {
+                    // 老会员,清空数据,右侧无法编辑 赋值
+                    mini.get('Control_MsCode').attr('readonly', 'readonly');
+                    mini.get('Control_MsName').attr('readonly', 'readonly');
+                    mini.get('Control_Birthday').attr('readonly', 'readonly');
+                    mini.get('Control_Sex').attr('readonly', 'readonly');
+                    mini.get('Control_PoliticsCode').attr('readonly', 'readonly');
+                    mini.get('Control_NationCode').attr('readonly', 'readonly');
+                    mini.get('Control_EducationCode').attr('readonly', 'readonly');
+                    mini.get('Control_ProfessionalTitleCode').attr('readonly', 'readonly');
+                    mini.get('Control_IfMarried').attr('readonly', 'readonly');
+                    mini.get('Control_NativePlace').attr('readonly', 'readonly');
+                    mini.get('Control_Idcard').attr('readonly', 'readonly');
+                    mini.get('Control_FamilyPhone').attr('readonly', 'readonly');
+                    mini.get('Control_Handset').attr('readonly', 'readonly');
+                    mini.get('Control_eMail').attr('readonly', 'readonly');
+                    mini.get('Control_FamilyAddress').attr('readonly', 'readonly');
+                    mini.get('Control_Postalcode').attr('readonly', 'readonly');
+                    mini.get('Control_Stature').attr('readonly', 'readonly');
+                    mini.get('Control_Width').attr('readonly', 'readonly');
+
+                    // 获取会员信息
+                    var msCode = '';
+                    // ajax获取 赋值
+                }
+            }
+        }
+
     </script>
 
     <style type="text/css">
@@ -298,8 +369,8 @@
                         </div>
 
                         <div class="ablock">
-                            <label for="Control_MemberType">是否会员</label>
-                            <div id="Control_MemberTyper" name="MemberType" value="1" class="mini-combobox" data="c_MemberType"></div>
+                            <label for="Control_MemberType">会员类型</label>
+                            <div id="Control_MemberTyper" name="MemberType" value="2" class="mini-combobox" data="c_MemberType" onvaluechanged="onMemberTypeValueChanged"></div>
                         </div>
                         <div class="ablock">
                             <label for="Control_MsCode">会员编码:</label>
