@@ -78,6 +78,7 @@
         }
 
         function onGoodsChanged(e) {
+            mini.getbyName("GoodsName", "datagrid1").setValue(e.selected.GoodsName);
             mini.getbyName("GoodsBarCode", "datagrid1").setValue(e.selected.GoodsBarCode);
             mini.getbyName("Specification", "datagrid1").setValue(e.selected.Specification);
             mini.getbyName("PackUnitCode", "datagrid1").setValue(e.selected.PackUnitCode);
@@ -333,11 +334,11 @@
                     <input id="control_dName" value="@Model.dName" name="dName" class="mini-hidden" />
                 </div>
 
-                <div class="ablock">
+                @*<div class="ablock">
                     <label for="Control_bCode">门店编码:</label>
                     <input type="text"  value="@Model.bCode" class="mini-combobox" name="bCode" id="Control_bCode" url="/Common/GetComboData?table=bs_branch_archives&valueColumn=b_code&textColumn=b_name" required="true" />
                     <input id="control_bName" value="@Model.bName" name="bName" class="mini-hidden" />
-                </div>
+                </div>*@
 
                 <div class="ablock">
                     <label for="Control_PcType">采购类型:</label>
@@ -354,47 +355,47 @@
                     <input type="text"  value="@Model.WhCode" class="mini-combobox" name="WhCode" id="Control_WhCode" url="/Common/GetComboData?table=op_pa_warehouse&valueColumn=wh_code&textColumn=wh_name" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_PurchaseDate">采购日期:</label>
                     <input type="text" id="Control_PurchaseDate" name="PurchaseDate"  value="@Model.PurchaseDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_ExpectArriveDate">预计到货日期:</label>
                     <input type="text" id="Control_ExpectArriveDate" name="ExpectArriveDate"  value="@Model.ExpectArriveDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_IfCheck">是否验收:</label>
                     <div id="Control_IfCheck" name="IfCheck" value="@Model.IfCheck" trueValue="1" falseValue="0"  class="mini-checkbox" readonly="false" text="验收"></div>
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_CheckDate">验收日期:</label>
                     <input type="text" id="Control_CheckDate" name="CheckDate"  value="@Model.CheckDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_IfPutin">是否入库:</label>
                     <div id="Control_IfPutin" name="IfPutin" value="@Model.IfPutin" class="mini-checkbox" trueValue="1" falseValue="0" enabled="false" text="入库"></div>
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_PutinDate">入库日期:</label>
                     <input type="text" id="Control_PutinDate" name="PutinDate"  value="@Model.PutinDate" class="mini-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
 
-                <div class="ablock">
+                <div class="ablock hidden">
                     <label for="Control_CreateDate">创建时间:</label>
                     <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
 
-                <div class="ablock" style="display: none">
+                <div class="ablock hidden" style="display: none">
                     <label for="Control_Operator">操作员:</label>
                     <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock" style="display: none">
+                <div class="ablock hidden" style="display: none">
                     <label for="Control_Assessor">审核人:</label>
                     <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" enabled="false" id="Control_Assessor" vtype="maxLength:20" />
                 </div>
@@ -425,9 +426,9 @@
                     </div>
                     <div type="checkcolumn" width="30">
                     </div>
-                    <div field="GoodsCode" headeralign="center" align="center" width="60">
+                    <div field="GoodsCode" headeralign="center" align="center" width="120">
                         商品编码
-					    <div id="filter_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
+					    <div id="filter_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="Id" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
                             <div property="columns">
                                 <div header="条形码" field="GoodsBarCode">
                                 </div>
@@ -438,11 +439,11 @@
                             </div>
                     </div>
                     </div>
-                    <div field="GoodsName" headeralign="center" align="center" width="60">
+                    <div field="GoodsName" headeralign="center" align="center" width="120">
                         商品名称
                         <input id="filter_GoodsBarCode" name="GoodsName" class="mini-textbox" enabled="false" property="editor" enabled="false" style="width: 100%;" />
                     </div>
-                    <div field="GoodsBarCode" headeralign="center" align="center" width="60">
+                    <div field="GoodsBarCode" headeralign="center" align="center" width="100">
                         商品销售码
 					<input id="filter_GoodsBarCode" name="GoodsBarCode" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
                     </div>
@@ -455,19 +456,19 @@
                         包装单位
 					<input id="filter_PackUnitCode" name="PackUnitCode" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="OfferMin" headeralign="center" align="center" width="60">
+                    <div field="OfferMin" headeralign="center" align="center" width="60" dataType="currency">
                         最小订量
 					<input id="filter_OfferMin" name="OfferMin" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="StockQty" headeralign="center" align="center" width="60">
+                    <div field="StockQty" headeralign="center" align="center" width="60" dataType="currency">
                         库存数量
 					<input id="filter_StockQty" name="StockQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="OrderQty" headeralign="center" align="center" width="60">
+                    <div field="OrderQty" headeralign="center" align="center" width="60" dataType="currency">
                         在途数量
 					<input id="filter_OrderQty" name="OrderQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PackQty" headeralign="center" align="center" width="60">
+                    <div field="PackQty" headeralign="center" align="center" width="60" dataType="currency">
                         整件数量
 					<input id="filter_PackQty" name="PackQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
@@ -475,31 +476,31 @@
                         包装系数
 					<input id="filter_PackCoef" name="PackCoef" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PurchaseQty" headeralign="center" align="center" width="60">
+                    <div field="PurchaseQty" headeralign="center" align="center" width="60" dataType="currency">
                         单品数量
 					<input id="filter_PurchaseQty" name="PurchaseQty" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PutinQty" headeralign="center" align="center" width="60">
+                    <div field="PutinQty" headeralign="center" align="center" width="60" dataType="currency">
                         入库数量
 					<input id="filter_PutinQty" name="PutinQty" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="SalePrice" headeralign="center" align="center" width="60">
+                    <div field="SalePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         销售价
 					<input id="filter_SalePrice" name="SalePrice" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PurchasePrice" headeralign="center" align="center" width="60">
+                    <div field="PurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         含税进价
 					<input id="filter_PurchasePrice" name="PurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
+                    <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         不含税进价
 					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PurchaseMoney" headeralign="center" align="center" width="60">
+                    <div field="PurchaseMoney" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         含税金额
 					<input id="filter_PurchaseMoney" name="PurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="NontaxPurchaseMoney" headeralign="center" align="center" width="60">
+                    <div field="NontaxPurchaseMoney" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         不含税金额
 					<input id="filter_NontaxPurchaseMoney" name="NontaxPurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>

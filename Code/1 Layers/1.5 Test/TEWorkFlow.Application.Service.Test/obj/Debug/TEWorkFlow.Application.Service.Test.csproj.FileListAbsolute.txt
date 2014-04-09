@@ -1,0 +1,5 @@
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.5 Test\TEWorkFlow.Application.Service.Test\bin\Debug\TEWorkFlow.Application.Service.Test.dll
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.5 Test\TEWorkFlow.Application.Service.Test\bin\Debug\TEWorkFlow.Application.Service.Test.pdb
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.5 Test\TEWorkFlow.Application.Service.Test\obj\Debug\TEWorkFlow.Application.Service.Test.csprojResolveAssemblyReference.cache
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.5 Test\TEWorkFlow.Application.Service.Test\obj\Debug\TEWorkFlow.Application.Service.Test.dll
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.5 Test\TEWorkFlow.Application.Service.Test\obj\Debug\TEWorkFlow.Application.Service.Test.pdb

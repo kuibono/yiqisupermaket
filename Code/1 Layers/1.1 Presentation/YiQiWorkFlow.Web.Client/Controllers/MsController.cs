@@ -275,16 +275,12 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 if (m.HaveId)
                 {
-                    //m.CurrentPrepaidEncrypt = m.CurrentPrepaid.ToUInt16().ToString();
                     m.CurrentPrepaidEncrypt = StaticClass.Str2Hex(m.CurrentPrepaid.ToString());
                     MsCardArchivesService.Update(m);
                 }
                 else
                 {
-                    // 计算卡号
-
-
-                    //m.CurrentPrepaidEncrypt = m.CurrentPrepaid.ToUInt16().ToString();
+                    // 转换十六进制
                     m.CurrentPrepaidEncrypt = StaticClass.Str2Hex(m.CurrentPrepaid.ToString());
                     MsCardArchivesService.Create(m);
                 }
@@ -316,7 +312,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
         }
 
-        public JsonResult SearchMsCardArchivesList(SearchDtoBase<MsCardArchives> c, MsCardArchives s, MsMadecardManage m)
+        public JsonResult SearchMsCardArchivesList(SearchDtoBase<MsCardArchives> c, MsCardArchives s)
         {
             c.entity = s;
             return Json(MsCardArchivesService.Search(c), JsonRequestBehavior.AllowGet);
@@ -387,8 +383,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         TotalPrepaid = 0,
                         TransactCharge = 0,
                         UsePrepaid = 0,
-                        // 卡面明码 = 流水位数 + (开始卡号补充之后的长度) + 
-                        SurfaceNumber = cardPositionStr + (m.BeginCardNumber + i).ToString(),
+                        // 卡面明码 = 卡号前缀 + 流水位数 + (开始卡号补充之后的长度) + 
+                        SurfaceNumber = cardType.CardNumberPrefix + cardPositionStr + (m.BeginCardNumber + i).ToString(),
 
                         // 卡号 = 卡类型前缀 + 卡面明码 + 随机位数
                         Id = cardType.CardNumberPrefix + cardPositionStr + (m.BeginCardNumber + i).ToString() + StaticClass.RandCode(cardType.RandLen.ToInt32())
@@ -486,18 +482,27 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                // 先删除后添加、修改
+                string cardCode = Request["CardCode"];
+                var cardtypeDiscountList = SearchMsCardtypeDiscountList(new SearchDtoBase<MsCardtypeDiscount>() { pageIndex = 1, pageSize = int.MaxValue }, new MsCardtypeDiscount() { CardCode = cardCode });
+
                 var jser = new JavaScriptSerializer();
                 var cardtypeDiscount = jser.Deserialize<List<MsCardtypeDiscount>>(Request["CardtypeDiscount"]).ToList();
                 cardtypeDiscount.ForEach(p =>
                 {
-                    if (p.HaveId)
+                    if (!string.IsNullOrEmpty(p.GoodsClassCode))
                     {
-                        MsCardtypeDiscountService.Update(p);
+                        p.CardCode = cardCode;
+                        if (p.HaveId)
+                        {
+                            MsCardtypeDiscountService.Update(p);
+                        }
+                        else
+                        {
+                            MsCardtypeDiscountService.Create(p);
+                        }
                     }
-                    else
-                    {
-                        MsCardtypeDiscountService.Create(p);
-                    }
+
                 });
 
                 r.IsSuccess = true;
@@ -517,7 +522,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult SearchMsCardtypeDiscountList(SearchDtoBase<MsCardtypeDiscount> c, MsCardtypeDiscount s)
         {
-            var msCardtypeDiscountList = new SearchResult<MsCardtypeDiscount>() { data = new List<MsCardtypeDiscount>() };
+            //var msCardtypeDiscountList = new SearchResult<MsCardtypeDiscount>() { data = new List<MsCardtypeDiscount>() };
 
             c.entity = s;
 
@@ -531,46 +536,46 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 c.entity.CardCode = "!#$";
             }
 
-            IList<MsCardtypeDiscount> tempMsCardtypeDiscountList = MsCardtypeDiscountService.Search(c).data;
+            var msCardtypeDiscountList = MsCardtypeDiscountService.Search(c).data;
 
-            List<GoodsClassDto> goodsClassDtoList = new List<GoodsClassDto>();
+            //List<GoodsClassDto> goodsClassDtoList = new List<GoodsClassDto>();
 
-            // 遍历赋值
-            goodsClassDtoList = GetGoodsClassList();
+            //// 遍历赋值
+            //goodsClassDtoList = GetGoodsClassList();
 
-            MsCardtypeDiscountWithGoodsClassCodeEqualityCompare compare = new MsCardtypeDiscountWithGoodsClassCodeEqualityCompare();
-            foreach (var item in goodsClassDtoList)
-            {
-                if (tempMsCardtypeDiscountList.Contains(new MsCardtypeDiscount() { GoodsClassCode = item.id }, compare))
-                {
-                    MsCardtypeDiscount entity = tempMsCardtypeDiscountList.FirstOrDefault(x => x.GoodsClassCode == item.id);
+            //MsCardtypeDiscountWithGoodsClassCodeEqualityCompare compare = new MsCardtypeDiscountWithGoodsClassCodeEqualityCompare();
+            //foreach (var item in goodsClassDtoList)
+            //{
+            //    if (tempMsCardtypeDiscountList.Contains(new MsCardtypeDiscount() { GoodsClassCode = item.id }, compare))
+            //    {
+            //        MsCardtypeDiscount entity = tempMsCardtypeDiscountList.FirstOrDefault(x => x.GoodsClassCode == item.id);
 
-                    if (!msCardtypeDiscountList.data.Contains(entity, compare))
-                    {
-                        entity.ParentGoodsClassCode = item.pid;
-                        msCardtypeDiscountList.data.Add(entity);
-                    }
-                }
-                else
-                {
-                    MsCardtypeDiscount entity = new MsCardtypeDiscount()
-                    {
-                        CardCode = CardCode,
-                        ClassDiscountRate = 1,
-                        DiscountBase = 0,
-                        GoodsClassCode = item.id,
-                        GoodsClassName = item.text,
-                        ParentGoodsClassCode = item.pid
-                    };
+            //        if (!msCardtypeDiscountList.data.Contains(entity, compare))
+            //        {
+            //            entity.ParentGoodsClassCode = item.pid;
+            //            msCardtypeDiscountList.data.Add(entity);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MsCardtypeDiscount entity = new MsCardtypeDiscount()
+            //        {
+            //            CardCode = CardCode,
+            //            ClassDiscountRate = 1,
+            //            DiscountBase = 0,
+            //            GoodsClassCode = item.id,
+            //            GoodsClassName = item.text,
+            //            ParentGoodsClassCode = item.pid
+            //        };
 
-                    if (!msCardtypeDiscountList.data.Contains(entity, compare))
-                    {
-                        msCardtypeDiscountList.data.Add(entity);
-                    }
-                }
-            }
+            //        if (!msCardtypeDiscountList.data.Contains(entity, compare))
+            //        {
+            //            msCardtypeDiscountList.data.Add(entity);
+            //        }
+            //    }
+            //}
 
-            return Json(msCardtypeDiscountList.data.ToArray(), JsonRequestBehavior.AllowGet);
+            return Json(msCardtypeDiscountList.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -929,7 +934,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         {
             var searchDtoBase = MsCardtypeManageService.Search(new SearchDtoBase<MsCardtypeManage>() { pageSize = int.MaxValue });
 
-            IList<MsCardtypeManage> msCardtypeManageList = searchDtoBase.data;
+            IList<MsCardtypeManage> msCardtypeManageList = searchDtoBase.data.Where(x => x.IfExamine == "0" || x.IfExamine == "1").ToList();
 
             return Json(msCardtypeManageList.Select(entity => new { Id = entity.Id, CardName = entity.CardName }), JsonRequestBehavior.AllowGet);
         }
@@ -1006,10 +1011,16 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                string cardCode = Request["CardCode"];
+
+                // 先删除后添加、修改
+                var cardtypePointsList = SearchMsCardtypePointsList(new SearchDtoBase<MsCardtypePoints>() { pageIndex = 1, pageSize = int.MaxValue }, new MsCardtypePoints() { CardCode = cardCode });
+
                 var jser = new JavaScriptSerializer();
-                var cardtypeDiscount = jser.Deserialize<List<MsCardtypePoints>>(Request["MsCardtypePoints"]).ToList();
-                cardtypeDiscount.ForEach(p =>
+                var cardtypePoints = jser.Deserialize<List<MsCardtypePoints>>(Request["MsCardtypePoints"]).ToList();
+                cardtypePoints.ForEach(p =>
                 {
+                    p.CardCode = cardCode;
                     if (p.HaveId)
                     {
                         MsCardtypePointsService.Update(p);
@@ -1036,18 +1047,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult SearchMsCardtypePointsList(SearchDtoBase<MsCardtypePoints> c, MsCardtypePoints s)
         {
-            //c.entity = s;
-
-            //string CardCode = Request["CardCode"];
-            //if (!string.IsNullOrEmpty(CardCode))
-            //{
-            //    c.entity.CardCode = CardCode;
-            //}
-
-            //return Json(MsCardtypePointsService.Search(c), JsonRequestBehavior.AllowGet);
-
-            var msCardtypePointsList = new SearchResult<MsCardtypePoints>() { data = new List<MsCardtypePoints>() };
-
             c.entity = s;
 
             string CardCode = Request["CardCode"];
@@ -1055,51 +1054,63 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 c.entity.CardCode = CardCode;
             }
-            else
-            {
-                c.entity.CardCode = "!#$";
-            }
 
-            IList<MsCardtypePoints> tempMsCardtypeDiscountList = MsCardtypePointsService.Search(c).data;
+            return Json(MsCardtypePointsService.Search(c), JsonRequestBehavior.AllowGet);
 
-            List<GoodsClassDto> goodsClassDtoList = new List<GoodsClassDto>();
+            //var msCardtypePointsList = new SearchResult<MsCardtypePoints>() { data = new List<MsCardtypePoints>() };
 
-            // 遍历赋值
-            goodsClassDtoList = GetGoodsClassList();
+            //c.entity = s;
 
-            MsCardtypePointsWithGoodsClassCodeEqualityCompare compare = new MsCardtypePointsWithGoodsClassCodeEqualityCompare();
-            foreach (var item in goodsClassDtoList)
-            {
-                if (tempMsCardtypeDiscountList.Contains(new MsCardtypePoints() { GoodsClassCode = item.id }, compare))
-                {
-                    MsCardtypePoints entity = tempMsCardtypeDiscountList.FirstOrDefault(x => x.GoodsClassCode == item.id);
+            //string CardCode = Request["CardCode"];
+            //if (!string.IsNullOrEmpty(CardCode))
+            //{
+            //    c.entity.CardCode = CardCode;
+            //}
+            //else
+            //{
+            //    c.entity.CardCode = "!#$";
+            //}
 
-                    if (!msCardtypePointsList.data.Contains(entity, compare))
-                    {
-                        //entity.ParentGoodsClassCode = item.pid;
-                        msCardtypePointsList.data.Add(entity);
-                    }
-                }
-                else
-                {
-                    MsCardtypePoints entity = new MsCardtypePoints()
-                    {
-                        CardCode = CardCode,
-                        ExpendBase = 0,
-                        PointsValues = 0,
-                        GoodsClassCode = item.id,
-                        GoodsClassName = item.text,
-                        //ParentGoodsClassCode = item.pid
-                    };
+            //IList<MsCardtypePoints> tempMsCardtypeDiscountList = MsCardtypePointsService.Search(c).data;
 
-                    if (!msCardtypePointsList.data.Contains(entity, compare))
-                    {
-                        msCardtypePointsList.data.Add(entity);
-                    }
-                }
-            }
+            //List<GoodsClassDto> goodsClassDtoList = new List<GoodsClassDto>();
 
-            return Json(msCardtypePointsList, JsonRequestBehavior.AllowGet);
+            //// 遍历赋值
+            //goodsClassDtoList = GetGoodsClassList();
+
+            //MsCardtypePointsWithGoodsClassCodeEqualityCompare compare = new MsCardtypePointsWithGoodsClassCodeEqualityCompare();
+            //foreach (var item in goodsClassDtoList)
+            //{
+            //    if (tempMsCardtypeDiscountList.Contains(new MsCardtypePoints() { GoodsClassCode = item.id }, compare))
+            //    {
+            //        MsCardtypePoints entity = tempMsCardtypeDiscountList.FirstOrDefault(x => x.GoodsClassCode == item.id);
+
+            //        if (!msCardtypePointsList.data.Contains(entity, compare))
+            //        {
+            //            //entity.ParentGoodsClassCode = item.pid;
+            //            msCardtypePointsList.data.Add(entity);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MsCardtypePoints entity = new MsCardtypePoints()
+            //        {
+            //            CardCode = CardCode,
+            //            ExpendBase = 0,
+            //            PointsValues = 0,
+            //            GoodsClassCode = item.id,
+            //            GoodsClassName = item.text,
+            //            //ParentGoodsClassCode = item.pid
+            //        };
+
+            //        if (!msCardtypePointsList.data.Contains(entity, compare))
+            //        {
+            //            msCardtypePointsList.data.Add(entity);
+            //        }
+            //    }
+            //}
+
+            //return Json(msCardtypePointsList, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
@@ -1589,6 +1600,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     {
                         msCardArchivesEntity.CardState = "1";
 
+                        msCardArchivesEntity.MsCode = m.MsCode;
+                        msCardArchivesEntity.MsName = MsMemberArchivesService.GetById(m.MsCode).MsName;
+
                         // 判断是否是发卡生效期,是则 开始赋值
                         if (msCardArchivesEntity.CardUsefulLifeDate == null)
                         {
@@ -1818,19 +1832,45 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
                     if (!string.IsNullOrEmpty(m.IfExamine) && !m.IfExamine.Equals("0") && m.ExamineDate == null)
                     {
-                        // 审核逻辑 : 制卡
-                        MsCardArchivesService.ExamByMadeCardManage(m);
+                        // 获取卡信息集合
+                        List<MsCardArchives> cardArchivesList = GetMsCardArchivesByMadeInfo(m);
 
-                        MsMadecardManage entity = MsMadecardManageService.GetById(m.Id);
-                        entity.ExamineDate = DateTime.Now;
-                        entity.IfExamine = m.IfExamine;
-                        MsMadecardManageService.Update(entity);
+                        // 验证是否重复卡号,没有重复保存,否则返回false 和 error message
+                        string message = MsCardArchivesService.SaveList(cardArchivesList);
+
+                        if (string.IsNullOrEmpty(message))
+                        {
+                            // 修改制卡单信息
+                            m.ExamineDate = DateTime.Now;
+                            m.IfExamine = m.IfExamine;
+                            MsMadecardManageService.Update(m);
+
+                            // 审核逻辑 : 制卡
+                            foreach (var item in cardArchivesList)
+                            {
+                                item.MadeNumber = m.Id;
+
+                                // 判断制卡信息是否立即发放,生效日期
+                                if (!string.IsNullOrEmpty(m.IfMade) && m.IfMade.Equals("1") && !string.IsNullOrEmpty(m.EffectiveType) && m.EffectiveType.Equals("2") && m.EffectiveDate != null)
+                                {
+                                    item.EffectiveDate = m.EffectiveDate;
+                                }
+
+                                item.CreateDate = DateTime.Now;
+                                item.CardState = "0";
+
+                                MsCardArchivesService.Create(item);
+                            }
+
+                            r.IsSuccess = true;
+                            r.Message = "审核成功";
+                        }
+                        else
+                        {
+                            r.IsSuccess = false;
+                            r.Message = message;
+                        }
                     }
-
-                    r.IsSuccess = true;
-                    r.Message = "审核成功";
-
-                    MsMadecardManageService.Update(m);
                 }
                 else
                 {
@@ -1851,12 +1891,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         }
 
                         MsMadecardManageService.Create(m);
-
-                        foreach (var item in cardArchivesList)
-                        {
-                            item.MadeNumber = m.Id;
-                            MsCardArchivesService.Update(item);
-                        }
 
                         r.IsSuccess = true;
                         r.Message = "保存成功";
@@ -1990,7 +2024,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
             IList<MsMemberArchives> msCardtypeManageList = searchDtoBase.data;
 
-            return Json(msCardtypeManageList.Select(entity => new { id = entity.CardNumber, text = entity.MsName, mscode = entity.Id, cardNumber = entity.CardNumber, msName = entity.MsName, sex = entity.Sex, idCard = entity.Idcard, birthday = entity.Birthday, handSet = entity.Handset }), JsonRequestBehavior.AllowGet);
+            return Json(msCardtypeManageList.Select(entity => new { id = entity.Id, text = entity.MsName, msCode = entity.Id, cardNumber = entity.CardNumber, msName = entity.MsName, sex = entity.Sex, idCard = entity.Idcard, birthday = entity.Birthday, handSet = entity.Handset }), JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -2262,8 +2296,24 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
-                    // 卡充值,获取卡类型信息,判断是否超越了充值上限(当前余额+充值金额 <= 上限)
+                    // 卡充值,获取卡类型信息,判断是否超越了充值上限(充值金额 <= 上限)
+                    MsCardArchives card = MsCardArchivesService.GetById(m.CardNumber);
 
+                    MsCardtypeManage cardType = MsCardtypeManageService.GetById(card.CardCode);
+
+                    if (m.PrepaidMoney > cardType.PrepaidMax)
+                    {
+                        r.IsSuccess = false;
+                        r.Message = "充值失败,超过卡类型设定的最大充值上限 : " + cardType.PrepaidMax;
+                        return Json(r);
+                    }
+
+                    card.CurrentPrepaid += m.PrepaidMoney;
+                    //card.CurrentPrepaidEncrypt = card.CurrentPrepaid.ToUInt16().ToString();
+                    card.CurrentPrepaidEncrypt = StaticClass.Str2Hex(card.CurrentPrepaid.ToString());
+                    card.TotalPrepaid += m.PrepaidMoney;
+
+                    MsCardArchivesService.Update(card);
 
                     MsPrepaidCardManageService.Create(m);
                 }
@@ -2474,10 +2524,20 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 else
                 {
                     // 获取旧卡信息
+                    MsCardArchives oldCard = MsCardArchivesService.GetById(m.CardNumberOld);
 
                     // 获取新卡信息
+                    MsCardArchives newCard = MsCardArchivesService.GetById(m.CardNumber);
 
                     // 复制旧卡信息,保存
+                    oldCard.CardState = "4";
+                    newCard.CardState = "1";
+
+                    // 复制主要信息
+
+                    // 修改
+                    MsCardArchivesService.Update(oldCard);
+                    MsCardArchivesService.Update(newCard);
 
                     MsUpdateCardManageService.Create(m);
                 }
@@ -2697,6 +2757,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
+                    // 升级逻辑
+
                     MsUpgradeCardManageService.Create(m);
                 }
                 r.IsSuccess = true;

@@ -60,6 +60,7 @@
             });
         }
         function onGoodsChanged(e) {
+            mini.getbyName("GoodsName", "datagrid1").setValue(e.selected.GoodsName);
             mini.getbyName("SupCode", "datagrid1").setValue(e.selected.SupCode);
             mini.getbyName("InputTax", "datagrid1").setValue(e.selected.InputTax);
             mini.getbyName("PurchasePriceOld", "datagrid1").setValue(e.selected.PurchasePrice);
@@ -203,32 +204,32 @@
                 <input type="text"  value="@Model.AdjustReason" class="mini-textbox" name="AdjustReason" id="Control_AdjustReason" vtype="maxLength:40" />
             </div>
 
-            <div class="ablock" style="display:none">
+            <div class="ablock hidden">
                 <label for="Control_CreateDate">创建时间:</label>
                 <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
             </div>
 
-            <div class="ablock">
+            <div class="ablock hidden">
                 <label for="Control_Operator">操作员:</label>
                 <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
             </div>
 
-            <div class="ablock">
+            <div class="ablock hidden">
                 <label for="Control_Assessor">审核人:</label>
                 <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
             </div>
 
-            <div class="ablock">
+            <div class="ablock hidden">
                 <label for="Control_IfExamine">是否审核:</label>
                 <div id="Control_IfExamine" name="IfExamine" value="@Model.IfExamine" trueValue="1" falseValue="0" enabled="false" class="mini-checkbox" readOnly="false" text="审核"></div>
             </div>
 
-            <div class="ablock">
+            <div class="ablock hidden">
                 <label for="Control_ExamineDate">审核时间:</label>
                 <input type="text" id="Control_ExamineDate" name="ExamineDate"  value="@Model.ExamineDate" enabled="false" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
             </div>
 
-            <div class="ablock">
+            <div class="ablock hidden">
                 <label for="Control_OperatorDate">操作时间:</label>
                 <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
             </div>
@@ -245,10 +246,11 @@
                 </div>
 				<div field="GoodsCode" headeralign="center" align="center" width="60">
 				    商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowInput="true" valueField="Id" textField="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
+					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" popupWidth="400" allowInput="true" valueField="Id" textField="Id" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
 				</div>
                 <div field="GoodsName" headeralign="center" align="center" width="60">
 				    商品名称
+                    <input id="filter_GoodsName" name="GoodsName" property="editor" class="mini-textbox" enabled="false" style="width:100%;" />
 				</div>
 				<div field="SupCode" headeralign="center" align="center" width="60">
 				    供货商编码
@@ -258,25 +260,25 @@
 				    供货商名称
 					<input id="filter_SupCode" name="SupCode" property="editor" class="mini-textbox" enabled="false" style="width:100%;" />
 				</div>
-				<div field="InputTax" headeralign="center" align="center" width="60">
+				<div field="InputTax" headeralign="center" align="center" width="60" renderer="onPercentRender">
 				    进项税率
 					<input id="filter_InputTax" name="InputTax" property="editor" class="mini-spinner" enabled="false" decimalPlaces="4" style="width:100%;" />
 				</div>
-				<div field="PurchasePriceOld" headeralign="center" align="center" width="60">
+				<div field="PurchasePriceOld" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
 				    原含税进价
-					<input id="filter_PurchasePriceOld" name="PurchasePriceOld" property="editor" enabled="false" class="mini-spinner" decimalPlaces="4" style="width:100%;" />
+					<input id="filter_PurchasePriceOld" name="PurchasePriceOld" property="editor" enabled="false" class="mini-spinner" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" style="width:100%;" />
 				</div>
-				<div field="NontaxPurchasePriceOld" headeralign="center" align="center" width="60">
+				<div field="NontaxPurchasePriceOld" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
 				    原不含税进价
-					<input id="filter_NontaxPurchasePriceOld" name="NontaxPurchasePriceOld" property="editor" enabled="false" class="mini-spinner" decimalPlaces="4" style="width:100%;" />
+					<input id="filter_NontaxPurchasePriceOld" name="NontaxPurchasePriceOld" property="editor" enabled="false" class="mini-spinner" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" style="width:100%;" />
 				</div>
-				<div field="PurchasePrice" headeralign="center" align="center" width="60">
+				<div field="PurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
 				    含税进价
-					<input id="filter_PurchasePrice" name="PurchasePrice" property="editor" class="mini-spinner" decimalPlaces="4" style="width:100%;" />
+					<input id="filter_PurchasePrice" name="PurchasePrice" property="editor" class="mini-spinner" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" style="width:100%;" />
 				</div>
-				<div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
+				<div field="NontaxPurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
 				    不含税进价
-					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" class="mini-spinner" decimalPlaces="4" style="width:100%;" />
+					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" class="mini-spinner" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" style="width:100%;" />
 				</div>
 
             </div>

@@ -54,10 +54,55 @@
                                 btnEdit.setValue(data[i].id);
                                 btnEdit.setText(data[i].text);
 
-                                try {
-                                    window.frames[0].location.href = "/Ms/MsMemberArchivesEdit/" + data[i].mscode;
-                                } catch (e) {
+                                // 绑定会员信息
+                                var msCode = data[i].msCode;
+                                if (msCode) {
+                                    $.ajax({
+                                        url: "/Ms/SearchMsMemberArchivesList?MsCode=" + msCode,
+                                        type: 'post',
+                                        cache: false,
+                                        dataType: "json",
+                                        success: function (msData) {
+                                            var data = msData.data;
+                                            if (data) {
+                                                // 绑定
+                                                for (var i = 0; i < data.length; i++) {
+                                                    mini.get('Control_MsCode').setValue(data[i].MsCode);
+                                                    mini.get('Control_MsName').setValue(data[i].MsName);
+                                                    mini.get('Control_Birthday').setValue(data[i].Birthday);
+                                                    mini.get('Control_Sex').setValue(data[i].Sex);
+                                                    mini.get('Control_PoliticsCode').setValue(data[i].PoliticsCode);
+                                                    mini.get('Control_NationCode').setValue(data[i].NationCode);
+                                                    mini.get('Control_EducationCode').setValue(data[i].EducationCode);
+                                                    mini.get('Control_ProfessionalTitleCode').setValue(data[i].ProfessionalTitleCode);
+                                                    mini.get('Control_IfMarried').setValue(data[i].IfMarried);
+                                                    mini.get('Control_NativePlace').setValue(data[i].NativePlace);;
+                                                    mini.get('Control_Idcard').setValue(data[i].Idcard);
+                                                    mini.get('Control_FamilyPhone').setValue(data[i].FamilyPhone);
+                                                    mini.get('Control_Handset').setValue(data[i].Handset);
+                                                    mini.get('Control_eMail').setValue(data[i].eMail);
+                                                    mini.get('Control_FamilyAddress').setValue(data[i].FamilyAddress);
+                                                    mini.get('Control_Postalcode').setValue(data[i].Postalcode);
+                                                    mini.get('Control_Stature').setValue(data[i].Stature);
+                                                    mini.get('Control_Width').setValue(data[i].Width);
 
+                                                    break;
+                                                };
+
+                                            } else {
+                                                $("#Tooltip_Critical_MsGrantCardManage .content").first().text(r.Message);
+                                                $("#Tooltip_Critical_MsGrantCardManage").show("fast");
+                                                form.unmask();
+                                                $(document).scrollTop(0);
+                                            }
+                                        },
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                            $("#Tooltip_Critical_MsGrantCardManage .content").first().text(jqXHR.responseText);
+                                            $("#Tooltip_Critical_MsGrantCardManage").show("fast");
+                                            form.unmask();
+                                            $(document).scrollTop(0);
+                                        }
+                                    });
                                 }
 
                                 break;
@@ -147,6 +192,45 @@
                 $('#btnFormSubmit').attr('disabled', "true");
                 $('#btnFormReset').attr('disabled', "true");
             }
+
+            // 老会员,清空数据,右侧无法编辑 赋值
+            mini.get('Control_MsCode').disable();
+            mini.get('Control_MsName').disable();
+            mini.get('Control_Birthday').disable();
+            mini.get('Control_Sex').disable();
+            mini.get('Control_PoliticsCode').disable();
+            mini.get('Control_NationCode').disable();
+            mini.get('Control_EducationCode').disable();
+            mini.get('Control_ProfessionalTitleCode').disable();
+            mini.get('Control_IfMarried').disable();
+            mini.get('Control_NativePlace').disable();
+            mini.get('Control_Idcard').disable();
+            mini.get('Control_FamilyPhone').disable();
+            mini.get('Control_Handset').disable();
+            mini.get('Control_eMail').disable();
+            mini.get('Control_FamilyAddress').disable();
+            mini.get('Control_Postalcode').disable();
+            mini.get('Control_Stature').disable();
+            mini.get('Control_Width').disable();
+
+            mini.get('Control_MsCode').setValue('');
+            mini.get('Control_MsName').setValue('');
+            mini.get('Control_Birthday').setValue('');
+            mini.get('Control_Sex').setValue('');
+            mini.get('Control_PoliticsCode').setValue('');
+            mini.get('Control_NationCode').setValue('');
+            mini.get('Control_EducationCode').setValue('');
+            mini.get('Control_ProfessionalTitleCode').setValue('');
+            mini.get('Control_IfMarried').setValue('');
+            mini.get('Control_NativePlace').setValue('');
+            mini.get('Control_Idcard').setValue('');
+            mini.get('Control_FamilyPhone').setValue('');
+            mini.get('Control_Handset').setValue('');
+            mini.get('Control_eMail').setValue('');
+            mini.get('Control_FamilyAddress').setValue('');
+            mini.get('Control_Postalcode').setValue('');
+            mini.get('Control_Stature').setValue('');
+            mini.get('Control_Width').setValue('');
         });
 
         function onCloseClick(e) {
@@ -330,12 +414,12 @@
 
                         <div class="ablock">
                             <label for="Control_TransactCharge">办卡费用:</label>
-                            <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                            <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                         </div>
 
                         <div class="ablock">
                             <label for="Control_DepositMoney">押金金额:</label>
-                            <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                            <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                         </div>
 
                     </fieldset>
@@ -347,19 +431,19 @@
 
                         @Html.Partial("UCMemberArchives")
                     </fieldset>
-
                 </div>
-                <div class="clear">
+            </div>
+            <div class="clear">
+            </div>
+            <div class="control-panel">
+                <div class="control-button">
+                    <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                    <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                    <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
                 </div>
-                <div class="control-panel">
-                    <div class="control-button">
-                        <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
-                        <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
-                        <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
-                    </div>
-                    <div class="botton-up">
-                    </div>
+                <div class="botton-up">
                 </div>
+            </div>
         </form>
     </div>
 </body>

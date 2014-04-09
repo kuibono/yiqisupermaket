@@ -2,11 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>卡类型编辑</title>
+    <title>卡类型设置</title>
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "卡类型"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:51"; var id = "@Model.Id"; pageName = "MsCardtypeManageEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "卡类型设置"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:51"; var id = "@Model.Id"; pageName = "MsCardtypeManageEdit"; </script>
     <script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -22,7 +22,10 @@
                     dataType: "json",
                     success: function (r) {
                         if (r.IsSuccess == true) {
-                            closeWithNoValidate();
+                            //closeWithNoValidate();
+                            //try { history.go(-1); } catch (e) { }
+                            // 打开新增页面
+                            location.href = "/Ms/MsCardtypeManageEdit";
                         } else {
                             $("#Tooltip_Critical_MsCardtypeManage .content").first().text(r.Message);
                             $("#Tooltip_Critical_MsCardtypeManage").show("fast");
@@ -53,23 +56,35 @@
             if (ValidateData()) {
 
                 mini.confirm("是否审核当前卡类型信息?", "审核", function (action) {
+                    if (action == "ok") {
+                        
+                        // 设定
+                        mini.get('#Control_IfExamine').setValue("1");
 
-                    // 设定
-                    mini.get('#Control_IfExamine').setValue("1");
-
-                    var o = form.getData(true);
-                    $.ajax({
-                        url: "/Ms/SaveMsCardtypeManage",
-                        type: 'post',
-                        data: o,
-                        cache: false,
-                        dataType: "json",
-                        success: function (r) {
-                            if (r.IsSuccess == true) {
-                                mini.alert("审核成功！");
-                                closeWithNoValidate();
-                            } else {
-                                $("#Tooltip_Critical_MsCardtypeManage .content").first().text(r.Message);
+                        var o = form.getData(true);
+                        $.ajax({
+                            url: "/Ms/SaveMsCardtypeManage",
+                            type: 'post',
+                            data: o,
+                            cache: false,
+                            dataType: "json",
+                            success: function (r) {
+                                if (r.IsSuccess == true) {
+                                    mini.alert("审核成功！");
+                                    //closeWithNoValidate();
+                                    location.href = "/Ms/MsCardtypeManageEdit";
+                                } else {
+                                    $("#Tooltip_Critical_MsCardtypeManage .content").first().text(r.Message);
+                                    $("#Tooltip_Critical_MsCardtypeManage").show("fast");
+                                    mini.alert("审核失败！");
+                                    // 设定
+                                    mini.get('#Control_IfExamine').setValue("0");
+                                    form.unmask();
+                                    $(document).scrollTop(0);
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                $("#Tooltip_Critical_MsCardtypeManage .content").first().text(jqXHR.responseText);
                                 $("#Tooltip_Critical_MsCardtypeManage").show("fast");
                                 mini.alert("审核失败！");
                                 // 设定
@@ -77,17 +92,12 @@
                                 form.unmask();
                                 $(document).scrollTop(0);
                             }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            $("#Tooltip_Critical_MsCardtypeManage .content").first().text(jqXHR.responseText);
-                            $("#Tooltip_Critical_MsCardtypeManage").show("fast");
-                            mini.alert("审核失败！");
-                            // 设定
-                            mini.get('#Control_IfExamine').setValue("0");
-                            form.unmask();
-                            $(document).scrollTop(0);
-                        }
-                    });
+                        });
+
+                        return;
+                    } else {
+                        return;
+                    }
                 });
             }
         }
@@ -106,22 +116,33 @@
 
                 mini.confirm("是否废除当前卡类型信息?", "废除", function (action) {
 
-                    // 设定
-                    mini.get('#Control_IfExamine').setValue("-1");
+                    if (action == "ok") {
+                        // 设定
+                        mini.get('#Control_IfExamine').setValue("-1");
 
-                    var o = form.getData(true);
-                    $.ajax({
-                        url: "/Ms/SaveMsCardtypeManage",
-                        type: 'post',
-                        data: o,
-                        cache: false,
-                        dataType: "json",
-                        success: function (r) {
-                            if (r.IsSuccess == true) {
-                                mini.alert("废除成功！");
-                                closeWithNoValidate();
-                            } else {
-                                $("#Tooltip_Critical_MsCardtypeManage .content").first().text(r.Message);
+                        var o = form.getData(true);
+                        $.ajax({
+                            url: "/Ms/SaveMsCardtypeManage",
+                            type: 'post',
+                            data: o,
+                            cache: false,
+                            dataType: "json",
+                            success: function (r) {
+                                if (r.IsSuccess == true) {
+                                    mini.alert("废除成功！");
+                                    location.href = "/Ms/MsCardtypeManageEdit";
+                                } else {
+                                    $("#Tooltip_Critical_MsCardtypeManage .content").first().text(r.Message);
+                                    $("#Tooltip_Critical_MsCardtypeManage").show("fast");
+                                    mini.alert("废除失败！");
+                                    // 设定
+                                    mini.get('#Control_IfExamine').setValue("0");
+                                    form.unmask();
+                                    $(document).scrollTop(0);
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                $("#Tooltip_Critical_MsCardtypeManage .content").first().text(jqXHR.responseText);
                                 $("#Tooltip_Critical_MsCardtypeManage").show("fast");
                                 mini.alert("废除失败！");
                                 // 设定
@@ -129,17 +150,8 @@
                                 form.unmask();
                                 $(document).scrollTop(0);
                             }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            $("#Tooltip_Critical_MsCardtypeManage .content").first().text(jqXHR.responseText);
-                            $("#Tooltip_Critical_MsCardtypeManage").show("fast");
-                            mini.alert("废除失败！");
-                            // 设定
-                            mini.get('#Control_IfExamine').setValue("0");
-                            form.unmask();
-                            $(document).scrollTop(0);
-                        }
-                    });
+                        });
+                    }
                 });
             }
         }
@@ -170,12 +182,38 @@
 
             return true;
         }
+
+        function Add() {
+            location.href = "/Ms/MsCardtypeManageEdit";
+        }
+
+        function Search() {
+            location.href = "/Ms/MsCardtypeManageList";
+        }
+
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>卡类型编辑
-        </h1>
+        <div id="toolbar1" class="mini-toolbar" style="padding: 2px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="btnAdd" iconcls="icon-add" class="mini-button" plain="true" tooltip="增加">增加</a>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
+                        <a id="btnSearch" iconcls="icon-search" class="mini-button" plain="true" tooltip="查询">查询</a>
+                        <!--<a id="btnDelete" iconcls="icon-remove" class="mini-button" plain="true" tooltip="删除">删除</a>-->
+                        <a id="btnExame" iconcls="icon-ok" class="mini-button" plain="true" tooltip="审核(Ctrl+E)">审核</a>
+                        <a id="btnAbolish" iconcls="icon-no" class="mini-button" plain="true" tooltip="废除(Ctrl+F)">废除</a>
+                        <!--<a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>-->
+                        <a id="btnPrint" iconcls="icon-print" class="mini-button" plain="true" tooltip="打印">打印</a>
+                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--<h1>卡类型编辑
+        </h1>-->
         <div class="tooltip warning hidden" id="Tooltip_Warning_MsCardtypeManage">
             <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
             <p class="content">
@@ -272,7 +310,7 @@
 
                 <div class="ablock">
                     <label for="Control_CardNumberLen">卡流水位数:</label>
-                    <input type="text" id="Control_CardNumberLen" name="CardNumberLen" value="@Model.CardNumberLen" class="mini-spinner" minvalue="0" maxvalue=“20" decimalplaces="0" />
+                    <input type="text" id="Control_CardNumberLen" name="CardNumberLen" value="@Model.CardNumberLen" class="mini-spinner" minvalue="0" maxvalue="“20" decimalplaces="0" />
                 </div>
 
                 <div class="ablock">
@@ -282,12 +320,12 @@
 
                 <div class="ablock">
                     <label for="Control_TransactCharge">办卡费用:</label>
-                    <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minvalue="0" maxvalue="999999999" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_DepositMoney">押金金额:</label>
-                    <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="999999999" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
@@ -297,7 +335,7 @@
 
                 <div class="ablock">
                     <label for="Control_PointsNeeds">升级所需积分:</label>
-                    <input type="text" id="Control_PointsNeeds" name="PointsNeeds" value="@Model.PointsNeeds" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_PointsNeeds" name="PointsNeeds" value="@Model.PointsNeeds" class="mini-spinner" minvalue="0" maxvalue="999999999" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
@@ -313,21 +351,21 @@
             </fieldset>
 
             <fieldset>
-                <legend>卡基础信息</legend>
+                <legend>卡功能信息</legend>
 
-                <div class="ablock">
+                <div class="ablock clear">
                     <label for="Control_IfVip">是否会员价:</label>
                     <div id="Control_IfVip" name="IfVip" class="mini-checkbox" value="@Model.IfVip" truevalue="1" falsevalue="0" readonly="false" text=""></div>
                 </div>
 
-                <div class="ablock">
+                <div class="ablock ">
                     <label for="Control_IfDiscount">是否折扣:</label>
                     <div id="Control_IfDiscount" name="IfDiscount" class="mini-checkbox" value="@Model.IfDiscount" truevalue="1" falsevalue="0" readonly="false" text=""></div>
                 </div>
 
                 <div class="ablock">
                     <label for="Control_DiscountBase">折扣基数:</label>
-                    <input type="text" id="Control_DiscountBase" name="DiscountBase" value="@Model.DiscountBase" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2" />
+                    <input type="text" id="Control_DiscountBase" name="DiscountBase" value="@Model.DiscountBase" class="mini-spinner" minvalue="0.00" maxvalue="1.00" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
@@ -335,6 +373,7 @@
                     <input type="text" id="Control_DiscountRate" name="DiscountRate" value="@Model.DiscountRate" class="mini-spinner" minvalue="0.00" maxvalue="1.00" decimalplaces="2" increment="0.1" />
                 </div>
 
+                <div class="ablock clear" style="height:0"></div>
                 <div class="ablock">
                     <label for="Control_IfPoints">是否积分:</label>
                     <div id="Control_IfPoints" name="IfPoints" class="mini-checkbox" truevalue="1" falsevalue="0" readonly="false" text=""></div>
@@ -342,19 +381,20 @@
 
                 <div class="ablock">
                     <label for="Control_ExpendBase">消费基数:</label>
-                    <input type="text" id="Control_ExpendBase" name="ExpendBase" value="@Model.ExpendBase" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2" />
+                    <input type="text" id="Control_ExpendBase" name="ExpendBase" value="@Model.ExpendBase" class="mini-spinner" minvalue="0" maxvalue="999999" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_PointsValues">积分分值:</label>
-                    <input type="text" id="Control_PointsValues" name="PointsValues" value="@Model.PointsValues" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_PointsValues" name="PointsValues" value="@Model.PointsValues" class="mini-spinner" minvalue="0" maxvalue="999999999" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_BirthdayPoints">会员生日积分倍数:</label>
-                    <input type="text" id="Control_BirthdayPoints" name="BirthdayPoints" value="@Model.BirthdayPoints" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_BirthdayPoints" name="BirthdayPoints" value="@Model.BirthdayPoints" class="mini-spinner" minvalue="1" maxvalue="10" />
                 </div>
 
+                <div class="ablock clear" style="height:0"></div>
                 <div class="ablock">
                     <label for="Control_IfPrepaid">是否储值:</label>
                     <div id="Control_IfPrepaid" name="IfPrepaid" class="mini-checkbox" value="@Model.IfPrepaid" truevalue="1" falsevalue="0" readonly="false" text=""></div>
@@ -367,7 +407,7 @@
 
                 <div class="ablock">
                     <label for="Control_LimitTimes">限制次数:</label>
-                    <input type="text" id="Control_LimitTimes" name="LimitTimes" value="@Model.LimitTimes" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
+                    <input type="text" id="Control_LimitTimes" name="LimitTimes" value="@Model.LimitTimes" class="mini-spinner" minvalue="0" maxvalue="999999999" decimalplaces="0" />
                 </div>
 
                 <div class="ablock">
@@ -387,9 +427,10 @@
 
                 <div class="ablock">
                     <label for="Control_PrepaidMax">最高充值金额:</label>
-                    <input type="text" id="Control_PrepaidMax" name="PrepaidMax" value="@Model.PrepaidMax" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_PrepaidMax" name="PrepaidMax" value="@Model.PrepaidMax" class="mini-spinner" minvalue="0" maxvalue="999999999" decimalplaces="2" />
                 </div>
 
+                <div class="ablock clear" style="height:0"></div>
                 <div class="ablock">
                     <label for="Control_IfPointToPrepaid">是否积分转储值:</label>
                     <div id="Control_IfPointToPrepaid" name="IfPointToPrepaid" class="mini-checkbox" value="@Model.IfPointToPrepaid" truevalue="1" falsevalue="0" readonly="false" text=""></div>
@@ -397,12 +438,12 @@
 
                 <div class="ablock">
                     <label for="Control_PointsBase">积分基数:</label>
-                    <input type="text" id="Control_PointsBase" name="PointsBase" value="@Model.PointsBase" class="mini-spinner" minvalue="0" maxvalue="999999" decimalplaces="2" />
+                    <input type="text" id="Control_PointsBase" name="PointsBase" value="@Model.PointsBase" class="mini-spinner" minvalue="0" maxvalue="999999" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_PrepaidMoney">转储值金额:</label>
-                    <input type="text" id="Control_PrepaidMoney" name="PrepaidMoney" value="@Model.PrepaidMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_PrepaidMoney" name="PrepaidMoney" value="@Model.PrepaidMoney" class="mini-spinner" minvalue="0" maxvalue="999999999" decimalplaces="2" />
                 </div>
 
                 <div class="ablock" style="display: none">
@@ -437,7 +478,7 @@
             </fieldset>
             <div class="clear">
             </div>
-            <div class="control-panel">
+            <!--<div class="control-panel">
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
@@ -447,7 +488,7 @@
                 </div>
                 <div class="botton-up">
                 </div>
-            </div>
+            </div>-->
         </form>
     </div>
 </body>

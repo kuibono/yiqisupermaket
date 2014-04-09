@@ -117,6 +117,8 @@ namespace YiQiWorkFlow.Web.Client.Common
             {
                 num.Append(arrChar[rnd.Next(0, arrChar.Length)].ToString());
             }
+           
+            
             return num.ToString();
         }
 
@@ -127,7 +129,7 @@ namespace YiQiWorkFlow.Web.Client.Common
             byte[] arrByte = Encoding.GetEncoding("GB2312").GetBytes(s);
             for (int i = 0; i < arrByte.Length; i++)
             {
-                result += String.Format("&#x{0};", System.Convert.ToString(arrByte[i], 16));        
+                result += String.Format("&#x{0};", System.Convert.ToString(arrByte[i], 16));
                 //Convert.ToString(byte, 16)把byte转化成十六进制string 
             }
 

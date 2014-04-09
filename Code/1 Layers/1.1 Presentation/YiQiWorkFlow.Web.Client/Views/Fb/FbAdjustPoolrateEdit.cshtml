@@ -242,7 +242,7 @@
                     </div>
                     <div field="GoodsCode" headeralign="center" align="center" width="60">
                         商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList?OpCode=3" style="width: 100%;" />
+					<input id="filter_GoodsCode" name="GoodsCode" property="editor" popupWidth="400" class="mini-combobox" allowinput="true" valuefield="Id" textfield="Id" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList?OpCode=3" style="width: 100%;" />
                     </div>
                     <div field="GoodsName" headeralign="center" align="center" width="60">
                         商品编码
@@ -254,11 +254,11 @@
                     <div field="SupName" headeralign="center" align="center" width="60">
                         供货商
                     </div>
-                    <div field="PoolRateOld" headeralign="center" align="center" width="60">
+                    <div field="PoolRateOld" headeralign="center" align="center" width="60" renderer="onPercentRender">
                         原扣率
 					<input id="filter_PoolRateOld" name="PoolRateOld" property="editor" class="mini-spinner" enabled="false" onvaluechanged="search" style="width: 100%;" />
                     </div>
-                    <div field="PoolRate" headeralign="center" align="center" width="60">
+                    <div field="PoolRate" headeralign="center" align="center" width="60" renderer="onPercentRender">
                         扣率
 					<input id="filter_PoolRate" name="PoolRate" property="editor" class="mini-spinner" onvaluechanged="search" style="width: 100%;" />
                     </div>

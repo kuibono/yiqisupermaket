@@ -408,12 +408,12 @@
 
                         <div class="ablock">
                             <label for="Control_TransactCharge">办卡费用:</label>
-                            <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                            <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                         </div>
 
                         <div class="ablock">
                             <label for="Control_DepositMoney">押金金额:</label>
-                            <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                            <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                         </div>
 
                         <div class="ablock hidden">

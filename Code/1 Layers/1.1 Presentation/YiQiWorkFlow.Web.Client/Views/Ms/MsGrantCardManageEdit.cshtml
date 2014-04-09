@@ -45,25 +45,70 @@
                 width: 600,
                 height: 400,
                 ondestroy: function (action) {
-                    //if (action == "ok") {
-                    //    var iframe = this.getIFrameEl();
-                    //    var data = iframe.contentWindow.GetData();
-                    //    data = mini.clone(data);
-                    //    if (data) {
-                    //        for (var i = 0; i < data.length; i++) {
-                    //            btnEdit.setValue(data[i].id);
-                    //            btnEdit.setText(data[i].text);
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);
+                        if (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                btnEdit.setValue(data[i].id);
+                                btnEdit.setText(data[i].text);
 
-                    //            try {
-                    //                window.frames[0].location.href = "/Ms/MsMemberArchivesEdit/" + data[i].mscode;
-                    //            } catch (e) {
+                                // 绑定会员信息
+                                var msCode = data[i].msCode;
+                                if (msCode) {
+                                    $.ajax({
+                                        url: "/Ms/SearchMsMemberArchivesList?MsCode=" + msCode,
+                                        type: 'post',
+                                        cache: false,
+                                        dataType: "json",
+                                        success: function (msData) {
+                                            var data = msData.data;
+                                            if (data) {
+                                                // 绑定
+                                                for (var i = 0; i < data.length; i++) {
+                                                    mini.get('Control_MsCode').setValue(data[i].MsCode);
+                                                    mini.get('Control_MsName').setValue(data[i].MsName);
+                                                    mini.get('Control_Birthday').setValue(data[i].Birthday);
+                                                    mini.get('Control_Sex').setValue(data[i].Sex);
+                                                    mini.get('Control_PoliticsCode').setValue(data[i].PoliticsCode);
+                                                    mini.get('Control_NationCode').setValue(data[i].NationCode);
+                                                    mini.get('Control_EducationCode').setValue(data[i].EducationCode);
+                                                    mini.get('Control_ProfessionalTitleCode').setValue(data[i].ProfessionalTitleCode);
+                                                    mini.get('Control_IfMarried').setValue(data[i].IfMarried);
+                                                    mini.get('Control_NativePlace').setValue(data[i].NativePlace);;
+                                                    mini.get('Control_Idcard').setValue(data[i].Idcard);
+                                                    mini.get('Control_FamilyPhone').setValue(data[i].FamilyPhone);
+                                                    mini.get('Control_Handset').setValue(data[i].Handset);
+                                                    mini.get('Control_eMail').setValue(data[i].eMail);
+                                                    mini.get('Control_FamilyAddress').setValue(data[i].FamilyAddress);
+                                                    mini.get('Control_Postalcode').setValue(data[i].Postalcode);
+                                                    mini.get('Control_Stature').setValue(data[i].Stature);
+                                                    mini.get('Control_Width').setValue(data[i].Width);
 
-                    //            }
+                                                    break;
+                                                };
 
-                    //            break;
-                    //        };
-                    //    }
-                    //}
+                                            } else {
+                                                $("#Tooltip_Critical_MsGrantCardManage .content").first().text(r.Message);
+                                                $("#Tooltip_Critical_MsGrantCardManage").show("fast");
+                                                form.unmask();
+                                                $(document).scrollTop(0);
+                                            }
+                                        },
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                            $("#Tooltip_Critical_MsGrantCardManage .content").first().text(jqXHR.responseText);
+                                            $("#Tooltip_Critical_MsGrantCardManage").show("fast");
+                                            form.unmask();
+                                            $(document).scrollTop(0);
+                                        }
+                                    });
+                                }
+
+                                break;
+                            };
+                        }
+                    }
                 }
             });
         }
@@ -165,32 +210,70 @@
                 // 编辑页面 保存不可用只可以审核
                 $('#btnFormSubmit').attr('disabled', "true");
                 $('#btnFormReset').attr('disabled', "true");
+            } else {
+                // 老会员,清空数据,右侧无法编辑 赋值
+                mini.get('Control_MsCode').disable();
+                mini.get('Control_MsName').disable();
+                mini.get('Control_Birthday').disable();
+                mini.get('Control_Sex').disable();
+                mini.get('Control_PoliticsCode').disable();
+                mini.get('Control_NationCode').disable();
+                mini.get('Control_EducationCode').disable();
+                mini.get('Control_ProfessionalTitleCode').disable();
+                mini.get('Control_IfMarried').disable();
+                mini.get('Control_NativePlace').disable();
+                mini.get('Control_Idcard').disable();
+                mini.get('Control_FamilyPhone').disable();
+                mini.get('Control_Handset').disable();
+                mini.get('Control_eMail').disable();
+                mini.get('Control_FamilyAddress').disable();
+                mini.get('Control_Postalcode').disable();
+                mini.get('Control_Stature').disable();
+                mini.get('Control_Width').disable();
+
+                mini.get('Control_MsCode').setValue('');
+                mini.get('Control_MsName').setValue('');
+                mini.get('Control_Birthday').setValue('');
+                mini.get('Control_Sex').setValue('');
+                mini.get('Control_PoliticsCode').setValue('');
+                mini.get('Control_NationCode').setValue('');
+                mini.get('Control_EducationCode').setValue('');
+                mini.get('Control_ProfessionalTitleCode').setValue('');
+                mini.get('Control_IfMarried').setValue('');
+                mini.get('Control_NativePlace').setValue('');
+                mini.get('Control_Idcard').setValue('');
+                mini.get('Control_FamilyPhone').setValue('');
+                mini.get('Control_Handset').setValue('');
+                mini.get('Control_eMail').setValue('');
+                mini.get('Control_FamilyAddress').setValue('');
+                mini.get('Control_Postalcode').setValue('');
+                mini.get('Control_Stature').setValue('');
+                mini.get('Control_Width').setValue('');
             }
         });
 
         function onMemberTypeValueChanged(e) {
             if (e) {
-                debugger;
                 if (e.selected.id == 1) {
                     // 新会员,清空数据,右侧可以编辑
-                    mini.get('Control_MsCode').attr('readonly', '');
-                    mini.get('Control_MsName').attr('readonly', '');
-                    mini.get('Control_Birthday').attr('readonly', '');
-                    mini.get('Control_Sex').attr('readonly', '');
-                    mini.get('Control_PoliticsCode').attr('readonly', '');
-                    mini.get('Control_NationCode').attr('readonly', '');
-                    mini.get('Control_EducationCode').attr('readonly', '');
-                    mini.get('Control_ProfessionalTitleCode').attr('readonly', '');
-                    mini.get('Control_IfMarried').attr('readonly', '');
-                    mini.get('Control_NativePlace').attr('readonly', '');
-                    mini.get('Control_Idcard').attr('readonly', '');
-                    mini.get('Control_FamilyPhone').attr('readonly', '');
-                    mini.get('Control_Handset').attr('readonly', '');
-                    mini.get('Control_eMail').attr('readonly', '');
-                    mini.get('Control_FamilyAddress').attr('readonly', '');
-                    mini.get('Control_Postalcode').attr('readonly', '');
-                    mini.get('Control_Stature').attr('readonly', '');
-                    mini.get('Control_Width').attr('readonly', '');
+                    mini.get('Control_MsCode').enable();
+                    mini.get('Control_MsName').enable();
+                    mini.get('Control_Birthday').enable();
+                    mini.get('Control_Sex').enable();
+                    mini.get('Control_PoliticsCode').enable();
+                    mini.get('Control_NationCode').enable();
+                    mini.get('Control_EducationCode').enable();
+                    mini.get('Control_ProfessionalTitleCode').enable();
+                    mini.get('Control_IfMarried').enable();
+                    mini.get('Control_NativePlace').enable();
+                    mini.get('Control_Idcard').enable();
+                    mini.get('Control_FamilyPhone').enable();
+                    mini.get('Control_Handset').enable();
+                    mini.get('Control_eMail').enable();
+                    mini.get('Control_FamilyAddress').enable();
+                    mini.get('Control_Postalcode').enable();
+                    mini.get('Control_Stature').enable();
+                    mini.get('Control_Width').enable();
 
                     mini.get('Control_MsCode').setValue('');
                     mini.get('Control_MsName').setValue('');
@@ -202,39 +285,54 @@
                     mini.get('Control_ProfessionalTitleCode').setValue('');
                     mini.get('Control_IfMarried').setValue('');
                     mini.get('Control_NativePlace').setValue('');
-                    mini.get('Control_Idcard').attr('readonly', '');
-                    mini.get('Control_FamilyPhone').attr('readonly', '');
-                    mini.get('Control_Handset').attr('readonly', '');
-                    mini.get('Control_eMail').attr('readonly', '');
-                    mini.get('Control_FamilyAddress').attr('readonly', '');
-                    mini.get('Control_Postalcode').attr('readonly', '');
-                    mini.get('Control_Stature').attr('readonly', '');
-                    mini.get('Control_Width').attr('readonly', '');
+                    mini.get('Control_Idcard').setValue('');
+                    mini.get('Control_FamilyPhone').setValue('');
+                    mini.get('Control_Handset').setValue('');
+                    mini.get('Control_eMail').setValue('');
+                    mini.get('Control_FamilyAddress').setValue('');
+                    mini.get('Control_Postalcode').setValue('');
+                    mini.get('Control_Stature').setValue('');
+                    mini.get('Control_Width').setValue('');
 
                 } else {
                     // 老会员,清空数据,右侧无法编辑 赋值
-                    mini.get('Control_MsCode').attr('readonly', 'readonly');
-                    mini.get('Control_MsName').attr('readonly', 'readonly');
-                    mini.get('Control_Birthday').attr('readonly', 'readonly');
-                    mini.get('Control_Sex').attr('readonly', 'readonly');
-                    mini.get('Control_PoliticsCode').attr('readonly', 'readonly');
-                    mini.get('Control_NationCode').attr('readonly', 'readonly');
-                    mini.get('Control_EducationCode').attr('readonly', 'readonly');
-                    mini.get('Control_ProfessionalTitleCode').attr('readonly', 'readonly');
-                    mini.get('Control_IfMarried').attr('readonly', 'readonly');
-                    mini.get('Control_NativePlace').attr('readonly', 'readonly');
-                    mini.get('Control_Idcard').attr('readonly', 'readonly');
-                    mini.get('Control_FamilyPhone').attr('readonly', 'readonly');
-                    mini.get('Control_Handset').attr('readonly', 'readonly');
-                    mini.get('Control_eMail').attr('readonly', 'readonly');
-                    mini.get('Control_FamilyAddress').attr('readonly', 'readonly');
-                    mini.get('Control_Postalcode').attr('readonly', 'readonly');
-                    mini.get('Control_Stature').attr('readonly', 'readonly');
-                    mini.get('Control_Width').attr('readonly', 'readonly');
+                    mini.get('Control_MsCode').disable();
+                    mini.get('Control_MsName').disable();
+                    mini.get('Control_Birthday').disable();
+                    mini.get('Control_Sex').disable();
+                    mini.get('Control_PoliticsCode').disable();
+                    mini.get('Control_NationCode').disable();
+                    mini.get('Control_EducationCode').disable();
+                    mini.get('Control_ProfessionalTitleCode').disable();
+                    mini.get('Control_IfMarried').disable();
+                    mini.get('Control_NativePlace').disable();
+                    mini.get('Control_Idcard').disable();
+                    mini.get('Control_FamilyPhone').disable();
+                    mini.get('Control_Handset').disable();
+                    mini.get('Control_eMail').disable();
+                    mini.get('Control_FamilyAddress').disable();
+                    mini.get('Control_Postalcode').disable();
+                    mini.get('Control_Stature').disable();
+                    mini.get('Control_Width').disable();
 
-                    // 获取会员信息
-                    var msCode = '';
-                    // ajax获取 赋值
+                    mini.get('Control_MsCode').setValue('');
+                    mini.get('Control_MsName').setValue('');
+                    mini.get('Control_Birthday').setValue('');
+                    mini.get('Control_Sex').setValue('');
+                    mini.get('Control_PoliticsCode').setValue('');
+                    mini.get('Control_NationCode').setValue('');
+                    mini.get('Control_EducationCode').setValue('');
+                    mini.get('Control_ProfessionalTitleCode').setValue('');
+                    mini.get('Control_IfMarried').setValue('');
+                    mini.get('Control_NativePlace').setValue('');
+                    mini.get('Control_Idcard').setValue('');
+                    mini.get('Control_FamilyPhone').setValue('');
+                    mini.get('Control_Handset').setValue('');
+                    mini.get('Control_eMail').setValue('');
+                    mini.get('Control_FamilyAddress').setValue('');
+                    mini.get('Control_Postalcode').setValue('');
+                    mini.get('Control_Stature').setValue('');
+                    mini.get('Control_Width').setValue('');
                 }
             }
         }
@@ -352,7 +450,7 @@
                             <label for="Control_SurfaceNumber">卡面明码:</label>
 
                             <div id="Control_SurfaceNumber" name="SurfaceNumber" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="SurfaceNumber" valuefield="SurfaceNumber"
-                                url="/Ms/GetMsCardArchivesList?CardState=0" showclose="true" oncloseclick="onCloseClick" onvaluechanged="onvaluechanged" emptytext="请选择..." required="true" allowinput="true" value="@Model.SurfaceNumber">
+                                url="/Ms/GetMsCardArchivesList?CardState=0" showclose="true" oncloseclick="onCloseClick" onvaluechanged="onvaluechanged" emptytext="请选择..." required="true" allowinput="true" value="@Model.SurfaceNumber" text="@Model.SurfaceNumber">
                                 <div property="columns">
                                     <div header="卡面明码" field="SurfaceNumber"></div>
                                     <div header="卡号" field="Id"></div>
@@ -423,12 +521,12 @@
 
                         <div class="ablock">
                             <label for="Control_TransactCharge">办卡费用:</label>
-                            <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" readonly="readonly" />
+                            <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" readonly="readonly" />
                         </div>
 
                         <div class="ablock">
                             <label for="Control_DepositMoney">押金金额:</label>
-                            <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" readonly="readonly" />
+                            <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" readonly="readonly" />
                         </div>
 
                         <div class="ablock" style="display: none">

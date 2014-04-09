@@ -1,0 +1,1384 @@
+2014-03-24 20:13:27,090 [1] DEBUG Spring.Data.Common.DbProviderFactory - Loading additional DbProviders from assembly://NSH.Repository/NSH.Repository/SQLite1081.xml
+
+2014-03-24 20:13:27,168 [1] INFO  Spring.Data.Common.DbProviderFactory - 47 DbProviders Available. [SqlServer-1.1,SqlServer-2.0,SqlServer-4.0,SqlServerCe-3.1,SqlServerCe-3.5.1,OleDb-1.1,OleDb-2.0,OleDb-4.0,OracleClient-2.0,OracleODP-2.0,OracleODP-11-2.0,MySql,MySql-1.0.9,MySql-5.0,MySql-5.0.8.1,MySql-5.1,MySql-5.1.4,MySql-5.2.3,MySql-6.1.3,MySql-6.2.2,Npgsql-1.0,Npgsql-2.0-beta1,Npgsql-2.0,DB2-9.0.0-1.1,DB2-9.0.0-2.0,DB2-9.1.0-1.1,DB2-9.1.0.2,iDB2-10.0.0.0,SQLite-1.0.43,SQLite-1.0.44,SQLite-1.0.47,SQLite-1.0.56,SQLite-1.0.65,SQLite-1.0.66,SQLite-1.0.72,Firebird-2.1,SybaseAse-12,SybaseAse-15,SybaseAse-AdoNet2,IfxOdbc,IfxSQLI-3.0.0.2,IfxDRDA-9.0.0.2,Odbc-1.1,Odbc-2.0,Odbc-4.0,Cache-2.0.0.1,SQLite-1.0.81]
+
+2014-03-24 20:13:28,498 [1] INFO  Spring.Data.NHibernate.LocalSessionFactoryObject - Setting proxy factory to Spring provided one as user did not specify any
+
+2014-03-24 20:13:29,229 [1] INFO  Spring.Data.NHibernate.LocalSessionFactoryObject - Building new Hibernate SessionFactory
+
+2014-03-24 20:13:41,154 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:13:41,155 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:13:42,629 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:13:42,631 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:13:42,632 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:13:42,973 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:13:42,974 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:13:42,981 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:13:42,982 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:13:42,982 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:13:42,989 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:13:42,990 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:13:42,991 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:13:42,992 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:13:42,992 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:13:43,000 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,001 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:13:43,003 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:13:43,004 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,004 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:13:43,160 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,161 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:13:43,256 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,257 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:13:43,260 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:13:43,260 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,261 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:13:43,263 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,264 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:13:43,265 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:13:43,265 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,266 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:13:43,268 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,268 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:13:43,270 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:13:43,270 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,271 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:13:43,406 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,407 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:13:43,408 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:13:43,409 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,411 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:13:43,448 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:13:43,468 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,469 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:13:43,544 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,545 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:13:43,547 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:13:43,548 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:13:43,548 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:01,343 [1] DEBUG Spring.Data.Common.DbProviderFactory - Loading additional DbProviders from assembly://NSH.Repository/NSH.Repository/SQLite1081.xml
+
+2014-03-24 20:15:01,422 [1] INFO  Spring.Data.Common.DbProviderFactory - 47 DbProviders Available. [SqlServer-1.1,SqlServer-2.0,SqlServer-4.0,SqlServerCe-3.1,SqlServerCe-3.5.1,OleDb-1.1,OleDb-2.0,OleDb-4.0,OracleClient-2.0,OracleODP-2.0,OracleODP-11-2.0,MySql,MySql-1.0.9,MySql-5.0,MySql-5.0.8.1,MySql-5.1,MySql-5.1.4,MySql-5.2.3,MySql-6.1.3,MySql-6.2.2,Npgsql-1.0,Npgsql-2.0-beta1,Npgsql-2.0,DB2-9.0.0-1.1,DB2-9.0.0-2.0,DB2-9.1.0-1.1,DB2-9.1.0.2,iDB2-10.0.0.0,SQLite-1.0.43,SQLite-1.0.44,SQLite-1.0.47,SQLite-1.0.56,SQLite-1.0.65,SQLite-1.0.66,SQLite-1.0.72,Firebird-2.1,SybaseAse-12,SybaseAse-15,SybaseAse-AdoNet2,IfxOdbc,IfxSQLI-3.0.0.2,IfxDRDA-9.0.0.2,Odbc-1.1,Odbc-2.0,Odbc-4.0,Cache-2.0.0.1,SQLite-1.0.81]
+
+2014-03-24 20:15:02,203 [1] INFO  Spring.Data.NHibernate.LocalSessionFactoryObject - Setting proxy factory to Spring provided one as user did not specify any
+
+2014-03-24 20:15:02,852 [1] INFO  Spring.Data.NHibernate.LocalSessionFactoryObject - Building new Hibernate SessionFactory
+
+2014-03-24 20:15:09,620 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:09,621 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:09,646 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:09,649 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:09,652 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:09,688 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:09,688 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:11,597 [7] INFO  YiQiWorkFlow.Application.Service.Fb.FbPaBaseSetService - Entering GetFirst;2c364312-d899-476f-95e8-64e916feeaa0
+
+2014-03-24 20:15:11,603 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 20:15:11,605 [7] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 20:15:11,647 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 20:15:11,647 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 20:15:11,652 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Fb.FbPaBaseSetService.GetFirst]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 20:15:11,661 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 20:15:12,593 [7] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.fb_pa_base_set fbpabasese0_
+
+2014-03-24 20:15:12,683 [7] DEBUG NHibernate.SQL - select TOP (@p0) fbpabasese0_.Id as Id80_, fbpabasese0_.goods_gb_len as goods2_80_, fbpabasese0_.goods_gm_len as goods3_80_, fbpabasese0_.goods_gs_len as goods4_80_, fbpabasese0_.goods_gl_len as goods5_80_, fbpabasese0_.goods_class_level as goods6_80_, fbpabasese0_.goods_len as goods7_80_, fbpabasese0_.goods_prefix as goods8_80_, fbpabasese0_.sup_len as sup9_80_, fbpabasese0_.sup_prefix_type as sup10_80_, fbpabasese0_.sup_prefix_content as sup11_80_, fbpabasese0_.purchase_precise_len as purchase12_80_, fbpabasese0_.sale_precise_len as sale13_80_, fbpabasese0_.operator as operator80_, fbpabasese0_.operator_date as operator15_80_, fbpabasese0_.if_change_purchase_price_in_archives as if16_80_ from dbo.fb_pa_base_set fbpabasese0_;@p0 = 1 [Type: Int32 (0)]
+
+2014-03-24 20:15:12,755 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 20:15:12,795 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 20:15:12,797 [7] INFO  YiQiWorkFlow.Application.Service.Fb.FbPaBaseSetService - Exiting GetFirst;2c364312-d899-476f-95e8-64e916feeaa0;1200.0686 ms
+
+2014-03-24 20:15:21,842 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:21,842 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:21,843 [7] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 20:15:21,852 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,055 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,055 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,057 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,057 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,059 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,104 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,104 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,106 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,106 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,106 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,130 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,131 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,132 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,133 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,133 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,136 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,136 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,138 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,138 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,139 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,143 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,144 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,145 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,146 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,146 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,148 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,148 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,149 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,149 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,149 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,152 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,153 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,154 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,154 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,155 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,304 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,304 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,305 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,307 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,307 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,311 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,313 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,347 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,347 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,348 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,313 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,378 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,380 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,381 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,381 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,383 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,384 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,403 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,404 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,405 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,406 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:22,408 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,409 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,409 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,411 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,411 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,412 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,406 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:22,415 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,416 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:22,996 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:22,996 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:23,020 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,021 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:23,027 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:23,029 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,030 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:23,031 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:23,032 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,032 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:23,022 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:23,033 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,034 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:23,036 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,037 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:23,038 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:23,039 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,039 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:23,037 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,041 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:23,061 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,062 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:23,063 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:23,064 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,064 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:15:23,051 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,066 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:15:23,068 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:15:23,071 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:15:23,071 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:54:15,893 [1] DEBUG Spring.Data.Common.DbProviderFactory - Loading additional DbProviders from assembly://NSH.Repository/NSH.Repository/SQLite1081.xml
+
+2014-03-24 20:54:15,965 [1] INFO  Spring.Data.Common.DbProviderFactory - 47 DbProviders Available. [SqlServer-1.1,SqlServer-2.0,SqlServer-4.0,SqlServerCe-3.1,SqlServerCe-3.5.1,OleDb-1.1,OleDb-2.0,OleDb-4.0,OracleClient-2.0,OracleODP-2.0,OracleODP-11-2.0,MySql,MySql-1.0.9,MySql-5.0,MySql-5.0.8.1,MySql-5.1,MySql-5.1.4,MySql-5.2.3,MySql-6.1.3,MySql-6.2.2,Npgsql-1.0,Npgsql-2.0-beta1,Npgsql-2.0,DB2-9.0.0-1.1,DB2-9.0.0-2.0,DB2-9.1.0-1.1,DB2-9.1.0.2,iDB2-10.0.0.0,SQLite-1.0.43,SQLite-1.0.44,SQLite-1.0.47,SQLite-1.0.56,SQLite-1.0.65,SQLite-1.0.66,SQLite-1.0.72,Firebird-2.1,SybaseAse-12,SybaseAse-15,SybaseAse-AdoNet2,IfxOdbc,IfxSQLI-3.0.0.2,IfxDRDA-9.0.0.2,Odbc-1.1,Odbc-2.0,Odbc-4.0,Cache-2.0.0.1,SQLite-1.0.81]
+
+2014-03-24 20:54:16,950 [1] INFO  Spring.Data.NHibernate.LocalSessionFactoryObject - Setting proxy factory to Spring provided one as user did not specify any
+
+2014-03-24 20:54:17,632 [1] INFO  Spring.Data.NHibernate.LocalSessionFactoryObject - Building new Hibernate SessionFactory
+
+2014-03-24 20:54:23,018 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:54:23,019 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:54:23,070 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:54:23,071 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:54:23,073 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:30,097 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:30,098 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:31,564 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:31,564 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:31,564 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:31,712 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:31,713 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:31,717 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:31,717 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:31,717 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:31,734 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:31,735 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:31,736 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:31,738 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:31,739 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,181 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,182 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,183 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,183 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,184 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,239 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,239 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,240 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,241 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,241 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,306 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,307 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,308 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,308 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,309 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,311 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,311 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,312 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,312 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,313 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,317 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,317 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,318 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,319 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,319 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,325 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,326 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,327 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,327 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,328 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,335 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,335 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,339 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,341 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,342 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,398 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,399 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,403 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,408 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,410 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,416 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,417 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,417 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,418 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,416 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,469 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,469 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,469 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,470 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,471 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,471 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,471 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,471 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,472 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,474 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,475 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,477 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,478 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,479 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,500 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,502 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,504 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,511 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,512 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,471 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,549 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,550 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,552 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,553 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,558 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,568 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,568 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,570 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,570 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,570 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:32,788 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,788 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,879 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,880 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:32,882 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:32,882 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:32,883 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:33,024 [10] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesService - Entering Search;5b495c4e-2c62-46d1-895a-dec4eb8bce45;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Fb.FbGoodsArchives]
+
+2014-03-24 20:57:33,029 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 20:57:33,031 [10] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 20:57:33,054 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 20:57:33,055 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 20:57:33,059 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 20:57:33,067 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 20:57:33,783 [10] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.fb_goods_archives fbgoodsarc0_
+
+2014-03-24 20:57:33,842 [10] DEBUG NHibernate.SQL - select TOP (@p0) fbgoodsarc0_.goods_code as goods1_72_, fbgoodsarc0_.goods_bar_code as goods2_72_, fbgoodsarc0_.goods_sub_code as goods3_72_, fbgoodsarc0_.gb_code as gb4_72_, fbgoodsarc0_.gm_code as gm5_72_, fbgoodsarc0_.gs_code as gs6_72_, fbgoodsarc0_.gl_code as gl7_72_, fbgoodsarc0_.goods_type as goods8_72_, fbgoodsarc0_.check_mode as check9_72_, fbgoodsarc0_.sup_code as sup10_72_, fbgoodsarc0_.op_code as op11_72_, fbgoodsarc0_.pool_rate as pool12_72_, fbgoodsarc0_.goods_name as goods13_72_, fbgoodsarc0_.goods_sub_name as goods14_72_, fbgoodsarc0_.py_code as py15_72_, fbgoodsarc0_.goods_state as goods16_72_, fbgoodsarc0_.producing_area as producing17_72_, fbgoodsarc0_.article_number as article18_72_, fbgoodsarc0_.specification as specifi19_72_, fbgoodsarc0_.shelf_life as shelf20_72_, fbgoodsarc0_.pack_unit_code as pack21_72_, fbgoodsarc0_.offer_mode as offer22_72_, fbgoodsarc0_.pack_coef as pack23_72_, fbgoodsarc0_.offer_min as offer24_72_, fbgoodsarc0_.input_tax as input25_72_, fbgoodsarc0_.output_tax as output26_72_, fbgoodsarc0_.stock_upper_limit as stock27_72_, fbgoodsarc0_.stock_lower_limit as stock28_72_, fbgoodsarc0_.under_floor_code as under29_72_, fbgoodsarc0_.under_counter_code as under30_72_, fbgoodsarc0_.brand_code as brand31_72_, fbgoodsarc0_.check_unit_code as check32_72_, fbgoodsarc0_.purchase_price as purchase33_72_, fbgoodsarc0_.nontax_purchase_price as nontax34_72_, fbgoodsarc0_.avg_cost as avg35_72_, fbgoodsarc0_.nontax_avg_cost as nontax36_72_, fbgoodsarc0_.gross_rate as gross37_72_, fbgoodsarc0_.supply_price as supply38_72_, fbgoodsarc0_.sale_price as sale39_72_, fbgoodsarc0_.vip_price as vip40_72_, fbgoodsarc0_.trade_price as trade41_72_, fbgoodsarc0_.push_rate as push42_72_, fbgoodsarc0_.create_date as create43_72_, fbgoodsarc0_.operator as operator72_, fbgoodsarc0_.assessor as assessor72_, fbgoodsarc0_.if_examine as if46_72_, fbgoodsarc0_.examine_date as examine47_72_, fbgoodsarc0_.operator_date as operator48_72_ from dbo.fb_goods_archives fbgoodsarc0_;@p0 = 20 [Type: Int32 (0)]
+
+2014-03-24 20:57:33,943 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 20:57:33,979 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 20:57:33,981 [10] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesService - Exiting Search;5b495c4e-2c62-46d1-895a-dec4eb8bce45;958.0548 ms
+
+2014-03-24 20:57:33,985 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:33,986 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:33,986 [10] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 20:57:33,993 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:34,051 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:34,052 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:34,053 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:34,054 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:34,055 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:38,730 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:38,732 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:38,735 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:38,735 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:38,738 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:38,893 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:38,894 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:38,895 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:38,896 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:38,896 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:39,054 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:39,055 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:39,597 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:39,598 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:39,598 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:39,819 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:39,819 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:39,820 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:39,821 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:39,821 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:39,821 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:39,819 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:39,837 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:39,838 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:39,840 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:40,240 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,240 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:40,269 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:40,269 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,270 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:40,294 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,295 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:40,328 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:40,329 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,329 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:40,350 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,351 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:40,376 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:40,377 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,377 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:40,398 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,399 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:40,422 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:40,422 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,423 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:40,462 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,463 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:40,502 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:40,502 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,503 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:40,527 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,528 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:40,547 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:40,548 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,548 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:40,676 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,677 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:40,678 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:40,678 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,679 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:40,686 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,686 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:40,686 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,687 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:40,687 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:40,688 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,688 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:40,688 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:40,692 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:40,692 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:41,032 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:41,034 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:41,037 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:41,038 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:41,039 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:41,040 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:41,093 [11] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesBindService - Entering Search;195f270f-3cbf-4a1f-97da-6303df777e41;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Fb.FbGoodsArchivesBind]
+
+2014-03-24 20:57:41,093 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 20:57:41,094 [11] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 20:57:41,094 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 20:57:41,094 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 20:57:41,095 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesBindService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 20:57:41,124 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:57:41,127 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:57:41,129 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 20:57:41,284 [11] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.fb_goods_archives_bind fbgoodsarc0_ where fbgoodsarc0_.goods_code like ('%'+@p0+'%');@p0 = '13956658591086967' [Type: String (4000)]
+
+2014-03-24 20:57:41,317 [11] DEBUG NHibernate.SQL - select TOP (@p0) fbgoodsarc0_.Id as Id74_, fbgoodsarc0_.goods_code as goods2_74_, fbgoodsarc0_.goods_bar_code as goods3_74_, fbgoodsarc0_.goods_code_bind as goods4_74_, fbgoodsarc0_.goods_bar_code_bind as goods5_74_, fbgoodsarc0_.goods_bar_name as goods6_74_, fbgoodsarc0_.pack_unit_code as pack7_74_, fbgoodsarc0_.bind_coef as bind8_74_, fbgoodsarc0_.sale_price as sale9_74_, fbgoodsarc0_.bind_sale_price as bind10_74_, fbgoodsarc0_.if_examine as if11_74_, fbgoodsarc0_.sale_money as sale12_74_, fbgoodsarc0_.sys_guid as sys13_74_ from dbo.fb_goods_archives_bind fbgoodsarc0_ where fbgoodsarc0_.goods_code like ('%'+@p1+'%');@p0 = 10 [Type: Int32 (0)], @p1 = '13956658591086967' [Type: String (4000)]
+
+2014-03-24 20:57:41,331 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 20:57:41,332 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 20:57:41,333 [11] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesBindService - Exiting Search;195f270f-3cbf-4a1f-97da-6303df777e41;240.0137 ms
+
+2014-03-24 20:57:41,333 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:41,334 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:41,334 [11] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 20:57:41,334 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:41,666 [10] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesPhotoService - Entering Search;d24253b4-8236-4416-bf0e-793ecd03641a;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Fb.FbGoodsArchivesPhoto]
+
+2014-03-24 20:57:41,666 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 20:57:41,667 [10] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 20:57:41,667 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 20:57:41,667 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 20:57:41,667 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesPhotoService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 20:57:41,669 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 20:57:41,679 [10] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.fb_goods_archives_photo fbgoodsarc0_ where fbgoodsarc0_.goods_code like ('%'+@p0+'%');@p0 = '13956658591086967' [Type: String (4000)]
+
+2014-03-24 20:57:41,685 [10] DEBUG NHibernate.SQL - select TOP (@p0) fbgoodsarc0_.Id as Id77_, fbgoodsarc0_.goods_code as goods2_77_, fbgoodsarc0_.s_number as s3_77_, fbgoodsarc0_.photo_type as photo4_77_ from dbo.fb_goods_archives_photo fbgoodsarc0_ where fbgoodsarc0_.goods_code like ('%'+@p1+'%');@p0 = 10 [Type: Int32 (0)], @p1 = '13956658591086967' [Type: String (4000)]
+
+2014-03-24 20:57:41,689 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 20:57:41,690 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 20:57:41,690 [10] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesPhotoService - Exiting Search;d24253b4-8236-4416-bf0e-793ecd03641a;24.0014 ms
+
+2014-03-24 20:57:41,691 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:41,692 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:41,692 [10] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 20:57:41,692 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:42,167 [11] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesSupplierService - Entering Search;9613c603-ea7d-462f-989e-39343d353d8e;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Fb.FbGoodsArchivesSupplier]
+
+2014-03-24 20:57:42,167 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 20:57:42,168 [11] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 20:57:42,168 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 20:57:42,168 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 20:57:42,169 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesSupplierService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 20:57:42,170 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 20:57:42,190 [11] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.fb_goods_archives_supplier fbgoodsarc0_ where fbgoodsarc0_.goods_code like ('%'+@p0+'%');@p0 = '13956658591086967' [Type: String (4000)]
+
+2014-03-24 20:57:42,196 [11] DEBUG NHibernate.SQL - select TOP (@p0) fbgoodsarc0_.Id as Id78_, fbgoodsarc0_.goods_code as goods2_78_, fbgoodsarc0_.sup_code as sup3_78_, fbgoodsarc0_.sup_name as sup4_78_, fbgoodsarc0_.py_code as py5_78_, fbgoodsarc0_.op_code as op6_78_, fbgoodsarc0_.pool_rate as pool7_78_, fbgoodsarc0_.offer_mode as offer8_78_, fbgoodsarc0_.offer_min as offer9_78_, fbgoodsarc0_.input_tax as input10_78_, fbgoodsarc0_.purchase_price as purchase11_78_, fbgoodsarc0_.nontax_purchase_price as nontax12_78_, fbgoodsarc0_.if_main_supplier as if13_78_, fbgoodsarc0_.if_examine as if14_78_, fbgoodsarc0_.sys_guid as sys15_78_ from dbo.fb_goods_archives_supplier fbgoodsarc0_ where fbgoodsarc0_.goods_code like ('%'+@p1+'%');@p0 = 10 [Type: Int32 (0)], @p1 = '13956658591086967' [Type: String (4000)]
+
+2014-03-24 20:57:42,200 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 20:57:42,201 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 20:57:42,202 [11] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesSupplierService - Exiting Search;9613c603-ea7d-462f-989e-39343d353d8e;35.002 ms
+
+2014-03-24 20:57:42,202 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:42,203 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:42,203 [11] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 20:57:42,203 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:57:42,672 [10] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesBarService - Entering Search;e05d123e-39b5-45e0-a0ad-a3562beaa78a;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Fb.FbGoodsArchivesBar]
+
+2014-03-24 20:57:42,672 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 20:57:42,673 [10] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 20:57:42,673 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 20:57:42,673 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 20:57:42,674 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesBarService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 20:57:42,675 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 20:57:42,693 [10] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.fb_goods_archives_bar fbgoodsarc0_ where fbgoodsarc0_.goods_code like ('%'+@p0+'%');@p0 = '13956658591086967' [Type: String (4000)]
+
+2014-03-24 20:57:42,699 [10] DEBUG NHibernate.SQL - select TOP (@p0) fbgoodsarc0_.Id as Id73_, fbgoodsarc0_.goods_code as goods2_73_, fbgoodsarc0_.goods_bar_code as goods3_73_, fbgoodsarc0_.goods_bar_name as goods4_73_, fbgoodsarc0_.pack_unit_code as pack5_73_, fbgoodsarc0_.pack_coef as pack6_73_, fbgoodsarc0_.qty_type as qty7_73_, fbgoodsarc0_.price_type as price8_73_, fbgoodsarc0_.sale_price as sale9_73_, fbgoodsarc0_.vip_price as vip10_73_, fbgoodsarc0_.trade_price as trade11_73_, fbgoodsarc0_.push_rate as push12_73_, fbgoodsarc0_.if_main_bar as if13_73_, fbgoodsarc0_.if_examine as if14_73_ from dbo.fb_goods_archives_bar fbgoodsarc0_ where fbgoodsarc0_.goods_code like ('%'+@p1+'%');@p0 = 10 [Type: Int32 (0)], @p1 = '13956658591086967' [Type: String (4000)]
+
+2014-03-24 20:57:42,703 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 20:57:42,704 [10] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 20:57:42,704 [10] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesBarService - Exiting Search;e05d123e-39b5-45e0-a0ad-a3562beaa78a;32.0019 ms
+
+2014-03-24 20:57:42,705 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:57:42,705 [10] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:57:42,706 [10] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 20:57:42,706 [10] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:58:52,870 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:58:52,871 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:58:52,902 [7] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesService - Entering Search;857fc9fc-fe77-4408-b2ad-dcb4fca53182;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Fb.FbGoodsArchives]
+
+2014-03-24 20:58:52,903 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 20:58:52,903 [7] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 20:58:52,904 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 20:58:52,904 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 20:58:52,905 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 20:58:52,929 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 20:58:52,931 [7] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.fb_goods_archives fbgoodsarc0_
+
+2014-03-24 20:58:52,936 [7] DEBUG NHibernate.SQL - select TOP (@p0) fbgoodsarc0_.goods_code as goods1_72_, fbgoodsarc0_.goods_bar_code as goods2_72_, fbgoodsarc0_.goods_sub_code as goods3_72_, fbgoodsarc0_.gb_code as gb4_72_, fbgoodsarc0_.gm_code as gm5_72_, fbgoodsarc0_.gs_code as gs6_72_, fbgoodsarc0_.gl_code as gl7_72_, fbgoodsarc0_.goods_type as goods8_72_, fbgoodsarc0_.check_mode as check9_72_, fbgoodsarc0_.sup_code as sup10_72_, fbgoodsarc0_.op_code as op11_72_, fbgoodsarc0_.pool_rate as pool12_72_, fbgoodsarc0_.goods_name as goods13_72_, fbgoodsarc0_.goods_sub_name as goods14_72_, fbgoodsarc0_.py_code as py15_72_, fbgoodsarc0_.goods_state as goods16_72_, fbgoodsarc0_.producing_area as producing17_72_, fbgoodsarc0_.article_number as article18_72_, fbgoodsarc0_.specification as specifi19_72_, fbgoodsarc0_.shelf_life as shelf20_72_, fbgoodsarc0_.pack_unit_code as pack21_72_, fbgoodsarc0_.offer_mode as offer22_72_, fbgoodsarc0_.pack_coef as pack23_72_, fbgoodsarc0_.offer_min as offer24_72_, fbgoodsarc0_.input_tax as input25_72_, fbgoodsarc0_.output_tax as output26_72_, fbgoodsarc0_.stock_upper_limit as stock27_72_, fbgoodsarc0_.stock_lower_limit as stock28_72_, fbgoodsarc0_.under_floor_code as under29_72_, fbgoodsarc0_.under_counter_code as under30_72_, fbgoodsarc0_.brand_code as brand31_72_, fbgoodsarc0_.check_unit_code as check32_72_, fbgoodsarc0_.purchase_price as purchase33_72_, fbgoodsarc0_.nontax_purchase_price as nontax34_72_, fbgoodsarc0_.avg_cost as avg35_72_, fbgoodsarc0_.nontax_avg_cost as nontax36_72_, fbgoodsarc0_.gross_rate as gross37_72_, fbgoodsarc0_.supply_price as supply38_72_, fbgoodsarc0_.sale_price as sale39_72_, fbgoodsarc0_.vip_price as vip40_72_, fbgoodsarc0_.trade_price as trade41_72_, fbgoodsarc0_.push_rate as push42_72_, fbgoodsarc0_.create_date as create43_72_, fbgoodsarc0_.operator as operator72_, fbgoodsarc0_.assessor as assessor72_, fbgoodsarc0_.if_examine as if46_72_, fbgoodsarc0_.examine_date as examine47_72_, fbgoodsarc0_.operator_date as operator48_72_ from dbo.fb_goods_archives fbgoodsarc0_;@p0 = 20 [Type: Int32 (0)]
+
+2014-03-24 20:58:52,986 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 20:58:53,005 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 20:58:53,006 [7] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesService - Exiting Search;857fc9fc-fe77-4408-b2ad-dcb4fca53182;104.0059 ms
+
+2014-03-24 20:58:53,009 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:58:53,010 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:58:53,010 [7] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 20:58:53,011 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:58:58,020 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:58:58,021 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:59:01,645 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:59:01,647 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:59:01,647 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:59:02,240 [13] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:59:02,241 [13] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:59:02,243 [13] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:59:02,246 [13] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:59:02,246 [13] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:59:02,735 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:59:02,736 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:59:02,772 [11] INFO  YiQiWorkFlow.Application.Service.Pc.PcPurchaseManageService - Entering Search;48011228-4d7d-4ab1-8bb2-56767db94fed;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Pc.PcPurchaseManage]
+
+2014-03-24 20:59:02,773 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 20:59:02,774 [11] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 20:59:02,775 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 20:59:02,775 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 20:59:02,776 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Pc.PcPurchaseManageService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 20:59:02,778 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 20:59:02,804 [11] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.pc_purchase_manage pcpurchase0_
+
+2014-03-24 20:59:02,818 [11] DEBUG NHibernate.SQL - select TOP (@p0) pcpurchase0_.pc_number as pc1_139_, pcpurchase0_.sup_code as sup2_139_, pcpurchase0_.sup_name as sup3_139_, pcpurchase0_.en_code as en4_139_, pcpurchase0_.pc_form as pc5_139_, pcpurchase0_.d_code as d6_139_, pcpurchase0_.d_name as d7_139_, pcpurchase0_.b_code as b8_139_, pcpurchase0_.b_name as b9_139_, pcpurchase0_.pc_type as pc10_139_, pcpurchase0_.pc_mode as pc11_139_, pcpurchase0_.wh_code as wh12_139_, pcpurchase0_.purchase_date as purchase13_139_, pcpurchase0_.expect_arrive_date as expect14_139_, pcpurchase0_.if_check as if15_139_, pcpurchase0_.check_date as check16_139_, pcpurchase0_.if_putin as if17_139_, pcpurchase0_.putin_date as putin18_139_, pcpurchase0_.create_date as create19_139_, pcpurchase0_.operator as operator139_, pcpurchase0_.assessor as assessor139_, pcpurchase0_.if_examine as if22_139_, pcpurchase0_.examine_date as examine23_139_, pcpurchase0_.operator_date as operator24_139_ from dbo.pc_purchase_manage pcpurchase0_;@p0 = 20 [Type: Int32 (0)]
+
+2014-03-24 20:59:02,886 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 20:59:02,888 [11] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 20:59:02,889 [11] INFO  YiQiWorkFlow.Application.Service.Pc.PcPurchaseManageService - Exiting Search;48011228-4d7d-4ab1-8bb2-56767db94fed;117.0067 ms
+
+2014-03-24 20:59:02,890 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:59:02,890 [11] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:59:02,891 [11] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 20:59:02,891 [11] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:59:04,777 [13] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:59:04,777 [13] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:59:04,964 [13] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:59:04,966 [13] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:59:04,967 [13] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:59:05,521 [14] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:59:05,522 [14] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:59:05,523 [14] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:59:05,523 [14] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:59:05,524 [14] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:59:05,576 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:59:05,577 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:59:05,597 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:59:05,597 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:59:05,598 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:59:05,626 [14] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:59:05,626 [14] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:59:05,646 [14] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:59:05,646 [14] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:59:05,647 [14] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 20:59:05,929 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 20:59:05,930 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 20:59:05,971 [7] INFO  YiQiWorkFlow.Application.Service.Pc.PcPurchaseDetailService - Entering Search;51f1bd59-935b-42b2-aa86-3e95af4d85f9;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Pc.PcPurchaseDetail]
+
+2014-03-24 20:59:05,972 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 20:59:05,972 [7] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 20:59:05,973 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 20:59:05,973 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 20:59:05,974 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Pc.PcPurchaseDetailService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 20:59:05,982 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 20:59:06,009 [7] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.pc_purchase_detail pcpurchase0_ where pcpurchase0_.pc_number like ('%'+@p0+'%');@p0 = '!' [Type: String (4000)]
+
+2014-03-24 20:59:06,028 [7] DEBUG NHibernate.SQL - select TOP (@p0) pcpurchase0_.Id as Id138_, pcpurchase0_.pc_number as pc2_138_, pcpurchase0_.goods_code as goods3_138_, pcpurchase0_.goods_bar_code as goods4_138_, pcpurchase0_.specification as specific5_138_, pcpurchase0_.pack_unit_code as pack6_138_, pcpurchase0_.offer_min as offer7_138_, pcpurchase0_.stock_qty as stock8_138_, pcpurchase0_.order_qty as order9_138_, pcpurchase0_.pack_qty as pack10_138_, pcpurchase0_.pack_coef as pack11_138_, pcpurchase0_.purchase_qty as purchase12_138_, pcpurchase0_.putin_qty as putin13_138_, pcpurchase0_.sale_price as sale14_138_, pcpurchase0_.purchase_price as purchase15_138_, pcpurchase0_.nontax_purchase_price as nontax16_138_, pcpurchase0_.purchase_money as purchase17_138_, pcpurchase0_.nontax_purchase_money as nontax18_138_, pcpurchase0_.produce_date as produce19_138_, pcpurchase0_.sys_guid as sys20_138_ from dbo.pc_purchase_detail pcpurchase0_ where pcpurchase0_.pc_number like ('%'+@p1+'%');@p0 = 20 [Type: Int32 (0)], @p1 = '!' [Type: String (4000)]
+
+2014-03-24 20:59:06,032 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 20:59:06,035 [7] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 20:59:06,035 [7] INFO  YiQiWorkFlow.Application.Service.Pc.PcPurchaseDetailService - Exiting Search;51f1bd59-935b-42b2-aa86-3e95af4d85f9;64.0036 ms
+
+2014-03-24 20:59:06,036 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 20:59:06,036 [7] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 20:59:06,036 [7] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 20:59:06,037 [7] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:18,720 [1] DEBUG Spring.Data.Common.DbProviderFactory - Loading additional DbProviders from assembly://NSH.Repository/NSH.Repository/SQLite1081.xml
+
+2014-03-24 21:24:18,783 [1] INFO  Spring.Data.Common.DbProviderFactory - 47 DbProviders Available. [SqlServer-1.1,SqlServer-2.0,SqlServer-4.0,SqlServerCe-3.1,SqlServerCe-3.5.1,OleDb-1.1,OleDb-2.0,OleDb-4.0,OracleClient-2.0,OracleODP-2.0,OracleODP-11-2.0,MySql,MySql-1.0.9,MySql-5.0,MySql-5.0.8.1,MySql-5.1,MySql-5.1.4,MySql-5.2.3,MySql-6.1.3,MySql-6.2.2,Npgsql-1.0,Npgsql-2.0-beta1,Npgsql-2.0,DB2-9.0.0-1.1,DB2-9.0.0-2.0,DB2-9.1.0-1.1,DB2-9.1.0.2,iDB2-10.0.0.0,SQLite-1.0.43,SQLite-1.0.44,SQLite-1.0.47,SQLite-1.0.56,SQLite-1.0.65,SQLite-1.0.66,SQLite-1.0.72,Firebird-2.1,SybaseAse-12,SybaseAse-15,SybaseAse-AdoNet2,IfxOdbc,IfxSQLI-3.0.0.2,IfxDRDA-9.0.0.2,Odbc-1.1,Odbc-2.0,Odbc-4.0,Cache-2.0.0.1,SQLite-1.0.81]
+
+2014-03-24 21:24:19,611 [1] INFO  Spring.Data.NHibernate.LocalSessionFactoryObject - Setting proxy factory to Spring provided one as user did not specify any
+
+2014-03-24 21:24:20,458 [1] INFO  Spring.Data.NHibernate.LocalSessionFactoryObject - Building new Hibernate SessionFactory
+
+2014-03-24 21:24:26,366 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:26,367 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:26,370 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:26,371 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:27,524 [5] INFO  YiQiWorkFlow.Application.Service.Pc.PcPurchaseManageService - Entering Search;4f142c59-f1e3-4002-832a-6fb7e3db0ccf;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Pc.PcPurchaseManage]
+
+2014-03-24 21:24:27,533 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 21:24:27,535 [5] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 21:24:27,601 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 21:24:27,603 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 21:24:27,608 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Pc.PcPurchaseManageService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 21:24:27,620 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 21:24:27,927 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:27,928 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:27,930 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:28,657 [5] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.pc_purchase_manage pcpurchase0_
+
+2014-03-24 21:24:28,756 [5] DEBUG NHibernate.SQL - select TOP (@p0) pcpurchase0_.pc_number as pc1_139_, pcpurchase0_.sup_code as sup2_139_, pcpurchase0_.sup_name as sup3_139_, pcpurchase0_.en_code as en4_139_, pcpurchase0_.pc_form as pc5_139_, pcpurchase0_.d_code as d6_139_, pcpurchase0_.d_name as d7_139_, pcpurchase0_.b_code as b8_139_, pcpurchase0_.b_name as b9_139_, pcpurchase0_.pc_type as pc10_139_, pcpurchase0_.pc_mode as pc11_139_, pcpurchase0_.wh_code as wh12_139_, pcpurchase0_.purchase_date as purchase13_139_, pcpurchase0_.expect_arrive_date as expect14_139_, pcpurchase0_.if_check as if15_139_, pcpurchase0_.check_date as check16_139_, pcpurchase0_.if_putin as if17_139_, pcpurchase0_.putin_date as putin18_139_, pcpurchase0_.create_date as create19_139_, pcpurchase0_.operator as operator139_, pcpurchase0_.assessor as assessor139_, pcpurchase0_.if_examine as if22_139_, pcpurchase0_.examine_date as examine23_139_, pcpurchase0_.operator_date as operator24_139_ from dbo.pc_purchase_manage pcpurchase0_;@p0 = 20 [Type: Int32 (0)]
+
+2014-03-24 21:24:28,875 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 21:24:28,950 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 21:24:28,959 [5] INFO  YiQiWorkFlow.Application.Service.Pc.PcPurchaseManageService - Exiting Search;4f142c59-f1e3-4002-832a-6fb7e3db0ccf;1429.0818 ms
+
+2014-03-24 21:24:28,961 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:28,963 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:28,965 [5] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 21:24:29,002 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:29,362 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:29,364 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:29,409 [6] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesService - Entering Search;1c4618be-7b77-45b5-958d-321b3ee182db;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Fb.FbGoodsArchives]
+
+2014-03-24 21:24:29,410 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 21:24:29,410 [6] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 21:24:29,411 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 21:24:29,412 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 21:24:29,412 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 21:24:29,424 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 21:24:29,496 [6] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.fb_goods_archives fbgoodsarc0_
+
+2014-03-24 21:24:29,499 [6] DEBUG NHibernate.SQL - select TOP (@p0) fbgoodsarc0_.goods_code as goods1_72_, fbgoodsarc0_.goods_bar_code as goods2_72_, fbgoodsarc0_.goods_sub_code as goods3_72_, fbgoodsarc0_.gb_code as gb4_72_, fbgoodsarc0_.gm_code as gm5_72_, fbgoodsarc0_.gs_code as gs6_72_, fbgoodsarc0_.gl_code as gl7_72_, fbgoodsarc0_.goods_type as goods8_72_, fbgoodsarc0_.check_mode as check9_72_, fbgoodsarc0_.sup_code as sup10_72_, fbgoodsarc0_.op_code as op11_72_, fbgoodsarc0_.pool_rate as pool12_72_, fbgoodsarc0_.goods_name as goods13_72_, fbgoodsarc0_.goods_sub_name as goods14_72_, fbgoodsarc0_.py_code as py15_72_, fbgoodsarc0_.goods_state as goods16_72_, fbgoodsarc0_.producing_area as producing17_72_, fbgoodsarc0_.article_number as article18_72_, fbgoodsarc0_.specification as specifi19_72_, fbgoodsarc0_.shelf_life as shelf20_72_, fbgoodsarc0_.pack_unit_code as pack21_72_, fbgoodsarc0_.offer_mode as offer22_72_, fbgoodsarc0_.pack_coef as pack23_72_, fbgoodsarc0_.offer_min as offer24_72_, fbgoodsarc0_.input_tax as input25_72_, fbgoodsarc0_.output_tax as output26_72_, fbgoodsarc0_.stock_upper_limit as stock27_72_, fbgoodsarc0_.stock_lower_limit as stock28_72_, fbgoodsarc0_.under_floor_code as under29_72_, fbgoodsarc0_.under_counter_code as under30_72_, fbgoodsarc0_.brand_code as brand31_72_, fbgoodsarc0_.check_unit_code as check32_72_, fbgoodsarc0_.purchase_price as purchase33_72_, fbgoodsarc0_.nontax_purchase_price as nontax34_72_, fbgoodsarc0_.avg_cost as avg35_72_, fbgoodsarc0_.nontax_avg_cost as nontax36_72_, fbgoodsarc0_.gross_rate as gross37_72_, fbgoodsarc0_.supply_price as supply38_72_, fbgoodsarc0_.sale_price as sale39_72_, fbgoodsarc0_.vip_price as vip40_72_, fbgoodsarc0_.trade_price as trade41_72_, fbgoodsarc0_.push_rate as push42_72_, fbgoodsarc0_.create_date as create43_72_, fbgoodsarc0_.operator as operator72_, fbgoodsarc0_.assessor as assessor72_, fbgoodsarc0_.if_examine as if46_72_, fbgoodsarc0_.examine_date as examine47_72_, fbgoodsarc0_.operator_date as operator48_72_ from dbo.fb_goods_archives fbgoodsarc0_;@p0 = 20 [Type: Int32 (0)]
+
+2014-03-24 21:24:29,544 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 21:24:29,546 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 21:24:29,547 [6] INFO  YiQiWorkFlow.Application.Service.Fb.FbGoodsArchivesService - Exiting Search;1c4618be-7b77-45b5-958d-321b3ee182db;138.0079 ms
+
+2014-03-24 21:24:29,549 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:29,549 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:29,550 [6] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 21:24:29,550 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:39,511 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:39,512 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:39,610 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:39,611 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:39,611 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:39,880 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:39,881 [9] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:39,882 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:39,882 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:39,885 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:39,886 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:39,886 [9] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:39,902 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:39,903 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:39,903 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:40,330 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:40,331 [9] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:40,332 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:40,333 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:40,333 [9] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:40,758 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:40,760 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:40,798 [5] INFO  YiQiWorkFlow.Application.Service.Fb.FbSupplierArchivesService - Entering Search;e4dabfe5-55f4-4a87-84c4-777b307906a3;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Fb.FbSupplierArchives]
+
+2014-03-24 21:24:40,798 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 21:24:40,799 [5] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 21:24:40,799 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 21:24:40,800 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 21:24:40,800 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Fb.FbSupplierArchivesService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 21:24:40,823 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 21:24:40,873 [5] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.fb_supplier_archives fbsupplier0_
+
+2014-03-24 21:24:40,878 [5] DEBUG NHibernate.SQL - select TOP (@p0) fbsupplier0_.sup_code as sup1_89_, fbsupplier0_.sup_name as sup2_89_, fbsupplier0_.py_code as py3_89_, fbsupplier0_.sup_type_code as sup4_89_, fbsupplier0_.functionary as function5_89_, fbsupplier0_.functionary_phone as function6_89_, fbsupplier0_.linkman as linkman89_, fbsupplier0_.contact_phone as contact8_89_, fbsupplier0_.contact_address as contact9_89_, fbsupplier0_.office_phone as office10_89_, fbsupplier0_.fax_phone as fax11_89_, fbsupplier0_.e_mail as e12_89_, fbsupplier0_.postalcode as postalcode89_, fbsupplier0_.open_account as open14_89_, fbsupplier0_.bank_account as bank15_89_, fbsupplier0_.tax_number as tax16_89_, fbsupplier0_.op_code as op17_89_, fbsupplier0_.stock_voucher as stock18_89_, fbsupplier0_.input_tax as input19_89_, fbsupplier0_.balance_mode as balance20_89_, fbsupplier0_.pay_mode as pay21_89_, fbsupplier0_.balance_period as balance22_89_, fbsupplier0_.balance_day as balance23_89_, fbsupplier0_.offer_mode as offer24_89_, fbsupplier0_.delivery_days as delivery25_89_, fbsupplier0_.pool_rate as pool26_89_, fbsupplier0_.floors_money as floors27_89_, fbsupplier0_.excess_rate as excess28_89_, fbsupplier0_.create_date as create29_89_, fbsupplier0_.operator as operator89_, fbsupplier0_.assessor as assessor89_, fbsupplier0_.if_examine as if32_89_, fbsupplier0_.examine_date as examine33_89_, fbsupplier0_.operator_date as operator34_89_ from dbo.fb_supplier_archives fbsupplier0_;@p0 = 20 [Type: Int32 (0)]
+
+2014-03-24 21:24:40,944 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 21:24:40,947 [5] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 21:24:40,948 [5] INFO  YiQiWorkFlow.Application.Service.Fb.FbSupplierArchivesService - Exiting Search;e4dabfe5-55f4-4a87-84c4-777b307906a3;150.0086 ms
+
+2014-03-24 21:24:40,950 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:40,950 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:40,951 [5] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 21:24:40,951 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:51,436 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:51,437 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:51,541 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:51,541 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:51,542 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:52,525 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:52,526 [9] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:52,549 [9] INFO  YiQiWorkFlow.Application.Service.Pc.PcPurchaseManageService - Entering Search;bd294b81-2884-48c5-a0a5-1264f0ca3a2d;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Pc.PcPurchaseManage]
+
+2014-03-24 21:24:52,549 [9] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 21:24:52,550 [9] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 21:24:52,550 [9] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 21:24:52,550 [9] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 21:24:52,551 [9] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Pc.PcPurchaseManageService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 21:24:52,552 [9] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 21:24:52,553 [9] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.pc_purchase_manage pcpurchase0_
+
+2014-03-24 21:24:52,556 [9] DEBUG NHibernate.SQL - select TOP (@p0) pcpurchase0_.pc_number as pc1_139_, pcpurchase0_.sup_code as sup2_139_, pcpurchase0_.sup_name as sup3_139_, pcpurchase0_.en_code as en4_139_, pcpurchase0_.pc_form as pc5_139_, pcpurchase0_.d_code as d6_139_, pcpurchase0_.d_name as d7_139_, pcpurchase0_.b_code as b8_139_, pcpurchase0_.b_name as b9_139_, pcpurchase0_.pc_type as pc10_139_, pcpurchase0_.pc_mode as pc11_139_, pcpurchase0_.wh_code as wh12_139_, pcpurchase0_.purchase_date as purchase13_139_, pcpurchase0_.expect_arrive_date as expect14_139_, pcpurchase0_.if_check as if15_139_, pcpurchase0_.check_date as check16_139_, pcpurchase0_.if_putin as if17_139_, pcpurchase0_.putin_date as putin18_139_, pcpurchase0_.create_date as create19_139_, pcpurchase0_.operator as operator139_, pcpurchase0_.assessor as assessor139_, pcpurchase0_.if_examine as if22_139_, pcpurchase0_.examine_date as examine23_139_, pcpurchase0_.operator_date as operator24_139_ from dbo.pc_purchase_manage pcpurchase0_;@p0 = 20 [Type: Int32 (0)]
+
+2014-03-24 21:24:52,584 [9] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 21:24:52,591 [9] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 21:24:52,592 [9] INFO  YiQiWorkFlow.Application.Service.Pc.PcPurchaseManageService - Exiting Search;bd294b81-2884-48c5-a0a5-1264f0ca3a2d;43.0025 ms
+
+2014-03-24 21:24:52,593 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:52,593 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:52,594 [9] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 21:24:52,594 [9] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:55,325 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:55,325 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:55,326 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:55,327 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:55,327 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:55,327 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:55,328 [9] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:55,329 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:55,329 [9] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:55,330 [9] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:24:55,335 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:24:55,336 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:24:55,338 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:24:55,339 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:24:55,339 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:47:37,014 [1] DEBUG Spring.Data.Common.DbProviderFactory - Loading additional DbProviders from assembly://NSH.Repository/NSH.Repository/SQLite1081.xml
+
+2014-03-24 21:47:37,081 [1] INFO  Spring.Data.Common.DbProviderFactory - 47 DbProviders Available. [SqlServer-1.1,SqlServer-2.0,SqlServer-4.0,SqlServerCe-3.1,SqlServerCe-3.5.1,OleDb-1.1,OleDb-2.0,OleDb-4.0,OracleClient-2.0,OracleODP-2.0,OracleODP-11-2.0,MySql,MySql-1.0.9,MySql-5.0,MySql-5.0.8.1,MySql-5.1,MySql-5.1.4,MySql-5.2.3,MySql-6.1.3,MySql-6.2.2,Npgsql-1.0,Npgsql-2.0-beta1,Npgsql-2.0,DB2-9.0.0-1.1,DB2-9.0.0-2.0,DB2-9.1.0-1.1,DB2-9.1.0.2,iDB2-10.0.0.0,SQLite-1.0.43,SQLite-1.0.44,SQLite-1.0.47,SQLite-1.0.56,SQLite-1.0.65,SQLite-1.0.66,SQLite-1.0.72,Firebird-2.1,SybaseAse-12,SybaseAse-15,SybaseAse-AdoNet2,IfxOdbc,IfxSQLI-3.0.0.2,IfxDRDA-9.0.0.2,Odbc-1.1,Odbc-2.0,Odbc-4.0,Cache-2.0.0.1,SQLite-1.0.81]
+
+2014-03-24 21:47:37,987 [1] INFO  Spring.Data.NHibernate.LocalSessionFactoryObject - Setting proxy factory to Spring provided one as user did not specify any
+
+2014-03-24 21:47:38,682 [1] INFO  Spring.Data.NHibernate.LocalSessionFactoryObject - Building new Hibernate SessionFactory
+
+2014-03-24 21:47:44,547 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:47:44,548 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:47:45,360 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:47:45,360 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:47:45,362 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:47:45,936 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:47:45,937 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:47:45,945 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:47:45,946 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:47:45,946 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:47:46,018 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:47:46,018 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:47:46,050 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:47:46,050 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:47:46,050 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:47:46,080 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:47:46,081 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:47:46,101 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:47:46,101 [5] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:47:46,102 [5] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+
+2014-03-24 21:47:46,351 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Opening single Hibernate Session in SessionScope
+
+2014-03-24 21:47:46,352 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Created LazySessionHolder
+
+2014-03-24 21:47:46,451 [6] INFO  YiQiWorkFlow.Application.Service.Pc.PcPurchaseDetailService - Entering Search;c0606451-ac70-4e3c-9570-fe4dbc36a693;c=YiQiWorkFlow.Domain.Basement.SearchDtoBase`1[YiQiWorkFlow.Domain.Pc.PcPurchaseDetail]
+
+2014-03-24 21:47:46,458 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - session instance requested - opening new session
+
+2014-03-24 21:47:46,459 [6] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Opening Hibernate Session
+
+2014-03-24 21:47:46,485 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Found thread-bound Session [NHibernate.Impl.SessionImpl] for Hibernate transaction
+
+2014-03-24 21:47:46,485 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Using transaction object [Spring.Data.NHibernate.HibernateTransactionManager+HibernateTransactionObject]
+
+2014-03-24 21:47:46,489 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Creating new transaction with name [YiQiWorkFlow.Application.Service.Pc.PcPurchaseDetailService.Search]:PROPAGATION_Required,ISOLATION_ReadCommitted
+
+2014-03-24 21:47:46,496 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Exposing Hibernate transaction as ADO transaction [System.Data.SqlClient.SqlConnection]
+
+2014-03-24 21:47:47,265 [6] DEBUG NHibernate.SQL - select cast(count(*) as INT) as col_0_0_ from dbo.pc_purchase_detail pcpurchase0_ where pcpurchase0_.pc_number like ('%'+@p0+'%');@p0 = '!' [Type: String (4000)]
+
+2014-03-24 21:47:47,312 [6] DEBUG NHibernate.SQL - select TOP (@p0) pcpurchase0_.Id as Id138_, pcpurchase0_.pc_number as pc2_138_, pcpurchase0_.goods_code as goods3_138_, pcpurchase0_.goods_bar_code as goods4_138_, pcpurchase0_.specification as specific5_138_, pcpurchase0_.pack_unit_code as pack6_138_, pcpurchase0_.offer_min as offer7_138_, pcpurchase0_.stock_qty as stock8_138_, pcpurchase0_.order_qty as order9_138_, pcpurchase0_.pack_qty as pack10_138_, pcpurchase0_.pack_coef as pack11_138_, pcpurchase0_.purchase_qty as purchase12_138_, pcpurchase0_.putin_qty as putin13_138_, pcpurchase0_.sale_price as sale14_138_, pcpurchase0_.purchase_price as purchase15_138_, pcpurchase0_.nontax_purchase_price as nontax16_138_, pcpurchase0_.purchase_money as purchase17_138_, pcpurchase0_.nontax_purchase_money as nontax18_138_, pcpurchase0_.produce_date as produce19_138_, pcpurchase0_.sys_guid as sys20_138_ from dbo.pc_purchase_detail pcpurchase0_ where pcpurchase0_.pc_number like ('%'+@p1+'%');@p0 = 20 [Type: Int32 (0)], @p1 = '!' [Type: String (4000)]
+
+2014-03-24 21:47:47,319 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Committing Hibernate transaction on Session [NHibernate.Impl.SessionImpl]
+
+2014-03-24 21:47:47,330 [6] DEBUG Spring.Data.NHibernate.HibernateTransactionManager - Not closing pre-bound Hibernate Session [NHibernate.Impl.SessionImpl] after transaction
+
+2014-03-24 21:47:47,331 [6] INFO  YiQiWorkFlow.Application.Service.Pc.PcPurchaseDetailService - Exiting Search;c0606451-ac70-4e3c-9570-fe4dbc36a693;881.0504 ms
+
+2014-03-24 21:47:47,332 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Trying to close SessionScope
+
+2014-03-24 21:47:47,333 [6] DEBUG Spring.Data.NHibernate.Support.OpenSessionInViewModule - Closing single Hibernate Session in SessionScope
+
+2014-03-24 21:47:47,334 [6] DEBUG Spring.Data.NHibernate.SessionFactoryUtils - Closing Hibernate Session
+
+2014-03-24 21:47:47,341 [6] DEBUG Spring.Data.NHibernate.Support.SessionScope+LazySessionHolder - Closed LazySessionHolder
+

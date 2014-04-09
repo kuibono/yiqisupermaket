@@ -19,7 +19,7 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        closeWithNoValidate();
+                        location.href = "/Ms/MsCancelCardManageEdit";
                     } else {
                         $("#Tooltip_Critical_MsCancelCardManage .content").first().text(r.Message);
                         $("#Tooltip_Critical_MsCancelCardManage").show("fast");
@@ -54,10 +54,55 @@
                                 btnEdit.setValue(data[i].id);
                                 btnEdit.setText(data[i].text);
 
-                                try {
-                                    window.frames[0].location.href = "/Ms/MsMemberArchivesEdit/" + data[i].mscode;
-                                } catch (e) {
+                                // 绑定会员信息
+                                var msCode = data[i].msCode;
+                                if (msCode) {
+                                    $.ajax({
+                                        url: "/Ms/SearchMsMemberArchivesList?MsCode=" + msCode,
+                                        type: 'post',
+                                        cache: false,
+                                        dataType: "json",
+                                        success: function (msData) {
+                                            var data = msData.data;
+                                            if (data) {
+                                                // 绑定
+                                                for (var i = 0; i < data.length; i++) {
+                                                    mini.get('Control_MsCode').setValue(data[i].MsCode);
+                                                    mini.get('Control_MsName').setValue(data[i].MsName);
+                                                    mini.get('Control_Birthday').setValue(data[i].Birthday);
+                                                    mini.get('Control_Sex').setValue(data[i].Sex);
+                                                    mini.get('Control_PoliticsCode').setValue(data[i].PoliticsCode);
+                                                    mini.get('Control_NationCode').setValue(data[i].NationCode);
+                                                    mini.get('Control_EducationCode').setValue(data[i].EducationCode);
+                                                    mini.get('Control_ProfessionalTitleCode').setValue(data[i].ProfessionalTitleCode);
+                                                    mini.get('Control_IfMarried').setValue(data[i].IfMarried);
+                                                    mini.get('Control_NativePlace').setValue(data[i].NativePlace);;
+                                                    mini.get('Control_Idcard').setValue(data[i].Idcard);
+                                                    mini.get('Control_FamilyPhone').setValue(data[i].FamilyPhone);
+                                                    mini.get('Control_Handset').setValue(data[i].Handset);
+                                                    mini.get('Control_eMail').setValue(data[i].eMail);
+                                                    mini.get('Control_FamilyAddress').setValue(data[i].FamilyAddress);
+                                                    mini.get('Control_Postalcode').setValue(data[i].Postalcode);
+                                                    mini.get('Control_Stature').setValue(data[i].Stature);
+                                                    mini.get('Control_Width').setValue(data[i].Width);
 
+                                                    break;
+                                                };
+
+                                            } else {
+                                                $("#Tooltip_Critical_MsGrantCardManage .content").first().text(r.Message);
+                                                $("#Tooltip_Critical_MsGrantCardManage").show("fast");
+                                                form.unmask();
+                                                $(document).scrollTop(0);
+                                            }
+                                        },
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                            $("#Tooltip_Critical_MsGrantCardManage .content").first().text(jqXHR.responseText);
+                                            $("#Tooltip_Critical_MsGrantCardManage").show("fast");
+                                            form.unmask();
+                                            $(document).scrollTop(0);
+                                        }
+                                    });
                                 }
 
                                 break;
@@ -145,6 +190,45 @@
                 $('#btnFormSubmit').attr('disabled', "true");
                 $('#btnFormReset').attr('disabled', "true");
             }
+
+            // 老会员,清空数据,右侧无法编辑 赋值
+            mini.get('Control_MsCode').disable();
+            mini.get('Control_MsName').disable();
+            mini.get('Control_Birthday').disable();
+            mini.get('Control_Sex').disable();
+            mini.get('Control_PoliticsCode').disable();
+            mini.get('Control_NationCode').disable();
+            mini.get('Control_EducationCode').disable();
+            mini.get('Control_ProfessionalTitleCode').disable();
+            mini.get('Control_IfMarried').disable();
+            mini.get('Control_NativePlace').disable();
+            mini.get('Control_Idcard').disable();
+            mini.get('Control_FamilyPhone').disable();
+            mini.get('Control_Handset').disable();
+            mini.get('Control_eMail').disable();
+            mini.get('Control_FamilyAddress').disable();
+            mini.get('Control_Postalcode').disable();
+            mini.get('Control_Stature').disable();
+            mini.get('Control_Width').disable();
+
+            mini.get('Control_MsCode').setValue('');
+            mini.get('Control_MsName').setValue('');
+            mini.get('Control_Birthday').setValue('');
+            mini.get('Control_Sex').setValue('');
+            mini.get('Control_PoliticsCode').setValue('');
+            mini.get('Control_NationCode').setValue('');
+            mini.get('Control_EducationCode').setValue('');
+            mini.get('Control_ProfessionalTitleCode').setValue('');
+            mini.get('Control_IfMarried').setValue('');
+            mini.get('Control_NativePlace').setValue('');
+            mini.get('Control_Idcard').setValue('');
+            mini.get('Control_FamilyPhone').setValue('');
+            mini.get('Control_Handset').setValue('');
+            mini.get('Control_eMail').setValue('');
+            mini.get('Control_FamilyAddress').setValue('');
+            mini.get('Control_Postalcode').setValue('');
+            mini.get('Control_Stature').setValue('');
+            mini.get('Control_Width').setValue('');
         });
 
         function onCloseClick(e) {
@@ -168,12 +252,34 @@
             }
         }
 
+        function Add() {
+            location.href = "/Ms/MsCancelCardManageEdit";
+        }
+
+        function Search() {
+            location.href = "/Ms/MsCancelCardManageList";
+        }
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>卡作废编辑
-        </h1>
+        <div id="toolbar1" class="mini-toolbar" style="padding: 2px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="btnAdd" iconcls="icon-add" class="mini-button" plain="true" tooltip="增加">增加</a>
+                        <a id="btnAbolish" iconcls="icon-no" class="mini-button" plain="true" tooltip="废除(Ctrl+F)">废除</a>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="恢复(Ctrl+S)">恢复</a>
+                        <a id="btnSearch" iconcls="icon-search" class="mini-button" plain="true" tooltip="查询">查询</a>
+                        <!--<a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>-->
+                        <a id="btnPrint" iconcls="icon-print" class="mini-button" plain="true" tooltip="打印">打印</a>
+                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--<h1>卡作废编辑
+        </h1>-->
         <div class="tooltip warning hidden" id="Tooltip_Warning_MsCancelCardManage">
             <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
             <p class="content">
@@ -227,134 +333,136 @@
             </div>
         </div>
         <form id="formMain" method="post" action="">
-            <fieldset>
-                <div id="content" class="mini-splitter" style="width: 100%; height: 800px;">
-                    <div size="350px" showcollapsebutton="true" style="padding: 5px;">
+
+            <div id="content" class="mini-splitter" style="width: 100%; height: 800px;">
+                <div size="350px" showcollapsebutton="true" style="padding: 5px;">
+                    <fieldset>
                         <legend>基本信息</legend>
                         <div class="ablock" style="display: none">
                             <label for="Control_CancelNumber">作废单号:</label>
                             <input id="Control_CancelNumber" value="@Model.Id" name="Id" class="mini-hidden" />
                         </div>
-                    </div>
-                    <div showcollapsebutton="true">
-                        <fieldset>
 
-                            <legend>会员信息</legend>
-                            @Html.Partial("UCMemberArchives")
-                        </fieldset>
+                        <div class="ablock">
+                            <label for="Control_EnCode">企业编码:</label>
+                            <!--<input type="text" value="@Model.EnCode" class="mini-combobox" name="EnCode" id="Control_EnCode" data="c_EnCode" vtype="maxLength:20" required="true" />-->
 
-                    </div>
+                            <input id="Control_EnCode" name="Control_EnCode" class="mini-buttonedit" onbuttonclick="onButtonEditEnterprise" allowinput="false" required="true" value="@Model.EnCode" text="@Model.EnCode" required="true" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_EnCode">企业编码:</label>
-                        <!--<input type="text" value="@Model.EnCode" class="mini-combobox" name="EnCode" id="Control_EnCode" data="c_EnCode" vtype="maxLength:20" required="true" />-->
+                        <div class="ablock">
+                            <label for="Control_CancelDate">作废日期:</label>
+                            <input type="text" id="Control_CancelDate" name="CancelDate" value="@Model.CancelDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
+                        </div>
 
-                        <input id="Control_EnCode" name="Control_EnCode" class="mini-buttonedit" onbuttonclick="onButtonEditEnterprise" allowinput="false" required="true" value="@Model.EnCode" text="@Model.EnCode" required="true" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_CancelReason">作废原因:</label>
+                            <input type="text" value="@Model.CancelReason" class="mini-textbox" name="CancelReason" id="Control_CancelReason" vtype="maxLength:40" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_CancelDate">作废日期:</label>
-                        <input type="text" id="Control_CancelDate" name="CancelDate" value="@Model.CancelDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_CardNumber">卡号:</label>
+                            <input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" readonly="readonly" />
+                            <input id="control_hCardNumber" value="@Model.CardNumber" name="hCardNumber" class="mini-hidden" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_CancelReason">作废原因:</label>
-                        <input type="text" value="@Model.CancelReason" class="mini-textbox" name="CancelReason" id="Control_CancelReason" vtype="maxLength:40" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_SurfaceNumber">卡面明码:</label>
 
-                    <div class="ablock">
-                        <label for="Control_CardNumber">卡号:</label>
-                        <input type="text" value="@Model.CardNumber" class="mini-textbox" name="CardNumber" id="Control_CardNumber" vtype="maxLength:20" readonly="readonly" />
-                        <input id="control_hCardNumber" value="@Model.CardNumber" name="hCardNumber" class="mini-hidden" />
-                    </div>
-
-                    <div class="ablock">
-                        <label for="Control_SurfaceNumber">卡面明码:</label>
-
-                        <div id="Control_SurfaceNumber" name="SurfaceNumber" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="SurfaceNumber" valuefield="SurfaceNumber"
-                            url="/Ms/GetMsCardArchivesList?CardState=1" showclose="true" oncloseclick="onCloseClick" onvaluechanged="onvaluechanged" emptytext="请选择..." required="true" allowinput="true" value="@Model.SurfaceNumber">
-                            <div property="columns">
-                                <div header="卡面明码" field="SurfaceNumber"></div>
-                                <div header="卡号" field="Id"></div>
-                                <div header="卡状态" field="CardState" renderer="onCardStateRender"></div>
-                                <div header="卡类型编码" field="CardCode"></div>
-                                <div header="卡类型名称" field="CardName"></div>
-                                <div header="生效日期" field="EffectiveDate" format="yyyy-MM-dd"></div>
-                                <div header="积分有效期" field="PointsUsefulLifeDate" format="yyyy-MM-dd"></div>
-                                <div header="卡有效期" field="Card_usefulLifeDate" format="yyyy-MM-dd"></div>
-                                <div header="办卡费用" field="TransactCharge"></div>
-                                <div header="押金金额" field="DepositMoney"></div>
+                            <div id="Control_SurfaceNumber" name="SurfaceNumber" class="mini-combobox" style="width: 150px;" popupwidth="400" textfield="SurfaceNumber" valuefield="SurfaceNumber"
+                                url="/Ms/GetMsCardArchivesList?CardState=1" showclose="true" oncloseclick="onCloseClick" onvaluechanged="onvaluechanged" emptytext="请选择..." required="true" allowinput="true" value="@Model.SurfaceNumber">
+                                <div property="columns">
+                                    <div header="卡面明码" field="SurfaceNumber"></div>
+                                    <div header="卡号" field="Id"></div>
+                                    <div header="卡状态" field="CardState" renderer="onCardStateRender"></div>
+                                    <div header="卡类型编码" field="CardCode"></div>
+                                    <div header="卡类型名称" field="CardName"></div>
+                                    <div header="生效日期" field="EffectiveDate" format="yyyy-MM-dd"></div>
+                                    <div header="积分有效期" field="PointsUsefulLifeDate" format="yyyy-MM-dd"></div>
+                                    <div header="卡有效期" field="Card_usefulLifeDate" format="yyyy-MM-dd"></div>
+                                    <div header="办卡费用" field="TransactCharge"></div>
+                                    <div header="押金金额" field="DepositMoney"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="ablock">
-                        <label for="Control_MsCode">会员编码:</label>
+                        <div class="ablock">
+                            <label for="Control_MsCode">会员编码:</label>
 
-                        <input id="Control_MsCode" name="MsCode" class="mini-buttonedit" onbuttonclick="onButtonEdit" allowinput="false" required="true" value="@Model.MsCode" text="@Model.MsCode" />
+                            <input id="Control_MsCode" name="MsCode" class="mini-buttonedit" onbuttonclick="onButtonEdit" allowinput="false" required="true" value="@Model.MsCode" text="@Model.MsCode" />
 
-                        <input id="control_hMsCode" value="@Model.MsCode" name="hMsCode" class="mini-hidden" />
-                    </div>
+                            <input id="control_hMsCode" value="@Model.MsCode" name="hMsCode" class="mini-hidden" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_CardCode">卡类型编码:</label>
+                        <div class="ablock">
+                            <label for="Control_CardCode">卡类型编码:</label>
 
-                        <input type="text" value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20" required="true" />
-                    </div>
+                            <input type="text" value="@Model.CardCode" class="mini-textbox" name="CardCode" id="Control_CardCode" vtype="maxLength:20" required="true" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_CardName">卡类型名称:</label>
-                        <input type="text" value="@Model.CardName" class="mini-textbox" name="CardName" id="Control_CardName" vtype="maxLength:20" readonly="readonly" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_CardName">卡类型名称:</label>
+                            <input type="text" value="@Model.CardName" class="mini-textbox" name="CardName" id="Control_CardName" vtype="maxLength:20" readonly="readonly" />
+                        </div>
 
-                    <div class="ablock" style="display: none">
-                        <label for="Control_CardState">卡状态:</label>
-                        <input type="text" value="@Model.CardState" class="mini-textbox" name="CardState" id="Control_CardState" vtype="maxLength:2" />
-                    </div>
+                        <div class="ablock" style="display: none">
+                            <label for="Control_CardState">卡状态:</label>
+                            <input type="text" value="@Model.CardState" class="mini-textbox" name="CardState" id="Control_CardState" vtype="maxLength:2" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_EffectiveDate">生效日期:</label>
-                        <input type="text" id="Control_EffectiveDate" name="EffectiveDate" value="@Model.EffectiveDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_EffectiveDate">生效日期:</label>
+                            <input type="text" id="Control_EffectiveDate" name="EffectiveDate" value="@Model.EffectiveDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_PointsUsefulLifeDate">积分有效期:</label>
-                        <input type="text" id="Control_PointsUsefulLifeDate" name="PointsUsefulLifeDate" value="@Model.PointsUsefulLifeDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_PointsUsefulLifeDate">积分有效期:</label>
+                            <input type="text" id="Control_PointsUsefulLifeDate" name="PointsUsefulLifeDate" value="@Model.PointsUsefulLifeDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_CardUsefulLifeDate">卡有效期:</label>
-                        <input type="text" id="Control_CardUsefulLifeDate" name="CardUsefulLifeDate" value="@Model.CardUsefulLifeDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_CardUsefulLifeDate">卡有效期:</label>
+                            <input type="text" id="Control_CardUsefulLifeDate" name="CardUsefulLifeDate" value="@Model.CardUsefulLifeDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_TransactCharge">办卡费用:</label>
-                        <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_TransactCharge">办卡费用:</label>
+                            <input type="text" id="Control_TransactCharge" name="TransactCharge" value="@Model.TransactCharge" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_DepositMoney">押金金额:</label>
-                        <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_DepositMoney">押金金额:</label>
+                            <input type="text" id="Control_DepositMoney" name="DepositMoney" value="@Model.DepositMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_CreateDate">创建时间:</label>
-                        <input type="text" id="Control_CreateDate" name="CreateDate" value="@Model.CreateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_CreateDate">创建时间:</label>
+                            <input type="text" id="Control_CreateDate" name="CreateDate" value="@Model.CreateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_Operator">操作员:</label>
-                        <input type="text" value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
-                    </div>
+                        <div class="ablock">
+                            <label for="Control_Operator">操作员:</label>
+                            <input type="text" value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
+                        </div>
 
-                    <div class="ablock">
-                        <label for="Control_OperatorDate">操作时间:</label>
-                        <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
-                    </div>
-            </fieldset>
+                        <div class="ablock">
+                            <label for="Control_OperatorDate">操作时间:</label>
+                            <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
+                        </div>
+                    </fieldset>
+                </div>
+                <div showcollapsebutton="true">
+                    <fieldset>
+
+                        <legend>会员信息</legend>
+                        @Html.Partial("UCMemberArchives")
+                    </fieldset>
+
+                </div>
+            </div>
             <div class="clear">
             </div>
-            <div class="control-panel">
+            <!--<div class="control-panel">
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
@@ -362,7 +470,7 @@
                 </div>
                 <div class="botton-up">
                 </div>
-            </div>
+            </div>-->
         </form>
     </div>
 </body>

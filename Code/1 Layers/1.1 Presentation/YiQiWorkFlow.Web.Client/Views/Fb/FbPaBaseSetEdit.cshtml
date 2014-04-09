@@ -69,22 +69,22 @@
             <legend>基本参数设置</legend>
             <div class="ablock">
                 <label for="Control_GoodsGbLen">大类位数:</label>
-                <input type="text" id="Control_GoodsGbLen" name="GoodsGbLen"  value="@Model.GoodsGbLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_GoodsGbLen" name="GoodsGbLen"  value="@Model.GoodsGbLen" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_GoodsGmLen">中类位数:</label>
-                <input type="text" id="Control_GoodsGmLen" name="GoodsGmLen"  value="@Model.GoodsGmLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_GoodsGmLen" name="GoodsGmLen"  value="@Model.GoodsGmLen" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_GoodsGsLen">小类位数:</label>
-                <input type="text" id="Control_GoodsGsLen" name="GoodsGsLen"  value="@Model.GoodsGsLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_GoodsGsLen" name="GoodsGsLen"  value="@Model.GoodsGsLen" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_GoodsGlLen">细类位数:</label>
-                <input type="text" id="Control_GoodsGlLen" name="GoodsGlLen"  value="@Model.GoodsGlLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_GoodsGlLen" name="GoodsGlLen"  value="@Model.GoodsGlLen" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
@@ -94,7 +94,7 @@
 
             <div class="ablock">
                 <label for="Control_GoodsLen">商品流水码位数:</label>
-                <input type="text" id="Control_GoodsLen" name="GoodsLen"  value="@Model.GoodsLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_GoodsLen" name="GoodsLen"  value="@Model.GoodsLen" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
@@ -104,7 +104,7 @@
 
             <div class="ablock">
                 <label for="Control_SupLen">供货商流水码位数:</label>
-                <input type="text" id="Control_SupLen" name="SupLen"  value="@Model.SupLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_SupLen" name="SupLen"  value="@Model.SupLen" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
@@ -119,7 +119,7 @@
 
             <div class="ablock">
                 <label for="Control_PurchasePreciseLen">进价小数位数:</label>
-                <input type="text" id="Control_PurchasePreciseLen" name="PurchasePreciseLen"  value="@Model.PurchasePreciseLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_PurchasePreciseLen" name="PurchasePreciseLen"  value="@Model.PurchasePreciseLen" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
             <div class="ablock">
                 <label for="Control_IfChangePurchasePriceInArchives">进价可在档案中修改:</label>
@@ -127,15 +127,15 @@
             </div>
             <div class="ablock">
                 <label for="Control_SalePreciseLen">销售价小数位数:</label>
-                <input type="text" id="Control_SalePreciseLen" name="SalePreciseLen"  value="@Model.SalePreciseLen" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_SalePreciseLen" name="SalePreciseLen"  value="@Model.SalePreciseLen" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
-            <div class="ablock">
+            <div class="ablock hidden">
                 <label for="Control_Operator">操作员:</label>
                 <input type="text"  value="@Model.Operator" class="mini-combobox" name="Operator" id="Control_Operator" url="/Common/GetComboData?table=sys_login_power&valueColumn=em_code&textColumn=em_name"  />
             </div>
 
-            <div class="ablock">
+            <div class="ablock hidden">
                 <label for="Control_OperatorDate">操作时间:</label>
                 <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
             </div>

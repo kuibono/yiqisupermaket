@@ -264,22 +264,22 @@
 
                 <div class="ablock">
                     <label for="Control_PrepaidMoney">充值金额:</label>
-                    <input type="text" id="Control_PrepaidMoney" name="PrepaidMoney" value="@Model.PrepaidMoney" class="mini-spinner" minvalue="0" maxvalue="1000000" decimalplaces="2" required="true" />
+                    <input type="text" id="Control_PrepaidMoney" name="PrepaidMoney" value="@Model.PrepaidMoney" class="mini-spinner" minValue="-999999999" maxvalue="1000000" decimalplaces="2" required="true" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_TotalPrepaid">累计储值金额:</label>
-                    <input type="text" id="Control_TotalPrepaid" name="TotalPrepaid" value="@Model.TotalPrepaid" class="mini-spinner" minvalue="0" maxvalue="100000" decimalplaces="2" readonly="readonly" />
+                    <input type="text" id="Control_TotalPrepaid" name="TotalPrepaid" value="@Model.TotalPrepaid" class="mini-spinner" minValue="-999999999" maxvalue="100000" decimalplaces="2" readonly="readonly" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_CurrentPrepaid">当前储值金额:</label>
-                    <input type="text" id="Control_CurrentPrepaid" name="CurrentPrepaid" value="@Model.CurrentPrepaid" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" readonly="readonly" />
+                    <input type="text" id="Control_CurrentPrepaid" name="CurrentPrepaid" value="@Model.CurrentPrepaid" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" readonly="readonly" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_UsePrepaid">使用金额:</label>
-                    <input type="text" id="Control_UsePrepaid" name="UsePrepaid" value="@Model.UsePrepaid" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" readonly="readonly" />
+                    <input type="text" id="Control_UsePrepaid" name="UsePrepaid" value="@Model.UsePrepaid" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" readonly="readonly" />
                 </div>
 
                 <div class="ablock">

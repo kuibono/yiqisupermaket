@@ -1,0 +1,5 @@
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.4 Infrastructure\1.4.1 NSH\System\bin\Debug\Voodoo.dll
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.4 Infrastructure\1.4.1 NSH\System\bin\Debug\Voodoo.pdb
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.4 Infrastructure\1.4.1 NSH\System\obj\Debug\Voodoo.csprojResolveAssemblyReference.cache
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.4 Infrastructure\1.4.1 NSH\System\obj\Debug\Voodoo.dll
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.4 Infrastructure\1.4.1 NSH\System\obj\Debug\Voodoo.pdb

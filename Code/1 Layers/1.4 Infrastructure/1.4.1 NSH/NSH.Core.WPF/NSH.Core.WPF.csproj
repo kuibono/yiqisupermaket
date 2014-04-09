@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.WPF.Controls, Version=7.1.0.25, Culture=neutral, PublicKeyToken=65042117d0a83cbc, processorArchitecture=MSIL" />
-    <Reference Include="DevComponents.WpfDock, Version=7.1.0.25, Culture=neutral, PublicKeyToken=adef513edc9ed778, processorArchitecture=MSIL" />
-    <Reference Include="DevComponents.WpfEditors, Version=7.1.0.25, Culture=neutral, PublicKeyToken=cbba4a1563683cdb, processorArchitecture=MSIL" />
-    <Reference Include="DevComponents.WpfRibbon, Version=7.1.0.25, Culture=neutral, PublicKeyToken=2037e151916410e7, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />

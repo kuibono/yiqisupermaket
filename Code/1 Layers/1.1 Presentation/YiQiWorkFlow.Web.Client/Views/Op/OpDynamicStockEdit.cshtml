@@ -100,17 +100,17 @@
 
             <div class="ablock">
                 <label for="Control_StockQty">库存数量:</label>
-                <input type="text" id="Control_StockQty" name="StockQty"  value="@Model.StockQty" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_StockQty" name="StockQty"  value="@Model.StockQty" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_OrderQty">在途数量:</label>
-                <input type="text" id="Control_OrderQty" name="OrderQty"  value="@Model.OrderQty" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_OrderQty" name="OrderQty"  value="@Model.OrderQty" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_IfModify">修改标志:</label>
-                <input type="text" id="Control_IfModify" name="IfModify"  value="@Model.IfModify" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_IfModify" name="IfModify"  value="@Model.IfModify" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
            

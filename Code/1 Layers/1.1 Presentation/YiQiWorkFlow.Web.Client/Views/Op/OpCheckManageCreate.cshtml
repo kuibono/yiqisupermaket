@@ -1,0 +1,362 @@
+﻿@model YiQiWorkFlow.Domain.Op.OpCheckManage
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>商品盘点单编辑</title>
+    <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
+    <script type="text/javascript" src="/scripts/boot.js"></script>
+    <script type="text/javascript" src="/Scripts/editPage.js"></script>
+    <script type="text/javascript"> var pageTitle = "商品盘点单"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:58:54"; var id = "@Model.Id"; pageName = "OpCheckManageEdit";var isNew=@Model.IsAdded.ToString().ToLower();var userId="@YiQiWorkFlow.Web.Client.Common.MyEnv.LoginUser.Id";  </script>
+    <script type="text/javascript">
+        function SaveData() {
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData();
+
+            var grid1 = mini.get("datagrid1");
+            grid1.commitEdit();
+            var detail = grid1.getChanges();
+            o["detail"] = mini.encode(detail);
+
+            $.ajax({
+                url: "/Op/SaveOpCheckManageCreate",
+                type: 'post',
+                data: o,
+                cache: false,
+                dataType: "json",
+                success: function (r) {
+                    if (r.IsSuccess == true) {
+                        //location.href = "/Op/OpCheckManageList";
+                        try{ history.go(-1); } catch(e){}
+                    } else {
+                        $("#Tooltip_Critical_PcPurchaseManage .content").first().text(r.Message);
+                        $("#Tooltip_Critical_PcPurchaseManage").show("fast");
+                        form.unmask();
+                        $(document).scrollTop(0);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#Tooltip_Critical_PcPurchaseManage .content").first().text(jqXHR.responseText);
+                    $("#Tooltip_Critical_PcPurchaseManage").show("fast");
+                    form.unmask();
+                    $(document).scrollTop(0);
+                }
+            });
+        }
+
+        function onGoodsChanged(e) {
+            
+
+        }
+        function addRow(row) {
+            var grid = mini.get("datagrid1");
+            grid.addRow(row, 0);
+
+        }
+        function onrowdblclick(e) {
+            var grid = mini.get("datagrid1");
+            if (grid.isEditing()) {
+                grid.commitEdit();
+            }
+            grid.beginEditRow(e.row);
+            setTimeout(function () {
+                //    mini.getbyName("GoodsCode", "datagrid1").focus();
+            }, 500);
+
+        }
+        function ExameData() {
+            var chk = mini.get("Control_IfExamine");
+            chk.setValue("1");
+            mini.get("Control_ExamineDate").setValue(new Date());
+            mini.get("Control_Assessor").setValue(userId);
+            clearExameAfterSave = false;
+            if (isNew == false) {
+                //立即生效
+                $.getJSON("/Common/ChangeDbValue?table=op_check_manage&pkColumn=ck_number&pkValue=@Model.Id&assessor=&if_examine=1&examine_date=" + new Date(), function (r) {
+
+            });
+        }
+        $("#btnExame").prop("disabled", true);
+    }
+    $(function () {
+        var grid = mini.get("datagrid1");
+        grid.reload();
+        jQuery.hotkeys.add('return', function () {
+            //if (mini.get("filter_SupCode").getValue().length == 0) {
+            //    alert("必须选择供货商");
+            //    return false;
+            //}
+            if (grid.isEditing()) {
+                grid.commitEdit();
+            }
+            var row = {};
+            grid.addRow(row, 0);
+            grid.cancelEdit();
+            grid.beginEditRow(row);
+            //mini.getbyName("GoodsCode", "datagrid1").setUrl("/Fb/SearchFbGoodsArchivesListForList?SupCode=" + mini.get("filter_SupCode").getValue());
+            setTimeout(function () {
+                //    mini.getbyName("GoodsCode", "datagrid1").focus();
+            }, 500);
+        });
+        jQuery.hotkeys.add('esc', function () {
+            grid.reload();
+        });
+        jQuery.hotkeys.add('del', function () {
+            grid.removeRows(grid.getSelecteds());
+        });
+
+        //$("#btnExame").click(function () {
+        //    var chk = mini.get("Control_IfExamine");
+        //    chk.setValue("1");
+        //    mini.get("Control_ExamineDate").setValue(new Date());
+        //    clearExameAfterSave = false;
+        //    if (isNew == false) {
+        //       //立即生效
+        //        $.getJSON("/Common/ChangeDbValue?table=op_check_manage&pkColumn=ck_number&pkValue=@Model.Id&assessor=&if_examine=1&examine_date=" + new Date(), function (r) {
+            //
+            //        });
+            //    }
+            //    $("#btnExame").prop("disabled", true);
+            //});
+            if ("@Model.IfExamine" == "1") {
+                $("#btnExame").prop("disabled", true);
+            }
+            $("#btnInStock").click(function () {
+                mini.get("Control_IfPutin").setValue("1");
+                mini.get("Control_PutinDate").setValue(new Date());
+            });
+            $("#btnDel").click(function () {
+                if (isNew == false) {
+                    //删除
+                    $.ajax({
+                        url: "/Op/OpCheckManageDelete",
+                        data: { ids: id, confirm: "true" },
+                        dataType: "json",
+                        success: function (r) {
+                            closeWithNoValidate();
+                        }
+                    });
+                }
+                else {
+                    closeWithNoValidate();
+                }
+            });
+            $("#btnGoods").click(function () {
+                var btnEdit = this;
+                //if (mini.get("filter_SupCode").getValue().length == 0) {
+                //    alert("必须选择供货商");
+                //    return false;
+                //}
+                mini.open({
+                    url: "/Common/GoodsSelector?OpCode=3",
+                    title: "选择商品",
+                    width: 600,
+                    height: 380,
+                    ondestroy: function (action) {
+                        //if (action == "close") return false;
+                        if (action == "ok") {
+                            var iframe = this.getIFrameEl();
+                            var data = iframe.contentWindow.GetData();
+                            data = mini.clone(data);    //
+                            if (data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    var row = {
+                                        GoodsCode: data[i].Id,
+                                        GoodsBarCode: data[i].GoodsBarCode,
+                                        Specification: data[i].Specification,
+                                        PackUnitCode: data[i].PackUnitCode,
+                                        OfferMin: data[i].OfferMin,
+                                        StockQty: data[i].StockQty,
+                                        OrderQty: data[i].OrderQty,
+                                        PackQty: data[i].PackQty,
+                                        PackCoef: data[i].PackCoef,
+                                        PurchaseQty: data[i].PurchaseQty,
+                                        PutinQty: data[i].PutinQty,
+                                        SalePrice: data[i].SalePrice,
+                                        PurchasePrice: data[i].PurchasePrice,
+                                        NontaxPurchasePrice: data[i].NontaxPurchasePrice,
+                                        PurchaseMoney: data[i].PurchaseMoney,
+                                        NontaxPurchaseMoney: data[i].NontaxPurchaseMoney,
+                                        ProduceDate: data[i].ProduceDate
+                                    };
+                                    addRow(row);
+                                }
+                            }
+                        }
+
+                    }
+                });
+            });
+            $("#btnQuery").click(function () {
+                location.href = "/Op/OpCheckManageList";
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="toolbar1" class="mini-toolbar" style="padding: 2px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
+                        <a id="btnPrint" iconcls="icon-printer" class="mini-button" plain="true" tooltip="打印">打印</a>
+                        <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
+                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <form id="formMain" method="post" action="">
+            <fieldset>
+                <legend>商品盘点单编辑</legend>
+            	<div class="ablock">
+                <label for="Control_CkNumber">盘点单号:</label>
+                <input id="Control_CkNumber" value="@Model.Id" name="Id" class="mini-textbox" enabled="false"/>
+            </div>
+
+            	<div class="ablock">
+                <label for="Control_CkDate">盘点日期:</label>
+                <input type="text" id="Control_CkDate" name="CkDate"  value="@Model.CkDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            	<div class="ablock">
+                <label for="Control_CkType">盘点方式:</label>
+                <input type="text"  value="@Model.CkType" class="mini-textbox" name="CkType" id="Control_CkType" vtype="maxLength:20" />
+            </div>
+
+            	<div class="ablock">
+                <label for="Control_CkOrgan">盘点单位:</label>
+                <input type="text"  value="@Model.CkOrgan" class="mini-textbox" name="CkOrgan" id="Control_CkOrgan" vtype="maxLength:20" />
+            </div>
+
+            	<div class="ablock">
+                <label for="Control_WhCode">仓库编码:</label>
+                <input type="text"  value="@Model.WhCode" class="mini-textbox" name="WhCode" id="Control_WhCode" vtype="maxLength:20" />
+            </div>
+
+            	<div class="ablock">
+                <label for="Control_CkArea">盘点范围:</label>
+                <input type="text"  value="@Model.CkArea" class="mini-textbox" name="CkArea" id="Control_CkArea" vtype="maxLength:250" />
+            </div>
+
+            	<div class="ablock hidden">
+                <label for="Control_IfTransfer">是否结转:</label>
+                <div id="Control_IfTransfer" name="IfTransfer" value="@Model.IfTransfer" class="mini-checkbox" trueValue="1" falseValue="0" readOnly="false" text="结转"></div>
+            </div>
+
+            	<div class="ablock hidden">
+                <label for="Control_CreateDate">创建时间:</label>
+                <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            	<div class="ablock hidden">
+                <label for="Control_Operator">操作员:</label>
+                <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
+            </div>
+
+            	<div class="ablock hidden">
+                <label for="Control_Assessor">审核人:</label>
+                <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
+            </div>
+
+            	<div class="ablock hidden">
+                <label for="Control_IfExamine">是否审核:</label>
+                <div id="Control_IfExamine" name="IfExamine" value="@Model.IfExamine" class="mini-checkbox" trueValue="1" falseValue="0" readOnly="false" text="审核"></div>
+            </div>
+
+            	<div class="ablock hidden">
+                <label for="Control_ExamineDate">审核时间:</label>
+                <input type="text" id="Control_ExamineDate" name="ExamineDate"  value="@Model.ExamineDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            	<div class="ablock hidden">
+                <label for="Control_OperatorDate">操作时间:</label>
+                <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
+            </div>
+
+            </fieldset>
+
+            <div id="datagrid1" class="mini-datagrid" url="/Op/SearchOpCheckDetailList?CkNumber=@(string.IsNullOrEmpty(Model.Id) ? "!##$%" : Model.Id)"
+                style="width: 100%; height: 250px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+                pagesize="20" multiselect="true" showfilterrow="false" showPager="false" onrowdblclick="onrowdblclick">
+                <div property="columns">
+                    <div type="indexcolumn" width="30">
+                    </div>
+                    <div type="checkcolumn" width="30">
+                    </div>
+					<div field="CkNumber" headeralign="center" align="center" width="60">
+					    盘点单号
+					<input id="editor_CkNumber" name="CkNumber" property="editor" class="mini-textbox" style="width:100%;" />
+					</div>
+
+
+					<div field="CkDate" headeralign="center" align="center" width="60">
+					    盘点日期
+<input type="text" id="editor_CkDate" name="CkDate" property="editor"  class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" style="width: 100%;" />
+					</div>
+
+
+					<div field="CkType" headeralign="center" align="center" width="60">
+					    盘点方式
+					<input id="editor_CkType" name="CkType" property="editor" class="mini-textbox" style="width:100%;" />
+					</div>
+
+
+					<div field="CkOrgan" headeralign="center" align="center" width="60">
+					    盘点单位
+					<input id="editor_CkOrgan" name="CkOrgan" property="editor" class="mini-textbox" style="width:100%;" />
+					</div>
+
+
+					<div field="WhCode" headeralign="center" align="center" width="60">
+					    仓库编码
+					<input id="editor_WhCode" name="WhCode" property="editor" class="mini-textbox" style="width:100%;" />
+					</div>
+
+
+					<div field="CkArea" headeralign="center" align="center" width="60">
+					    盘点范围
+					<input id="editor_CkArea" name="CkArea" property="editor" class="mini-textbox" style="width:100%;" />
+					</div>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+            @*<div class="control-panel">
+                <div class="control-button">
+                    <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
+                    <input type="button" class="myButton" id="btnGoods" value="商品" />
+                    <input type="button" class="myButton" id="btnInStock" value="入库" />
+                    <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
+                    <input type="button" class="myButton" id="btnQuery" value="查询" />
+                    <input type="button" class="myButton" id="btnSubmit" value="提交" />
+                    <input type="button" class="myButton" id="btnPrint" value="打印" />
+                    <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
+                    <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
+                </div>
+                <div class="botton-up">
+                </div>
+            </div>
+			*@
+        </form>
+    </div>
+</body>
+</html>
+<!--
+CkFlowNumber:j.data[i].CkFlowNumber,
+CkNumber:j.data[i].CkNumber,
+bCode:j.data[i].bCode,
+WhCode:j.data[i].WhCode,
+GoodsCode:j.data[i].GoodsCode,
+GoodsBarCode:j.data[i].GoodsBarCode,
+PurchasePrice:j.data[i].PurchasePrice,
+SalePrice:j.data[i].SalePrice,
+PackCoef:j.data[i].PackCoef,
+PackQty:j.data[i].PackQty,
+CheckQty:j.data[i].CheckQty,
+StockQty:j.data[i].StockQty,
+Operator:j.data[i].Operator,
+SysGuid:j.data[i].SysGuid,
+-->

@@ -259,7 +259,7 @@
                         <td>
                             <div class="ablock">
                                 <label for="Control_ShelfLife">保质期(天):</label>
-                                <input type="text" class="mini-spinner" minvalue="1" maxvalue="1000" decimalplaces="0" name="ShelfLife" id="Control_ShelfLife" />
+                                <input type="text" class="mini-spinner" minvalue="1" maxValue="999999999" decimalplaces="0" name="ShelfLife" id="Control_ShelfLife" />
                             </div>
                         </td>
                     </tr>
@@ -270,7 +270,7 @@
                         <td>
                             <div class="ablock">
                                 <label for="Control_StockUpperLimit">库存上限:</label>
-                                <input type="text" id="Control_StockUpperLimit" name="StockUpperLimit" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                                <input type="text" id="Control_StockUpperLimit" name="StockUpperLimit" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                             </div>
                         </td>
                     </tr>
@@ -281,7 +281,7 @@
                         <td>
                             <div class="ablock">
                                 <label for="Control_StockLowerLimit">库存下限:</label>
-                                <input type="text" id="Control_StockLowerLimit" name="StockLowerLimit" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                                <input type="text" id="Control_StockLowerLimit" name="StockLowerLimit" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                             </div>
                         </td>
                     </tr>
@@ -334,7 +334,7 @@
                         经营方式
 					<input id="filter_OpCode" name="OpCode" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
-                    <div field="PoolRate" headeralign="center" align="center" width="60">
+                    <div field="PoolRate" headeralign="center" align="center" width="60" renderer="onPercentRender">
                         扣率
 					<input id="filter_PoolRate" name="PoolRate" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
@@ -390,7 +390,7 @@
                         最小订量
 					<input id="filter_OfferMin" name="OfferMin" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
-                    <div field="GrossRate" headeralign="center" align="center" width="70">
+                    <div field="GrossRate" headeralign="center" align="center" width="70" renderer="onPercentRender">
                         毛利率
 					<input id="filter_GrossRate" name="GrossRate" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>

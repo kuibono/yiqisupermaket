@@ -121,7 +121,7 @@
                     进货凭证
 					<input id="filter_StockVoucher" name="StockVoucher" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="InputTax" headeralign="center" align="center" width="80">
+				<div field="InputTax" headeralign="center" align="center" width="80" renderer="onPercentRender">
 				    进项税率
 					<input id="filter_InputTax" name="InputTax" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
@@ -149,15 +149,15 @@
 				    送货天数
 					<input id="filter_DeliveryDays" name="DeliveryDays" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="PoolRate" headeralign="center" align="center" width="60">
+				<div field="PoolRate" headeralign="center" align="center" width="60" renderer="onPercentRender">
 				    扣率
 					<input id="filter_PoolRate" name="PoolRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="FloorsMoney" headeralign="center" align="center" width="80">
+				<div field="FloorsMoney" headeralign="center" align="center" width="80" dataType="currency" currencyUnit="￥">
 				    保底金额
 					<input id="filter_FloorsMoney" name="FloorsMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="ExcessRate" headeralign="center" align="center" width="80">
+				<div field="ExcessRate" headeralign="center" align="center" width="80" renderer="onPercentRender">
 				    超额扣率
 					<input id="filter_ExcessRate" name="ExcessRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>

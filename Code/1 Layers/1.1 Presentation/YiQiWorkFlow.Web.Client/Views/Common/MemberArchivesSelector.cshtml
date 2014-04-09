@@ -35,16 +35,16 @@
     </div>
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="/Ms/GetMsMemberArchivesList"
-            style="width: 100%; height: 85%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+            style="width: 100%; height: 85%;" idfield="id" textField="msName" allowresize="false" sizelist="[20,30,50,100]"
             pagesize="20" multiselect="false" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 
-                <div field="cardNumber" headeralign="center" align="center" width="100">
+                <!--<div field="cardNumber" headeralign="center" align="center" width="100">
                     卡号
 					<input id="filter_CardNumber" name="CardNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
-                </div>
+                </div>-->
                 <div field="msName" headeralign="center" align="center" width="150">
                     会员姓名
 					<input id="filter_MsName" name="MsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
@@ -57,7 +57,7 @@
                     身份证号
 					<input id="filter_Idcard" name="Idcard" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="birthday" headeralign="center" align="center" width="70">
+                <div field="birthday" headeralign="center" align="center" width="70" dateFormat="yyyy-MM-dd">
                     出生日期
 					<input id="filter_Birthday" name="Birthday" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>

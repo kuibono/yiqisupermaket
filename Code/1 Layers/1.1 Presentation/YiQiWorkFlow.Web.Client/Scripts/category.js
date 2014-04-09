@@ -83,3 +83,11 @@ function onYesNoRender(e) {
         return e.value;
     }
 }
+function onPercentRender(e) {
+    try{
+        return parseFloat(e.value) * 100 + "%";
+    }
+    catch (e) {
+        return "";
+    }
+}
