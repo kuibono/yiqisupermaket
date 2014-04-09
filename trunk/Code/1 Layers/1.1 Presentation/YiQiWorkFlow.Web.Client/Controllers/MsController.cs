@@ -275,7 +275,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 if (m.HaveId)
                 {
-                    m.CurrentPrepaidEncrypt = m.CurrentPrepaid.ToUInt16().ToString();
+                    //m.CurrentPrepaidEncrypt = m.CurrentPrepaid.ToUInt16().ToString();
+                    m.CurrentPrepaidEncrypt = StaticClass.Str2Hex(m.CurrentPrepaid.ToString());
                     MsCardArchivesService.Update(m);
                 }
                 else
@@ -283,7 +284,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     // 计算卡号
 
 
-                    m.CurrentPrepaidEncrypt = m.CurrentPrepaid.ToUInt16().ToString();
+                    //m.CurrentPrepaidEncrypt = m.CurrentPrepaid.ToUInt16().ToString();
+                    m.CurrentPrepaidEncrypt = StaticClass.Str2Hex(m.CurrentPrepaid.ToString());
                     MsCardArchivesService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -925,7 +927,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
         public JsonResult GetMsCardtypeManageList()
         {
-            var searchDtoBase = MsCardtypeManageService.Search(new SearchDtoBase<MsCardtypeManage>() { pageSize = int.MaxValue, entity = new MsCardtypeManage() { IfExamine = "1" } });
+            var searchDtoBase = MsCardtypeManageService.Search(new SearchDtoBase<MsCardtypeManage>() { pageSize = int.MaxValue });
 
             IList<MsCardtypeManage> msCardtypeManageList = searchDtoBase.data;
 
@@ -2366,7 +2368,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
                     // 回收卡片
                     MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
-                    
+
                     // @todo主要数据清空
 
                     if (card != null && !string.IsNullOrEmpty(card.Id))
