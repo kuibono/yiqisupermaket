@@ -151,7 +151,7 @@
 
             <div class="ablock">
                 <label for="Control_PoolRate">扣率:</label>
-                <input type="text" id="Control_PoolRate" name="PoolRate"  value="@Model.PoolRate" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_PoolRate" name="PoolRate"  value="@Model.PoolRate" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
@@ -206,32 +206,32 @@
 
             <div class="ablock">
                 <label for="Control_PackCoef">包装系数:</label>
-                <input type="text" id="Control_PackCoef" name="PackCoef"  value="@Model.PackCoef" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_PackCoef" name="PackCoef"  value="@Model.PackCoef" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="2"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_OfferMin">最小订量:</label>
-                <input type="text" id="Control_OfferMin" name="OfferMin"  value="@Model.OfferMin" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_OfferMin" name="OfferMin"  value="@Model.OfferMin" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="2"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_InputTax">进项税率:</label>
-                <input type="text" id="Control_InputTax" name="InputTax"  value="@Model.InputTax" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_InputTax" name="InputTax"  value="@Model.InputTax" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_OutputTax">销项税率:</label>
-                <input type="text" id="Control_OutputTax" name="OutputTax"  value="@Model.OutputTax" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_OutputTax" name="OutputTax"  value="@Model.OutputTax" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_StockUpperLimit">库存上限:</label>
-                <input type="text" id="Control_StockUpperLimit" name="StockUpperLimit"  value="@Model.StockUpperLimit" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_StockUpperLimit" name="StockUpperLimit"  value="@Model.StockUpperLimit" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="2"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_StockLowerLimit">库存下限:</label>
-                <input type="text" id="Control_StockLowerLimit" name="StockLowerLimit"  value="@Model.StockLowerLimit" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_StockLowerLimit" name="StockLowerLimit"  value="@Model.StockLowerLimit" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="2"/>
             </div>
 
             <div class="ablock">
@@ -251,47 +251,47 @@
 
             <div class="ablock">
                 <label for="Control_PurchasePrice">含税进价:</label>
-                <input type="text" id="Control_PurchasePrice" name="PurchasePrice"  value="@Model.PurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_PurchasePrice" name="PurchasePrice"  value="@Model.PurchasePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_NontaxPurchasePrice">不含税进价:</label>
-                <input type="text" id="Control_NontaxPurchasePrice" name="NontaxPurchasePrice"  value="@Model.NontaxPurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_NontaxPurchasePrice" name="NontaxPurchasePrice"  value="@Model.NontaxPurchasePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_AvgCost">平均成本:</label>
-                <input type="text" id="Control_AvgCost" name="AvgCost"  value="@Model.AvgCost" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_AvgCost" name="AvgCost"  value="@Model.AvgCost" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="6"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_NontaxAvgCost">不含税平均成本:</label>
-                <input type="text" id="Control_NontaxAvgCost" name="NontaxAvgCost"  value="@Model.NontaxAvgCost" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_NontaxAvgCost" name="NontaxAvgCost"  value="@Model.NontaxAvgCost" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="6"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_GrossRate">毛利率:</label>
-                <input type="text" id="Control_GrossRate" name="GrossRate"  value="@Model.GrossRate" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_GrossRate" name="GrossRate"  value="@Model.GrossRate" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="6"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_SalePrice">销售价:</label>
-                <input type="text" id="Control_SalePrice" name="SalePrice"  value="@Model.SalePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_SalePrice" name="SalePrice"  value="@Model.SalePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_VipPrice">会员价:</label>
-                <input type="text" id="Control_VipPrice" name="VipPrice"  value="@Model.VipPrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_VipPrice" name="VipPrice"  value="@Model.VipPrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="6"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_TradePrice">批发价:</label>
-                <input type="text" id="Control_TradePrice" name="TradePrice"  value="@Model.TradePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_TradePrice" name="TradePrice"  value="@Model.TradePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="6"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_PushRate">营业员提成:</label>
-                <input type="text" id="Control_PushRate" name="PushRate"  value="@Model.PushRate" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_PushRate" name="PushRate"  value="@Model.PushRate" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="6"/>
             </div>
 
             <div class="ablock">

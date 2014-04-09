@@ -66,6 +66,7 @@
         }
 
         function onGoodsChanged(e) {
+            mini.getbyName("GoodsName", "datagrid1").setValue(e.selected.GoodsName);
             mini.getbyName("GoodsBarCode", "datagrid1").setValue(e.selected.GoodsBarCode);
             mini.getbyName("SalePriceOld", "datagrid1").setValue(e.selected.SalePrice);
             mini.getbyName("VipPriceOld", "datagrid1").setValue(e.selected.VipPrice);
@@ -266,50 +267,51 @@
                     </div>
                     <div field="GoodsCode" headeralign="center" align="center" width="100">
                         商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
+					<input id="filter_GoodsCode" name="GoodsCode" property="editor" popupWidth="400" class="mini-combobox" allowinput="true" valuefield="Id" textfield="Id" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
                     </div>
                     <div field="GoodsName" headeralign="center" align="center" width="100">
                         商品名称
+                        <input id="filter_GoodsName" name="GoodsName" property="editor" class="mini-textbox" enabled="false" style="width:100%;" />
                     </div>
                     <div field="GoodsBarCode" headeralign="center" align="center" width="60">
                         商品销售码
 					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
-                    <div field="SalePriceOld" headeralign="center" align="center" width="60">
+                    <div field="SalePriceOld" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         原销售价
-					<input id="filter_SalePriceOld" name="SalePriceOld" property="editor" maxvalue="999999" class="mini-spinner" enabled="false" decimalplaces="4" style="width: 100%;" />
+					<input id="filter_SalePriceOld" name="SalePriceOld" property="editor" maxvalue="999999" class="mini-spinner" enabled="false" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" style="width: 100%;" />
                     </div>
-                    <div field="SalePrice" headeralign="center" align="center" width="60">
+                    <div field="SalePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         销售价
-					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" maxvalue="999999" decimalplaces="4" style="width: 100%;" />
+					<input id="filter_SalePrice" name="SalePrice" property="editor" class="mini-spinner" maxvalue="999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
                     </div>
-                    <div field="VipPriceOld" headeralign="center" align="center" width="60">
+                    <div field="VipPriceOld" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         原会员价
-					<input id="filter_VipPriceOld" name="VipPriceOld" property="editor" class="mini-spinner" maxvalue="999999" enabled="false" decimalplaces="4" style="width: 100%;" />
+					<input id="filter_VipPriceOld" name="VipPriceOld" property="editor" class="mini-spinner" maxvalue="999999" enabled="false" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
                     </div>
-                    <div field="VipPrice" headeralign="center" align="center" width="60">
+                    <div field="VipPrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         会员价
-					<input id="filter_VipPrice" name="VipPrice" property="editor" class="mini-spinner" maxvalue="999999" decimalplaces="4" style="width: 100%;" />
+					<input id="filter_VipPrice" name="VipPrice" property="editor" class="mini-spinner" maxvalue="999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
                     </div>
-                    <div field="TradePriceOld" headeralign="center" align="center" width="60">
+                    <div field="TradePriceOld" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         原批发价
-					<input id="filter_TradePriceOld" name="TradePriceOld" property="editor" class="mini-spinner" maxvalue="999999" enabled="false" decimalplaces="4" style="width: 100%;" />
+					<input id="filter_TradePriceOld" name="TradePriceOld" property="editor" class="mini-spinner" maxvalue="999999" enabled="false" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
                     </div>
-                    <div field="TradePrice" headeralign="center" align="center" width="60">
+                    <div field="TradePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         批发价
-					<input id="filter_TradePrice" name="TradePrice" property="editor" class="mini-spinner" maxvalue="999999" decimalplaces="4" style="width: 100%;" />
+					<input id="filter_TradePrice" name="TradePrice" property="editor" class="mini-spinner" maxvalue="999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
                     </div>
                     <div field="StockQty" headeralign="center" align="center" width="60">
                         剩余数量
 					<input id="filter_StockQty" name="StockQty" property="editor" class="mini-spinner" maxvalue="999999" decimalplaces="0" style="width: 100%;" />
                     </div>
-                    <div field="LossMoney" headeralign="center" align="center" width="60">
+                    <div field="LossMoney" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         损溢金额
-					<input id="filter_LossMoney" name="LossMoney" property="editor" class="mini-spinner" maxvalue="999999" decimalplaces="4" style="width: 100%;" />
+					<input id="filter_LossMoney" name="LossMoney" property="editor" class="mini-spinner" maxvalue="999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
                     </div>
-                    <div field="NontaxLossMoney" headeralign="center" align="center" width="60">
+                    <div field="NontaxLossMoney" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         不含税损溢金额
-					<input id="filter_NontaxLossMoney" name="NontaxLossMoney" property="editor" maxvalue="999999" class="mini-spinner" decimalplaces="4" style="width: 100%;" />
+					<input id="filter_NontaxLossMoney" name="NontaxLossMoney" property="editor" maxvalue="999999" class="mini-spinner" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
                     </div>
 
                 </div>

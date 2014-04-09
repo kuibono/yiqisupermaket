@@ -79,6 +79,7 @@
         }
 
         function onGoodsChanged(e) {
+            mini.getbyName("GoodsName", "datagrid1").setValue(e.selected.GoodsName);
             mini.getbyName("GoodsBarCode", "datagrid1").setValue(e.selected.GoodsBarCode);
             mini.getbyName("Specification", "datagrid1").setValue(e.selected.Specification);
             mini.getbyName("PackUnitCode", "datagrid1").setValue(e.selected.PackUnitCode);
@@ -271,25 +272,24 @@
                     </div>
                     <div type="checkcolumn" width="30">
                     </div>
-                    <div field="GoodsCode" headeralign="center" align="center" width="60">
+                    <div field="GoodsCode" headeralign="center" align="center" width="120">
                         商品编码
-					<div id="filter_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
-                        <div property="columns">
-                            <div header="条形码" field="GoodsBarCode">
+					    <div id="filter_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="Id" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
+                            <div property="columns">
+                                <div header="条形码" field="GoodsBarCode">
+                                </div>
+                                <div header="拼音码" field="PyCode">
+                                </div>
+                                <div header="名称" field="GoodsName">
+                                </div>
                             </div>
-                            <div header="拼音码" field="PyCode">
-                            </div>
-                            <div header="名称" field="GoodsName">
-                            </div>
-                        </div>
-
                     </div>
                     </div>
-                    <div field="GoodsName" headeralign="center" align="center" width="60">
+                    <div field="GoodsName" headeralign="center" align="center" width="120">
                         商品名称
                         <input id="filter_GoodsBarCode" name="GoodsName" class="mini-textbox" enabled="false" property="editor" enabled="false" style="width: 100%;" />
                     </div>
-                    <div field="GoodsBarCode" headeralign="center" align="center" width="60">
+                    <div field="GoodsBarCode" headeralign="center" align="center" width="100">
                         商品销售码
 					<input id="filter_GoodsBarCode" name="GoodsBarCode" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
                     </div>
@@ -301,51 +301,51 @@
                         包装单位
 					<input id="filter_PackUnitCode" name="PackUnitCode" class="mini-textbox" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="OfferMin" headeralign="center" align="center" width="60">
+                    <div field="OfferMin" headeralign="center" align="center" width="60" dataType="currency">
                         最小订量
 					<input id="filter_OfferMin" name="OfferMin" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="StockQty" headeralign="center" align="center" width="60">
+                    <div field="StockQty" headeralign="center" align="center" width="60" dataType="currency">
                         库存数量
 					<input id="filter_StockQty" name="StockQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="OrderQty" headeralign="center" align="center" width="60">
+                    <div field="OrderQty" headeralign="center" align="center" width="60" dataType="currency">
                         在途数量
 					<input id="filter_OrderQty" name="OrderQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PackQty" headeralign="center" align="center" width="60">
+                    <div field="PackQty" headeralign="center" align="center" width="60" dataType="currency">
                         整件数量
 					<input id="filter_PackQty" name="PackQty" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PackCoef" headeralign="center" align="center" width="60">
+                    <div field="PackCoef" headeralign="center" align="center" width="60" dataType="currency">
                         包装系数
 					<input id="filter_PackCoef" name="PackCoef" class="mini-spinner" enabled="false" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PurchaseQty" headeralign="center" align="center" width="60">
+                    <div field="PurchaseQty" headeralign="center" align="center" width="60" dataType="currency">
                         单品数量
 					<input id="filter_PurchaseQty" name="PurchaseQty" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PutinQty" headeralign="center" align="center" width="60">
+                    <div field="PutinQty" headeralign="center" align="center" width="60" dataType="currency">
                         入库数量
 					<input id="filter_PutinQty" name="PutinQty" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="SalePrice" headeralign="center" align="center" width="60">
+                    <div field="SalePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         销售价
 					<input id="filter_SalePrice" name="SalePrice" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PurchasePrice" headeralign="center" align="center" width="60">
+                    <div field="PurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         含税进价
 					<input id="filter_PurchasePrice" name="PurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
+                    <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         不含税进价
 					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="PurchaseMoney" headeralign="center" align="center" width="60">
+                    <div field="PurchaseMoney" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         含税金额
 					<input id="filter_PurchaseMoney" name="PurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="NontaxPurchaseMoney" headeralign="center" align="center" width="60">
+                    <div field="NontaxPurchaseMoney" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         不含税金额
 					<input id="filter_NontaxPurchaseMoney" name="NontaxPurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" />
                     </div>

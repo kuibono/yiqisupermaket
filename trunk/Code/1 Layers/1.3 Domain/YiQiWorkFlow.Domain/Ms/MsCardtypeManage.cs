@@ -261,7 +261,7 @@ namespace YiQiWorkFlow.Domain.Ms
             m.PrepaidMax = 0M;
             m.PointsBase = 0M;
             m.PrepaidMoney = 0M;
-            m.RandLen = 2M;
+            m.RandLen = 0M;
             m.PointsNeeds = 0M;
             m.IfDeductPoints = "0";
             m.IfAutoup = "0";

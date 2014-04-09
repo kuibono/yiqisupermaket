@@ -1,0 +1,6 @@
+D:\Project\YiQiSupermarket\trunk\code\ConsoleTest\bin\Debug\ConsoleTest.exe.config
+D:\Project\YiQiSupermarket\trunk\code\ConsoleTest\bin\Debug\ConsoleTest.exe
+D:\Project\YiQiSupermarket\trunk\code\ConsoleTest\bin\Debug\ConsoleTest.pdb
+D:\Project\YiQiSupermarket\trunk\code\ConsoleTest\obj\Debug\ConsoleTest.csprojResolveAssemblyReference.cache
+D:\Project\YiQiSupermarket\trunk\code\ConsoleTest\obj\Debug\ConsoleTest.exe
+D:\Project\YiQiSupermarket\trunk\code\ConsoleTest\obj\Debug\ConsoleTest.pdb

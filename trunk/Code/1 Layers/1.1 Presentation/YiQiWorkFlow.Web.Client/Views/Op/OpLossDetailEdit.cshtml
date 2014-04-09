@@ -115,42 +115,42 @@
 
             <div class="ablock">
                 <label for="Control_PurchasePrice">含税进价:</label>
-                <input type="text" id="Control_PurchasePrice" name="PurchasePrice"  value="@Model.PurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_PurchasePrice" name="PurchasePrice"  value="@Model.PurchasePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_SalePrice">销售价:</label>
-                <input type="text" id="Control_SalePrice" name="SalePrice"  value="@Model.SalePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_SalePrice" name="SalePrice"  value="@Model.SalePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_StockQty">库存数量:</label>
-                <input type="text" id="Control_StockQty" name="StockQty"  value="@Model.StockQty" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_StockQty" name="StockQty"  value="@Model.StockQty" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_DifferQty">差异数量:</label>
-                <input type="text" id="Control_DifferQty" name="DifferQty"  value="@Model.DifferQty" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_DifferQty" name="DifferQty"  value="@Model.DifferQty" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_PurchaseMoney">含税金额:</label>
-                <input type="text" id="Control_PurchaseMoney" name="PurchaseMoney"  value="@Model.PurchaseMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_PurchaseMoney" name="PurchaseMoney"  value="@Model.PurchaseMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_NontaxPurchaseMoney">不含税金额:</label>
-                <input type="text" id="Control_NontaxPurchaseMoney" name="NontaxPurchaseMoney"  value="@Model.NontaxPurchaseMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_NontaxPurchaseMoney" name="NontaxPurchaseMoney"  value="@Model.NontaxPurchaseMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_SaleMoney">售价金额:</label>
-                <input type="text" id="Control_SaleMoney" name="SaleMoney"  value="@Model.SaleMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_SaleMoney" name="SaleMoney"  value="@Model.SaleMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_NontaxSaleMoney">不含税售价金额:</label>
-                <input type="text" id="Control_NontaxSaleMoney" name="NontaxSaleMoney"  value="@Model.NontaxSaleMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_NontaxSaleMoney" name="NontaxSaleMoney"  value="@Model.NontaxSaleMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
             </div>
 
             <div class="ablock" style="display:none">

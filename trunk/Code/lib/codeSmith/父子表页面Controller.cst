@@ -27,6 +27,7 @@ Description:
             }
             else
             {
+				m.Operator = MyEnv.LoginUser.Id;
                 m.OperatorDate = DateTime.Now;
                 if (m.HaveId)
                 {
@@ -58,7 +59,7 @@ Description:
                     }
                 });
                 r.IsSuccess = true;
-                r.Message = "????";
+                r.Message = "?????";
             }
             return Json(r);
         }

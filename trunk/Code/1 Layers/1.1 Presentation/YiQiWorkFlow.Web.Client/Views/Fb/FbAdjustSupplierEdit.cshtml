@@ -55,6 +55,7 @@
         }
         function onGoodsChanged(e) {
             mini.getbyName("SupCodeOld", "grid1").setValue(e.selected.SupCode);
+            mini.getbyName("GoodsName", "grid1").setValue(e.selected.GoodsName);
             mini.getbyName("OpCodeOld", "grid1").setValue(e.selected.OpCode);
             $("#datagrid1 input[name=SupCode]").parent().find(".mini-buttonedit-input:visible:first").focus();
         }
@@ -254,10 +255,10 @@
                     </div>
                     <div field="GoodsCode" headeralign="center" align="center" width="120">
                         商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowInput="true" valueField="Id" textField="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
+					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" popupWidth="400" allowInput="true" valueField="Id" textField="Id" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
                     </div>
                     <div field="GoodsName" headeralign="center" align="center" width="100">
-                        商品编码
+                        商品名称
 					<input id="filter_GoodsName" name="GoodsName" property="editor" class="mini-textbox" allowInput="true" enabled="false" style="width: 100%;" />
                     </div>
                     <div field="SupCodeOld" headeralign="center" align="center" width="80">
@@ -270,7 +271,7 @@
                     </div>
                     <div field="SupCode" headeralign="center" align="center" width="60">
                         供货商编码
-					<input id="filter_SupCode" name="SupCode" property="editor" class="mini-autocomplete" valueField="Id" textField="SupName" url="/Fb/SearchFbSupplierArchivesListForList" onvaluechanged="onSupplierChanged" style="width: 100%;" />
+					<input id="filter_SupCode" name="SupCode" popupWidth="400" property="editor" class="mini-autocomplete" valueField="Id" textField="Id" url="/Fb/SearchFbSupplierArchivesListForList" onvaluechanged="onSupplierChanged" style="width: 100%;" />
                     </div>
                     <div field="SupName" headeralign="center" align="center" width="60">
                         供货商名称
@@ -284,7 +285,7 @@
                         经营方式
 					<input id="filter_OpCode" name="OpCode" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
-                    <div field="PoolRate" headeralign="center" align="center" width="60">
+                    <div field="PoolRate" headeralign="center" align="center" width="60" renderer="onPercentRender">
                         扣率
 					<input id="filter_PoolRate" name="PoolRate" property="editor" class="mini-spinner" enabled="false" style="width: 100%;" />
                     </div>
@@ -296,15 +297,15 @@
                         最小订量
 					<input id="filter_OfferMin" name="OfferMin" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
-                    <div field="InputTax" headeralign="center" align="center" width="60">
+                    <div field="InputTax" headeralign="center" align="center" width="60" renderer="onPercentRender">
                         进项税率
 					<input id="filter_InputTax" name="InputTax" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                     </div>
-                    <div field="PurchasePrice" headeralign="center" align="center" width="60">
+                    <div field="PurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         含税进价
 					<input id="filter_PurchasePrice" name="PurchasePrice" property="editor" class="mini-spinner" style="width: 100%;" />
                     </div>
-                    <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
+                    <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         不含税进价
 					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" class="mini-spinner" style="width: 100%;" />
                     </div>

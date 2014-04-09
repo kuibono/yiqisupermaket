@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ReportModelStoreContainer" CdmEntityContainer="YiQiEntities5">
+    <EntitySetMapping Name="Sys_Report">
+      <EntityTypeMapping TypeName="ReportModel.Sys_Report">
+        <MappingFragment StoreEntitySet="Sys_Report">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="SubTableName" ColumnName="SubTableName" />
+          <ScalarProperty Name="DataUrl" ColumnName="DataUrl" />
+          <ScalarProperty Name="OutKey" ColumnName="OutKey" />
+          <ScalarProperty Name="Header1" ColumnName="Header1" />
+          <ScalarProperty Name="Header2" ColumnName="Header2" />
+          <ScalarProperty Name="Header3" ColumnName="Header3" />
+          <ScalarProperty Name="Footer1" ColumnName="Footer1" />
+          <ScalarProperty Name="Footer2" ColumnName="Footer2" />
+          <ScalarProperty Name="Footer3" ColumnName="Footer3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Report_Column">
+      <EntityTypeMapping TypeName="ReportModel.Sys_Report_Column">
+        <MappingFragment StoreEntitySet="Sys_Report_Column">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Visible" ColumnName="Visible" />
+          <ScalarProperty Name="Ord" ColumnName="Ord" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Report_Marks">
+      <EntityTypeMapping TypeName="ReportModel.Sys_Report_Marks">
+        <MappingFragment StoreEntitySet="Sys_Report_Marks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="DataType" ColumnName="DataType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

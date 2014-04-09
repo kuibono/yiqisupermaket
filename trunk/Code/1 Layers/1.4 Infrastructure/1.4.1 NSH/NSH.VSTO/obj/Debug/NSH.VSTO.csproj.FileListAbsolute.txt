@@ -1,0 +1,5 @@
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.4 Infrastructure\1.4.1 NSH\NSH.VSTO\bin\Debug\NSH.VSTO.dll
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.4 Infrastructure\1.4.1 NSH\NSH.VSTO\bin\Debug\NSH.VSTO.pdb
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.4 Infrastructure\1.4.1 NSH\NSH.VSTO\obj\Debug\NSH.VSTO.csprojResolveAssemblyReference.cache
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.4 Infrastructure\1.4.1 NSH\NSH.VSTO\obj\Debug\NSH.VSTO.dll
+D:\Project\YiQiSupermarket\trunk\code\1 Layers\1.4 Infrastructure\1.4.1 NSH\NSH.VSTO\obj\Debug\NSH.VSTO.pdb

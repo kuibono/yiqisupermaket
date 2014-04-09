@@ -19,7 +19,7 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        closeWithNoValidate();
+                        location.href = "/Ms/MsAdjustPointsEdit";
                     } else {
                         $("#Tooltip_Critical_MsAdjustPoints .content").first().text(r.Message);
                         $("#Tooltip_Critical_MsAdjustPoints").show("fast");
@@ -110,12 +110,28 @@
                 }
             });
         }
+
+        function Add() {
+            location.href = "/Ms/MsAdjustPointsEdit";
+        }
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>积分调整管理编辑
-        </h1>
+        <div id="toolbar1" class="mini-toolbar" style="padding: 2px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="btnAdd" iconcls="icon-add" class="mini-button" plain="true" tooltip="增加">增加</a>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
+                        <a id="btnPrint" iconcls="icon-print" class="mini-button" plain="true" tooltip="打印">打印</a>
+                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+       <!-- <h1>积分调整管理编辑
+        </h1>-->
         <div class="tooltip warning hidden" id="Tooltip_Warning_MsAdjustPoints">
             <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
             <p class="content">
@@ -219,32 +235,32 @@
 
                 <div class="ablock">
                     <label for="Control_CurrentPoints">当前积分:</label>
-                    <input type="text" id="Control_CurrentPoints" name="CurrentPoints" value="@Model.CurrentPoints" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_CurrentPoints" name="CurrentPoints" value="@Model.CurrentPoints" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_AdjustPoints">调整积分:</label>
-                    <input type="text" id="Control_AdjustPoints" name="AdjustPoints" value="@Model.AdjustPoints" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_AdjustPoints" name="AdjustPoints" value="@Model.AdjustPoints" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_SurplusPoints">剩余积分:</label>
-                    <input type="text" id="Control_SurplusPoints" name="SurplusPoints" value="@Model.SurplusPoints" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_SurplusPoints" name="SurplusPoints" value="@Model.SurplusPoints" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_CurrentMoney">当前金额:</label>
-                    <input type="text" id="Control_CurrentMoney" name="CurrentMoney" value="@Model.CurrentMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_CurrentMoney" name="CurrentMoney" value="@Model.CurrentMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_AdjustMoney">调整金额:</label>
-                    <input type="text" id="Control_AdjustMoney" name="AdjustMoney" value="@Model.AdjustMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_AdjustMoney" name="AdjustMoney" value="@Model.AdjustMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_SurplusMoney">剩余金额:</label>
-                    <input type="text" id="Control_SurplusMoney" name="SurplusMoney" value="@Model.SurplusMoney" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="2" />
+                    <input type="text" id="Control_SurplusMoney" name="SurplusMoney" value="@Model.SurplusMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" />
                 </div>
 
                 <div class="ablock">
@@ -266,7 +282,7 @@
             </fieldset>
             <div class="clear">
             </div>
-            <div class="control-panel">
+            <!--<div class="control-panel">
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                     <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
@@ -274,7 +290,7 @@
                 </div>
                 <div class="botton-up">
                 </div>
-            </div>
+            </div>-->
         </form>
     </div>
 </body>

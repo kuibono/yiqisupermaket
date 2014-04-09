@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Layers", "1 Layers", "{B7C8EF17-07E9-462E-BA21-96E5BB9A0CB2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 Presentation", "1.1 Presentation", "{38F7FC48-EE3C-4523-AD59-67B5C17F16D5}"
@@ -122,8 +124,5 @@ Global
 		{0E74AF39-D8D6-4E78-8137-5F875F36A82B} = {75DDE5DD-2291-4004-B7DF-4222D698DC44}
 		{58928F36-FCEA-47D7-B311-36AC00E26A82} = {75DDE5DD-2291-4004-B7DF-4222D698DC44}
 		{E107DF5A-351B-4981-94B3-157189DE7622} = {75DDE5DD-2291-4004-B7DF-4222D698DC44}
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

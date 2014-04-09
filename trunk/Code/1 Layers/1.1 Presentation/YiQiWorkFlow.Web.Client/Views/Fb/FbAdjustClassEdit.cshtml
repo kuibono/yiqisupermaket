@@ -66,6 +66,7 @@
             });
         }
         function onGoodsChanged(e) {
+            mini.getbyName("GoodsName", "datagrid1").setValue(e.selected.GoodsName);
             mini.getbyName("GbCodeOld", "datagrid1").setValue(e.selected.GbCode);
             mini.getbyName("GmCodeOld", "datagrid1").setValue(e.selected.GmCode);
             mini.getbyName("GsCodeOld", "datagrid1").setValue(e.selected.GsCode);
@@ -253,27 +254,27 @@
                     <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
 
-                <div class="ablock" style="display:none;">
+                <div class="ablock hidden">
                     <label for="Control_Operator">操作员:</label>
                     <input type="text"  value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock" style="display:none;">
+                <div class="ablock hidden">
                     <label for="Control_Assessor">审核人:</label>
                     <input type="text"  value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock" style="display:none;">
+                <div class="ablock hidden">
                     <label for="Control_IfExamine">是否审核:</label>
                     <div id="Control_IfExamine" name="IfExamine" value="@Model.IfExamine" trueValue="1" falseValue="0" enabled="false" class="mini-checkbox" readOnly="false" text="审核"></div>
                 </div>
 
-                <div class="ablock" style="display:none;">
+                <div class="ablock hidden">
                     <label for="Control_ExamineDate">审核时间:</label>
                     <input type="text" id="Control_ExamineDate" name="ExamineDate" enabled="false" value="@Model.ExamineDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
 
-                <div class="ablock" style="display:none;">
+                <div class="ablock hidden">
                     <label for="Control_OperatorDate">操作时间:</label>
                     <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
@@ -290,10 +291,11 @@
                     </div>
                     <div field="GoodsCode" headeralign="center" align="center" width="60">
                         商品编码
-					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
+					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-combobox"  popupWidth="400" allowInput="true" valueField="Id" textField="Id" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;" />
                     </div>
                     <div field="GoodsName" headeralign="center" align="center" width="60">
                         商品名称
+                        <input id="filter_GoodsName" name="GoodsName" property="editor" class="mini-textbox" enabled="false" style="width:100%;" />
                     </div>
                     <div field="GbCodeOld" headeralign="center" align="center" width="60">
                         原大类

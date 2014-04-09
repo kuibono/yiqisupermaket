@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FbPaBaseSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>13937363134926189</Id>
+  <GoodsGbLen>2</GoodsGbLen>
+  <GoodsGmLen>2</GoodsGmLen>
+  <GoodsGsLen>2</GoodsGsLen>
+  <GoodsGlLen>2</GoodsGlLen>
+  <GoodsClassLevel>2</GoodsClassLevel>
+  <GoodsLen>8</GoodsLen>
+  <GoodsPrefix>中</GoodsPrefix>
+  <SupLen>6</SupLen>
+  <SupPrefixType>无</SupPrefixType>
+  <PurchasePreciseLen>2</PurchasePreciseLen>
+  <SalePreciseLen>2</SalePreciseLen>
+  <OperatorDate>2014-03-28T22:35:08.6664281+08:00</OperatorDate>
+  <IfChangePurchasePriceInArchives>0</IfChangePurchasePriceInArchives>
+</FbPaBaseSet>

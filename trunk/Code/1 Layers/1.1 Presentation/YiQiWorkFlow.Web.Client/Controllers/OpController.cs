@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using YiQiWorkFlow.Application.Service.Op;
 using YiQiWorkFlow.Domain.Op;
 using YiQiWorkFlow.Domain.Basement;
+using YiQiWorkFlow.Web.Client.Common;
+using System.Web.Script.Serialization;
 
 namespace YiQiWorkFlow.Web.Client.Controllers
 {
@@ -562,7 +564,76 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchOpAllotDetailList(SearchDtoBase<OpAllotDetail> c, OpAllotDetail s)
         {
             c.entity = s;
-            return Json(OpAllotDetailService.Search(c), JsonRequestBehavior.AllowGet);
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.op_allot_detail
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        orderby l.Id
+                        select new
+                        {
+                            AlNumber = l.al_number,
+                            GoodsCode = l.goods_code,
+                            GoodsName=j_g.goods_name,
+                            GoodsBarCode = l.goods_bar_code,
+                            Specification = l.specification,
+                            PackUnitCode = l.pack_unit_code,
+                            StockQty = l.stock_qty,
+                            PackQty = l.pack_qty,
+                            PackCoef = l.pack_coef,
+                            AllotQty = l.allot_qty,
+                            SalePrice = l.sale_price,
+                            PurchasePrice = l.purchase_price,
+                            NontaxPurchasePrice = l.nontax_purchase_price,
+                            AllotMoney = l.allot_money,
+                            NontaxAllotMoney = l.nontax_allot_money,
+                            SaleMoney = l.sale_money,
+                            NontaxSaleMoney = l.nontax_sale_money,
+                            Id = l.Id
+
+                        };
+                if (c.entity.AlNumber.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.AlNumber.StartsWith(c.entity.AlNumber) select l;
+                }
+                if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                }
+                if (c.entity.GoodsBarCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsBarCode.StartsWith(c.entity.GoodsBarCode) select l;
+                }
+                if (c.entity.Specification.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Specification.StartsWith(c.entity.Specification) select l;
+                }
+                if (c.entity.PackUnitCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.PackUnitCode.StartsWith(c.entity.PackUnitCode) select l;
+                }
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                }
+
+
+
+
+
+
+
+
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+
+
         }
         #endregion
 
@@ -595,6 +666,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult OpAllotManageEdit(string id)
         {
             OpAllotManage m = OpAllotManage.Initial();
+            m.CreateDate = DateTime.Now;
+            m.AlDate = DateTime.Now;
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = OpAllotManageService.GetById(id);
@@ -632,19 +705,47 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                m.Operator = MyEnv.LoginUser.Id;
+                m.OperatorDate = DateTime.Now;
                 if (m.HaveId)
                 {
                     OpAllotManageService.Update(m);
                 }
                 else
                 {
-                    OpAllotManageService.Create(m);
+                    m.CreateDate = DateTime.Now;
+                    m.Id = OpAllotManageService.Create(m);
                 }
+
+                //Detail
+                var jser = new JavaScriptSerializer();
+                var details = jser.Deserialize<List<OpAllotDetail>>(Request["detail"]).ToList();
+                details.ForEach(p =>
+                {
+                    p.AlNumber = m.Id;
+                    if (p.IsAdded)
+                    {
+                        OpAllotDetailService.Create(p);
+                    }
+                    if (p.IsDelete)
+                    {
+                        OpAllotDetailService.Delete(p);
+                    }
+                    if (p.IsUpdated)
+                    {
+                        OpAllotDetailService.Update(p);
+                    }
+                });
+
+                //验证是否审核，如果审核则调用入库出库存储过程
+
                 r.IsSuccess = true;
-                r.Message = "保存成功";
+                r.Message = "保存成功!";
             }
             return Json(r);
         }
+
+
         #endregion
 
         #region 商品调拨单搜索
@@ -656,8 +757,127 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult SearchOpAllotManageList(SearchDtoBase<OpAllotManage> c, OpAllotManage s)
         {
-            c.entity = s;
-            return Json(OpAllotManageService.Search(c), JsonRequestBehavior.AllowGet);
+                        c.entity = s;
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.op_allot_manage
+                        join ea in e.em_employee_archives on l.assessor equals ea.em_code into join_ea
+                        from j_ea in join_ea.DefaultIfEmpty()
+                        join eo in e.em_employee_archives on l.@operator equals eo.em_code into join_eo
+                        from j_eo in join_eo.DefaultIfEmpty()
+                        join whi in e.op_pa_warehouse on l.wh_code_in equals whi.wh_code into join_whi
+                        from j_whi in join_whi.DefaultIfEmpty()
+                        join who in e.op_pa_warehouse on l.wh_code_out equals who.wh_code into join_who
+                        from j_who in join_who.DefaultIfEmpty()
+                        orderby l.al_number
+                        select new
+                                   {
+                                    AlNumber=l.al_number,
+                                    AlType=l.al_type,
+                                    OrganOut=l.organ_out,
+                                    OrganNameOut=l.organ_name_out,
+                                    WhCodeOut=j_who.wh_name,
+                                    OrganIn=l.organ_in,
+                                    OrganNameIn=l.organ_name_in,
+                                    WhCodeIn=j_whi.wh_name,
+                                    AlDate=l.al_date,
+                                    CreateDate=l.create_date,
+                                    Operator=j_eo.em_name,
+                                    Assessor=j_ea.em_name,
+                                    IfExamine=l.if_examine,
+                                    ExamineDate=l.examine_date,
+                                    OperatorDate=l.operator_date
+
+                                   };
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.AlNumber.StartsWith(c.entity.Id) select l;
+                }
+                if (c.entity.AlType.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.AlType.StartsWith(c.entity.AlType) select l;
+                }
+                if (c.entity.OrganOut.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OrganOut.StartsWith(c.entity.OrganOut) select l;
+                }
+                if (c.entity.OrganNameOut.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OrganNameOut.StartsWith(c.entity.OrganNameOut) select l;
+                }
+                if (c.entity.WhCodeOut.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.WhCodeOut.StartsWith(c.entity.WhCodeOut) select l;
+                }
+                if (c.entity.OrganIn.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OrganIn.StartsWith(c.entity.OrganIn) select l;
+                }
+                if (c.entity.OrganNameIn.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.OrganNameIn.StartsWith(c.entity.OrganNameIn) select l;
+                }
+                if (c.entity.WhCodeIn.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.WhCodeIn.StartsWith(c.entity.WhCodeIn) select l;
+                }
+                if (c.entity.Operator.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Operator.StartsWith(c.entity.Operator) select l;
+                }
+                if (c.entity.Assessor.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Assessor.StartsWith(c.entity.Assessor) select l;
+                }
+                if (c.entity.IfExamine.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.IfExamine.StartsWith(c.entity.IfExamine) select l;
+                }
+                
+                
+                if(c.OperatorDateH.HasValue)
+                {
+                    q = from l in q where l.OperatorDate<=c.OperatorDateH select l;
+                }
+                if(c.OperatorDateL.HasValue)
+                {
+                    q = from l in q where l.OperatorDate >= c.OperatorDateL select l;
+                }
+    
+                
+                if(c.ExamineDateH.HasValue)
+                {
+                    q = from l in q where l.ExamineDate<=c.ExamineDateH select l;
+                }
+                if(c.OperatorDateL.HasValue)
+                {
+                    q = from l in q where l.ExamineDate >= c.ExamineDateL select l;
+                }
+    
+                
+                if(c.CreateDateH.HasValue)
+                {
+                    q = from l in q where l.CreateDate<=c.CreateDateH select l;
+                }
+                if(c.OperatorDateL.HasValue)
+                {
+                    q = from l in q where l.CreateDate >= c.CreateDateL select l;
+                }
+    
+                
+                
+                
+                
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+                
+		}
+
+
         }
         #endregion
 
@@ -871,6 +1091,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
         #region 商品盘点单
         public IOpCheckManageService OpCheckManageService { get; set; }
+
+        #region 盘点单生成
+        public ActionResult OpCheckManageCreate()
+        {
+            return View(new OpCheckManage());
+        }
+        #endregion
         #region 商品盘点单编辑页面
         /// <summary>
         /// 商品盘点单编辑页面
@@ -929,6 +1156,61 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 r.Message = "保存成功";
             }
             return Json(r);
+        }
+
+        public ActionResult SaveOpCheckManageCreate(OpCheckManage m)
+        {
+            using (YiQiEntities e = new YiQiEntities())
+            {
+                SavingResult r = new SavingResult();
+                r.IsSuccess = false;
+
+                if (m.WhCode.IsNullOrEmpty())
+                {
+                    r.Message = "盘点仓库不能为空！";
+                    return json(r);
+                }
+
+                if (m.CkType.IsNullOrEmpty())
+                {
+                    r.Message = "盘点仓库不能为空！";
+                    return json(r);
+                }
+                if (e.op_check_manage.Any(p => p.wh_code == m.WhCode && p.if_transfer == "0" && p.ck_area == m.CkArea))
+                {
+                    r.Message = "该盘点仓库的类别有未结转盘点单不能重新生成！";
+                    return json(r);
+                }
+                if (e.op_check_manage.Any(p => p.wh_code == m.WhCode && p.if_transfer == "0"))
+                {
+                    r.Message = "该盘点仓库有未结转盘点单不能重新生成！";
+                    return json(r);
+                }
+
+                ///判断是否业务流程
+                ///if gf_operation_query(parent.tag,ls_ck_number,this.buttontext) = 0 Then return
+                ///
+
+                ///if gf_operation_save(parent.tag,ls_ck_number,this.buttontext,"","") = -1 then return
+                ///
+
+                //保存
+                OpCheckManageService.Create(m);
+
+                //根据不同条件向op_check_stock 插入数据
+
+
+                r.IsSuccess = true;
+                r.Message = "创建成功！";
+                return json(r);
+
+            }
+        }
+
+
+        private ActionResult json(object value)
+        {
+            return Json(value, JsonRequestBehavior.AllowGet);
         }
         #endregion
 

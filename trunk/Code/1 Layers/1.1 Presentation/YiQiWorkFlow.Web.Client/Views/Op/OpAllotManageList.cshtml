@@ -44,6 +44,10 @@
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
+                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                    cellstyle="padding:0;">
+                    管理
+                </div>
 				<div field="AlNumber" headeralign="center" align="center" width="60">
 				    调拨单号
 					<input id="filter_AlNumber" name="AlNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
@@ -76,11 +80,11 @@
 				    调入仓库
 					<input id="filter_WhCodeIn" name="WhCodeIn" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="AlDate" headeralign="center" align="center" width="60">
+				<div field="AlDate" headeralign="center" align="center" width="60" dateFormat="yyyy-MM-dd">
 				    调拨日期
 					<input id="filter_AlDate" name="AlDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="CreateDate" headeralign="center" align="center" width="60">
+				<div field="CreateDate" headeralign="center" align="center" width="60" dateFormat="yyyy-MM-dd">
 				    创建时间
 					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
@@ -92,23 +96,18 @@
 				    审核人
 					<input id="filter_Assessor" name="Assessor" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="IfExamine" headeralign="center" align="center" width="60">
+				<div field="IfExamine" headeralign="center" align="center" width="60" renderer="onExamRender">
 				    是否审核
 					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="ExamineDate" headeralign="center" align="center" width="60">
+				<div field="ExamineDate" headeralign="center" align="center" width="60" dateFormat="yyyy-MM-dd">
 				    审核时间
 					<input id="filter_ExamineDate" name="ExamineDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="OperatorDate" headeralign="center" align="center" width="60">
+				<div field="OperatorDate" headeralign="center" align="center" width="60" dateFormat="yyyy-MM-dd">
 				    操作时间
 					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
-                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                    cellstyle="padding:0;">
-                    管理
-                </div>
 
             </div>
         </div>

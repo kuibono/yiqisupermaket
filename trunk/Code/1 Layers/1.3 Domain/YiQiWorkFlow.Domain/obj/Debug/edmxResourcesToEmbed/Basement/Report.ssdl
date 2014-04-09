@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReportModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ReportModelStoreContainer">
+    <EntitySet Name="Sys_Report" EntityType="ReportModel.Store.Sys_Report" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Report_Column" EntityType="ReportModel.Store.Sys_Report_Column" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Report_Marks" EntityType="ReportModel.Store.Sys_Report_Marks" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Sys_Report_Column_Sys_Report" Association="ReportModel.Store.FK_Sys_Report_Column_Sys_Report">
+      <End Role="Sys_Report" EntitySet="Sys_Report" />
+      <End Role="Sys_Report_Column" EntitySet="Sys_Report_Column" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Report_Marks_Sys_Report" Association="ReportModel.Store.FK_Sys_Report_Marks_Sys_Report">
+      <End Role="Sys_Report" EntitySet="Sys_Report" />
+      <End Role="Sys_Report_Marks" EntitySet="Sys_Report_Marks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Sys_Report">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="TableName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SubTableName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataUrl" Type="nvarchar" MaxLength="1000" />
+    <Property Name="OutKey" Type="nvarchar" MaxLength="50" />
+    <Property Name="Header1" Type="nvarchar(max)" />
+    <Property Name="Header2" Type="nvarchar(max)" />
+    <Property Name="Header3" Type="nvarchar(max)" />
+    <Property Name="Footer1" Type="nvarchar(max)" />
+    <Property Name="Footer2" Type="nvarchar(max)" />
+    <Property Name="Footer3" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Sys_Report_Column">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ReportId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Visible" Type="bit" />
+    <Property Name="Ord" Type="int" />
+  </EntityType>
+  <EntityType Name="Sys_Report_Marks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ReportId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="DataType" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <Association Name="FK_Sys_Report_Column_Sys_Report">
+    <End Role="Sys_Report" Type="ReportModel.Store.Sys_Report" Multiplicity="1" />
+    <End Role="Sys_Report_Column" Type="ReportModel.Store.Sys_Report_Column" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_Report">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sys_Report_Column">
+        <PropertyRef Name="ReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Report_Marks_Sys_Report">
+    <End Role="Sys_Report" Type="ReportModel.Store.Sys_Report" Multiplicity="1" />
+    <End Role="Sys_Report_Marks" Type="ReportModel.Store.Sys_Report_Marks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_Report">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sys_Report_Marks">
+        <PropertyRef Name="ReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

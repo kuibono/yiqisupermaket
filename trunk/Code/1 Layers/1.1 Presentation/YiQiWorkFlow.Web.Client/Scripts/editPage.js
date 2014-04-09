@@ -109,6 +109,52 @@ $(function () {
         return false;
     });
 
+    $("#btnAdd").click(function () {
+        
+        if (form.isChanged() || formChanged) {
+            mini.confirm("确定新增(有未保存的数据)?", "确认", function (action) {
+                if (action == "ok") {
+                    if (Add) {
+                        Add();
+                    }
+                    form.unmask()
+                    return false;
+                } else {
+                    return;
+                }
+            });
+        } else {
+            if (Add) {
+                Add();
+            }
+            form.unmask()
+            return false;
+        }
+    });
+
+    $("#btnSearch").click(function () {
+
+        if (form.isChanged() || formChanged) {
+            mini.confirm("确定跳转到查询界面(有未保存的数据)?", "确认", function (action) {
+                if (action == "ok") {
+                    if (Search) {
+                        Search();
+                    }
+                    form.unmask()
+                    return false;
+                } else {
+                    return;
+                }
+            });
+        } else {
+            if (Search) {
+                Search();
+            }
+            form.unmask()
+            return false;
+        }
+    });
+
     $(document).keydown(function (event) {
         //alert(event.keyCode)
         //ctrl+s

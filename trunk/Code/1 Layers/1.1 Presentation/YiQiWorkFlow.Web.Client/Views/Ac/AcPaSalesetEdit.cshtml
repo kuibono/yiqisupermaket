@@ -100,12 +100,12 @@
 
             <div class="ablock">
                 <label for="Control_LastSaFlowNumber">上次记账流水:</label>
-                <input type="text" id="Control_LastSaFlowNumber" name="LastSaFlowNumber"  value="@Model.LastSaFlowNumber" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_LastSaFlowNumber" name="LastSaFlowNumber"  value="@Model.LastSaFlowNumber" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_CurrentSaFlowNumber">当前销售流水:</label>
-                <input type="text" id="Control_CurrentSaFlowNumber" name="CurrentSaFlowNumber"  value="@Model.CurrentSaFlowNumber" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="0"/>
+                <input type="text" id="Control_CurrentSaFlowNumber" name="CurrentSaFlowNumber"  value="@Model.CurrentSaFlowNumber" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="0"/>
             </div>
 
             <div class="ablock" style="display:none">

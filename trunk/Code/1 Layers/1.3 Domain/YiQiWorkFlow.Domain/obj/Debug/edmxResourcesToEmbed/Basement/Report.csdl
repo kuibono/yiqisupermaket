@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReportModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="YiQiEntities5" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Sys_Report" EntityType="ReportModel.Sys_Report" />
+    <EntitySet Name="Sys_Report_Column" EntityType="ReportModel.Sys_Report_Column" />
+    <EntitySet Name="Sys_Report_Marks" EntityType="ReportModel.Sys_Report_Marks" />
+    <AssociationSet Name="FK_Sys_Report_Column_Sys_Report" Association="ReportModel.FK_Sys_Report_Column_Sys_Report">
+      <End Role="Sys_Report" EntitySet="Sys_Report" />
+      <End Role="Sys_Report_Column" EntitySet="Sys_Report_Column" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sys_Report_Marks_Sys_Report" Association="ReportModel.FK_Sys_Report_Marks_Sys_Report">
+      <End Role="Sys_Report" EntitySet="Sys_Report" />
+      <End Role="Sys_Report_Marks" EntitySet="Sys_Report_Marks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Sys_Report">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="TableName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SubTableName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DataUrl" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+    <Property Name="OutKey" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Header1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Header2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Header3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Footer1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Footer2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Footer3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Sys_Report_Column" Relationship="ReportModel.FK_Sys_Report_Column_Sys_Report" FromRole="Sys_Report" ToRole="Sys_Report_Column" />
+    <NavigationProperty Name="Sys_Report_Marks" Relationship="ReportModel.FK_Sys_Report_Marks_Sys_Report" FromRole="Sys_Report" ToRole="Sys_Report_Marks" />
+  </EntityType>
+  <EntityType Name="Sys_Report_Column">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Visible" Type="Boolean" />
+    <Property Name="Ord" Type="Int32" />
+    <NavigationProperty Name="Sys_Report" Relationship="ReportModel.FK_Sys_Report_Column_Sys_Report" FromRole="Sys_Report_Column" ToRole="Sys_Report" />
+  </EntityType>
+  <EntityType Name="Sys_Report_Marks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="DataType" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Sys_Report" Relationship="ReportModel.FK_Sys_Report_Marks_Sys_Report" FromRole="Sys_Report_Marks" ToRole="Sys_Report" />
+  </EntityType>
+  <Association Name="FK_Sys_Report_Column_Sys_Report">
+    <End Role="Sys_Report" Type="ReportModel.Sys_Report" Multiplicity="1" />
+    <End Role="Sys_Report_Column" Type="ReportModel.Sys_Report_Column" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_Report">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sys_Report_Column">
+        <PropertyRef Name="ReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sys_Report_Marks_Sys_Report">
+    <End Role="Sys_Report" Type="ReportModel.Sys_Report" Multiplicity="1" />
+    <End Role="Sys_Report_Marks" Type="ReportModel.Sys_Report_Marks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_Report">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sys_Report_Marks">
+        <PropertyRef Name="ReportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

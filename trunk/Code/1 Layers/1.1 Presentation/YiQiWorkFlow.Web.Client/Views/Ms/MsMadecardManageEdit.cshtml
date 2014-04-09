@@ -21,7 +21,7 @@
                     dataType: "json",
                     success: function (r) {
                         if (r.IsSuccess == true) {
-                            closeWithNoValidate();
+                            location.href = "/Ms/MsMadecardManageEdit";
                         } else {
                             $("#Tooltip_Critical_MsMadecardManage .content").first().text(r.Message);
                             $("#Tooltip_Critical_MsMadecardManage").show("fast");
@@ -66,7 +66,7 @@
                         success: function (r) {
                             if (r.IsSuccess == true) {
                                 mini.alert("审核成功！");
-                                closeWithNoValidate();
+                                location.href = "/Ms/MsMadecardManageEdit";
                             } else {
                                 $("#Tooltip_Critical_MsCardtypeManage .content").first().text(r.Message);
                                 $("#Tooltip_Critical_MsCardtypeManage").show("fast");
@@ -157,24 +157,37 @@
             }
         });
 
-    </script>
-
-    <style type="text/css">
-        html, body {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        function Add() {
+            location.href = "/Ms/MsMadecardManageEdit";
         }
-    </style>
 
+        function Search() {
+            location.href = "/Ms/MsMadecardManageList";
+        }
+
+    </script>
 </head>
 <body>
     <div class="container">
-        <h1>卡制作编辑
-        </h1>
+        <div id="toolbar1" class="mini-toolbar" style="padding: 2px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="btnAdd" iconcls="icon-add" class="mini-button" plain="true" tooltip="生成" onclick="GenerateCard">生成</a>
+                        <a id="btnAdd" iconcls="icon-add" class="mini-button" plain="true" tooltip="增加">增加</a>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
+                        <a id="btnExame" iconcls="icon-ok" class="mini-button" plain="true" tooltip="审核(Ctrl+E)">审核</a>
+                        <a id="btnSearch" iconcls="icon-search" class="mini-button" plain="true" tooltip="查询">查询</a>
+                        <a id="btnDelete" iconcls="icon-remove" class="mini-button" plain="true" tooltip="删除">删除</a>
+                        <!--<a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>-->
+                        <a id="btnPrint" iconcls="icon-print" class="mini-button" plain="true" tooltip="打印">打印</a>
+                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--<h1>卡制作编辑
+        </h1>-->
         <div class="tooltip warning hidden" id="Tooltip_Warning_MsMadecardManage">
             <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
             <p class="content">
@@ -227,7 +240,6 @@
                 <input type="button" class="myYellowButton buttonClose" value="关闭" />
             </div>
         </div>
-
         <form id="formMain" method="post" action="">
             <fieldset>
                 <legend>基本信息</legend>
@@ -246,6 +258,7 @@
                             <div header="卡类型名称" field="CardName"></div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="ablock hidden">
@@ -255,7 +268,7 @@
 
                 <div class="ablock">
                     <label for="Control_BeginCardNumber">开始卡号:</label>
-                    <input type="text" id="Control_BeginCardNumber" name="BeginCardNumber" value="@Model.BeginCardNumber" class="mini-spinner" minvalue="0" maxvalue="1000" decimalplaces="0" />
+                    <input type="text" id="Control_BeginCardNumber" name="BeginCardNumber" value="@Model.BeginCardNumber" class="mini-spinner" minvalue="-999999999" maxvalue="999999999" decimalplaces="0" />
                 </div>
 
                 <div class="ablock">
@@ -265,7 +278,7 @@
 
                 <div class="ablock">
                     <label for="Control_EndCardNumber">终止卡号:</label>
-                    <input type="text" id="Control_EndCardNumber" name="EndCardNumber" value="@Model.EndCardNumber" class="mini-spinner" minvalue="0" maxvalue="1000" readonly="readonly" decimalplaces="0" />
+                    <input type="text" id="Control_EndCardNumber" name="EndCardNumber" value="@Model.EndCardNumber" class="mini-spinner" minvalue="-999999999" maxvalue="999999999" readonly="readonly" decimalplaces="0" />
                 </div>
 
                 <div class="ablock">
@@ -314,106 +327,104 @@
                 </div>
 
             </fieldset>
+
             <fieldset>
-                <legend>基本信息</legend>
-                <div style="height: 100%">
-                    <div id="datagrid1" class="mini-datagrid" url='@("/Ms/GetMsCardArchivesListByMadeNumber?MadeNumber=" + @Model.Id)'
-                        style="width: 100%; height: 100%;" idfield="Id" allowresize="false" showpager="false">
-                        <div property="columns">
-                            <div type="indexcolumn" width="30">
-                            </div>
-                            <div field="Id" headeralign="center" align="center" width="60">
-                                卡号					
-                            </div>
-                            <div field="SurfaceNumber" headeralign="center" align="center" width="60">
-                                卡面明码					
-                            </div>
-                            <div field="MsCode" headeralign="center" align="center" width="60">
-                                会员编码					
-                            </div>
-                            <div field="CardCode" headeralign="center" align="center" width="60">
-                                卡类型编码					
-                            </div>
-                            <div field="CardName" headeralign="center" align="center" width="60">
-                                卡类型名称					
-                            </div>
-                            <div field="MsName" headeralign="center" align="center" width="60">
-                                会员姓名					
-                            </div>
-                            <div field="CardState" headeralign="center" align="center" width="60" data="c_CardState" renderer="onCardStateRender">
-                                卡状态					
-                            </div>
-                            <div field="CreateDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
-                                制卡日期					
-                            </div>
-                            <div field="GrantDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
-                                发卡日期					
-                            </div>
-                            <div field="EffectiveDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
-                                生效日期					
-                            </div>
-                            <div field="PointsUsefulLifeDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
-                                积分有效期					
-                            </div>
-                            <div field="CardUsefulLifeDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
-                                卡有效期					
-                            </div>
-                            <div field="TransactCharge" headeralign="center" align="center" width="60">
-                                办卡费用					
-                            </div>
-                            <div field="DepositMoney" headeralign="center" align="center" width="60">
-                                押金金额					
-                            </div>
-                            <div field="TotalMoney" headeralign="center" align="center" width="60">
-                                累计消费金额					
-                            </div>
-                            <div field="TotalExpendTimes" headeralign="center" align="center" width="60">
-                                累计消费次数					
-                            </div>
-                            <div field="LastExpendMoney" headeralign="center" align="center" width="60">
-                                上次消费金额					
-                            </div>
-                            <div field="TotalPoints" headeralign="center" align="center" width="60">
-                                累计积分				
-                            </div>
-                            <div field="ExchangePoints" headeralign="center" align="center" width="60">
-                                兑换积分				
-                            </div>
-                            <div field="CurrentPoints" headeralign="center" align="center" width="60">
-                                当前积分
-                            </div>
-                            <div field="ClearPoints" headeralign="center" align="center" width="60">
-                                清零积分					
-                            </div>
-                            <div field="PrepaidPassword" headeralign="center" align="center" width="60">
-                                储值密码
-                            </div>
-                            <div field="TotalPrepaid" headeralign="center" align="center" width="60">
-                                累计储值金额
-                            </div>
-                            <div field="CurrentPrepaid" headeralign="center" align="center" width="60">
-                                当前储值金额
-                            </div>
-                            <div field="CurrentPrepaidEncrypt" headeralign="center" align="center" width="60">
-                                当前金额
-                            </div>
-                            <div field="UsePrepaid" headeralign="center" align="center" width="60">
-                                使用金额
-                            </div>
-                            <div field="LimitTimes" headeralign="center" align="center" width="60">
-                                限制次数
-                            </div>
-                            <div field="SaleTimes" headeralign="center" align="center" width="60">
-                                消费次数
-                            </div>
+                <legend>卡信息</legend>
+                <div id="datagrid1" class="mini-datagrid" url='@("/Ms/GetMsCardArchivesListByMadeNumber?MadeNumber=" + @Model.Id)'
+                    style="width: 100%; height: 200px;" idfield="Id" allowresize="false" showpager="false">
+                    <div property="columns">
+                        <div type="indexcolumn" width="30">
+                        </div>
+                        <div field="Id" headeralign="center" align="center" width="60">
+                            卡号					
+                        </div>
+                        <div field="SurfaceNumber" headeralign="center" align="center" width="60">
+                            卡面明码					
+                        </div>
+                        <div field="MsCode" headeralign="center" align="center" width="60">
+                            会员编码					
+                        </div>
+                        <div field="CardCode" headeralign="center" align="center" width="60">
+                            卡类型编码					
+                        </div>
+                        <div field="CardName" headeralign="center" align="center" width="60">
+                            卡类型名称					
+                        </div>
+                        <div field="MsName" headeralign="center" align="center" width="60">
+                            会员姓名					
+                        </div>
+                        <div field="CardState" headeralign="center" align="center" width="60" data="c_CardState" renderer="onCardStateRender">
+                            卡状态					
+                        </div>
+                        <div field="CreateDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
+                            制卡日期					
+                        </div>
+                        <div field="GrantDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
+                            发卡日期					
+                        </div>
+                        <div field="EffectiveDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
+                            生效日期					
+                        </div>
+                        <div field="PointsUsefulLifeDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
+                            积分有效期					
+                        </div>
+                        <div field="CardUsefulLifeDate" headeralign="center" align="center" width="60" renderer="onFormatTimeRender" dateformat="yyyy-MM-dd">
+                            卡有效期					
+                        </div>
+                        <div field="TransactCharge" headeralign="center" align="center" width="60">
+                            办卡费用					
+                        </div>
+                        <div field="DepositMoney" headeralign="center" align="center" width="60">
+                            押金金额					
+                        </div>
+                        <div field="TotalMoney" headeralign="center" align="center" width="60">
+                            累计消费金额					
+                        </div>
+                        <div field="TotalExpendTimes" headeralign="center" align="center" width="60">
+                            累计消费次数					
+                        </div>
+                        <div field="LastExpendMoney" headeralign="center" align="center" width="60">
+                            上次消费金额					
+                        </div>
+                        <div field="TotalPoints" headeralign="center" align="center" width="60">
+                            累计积分				
+                        </div>
+                        <div field="ExchangePoints" headeralign="center" align="center" width="60">
+                            兑换积分				
+                        </div>
+                        <div field="CurrentPoints" headeralign="center" align="center" width="60">
+                            当前积分
+                        </div>
+                        <div field="ClearPoints" headeralign="center" align="center" width="60">
+                            清零积分					
+                        </div>
+                        <div field="PrepaidPassword" headeralign="center" align="center" width="60">
+                            储值密码
+                        </div>
+                        <div field="TotalPrepaid" headeralign="center" align="center" width="60">
+                            累计储值金额
+                        </div>
+                        <div field="CurrentPrepaid" headeralign="center" align="center" width="60">
+                            当前储值金额
+                        </div>
+                        <div field="CurrentPrepaidEncrypt" headeralign="center" align="center" width="60">
+                            当前金额
+                        </div>
+                        <div field="UsePrepaid" headeralign="center" align="center" width="60">
+                            使用金额
+                        </div>
+                        <div field="LimitTimes" headeralign="center" align="center" width="60">
+                            限制次数
+                        </div>
+                        <div field="SaleTimes" headeralign="center" align="center" width="60">
+                            消费次数
                         </div>
                     </div>
                 </div>
             </fieldset>
             <div class="clear">
             </div>
-
-            <div class="control-panel">
+            <!--<div class="control-panel">
                 <div class="control-button">
                     <input type="button" class="myButton" id="btnGenerateCard" onclick="GenerateCard()" value="生成" />
                     <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
@@ -423,10 +434,8 @@
                 </div>
                 <div class="botton-up">
                 </div>
-            </div>
-
+            </div>-->
         </form>
-
     </div>
 </body>
 </html>

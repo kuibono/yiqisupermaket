@@ -240,6 +240,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 else
                 {
                     m.CreateDate = DateTime.Now;
+                    m.bCode = "0000";
                     m.Id = PcPurchaseManageService.Create(m);
                 }
 

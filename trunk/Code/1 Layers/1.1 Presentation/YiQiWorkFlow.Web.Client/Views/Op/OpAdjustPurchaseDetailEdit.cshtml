@@ -110,7 +110,7 @@
 
             <div class="ablock">
                 <label for="Control_BatchNumber">批次编号:</label>
-                <input type="text" id="Control_BatchNumber" name="BatchNumber"  value="@Model.BatchNumber" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="2"/>
+                <input type="text" id="Control_BatchNumber" name="BatchNumber"  value="@Model.BatchNumber" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="2"/>
             </div>
 
             <div class="ablock">
@@ -140,62 +140,62 @@
 
             <div class="ablock">
                 <label for="Control_InputTax">进项税率:</label>
-                <input type="text" id="Control_InputTax" name="InputTax"  value="@Model.InputTax" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_InputTax" name="InputTax"  value="@Model.InputTax" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_PurchasePrice">含税进价:</label>
-                <input type="text" id="Control_PurchasePrice" name="PurchasePrice"  value="@Model.PurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_PurchasePrice" name="PurchasePrice"  value="@Model.PurchasePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="6"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_NontaxPurchasePrice">不含税进价:</label>
-                <input type="text" id="Control_NontaxPurchasePrice" name="NontaxPurchasePrice"  value="@Model.NontaxPurchasePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="6"/>
+                <input type="text" id="Control_NontaxPurchasePrice" name="NontaxPurchasePrice"  value="@Model.NontaxPurchasePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="6"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_SalePrice">销售价:</label>
-                <input type="text" id="Control_SalePrice" name="SalePrice"  value="@Model.SalePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_SalePrice" name="SalePrice"  value="@Model.SalePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_NontaxSalePrice">不含税售价:</label>
-                <input type="text" id="Control_NontaxSalePrice" name="NontaxSalePrice"  value="@Model.NontaxSalePrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_NontaxSalePrice" name="NontaxSalePrice"  value="@Model.NontaxSalePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_PurchaseQty">进货数量:</label>
-                <input type="text" id="Control_PurchaseQty" name="PurchaseQty"  value="@Model.PurchaseQty" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_PurchaseQty" name="PurchaseQty"  value="@Model.PurchaseQty" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_StockoutQty">冲减数量:</label>
-                <input type="text" id="Control_StockoutQty" name="StockoutQty"  value="@Model.StockoutQty" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_StockoutQty" name="StockoutQty"  value="@Model.StockoutQty" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_StockQty">剩余数量:</label>
-                <input type="text" id="Control_StockQty" name="StockQty"  value="@Model.StockQty" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_StockQty" name="StockQty"  value="@Model.StockQty" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_AdjustQty">调整数量:</label>
-                <input type="text" id="Control_AdjustQty" name="AdjustQty"  value="@Model.AdjustQty" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_AdjustQty" name="AdjustQty"  value="@Model.AdjustQty" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_AdjustPrice">调整进价:</label>
-                <input type="text" id="Control_AdjustPrice" name="AdjustPrice"  value="@Model.AdjustPrice" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_AdjustPrice" name="AdjustPrice"  value="@Model.AdjustPrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_AdjustDiff">调整差价:</label>
-                <input type="text" id="Control_AdjustDiff" name="AdjustDiff"  value="@Model.AdjustDiff" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_AdjustDiff" name="AdjustDiff"  value="@Model.AdjustDiff" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
                 <label for="Control_AdjustMoney">调整金额:</label>
-                <input type="text" id="Control_AdjustMoney" name="AdjustMoney"  value="@Model.AdjustMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_AdjustMoney" name="AdjustMoney"  value="@Model.AdjustMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
@@ -205,7 +205,7 @@
 
             <div class="ablock">
                 <label for="Control_AdjustBaMoney">调整结算金额:</label>
-                <input type="text" id="Control_AdjustBaMoney" name="AdjustBaMoney"  value="@Model.AdjustBaMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_AdjustBaMoney" name="AdjustBaMoney"  value="@Model.AdjustBaMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">
@@ -220,7 +220,7 @@
 
             <div class="ablock">
                 <label for="Control_BaMoney">结算金额:</label>
-                <input type="text" id="Control_BaMoney" name="BaMoney"  value="@Model.BaMoney" class="mini-spinner" minValue="0" maxValue="1000" decimalPlaces="4"/>
+                <input type="text" id="Control_BaMoney" name="BaMoney"  value="@Model.BaMoney" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
             </div>
 
             <div class="ablock">

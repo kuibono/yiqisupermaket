@@ -83,8 +83,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                          } },
                          new { iconCls = "icon-bricks", text = "仓库管理", menus = new object[]{
                             new { iconCls = "icon-node", text = "主营业务",  menus = new object[]{
-                                new { id = "143", iconCls = "icon-add", pid = "m3", text = "商品移库管理", url = "" },
-                                new { id = "144", iconCls = "icon-add", pid = "m3", text = "盘点单生成", url = "" },
+                                new { id = "143", iconCls = "icon-add", pid = "m3", text = "商品移库管理", url = "/Op/OpAllotManageEdit"  },
+                                new { id = "144", iconCls = "icon-add", pid = "m3", text = "盘点单生成", url = "/Op/OpCheckManageCreate" },
                                 new { id = "145", iconCls = "icon-add", pid = "m3", text = "商品盘点管理", url = "/Op/OpCheckManageList" },
                                 new { id = "146", iconCls = "icon-add", pid = "m3", text = "商品盘点查询", url = "" },
                                 new { id = "147", iconCls = "icon-add", pid = "m3", text = "商品盘点差异", url = "" },
@@ -151,11 +151,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                          } },
                          new { iconCls = "icon-vcard", text = "会员卡券", menus = new object[]{
                             new { iconCls = "icon-node", text = "主营业务",  menus = new object[]{
-                                new { id = "188", iconCls = "icon-add", pid = "m6", text = "卡类型设置", url = "/Ms/MsCardtypeManageList" },
-                                new { id = "189", iconCls = "icon-add", pid = "m6", text = "卡折扣设置", url = "/Ms/MsCardtypeDiscountList" },
-                                new { id = "190", iconCls = "icon-add", pid = "m6", text = "卡积分设置", url = "/Ms/MsCardtypePointsList" },
-                                new { id = "191", iconCls = "icon-add", pid = "m6", text = "商品折扣设置", url = "/Ms/MsCardtypeGoodsDiscountList" },
-                                new { id = "192", iconCls = "icon-add", pid = "m6", text = "商品积分设置", url = "/Ms/MsCardtypeGoodsPointsList" },
+                                new { id = "188", iconCls = "icon-add", pid = "m6", text = "卡类型设置", url = "/Ms/MsCardtypeManageEdit" },
+                                new { id = "189", iconCls = "icon-add", pid = "m6", text = "卡折扣设置", url = "/Ms/MsCardtypeDiscountEdit" },
+                                new { id = "190", iconCls = "icon-add", pid = "m6", text = "卡积分设置", url = "/Ms/MsCardtypePointsEdit" },
+                                new { id = "191", iconCls = "icon-add", pid = "m6", text = "商品折扣设置", url = "/Ms/MsCardtypeGoodsDiscountEdit" },
+                                new { id = "192", iconCls = "icon-add", pid = "m6", text = "商品积分设置", url = "/Ms/MsCardtypeGoodsPointsEdit" },
                                 new { id = "193", iconCls = "icon-add", pid = "m6", text = "卡制作管理", url = "/Ms/MsMadecardManageList" },
                                 new { id = "194", iconCls = "icon-add", pid = "m6", text = "会员档案管理", url = "/Ms/MsMemberArchivesList" },
                                 new { id = "195", iconCls = "icon-add", pid = "m6", text = "卡发放管理", url = "/Ms/MsGrantCardManageList" },
@@ -354,7 +354,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             m2.Add(new { id = "142", iconCls = "icon-add", pid = "m2", text = "商品库存预警查询", url = "" });
 
 
-            m3.Add(new { id = "143", iconCls = "icon-add", pid = "m3", text = "商品移库管理", url = "" });
+            m3.Add(new { id = "143", iconCls = "icon-add", pid = "m3", text = "商品移库管理", url = "/Op/OpAllotManageEdit" });
             m3.Add(new { id = "144", iconCls = "icon-add", pid = "m3", text = "盘点单生成", url = "" });
             m3.Add(new { id = "145", iconCls = "icon-add", pid = "m3", text = "商品盘点管理", url = "/Op/OpCheckManageList" });
             m3.Add(new { id = "146", iconCls = "icon-add", pid = "m3", text = "商品盘点查询", url = "" });
