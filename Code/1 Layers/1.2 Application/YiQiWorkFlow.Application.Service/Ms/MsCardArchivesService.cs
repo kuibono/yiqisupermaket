@@ -243,7 +243,7 @@ namespace YiQiWorkFlow.Application.Service.Ms
         }
 
         [Transaction]
-        public string SaveList(List<MsCardArchives> msCardArchivesList)
+        public string ValidationCardList(List<MsCardArchives> msCardArchivesList)
         {
             string result = string.Empty;
 
@@ -261,14 +261,14 @@ namespace YiQiWorkFlow.Application.Service.Ms
                     }
                 }
             }
-            else
-            {
-                // 保存
-                foreach (var item in msCardArchivesList)
-                {
-                    Create(item);
-                }
-            }
+            //else
+            //{
+            //    // 保存
+            //    foreach (var item in msCardArchivesList)
+            //    {
+            //        Create(item);
+            //    }
+            //}
 
             return result;
         }

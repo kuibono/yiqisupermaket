@@ -44,7 +44,7 @@ namespace YiQiWorkFlow.Application.Service.Ms
         /// </summary>
         /// <param name="msCardArchivesList"></param>
         /// <returns></returns>
-        string SaveList(List<MsCardArchives> msCardArchivesList);
+        string ValidationCardList(List<MsCardArchives> msCardArchivesList);
 
         /// <summary>
         /// 根据卡制作信息审核,激活卡信息状态为

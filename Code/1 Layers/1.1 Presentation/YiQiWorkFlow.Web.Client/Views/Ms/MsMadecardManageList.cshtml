@@ -48,9 +48,9 @@
                      cellstyle="padding:0;">
                     管理
                 </div>
-                <div field="MdNumber" headeralign="center" align="center" width="60">
+                <div field="Id" headeralign="center" align="center" width="120">
                     制作单号
-                    <input id="filter_MdNumber" name="MdNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                    <input id="filter_MdNumber" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
                 <div field="MdDate" headeralign="center" align="center" width="60">
                     制作日期
@@ -72,7 +72,7 @@
                     制作数量
                     <input id="filter_MadeQty" name="MadeQty" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="EffectiveType" headeralign="center" align="center" width="60">
+                <div field="EffectiveType" headeralign="center" align="center" width="60" renderer="onEffectiveTypeRender">
                     生效方式
                     <input id="filter_EffectiveType" name="EffectiveType" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
@@ -80,7 +80,7 @@
                     生效日期
                     <input id="filter_EffectiveDate" name="EffectiveDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="IfMade" headeralign="center" align="center" width="60">
+                <div field="IfMade" headeralign="center" align="center" width="60" renderer="onYesNoRender">
                     是否制卡
                     <input id="filter_IfMade" name="IfMade" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
@@ -182,7 +182,8 @@
             grid.load(data);
         }
         function editRow(id) {
-            parent.showTab({ id: "MsMadecardManageEdit", text: "卡制作管理", iconCls: "icon-edit", url: "/Ms/MsMadecardManageEdit/" + id });
+            //parent.showTab({ id: "MsMadecardManageEdit", text: "卡制作管理", iconCls: "icon-edit", url: "/Ms/MsMadecardManageEdit/" + id });
+            location.href = "/Ms/MsMadecardManageEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({
@@ -233,6 +234,9 @@
         function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
         }
+
+
+
     </script>
 </body>
 </html>

@@ -112,7 +112,7 @@ $(function () {
     $("#btnAdd").click(function () {
         
         if (form.isChanged() || formChanged) {
-            mini.confirm("确定新增(有未保存的数据)?", "确认", function (action) {
+            mini.confirm("有未保存的数据,确认新增?", "确认", function (action) {
                 if (action == "ok") {
                     if (Add) {
                         Add();
@@ -237,3 +237,31 @@ function formatTime(item, array) {
     ymd.setTime(parseInt(item.replace("\/Date(", "").replace(")\/", "")));
     return ymd.toLocaleDateString();
 }
+$(document).keydown(function (e) {
+    var doPrevent;
+    if (e.keyCode == 8) {
+        var d = e.srcElement || e.target;
+        if (d.tagName.toUpperCase() == 'INPUT' || d.tagName.toUpperCase() == 'TEXTAREA') {
+            doPrevent = d.readOnly || d.disabled;
+        }
+        else
+            doPrevent = true;
+    }
+    else
+        doPrevent = false;
+
+    if (doPrevent)
+        e.preventDefault();
+});
+$(function () {
+    $('input:text:first').focus();
+    var $inp = $('input:text');
+    $inp.bind('keydown', function (e) {
+        var key = e.which;
+        if (key == 13) {
+            e.preventDefault();
+            var nxtIdx = $inp.index(this) + 1;
+            $(":input:text:eq(" + nxtIdx + ")").focus();
+        }
+    });
+});

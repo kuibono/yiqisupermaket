@@ -68,8 +68,8 @@
 
         function onCardCodeChanged(e) {
             
-            if (e) {
-                var url = "/Ms/()MsCardtypeDiscountList?CardCode=" + e.selected.Id;
+            if (e && e.selected) {
+                var url = "/Ms/SearchMsCardtypeDiscountList?CardCode=" + e.selected.Id;
                 var grid = mini.get('#datagrid1');
                 grid.url = url;
                 grid.reload();

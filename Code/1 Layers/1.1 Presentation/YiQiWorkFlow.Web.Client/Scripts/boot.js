@@ -153,6 +153,15 @@ function onCardStateRender(e) {
     }
 }
 
+// 生效方式onEffectiveTypeRender
+function onEffectiveTypeRender(e) {
+    if (e.value == "1") {
+        return "发卡生效";
+    } else if (e.value == "2") {
+        return "指定生效";
+    }
+}
+
 window.onerror = function () { return true; }
 
 function onEnglishValidation(e) {
@@ -219,3 +228,53 @@ function isChinese(v) {
 //    if (re.test(v)) return true;
 //    return false;
 //}
+function _onActionRenderer(e) {
+    var grid = e.sender;
+    var record = e.record;
+    var uid = record._uid;
+    var rowIndex = e.rowIndex;
+
+    var s = '<a class="New_Button" href="javascript:_newRow(\'' + grid.id + '\')">新增</a>'
+            +' <a class="Edit_Button" href="javascript:_editRow(\'' + grid.id + '\',\'' + uid + '\')" >编辑</a>'
+            + ' <a class="Delete_Button" href="javascript:_delRow(\'' + grid.id + '\',\'' + uid + '\')">删除</a>';
+
+    if (grid.isEditingRow(record)) {
+        s = '<a class="Update_Button" href="javascript:_updateRow(\'' + grid.id + '\',\'' + uid + '\')">更新</a>'
+            + ' <a class="Cancel_Button" href="javascript:_cancelRow(\'' + grid.id + '\',\'' + uid + '\')">取消</a>'
+    }
+    return s;
+}
+
+function _newRow(gridId) {
+    var grid = mini.get(gridId);
+    var row = {};
+    grid.addRow(row, 0);
+
+    grid.cancelEdit();
+    grid.beginEditRow(row);
+}
+function _editRow(gridId, row_uid) {
+    var grid = mini.get(gridId);
+    var row = grid.getRowByUID(row_uid);
+    if (row) {
+        grid.cancelEdit();
+        grid.beginEditRow(row);
+    }
+}
+function _cancelRow(gridId, row_uid) {
+    var grid = mini.get(gridId);
+    grid.cancelEditRow(grid.getRowByUID(row_uid));
+    //grid.reload();
+}
+function _delRow(gridId, row_uid) {
+    var grid = mini.get(gridId);
+    grid.removeRows(grid.getSelecteds());
+    //grid.removeRows(grid.getRowByUID(row_uid));
+}
+
+function _updateRow(gridId,row_uid) {
+    var grid = mini.get(gridId);
+    var row = grid.getRowByUID(row_uid);
+    grid.commitEdit();
+
+}

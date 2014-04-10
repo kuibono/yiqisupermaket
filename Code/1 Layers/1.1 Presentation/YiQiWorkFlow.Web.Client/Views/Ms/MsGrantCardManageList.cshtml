@@ -190,7 +190,8 @@
             grid.load(data);
         }
         function editRow(id) {
-            parent.showTab({ id: "MsGrantCardManageEdit", text: "卡发放管理", iconCls: "icon-edit", url: "/Ms/MsGrantCardManageEdit/" + id });
+            //parent.showTab({ id: "MsGrantCardManageEdit", text: "卡发放管理", iconCls: "icon-edit", url: "/Ms/MsGrantCardManageEdit/" + id });
+            location.href = "/Ms/MsGrantCardManageEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({

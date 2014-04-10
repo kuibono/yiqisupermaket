@@ -1884,7 +1884,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-
+                m.CheckUnitCode = m.PackUnitCode;
 
                 var jser = new JavaScriptSerializer();
                 var suppliers = jser.Deserialize<List<FbGoodsArchivesSupplier>>(Request["suppliers"]);
