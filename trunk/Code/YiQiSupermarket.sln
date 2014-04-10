@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Layers", "1 Layers", "{B7C8EF17-07E9-462E-BA21-96E5BB9A0CB2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 Presentation", "1.1 Presentation", "{38F7FC48-EE3C-4523-AD59-67B5C17F16D5}"

@@ -58,7 +58,8 @@
 
     <div class="ablock">
         <label for="Control_Idcard">身份证号:</label>
-        <input type="text" class="mini-textbox" name="Idcard" id="Control_Idcard" onvalidation="onIDCardsValidation" vtype="maxLength:20" enable="false" />
+        <%--<input type="text" class="mini-textbox" name="Idcard" id="Control_Idcard" onvalidation="onIDCardsValidation" vtype="maxLength:20" />--%>
+        <input type="text" class="mini-textbox" name="Idcard" id="Control_Idcard"  vtype="maxLength:20" />
     </div>
 
     <div class="ablock">

@@ -337,12 +337,14 @@
             </fieldset>
             <div id="datagrid1" class="mini-datagrid" url="/Pc/SearchPcReturnDetailList?RtNumber=@(Model.Id.Length>0?Model.Id:"@#$")"
                 style="width: 100%; height: 200px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-                pagesize="20" multiselect="true" showfilterrow="false" showpager="false" onrowdblclick="onrowdblclick">
+                pagesize="20" multiselect="true" showfilterrow="false" showpager="false" onrowdblclick="onrowdblclick"
+                emptyText="数据为空，<a href='javascript:_newRow(&quot;datagrid1&quot;)'>增加一条</a>" showEmptyText="true">
                 <div property="columns">
                     <div type="indexcolumn" width="30">
                     </div>
                     <div type="checkcolumn" width="30">
                     </div>
+                    <div renderer="_onActionRenderer" headeralign="center" align="center" width="70">管理</div>
                     <div field="GoodsCode" headeralign="center" align="center" width="120">
                         商品编码
 					<input id="filter_GoodsCode" name="GoodsCode" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />

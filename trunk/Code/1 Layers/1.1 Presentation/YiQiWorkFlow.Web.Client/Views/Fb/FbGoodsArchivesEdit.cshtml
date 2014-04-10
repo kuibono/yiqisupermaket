@@ -212,8 +212,12 @@
         }
 
         function onSupnameChanged(e) {
+            //mini.get("grid1").data[mini.get("grid1").getSelected()._index]["SupName"]=e.selected.SupName;;
+            //mini.get("grid1").data[mini.get("grid1").getSelected()._index]["PyCode"]=e.selected.PyCode;;
+            //data["PyCode"]=e.selected.PyCode;
             mini.getbyName("SupName", "grid1").setValue(e.selected.SupName);
             mini.getbyName("PyCode", "grid1").setValue(e.selected.PyCode);
+            mini.get("grid1").data[mini.get("grid1").getSelected()._index]
             $("#grid1 input[name='OpCode']:first").focus();
         }
         function onBindValuechanged(e) {
@@ -289,15 +293,15 @@
             }
             //grids
 
-            jQuery.hotkeys.add('return', function () {
-                $(document).scrollTop(999999);
-                getActiveGrid();
+            //jQuery.hotkeys.add('return', function () {
+            //    $(document).scrollTop(999999);
+            //    getActiveGrid();
 
-                if (activeGrid.isEditing()) {
-                    activeGrid.commitEdit();
-                }
-                newRow(activeGrid);
-            });
+            //    if (activeGrid.isEditing()) {
+            //        activeGrid.commitEdit();
+            //    }
+            //    newRow(activeGrid);
+            //});
             jQuery.hotkeys.add('esc', function () {
                 getActiveGrid();
                 activeGrid.reload();
@@ -450,10 +454,10 @@
                     <label for="Control_CheckMode">核算方式:</label>
                     <input type="text"  value="@Model.CheckMode" class="mini-combobox" name="CheckMode" id="Control_CheckMode" data="[{id:'1',text:'先进先出'}]" />
                 </div>
-                <div class="ablock">
+                @*<div class="ablock">
                     <label for="Control_CheckUnitCode">核算单位:</label>
                     <input type="text"  value="@Model.CheckUnitCode" class="mini-textbox" name="CheckUnitCode" id="Control_CheckUnitCode" vtype="maxLength:20"required="true" />
-                </div>
+                </div>*@
                 <div class="ablock">
                     <label for="Control_UnderCounterCode">所属柜台:</label>
                     <input type="text"  value="@Model.UnderCounterCode" class="mini-combobox" name="UnderCounterCode" id="Control_UnderCounterCode" url="/Common/GetComboData?table=fb_pa_goods_counter&valueColumn=counter_code&textColumn=counter_name" vtype="maxLength:20" />
@@ -629,23 +633,26 @@
                 <div title="供货商信息">
                     <div class="mini-fit">
                         <div id="grid1" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesSupplierList?GoodsCode=@Model.Id"
-                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid1Click">
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdbclick="grid1Click"
+                             allowAlternating="true"  emptyText="数据为空，<a href='javascript:_newRow(&quot;grid1&quot;)'>增加一条</a>" showEmptyText="true"
+                            >
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
                                 </div>
                                 <div type="checkcolumn" width="30">
                                 </div>
+                                <div renderer="_onActionRenderer" headeralign="center" align="center" width="70">管理</div>
                                 <div field="SupCode" headeralign="center" align="center" width="60">
                                     供货商
 					<input id="filter_SupCode" name="SupCode" property="editor" class="mini-combobox" valuefield="Id"  popupWidth="400" textfield="Id" pinyinfield="PyCode" url="/Data/FbSupplierArchives.js" allowinput="true" onvaluechanged="onSupnameChanged" style="width: 100%;" />
                                 </div>
                                 <div field="SupName" headeralign="center" align="center" width="60">
                                     供货商名称
-					<input id="filter_SupName" name="SupName" property="editor" class="mini-textbox" enabled="true" style="width: 100%;" />
+					<input id="filter_SupName" name="SupName" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                                 </div>
                                 <div field="PyCode" headeralign="center" align="center" width="60">
                                     拼音码
-					<input id="filter_PyCode" name="PyCode" property="editor" class="mini-textbox" enabled="true" style="width: 100%;" />
+					<input id="filter_PyCode" name="PyCode" property="editor" class="mini-textbox" enabled="false" style="width: 100%;" />
                                 </div>
                                 <div field="OpCode" headeralign="center" align="center" width="60" renderer="onOpCodeRender">
                                     经营方式
@@ -653,7 +660,7 @@
                                 </div>
                                 <div field="PoolRate" headeralign="center" align="center" width="60" renderer="onPercentRender">
                                     扣率
-					<input id="filter_PoolRate" name="PoolRate" property="editor" class="mini-spinner" style="width: 100%;" />
+					<input id="filter_PoolRate" name="PoolRate" property="editor" class="mini-spinner" decimalPlaces="2" style="width: 100%;" />
                                 </div>
                                 <div field="OfferMode" headeralign="center" align="center" width="60">
                                     供货方式
@@ -665,7 +672,7 @@
                                 </div>
                                 <div field="InputTax" headeralign="center" align="center" width="60" renderer="onPercentRender">
                                     进项税率
-					<input id="filter_InputTax" name="InputTax" property="editor" class="mini-spinner" style="width: 100%;" />
+					<input id="filter_InputTax" name="InputTax" property="editor" class="mini-spinner"  decimalPlaces="2" style="width: 100%;" />
                                 </div>
                                 <div field="PurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                                     含税进价
@@ -677,7 +684,7 @@
                                 </div>
                                 <div field="IfMainSupplier" headeralign="center" align="center" width="60" renderer="onYesNoRender">
                                     主供货商
-                                    <div id="filter_IfMainSupplier" property="editor" name="IfMainSupplier" value="1" truevalue="1" falsevalue="0" class="mini-checkbox" checked="true" readonly="false"></div>
+                                    <div id="filter_IfMainSupplier" property="editor" name="IfMainSupplier"  truevalue="1" falsevalue="0" class="mini-checkbox" checked="true" readonly="false"></div>
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60" renderer="onExamRender">
                                     是否审核
@@ -692,12 +699,15 @@
                 <div title="销售码信息">
                     <div class="mini-fit">
                         <div id="grid2" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesBarList?GoodsCode=@Model.Id"
-                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid2Click">
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid2Click"
+                             emptyText="数据为空，<a href='javascript:_newRow(&quot;grid2&quot;)'>增加一条</a>" showEmptyText="true"
+                            >
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
                                 </div>
                                 <div type="checkcolumn" width="30">
                                 </div>
+                                <div renderer="_onActionRenderer" headeralign="center" align="center" width="70">管理</div>
                                 <div field="GoodsBarCode" headeralign="center" align="center" width="60">
                                     商品销售码
 					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" style="width: 100%;" onblur="onGoodsBarCodeBlur" />
@@ -754,13 +764,14 @@
                 <div id="tabBind" title="捆绑商品信息" enabled="false">
                     <div class="mini-fit">
                         <div id="grid3" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesBindList?GoodsCode=@Model.Id"
-                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid3Click">
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid3Click"
+                            emptyText="数据为空，<a href='javascript:_newRow(&quot;grid3&quot;)'>增加一条</a>" showEmptyText="true">
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
                                 </div>
                                 <div type="checkcolumn" width="30">
                                 </div>
-
+                                <div renderer="_onActionRenderer" headeralign="center" align="center" width="70">管理</div>
                                 <div field="GoodsCodeBind" headeralign="center" align="center" width="60">
                                     商品编码
 					<input id="filter_GoodsCodeBind" name="GoodsCodeBind" property="editor" class="mini-autocomplete"  popupWidth="400" required="true" valuefield="Id" textfield="GoodsName" url="/Fb/SearchFbGoodsArchivesListForList" onvaluechanged="onBindValuechanged" style="width: 100%;" />
@@ -809,12 +820,14 @@
                 <div title="商品图片信息">
                     <div class="mini-fit">
                         <div id="grid4" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesPhotoList?GoodsCode=@Model.Id"
-                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid4Click">
+                            style="width: 100%; height: 100%;" idfield="id" allowresize="false" showPager="false" multiselect="true" onrowdblclick="grid4Click"
+                            emptyText="数据为空，<a href='javascript:_newRow(&quot;grid4&quot;)'>增加一条</a>" showEmptyText="true">
                             <div property="columns">
                                 <div type="indexcolumn" width="30">
                                 </div>
                                 <div type="checkcolumn" width="30">
                                 </div>
+                                <div renderer="_onActionRenderer" headeralign="center" align="center" width="70">管理</div>
                                 <div field="sNumber" headeralign="center" align="center" width="60">
                                     序号
 					                <input id="filter_sNumber" name="sNumber" property="editor" class="mini-textbox" style="width: 100%;" />
