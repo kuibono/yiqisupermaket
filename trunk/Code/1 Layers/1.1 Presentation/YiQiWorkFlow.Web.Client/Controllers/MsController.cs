@@ -484,20 +484,25 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 // 先删除后添加、修改
                 string cardCode = Request["CardCode"];
-                var cardtypeDiscountList = SearchMsCardtypeDiscountList(new SearchDtoBase<MsCardtypeDiscount>() { pageIndex = 1, pageSize = int.MaxValue }, new MsCardtypeDiscount() { CardCode = cardCode });
+                //var cardtypeDiscountList = SearchMsCardtypeDiscountList(new SearchDtoBase<MsCardtypeDiscount>() { pageIndex = 1, pageSize = int.MaxValue }, new MsCardtypeDiscount() { CardCode = cardCode });
 
                 var jser = new JavaScriptSerializer();
                 var cardtypeDiscount = jser.Deserialize<List<MsCardtypeDiscount>>(Request["CardtypeDiscount"]).ToList();
                 cardtypeDiscount.ForEach(p =>
                 {
+                    // 判断没有商品类别编码就不保存
                     if (!string.IsNullOrEmpty(p.GoodsClassCode))
                     {
                         p.CardCode = cardCode;
-                        if (p.HaveId)
+                        if (p.IsDelete)
+                        {
+                            MsCardtypeDiscountService.Delete(p);
+                        }
+                        else if (p.HaveId || p.IsUpdated)
                         {
                             MsCardtypeDiscountService.Update(p);
                         }
-                        else
+                        else if (p.IsAdded)
                         {
                             MsCardtypeDiscountService.Create(p);
                         }
@@ -659,11 +664,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 suppliers.ForEach(p =>
                 {
                     p.CardCode = cardCode;
-                    if (p.HaveId)
+                    if (p.IsDelete)
+                    {
+                        MsCardtypeGoodsDiscountService.Delete(p);
+                    }
+                    else if (p.HaveId || p.IsUpdated)
                     {
                         MsCardtypeGoodsDiscountService.Update(p);
                     }
-                    else
+                    else if (p.IsAdded)
                     {
                         MsCardtypeGoodsDiscountService.Create(p);
                     }
@@ -778,11 +787,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 suppliers.ForEach(p =>
                 {
                     p.CardCode = cardCode;
-                    if (p.HaveId)
+                    if (p.IsDelete)
+                    {
+                        MsCardtypeGoodsPointsService.Delete(p);
+                    }
+                    else if (p.HaveId || p.IsUpdated)
                     {
                         MsCardtypeGoodsPointsService.Update(p);
                     }
-                    else
+                    else if (p.IsAdded)
                     {
                         MsCardtypeGoodsPointsService.Create(p);
                     }
@@ -1035,11 +1048,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 cardtypePoints.ForEach(p =>
                 {
                     p.CardCode = cardCode;
-                    if (p.HaveId)
+                    if (p.IsDelete)
+                    {
+                        MsCardtypePointsService.Delete(p);
+                    }
+                    else if (p.HaveId || p.IsUpdated)
                     {
                         MsCardtypePointsService.Update(p);
                     }
-                    else
+                    else if (p.IsAdded)
                     {
                         MsCardtypePointsService.Create(p);
                     }
@@ -1594,7 +1611,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// </summary>
         /// <param name="m">表单数据</param>
         /// <returns></returns>
-        public ActionResult SaveMsGrantCardManage(MsGrantCardManage m,MsMemberArchives c)
+        public ActionResult SaveMsGrantCardManage(MsGrantCardManage m, MsMemberArchives c)
         {
             SavingResult r = new SavingResult();
 

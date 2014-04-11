@@ -14,7 +14,8 @@
 
             var grid1 = mini.get("datagrid1");
             grid1.commitEdit();
-            var cardtypeDiscount = grid1.data;
+            //var cardtypeDiscount = grid1.data;
+            var cardtypeDiscount = grid1.getChanges();
 
             o["CardtypeDiscount"] = mini.encode(cardtypeDiscount);
 

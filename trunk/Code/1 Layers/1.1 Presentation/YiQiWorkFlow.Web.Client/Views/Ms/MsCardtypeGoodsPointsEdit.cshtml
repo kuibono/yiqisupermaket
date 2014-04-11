@@ -14,7 +14,7 @@
 
             var grid1 = mini.get("datagrid1");
             grid1.commitEdit();
-            var goods = grid1.data;
+            var goods = grid1.getChanges();
             if (grid1.data.length == 0) {
                 mini.alert("必须设置积分商品信息！");
                 return false;
