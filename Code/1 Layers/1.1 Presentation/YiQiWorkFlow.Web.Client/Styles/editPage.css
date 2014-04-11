@@ -117,7 +117,7 @@
 }
 
 div .hidden {
-    display: none !important;
+    display: none;
 }
 
 .control-panel {

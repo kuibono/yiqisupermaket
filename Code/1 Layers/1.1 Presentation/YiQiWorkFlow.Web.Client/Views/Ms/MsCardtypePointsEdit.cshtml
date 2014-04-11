@@ -15,7 +15,7 @@
 
             var grid1 = mini.get("datagrid1");
             grid1.commitEdit();
-            var cardtypePoints = grid1.data;
+            var cardtypePoints = grid1.getChanges();
 
             o["MsCardtypePoints"] = mini.encode(cardtypePoints);
 
