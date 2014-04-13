@@ -113,6 +113,8 @@
         }
         function openInTab(name, text, url) {
             if ($("#" + name).size() > 0) {
+                jQuery('#tabs li a:contains(' + text + ')').first().click();
+                $("#" + name).find("iframe").first().prop("src",url);
                 return false;
             }
             $("#tabs").append("<li onclick='tabHeaderClick(this)'><a href='javascript:void(0)' name='" + name + "'>" + text + "<em onclick='javascript:closeTab(\"" + name + "\")'></em></a></li>");

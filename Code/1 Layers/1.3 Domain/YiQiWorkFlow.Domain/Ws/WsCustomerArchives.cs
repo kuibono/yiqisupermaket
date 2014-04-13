@@ -177,12 +177,13 @@ namespace YiQiWorkFlow.Domain.Ws
         public static WsCustomerArchives Initial()
         {
             WsCustomerArchives m = new WsCustomerArchives();
-            m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
-			m.PayMode="现金";
-			m.BalanceMode="货到付款";
-			m.BalancePeriod="月结算";
+            //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
+			m.PayMode="1";
+			m.BalanceMode="1";
+			m.BalancePeriod="1";
 			m.BalanceDay=1M;
 			m.IfExamine="0";
+            m.SalePeriod = "1";
             return m;
         }
 	}

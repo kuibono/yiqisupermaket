@@ -134,7 +134,7 @@
                 <tr>
                     <td>
                         <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
-                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                        <!--<a id="btnReturn" iconcls="icon-undo" class="mini-button" plain="true" tooltip="返回(Ctrl+Q)">返回</a>-->
                     </td>
                 </tr>
             </table>
@@ -247,7 +247,7 @@
                         折扣基数
 					<input id="filter_DiscountBase" name="DiscountBase" class="mini-spinner"  minValue="0" maxValue="999999" enabled="true" property="editor" style="width: 100%;" />
                     </div>
-                    <div field="GoodsDiscountRate" headeralign="center" align="center" width="60" class="mini-spinner" minValue="0.00" maxValue="1.00" decimalPlaces="2" changeOnMousewheel="0.1">
+                    <div field="GoodsDiscountRate" headeralign="center" align="center" width="60" renderer="onPercentRender">
                         商品折扣
 					<input id="filter_GoodsDiscountRate" name="GoodsDiscountRate" class="mini-spinner" minValue="0.00" maxValue="1.00" decimalPlaces="2" changeOnMousewheel="0.1" enabled="true" property="editor" style="width: 100%;" />
                     </div>

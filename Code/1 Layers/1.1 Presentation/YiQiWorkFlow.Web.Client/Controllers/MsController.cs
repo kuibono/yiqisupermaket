@@ -66,10 +66,75 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 if (m.HaveId)
                 {
-                    MsAdjustPointsService.Update(m);
+                    //MsAdjustPointsService.Update(m);
                 }
                 else
                 {
+                    // 判断原密码是否正确
+                    var card = MsCardArchivesService.GetById(m.CardNumber);
+                    if (card == null || string.IsNullOrEmpty(card.Id))
+                    {
+                        r.IsSuccess = false;
+                        r.Message = "保存失败,卡号不存在！";
+                        return Json(r);
+                    }
+
+                    // 判断是否填写密码
+                    if (string.IsNullOrEmpty(m.IfModifyPw))
+                    {
+                        string oldPassword = Request["OldPassword"];
+                        string newPassword = Request["NewPassword"];
+                        
+                        if (!string.IsNullOrEmpty(oldPassword) && oldPassword.Equals(card.PrepaidPassword))
+                        {
+                            r.IsSuccess = false;
+                            r.Message = "保存失败,原密码不正确！";
+                            return Json(r); 
+                        }
+                        card.PrepaidPassword = newPassword;
+                    }
+
+                    MsCardtypeManage cardType = MsCardtypeManageService.GetById(card.CardCode);
+
+                    if (cardType.PrepaidMax > 0 && m.AdjustMoney > cardType.PrepaidMax)
+                    {
+                        r.IsSuccess = false;
+                        r.Message = "保存失败,调整金额超过卡类型设定的最大充值上限 : " + cardType.PrepaidMax;
+                        return Json(r);
+                    }
+
+                    card.CurrentPoints += m.AdjustPoints;
+                    card.TotalPoints += m.AdjustPoints;
+                    card.CurrentPrepaid += m.AdjustMoney;
+                    card.CurrentPrepaidEncrypt = StaticClass.Str2Hex(card.CurrentPrepaid.ToString());
+                    card.TotalPrepaid += m.AdjustMoney;
+                    card.LimitTimes = m.AdjustTimes;
+
+                    if (card.CurrentPoints < 0)
+                    {
+                        r.IsSuccess = false;
+                        r.Message = "保存失败,剩余积分不能小于0";
+                        return Json(r);
+                    }
+
+                    if (card.LimitTimes < 0)
+                    {
+                        r.IsSuccess = false;
+                        r.Message = "保存失败,剩余次数不能小于0";
+                        return Json(r);
+                    }
+
+                    if (card.CurrentPrepaid < 0)
+                    {
+                        r.IsSuccess = false;
+                        r.Message = "保存失败,剩余金额不能小于0";
+                        return Json(r);
+                    }
+
+                    MsCardArchivesService.Update(card);
+
+                    m.AdjustDate = DateTime.Now;
+                    m.OperatorDate = DateTime.Now;
                     MsAdjustPointsService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -128,7 +193,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                m.Id = string.Empty;
+                m.Id = MsCancelCardManageService.GenerateCancelNumber();
             }
             return View(m);
         }
@@ -163,23 +228,54 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                // 判断是否可以冻结
+                string manageType = Request["ManageType"];
+                if (!string.IsNullOrEmpty(manageType))
                 {
-                    MsCancelCardManageService.Update(m);
-                }
-                else
-                {
-                    // 判断是否可以作废
-
-                    // 作废卡片
+                    // 冻结卡片
                     MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
                     if (card != null && !string.IsNullOrEmpty(card.Id))
                     {
-                        card.CardState = "4";
+                        if (manageType.Equals("0"))
+                        {
+                            // 判断是否是正常状态
+                            if (!"1".Equals(card.CardState))
+                            {
+                                r.IsSuccess = false;
+                                r.Message = "保存失败,当前卡状态不是正常状态";
+
+                                return Json(r);
+                            }
+
+                            card.CardState = "4";
+                        }
+                        else if (manageType.Equals("1"))
+                        {
+                            // 判断是否是冻结状态
+                            if (!"4".Equals(card.CardState))
+                            {
+                                r.IsSuccess = false;
+                                r.Message = "保存失败,当前卡状态不是作废状态";
+
+                                return Json(r);
+                            }
+                            card.CardState = "4";
+                        }
+                    }
+                    else
+                    {
+                        // 卡不存在
+                        r.IsSuccess = false;
+                        r.Message = "保存失败,卡号不存在";
+
+                        return Json(r);
                     }
 
+                    card.OperatorDate = DateTime.Now;
                     MsCardArchivesService.Update(card);
 
+                    m.CancelDate = DateTime.Now;
+                    m.Id = MsCancelCardManageService.GenerateCancelNumber();
                     MsCancelCardManageService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -276,12 +372,15 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 if (m.HaveId)
                 {
                     m.CurrentPrepaidEncrypt = StaticClass.Str2Hex(m.CurrentPrepaid.ToString());
+                    m.OperatorDate = DateTime.Now;
                     MsCardArchivesService.Update(m);
                 }
                 else
                 {
                     // 转换十六进制
                     m.CurrentPrepaidEncrypt = StaticClass.Str2Hex(m.CurrentPrepaid.ToString());
+                    m.CreateDate = DateTime.Now;
+                    m.OperatorDate = DateTime.Now;
                     MsCardArchivesService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -318,13 +417,18 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return Json(MsCardArchivesService.Search(c), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetMsCardArchivesList(MsCardArchives m)
+        public JsonResult GetMsCardArchivesList(SearchDtoBase<MsCardArchives> c, MsCardArchives s)
         {
-            var searchDtoBase = MsCardArchivesService.Search(new SearchDtoBase<MsCardArchives>() { pageSize = int.MaxValue, entity = m });
+            c.pageSize = 1;
+            c.entity = s;
+            return Json(MsCardArchivesService.Search(c).data, JsonRequestBehavior.AllowGet);
+        }
 
-            IList<MsCardArchives> msCardArvhicesList = searchDtoBase.data;
-
-            return Json(msCardArvhicesList, JsonRequestBehavior.AllowGet);
+        public JsonResult GetMsCardArchivesListAllEqual(SearchDtoBase<MsCardArchives> c, MsCardArchives s)
+        {
+            c.pageSize = 1;
+            c.entity = s;
+            return Json(MsCardArchivesService.SearchAllEqual(c).data, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GenerateCardArchivesListByMadeCardInfo(MsMadecardManage m)
@@ -862,15 +966,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         {
             MsCardtypeManage m = MsCardtypeManage.Initial();
 
-            ViewData["CardCode"] = string.Empty;
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsCardtypeManageService.GetById(id);
-                ViewData["CardCode"] = m.Id;
             }
             else
             {
-                m.Id = string.Empty;
+                m.Id = MsCardtypeManageService.GenerateCardtypeCode();
                 m.CardType = "1";
                 m.CardMedium = "1";
                 m.CardUsefulLife = 365;
@@ -879,7 +981,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 m.DiscountRate = 1;
                 m.BirthdayPoints = 1;
                 m.UpgradeType = "1";
-                ViewData["CardCode"] = MsCardtypeManageService.GenerateCardtypeCode();
             }
             return View(m);
         }
@@ -923,6 +1024,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     {
                         m.ExamineDate = DateTime.Now;
                     }
+                    m.OperatorDate = DateTime.Now;
                     MsCardtypeManageService.Update(m);
                 }
                 else
@@ -935,6 +1037,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         m.IfExamine = "0";
                     }
 
+                    m.CreateDate = DateTime.Now;
+                    m.OperatorDate = DateTime.Now;
                     MsCardtypeManageService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -1379,7 +1483,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                m.Id = string.Empty;
+                m.Id = MsFreezeCardManageService.GenerateFreezeNumber();
             }
             return View(m);
         }
@@ -1414,23 +1518,56 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                // 判断是否可以冻结
+                string manageType = Request["ManageType"];
+                if (!string.IsNullOrEmpty(manageType))
                 {
-                    MsFreezeCardManageService.Update(m);
-                }
-                else
-                {
-                    // 判断是否可以冻结
-
                     // 冻结卡片
                     MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
                     if (card != null && !string.IsNullOrEmpty(card.Id))
                     {
-                        card.CardState = "3";
+                        if (manageType.Equals("0"))
+                        {
+                            // 判断是否是正常状态
+                            if (!"1".Equals(card.CardState))
+                            {
+                                r.IsSuccess = false;
+                                r.Message = "保存失败,当前卡状态不是正常状态";
+
+                                return Json(r);
+                            }
+
+                            card.CardState = "3";
+                        }
+                        else if (manageType.Equals("1"))
+                        {
+                            // 判断是否是冻结状态
+                            if (!"3".Equals(card.CardState))
+                            {
+                                r.IsSuccess = false;
+                                r.Message = "保存失败,当前卡状态不是冻结状态";
+
+                                return Json(r);
+                            }
+                            card.CardState = "1";
+                        }
+                    }
+                    else
+                    {
+                        // 卡不存在
+                        r.IsSuccess = false;
+                        r.Message = "保存失败,卡号不存在";
+
+                        return Json(r);
                     }
 
+                    card.OperatorDate = DateTime.Now;
                     MsCardArchivesService.Update(card);
 
+                    m.CreateDate = DateTime.Now;
+                    m.OperatorDate = DateTime.Now;
+
+                    m.Id = MsFreezeCardManageService.GenerateFreezeNumber();
                     MsFreezeCardManageService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -1524,14 +1661,23 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                var jser = new JavaScriptSerializer();
+                var gifts = jser.Deserialize<List<MsGiftArchives>>(Request["gifts"]).ToList();
+                gifts.ForEach(p =>
                 {
-                    MsGiftArchivesService.Update(m);
-                }
-                else
-                {
-                    MsGiftArchivesService.Create(m);
-                }
+                    if (p.IsDelete)
+                    {
+                        MsGiftArchivesService.Delete(p);
+                    }
+                    else if (p.HaveId || p.IsUpdated)
+                    {
+                        MsGiftArchivesService.Update(p);
+                    }
+                    else if (p.IsAdded)
+                    {
+                        MsGiftArchivesService.Create(p);
+                    }
+                });
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -1588,7 +1734,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                m.Id = string.Empty;
+                m.Id = MsGrantCardManageService.GenerateGrantNumber();
             }
             return View(m);
         }
@@ -1623,43 +1769,65 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                // 发放逻辑 1 : 更新卡状态、卡所属会员编号
+                MsCardArchives msCardArchivesEntity = MsCardArchivesService.GetById(m.CardNumber);
+
+                if (msCardArchivesEntity == null || string.IsNullOrEmpty(msCardArchivesEntity.Id))
                 {
-                    //MsGrantCardManageService.Update(m);
+                    r.IsSuccess = false;
+                    r.Message = "保存失败,卡不存在";
+
+                    return Json(r);
                 }
-                else
+                else if (!"0".Equals(msCardArchivesEntity.CardState))
                 {
-                    // 发放逻辑 1 : 更新卡状态、卡所属会员编号
-                    MsCardArchives msCardArchivesEntity = MsCardArchivesService.GetById(m.CardNumber);
-                    //if (msCardArchivesEntity != null && !string.IsNullOrEmpty(msCardArchivesEntity.Id) && !string.IsNullOrEmpty(m.MsCode))
-                    if (string.IsNullOrEmpty(m.MsCode))
-                    {
-                        // 发放逻辑 2 : 会员信息(判断是否需要新增会员)
-                        MsMemberArchivesService.Create(c);
+                    r.IsSuccess = false;
+                    r.Message = "卡状态不是待发状态";
 
-                        m.MsCode = c.Id;
-                    }
-
-                    msCardArchivesEntity.CardState = "1";
-
-                    msCardArchivesEntity.MsCode = m.MsCode;
-                    msCardArchivesEntity.MsName = MsMemberArchivesService.GetById(m.MsCode).MsName;
-
-                    // 判断是否是发卡生效期,是则 开始赋值
-                    if (msCardArchivesEntity.CardUsefulLifeDate == null)
-                    {
-                        MsCardtypeManage msCardtypeManageEntity = MsCardtypeManageService.GetById(m.CardCode);
-                        msCardArchivesEntity.CardUsefulLifeDate = DateTime.Now.AddYears(msCardtypeManageEntity.CardUsefulLife.ToInt32());
-                        msCardArchivesEntity.PointsUsefulLifeDate = DateTime.Now.AddYears(msCardtypeManageEntity.CardUsefulLife.ToInt32());
-                        msCardArchivesEntity.GrantDate = DateTime.Now;
-                        msCardArchivesEntity.OperatorDate = DateTime.Now;
-                    }
-
-                    // 修改卡信息
-                    MsCardArchivesService.Update(msCardArchivesEntity);
-
-                    MsGrantCardManageService.Create(m);
+                    return Json(r);
                 }
+
+                if (string.IsNullOrEmpty(m.MsCode))
+                {
+                    // 发放逻辑 2 : 会员信息(判断是否需要新增会员)
+                    MsMemberArchivesService.Create(c);
+
+                    m.MsCode = c.Id;
+                }
+
+                if (string.IsNullOrEmpty(m.MsCode))
+                {
+                    r.IsSuccess = false;
+                    r.Message = "请选择要发放的会员";
+
+                    return Json(r);
+                }
+
+                //if (msCardArchivesEntity != null && !string.IsNullOrEmpty(msCardArchivesEntity.Id) && !string.IsNullOrEmpty(m.MsCode))
+
+                msCardArchivesEntity.CardState = "1";
+
+                msCardArchivesEntity.MsCode = m.MsCode;
+                msCardArchivesEntity.MsName = MsMemberArchivesService.GetById(m.MsCode).MsName;
+
+                // 判断是否是发卡生效期,是则 开始赋值
+                if (msCardArchivesEntity.CardUsefulLifeDate == null)
+                {
+                    MsCardtypeManage msCardtypeManageEntity = MsCardtypeManageService.GetById(m.CardCode);
+                    msCardArchivesEntity.CardUsefulLifeDate = DateTime.Now.AddDays(msCardtypeManageEntity.CardUsefulLife.ToInt32());
+                    msCardArchivesEntity.PointsUsefulLifeDate = DateTime.Now.AddDays(msCardtypeManageEntity.CardUsefulLife.ToInt32());
+                    msCardArchivesEntity.GrantDate = DateTime.Now;
+                    msCardArchivesEntity.OperatorDate = DateTime.Now;
+                }
+
+                // 修改卡信息
+                msCardArchivesEntity.OperatorDate = DateTime.Now;
+                MsCardArchivesService.Update(msCardArchivesEntity);
+
+                m.CreateDate = DateTime.Now;
+                m.OperatorDate = DateTime.Now;
+                m.Id = MsGrantCardManageService.GenerateGrantNumber();
+                MsGrantCardManageService.Create(m);
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -1716,7 +1884,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                m.Id = string.Empty;
+                m.Id = MsLossCardManageService.GenerateLossNumber();
+                
             }
             return View(m);
         }
@@ -1751,34 +1920,56 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                // 判断是否可以挂失
+                string manageType = Request["ManageType"];
+                if (!string.IsNullOrEmpty(manageType))
                 {
-                    MsLossCardManageService.Update(m);
-                }
-                else
-                {
-                    // 判断是否可以挂失
-                    string manageType = Request["ManageType"];
-                    if (!string.IsNullOrEmpty(manageType))
+                    // 挂失卡片
+                    MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
+                    if (card != null && !string.IsNullOrEmpty(card.Id))
                     {
-                        // 挂失卡片
-                        MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
-                        if (card != null && !string.IsNullOrEmpty(card.Id))
+                        if (manageType.Equals("0"))
                         {
-                            if (manageType.Equals("0"))
+                            // 判断是否是正常卡状态
+                            if (!"1".Equals(card.CardState))
                             {
-                                card.CardState = "2";
+                                r.IsSuccess = false;
+                                r.Message = "保存失败,当前卡状态不是正常状态";
+
+                                return Json(r);
                             }
-                            else if (manageType.Equals("1"))
-                            {
-                                card.CardState = "1";
-                            }
+
+                            card.CardState = "2";
                         }
+                        else if (manageType.Equals("1"))
+                        {
+                            // 判断是否是挂失状态卡
+                            if (!"2".Equals(card.CardState))
+                            {
+                                r.IsSuccess = false;
+                                r.Message = "保存失败,当前卡状态不是挂失状态";
 
-                        MsCardArchivesService.Update(card);
-
-                        MsLossCardManageService.Create(m);
+                                return Json(r);
+                            }
+                            card.CardState = "1";
+                        }
                     }
+                    else
+                    {
+                        // 卡不存在
+                        r.IsSuccess = false;
+                        r.Message = "保存失败,卡号不存在";
+
+                        return Json(r);
+                    }
+
+                    card.OperatorDate = DateTime.Now;
+                    MsCardArchivesService.Update(card);
+
+                    m.LossDate = DateTime.Now;
+                    m.OperatorDate = DateTime.Now;
+                    m.Id = MsLossCardManageService.GenerateLossNumber();
+                    MsLossCardManageService.Create(m);
                 }
                 r.IsSuccess = true;
                 r.Message = "保存成功";
@@ -1906,6 +2097,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                                 item.CreateDate = DateTime.Now;
                                 item.CardState = "0";
 
+                                item.OperatorDate = DateTime.Now;
                                 MsCardArchivesService.Create(item);
                             }
 
@@ -1938,6 +2130,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         m.IfExamine = "0";
                     }
 
+                    m.CreateDate = DateTime.Now;
+                    m.OperatorDate = DateTime.Now;
                     MsMadecardManageService.Create(m);
 
                     r.IsSuccess = true;
@@ -2144,6 +2338,20 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
                 else
                 {
+                    MsCardArchives card = MsCardArchivesService.GetById(m.CardNumber);
+                    if (card == null || string.IsNullOrEmpty(card.Id))
+                    {
+                        r.IsSuccess = false;
+                        r.Message = "保存失败,好卡不存在";
+                        return Json(r);
+                    }
+
+                    card.ClearPoints = card.CurrentPoints;
+                    card.CurrentPoints = 0;
+                    MsCardArchivesService.Update(card);
+
+                    m.ClearDate = DateTime.Now;
+                    m.OperatorDate = DateTime.Now;
                     MsPointsClearService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -2235,10 +2443,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 if (m.HaveId)
                 {
+                    m.OperatorDate = DateTime.Now;
                     MsPointtoprepaidManageService.Update(m);
                 }
                 else
                 {
+                    m.CreateDate = DateTime.Now;
+                    m.OperatorDate = DateTime.Now;
                     MsPointtoprepaidManageService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -2297,7 +2508,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                m.Id = string.Empty;
+                m.Id = MsPrepaidCardManageService.GeneratePrepaidNumber();
             }
             return View(m);
         }
@@ -2332,33 +2543,30 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                // 卡充值,获取卡类型信息,判断是否超越了充值上限(充值金额 <= 上限)
+                MsCardArchives card = MsCardArchivesService.GetById(m.CardNumber);
+
+                MsCardtypeManage cardType = MsCardtypeManageService.GetById(card.CardCode);
+
+                if (cardType.PrepaidMax > 0 && m.PrepaidMoney > cardType.PrepaidMax)
                 {
-                    MsPrepaidCardManageService.Update(m);
+                    r.IsSuccess = false;
+                    r.Message = "充值失败,超过卡类型设定的最大充值上限 : " + cardType.PrepaidMax;
+                    return Json(r);
                 }
-                else
-                {
-                    // 卡充值,获取卡类型信息,判断是否超越了充值上限(充值金额 <= 上限)
-                    MsCardArchives card = MsCardArchivesService.GetById(m.CardNumber);
 
-                    MsCardtypeManage cardType = MsCardtypeManageService.GetById(card.CardCode);
+                card.CurrentPrepaid += m.PrepaidMoney;
+                //card.CurrentPrepaidEncrypt = card.CurrentPrepaid.ToUInt16().ToString();
+                card.CurrentPrepaidEncrypt = StaticClass.Str2Hex(card.CurrentPrepaid.ToString());
+                card.TotalPrepaid += m.PrepaidMoney;
 
-                    if (m.PrepaidMoney > cardType.PrepaidMax)
-                    {
-                        r.IsSuccess = false;
-                        r.Message = "充值失败,超过卡类型设定的最大充值上限 : " + cardType.PrepaidMax;
-                        return Json(r);
-                    }
+                card.OperatorDate = DateTime.Now;
+                MsCardArchivesService.Update(card);
 
-                    card.CurrentPrepaid += m.PrepaidMoney;
-                    //card.CurrentPrepaidEncrypt = card.CurrentPrepaid.ToUInt16().ToString();
-                    card.CurrentPrepaidEncrypt = StaticClass.Str2Hex(card.CurrentPrepaid.ToString());
-                    card.TotalPrepaid += m.PrepaidMoney;
-
-                    MsCardArchivesService.Update(card);
-
-                    MsPrepaidCardManageService.Create(m);
-                }
+                m.CreateDate = DateTime.Now;
+                m.OperatorDate = DateTime.Now;
+                m.Id = MsPrepaidCardManageService.GeneratePrepaidNumber();
+                MsPrepaidCardManageService.Create(m);
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -2415,7 +2623,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                m.Id = string.Empty;
+                m.Id = MsReclaimCardManageService.GenerateReclaimNumber();
             }
             return View(m);
         }
@@ -2450,24 +2658,46 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
-                if (m.HaveId)
+                m.Id = MsReclaimCardManageService.GenerateReclaimNumber();
+                MsReclaimCardManageService.Create(m);
+
+                // 回收卡片
+                MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
+
+                // @todo主要数据清空(卡信息初始化、会员信息清空)
+                if (card == null || string.IsNullOrEmpty(card.Id))
                 {
-                    MsReclaimCardManageService.Update(m);
+                    r.IsSuccess = false;
+                    r.Message = "保存失败,卡号不存在";
+                    return Json(r);
                 }
-                else
+
+                //if (!"1".Equals(card.CardState))
+                //{
+                //    r.IsSuccess = false;
+                //    r.Message = "保存失败,卡状态不是正常状态";
+                //    return Json(r);
+                //}
+                string msCode = card.MsCode;
+                if (!string.IsNullOrEmpty(msCode))
                 {
-                    MsReclaimCardManageService.Create(m);
-
-                    // 回收卡片
-                    MsCardArchives card = MsCardArchivesService.GetCardArchivesBySurfaceNumber(m.SurfaceNumber);
-
-                    // @todo主要数据清空
-
-                    if (card != null && !string.IsNullOrEmpty(card.Id))
+                    MsMemberArchives memberArchives = MsMemberArchivesService.GetById(msCode);
+                    if (memberArchives != null && !string.IsNullOrEmpty(memberArchives.Id))
                     {
-                        card.CardState = "4";
+                        if (!string.IsNullOrEmpty(memberArchives.CardNumber) && card.Id.Equals(memberArchives.CardNumber))
+                        {
+                            memberArchives.CardNumber = string.Empty;
+                            MsMemberArchivesService.Update(memberArchives);
+                        }
                     }
                 }
+
+                string cardId = card.Id;
+                card = MsCardArchives.Initial();
+                card.Id = cardId;
+                card.CardState = "0";
+
+                MsCardArchivesService.Update(card);
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -2525,6 +2755,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             else
             {
                 m.Id = string.Empty;
+                m.UpdateNumber = MsUpdateCardManageService.GenerateUpdateNumber();
             }
             return View(m);
         }
@@ -2571,16 +2802,36 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     // 获取新卡信息
                     MsCardArchives newCard = MsCardArchivesService.GetById(m.CardNumber);
 
+                    string msCode = oldCard.MsCode;
                     // 复制旧卡信息,保存
+                    string newCardId = newCard.Id;
+                    newCard = oldCard.Clone();
+
                     oldCard.CardState = "4";
                     newCard.CardState = "1";
 
-                    // 复制主要信息
-
                     // 修改
+                    oldCard.OperatorDate = DateTime.Now;
                     MsCardArchivesService.Update(oldCard);
+                    newCard.OperatorDate = DateTime.Now;
                     MsCardArchivesService.Update(newCard);
 
+                    if (!string.IsNullOrEmpty(msCode))
+                    {
+                        MsMemberArchives ms = MsMemberArchivesService.GetById(msCode);
+                        if (ms != null && !string.IsNullOrEmpty(ms.Id))
+                        {
+                            ms.CardNumber = newCard.Id;
+                            MsMemberArchivesService.Update(ms);
+                        }
+                    }
+                    oldCard.MsCode = string.Empty;
+
+                    m.CreateDate = DateTime.Now;
+                    m.OperatorDate = DateTime.Now;
+
+                    // 生成新单号
+                    m.UpdateNumber = MsUpdateCardManageService.GenerateUpdateNumber();
                     MsUpdateCardManageService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -2633,6 +2884,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult MsUpgradeCardDetailEdit(string id)
         {
             MsUpgradeCardDetail m = MsUpgradeCardDetail.Initial();
+            
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = MsUpgradeCardDetailService.GetById(id);
@@ -2699,7 +2951,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 else
                 {
                     // 卡升级detail...
-
+                    
                     MsUpgradeCardDetailService.Create(m);
                 }
                 r.IsSuccess = true;
@@ -2795,12 +3047,14 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 if (m.HaveId)
                 {
+                    m.OperatorDate = DateTime.Now;
                     MsUpgradeCardManageService.Update(m);
                 }
                 else
                 {
                     // 升级逻辑
-
+                    m.CreateDate = DateTime.Now;
+                    m.OperatorDate = DateTime.Now;
                     MsUpgradeCardManageService.Create(m);
                 }
                 r.IsSuccess = true;

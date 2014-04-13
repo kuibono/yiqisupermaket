@@ -20,7 +20,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
+                                    <!--<input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />-->
                                 </td>
                                 <td>
                                     <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
@@ -38,122 +38,121 @@
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchWsCustomerArchivesList"
             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true">
+            pagesize="20" multiselect="true" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="CustCode" headeralign="center" align="center" width="60">
-				    客户编码
-					<input id="filter_CustCode" name="CustCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CustName" headeralign="center" align="center" width="60">
-				    客户名称
-					<input id="filter_CustName" name="CustName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PyCode" headeralign="center" align="center" width="60">
-				    拼音码
-					<input id="filter_PyCode" name="PyCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CustTypeCode" headeralign="center" align="center" width="60">
-				    客户类型
-					<input id="filter_CustTypeCode" name="CustTypeCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Linkman" headeralign="center" align="center" width="60">
-				    联系人
-					<input id="filter_Linkman" name="Linkman" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="ContactPhone" headeralign="center" align="center" width="60">
-				    联系电话
-					<input id="filter_ContactPhone" name="ContactPhone" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="ContactAddress" headeralign="center" align="center" width="60">
-				    联系地址
-					<input id="filter_ContactAddress" name="ContactAddress" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OfficePhone" headeralign="center" align="center" width="60">
-				    办公电话
-					<input id="filter_OfficePhone" name="OfficePhone" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="FaxPhone" headeralign="center" align="center" width="60">
-				    传真
-					<input id="filter_FaxPhone" name="FaxPhone" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="eMail" headeralign="center" align="center" width="60">
-				    邮箱
-					<input id="filter_eMail" name="eMail" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Postalcode" headeralign="center" align="center" width="60">
-				    邮政编码
-					<input id="filter_Postalcode" name="Postalcode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OpenAccount" headeralign="center" align="center" width="60">
-				    开户行
-					<input id="filter_OpenAccount" name="OpenAccount" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="BankAccount" headeralign="center" align="center" width="60">
-				    帐号
-					<input id="filter_BankAccount" name="BankAccount" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="TaxNumber" headeralign="center" align="center" width="60">
-				    税号
-					<input id="filter_TaxNumber" name="TaxNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="PayMode" headeralign="center" align="center" width="60">
-				    现金支票汇票
-					<input id="filter_PayMode" name="PayMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="BalanceMode" headeralign="center" align="center" width="60">
-				    预付货款货到付款实销实付扣点结算
-					<input id="filter_BalanceMode" name="BalanceMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="BalancePeriod" headeralign="center" align="center" width="60">
-				    月结算季计算年结算
-					<input id="filter_BalancePeriod" name="BalancePeriod" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="BalanceDay" headeralign="center" align="center" width="60">
-				    31
-					<input id="filter_BalanceDay" name="BalanceDay" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="SalePeriod" headeralign="center" align="center" width="60">
-				    销售帐期
-					<input id="filter_SalePeriod" name="SalePeriod" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Comment" headeralign="center" align="center" width="60">
-				    备注
-					<input id="filter_Comment" name="Comment" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CreateDate" headeralign="center" align="center" width="60">
-				    创建时间
-					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Operator" headeralign="center" align="center" width="60">
-				    操作员
-					<input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Assessor" headeralign="center" align="center" width="60">
-				    审核人
-					<input id="filter_Assessor" name="Assessor" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="IfExamine" headeralign="center" align="center" width="60">
-				    是否审核
-					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="ExamineDate" headeralign="center" align="center" width="60">
-				    审核时间
-					<input id="filter_ExamineDate" name="ExamineDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="OperatorDate" headeralign="center" align="center" width="60">
-				    操作时间
-					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
-                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                <div name="action" width="80" headeralign="center" align="center" renderer="onActionRenderer"
                     cellstyle="padding:0;">
                     管理
                 </div>
-
+                <div field="CustCode" headeralign="center" align="center" width="80">
+                    客户编码
+					<input id="filter_CustCode" name="CustCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="CustName" headeralign="center" align="center" width="80">
+                    客户名称
+					<input id="filter_CustName" name="CustName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="PyCode" headeralign="center" align="center" width="80">
+                    拼音码
+					<input id="filter_PyCode" name="PyCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="CustTypeCode" headeralign="center" align="center" width="80">
+                    客户类型
+					<input id="filter_CustTypeCode" name="CustTypeCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="Linkman" headeralign="center" align="center" width="80">
+                    联系人
+					<input id="filter_Linkman" name="Linkman" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="ContactPhone" headeralign="center" align="center" width="80">
+                    联系电话
+					<input id="filter_ContactPhone" name="ContactPhone" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="ContactAddress" headeralign="center" align="center" width="80">
+                    联系地址
+					<input id="filter_ContactAddress" name="ContactAddress" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="OfficePhone" headeralign="center" align="center" width="80">
+                    办公电话
+					<input id="filter_OfficePhone" name="OfficePhone" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="FaxPhone" headeralign="center" align="center" width="80">
+                    传真
+					<input id="filter_FaxPhone" name="FaxPhone" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="eMail" headeralign="center" align="center" width="80">
+                    邮箱
+					<input id="filter_eMail" name="eMail" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="Postalcode" headeralign="center" align="center" width="80">
+                    邮政编码
+					<input id="filter_Postalcode" name="Postalcode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="OpenAccount" headeralign="center" align="center" width="80">
+                    开户行
+					<input id="filter_OpenAccount" name="OpenAccount" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="BankAccount" headeralign="center" align="center" width="80">
+                    帐号
+					<input id="filter_BankAccount" name="BankAccount" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="TaxNumber" headeralign="center" align="center" width="80">
+                    税号
+					<input id="filter_TaxNumber" name="TaxNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="PayMode" headeralign="center" align="center" width="80">
+                    现金支票汇票
+					<input id="filter_PayMode" name="PayMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="BalanceMode" headeralign="center" align="center" width="80">
+                    预付货款货到付款实销实付扣点结算
+					<input id="filter_BalanceMode" name="BalanceMode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="BalancePeriod" headeralign="center" align="center" width="80">
+                    月结算季计算年结算
+					<input id="filter_BalancePeriod" name="BalancePeriod" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="BalanceDay" headeralign="center" align="center" width="80">
+                    31
+					<input id="filter_BalanceDay" name="BalanceDay" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="SalePeriod" headeralign="center" align="center" width="80">
+                    销售帐期
+					<input id="filter_SalePeriod" name="SalePeriod" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="Comment" headeralign="center" align="center" width="80">
+                    备注
+					<input id="filter_Comment" name="Comment" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="CreateDate" headeralign="center" align="center" width="80">
+                    创建时间
+					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="Operator" headeralign="center" align="center" width="80">
+                    操作员
+					<input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="Assessor" headeralign="center" align="center" width="80">
+                    审核人
+					<input id="filter_Assessor" name="Assessor" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="IfExamine" headeralign="center" align="center" width="80">
+                    是否审核
+					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="ExamineDate" headeralign="center" align="center" width="80">
+                    审核时间
+					<input id="filter_ExamineDate" name="ExamineDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="OperatorDate" headeralign="center" align="center" width="80">
+                    操作时间
+					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
             </div>
         </div>
     </div>
@@ -226,7 +225,8 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"WsCustomerArchivesEdit",text: "客户档案管理", iconCls: "icon-edit", url: "/Ws/WsCustomerArchivesEdit/" + id });
+            //parent.showTab({ id:"WsCustomerArchivesEdit",text: "客户档案管理", iconCls: "icon-edit", url: "/Ws/WsCustomerArchivesEdit/" + id });
+            location.href = "/Ws/WsCustomerArchivesEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({
@@ -274,12 +274,9 @@
                 }
             });
         }
-		function showFilterRow() {
+        function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
         }
     </script>
 </body>
 </html>
-
-
-

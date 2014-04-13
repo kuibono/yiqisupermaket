@@ -97,6 +97,36 @@ namespace YiQiWorkFlow.Domain.Ms
         public virtual string IfModifyPw { get; set; }
 
         /// <summary>
+        /// 原密码
+        /// </summary>
+        [Validate(ValidateType.NoValidate, Name = "原密码")]
+        public virtual string OldPassword { get; set; }
+
+        /// <summary>
+        /// 新密码
+        /// </summary>
+        [Validate(ValidateType.NoValidate, Name = "原密码")]
+        public virtual string NewPassword { get; set; }
+
+        /// <summary>
+        /// 当前次数
+        /// </summary>
+        [Validate(ValidateType.IsDecimal, Name = "当前金额")]
+        public virtual decimal CurrentTimes { get; set; }
+
+        /// <summary>
+        /// 调整次数
+        /// </summary>
+        [Validate(ValidateType.IsDecimal, Name = "调整次数")]
+        public virtual decimal AdjustTimes { get; set; }
+
+        /// <summary>
+        /// 剩余次数
+        /// </summary>
+        [Validate(ValidateType.IsDecimal, Name = "剩余金额")]
+        public virtual decimal SurplusTimes { get; set; }
+
+        /// <summary>
         /// 操作员
         /// </summary>
         [Validate(ValidateType.NoValidate, Name = "操作员")]

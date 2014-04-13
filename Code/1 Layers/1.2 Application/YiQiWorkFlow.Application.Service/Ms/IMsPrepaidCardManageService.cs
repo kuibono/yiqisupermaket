@@ -36,6 +36,8 @@ namespace YiQiWorkFlow.Application.Service.Ms
 		IList<MsPrepaidCardManage> Search(string key, int pageSize = 20, int pageIndex = 1);
 
         void Delete(IList<string> ids);
+
+        string GeneratePrepaidNumber();
     }
 }
 

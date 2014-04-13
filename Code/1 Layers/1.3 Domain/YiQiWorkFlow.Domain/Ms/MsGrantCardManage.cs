@@ -126,8 +126,5 @@ namespace YiQiWorkFlow.Domain.Ms
             //m.Id = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000).ToString() ;
             return m;
         }
-	}
-	 
+	}	 
 }
-
-

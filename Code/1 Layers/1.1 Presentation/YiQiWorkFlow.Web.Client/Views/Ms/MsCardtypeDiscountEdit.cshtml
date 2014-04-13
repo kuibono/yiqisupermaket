@@ -14,7 +14,6 @@
 
             var grid1 = mini.get("datagrid1");
             grid1.commitEdit();
-            //var cardtypeDiscount = grid1.data;
             var cardtypeDiscount = grid1.getChanges();
 
             o["CardtypeDiscount"] = mini.encode(cardtypeDiscount);
@@ -129,7 +128,7 @@
                 <tr>
                     <td>
                         <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
-                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                        <!--<a id="btnReturn" iconcls="icon-undo" class="mini-button" plain="true" tooltip="返回(Ctrl+Q)">返回</a>-->
                     </td>
                 </tr>
             </table>
@@ -234,7 +233,7 @@
                         折扣基数
                         <input property="editor" name="DiscountBase" class="mini-spinner" minvalue="0" maxvalue="999999" style="width: 100%;" />
                     </div>
-                    <div field="ClassDiscountRate" width="60" align="right">
+                    <div field="ClassDiscountRate" width="60" align="right" renderer="onPercentRender">
                         类别折扣
                         <input property="editor" class="mini-spinner" minvalue="0.00" maxvalue="1.00" decimalplaces="2" increment="0.1" style="width: 100%;" value="1.00" />
                     </div>

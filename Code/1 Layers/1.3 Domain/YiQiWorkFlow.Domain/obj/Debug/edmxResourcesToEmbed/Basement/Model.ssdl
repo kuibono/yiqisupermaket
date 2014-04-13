@@ -2840,6 +2840,7 @@
     <Property Name="sale_times" Type="decimal" Scale="2" />
     <Property Name="operator" Type="varchar" MaxLength="20" />
     <Property Name="operator_date" Type="datetime" />
+    <Property Name="made_number" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="ms_cardtype_discount">
     <Key>
@@ -3823,6 +3824,7 @@
     <Property Name="if_examine" Type="varchar" MaxLength="20" />
     <Property Name="examine_date" Type="datetime" />
     <Property Name="operator_date" Type="datetime" />
+    <Property Name="pc_number" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="pc_putout_detail">
     <Key>
@@ -5115,59 +5117,79 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'YiQi.dbo.pbcatcol' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="pbcatcol">
-        <Property Name="pbc_tnam" Type="char" MaxLength="30" />
-        <Property Name="pbc_tid" Type="int" />
-        <Property Name="pbc_ownr" Type="char" MaxLength="30" />
-        <Property Name="pbc_cnam" Type="char" MaxLength="30" />
-        <Property Name="pbc_cid" Type="smallint" />
-        <Property Name="pbc_labl" Type="varchar" MaxLength="254" />
-        <Property Name="pbc_lpos" Type="smallint" />
-        <Property Name="pbc_hdr" Type="varchar" MaxLength="254" />
-        <Property Name="pbc_hpos" Type="smallint" />
-        <Property Name="pbc_jtfy" Type="smallint" />
-        <Property Name="pbc_mask" Type="varchar" MaxLength="31" />
-        <Property Name="pbc_case" Type="smallint" />
-        <Property Name="pbc_hght" Type="smallint" />
-        <Property Name="pbc_wdth" Type="smallint" />
-        <Property Name="pbc_ptrn" Type="varchar" MaxLength="31" />
-        <Property Name="pbc_bmap" Type="char" MaxLength="1" />
-        <Property Name="pbc_init" Type="varchar" MaxLength="254" />
-        <Property Name="pbc_cmnt" Type="varchar" MaxLength="254" />
-        <Property Name="pbc_edit" Type="varchar" MaxLength="31" />
-        <Property Name="pbc_tag" Type="varchar" MaxLength="254" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'YiQi.dbo.pbcattbl' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="pbcattbl">
-        <Property Name="pbt_tnam" Type="char" MaxLength="30" />
-        <Property Name="pbt_tid" Type="int" />
-        <Property Name="pbt_ownr" Type="char" MaxLength="30" />
-        <Property Name="pbd_fhgt" Type="smallint" />
-        <Property Name="pbd_fwgt" Type="smallint" />
-        <Property Name="pbd_fitl" Type="char" MaxLength="1" />
-        <Property Name="pbd_funl" Type="char" MaxLength="1" />
-        <Property Name="pbd_fchr" Type="smallint" />
-        <Property Name="pbd_fptc" Type="smallint" />
-        <Property Name="pbd_ffce" Type="char" MaxLength="32" />
-        <Property Name="pbh_fhgt" Type="smallint" />
-        <Property Name="pbh_fwgt" Type="smallint" />
-        <Property Name="pbh_fitl" Type="char" MaxLength="1" />
-        <Property Name="pbh_funl" Type="char" MaxLength="1" />
-        <Property Name="pbh_fchr" Type="smallint" />
-        <Property Name="pbh_fptc" Type="smallint" />
-        <Property Name="pbh_ffce" Type="char" MaxLength="32" />
-        <Property Name="pbl_fhgt" Type="smallint" />
-        <Property Name="pbl_fwgt" Type="smallint" />
-        <Property Name="pbl_fitl" Type="char" MaxLength="1" />
-        <Property Name="pbl_funl" Type="char" MaxLength="1" />
-        <Property Name="pbl_fchr" Type="smallint" />
-        <Property Name="pbl_fptc" Type="smallint" />
-        <Property Name="pbl_ffce" Type="char" MaxLength="32" />
-        <Property Name="pbt_cmnt" Type="varchar" MaxLength="254" />
-      </EntityType>-->
+  <Function Name="sp_pc_update_stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="goods_code" Type="varchar" Mode="In" />
+    <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+    <Parameter Name="en_code" Type="varchar" Mode="In" />
+    <Parameter Name="wh_code" Type="varchar" Mode="In" />
+    <Parameter Name="sup_code" Type="varchar" Mode="In" />
+    <Parameter Name="op_code" Type="varchar" Mode="In" />
+    <Parameter Name="input_tax" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_qty" Type="decimal" Mode="In" />
+    <Parameter Name="pi_number" Type="varchar" Mode="In" />
+    <Parameter Name="putin_date" Type="datetime" Mode="In" />
+    <Parameter Name="produce_date" Type="datetime" Mode="In" />
+    <Parameter Name="em_code" Type="varchar" Mode="In" />
+    <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+    <Parameter Name="sale_price" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_pc_update_stock_branch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="goods_code" Type="varchar" Mode="In" />
+    <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+    <Parameter Name="en_code" Type="varchar" Mode="In" />
+    <Parameter Name="b_code" Type="varchar" Mode="In" />
+    <Parameter Name="wh_code" Type="varchar" Mode="In" />
+    <Parameter Name="sup_code" Type="varchar" Mode="In" />
+    <Parameter Name="op_code" Type="varchar" Mode="In" />
+    <Parameter Name="input_tax" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_qty" Type="decimal" Mode="In" />
+    <Parameter Name="pi_number" Type="varchar" Mode="In" />
+    <Parameter Name="putin_date" Type="datetime" Mode="In" />
+    <Parameter Name="produce_date" Type="datetime" Mode="In" />
+    <Parameter Name="em_code" Type="varchar" Mode="In" />
+    <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_pc_update_stock_out" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="goods_code" Type="varchar" Mode="In" />
+    <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+    <Parameter Name="en_code" Type="varchar" Mode="In" />
+    <Parameter Name="wh_code" Type="varchar" Mode="In" />
+    <Parameter Name="sup_code" Type="varchar" Mode="In" />
+    <Parameter Name="op_code" Type="varchar" Mode="In" />
+    <Parameter Name="input_tax" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="putout_qty" Type="decimal" Mode="In" />
+    <Parameter Name="putout_date" Type="datetime" Mode="In" />
+    <Parameter Name="em_code" Type="varchar" Mode="In" />
+    <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+    <Parameter Name="sale_price" Type="decimal" Mode="In" />
+    <Parameter Name="putout_money" Type="decimal" Mode="InOut" />
+    <Parameter Name="nontax_putout_money" Type="decimal" Mode="InOut" />
+    <Parameter Name="sale_money" Type="decimal" Mode="InOut" />
+    <Parameter Name="nontax_sale_money" Type="decimal" Mode="InOut" />
+  </Function>
+  <Function Name="sp_pc_update_stock_out_branch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="goods_code" Type="varchar" Mode="In" />
+    <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+    <Parameter Name="en_code" Type="varchar" Mode="In" />
+    <Parameter Name="b_code" Type="varchar" Mode="In" />
+    <Parameter Name="wh_code" Type="varchar" Mode="In" />
+    <Parameter Name="sup_code" Type="varchar" Mode="In" />
+    <Parameter Name="op_code" Type="varchar" Mode="In" />
+    <Parameter Name="input_tax" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="putout_qty" Type="decimal" Mode="In" />
+    <Parameter Name="putout_date" Type="datetime" Mode="In" />
+    <Parameter Name="em_code" Type="varchar" Mode="In" />
+    <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+    <Parameter Name="sale_price" Type="decimal" Mode="In" />
+    <Parameter Name="putout_money" Type="decimal" Mode="InOut" />
+    <Parameter Name="nontax_putout_money" Type="decimal" Mode="InOut" />
+  </Function>
 </Schema>

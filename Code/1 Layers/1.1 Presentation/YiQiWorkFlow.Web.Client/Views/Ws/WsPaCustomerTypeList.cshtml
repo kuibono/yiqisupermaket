@@ -20,7 +20,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
+                                    <!--<input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />-->
                                 </td>
                                 <td>
                                     <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
@@ -38,37 +38,40 @@
     <div class="mini-fit">
         <div id="datagrid1" class="mini-datagrid" url="SearchWsPaCustomerTypeList"
             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-            pagesize="20" multiselect="true" showFilterRow="true">
+            pagesize="20" multiselect="true" showfilterrow="true">
             <div property="columns">
                 <div type="indexcolumn" width="30">
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="CustTypeCode" headeralign="center" align="center" width="60">
-				    类型编码
-					<input id="filter_CustTypeCode" name="CustTypeCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="CustTypeName" headeralign="center" align="center" width="60">
-				    类型名称
-					<input id="filter_CustTypeName" name="CustTypeName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="WsType" headeralign="center" align="center" width="60">
-				    批价方式
-					<input id="filter_WsType" name="WsType" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="DiscountRate" headeralign="center" align="center" width="60">
-				    折扣
-					<input id="filter_DiscountRate" name="DiscountRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-				<div field="Id" headeralign="center" align="center" width="60">
-				    
-					<input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
-				</div>
-                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
                 <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
                     cellstyle="padding:0;">
                     管理
                 </div>
+                <div field="CustTypeCode" headeralign="center" align="center" width="120">
+                    类型编码
+					<input id="filter_CustTypeCode" name="CustTypeCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="CustTypeName" headeralign="center" align="center" width="120">
+                    类型名称
+					<input id="filter_CustTypeName" name="CustTypeName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="WsType" headeralign="center" align="center" width="60" renderer="onWsTypeRender">
+                    批价方式
+					<input id="filter_WsType" name="WsType" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="DiscountRate" headeralign="center" align="center" width="120" renderer="onPercentRender">
+                    折扣
+					<!--<input id="filter_DiscountRate" name="DiscountRate" property="filter" class="mini-spinner" minvalue="0.00" maxvalue="1.00" decimalplaces="2" increment="0.1" onvaluechanged="search" style="width: 100%;" />-->
+
+                    <input id="filter_DiscountRate" name="DiscountRate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <div field="Id" headeralign="center" align="center" width="0">
+
+                    <input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>
+                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
+
 
             </div>
         </div>
@@ -142,7 +145,8 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"WsPaCustomerTypeEdit",text: "客户类型管理", iconCls: "icon-edit", url: "/Ws/WsPaCustomerTypeEdit/" + id });
+            //parent.showTab({ id:"WsPaCustomerTypeEdit",text: "客户类型管理", iconCls: "icon-edit", url: "/Ws/WsPaCustomerTypeEdit/" + id });
+            location.href = "/Ms/WsPaCustomerTypeEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({
@@ -190,7 +194,7 @@
                 }
             });
         }
-		function showFilterRow() {
+        function showFilterRow() {
             $("#datagrid1 .mini-grid-filterRow").toggle();
         }
     </script>

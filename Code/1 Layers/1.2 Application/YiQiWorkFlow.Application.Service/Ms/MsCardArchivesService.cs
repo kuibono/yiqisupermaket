@@ -190,14 +190,14 @@ namespace YiQiWorkFlow.Application.Service.Ms
                     where
                     l.Id.Contains(c.key)
                     || l.SurfaceNumber.Contains(c.key)
-                    || l.MsCode.Contains(c.key)
-                    || l.CardCode.Contains(c.key)
-                    || l.CardName.Contains(c.key)
-                    || l.MsName.Contains(c.key)
-                    || l.CardState.Contains(c.key)
-                    || l.PrepaidPassword.Contains(c.key)
-                    || l.CurrentPrepaidEncrypt.Contains(c.key)
-                    || l.Operator.Contains(c.key)
+                    //|| l.MsCode.Contains(c.key)
+                    //|| l.CardCode.Contains(c.key)
+                    //|| l.CardName.Contains(c.key)
+                    //|| l.MsName.Contains(c.key)
+                    //|| l.CardState.Contains(c.key)
+                    //|| l.PrepaidPassword.Contains(c.key)
+                    //|| l.CurrentPrepaidEncrypt.Contains(c.key)
+                    //|| l.Operator.Contains(c.key)
                     select l;
             }
             int count = q.Count();
@@ -299,6 +299,150 @@ namespace YiQiWorkFlow.Application.Service.Ms
         public MsCardArchives GetCardArchivesBySurfaceNumber(string surfaceNumber)
         {
             return EntityRepository.LinqQuery.FirstOrDefault(x => x.SurfaceNumber.Equals(surfaceNumber));
+        }
+
+        public SearchResult<MsCardArchives> SearchAllEqual(SearchDtoBase<MsCardArchives> c)
+        {
+            var q = EntityRepository.LinqQuery;
+            if (c.entity != null)
+            {
+                if (string.IsNullOrEmpty(c.entity.Id) == false)
+                {
+                    q = q.Where(p => p.Id.Equals(c.entity.Id));
+                }
+                if (string.IsNullOrEmpty(c.entity.SurfaceNumber) == false)
+                {
+                    q = q.Where(p => p.SurfaceNumber.Equals(c.entity.SurfaceNumber));
+                }
+                if (string.IsNullOrEmpty(c.entity.MsCode) == false)
+                {
+                    q = q.Where(p => p.MsCode.Contains(c.entity.MsCode));
+                }
+                if (string.IsNullOrEmpty(c.entity.CardCode) == false)
+                {
+                    q = q.Where(p => p.CardCode.Contains(c.entity.CardCode));
+                }
+                if (string.IsNullOrEmpty(c.entity.CardName) == false)
+                {
+                    q = q.Where(p => p.CardName.Contains(c.entity.CardName));
+                }
+                if (string.IsNullOrEmpty(c.entity.MsName) == false)
+                {
+                    q = q.Where(p => p.MsName.Contains(c.entity.MsName));
+                }
+                if (string.IsNullOrEmpty(c.entity.CardState) == false)
+                {
+                    q = q.Where(p => p.CardState.Contains(c.entity.CardState));
+                }
+                if (c.entity.TransactCharge > 0)
+                {
+                    q = q.Where(p => p.TransactCharge == c.entity.TransactCharge);
+                }
+
+                if (c.entity.DepositMoney > 0)
+                {
+                    q = q.Where(p => p.DepositMoney == c.entity.DepositMoney);
+                }
+
+                if (c.entity.TotalMoney > 0)
+                {
+                    q = q.Where(p => p.TotalMoney == c.entity.TotalMoney);
+                }
+
+                if (c.entity.TotalExpendTimes > 0)
+                {
+                    q = q.Where(p => p.TotalExpendTimes == c.entity.TotalExpendTimes);
+                }
+
+                if (c.entity.LastExpendMoney > 0)
+                {
+                    q = q.Where(p => p.LastExpendMoney == c.entity.LastExpendMoney);
+                }
+
+                if (c.entity.TotalPoints > 0)
+                {
+                    q = q.Where(p => p.TotalPoints == c.entity.TotalPoints);
+                }
+
+                if (c.entity.ExchangePoints > 0)
+                {
+                    q = q.Where(p => p.ExchangePoints == c.entity.ExchangePoints);
+                }
+
+                if (c.entity.CurrentPoints > 0)
+                {
+                    q = q.Where(p => p.CurrentPoints == c.entity.CurrentPoints);
+                }
+
+                if (c.entity.ClearPoints > 0)
+                {
+                    q = q.Where(p => p.ClearPoints == c.entity.ClearPoints);
+                }
+
+                if (string.IsNullOrEmpty(c.entity.PrepaidPassword) == false)
+                {
+                    q = q.Where(p => p.PrepaidPassword.Contains(c.entity.PrepaidPassword));
+                }
+                if (c.entity.TotalPrepaid > 0)
+                {
+                    q = q.Where(p => p.TotalPrepaid == c.entity.TotalPrepaid);
+                }
+
+                if (c.entity.CurrentPrepaid > 0)
+                {
+                    q = q.Where(p => p.CurrentPrepaid == c.entity.CurrentPrepaid);
+                }
+
+                if (string.IsNullOrEmpty(c.entity.CurrentPrepaidEncrypt) == false)
+                {
+                    q = q.Where(p => p.CurrentPrepaidEncrypt.Contains(c.entity.CurrentPrepaidEncrypt));
+                }
+                if (c.entity.UsePrepaid > 0)
+                {
+                    q = q.Where(p => p.UsePrepaid == c.entity.UsePrepaid);
+                }
+
+                if (c.entity.LimitTimes > 0)
+                {
+                    q = q.Where(p => p.LimitTimes == c.entity.LimitTimes);
+                }
+
+                if (c.entity.SaleTimes > 0)
+                {
+                    q = q.Where(p => p.SaleTimes == c.entity.SaleTimes);
+                }
+
+                if (string.IsNullOrEmpty(c.entity.Operator) == false)
+                {
+                    q = q.Where(p => p.Operator.Contains(c.entity.Operator));
+                }
+
+                if (!string.IsNullOrEmpty(c.entity.MadeNumber))
+                {
+                    q = q.Where(p => p.MadeNumber == c.entity.MadeNumber);
+                }
+            }
+            if (string.IsNullOrEmpty(c.key) == false)
+            {
+                q = from l in q
+                    where
+                    l.Id.Equals(c.key)
+                    || l.SurfaceNumber.Equals(c.key)
+                    //|| l.MsCode.Contains(c.key)
+                    //|| l.CardCode.Contains(c.key)
+                    //|| l.CardName.Contains(c.key)
+                    //|| l.MsName.Contains(c.key)
+                    //|| l.CardState.Contains(c.key)
+                    //|| l.PrepaidPassword.Contains(c.key)
+                    //|| l.CurrentPrepaidEncrypt.Contains(c.key)
+                    //|| l.Operator.Contains(c.key)
+                    select l;
+            }
+            int count = q.Count();
+
+            q = q.Skip((c.pageIndex - 1) * c.pageSize).Take(c.pageSize);
+            var result = q.ToList();
+            return result.ToSearchResult(count);
         }
     }
 }

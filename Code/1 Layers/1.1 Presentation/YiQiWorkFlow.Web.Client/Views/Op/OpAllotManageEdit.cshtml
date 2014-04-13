@@ -10,7 +10,7 @@
     <script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
-            var o = form.getData();
+            var o = form.getData(true);
 
             var grid1 = mini.get("datagrid1");
             grid1.commitEdit();
@@ -34,8 +34,8 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        //location.href = "/Op/OpAllotManageList";
-                        try{ history.go(-1); } catch(e){}
+                        location.href = "/Op/OpAllotManageEdit/"+r.ReturnObject.Id;
+                        //try{ history.go(-1); } catch(e){}
                     } else {
                         $("#Tooltip_Critical_PcPurchaseManage .content").first().text(r.Message);
                         $("#Tooltip_Critical_PcPurchaseManage").show("fast");
@@ -53,8 +53,16 @@
         }
 
         function onGoodsChanged(e) {
-            
-
+            mini.getbyName("GoodsName","datagrid1").setValue(e.selected.GoodsName);
+            mini.getbyName("GoodsBarCode","datagrid1").setValue(e.selected.GoodsBarCode);
+            mini.getbyName("Specification","datagrid1").setValue(e.selected.Specification);
+            mini.getbyName("PackUnitCode","datagrid1").setValue(e.selected.PackUnitCode);
+            mini.getbyName("StockQty","datagrid1").setValue(e.selected.StockQty);
+            mini.getbyName("PackQty","datagrid1").setValue(e.selected.PackQty);
+            mini.getbyName("PackCoef","datagrid1").setValue(e.selected.PackCoef);
+            mini.getbyName("SalePrice","datagrid1").setValue(e.selected.SalePrice);
+            mini.getbyName("PurchasePrice","datagrid1").setValue(e.selected.PurchasePrice);
+            mini.getbyName("NontaxPurchasePrice","datagrid1").setValue(e.selected.NontaxPurchasePrice);
         }
         function addRow(row) {
             var grid = mini.get("datagrid1");
@@ -72,7 +80,7 @@
             }, 500);
 
         }
-        function ExameData() {
+       @* function ExameData() {
             var chk = mini.get("Control_IfExamine");
             chk.setValue("1");
             mini.get("Control_ExamineDate").setValue(new Date());
@@ -80,12 +88,31 @@
             clearExameAfterSave = false;
             if (isNew == false) {
                 //立即生效
-                $.getJSON("/Common/ChangeDbValue?table=op_allot_manage&pkColumn=al_number&pkValue=@Model.Id&assessor=&if_examine=1&examine_date=" + new Date(), function (r) {
-
-            });
+                $.getJSON("/Common/ChangeDbValue?table=op_allot_manage&pkColumn=al_number&pkValue=@Model.Id&assessor=&if_examine=1&examine_date=" + new Date(), function (r) {});
         }
         $("#btnExame").prop("disabled", true);
-    }
+    }*@
+        function cacMoney(){
+            var count=parseInt(mini.getbyName("AllotQty","datagrid1").getValue());
+            var SalePrice=parseFloat(mini.getbyName("SalePrice","datagrid1").getValue());
+            var PurchasePrice=parseFloat(mini.getbyName("PurchasePrice","datagrid1").getValue());
+            var NontaxPurchasePrice=parseFloat(mini.getbyName("NontaxPurchasePrice","datagrid1").getValue());
+            
+            mini.getbyName("AllotMoney","datagrid1").setValue(PurchasePrice*count);
+            mini.getbyName("NontaxAllotMoney","datagrid1").setValue(NontaxPurchasePrice*count);
+            mini.getbyName("SaleMoney","datagrid1").setValue(SalePrice*count);
+            mini.getbyName("NontaxSaleMoney","datagrid1").setValue(SalePrice*count);
+        }
+        function ExameData(){
+            var form = new mini.Form("#formMain"); // default form
+            var o = form.getData(true);
+            $.getJSON("/Op/ExamineAllot",o,function(e){
+                if(e.IsSuccess==true){
+                    alert("移库成功");
+                    location.href="/Op/OpAllotManageList";
+                }
+            })
+        }
     $(function () {
         var grid = mini.get("datagrid1");
         grid.reload();
@@ -113,19 +140,6 @@
             grid.removeRows(grid.getSelecteds());
         });
 
-        //$("#btnExame").click(function () {
-        //    var chk = mini.get("Control_IfExamine");
-        //    chk.setValue("1");
-        //    mini.get("Control_ExamineDate").setValue(new Date());
-        //    clearExameAfterSave = false;
-        //    if (isNew == false) {
-        //       //立即生效
-        //        $.getJSON("/Common/ChangeDbValue?table=op_allot_manage&pkColumn=al_number&pkValue=@Model.Id&assessor=&if_examine=1&examine_date=" + new Date(), function (r) {
-        //
-        //        });
-        //    }
-        //    $("#btnExame").prop("disabled", true);
-        //});
         if ("@Model.IfExamine" == "1") {
             $("#btnExame").prop("disabled", true);
         }
@@ -170,6 +184,7 @@
                             for (var i = 0; i < data.length; i++) {
                                 var row = {
                                     GoodsCode: data[i].Id,
+                                    GoodsName:data[i].GoodsName,
                                     GoodsBarCode: data[i].GoodsBarCode,
                                     Specification: data[i].Specification,
                                     PackUnitCode: data[i].PackUnitCode,
@@ -214,7 +229,7 @@
                         <a id="btnSubmit" iconcls="icon-upgrade" class="mini-button" plain="true" tooltip="提交">提交</a>
                         <a id="btnPrint" iconcls="icon-printer" class="mini-button" plain="true" tooltip="打印">打印</a>
                         <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
-                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                        <a id="btnReturn" iconcls="icon-undo" class="mini-button" plain="true" tooltip="返回(Ctrl+Q)">返回</a>
                     </td>
                     <td></td>
                 </tr>
@@ -301,17 +316,18 @@
             </fieldset>
 
             <div id="datagrid1" class="mini-datagrid" url="/Op/SearchOpAllotDetailList?AlNumber=@(string.IsNullOrEmpty(Model.Id) ? "!##$%" : Model.Id)"
-                style="width: 100%; height: 250px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
-                pagesize="20" multiselect="true" showfilterrow="false" showPager="false" onrowdblclick="onrowdblclick">
+                style="width: 100%; height: 450px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+                pagesize="20" multiselect="true" showfilterrow="false" showPager="false" onrowdblclick="onrowdblclick"
+                emptyText="数据为空，<a href='javascript:_newRow(&quot;datagrid1&quot;)'>增加一条</a>" showEmptyText="true">
                 <div property="columns">
                     <div type="indexcolumn" width="30">
                     </div>
                     <div type="checkcolumn" width="30">
                     </div>
-
-                    <div field="GoodsCode" headeralign="center" align="center" width="60">
+                    <div renderer="_onActionRenderer" headeralign="center" align="center" width="90">管理</div>
+                    <div field="GoodsCode" headeralign="center" align="center" width="120">
                         商品编码
-					<div id="editor_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="GoodsName" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
+					<div id="editor_GoodsCode" popupwidth="400" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="Id" onvaluechanged="onGoodsChanged" url="/Fb/SearchFbGoodsArchivesListForList" style="width: 100%;">
                         <div property="columns">
                             <div header="销售码" field="GoodsBarCode">
                             </div>
@@ -324,140 +340,93 @@
 
                     </div>
 
-                    <div field="GoodsName" headeralign="center" align="center" width="60">
+                    <div field="GoodsName" headeralign="center" align="center" width="120">
                         商品名称
-					<input id="editor_GoodsBarCode" name="GoodsName" property="editor" class="mini-textbox" enable="false" style="width: 100%;" />
+					<input id="editor_GoodsBarCode" name="GoodsName" property="editor" class="mini-textbox" enable="false" style="width: 100%;" enabled="false" />
                     </div>
-                    <div field="GoodsBarCode" headeralign="center" align="center" width="60">
+                    <div field="GoodsBarCode" headeralign="center" align="center" width="120">
                         商品销售码
-					<input id="editor_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="editor_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" style="width: 100%;" enabled="false"/>
                     </div>
 
 
-                    <div field="Specification" headeralign="center" align="center" width="60">
+                    <div field="Specification" headeralign="center" align="center" width="80">
                         规格
-					<input id="editor_Specification" name="Specification" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="editor_Specification" name="Specification" property="editor" class="mini-textbox" style="width: 100%;" enabled="false" />
                     </div>
 
 
                     <div field="PackUnitCode" headeralign="center" align="center" width="60">
                         包装单位
-					<input id="editor_PackUnitCode" name="PackUnitCode" property="editor" class="mini-textbox" style="width: 100%;" />
+					<input id="editor_PackUnitCode" name="PackUnitCode" property="editor" class="mini-textbox" style="width: 100%;" enabled="false" />
                     </div>
-
 
                     <div field="StockQty" headeralign="center" align="center" width="60">
                         库存数量
-                        <input type="text" id="editor_StockQty" name="StockQty" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="4" style="width: 100%;" />
+                        <input type="text" id="editor_StockQty" name="StockQty" property="editor" class="mini-spinner" minvalue="0" maxvalue="999999999" decimalplaces="0" style="width: 100%;"  enabled="false"/>
                     </div>
-
 
                     <div field="PackQty" headeralign="center" align="center" width="60">
                         整件数量
-                        <input type="text" id="editor_PackQty" name="PackQty" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="4" style="width: 100%;" />
+                        <input type="text" id="editor_PackQty" name="PackQty" property="editor" class="mini-spinner" minvalue="0" maxvalue="999999999" decimalplaces="0" style="width: 100%;" enabled="false" />
                     </div>
 
 
                     <div field="PackCoef" headeralign="center" align="center" width="60">
                         包装系数
-                        <input type="text" id="editor_PackCoef" name="PackCoef" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="2" style="width: 100%;" />
+                        <input type="text" id="editor_PackCoef" name="PackCoef" property="editor" class="mini-spinner" minvalue="0" maxvalue="999999999" decimalplaces="2" style="width: 100%;" enabled="false" />
                     </div>
-
 
                     <div field="AllotQty" headeralign="center" align="center" width="60">
                         单品数量
-                        <input type="text" id="editor_AllotQty" name="AllotQty" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="0" style="width: 100%;" />
+                        <input type="text" id="editor_AllotQty" name="AllotQty" property="editor" class="mini-spinner" minvalue="0" maxvalue="999999999" decimalplaces="0" style="width: 100%;" onvaluechanged="cacMoney" />
                     </div>
 
-
-                    <div field="SalePrice" headeralign="center" align="center" width="60">
+                    <div field="SalePrice" headeralign="center" align="center" width="80">
                         销售价
-                        <input type="text" id="editor_SalePrice" name="SalePrice" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
+                        <input type="text" id="editor_SalePrice" name="SalePrice" property="editor" class="mini-spinner" minValue="0" maxValue="999999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;"  enabled="false"/>
                     </div>
 
 
-                    <div field="PurchasePrice" headeralign="center" align="center" width="60">
+                    <div field="PurchasePrice" headeralign="center" align="center" width="80">
                         含税进价
-                        <input type="text" id="editor_PurchasePrice" name="PurchasePrice" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" style="width: 100%;" />
+                        <input type="text" id="editor_PurchasePrice" name="PurchasePrice" property="editor" class="mini-spinner" minValue="0" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" style="width: 100%;" enabled="false" />
                     </div>
 
 
-                    <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60">
+                    <div field="NontaxPurchasePrice" headeralign="center" align="center" width="80">
                         不含税进价
-                        <input type="text" id="editor_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" style="width: 100%;" />
+                        <input type="text" id="editor_NontaxPurchasePrice" name="NontaxPurchasePrice" property="editor" class="mini-spinner" minValue="0" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" style="width: 100%;" enabled="false" />
                     </div>
 
 
-                    <div field="AllotMoney" headeralign="center" align="center" width="60">
+                    <div field="AllotMoney" headeralign="center" align="center" width="80">
                         含税金额
-                        <input type="text" id="editor_AllotMoney" name="AllotMoney" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
+                        <input type="text" id="editor_AllotMoney" name="AllotMoney" property="editor" class="mini-spinner" minValue="0" maxValue="999999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" enabled="false" />
                     </div>
 
 
-                    <div field="NontaxAllotMoney" headeralign="center" align="center" width="60">
+                    <div field="NontaxAllotMoney" headeralign="center" align="center" width="80">
                         不含税金额
-                        <input type="text" id="editor_NontaxAllotMoney" name="NontaxAllotMoney" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
+                        <input type="text" id="editor_NontaxAllotMoney" name="NontaxAllotMoney" property="editor" class="mini-spinner" minValue="0" maxValue="999999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" enabled="false" />
                     </div>
 
 
-                    <div field="SaleMoney" headeralign="center" align="center" width="60">
+                    <div field="SaleMoney" headeralign="center" align="center" width="80">
                         售价金额
-                        <input type="text" id="editor_SaleMoney" name="SaleMoney" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
+                        <input type="text" id="editor_SaleMoney" name="SaleMoney" property="editor" class="mini-spinner" minValue="0" maxValue="999999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;"  enabled="false"/>
                     </div>
 
 
-                    <div field="NontaxSaleMoney" headeralign="center" align="center" width="60">
+                    <div field="NontaxSaleMoney" headeralign="center" align="center" width="90">
                         不含税售价金额
-                        <input type="text" id="editor_NontaxSaleMoney" name="NontaxSaleMoney" property="editor" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;" />
+                        <input type="text" id="editor_NontaxSaleMoney" name="NontaxSaleMoney" property="editor" class="mini-spinner" minValue="0" maxValue="999999999" decimalplaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" style="width: 100%;"  enabled="false"/>
                     </div>
-
-
-                    <div field="Id" headeralign="center" align="center" width="60">
-
-                        <input id="editor_Id" name="Id" property="editor" class="mini-textbox" style="width: 100%;" />
-                    </div>
-
-
                 </div>
             </div>
             <div class="clear">
             </div>
-            @*<div class="control-panel">
-                <div class="control-button">
-                    <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
-                    <input type="button" class="myButton" id="btnGoods" value="商品" />
-                    <input type="button" class="myButton" id="btnInStock" value="入库" />
-                    <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
-                    <input type="button" class="myButton" id="btnQuery" value="查询" />
-                    <input type="button" class="myButton" id="btnSubmit" value="提交" />
-                    <input type="button" class="myButton" id="btnPrint" value="打印" />
-                    <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
-                    <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
-                </div>
-                <div class="botton-up">
-                </div>
-            </div>
-			*@
         </form>
     </div>
 </body>
 </html>
-<!--
-AlNumber:j.data[i].AlNumber,
-GoodsCode:j.data[i].GoodsCode,
-GoodsBarCode:j.data[i].GoodsBarCode,
-Specification:j.data[i].Specification,
-PackUnitCode:j.data[i].PackUnitCode,
-StockQty:j.data[i].StockQty,
-PackQty:j.data[i].PackQty,
-PackCoef:j.data[i].PackCoef,
-AllotQty:j.data[i].AllotQty,
-SalePrice:j.data[i].SalePrice,
-PurchasePrice:j.data[i].PurchasePrice,
-NontaxPurchasePrice:j.data[i].NontaxPurchasePrice,
-AllotMoney:j.data[i].AllotMoney,
-NontaxAllotMoney:j.data[i].NontaxAllotMoney,
-SaleMoney:j.data[i].SaleMoney,
-NontaxSaleMoney:j.data[i].NontaxSaleMoney,
-Id:j.data[i].Id,
--->

@@ -82,9 +82,11 @@ $(function () {
     });
 
     $("#btnExame").click(function () {
-
         form.validate();
-        if (form.isValid() == false) return false;
+        if (form.isValid() == false) {
+            alert("表单存在错误，请修正后操作！");
+            return false;
+        }
 
         //form.loading();
         //提交数据
@@ -153,6 +155,37 @@ $(function () {
             form.unmask()
             return false;
         }
+    });
+
+    $("#btnGoBack").click(function () {
+
+        if (form.isChanged() || formChanged) {
+            mini.confirm("确定跳转到查询界面(有未保存的数据)?", "确认", function (action) {
+                if (action == "ok") {
+                    if (Search) {
+                        Search();
+                    }
+                    form.unmask()
+                    return false;
+                } else {
+                    return;
+                }
+            });
+        } else {
+            if (Search) {
+                Search();
+            }
+            form.unmask()
+            return false;
+        }
+    });
+
+    $("#btnReturn").click(function () {
+        try {
+            var href = location.href.replace("Edit", "List");
+            location.href = href;
+        }
+        catch (e) { }
     });
 
     $(document).keydown(function (event) {
@@ -237,6 +270,14 @@ function formatTime(item, array) {
     ymd.setTime(parseInt(item.replace("\/Date(", "").replace(")\/", "")));
     return ymd.toLocaleDateString();
 }
+function arrayHaveValue(arr, key, value) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i][key] == value) {
+            return true;
+        }
+    }
+    return false;
+}
 $(document).keydown(function (e) {
     var doPrevent;
     if (e.keyCode == 8) {
@@ -261,7 +302,133 @@ $(function () {
         if (key == 13) {
             e.preventDefault();
             var nxtIdx = $inp.index(this) + 1;
-            $(":input:text:eq(" + nxtIdx + ")").focus();
+            $(":input:text:visible:eq(" + nxtIdx + ")").focus();
         }
     });
 });
+
+function bindMember(msCode) {
+
+    // 绑定会员信息
+    //var msCode = data[i].msCode;
+    if (msCode) {
+        $.ajax({
+            url: "/Ms/SearchMsMemberArchivesList?MsCode=" + msCode,
+            type: 'post',
+            cache: false,
+            dataType: "json",
+            success: function (msData) {
+                var data = msData.data;
+
+                if (data) {
+                    // 绑定
+                    for (var i = 0; i < data.length; i++) {
+                        //mini.get('Control_MsCode').setValue(data[i].MsCode);
+                        mini.get('Control_MsName').setValue(data[i].MsName);
+                        mini.get('Control_Birthday').setValue(data[i].Birthday);
+                        mini.get('Control_Sex').setValue(data[i].Sex);
+                        mini.get('Control_PoliticsCode').setValue(data[i].PoliticsCode);
+                        mini.get('Control_NationCode').setValue(data[i].NationCode);
+                        mini.get('Control_EducationCode').setValue(data[i].EducationCode);
+                        mini.get('Control_ProfessionalTitleCode').setValue(data[i].ProfessionalTitleCode);
+                        mini.get('Control_IfMarried').setValue(data[i].IfMarried);
+                        mini.get('Control_NativePlace').setValue(data[i].NativePlace);;
+                        mini.get('Control_Idcard').setValue(data[i].Idcard);
+                        mini.get('Control_FamilyPhone').setValue(data[i].FamilyPhone);
+                        mini.get('Control_Handset').setValue(data[i].Handset);
+                        mini.get('Control_eMail').setValue(data[i].eMail);
+                        mini.get('Control_FamilyAddress').setValue(data[i].FamilyAddress);
+                        mini.get('Control_Postalcode').setValue(data[i].Postalcode);
+                        mini.get('Control_Stature').setValue(data[i].Stature);
+                        mini.get('Control_Width').setValue(data[i].Width);
+
+                        break;
+                    };
+
+                } else {
+
+                    //mini.get('Control_MsCode').disable();
+                    mini.get('Control_MsName').disable();
+                    mini.get('Control_Birthday').disable();
+                    mini.get('Control_Sex').disable();
+                    mini.get('Control_PoliticsCode').disable();
+                    mini.get('Control_NationCode').disable();
+                    mini.get('Control_EducationCode').disable();
+                    mini.get('Control_ProfessionalTitleCode').disable();
+                    mini.get('Control_IfMarried').disable();
+                    mini.get('Control_NativePlace').disable();
+                    mini.get('Control_Idcard').disable();
+                    mini.get('Control_FamilyPhone').disable();
+                    mini.get('Control_Handset').disable();
+                    mini.get('Control_eMail').disable();
+                    mini.get('Control_FamilyAddress').disable();
+                    mini.get('Control_Postalcode').disable();
+                    mini.get('Control_Stature').disable();
+                    mini.get('Control_Width').disable();
+
+                    //mini.get('Control_MsCode').setValue('');
+                    mini.get('Control_MsName').setValue('');
+                    mini.get('Control_Birthday').setValue('');
+                    mini.get('Control_Sex').setValue('');
+                    mini.get('Control_PoliticsCode').setValue('');
+                    mini.get('Control_NationCode').setValue('');
+                    mini.get('Control_EducationCode').setValue('');
+                    mini.get('Control_ProfessionalTitleCode').setValue('');
+                    mini.get('Control_IfMarried').setValue('');
+                    mini.get('Control_NativePlace').setValue('');
+                    mini.get('Control_Idcard').setValue('');
+                    mini.get('Control_FamilyPhone').setValue('');
+                    mini.get('Control_Handset').setValue('');
+                    mini.get('Control_eMail').setValue('');
+                    mini.get('Control_FamilyAddress').setValue('');
+                    mini.get('Control_Postalcode').setValue('');
+                    mini.get('Control_Stature').setValue('');
+                    mini.get('Control_Width').setValue('');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $("#Tooltip_Critical_MsFreezeCardManage .content").first().text(jqXHR.responseText);
+                $("#Tooltip_Critical_MsFreezeCardManage").show("fast");
+                form.unmask();
+                $(document).scrollTop(0);
+            }
+        });
+    } else {
+        mini.get('Control_MsName').disable();
+        mini.get('Control_Birthday').disable();
+        mini.get('Control_Sex').disable();
+        mini.get('Control_PoliticsCode').disable();
+        mini.get('Control_NationCode').disable();
+        mini.get('Control_EducationCode').disable();
+        mini.get('Control_ProfessionalTitleCode').disable();
+        mini.get('Control_IfMarried').disable();
+        mini.get('Control_NativePlace').disable();
+        mini.get('Control_Idcard').disable();
+        mini.get('Control_FamilyPhone').disable();
+        mini.get('Control_Handset').disable();
+        mini.get('Control_eMail').disable();
+        mini.get('Control_FamilyAddress').disable();
+        mini.get('Control_Postalcode').disable();
+        mini.get('Control_Stature').disable();
+        mini.get('Control_Width').disable();
+
+        //mini.get('Control_MsCode').setValue('');
+        mini.get('Control_MsName').setValue('');
+        mini.get('Control_Birthday').setValue('');
+        mini.get('Control_Sex').setValue('');
+        mini.get('Control_PoliticsCode').setValue('');
+        mini.get('Control_NationCode').setValue('');
+        mini.get('Control_EducationCode').setValue('');
+        mini.get('Control_ProfessionalTitleCode').setValue('');
+        mini.get('Control_IfMarried').setValue('');
+        mini.get('Control_NativePlace').setValue('');
+        mini.get('Control_Idcard').setValue('');
+        mini.get('Control_FamilyPhone').setValue('');
+        mini.get('Control_Handset').setValue('');
+        mini.get('Control_eMail').setValue('');
+        mini.get('Control_FamilyAddress').setValue('');
+        mini.get('Control_Postalcode').setValue('');
+        mini.get('Control_Stature').setValue('');
+        mini.get('Control_Width').setValue('');
+    }
+}

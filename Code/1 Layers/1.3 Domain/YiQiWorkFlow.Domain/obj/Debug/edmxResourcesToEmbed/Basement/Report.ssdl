@@ -76,4 +76,79 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_pc_update_stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="goods_code" Type="varchar" Mode="In" />
+    <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+    <Parameter Name="en_code" Type="varchar" Mode="In" />
+    <Parameter Name="wh_code" Type="varchar" Mode="In" />
+    <Parameter Name="sup_code" Type="varchar" Mode="In" />
+    <Parameter Name="op_code" Type="varchar" Mode="In" />
+    <Parameter Name="input_tax" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_qty" Type="decimal" Mode="In" />
+    <Parameter Name="pi_number" Type="varchar" Mode="In" />
+    <Parameter Name="putin_date" Type="datetime" Mode="In" />
+    <Parameter Name="produce_date" Type="datetime" Mode="In" />
+    <Parameter Name="em_code" Type="varchar" Mode="In" />
+    <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+    <Parameter Name="sale_price" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_pc_update_stock_branch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="goods_code" Type="varchar" Mode="In" />
+    <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+    <Parameter Name="en_code" Type="varchar" Mode="In" />
+    <Parameter Name="b_code" Type="varchar" Mode="In" />
+    <Parameter Name="wh_code" Type="varchar" Mode="In" />
+    <Parameter Name="sup_code" Type="varchar" Mode="In" />
+    <Parameter Name="op_code" Type="varchar" Mode="In" />
+    <Parameter Name="input_tax" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_qty" Type="decimal" Mode="In" />
+    <Parameter Name="pi_number" Type="varchar" Mode="In" />
+    <Parameter Name="putin_date" Type="datetime" Mode="In" />
+    <Parameter Name="produce_date" Type="datetime" Mode="In" />
+    <Parameter Name="em_code" Type="varchar" Mode="In" />
+    <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_pc_update_stock_out" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="goods_code" Type="varchar" Mode="In" />
+    <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+    <Parameter Name="en_code" Type="varchar" Mode="In" />
+    <Parameter Name="wh_code" Type="varchar" Mode="In" />
+    <Parameter Name="sup_code" Type="varchar" Mode="In" />
+    <Parameter Name="op_code" Type="varchar" Mode="In" />
+    <Parameter Name="input_tax" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="putout_qty" Type="decimal" Mode="In" />
+    <Parameter Name="putout_date" Type="datetime" Mode="In" />
+    <Parameter Name="em_code" Type="varchar" Mode="In" />
+    <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+    <Parameter Name="sale_price" Type="decimal" Mode="In" />
+    <Parameter Name="putout_money" Type="decimal" Mode="InOut" />
+    <Parameter Name="nontax_putout_money" Type="decimal" Mode="InOut" />
+    <Parameter Name="sale_money" Type="decimal" Mode="InOut" />
+    <Parameter Name="nontax_sale_money" Type="decimal" Mode="InOut" />
+  </Function>
+  <Function Name="sp_pc_update_stock_out_branch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="goods_code" Type="varchar" Mode="In" />
+    <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+    <Parameter Name="en_code" Type="varchar" Mode="In" />
+    <Parameter Name="b_code" Type="varchar" Mode="In" />
+    <Parameter Name="wh_code" Type="varchar" Mode="In" />
+    <Parameter Name="sup_code" Type="varchar" Mode="In" />
+    <Parameter Name="op_code" Type="varchar" Mode="In" />
+    <Parameter Name="input_tax" Type="decimal" Mode="In" />
+    <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+    <Parameter Name="putout_qty" Type="decimal" Mode="In" />
+    <Parameter Name="putout_date" Type="datetime" Mode="In" />
+    <Parameter Name="em_code" Type="varchar" Mode="In" />
+    <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+    <Parameter Name="sale_price" Type="decimal" Mode="In" />
+    <Parameter Name="putout_money" Type="decimal" Mode="InOut" />
+    <Parameter Name="nontax_putout_money" Type="decimal" Mode="InOut" />
+  </Function>
 </Schema>

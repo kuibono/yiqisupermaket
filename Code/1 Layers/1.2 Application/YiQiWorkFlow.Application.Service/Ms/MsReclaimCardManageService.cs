@@ -184,6 +184,37 @@ namespace YiQiWorkFlow.Application.Service.Ms
                 Delete(each);
             }
         }
+
+        public string GenerateReclaimNumber()
+        {
+            string maxNumber = GetMaxNumber();
+
+            if (string.IsNullOrEmpty(maxNumber))
+            {
+                return "580000000001";
+            }
+            else
+            {
+                maxNumber = maxNumber.Replace("58", "");
+                long maxNumberInt = Convert.ToInt64(maxNumber);
+
+                return "58" + (maxNumberInt + 1).ToString("0000000000");
+            }
+        }
+
+        private string GetMaxNumber()
+        {
+            string maxNumber = EntityRepository.LinqQuery.Max(x => x.Id);
+
+            if (string.IsNullOrEmpty(maxNumber))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return maxNumber;
+            }
+        }
     }
 }
 

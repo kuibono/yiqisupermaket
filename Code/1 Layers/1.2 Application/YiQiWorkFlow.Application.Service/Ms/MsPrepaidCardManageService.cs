@@ -188,6 +188,38 @@ namespace YiQiWorkFlow.Application.Service.Ms
                 Delete(each);
             }
         }
+
+
+        public string GeneratePrepaidNumber()
+        {
+            string maxNumber = GetMaxNumber();
+
+            if (string.IsNullOrEmpty(maxNumber))
+            {
+                return "570000000001";
+            }
+            else
+            {
+                maxNumber = maxNumber.Replace("57", "");
+                long maxNumberInt = Convert.ToInt64(maxNumber);
+
+                return "57" + (maxNumberInt + 1).ToString("0000000000");
+            }
+        }
+
+        private string GetMaxNumber()
+        {
+            string maxNumber = EntityRepository.LinqQuery.Max(x => x.Id);
+
+            if (string.IsNullOrEmpty(maxNumber))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return maxNumber;
+            }
+        }
     }
 }
 

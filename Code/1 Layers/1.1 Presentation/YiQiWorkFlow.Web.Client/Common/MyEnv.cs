@@ -90,6 +90,10 @@ namespace YiQiWorkFlow.Web.Client.Common
         /// </summary>
         public int PagerWidth { get { return 21; } }
 
+        public static string CheckStockType { get { return "2"; } }
+
+        public static string EnType { get { return "2"; } }
+
     }
 
 

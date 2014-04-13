@@ -6,10 +6,10 @@
 </div>--%>
 
 <form runat="server" id="UCMemberArchivesForm">
-    <div class="ablock hidden">
+    <%--<div class="ablock hidden">
         <label for="Control_MsCode">会员编码:</label>
         <input id="Control_MsCode" name="Id" class="mini-textbox"  />
-    </div>
+    </div>--%>
 
     <div class="ablock">
         <label for="Control_MsName">会员姓名:</label>
@@ -89,11 +89,11 @@
 
     <div class="ablock">
         <label for="Control_Stature">身高:</label>
-        <input type="text" id="Control_Stature" name="Stature" class="mini-spinner" minvalue="0" maxvalue="220" decimalplaces="2"  />
+        <input type="text" id="Control_Stature" name="Stature" class="mini-spinner" minValue="0" maxvalue="220" decimalplaces="2"  />
     </div>
 
     <div class="ablock">
         <label for="Control_Width">体重:</label>
-        <input type="text" id="Control_Width" name="Width" class="mini-spinner" minvalue="0" maxvalue="300" decimalplaces="2"  />
+        <input type="text" id="Control_Width" name="Width" class="mini-spinner" minValue="0" maxvalue="300" decimalplaces="2"  />
     </div>
 </form>

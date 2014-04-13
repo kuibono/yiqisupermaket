@@ -160,7 +160,14 @@
                 mini.get("Control_IfPutin").setValue("1");
                 mini.get("Control_PutinDate").setValue(new Date());
             });
-            
+            $("#btnAssis").click(function () {
+                $.getJSON("/Pc/GetAssisGoods", function (j) {
+                    var grid1 = mini.get("datagrid1");
+                    for (var i = 0; i < j.length; i++) {
+                        grid.addRow(j[i]);
+                    }
+                });
+            });
             $("#btnGoods").click(function () {
                 var btnEdit = this;
                 mini.open({
@@ -218,13 +225,14 @@
                     <td>
                         <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
                         <a id="btnGoods" iconcls="icon-find" class="mini-button" plain="true" tooltip="商品">商品</a>
+                        <a id="btnAssis" iconcls="icon-find" class="mini-button" plain="true" tooltip="商品辅助订货">辅助</a>
                         <a id="btnInStock" iconcls="icon-upload" class="mini-button" plain="true" tooltip="入库">入库</a>
                         <a id="btnExame" iconcls="icon-ok" class="mini-button" plain="true" tooltip="审核(Ctrl+E)">审核</a>
                         <a id="btnQuery" iconcls="icon-search" class="mini-button" plain="true" tooltip="查询">查询</a>
                         <a id="btnSubmit" iconcls="icon-upgrade" class="mini-button" plain="true" tooltip="提交">提交</a>
                         <a id="btnPrint" iconcls="icon-printer" class="mini-button" plain="true" tooltip="打印">打印</a>
                         <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
-                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                        <a id="btnReturn" iconcls="icon-undo" class="mini-button" plain="true" tooltip="返回(Ctrl+Q)">返回</a>
                     </td>
                     <td>
                     </td>
@@ -265,7 +273,7 @@
             </fieldset>
 
             <div id="datagrid1" class="mini-datagrid" url="/Pc/SearchPcPurchaseDetailList?PcNumber=!##$%"
-                style="width: 100%; height: 250px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
+                style="width: 100%; height: 450px; margin-top:10px;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
                 pagesize="20" multiselect="true" showfilterrow="false" showPager="false" onrowdblclick="onrowdblclick"
                 emptyText="数据为空，<a href='javascript:_newRow(&quot;datagrid1&quot;)'>增加一条</a>" showEmptyText="true">
                 <div property="columns">
@@ -333,23 +341,23 @@
                     </div>
                     <div field="SalePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         销售价
-					<input id="filter_SalePrice" name="SalePrice" class="mini-spinner" property="editor" style="width: 100%;" />
+					<input id="filter_SalePrice" name="SalePrice" class="mini-spinner" property="editor" style="width: 100%;" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen" />
                     </div>
                     <div field="PurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         含税进价
-					<input id="filter_PurchasePrice" name="PurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" />
+					<input id="filter_PurchasePrice" name="PurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" />
                     </div>
                     <div field="NontaxPurchasePrice" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         不含税进价
-					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" />
+					<input id="filter_NontaxPurchasePrice" name="NontaxPurchasePrice" class="mini-spinner" property="editor" style="width: 100%;" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" />
                     </div>
                     <div field="PurchaseMoney" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         含税金额
-					<input id="filter_PurchaseMoney" name="PurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" />
+					<input id="filter_PurchaseMoney" name="PurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen" />
                     </div>
                     <div field="NontaxPurchaseMoney" headeralign="center" align="center" width="60" dataType="currency" currencyUnit="￥">
                         不含税金额
-					<input id="filter_NontaxPurchaseMoney" name="NontaxPurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;" />
+					<input id="filter_NontaxPurchaseMoney" name="NontaxPurchaseMoney" class="mini-spinner" property="editor" style="width: 100%;"  decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.PurchasePreciseLen"/>
                     </div>
                     <div field="ProduceDate" headeralign="center" align="center" width="60">
                         生产日期

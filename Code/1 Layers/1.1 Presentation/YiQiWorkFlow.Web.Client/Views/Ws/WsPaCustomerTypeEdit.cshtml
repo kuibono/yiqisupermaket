@@ -2,11 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>客户类型编辑</title>
+    <title>客户类型管理</title>
     <link type="text/css" rel="Stylesheet" href="/Styles/editPage.css" />
     <script type="text/javascript" src="/scripts/boot.js"></script>
     <script type="text/javascript" src="/Scripts/editPage.js"></script>
-    <script type="text/javascript"> var pageTitle = "客户类型"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:59:00";var id="@Model.Id";pageName="WsPaCustomerTypeEdit"; </script>
+    <script type="text/javascript"> var pageTitle = "客户类型管理"; var formChanged = false; var pageType = "Edit"; var createTime = "2014/2/15 19:59:00"; var id = "@Model.Id"; pageName = "WsPaCustomerTypeEdit"; </script>
 	<script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
@@ -19,7 +19,7 @@
 				dataType:"json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        closeWithNoValidate();
+                        location.href = "/Ws/WsPaCustomerTypeEdit";
                     } else {
                         $("#Tooltip_Critical_WsPaCustomerType .content").first().text(r.Message);
                         $("#Tooltip_Critical_WsPaCustomerType").show("fast");
@@ -35,13 +35,34 @@
                 }
             });
         }
+
+        function Add() {
+            location.href = "/Ws/WsPaCustomerTypeEdit";
+        }
+
+        function Search() {
+            location.href = "/Ws/WsPaCustomerTypeList";
+        }
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>
+        <div id="toolbar1" class="mini-toolbar" style="padding: 2px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <a id="btnAdd" iconcls="icon-add" class="mini-button" plain="true" tooltip="增加">增加</a>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
+                        <a id="btnSearch" iconcls="icon-search" class="mini-button" plain="true" tooltip="查询">查询</a>
+                        <a id="btnPrint" iconcls="icon-print" class="mini-button" plain="true" tooltip="打印">打印</a>
+                        <a id="btnReturn" iconcls="icon-undo" class="mini-button" plain="true" tooltip="返回(Ctrl+Q)">返回</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--<h1>
             客户类型编辑
-        </h1>
+        </h1>-->
         <div class="tooltip warning hidden" id="Tooltip_Warning_WsPaCustomerType">
             <img src="/images/Warning.png" alt="Warning" height="48" width="48" />
 			<p class="content">
@@ -95,22 +116,22 @@
             <legend>基本信息</legend>
             <div class="ablock">
                 <label for="Control_CustTypeCode">类型编码:</label>
-                <input type="text"  value="@Model.CustTypeCode" class="mini-textbox" name="CustTypeCode" id="Control_CustTypeCode" vtype="maxLength:20" />
+                <input type="text"  value="@Model.CustTypeCode" class="mini-textbox" name="CustTypeCode" id="Control_CustTypeCode" vtype="maxLength:20" required="true" />
             </div>
 
             <div class="ablock">
                 <label for="Control_CustTypeName">类型名称:</label>
-                <input type="text"  value="@Model.CustTypeName" class="mini-textbox" name="CustTypeName" id="Control_CustTypeName" vtype="maxLength:20" />
+                <input type="text"  value="@Model.CustTypeName" class="mini-textbox" name="CustTypeName" id="Control_CustTypeName" vtype="maxLength:20" required="true" />
             </div>
 
             <div class="ablock">
                 <label for="Control_WsType">批价方式:</label>
-                <input type="text"  value="@Model.WsType" class="mini-textbox" name="WsType" id="Control_WsType" vtype="maxLength:20" />
+                <input type="text"  value="@Model.WsType" class="mini-combobox" name="WsType" id="Control_WsType" data="c_WsType" vtype="maxLength:20" required="true" />
             </div>
 
             <div class="ablock">
                 <label for="Control_DiscountRate">折扣:</label>
-                <input type="text" id="Control_DiscountRate" name="DiscountRate"  value="@Model.DiscountRate" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="4"/>
+                <input type="text" id="Control_DiscountRate" name="DiscountRate"  value="@Model.DiscountRate" class="mini-spinner" minvalue="0.00" maxvalue="1.00" decimalplaces="2" increment="0.1" required="true" />
             </div>
 
             <div class="ablock" style="display:none">
@@ -122,7 +143,7 @@
         </fieldset>
         <div class="clear">
         </div>
-        <div class="control-panel">
+       <!-- <div class="control-panel">
             <div class="control-button">
                 <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
                 <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
@@ -130,7 +151,7 @@
             </div>
             <div class="botton-up">
             </div>
-        </div>
+        </div>-->
         </form>
     </div>
 </body>

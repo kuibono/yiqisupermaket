@@ -30,14 +30,12 @@ namespace YiQiWorkFlow.Application.Service.Ms
         /// <param name="entitys"></param>
         void Delete(IEnumerable<MsLossCardManage> entitys);
 
-
         SearchResult<MsLossCardManage> Search(SearchDtoBase<MsLossCardManage> c);
-		
-		IList<MsLossCardManage> Search(string key, int pageSize = 20, int pageIndex = 1);
+
+        IList<MsLossCardManage> Search(string key, int pageSize = 20, int pageIndex = 1);
 
         void Delete(IList<string> ids);
+
+        string GenerateLossNumber();
     }
 }
-
-
-
