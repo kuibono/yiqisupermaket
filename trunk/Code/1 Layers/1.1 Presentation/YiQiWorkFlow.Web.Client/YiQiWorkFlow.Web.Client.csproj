@@ -20,10 +20,6 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1594,7 +1590,6 @@
     <Content Include="Views\Fb\FbAdjustGoodsPropty.cshtml" />
     <Content Include="Views\Common\EnterpriseArchivesSelector.cshtml" />
     <Content Include="Views\Common\WarehouseSelector.cshtml" />
-    <None Include="Views\Home\Index.cshtml.bak" />
     <Content Include="Views\Pc\PcPurchaseManageGoodsEdit.cshtml" />
     <Content Include="Views\Pc\PcPutinManageBatchEdit.cshtml" />
   </ItemGroup>
@@ -1622,8 +1617,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2973</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:2973/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:2973/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

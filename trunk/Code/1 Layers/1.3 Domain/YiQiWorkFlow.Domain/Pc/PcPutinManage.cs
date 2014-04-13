@@ -23,6 +23,8 @@ namespace YiQiWorkFlow.Domain.Pc
 		/// </summary>
 		[Validate(ValidateType.NoValidate,Name="企业编码")]
 		public virtual string EnCode{get ; set; }
+
+        public virtual string PcNumber { get; set; }
 		
 		/// <summary>
 		/// 采购形式

@@ -126,7 +126,7 @@
         function onActionRenderer(e) {
             var grid = e.sender;
             var record = e.record;
-            var uid = record.Id;
+            var uid = record.AlNumber;
             var rowIndex = e.rowIndex;
             if (record.IfExamine) {
                 if (record.IfExamine == "1") {
@@ -141,7 +141,7 @@
         function onNoExamActionRenderer(e) {
             var grid = e.sender;
             var record = e.record;
-            var uid = record.Id;
+            var uid = record.AlNumber;
             var rowIndex = e.rowIndex;
             var s = ' <a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')" >编辑</a>'
                 + ' <a class="Delete_Button" href="javascript:if(confirm(\'确定要删除这条记录吗？\')){deleteItem(\'' + uid + '\')}">删除</a>';
@@ -181,7 +181,8 @@
             grid.load(data);
         }
         function editRow(id) {
-			parent.showTab({ id:"OpAllotManageEdit",text: "商品调拨单管理", iconCls: "icon-edit", url: "/Op/OpAllotManageEdit/" + id });
+            //parent.showTab({ id:"OpAllotManageEdit",text: "商品调拨单管理", iconCls: "icon-edit", url: "/Op/OpAllotManageEdit/" + id });
+            location.href = "/Op/OpAllotManageEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({

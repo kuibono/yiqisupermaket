@@ -51,7 +51,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                          } },
                          new { iconCls = "icon-cart", text = "采购管理", menus = new object[]{
                             new { iconCls = "icon-node", text = "主营业务",  menus = new object[]{
-                                new { id = "119", iconCls = "icon-add", pid = "m2", text = "供货商采购管理", url = "/Pc/PcPurchaseManageList" },
+                                new { id = "119", iconCls = "icon-add", pid = "m2", text = "供货商采购管理", url = "/Pc/PcPurchaseManageEdit" },
                                 new { id = "120", iconCls = "icon-add", pid = "m2", text = "商品辅助订货", url = "/Pc/PcPurchaseManageGoodsEdit" },
                                 new { id = "121", iconCls = "icon-add", pid = "m2", text = "到货验收入库", url = "/Pc/PcPutinManageEdit/" },//url = "/Pc/PcPutinManageList" },
                                 new { id = "122", iconCls = "icon-add", pid = "m2", text = "采购批量入库", url = "/Pc/PcPutinManageBatchEdit" },
@@ -90,8 +90,8 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                                 new { id = "147", iconCls = "icon-add", pid = "m3", text = "商品盘点差异", url = "" },
                                 new { id = "148", iconCls = "icon-add", pid = "m3", text = "商品损溢管理", url = "/Op/OpLossManageList" },
                                 new { id = "149", iconCls = "icon-add", pid = "m3", text = "商品库存查询", url = "" },
-                                new { id = "150", iconCls = "icon-add", pid = "m3", text = "组合拆零商品", url = "" },
-                                new { id = "151", iconCls = "icon-add", pid = "m3", text = "组合拆零管理", url = "" },
+                                new { id = "150", iconCls = "icon-add", pid = "m3", text = "组合拆零商品", url = "/Op/OpSplitComManageEdit" },
+                                new { id = "151", iconCls = "icon-add", pid = "m3", text = "组合拆零管理", url = "/Op/OpSplitComManageList" },
                                 new { id = "152", iconCls = "icon-add", pid = "m3", text = "商品调整管理", url = "" },
                                 new { id = "153", iconCls = "icon-add", pid = "m3", text = "进货成本调整", url = "" },
                                 new { id = "154", iconCls = "icon-add", pid = "m3", text = "仓库参数设置", url = "" }
@@ -131,21 +131,21 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                          } },
                          new { iconCls = "icon-group-key", text = "客户销售", menus = new object[]{
                              new { iconCls = "icon-node", text = "主营业务",  menus = new object[]{
-                                new { id = "178", iconCls = "icon-add", pid = "m5", text = "客户档案管理", url = "/Ws/WsCustomerArchivesList" },
-                                new { id = "179", iconCls = "icon-add", pid = "m5", text = "客户销售管理", url = "" },
-                                new { id = "180", iconCls = "icon-add", pid = "m5", text = "客户退货管理", url = "" }
+                                new { id = "178", iconCls = "icon-add", pid = "m5", text = "客户档案管理", url = "/Ws/WsCustomerArchivesEdit" },
+                                new { id = "179", iconCls = "icon-add", pid = "m5", text = "客户销售管理", url = "/Ws/WsCustomerSaleList" },
+                                new { id = "180", iconCls = "icon-add", pid = "m5", text = "客户退货管理", url = "/Ws/WsCustomerBackGoodsReport" }
                              }},
                              new { iconCls = "icon-date-magnify", text = "销售查询",  menus = new object[]{
-                                new { id = "181", iconCls = "icon-add", pid = "m5", text = "客户销售单据汇总查询", url = "" },
-                                new { id = "182", iconCls = "icon-add", pid = "m5", text = "客户销售商品汇总查询", url = "" },
-                                new { id = "183", iconCls = "icon-add", pid = "m5", text = "客户销售明细查询", url = "" },
-                                new { id = "184", iconCls = "icon-add", pid = "m5", text = "业务员销售查询", url = "" },
-                                new { id = "185", iconCls = "icon-add", pid = "m5", text = "客户销售商品毛利分析", url = "" }
+                                new { id = "181", iconCls = "icon-add", pid = "m5", text = "客户销售单据汇总查询", url = "/Ws/" },
+                                new { id = "182", iconCls = "icon-add", pid = "m5", text = "客户销售商品汇总查询", url = "/Ws/" },
+                                new { id = "183", iconCls = "icon-add", pid = "m5", text = "客户销售明细查询", url = "/Ws/" },
+                                new { id = "184", iconCls = "icon-add", pid = "m5", text = "业务员销售查询", url = "/Ws/" },
+                                new { id = "185", iconCls = "icon-add", pid = "m5", text = "客户销售商品毛利分析", url = "/Ws/" }
 
                              }},
                              new { iconCls = "icon-cog-edit", text = "参数设置",  menus = new object[]{
-                                new { id = "186", iconCls = "icon-add", pid = "m5", text = "客户类型设置", url = "/Ws/WsPaCustomerTypeList" },
-                                new { id = "187", iconCls = "icon-add", pid = "m5", text = "限销商品设置", url = "/Ws/WsWholesaleGoodsSetList" }
+                                new { id = "186", iconCls = "icon-add", pid = "m5", text = "客户类型设置", url = "/Ws/WsPaCustomerTypeEdit" },
+                                //new { id = "187", iconCls = "icon-add", pid = "m5", text = "限销商品设置", url = "/Ws/WsWholesaleGoodsSetList" }
 
                              }}
                          } },
@@ -166,23 +166,23 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                                 new { id = "200", iconCls = "icon-add", pid = "m6", text = "卡充值管理", url = "/Ms/MsPrepaidCardManageEdit" },
                                 new { id = "201", iconCls = "icon-add", pid = "m6", text = "卡升级管理", url = "/Ms/MsUpgradeCardManageEdit" },
                                 new { id = "202", iconCls = "icon-add", pid = "m6", text = "卡回收管理", url = "/Ms/MsReclaimCardManageEdit" },
-                                new { id = "203", iconCls = "icon-add", pid = "m6", text = "赠品档案管理", url = "/Ms/MsGiftArchivesList" },
+                                new { id = "203", iconCls = "icon-add", pid = "m6", text = "赠品档案管理", url = "/Ms/MsGiftArchivesEdit" },
                                 new { id = "204", iconCls = "icon-add", pid = "m6", text = "赠品兑换管理", url = "/Ms/MsExchangeManageList" },
                                 new { id = "205", iconCls = "icon-add", pid = "m6", text = "会员积分转储值", url = "/Ms/MsPointtoprepaidManageList" },
-                                new { id = "206", iconCls = "icon-add", pid = "m6", text = "积分清零管理", url = "/Ms/MsPointsClearList" },
-                                new { id = "207", iconCls = "icon-add", pid = "m6", text = "积分调整管理", url = "/Ms/MsAdjustPointsList" }
+                                new { id = "206", iconCls = "icon-add", pid = "m6", text = "积分清零管理", url = "/Ms/MsPointsClearEdit" },
+                                new { id = "207", iconCls = "icon-add", pid = "m6", text = "积分调整管理", url = "/Ms/MsAdjustPointsEdit" }
 
                             }},
                             new { iconCls = "icon-date-magnify", text = "查询分析",  menus = new object[]{
-                                new { id = "208", iconCls = "icon-add", pid = "m6", text = "会员消费明细查询", url = "Ms/MsMemberSaleReport" },
-                                new { id = "209", iconCls = "icon-add", pid = "m6", text = "会员消费汇总查询", url = "" },
+                                new { id = "208", iconCls = "icon-add", pid = "m6", text = "会员消费明细查询", url = "/Ms/MsMemberSaleReport" },
+                                new { id = "209", iconCls = "icon-add", pid = "m6", text = "会员消费汇总查询", url = "/Ms/MsMemberSaleSumReport" },
                                 new { id = "210", iconCls = "icon-add", pid = "m6", text = "会员卡信息查询", url = "/Ms/MsCardArchivesList" },
-                                new { id = "211", iconCls = "icon-add", pid = "m6", text = "无消费会员查询", url = "" },
-                                new { id = "212", iconCls = "icon-add", pid = "m6", text = "会员储值消费查询", url = "" },
-                                new { id = "213", iconCls = "icon-add", pid = "m6", text = "会员储值消费汇总查询", url = "" },
-                                new { id = "214", iconCls = "icon-add", pid = "m6", text = "会员消费排行", url = "" },
-                                new { id = "215", iconCls = "icon-add", pid = "m6", text = "会员积分排行", url = "" },
-                                new { id = "216", iconCls = "icon-add", pid = "m6", text = "会员积分转储值查询", url = "" }
+                                new { id = "211", iconCls = "icon-add", pid = "m6", text = "无消费会员查询", url = "/Ms/MsMemberNoSaleReport" },
+                                new { id = "212", iconCls = "icon-add", pid = "m6", text = "会员储值消费查询", url = "/Ms/MsMemberPrepaidReport" },
+                                new { id = "213", iconCls = "icon-add", pid = "m6", text = "会员储值消费汇总查询", url = "/Ms/MsMemberPrepaidSumReport" },
+                                new { id = "214", iconCls = "icon-add", pid = "m6", text = "会员消费排行", url = "/Ms/MsMemberSaleSortReport" },
+                                new { id = "215", iconCls = "icon-add", pid = "m6", text = "会员积分排行", url = "/Ms/MsMemberPointsSortReport" },
+                                new { id = "216", iconCls = "icon-add", pid = "m6", text = "会员积分转储值查询", url = "/Ms/MsMemberPointsToPrepaidReport" }
 
                             }}
                          } },

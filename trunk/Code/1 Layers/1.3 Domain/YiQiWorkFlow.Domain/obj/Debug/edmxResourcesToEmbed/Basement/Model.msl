@@ -1981,6 +1981,7 @@
     <EntitySetMapping Name="ms_card_archives">
       <EntityTypeMapping TypeName="YiQiModel.ms_card_archives">
         <MappingFragment StoreEntitySet="ms_card_archives">
+          <ScalarProperty Name="made_number" ColumnName="made_number" />
           <ScalarProperty Name="card_number" ColumnName="card_number" />
           <ScalarProperty Name="surface_number" ColumnName="surface_number" />
           <ScalarProperty Name="ms_code" ColumnName="ms_code" />
@@ -2976,6 +2977,7 @@
     <EntitySetMapping Name="pc_putin_manage">
       <EntityTypeMapping TypeName="YiQiModel.pc_putin_manage">
         <MappingFragment StoreEntitySet="pc_putin_manage">
+          <ScalarProperty Name="pc_number" ColumnName="pc_number" />
           <ScalarProperty Name="pi_flow_number" ColumnName="pi_flow_number" />
           <ScalarProperty Name="pi_number" ColumnName="pi_number" />
           <ScalarProperty Name="sup_code" ColumnName="sup_code" />
@@ -4330,5 +4332,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_pc_update_stock" FunctionName="YiQiModel.Store.sp_pc_update_stock" />
+    <FunctionImportMapping FunctionImportName="sp_pc_update_stock_branch" FunctionName="YiQiModel.Store.sp_pc_update_stock_branch" />
+    <FunctionImportMapping FunctionImportName="sp_pc_update_stock_out" FunctionName="YiQiModel.Store.sp_pc_update_stock_out" />
+    <FunctionImportMapping FunctionImportName="sp_pc_update_stock_out_branch" FunctionName="YiQiModel.Store.sp_pc_update_stock_out_branch" />
   </EntityContainerMapping>
 </Mapping>

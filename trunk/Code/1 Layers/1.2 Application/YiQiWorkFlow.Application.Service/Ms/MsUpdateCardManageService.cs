@@ -202,6 +202,37 @@ namespace YiQiWorkFlow.Application.Service.Ms
                 Delete(each);
             }
         }
+
+        public string GenerateUpdateNumber()
+        {
+            string maxUpdateNumber = GetMaxCardtypeCode();
+
+            if (string.IsNullOrEmpty(maxUpdateNumber))
+            {
+                return "560000000001";
+            }
+            else
+            {
+                int maxmaxUpdateNumberInt = Convert.ToInt32(maxUpdateNumber.Replace("56",""));
+
+                return "56" + (maxmaxUpdateNumberInt + 1).ToString("0000000000");
+            }
+        }
+
+        private string GetMaxCardtypeCode()
+        {
+            string maxUpdateNumber = EntityRepository.LinqQuery.Max(x => x.UpdateNumber);
+
+            if (string.IsNullOrEmpty(maxUpdateNumber))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return maxUpdateNumber;
+            }
+        }
+
     }
 }
 

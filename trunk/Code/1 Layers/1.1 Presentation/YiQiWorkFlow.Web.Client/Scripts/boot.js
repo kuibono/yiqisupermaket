@@ -78,89 +78,23 @@ function labelModel(form) {
     }
 }
 
-function onReadonlyExamRender(e) {
-    if (e.value == "true" || e.value == "1") return "<span style='color:green'>是</span>";
-    else return "<span style='color:red'>否</span>";
-}
-function onYesNoRender(e) {
-    if (e.value == "true" || e.value == "1") return "是";
-    else return "否";
-}
+//function onMoneyRender(e)
+//{
+//    return formatNum(e.value);
+//}
 
-function onExamineRender(e) {
-    if (e.value == "0") {
-        return "未审核";
-    } else if (e.value == "1") {
-        return "已审核";
-    } else if (e.value == "-1") {
-        return "已废除";
-    }
-}
-
-function onFormatTimeRender(e) {
-    
-    if (e.value){
-        return mini.formatDate(e.value, "yyyy-MM-dd HH:mm:ss");
-    }
-    return "";
-}
-
-// 会员管理
-function onCardTypeRender(e) {
-    if (e.value == "1") {
-        return "单店使用";
-    } else if (e.value == "2") {
-        return "同城使用";
-    } else if (e.value == "3") {
-        return "异地使用";
-    }
-}
-
-// 卡介质
-function onCardMediumRender(e) {
-    if (e.value == "1") {
-        return "磁条卡";
-    } else if (e.value == "2") {
-        return "IC卡";
-    } else if (e.value == "3") {
-        return "条码卡";
-    } else if (e.value == "3") {
-        return "普通卡";
-    }
-}
-
-// 积分类型
-function onUpgradeTypeRender(e) {
-    if (e.value == "1") {
-        return "累积积分";
-    } else if (e.value == "2") {
-        return "当前积分";
-    }
-}
-
-// 卡状态
-function onCardStateRender(e) {
-    if (e.value == "0") {
-        return "待发";
-    } else if (e.value == "1") {
-        return "正常";
-    } else if (e.value == "2") {
-        return "挂失";
-    } else if (e.value == "3") {
-        return "冻结";
-    } else if (e.value == "4") {
-        return "废除";
-    }
-}
-
-// 生效方式onEffectiveTypeRender
-function onEffectiveTypeRender(e) {
-    if (e.value == "1") {
-        return "发卡生效";
-    } else if (e.value == "2") {
-        return "指定生效";
-    }
-}
+//function formatNum(num)
+//{  
+//    if(!/^(/+|-)?(/d+)(/./d+)?$/.test(num))
+//    {
+//        //alert("wrong!"); 
+//        return num;
+//    }
+//    var a = RegExp.$1, b = RegExp.$2, c = RegExp.$3;
+//    var re = new RegExp().compile("(//d)(//d{3})(,|$)");
+//    while(re.test(b)) b = b.replace(re, "$1,$2$3");
+//    return a +""+ b +""+ c;
+//}
 
 window.onerror = function () { return true; }
 
@@ -250,14 +184,14 @@ function _newRow(gridId) {
     var row = {};
     grid.addRow(row, 0);
 
-    grid.cancelEdit();
+    grid.commitEdit();
     grid.beginEditRow(row);
 }
 function _editRow(gridId, row_uid) {
     var grid = mini.get(gridId);
     var row = grid.getRowByUID(row_uid);
     if (row) {
-        grid.cancelEdit();
+        grid.commitEdit();
         grid.beginEditRow(row);
     }
 }
@@ -277,4 +211,22 @@ function _updateRow(gridId,row_uid) {
     var row = grid.getRowByUID(row_uid);
     grid.commitEdit();
 
+}
+Date.prototype.format = function (format) {
+    var o = {
+        "M+": this.getMonth() + 1, //month
+        "d+": this.getDate(), //day
+        "h+": this.getHours(), //hour
+        "m+": this.getMinutes(), //minute
+        "s+": this.getSeconds(), //second
+        "q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+        "S": this.getMilliseconds() //millisecond
+    }
+    if (/(y+)/.test(format)) format = format.replace(RegExp.$1,
+    (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o) if (new RegExp("(" + k + ")").test(format))
+        format = format.replace(RegExp.$1,
+        RegExp.$1.length == 1 ? o[k] :
+        ("00" + o[k]).substr(("" + o[k]).length));
+    return format;
 }

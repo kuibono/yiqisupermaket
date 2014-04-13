@@ -126,6 +126,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = OpAdjustManageService.GetById(id);
             }
+            else
+            {
+                m.Id = "";
+                m._state = "added";
+            }
             return View(m);
         }
         #endregion
@@ -575,7 +580,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         {
                             AlNumber = l.al_number,
                             GoodsCode = l.goods_code,
-                            GoodsName=j_g.goods_name,
+                            GoodsName = j_g.goods_name,
                             GoodsBarCode = l.goods_bar_code,
                             Specification = l.specification,
                             PackUnitCode = l.pack_unit_code,
@@ -672,6 +677,11 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = OpAllotManageService.GetById(id);
             }
+            else
+            {
+                m.Id = "";
+                m._state = "added";
+            }
             return View(m);
         }
         #endregion
@@ -738,7 +748,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 });
 
                 //验证是否审核，如果审核则调用入库出库存储过程
-
+                r.ReturnObject = m;
                 r.IsSuccess = true;
                 r.Message = "保存成功!";
             }
@@ -757,7 +767,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult SearchOpAllotManageList(SearchDtoBase<OpAllotManage> c, OpAllotManage s)
         {
-                        c.entity = s;
+            c.entity = s;
             using (YiQiEntities e = new YiQiEntities())
             {
 
@@ -773,21 +783,21 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                         orderby l.al_number
                         select new
                                    {
-                                    AlNumber=l.al_number,
-                                    AlType=l.al_type,
-                                    OrganOut=l.organ_out,
-                                    OrganNameOut=l.organ_name_out,
-                                    WhCodeOut=j_who.wh_name,
-                                    OrganIn=l.organ_in,
-                                    OrganNameIn=l.organ_name_in,
-                                    WhCodeIn=j_whi.wh_name,
-                                    AlDate=l.al_date,
-                                    CreateDate=l.create_date,
-                                    Operator=j_eo.em_name,
-                                    Assessor=j_ea.em_name,
-                                    IfExamine=l.if_examine,
-                                    ExamineDate=l.examine_date,
-                                    OperatorDate=l.operator_date
+                                       AlNumber = l.al_number,
+                                       AlType = l.al_type,
+                                       OrganOut = l.organ_out,
+                                       OrganNameOut = l.organ_name_out,
+                                       WhCodeOut = j_who.wh_name,
+                                       OrganIn = l.organ_in,
+                                       OrganNameIn = l.organ_name_in,
+                                       WhCodeIn = j_whi.wh_name,
+                                       AlDate = l.al_date,
+                                       CreateDate = l.create_date,
+                                       Operator = j_eo.em_name,
+                                       Assessor = j_ea.em_name,
+                                       IfExamine = l.if_examine,
+                                       ExamineDate = l.examine_date,
+                                       OperatorDate = l.operator_date
 
                                    };
                 if (c.entity.Id.IsNullOrEmpty() == false)
@@ -834,48 +844,48 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 {
                     q = from l in q where l.IfExamine.StartsWith(c.entity.IfExamine) select l;
                 }
-                
-                
-                if(c.OperatorDateH.HasValue)
+
+
+                if (c.OperatorDateH.HasValue)
                 {
-                    q = from l in q where l.OperatorDate<=c.OperatorDateH select l;
+                    q = from l in q where l.OperatorDate <= c.OperatorDateH select l;
                 }
-                if(c.OperatorDateL.HasValue)
+                if (c.OperatorDateL.HasValue)
                 {
                     q = from l in q where l.OperatorDate >= c.OperatorDateL select l;
                 }
-    
-                
-                if(c.ExamineDateH.HasValue)
+
+
+                if (c.ExamineDateH.HasValue)
                 {
-                    q = from l in q where l.ExamineDate<=c.ExamineDateH select l;
+                    q = from l in q where l.ExamineDate <= c.ExamineDateH select l;
                 }
-                if(c.OperatorDateL.HasValue)
+                if (c.OperatorDateL.HasValue)
                 {
                     q = from l in q where l.ExamineDate >= c.ExamineDateL select l;
                 }
-    
-                
-                if(c.CreateDateH.HasValue)
+
+
+                if (c.CreateDateH.HasValue)
                 {
-                    q = from l in q where l.CreateDate<=c.CreateDateH select l;
+                    q = from l in q where l.CreateDate <= c.CreateDateH select l;
                 }
-                if(c.OperatorDateL.HasValue)
+                if (c.OperatorDateL.HasValue)
                 {
                     q = from l in q where l.CreateDate >= c.CreateDateL select l;
                 }
-    
-                
-                
-                
-                
+
+
+
+
+
 
                 var result =
                     new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
 
                 return Json(result, JsonRequestBehavior.AllowGet);
-                
-		}
+
+            }
 
 
         }
@@ -897,6 +907,86 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        /// <summary>
+        /// 审核出库入库
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public ActionResult ExamineAllot(OpAllotManage m)
+        {
+            m.ExamineDate = DateTime.Now;
+            m.IfExamine = "1";
+            m.Assessor = MyEnv.LoginUser.Id;
+
+            OpAllotManageService.Update(m);
+
+            using (YiQiEntities e = new YiQiEntities())
+            {
+                var details = (
+                    from l in e.op_allot_detail
+                    where l.al_number == m.Id
+                    join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                    from j_g in join_g
+                    join s in e.fb_supplier_archives on j_g.sup_code equals s.sup_code into join_s
+                    from j_s in join_s
+                    select new
+                    {
+                        l.goods_code,
+                        l.goods_bar_code,
+                        en_code = "",
+                        m.WhCodeOut,
+                        j_s.sup_code,
+                        j_s.op_code,
+                        input_tax = j_s.input_tax ?? 0,
+                        l.purchase_price,
+                        l.nontax_purchase_price,
+                        allot_qty = l.allot_qty ?? 0,
+                        sale_price = l.sale_price ?? 0
+                    }
+                    ).ToList();
+
+                foreach (var d in details)
+                {
+
+
+                    YiQiWorkFlow.Domain.Basement.Command.SpPcUpdateStockOut(d.goods_code,
+                        d.goods_bar_code,
+                        d.en_code,
+                        m.WhCodeOut,
+                        d.sup_code,
+                        d.op_code,
+                       d.input_tax,
+                       d.purchase_price,
+                       d.nontax_purchase_price,
+                       d.allot_qty,
+                       DateTime.Now,
+                       MyEnv.LoginUser.Id,
+                       MyEnv.LoginUser.Id,
+                       d.sale_price);
+
+                    YiQiWorkFlow.Domain.Basement.Command.SpPcUpdateStock(d.goods_code,
+                        d.goods_bar_code,
+                        d.en_code,
+                        d.WhCodeOut,
+                        d.sup_code,
+                        d.op_code,
+                        d.input_tax,
+                        d.purchase_price,
+                        d.nontax_purchase_price,
+                        d.allot_qty,//purchaseQty
+                        "0",//PiNumber
+                        DateTime.Now,
+                        DateTime.Now,
+                        MyEnv.LoginUser.Id,
+                        MyEnv.LoginUser.Id,
+                        d.sale_price);
+                }
+            }
+
+            return Json(new SavingResult { IsSuccess = true }, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion  商品调拨单
 
         #region 商品调拨流水帐单
@@ -1198,8 +1288,94 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 OpCheckManageService.Create(m);
 
                 //根据不同条件向op_check_stock 插入数据
+                
+                var details = (from l in e.op_check_detail where l.ck_number == m.Id select l).ToList();
+                foreach (var d in details)
+                {
+                    if (MyEnv.CheckStockType == "2")
+                    {
+                        if (m.CkType == "2")
+                        {
+                            if (m.CkOrgan == MyEnv.EnType)
+                            {
+                                op_check_stock s = new op_check_stock();
+                                s.ck_number = d.ck_number;
+                                s.wh_code = d.wh_code;
+                                s.goods_code = d.goods_code;
+                                s.stock_qty = d.check_qty;
+                                e.op_check_stock.Add(s);
+                            }
+                            else
+                            {
 
+                            }
 
+                        }
+                        else
+                        {
+                            //insert into op_check_stock(ck_number,wh_code,goods_code,stock_qty)
+                            //select :ls_ck_number,:ls_wh_code,a.goods_code,isnull(b.stock_qty,0) from fb_goods_archives a,
+                            //    (select goods_code,wh_code,sum(stock_qty) as stock_qty 
+                            //    from op_goods_batch where wh_code = :ls_wh_code group by goods_code,wh_code ) b
+                            //    where a.goods_code *= b.goods_code and wh_code = :ls_wh_code and a.gb_code = :ls_ck_area ;
+                            op_check_stock s = new op_check_stock();
+                            s.ck_number = d.ck_number;
+                            s.wh_code = d.wh_code;
+                            s.goods_code = d.goods_code;
+                            s.stock_qty = (from l in e.op_goods_batch
+                                           join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                                           from j_g in join_g
+                                           where l.goods_code == d.goods_code && l.wh_code == d.wh_code && j_g.gb_code == m.CkArea
+                                           select l.goods_code
+                                               ).Count();
+                            e.op_check_stock.Add(s);
+                        }
+                    }
+                    else
+                    {
+                        if (MyEnv.EnType == "2")
+                        {
+                            if (m.CkOrgan == MyEnv.EnType)
+                            {
+                                //insert into op_check_stock(ck_number,wh_code,goods_code,stock_qty)
+                                //select :ls_ck_number,:ls_wh_code,a.goods_code,isnull(b.stock_qty,0) from fb_goods_archives a,
+                                //    (select goods_code,wh_code,sum(stock_qty) as stock_qty 
+                                //    from op_dynamic_stock_wh where wh_code = :ls_wh_code group by goods_code,wh_code) b
+                                //    where a.goods_code *= b.goods_code and wh_code = :ls_wh_code  ;
+                                op_check_stock s = new op_check_stock();
+                                s.ck_number = d.ck_number;
+                                s.wh_code = d.wh_code;
+                                s.goods_code = d.goods_code;
+                                s.stock_qty = (from l in e.op_dynamic_stock_wh
+                                               join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                                               from j_g in join_g
+                                               where l.goods_code == d.goods_code && l.wh_code == d.wh_code
+                                               select l.goods_code
+                                                   ).Count();
+                                e.op_check_stock.Add(s);
+                            }
+                        }
+                        else
+                        {
+                            //insert into op_check_stock(ck_number,wh_code,goods_code,stock_qty)
+                            //select :ls_ck_number,:ls_wh_code,a.goods_code,isnull(b.stock_qty,0) from fb_goods_archives a,
+                            //    (select goods_code,wh_code,sum(stock_qty) as stock_qty 
+                            //    from op_goods_batch where wh_code = :ls_wh_code group by goods_code,wh_code) b
+                            //    where a.goods_code *= b.goods_code and wh_code = :ls_wh_code  ;
+                            op_check_stock s = new op_check_stock();
+                            s.ck_number = d.ck_number;
+                            s.wh_code = d.wh_code;
+                            s.goods_code = d.goods_code;
+                            s.stock_qty = (from l in e.op_goods_batch group l by l.goods_code into group_g
+                                           join g in e.fb_goods_archives on group_g.Key equals g.goods_code into join_g
+                                           from j_g in join_g
+                                           where group_g.Key == d.goods_code && m.WhCode == d.wh_code
+                                           select group_g.Key
+                                               ).Count();
+                            e.op_check_stock.Add(s);
+                        }
+                    }
+                }
                 r.IsSuccess = true;
                 r.Message = "创建成功！";
                 return json(r);
@@ -2279,7 +2455,66 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public JsonResult SearchOpSplitComDetailList(SearchDtoBase<OpSplitComDetail> c, OpSplitComDetail s)
         {
             c.entity = s;
-            return Json(OpSplitComDetailService.Search(c), JsonRequestBehavior.AllowGet);
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.op_split_com_detail
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        orderby l.Id
+                        select new
+                        {
+                            ScNumber = l.sc_number,
+                            GoodsCode = l.goods_code,
+                            GoodsName=j_g.goods_name,
+                            GoodsBarCode = l.goods_bar_code,
+                            Specification = l.specification,
+                            PackUnitCode = l.pack_unit_code,
+                            PurchaseQty = l.purchase_qty,
+                            PurchasePrice = l.purchase_price,
+                            NontaxPurchasePrice = l.nontax_purchase_price,
+                            PurchaseMoney = l.purchase_money,
+                            NontaxPurchaseMoney = l.nontax_purchase_money,
+                            SalePrice = l.sale_price,
+                            SaleMoney = l.sale_money,
+                            NontaxSaleMoney = l.nontax_sale_money,
+                            Id = l.Id
+
+                        };
+                if (c.entity.ScNumber.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.ScNumber.StartsWith(c.entity.ScNumber) select l;
+                }
+                if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                }
+                if (c.entity.GoodsBarCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsBarCode.StartsWith(c.entity.GoodsBarCode) select l;
+                }
+                if (c.entity.Specification.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Specification.StartsWith(c.entity.Specification) select l;
+                }
+                if (c.entity.PackUnitCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.PackUnitCode.StartsWith(c.entity.PackUnitCode) select l;
+                }
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                }
+
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+
+
         }
         #endregion
 
@@ -2411,6 +2646,13 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = OpSplitComManageService.GetById(id);
             }
+            else
+            {
+                m.Id = "";
+                m.CreateDate = DateTime.Now;
+                
+                m._state = "added";
+            }
             return View(m);
         }
         #endregion
@@ -2444,14 +2686,38 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                m.Operator = MyEnv.LoginUser.Id;
+                m.OperatorDate = DateTime.Now;
+                m.ScDate = DateTime.Now;
                 if (m.HaveId)
                 {
                     OpSplitComManageService.Update(m);
                 }
                 else
                 {
-                    OpSplitComManageService.Create(m);
+                    m.CreateDate = DateTime.Now;
+                    m.Id = OpSplitComManageService.Create(m);
                 }
+
+                //Detail
+                var jser = new JavaScriptSerializer();
+                var details = jser.Deserialize<List<OpSplitComDetail>>(Request["detail"]).ToList();
+                details.ForEach(p =>
+                {
+                    p.ScNumber = m.Id;
+                    if (p.IsAdded)
+                    {
+                        OpSplitComDetailService.Create(p);
+                    }
+                    if (p.IsDelete)
+                    {
+                        OpSplitComDetailService.Delete(p);
+                    }
+                    if (p.IsUpdated)
+                    {
+                        OpSplitComDetailService.Update(p);
+                    }
+                });
                 r.IsSuccess = true;
                 r.Message = "保存成功";
             }
@@ -2468,8 +2734,108 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         /// <returns></returns>
         public JsonResult SearchOpSplitComManageList(SearchDtoBase<OpSplitComManage> c, OpSplitComManage s)
         {
-            c.entity = s;
-            return Json(OpSplitComManageService.Search(c), JsonRequestBehavior.AllowGet);
+                       c.entity = s;
+            using (YiQiEntities e = new YiQiEntities())
+            {
+
+                var q = from l in e.op_split_com_manage
+                        join em in e.em_employee_archives on l.assessor equals em.em_code into join_em
+                        from j_em in join_em.DefaultIfEmpty()
+                        join ass in e.em_employee_archives on l.@operator equals ass.em_code into join_ass
+                        from j_ass in join_ass.DefaultIfEmpty()
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        orderby l.sc_number
+                        select new
+                                   {
+                                    Id=l.sc_number,
+                                    ScDate=l.sc_date,
+                                    ScType=l.sc_type,
+                                    WhCode=l.wh_code,
+                                    GoodsCode=l.goods_code,
+                                    GoodsName=j_g.goods_name,
+                                    PurchaseQty=l.purchase_qty,
+                                    PurchaseMoney=l.purchase_money,
+                                    NontaxPurchaseMoney=l.nontax_purchase_money,
+                                    SalePrice=l.sale_price,
+                                    SaleMoney=l.sale_money,
+                                    NontaxSaleMoney=l.nontax_sale_money,
+                                    CreateDate=l.create_date,
+                                    Operator=j_ass.em_name,
+                                    Assessor=j_em.em_name,
+                                    IfExamine=l.if_examine,
+                                    ExamineDate=l.examine_date,
+                                    OperatorDate=l.operator_date
+
+                                   };
+                if (c.entity.Id.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Id.StartsWith(c.entity.Id) select l;
+                }
+                if (c.entity.ScType.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.ScType.StartsWith(c.entity.ScType) select l;
+                }
+                if (c.entity.WhCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.WhCode.StartsWith(c.entity.WhCode) select l;
+                }
+                if (c.entity.GoodsCode.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.GoodsCode.StartsWith(c.entity.GoodsCode) select l;
+                }
+                if (c.entity.Operator.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Operator.StartsWith(c.entity.Operator) select l;
+                }
+                if (c.entity.Assessor.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.Assessor.StartsWith(c.entity.Assessor) select l;
+                }
+                if (c.entity.IfExamine.IsNullOrEmpty() == false)
+                {
+                    q = from l in q where l.IfExamine.StartsWith(c.entity.IfExamine) select l;
+                }
+                
+                
+                if(c.OperatorDateH.HasValue)
+                {
+                    q = from l in q where l.OperatorDate<=c.OperatorDateH select l;
+                }
+                if(c.OperatorDateL.HasValue)
+                {
+                    q = from l in q where l.OperatorDate >= c.OperatorDateL select l;
+                }
+    
+                
+                if(c.ExamineDateH.HasValue)
+                {
+                    q = from l in q where l.ExamineDate<=c.ExamineDateH select l;
+                }
+                if(c.OperatorDateL.HasValue)
+                {
+                    q = from l in q where l.ExamineDate >= c.ExamineDateL select l;
+                }
+    
+                
+                if(c.CreateDateH.HasValue)
+                {
+                    q = from l in q where l.CreateDate<=c.CreateDateH select l;
+                }
+                if(c.OperatorDateL.HasValue)
+                {
+                    q = from l in q where l.CreateDate >= c.CreateDateL select l;
+                }
+    
+
+                var result =
+                    new { total = q.Count(), data = q.Skip(c.pageSize * c.pageIndex).Take(c.pageSize).ToList() };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+                
+		}
+
+
         }
         #endregion
 

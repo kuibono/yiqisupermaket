@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="mini-fit">
-        <div id="datagrid1" class="mini-datagrid" url="SearchOpSplitComManageList"
+        <div id="datagrid1" class="mini-datagrid" url="/Op/SearchOpSplitComManageList"
             style="width: 100%; height: 100%;" idfield="id" allowresize="false" sizelist="[20,30,50,100]"
             pagesize="20" multiselect="true" showFilterRow="true">
             <div property="columns">
@@ -44,11 +44,15 @@
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-				<div field="ScNumber" headeralign="center" align="center" width="60">
+                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                    cellstyle="padding:0;">
+                    管理
+                </div>
+				<div field="Id" headeralign="center" align="center" width="120">
 				    处理单号
-					<input id="filter_ScNumber" name="ScNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+					<input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="ScDate" headeralign="center" align="center" width="60">
+				<div field="ScDate" headeralign="center" align="center" width="80" dateFormat="yyyy-MM-dd">
 				    处理日期
 					<input id="filter_ScDate" name="ScDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
@@ -60,9 +64,13 @@
 				    仓库编码
 					<input id="filter_WhCode" name="WhCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="GoodsCode" headeralign="center" align="center" width="60">
+				<div field="GoodsCode" headeralign="center" align="center" width="100">
 				    商品编码
 					<input id="filter_GoodsCode" name="GoodsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+				</div>
+                <div field="GoodsName" headeralign="center" align="center" width="120">
+				    商品名称
+					<input id="filter_GoodsName" name="GoodsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
 				<div field="PurchaseQty" headeralign="center" align="center" width="60">
 				    处理数量
@@ -88,7 +96,7 @@
 				    不含税售价金额
 					<input id="filter_NontaxSaleMoney" name="NontaxSaleMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="CreateDate" headeralign="center" align="center" width="60">
+				<div field="CreateDate" headeralign="center" align="center" width="60" dateFormat="yyyy-MM-dd">
 				    创建时间
 					<input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
@@ -104,19 +112,16 @@
 				    是否审核
 					<input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="ExamineDate" headeralign="center" align="center" width="60">
+				<div field="ExamineDate" headeralign="center" align="center" width="60" dateFormat="yyyy-MM-dd">
 				    审核时间
 					<input id="filter_ExamineDate" name="ExamineDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
-				<div field="OperatorDate" headeralign="center" align="center" width="60">
+				<div field="OperatorDate" headeralign="center" align="center" width="60" dateFormat="yyyy-MM-dd">
 				    操作时间
 					<input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
 				</div>
                 <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
-                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
-                    cellstyle="padding:0;">
-                    管理
-                </div>
+                
 
             </div>
         </div>

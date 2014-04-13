@@ -10,13 +10,13 @@
     <script type="text/javascript">
         function SaveData() {
             var form = new mini.Form("#formMain"); // default form
-            var o = form.getData();
+            var o = form.getData(true);
 
             var grid1 = mini.get("datagrid1");
             grid1.commitEdit();
             var detail = grid1.getChanges();
             //验证子表
-            if (detail.length == 0) {
+            if (detail.length == 0 && grid1.data.length==0) {
                 alert("必须设置商品明细！");
                 return false;
             }
@@ -43,8 +43,8 @@
                 dataType: "json",
                 success: function (r) {
                     if (r.IsSuccess == true) {
-                        //location.href = "/Pc/PcPutinManageList";
-                        try{ history.go(-1); } catch(e){}
+                        location.href = "/Pc/PcPutinManageEdit/"+r.ReturnObject.Id;
+                        //try{ history.go(-1); } catch(e){}
                     } else {
                         $("#Tooltip_Critical_PcPurchaseManage .content").first().text(r.Message);
                         $("#Tooltip_Critical_PcPurchaseManage").show("fast");
@@ -97,7 +97,7 @@
                         PurchaseMoney:j.data[i].PurchaseMoney,
                         NontaxPurchaseMoney:j.data[i].NontaxPurchaseMoney,
                         ProduceDate:j.data[i].ProduceDate,
-                        GoodsName: data[i].GoodsName
+                        GoodsName: j.data[i].GoodsName
                     };
                     var grid=mini.get("datagrid1");
                     grid.addRow(row);
@@ -164,8 +164,21 @@
                 $("#btnExame").prop("disabled", true);
             }
             $("#btnInStock").click(function () {
-                mini.get("Control_IfPutin").setValue("1");
+                //mini.get("Control_IfPutin").setValue("1");
                 mini.get("Control_PutinDate").setValue(new Date());
+                var chk = mini.get("Control_IfExamine");
+                chk.setValue("1");
+                mini.get("Control_ExamineDate").setValue(new Date());
+                if(isNew==true)
+                {
+                    alert("请保存入库单后进行入库操作");
+                    return false;
+                }
+                $.getJSON("/Pc/PutIn?piNumber=@Model.Id&pcNumber=@Model.PcNumber",function(){
+                    SaveData();
+                });
+
+                
             });
             $("#btnDel").click(function () {
                 if (isNew == false) {
@@ -243,15 +256,13 @@
             <table style="width: 100%;">
                 <tr>
                     <td>
-                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
-                        <a id="btnGoods" iconcls="icon-find" class="mini-button" plain="true" tooltip="商品">商品</a>
+                        <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="验收(Ctrl+S)">验收</a>
                         <a id="btnInStock" iconcls="icon-upload" class="mini-button" plain="true" tooltip="入库">入库</a>
-                        <a id="btnExame" iconcls="icon-ok" class="mini-button" plain="true" tooltip="审核(Ctrl+E)">审核</a>
                         <a id="btnQuery" iconcls="icon-search" class="mini-button" plain="true" tooltip="查询">查询</a>
                         <a id="btnSubmit" iconcls="icon-upgrade" class="mini-button" plain="true" tooltip="提交">提交</a>
                         <a id="btnPrint" iconcls="icon-printer" class="mini-button" plain="true" tooltip="打印">打印</a>
                         <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
-                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                        <a id="btnReturn" iconcls="icon-undo" class="mini-button" plain="true" tooltip="返回(Ctrl+Q)">返回</a>
                     </td>
                     <td>
                     </td>
@@ -268,7 +279,7 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_PcNumber">采购单号:</label>
-                    <div id="Control_PcNumber" name="GoodsCode" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="Id" onvaluechanged="onPcNumberChanged" url="/Pc/SearchPcPurchaseManageListForList" style="width: 100%;">
+                    <div id="Control_PcNumber" name="PcNumber" value="@Model.PcNumber" property="editor" class="mini-combobox" allowinput="true" valuefield="Id" textfield="Id" onvaluechanged="onPcNumberChanged" url="/Pc/SearchPcPurchaseManageListForList" style="width: 100%;">
                     </div>
                 </div>
                 <div class="ablock" style="display: none">
@@ -278,7 +289,7 @@
 
                 <div class="ablock">
                     <label for="Control_SupCode">供货商编码:</label>
-                    <input id="Control_SupCode" name="SupCode" class="mini-combobox" onvaluechanged="supCodeChanged" valuefield="Id" textfield="SupName" pinyinfield="PyCode" url="/Data/FbSupplierArchives.js" allowinput="true" style="width: 100%;" />
+                    <input id="Control_SupCode" name="SupCode" value="@Model.SupCode" class="mini-combobox" onvaluechanged="supCodeChanged" valuefield="Id" textfield="SupName" pinyinfield="PyCode" url="/Data/FbSupplierArchives.js" allowinput="true" style="width: 100%;" />
                 </div>
 
                 <div class="ablock">

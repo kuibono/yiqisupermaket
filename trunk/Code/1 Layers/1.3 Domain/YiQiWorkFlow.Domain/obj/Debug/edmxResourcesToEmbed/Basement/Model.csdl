@@ -233,6 +233,81 @@
       <End Role="em_employee_archives" EntitySet="em_employee_archives" />
       <End Role="em_employee_family" EntitySet="em_employee_family" />
     </AssociationSet>
+    <FunctionImport Name="sp_pc_update_stock">
+      <Parameter Name="goods_code" Mode="In" Type="String" />
+      <Parameter Name="goods_bar_code" Mode="In" Type="String" />
+      <Parameter Name="en_code" Mode="In" Type="String" />
+      <Parameter Name="wh_code" Mode="In" Type="String" />
+      <Parameter Name="sup_code" Mode="In" Type="String" />
+      <Parameter Name="op_code" Mode="In" Type="String" />
+      <Parameter Name="input_tax" Mode="In" Type="Decimal" />
+      <Parameter Name="purchase_price" Mode="In" Type="Decimal" />
+      <Parameter Name="nontax_purchase_price" Mode="In" Type="Decimal" />
+      <Parameter Name="purchase_qty" Mode="In" Type="Decimal" />
+      <Parameter Name="pi_number" Mode="In" Type="String" />
+      <Parameter Name="putin_date" Mode="In" Type="DateTime" />
+      <Parameter Name="produce_date" Mode="In" Type="DateTime" />
+      <Parameter Name="em_code" Mode="In" Type="String" />
+      <Parameter Name="adjust_operat" Mode="In" Type="String" />
+      <Parameter Name="sale_price" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_pc_update_stock_branch">
+      <Parameter Name="goods_code" Mode="In" Type="String" />
+      <Parameter Name="goods_bar_code" Mode="In" Type="String" />
+      <Parameter Name="en_code" Mode="In" Type="String" />
+      <Parameter Name="b_code" Mode="In" Type="String" />
+      <Parameter Name="wh_code" Mode="In" Type="String" />
+      <Parameter Name="sup_code" Mode="In" Type="String" />
+      <Parameter Name="op_code" Mode="In" Type="String" />
+      <Parameter Name="input_tax" Mode="In" Type="Decimal" />
+      <Parameter Name="purchase_price" Mode="In" Type="Decimal" />
+      <Parameter Name="nontax_purchase_price" Mode="In" Type="Decimal" />
+      <Parameter Name="purchase_qty" Mode="In" Type="Decimal" />
+      <Parameter Name="pi_number" Mode="In" Type="String" />
+      <Parameter Name="putin_date" Mode="In" Type="DateTime" />
+      <Parameter Name="produce_date" Mode="In" Type="DateTime" />
+      <Parameter Name="em_code" Mode="In" Type="String" />
+      <Parameter Name="adjust_operat" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_pc_update_stock_out">
+      <Parameter Name="goods_code" Mode="In" Type="String" />
+      <Parameter Name="goods_bar_code" Mode="In" Type="String" />
+      <Parameter Name="en_code" Mode="In" Type="String" />
+      <Parameter Name="wh_code" Mode="In" Type="String" />
+      <Parameter Name="sup_code" Mode="In" Type="String" />
+      <Parameter Name="op_code" Mode="In" Type="String" />
+      <Parameter Name="input_tax" Mode="In" Type="Decimal" />
+      <Parameter Name="purchase_price" Mode="In" Type="Decimal" />
+      <Parameter Name="nontax_purchase_price" Mode="In" Type="Decimal" />
+      <Parameter Name="putout_qty" Mode="In" Type="Decimal" />
+      <Parameter Name="putout_date" Mode="In" Type="DateTime" />
+      <Parameter Name="em_code" Mode="In" Type="String" />
+      <Parameter Name="adjust_operat" Mode="In" Type="String" />
+      <Parameter Name="sale_price" Mode="In" Type="Decimal" />
+      <Parameter Name="putout_money" Mode="InOut" Type="Decimal" />
+      <Parameter Name="nontax_putout_money" Mode="InOut" Type="Decimal" />
+      <Parameter Name="sale_money" Mode="InOut" Type="Decimal" />
+      <Parameter Name="nontax_sale_money" Mode="InOut" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_pc_update_stock_out_branch">
+      <Parameter Name="goods_code" Mode="In" Type="String" />
+      <Parameter Name="goods_bar_code" Mode="In" Type="String" />
+      <Parameter Name="en_code" Mode="In" Type="String" />
+      <Parameter Name="b_code" Mode="In" Type="String" />
+      <Parameter Name="wh_code" Mode="In" Type="String" />
+      <Parameter Name="sup_code" Mode="In" Type="String" />
+      <Parameter Name="op_code" Mode="In" Type="String" />
+      <Parameter Name="input_tax" Mode="In" Type="Decimal" />
+      <Parameter Name="purchase_price" Mode="In" Type="Decimal" />
+      <Parameter Name="nontax_purchase_price" Mode="In" Type="Decimal" />
+      <Parameter Name="putout_qty" Mode="In" Type="Decimal" />
+      <Parameter Name="putout_date" Mode="In" Type="DateTime" />
+      <Parameter Name="em_code" Mode="In" Type="String" />
+      <Parameter Name="adjust_operat" Mode="In" Type="String" />
+      <Parameter Name="sale_price" Mode="In" Type="Decimal" />
+      <Parameter Name="putout_money" Mode="InOut" Type="Decimal" />
+      <Parameter Name="nontax_putout_money" Mode="InOut" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="ac_branch_goodssale_account">
     <Key>
@@ -2195,6 +2270,7 @@
     <Property Name="sale_times" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="operator" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
     <Property Name="operator_date" Type="DateTime" Precision="3" />
+    <Property Type="String" Name="made_number" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="ms_cardtype_discount">
     <Key>
@@ -3157,6 +3233,7 @@
     <Property Name="if_examine" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
     <Property Name="examine_date" Type="DateTime" Precision="3" />
     <Property Name="operator_date" Type="DateTime" Precision="3" />
+    <Property Type="String" Name="pc_number" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="pc_putout_detail">
     <Key>

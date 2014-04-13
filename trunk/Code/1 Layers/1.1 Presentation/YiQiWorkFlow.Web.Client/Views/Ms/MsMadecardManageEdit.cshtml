@@ -111,6 +111,18 @@
                 return false;
             }
 
+            // 判断如果是制卡则开始制卡 状态为-1？
+
+            // 判断如果是指定发卡 必须选择日期
+            var effectivetype = mini.get('#Control_EffectiveType').getValue();
+            if (effectivetype && effectivetype == '2') {
+                var effectiveDate = mini.get('#Control_EffectiveDate').getValue();
+                if (effectiveDate = '') {
+                    mini.alert("请选择生效日期！");
+                    return false;
+                }
+            }
+
             return true;
         }
 
@@ -167,6 +179,15 @@
             location.href = "/Ms/MsMadecardManageList";
         }
 
+        function onEffectiveTypeChanged() {
+            var effectiveType = mini.get('#Control_EffectiveType').getValue();
+            if (effectiveType && effectiveType == '1') {
+                mini.get('#Control_EffectiveDate').disable();
+            } else {
+                mini.get('#Control_EffectiveDate').enable();
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -180,10 +201,10 @@
                         <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
                         <a id="btnExame" iconcls="icon-ok" class="mini-button" plain="true" tooltip="审核(Ctrl+E)">审核</a>
                         <a id="btnSearch" iconcls="icon-search" class="mini-button" plain="true" tooltip="查询">查询</a>
-                        <a id="btnDelete" iconcls="icon-remove" class="mini-button" plain="true" tooltip="删除">删除</a>
+                        <!--<a id="btnDelete" iconcls="icon-remove" class="mini-button" plain="true" tooltip="删除">删除</a>-->
                         <!--<a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>-->
                         <a id="btnPrint" iconcls="icon-print" class="mini-button" plain="true" tooltip="打印">打印</a>
-                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                        <a id="btnReturn" iconcls="icon-undo" class="mini-button" plain="true" tooltip="返回(Ctrl+Q)">返回</a>
                     </td>
                 </tr>
             </table>
@@ -247,7 +268,7 @@
                 <legend>基本信息</legend>
                 <div class="ablock">
                     <label for="Control_MdNumber">制作单号:</label>
-                    <input id="Control_MdNumber" name="MdNumber" value="@Model.Id" type="text" class="mini-textbox" enabled="false" />
+                    <input id="Control_MdNumber" name="Id" value="@Model.Id" type="text" class="mini-textbox" enabled="false" />
                 </div>
 
                 <div class="ablock">
@@ -285,17 +306,17 @@
 
                 <div class="ablock">
                     <label for="Control_EffectiveType">生效方式:</label>
-                    <input type="text" value="@Model.EffectiveType" class="mini-combobox" name="EffectiveType" id="Control_EffectiveType" data="c_EffectiveType" vtype="maxLength:20" required="true" />
+                    <input type="text" value="@Model.EffectiveType" class="mini-combobox" name="EffectiveType" id="Control_EffectiveType" data="c_EffectiveType" vtype="maxLength:20" required="true" onvaluechanged="onEffectiveTypeChanged" />
                 </div>
 
                 <div class="ablock">
                     <label for="Control_EffectiveDate">生效日期:</label>
-                    <input type="text" id="Control_EffectiveDate" name="EffectiveDate" value="@Model.EffectiveDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
+                    <input type="text" id="Control_EffectiveDate" name="EffectiveDate" value="@Model.EffectiveDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" enabled="false" />
                 </div>
 
                 <div class="ablock">
-                    <label for="Control_IfMade">是否发放:</label>
-                    <div id="Control_IfMade" name="IfMade" value="0" class="mini-checkbox" truevalue="1" falsevalue="0" checked="true" data="c_YesOrNo" text="是否发放"></div>
+                    <label for="Control_IfMade">是否制卡:</label>
+                    <div id="Control_IfMade" name="IfMade" value="@Model.IfMade" class="mini-checkbox" truevalue="1" falsevalue="0" data="c_YesOrNo" text="是否制卡"></div>
                 </div>
 
                 <div class="ablock" style="display: none">
@@ -303,27 +324,27 @@
                     <input type="text" id="Control_CreateDate" name="CreateDate" value="@Model.CreateDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock" style="display: none">
+                <div class="ablock hidden">
                     <label for="Control_Operator">操作员:</label>
                     <input type="text" value="@Model.Operator" class="mini-textbox" name="Operator" id="Control_Operator" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock" style="display: none">
+                <div class="ablock hidden">
                     <label for="Control_Assessor">审核人:</label>
                     <input type="text" value="@Model.Assessor" class="mini-textbox" name="Assessor" id="Control_Assessor" vtype="maxLength:20" />
                 </div>
 
-                <div class="ablock" style="display: none">
+                <div class="ablock hidden">
                     <label for="Control_IfExamine">是否审核:</label>
                     <div id="Control_IfExamine" name="IfExamine" class="mini-textbox" value="@Model.IfExamine" readonly="true" text="审核"></div>
                 </div>
 
-                <div class="ablock" style="display: none">
+                <div class="ablock hidden">
                     <label for="Control_ExamineDate">审核时间:</label>
                     <input type="text" id="Control_ExamineDate" name="ExamineDate" value="@Model.ExamineDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>
 
-                <div class="ablock" style="display: none">
+                <div class="ablock hidden">
                     <label for="Control_OperatorDate">操作时间:</label>
                     <input type="text" id="Control_OperatorDate" name="OperatorDate" value="@Model.OperatorDate" class="mini-datepicker" format="yyyy-MM-dd H:mm:ss" timeformat="H:mm:ss" showtime="true" showokbutton="true" showclearbutton="true" required="false" />
                 </div>

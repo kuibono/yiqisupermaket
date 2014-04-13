@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="YiQiModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="YiQiModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="YiQiModelStoreContainer">
           <EntitySet Name="ac_branch_goodssale_account" EntityType="YiQiModel.Store.ac_branch_goodssale_account" store:Type="Tables" store:Schema="dbo" store:Name="ac_branch_goodssale_account">
             <DefiningQuery>SELECT 
@@ -2845,6 +2845,7 @@
           <Property Name="sale_times" Type="decimal" Scale="2" />
           <Property Name="operator" Type="varchar" MaxLength="20" />
           <Property Name="operator_date" Type="datetime" />
+          <Property Name="made_number" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="ms_cardtype_discount">
           <Key>
@@ -3828,6 +3829,7 @@
           <Property Name="if_examine" Type="varchar" MaxLength="20" />
           <Property Name="examine_date" Type="datetime" />
           <Property Name="operator_date" Type="datetime" />
+          <Property Name="pc_number" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="pc_putout_detail">
           <Key>
@@ -5120,63 +5122,82 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'YiQi.dbo.pbcatcol' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="pbcatcol">
-        <Property Name="pbc_tnam" Type="char" MaxLength="30" />
-        <Property Name="pbc_tid" Type="int" />
-        <Property Name="pbc_ownr" Type="char" MaxLength="30" />
-        <Property Name="pbc_cnam" Type="char" MaxLength="30" />
-        <Property Name="pbc_cid" Type="smallint" />
-        <Property Name="pbc_labl" Type="varchar" MaxLength="254" />
-        <Property Name="pbc_lpos" Type="smallint" />
-        <Property Name="pbc_hdr" Type="varchar" MaxLength="254" />
-        <Property Name="pbc_hpos" Type="smallint" />
-        <Property Name="pbc_jtfy" Type="smallint" />
-        <Property Name="pbc_mask" Type="varchar" MaxLength="31" />
-        <Property Name="pbc_case" Type="smallint" />
-        <Property Name="pbc_hght" Type="smallint" />
-        <Property Name="pbc_wdth" Type="smallint" />
-        <Property Name="pbc_ptrn" Type="varchar" MaxLength="31" />
-        <Property Name="pbc_bmap" Type="char" MaxLength="1" />
-        <Property Name="pbc_init" Type="varchar" MaxLength="254" />
-        <Property Name="pbc_cmnt" Type="varchar" MaxLength="254" />
-        <Property Name="pbc_edit" Type="varchar" MaxLength="31" />
-        <Property Name="pbc_tag" Type="varchar" MaxLength="254" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'YiQi.dbo.pbcattbl' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="pbcattbl">
-        <Property Name="pbt_tnam" Type="char" MaxLength="30" />
-        <Property Name="pbt_tid" Type="int" />
-        <Property Name="pbt_ownr" Type="char" MaxLength="30" />
-        <Property Name="pbd_fhgt" Type="smallint" />
-        <Property Name="pbd_fwgt" Type="smallint" />
-        <Property Name="pbd_fitl" Type="char" MaxLength="1" />
-        <Property Name="pbd_funl" Type="char" MaxLength="1" />
-        <Property Name="pbd_fchr" Type="smallint" />
-        <Property Name="pbd_fptc" Type="smallint" />
-        <Property Name="pbd_ffce" Type="char" MaxLength="32" />
-        <Property Name="pbh_fhgt" Type="smallint" />
-        <Property Name="pbh_fwgt" Type="smallint" />
-        <Property Name="pbh_fitl" Type="char" MaxLength="1" />
-        <Property Name="pbh_funl" Type="char" MaxLength="1" />
-        <Property Name="pbh_fchr" Type="smallint" />
-        <Property Name="pbh_fptc" Type="smallint" />
-        <Property Name="pbh_ffce" Type="char" MaxLength="32" />
-        <Property Name="pbl_fhgt" Type="smallint" />
-        <Property Name="pbl_fwgt" Type="smallint" />
-        <Property Name="pbl_fitl" Type="char" MaxLength="1" />
-        <Property Name="pbl_funl" Type="char" MaxLength="1" />
-        <Property Name="pbl_fchr" Type="smallint" />
-        <Property Name="pbl_fptc" Type="smallint" />
-        <Property Name="pbl_ffce" Type="char" MaxLength="32" />
-        <Property Name="pbt_cmnt" Type="varchar" MaxLength="254" />
-      </EntityType>-->
-      </Schema>
-    </edmx:StorageModels>
+        <Function Name="sp_pc_update_stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="goods_code" Type="varchar" Mode="In" />
+          <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+          <Parameter Name="en_code" Type="varchar" Mode="In" />
+          <Parameter Name="wh_code" Type="varchar" Mode="In" />
+          <Parameter Name="sup_code" Type="varchar" Mode="In" />
+          <Parameter Name="op_code" Type="varchar" Mode="In" />
+          <Parameter Name="input_tax" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_qty" Type="decimal" Mode="In" />
+          <Parameter Name="pi_number" Type="varchar" Mode="In" />
+          <Parameter Name="putin_date" Type="datetime" Mode="In" />
+          <Parameter Name="produce_date" Type="datetime" Mode="In" />
+          <Parameter Name="em_code" Type="varchar" Mode="In" />
+          <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+          <Parameter Name="sale_price" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_pc_update_stock_branch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="goods_code" Type="varchar" Mode="In" />
+          <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+          <Parameter Name="en_code" Type="varchar" Mode="In" />
+          <Parameter Name="b_code" Type="varchar" Mode="In" />
+          <Parameter Name="wh_code" Type="varchar" Mode="In" />
+          <Parameter Name="sup_code" Type="varchar" Mode="In" />
+          <Parameter Name="op_code" Type="varchar" Mode="In" />
+          <Parameter Name="input_tax" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_qty" Type="decimal" Mode="In" />
+          <Parameter Name="pi_number" Type="varchar" Mode="In" />
+          <Parameter Name="putin_date" Type="datetime" Mode="In" />
+          <Parameter Name="produce_date" Type="datetime" Mode="In" />
+          <Parameter Name="em_code" Type="varchar" Mode="In" />
+          <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_pc_update_stock_out" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="goods_code" Type="varchar" Mode="In" />
+          <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+          <Parameter Name="en_code" Type="varchar" Mode="In" />
+          <Parameter Name="wh_code" Type="varchar" Mode="In" />
+          <Parameter Name="sup_code" Type="varchar" Mode="In" />
+          <Parameter Name="op_code" Type="varchar" Mode="In" />
+          <Parameter Name="input_tax" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="putout_qty" Type="decimal" Mode="In" />
+          <Parameter Name="putout_date" Type="datetime" Mode="In" />
+          <Parameter Name="em_code" Type="varchar" Mode="In" />
+          <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+          <Parameter Name="sale_price" Type="decimal" Mode="In" />
+          <Parameter Name="putout_money" Type="decimal" Mode="InOut" />
+          <Parameter Name="nontax_putout_money" Type="decimal" Mode="InOut" />
+          <Parameter Name="sale_money" Type="decimal" Mode="InOut" />
+          <Parameter Name="nontax_sale_money" Type="decimal" Mode="InOut" />
+        </Function>
+        <Function Name="sp_pc_update_stock_out_branch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="goods_code" Type="varchar" Mode="In" />
+          <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+          <Parameter Name="en_code" Type="varchar" Mode="In" />
+          <Parameter Name="b_code" Type="varchar" Mode="In" />
+          <Parameter Name="wh_code" Type="varchar" Mode="In" />
+          <Parameter Name="sup_code" Type="varchar" Mode="In" />
+          <Parameter Name="op_code" Type="varchar" Mode="In" />
+          <Parameter Name="input_tax" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="putout_qty" Type="decimal" Mode="In" />
+          <Parameter Name="putout_date" Type="datetime" Mode="In" />
+          <Parameter Name="em_code" Type="varchar" Mode="In" />
+          <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+          <Parameter Name="sale_price" Type="decimal" Mode="In" />
+          <Parameter Name="putout_money" Type="decimal" Mode="InOut" />
+          <Parameter Name="nontax_putout_money" Type="decimal" Mode="InOut" />
+        </Function>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="YiQiModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -5413,6 +5434,81 @@
             <End Role="em_employee_archives" EntitySet="em_employee_archives" />
             <End Role="em_employee_family" EntitySet="em_employee_family" />
           </AssociationSet>
+          <FunctionImport Name="sp_pc_update_stock">
+            <Parameter Name="goods_code" Mode="In" Type="String" />
+            <Parameter Name="goods_bar_code" Mode="In" Type="String" />
+            <Parameter Name="en_code" Mode="In" Type="String" />
+            <Parameter Name="wh_code" Mode="In" Type="String" />
+            <Parameter Name="sup_code" Mode="In" Type="String" />
+            <Parameter Name="op_code" Mode="In" Type="String" />
+            <Parameter Name="input_tax" Mode="In" Type="Decimal" />
+            <Parameter Name="purchase_price" Mode="In" Type="Decimal" />
+            <Parameter Name="nontax_purchase_price" Mode="In" Type="Decimal" />
+            <Parameter Name="purchase_qty" Mode="In" Type="Decimal" />
+            <Parameter Name="pi_number" Mode="In" Type="String" />
+            <Parameter Name="putin_date" Mode="In" Type="DateTime" />
+            <Parameter Name="produce_date" Mode="In" Type="DateTime" />
+            <Parameter Name="em_code" Mode="In" Type="String" />
+            <Parameter Name="adjust_operat" Mode="In" Type="String" />
+            <Parameter Name="sale_price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_pc_update_stock_branch">
+            <Parameter Name="goods_code" Mode="In" Type="String" />
+            <Parameter Name="goods_bar_code" Mode="In" Type="String" />
+            <Parameter Name="en_code" Mode="In" Type="String" />
+            <Parameter Name="b_code" Mode="In" Type="String" />
+            <Parameter Name="wh_code" Mode="In" Type="String" />
+            <Parameter Name="sup_code" Mode="In" Type="String" />
+            <Parameter Name="op_code" Mode="In" Type="String" />
+            <Parameter Name="input_tax" Mode="In" Type="Decimal" />
+            <Parameter Name="purchase_price" Mode="In" Type="Decimal" />
+            <Parameter Name="nontax_purchase_price" Mode="In" Type="Decimal" />
+            <Parameter Name="purchase_qty" Mode="In" Type="Decimal" />
+            <Parameter Name="pi_number" Mode="In" Type="String" />
+            <Parameter Name="putin_date" Mode="In" Type="DateTime" />
+            <Parameter Name="produce_date" Mode="In" Type="DateTime" />
+            <Parameter Name="em_code" Mode="In" Type="String" />
+            <Parameter Name="adjust_operat" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_pc_update_stock_out">
+            <Parameter Name="goods_code" Mode="In" Type="String" />
+            <Parameter Name="goods_bar_code" Mode="In" Type="String" />
+            <Parameter Name="en_code" Mode="In" Type="String" />
+            <Parameter Name="wh_code" Mode="In" Type="String" />
+            <Parameter Name="sup_code" Mode="In" Type="String" />
+            <Parameter Name="op_code" Mode="In" Type="String" />
+            <Parameter Name="input_tax" Mode="In" Type="Decimal" />
+            <Parameter Name="purchase_price" Mode="In" Type="Decimal" />
+            <Parameter Name="nontax_purchase_price" Mode="In" Type="Decimal" />
+            <Parameter Name="putout_qty" Mode="In" Type="Decimal" />
+            <Parameter Name="putout_date" Mode="In" Type="DateTime" />
+            <Parameter Name="em_code" Mode="In" Type="String" />
+            <Parameter Name="adjust_operat" Mode="In" Type="String" />
+            <Parameter Name="sale_price" Mode="In" Type="Decimal" />
+            <Parameter Name="putout_money" Mode="InOut" Type="Decimal" />
+            <Parameter Name="nontax_putout_money" Mode="InOut" Type="Decimal" />
+            <Parameter Name="sale_money" Mode="InOut" Type="Decimal" />
+            <Parameter Name="nontax_sale_money" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_pc_update_stock_out_branch">
+            <Parameter Name="goods_code" Mode="In" Type="String" />
+            <Parameter Name="goods_bar_code" Mode="In" Type="String" />
+            <Parameter Name="en_code" Mode="In" Type="String" />
+            <Parameter Name="b_code" Mode="In" Type="String" />
+            <Parameter Name="wh_code" Mode="In" Type="String" />
+            <Parameter Name="sup_code" Mode="In" Type="String" />
+            <Parameter Name="op_code" Mode="In" Type="String" />
+            <Parameter Name="input_tax" Mode="In" Type="Decimal" />
+            <Parameter Name="purchase_price" Mode="In" Type="Decimal" />
+            <Parameter Name="nontax_purchase_price" Mode="In" Type="Decimal" />
+            <Parameter Name="putout_qty" Mode="In" Type="Decimal" />
+            <Parameter Name="putout_date" Mode="In" Type="DateTime" />
+            <Parameter Name="em_code" Mode="In" Type="String" />
+            <Parameter Name="adjust_operat" Mode="In" Type="String" />
+            <Parameter Name="sale_price" Mode="In" Type="Decimal" />
+            <Parameter Name="putout_money" Mode="InOut" Type="Decimal" />
+            <Parameter Name="nontax_putout_money" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="ac_branch_goodssale_account">
           <Key>
@@ -7375,6 +7471,7 @@
           <Property Name="sale_times" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="operator" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="operator_date" Type="DateTime" Precision="3" />
+          <Property Type="String" Name="made_number" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ms_cardtype_discount">
           <Key>
@@ -8337,6 +8434,7 @@
           <Property Name="if_examine" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="examine_date" Type="DateTime" Precision="3" />
           <Property Name="operator_date" Type="DateTime" Precision="3" />
+          <Property Type="String" Name="pc_number" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="pc_putout_detail">
           <Key>
@@ -11603,6 +11701,7 @@
           <EntitySetMapping Name="ms_card_archives">
             <EntityTypeMapping TypeName="YiQiModel.ms_card_archives">
               <MappingFragment StoreEntitySet="ms_card_archives">
+                <ScalarProperty Name="made_number" ColumnName="made_number" />
                 <ScalarProperty Name="card_number" ColumnName="card_number" />
                 <ScalarProperty Name="surface_number" ColumnName="surface_number" />
                 <ScalarProperty Name="ms_code" ColumnName="ms_code" />
@@ -12598,6 +12697,7 @@
           <EntitySetMapping Name="pc_putin_manage">
             <EntityTypeMapping TypeName="YiQiModel.pc_putin_manage">
               <MappingFragment StoreEntitySet="pc_putin_manage">
+                <ScalarProperty Name="pc_number" ColumnName="pc_number" />
                 <ScalarProperty Name="pi_flow_number" ColumnName="pi_flow_number" />
                 <ScalarProperty Name="pi_number" ColumnName="pi_number" />
                 <ScalarProperty Name="sup_code" ColumnName="sup_code" />
@@ -13952,6 +14052,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_pc_update_stock" FunctionName="YiQiModel.Store.sp_pc_update_stock" />
+          <FunctionImportMapping FunctionImportName="sp_pc_update_stock_branch" FunctionName="YiQiModel.Store.sp_pc_update_stock_branch" />
+          <FunctionImportMapping FunctionImportName="sp_pc_update_stock_out" FunctionName="YiQiModel.Store.sp_pc_update_stock_out" />
+          <FunctionImportMapping FunctionImportName="sp_pc_update_stock_out_branch" FunctionName="YiQiModel.Store.sp_pc_update_stock_out_branch" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

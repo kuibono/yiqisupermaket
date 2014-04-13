@@ -13,7 +13,6 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 {
     public class WsController : Controller
     {
-
         #region 客户档案
         public IWsCustomerArchivesService WsCustomerArchivesService { get; set; }
         #region 客户档案编辑页面
@@ -28,6 +27,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             if (string.IsNullOrEmpty(id) == false)
             {
                 m = WsCustomerArchivesService.GetById(id);
+            }
+            else
+            {
+                m.Id = WsCustomerArchivesService.GenerateCustomerCode();
             }
             return View(m);
         }
@@ -469,6 +472,16 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             c.entity = s;
             return Json(WsPaCustomerTypeService.Search(c), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetWsPaCustomerTypeList()
+        {
+            var searchDtoBase = WsPaCustomerTypeService.Search(new SearchDtoBase<WsPaCustomerType>() { pageSize = int.MaxValue });
+
+            IList<WsPaCustomerType> wsPaCustomerTypeLIst = searchDtoBase.data.ToList();
+
+            return Json(wsPaCustomerTypeLIst.Select(entity => new { id = entity.CustTypeCode, text = entity.CustTypeName }), JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region 客户类型删除
@@ -870,8 +883,3 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         #endregion  批发销售流水
     }
 }
-
-
-
-
-

@@ -17,6 +17,48 @@ namespace YiQiWorkFlow.Domain.Ms
 		/// </summary>
 		[Validate(ValidateType.IsDateTime ,Name="清零日期")]
 		public virtual System.DateTime? ClearDate{get ; set; }
+
+        /// <summary>
+        /// 卡号
+        /// </summary>
+        [Validate(ValidateType.IsEmpty, Name = "卡号")]
+        public virtual string CardNumber { get; set; }
+
+        /// <summary>
+        /// 卡面明码
+        /// </summary>
+        [Validate(ValidateType.IsEmpty, Name = "卡面明码")]
+        public virtual string SurfaceNumber { get; set; }
+
+        /// <summary>
+        /// 会员编码
+        /// </summary>
+        [Validate(ValidateType.IsEmpty, Name = "会员编码")]
+        public virtual string MsCode { get; set; }
+
+        /// <summary>
+        /// 会员姓名
+        /// </summary>
+        [Validate(ValidateType.NoValidate, Name = "会员姓名")]
+        public virtual string MsName { get; set; }
+
+        /// <summary>
+        /// 卡类型编码
+        /// </summary>
+        [Validate(ValidateType.IsEmpty, Name = "卡类型编码")]
+        public virtual string CardCode { get; set; }
+
+        /// <summary>
+        /// 卡类型名称
+        /// </summary>
+        [Validate(ValidateType.NoValidate, Name = "卡类型名称")]
+        public virtual string CardName { get; set; }
+
+        /// <summary>
+        /// 当前积分
+        /// </summary>
+        [Validate(ValidateType.IsDecimal, Name = "当前积分", DefaultValue = 0)]
+        public virtual decimal CurrentPoints { get; set; }
 		
 		/// <summary>
 		/// 操作员
@@ -50,5 +92,3 @@ namespace YiQiWorkFlow.Domain.Ms
 	}
 	 
 }
-
-

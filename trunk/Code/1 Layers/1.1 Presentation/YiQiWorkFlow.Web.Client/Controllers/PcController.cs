@@ -199,6 +199,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             {
                 m = PcPurchaseManageService.GetById(id);
             }
+            else
+            {
+                m._state = "added";
+            }
             return View(m);
         }
         #endregion
@@ -232,6 +236,9 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                var jser = new JavaScriptSerializer();
+                var suppliers = jser.Deserialize<List<PcPurchaseDetail>>(Request["goods"]).ToList();
+                
                 m.OperatorDate = DateTime.Now;
                 if (m.HaveId)
                 {
@@ -245,8 +252,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                 }
 
                 //PcPurchaseDetail
-                var jser = new JavaScriptSerializer();
-                var suppliers = jser.Deserialize<List<PcPurchaseDetail>>(Request["goods"]).ToList();
+               
                 suppliers.ForEach(p =>
                 {
                     //如果是赠品订货，则价格都是0
@@ -322,6 +328,40 @@ namespace YiQiWorkFlow.Web.Client.Controllers
         public ActionResult PcPurchaseManageGoodsEdit()
         {
             return View();
+        }
+
+
+        public ActionResult GetAssisGoods()
+        {
+            using (YiQiEntities e = new YiQiEntities())
+            {
+                //查出所有(库存数量+在途数量)<库存下限的商品。订货数量=(库存上限+下限)/2-当前库存-在途数量。
+                var q = from l in e.op_dynamic_stock
+                        join g in e.fb_goods_archives on l.goods_code equals g.goods_code into join_g
+                        from j_g in join_g.DefaultIfEmpty()
+                        where (l.order_qty + l.stock_qty < j_g.stock_lower_limit)
+                        select new
+                        {
+                            GoodsCode=j_g.goods_code,
+                            GoodsName=j_g.goods_name,
+                            GoodsBarCode=j_g.goods_bar_code,
+                            Specification=j_g.specification,
+                            PackUnitCode=j_g.pack_unit_code,
+                            OfferMin=j_g.offer_min,
+                            OrderQty=l.order_qty,
+                            PackQty=0,
+                            PackCoef=j_g.pack_coef,
+                            PurchaseQty=(j_g.stock_lower_limit+j_g.stock_upper_limit)/2-l.order_qty-l.stock_qty,
+                            PutinQty=0,//
+                            SalePrice=j_g.sale_price,
+                            PurchasePrice=j_g.purchase_price,
+                            NontaxPurchasePrice=j_g.nontax_purchase_price,
+                            PurchaseMoney = ((j_g.stock_lower_limit + j_g.stock_upper_limit) / 2 - l.order_qty - l.stock_qty) * j_g.purchase_price,
+                            NontaxPurchaseMoney = ((j_g.stock_lower_limit + j_g.stock_upper_limit) / 2 - l.order_qty - l.stock_qty) * j_g.nontax_purchase_price,
+
+                        };
+                return Json(q.ToList(), JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult SavePcPurchaseManageGoods(PcPurchaseManage manage)
@@ -540,6 +580,60 @@ namespace YiQiWorkFlow.Web.Client.Controllers
 
         #region 商品入库单
         public IPcPutinManageService PcPutinManageService { get; set; }
+
+        public ActionResult PutIn(string pcNumber,string piNumber)
+        {
+
+            using(YiQiEntities e=new YiQiEntities())
+            {
+                var q=(from d in e.pc_purchase_detail
+                      join g in e.fb_goods_archives on d.goods_code equals g.goods_code into j_goods
+                      from j_g in j_goods
+                      join m in e.pc_purchase_manage on d.pc_number equals m.pc_number into j_detail
+                      from j in j_detail select new {
+                        d.goods_code,
+                        d.goods_bar_code,
+                        en_code=j.en_code??"",
+                        j.b_code,
+                        wh_code=j.wh_code??"",
+                        j.sup_code,
+                        j_g.op_code,
+                        j_g.input_tax,
+                        d.purchase_price,
+                        d.nontax_purchase_price,
+                        d.purchase_qty,
+                        piNumber,
+                        putin_date=DateTime.Now,
+                        produce_date=d.produce_date.HasValue?d.produce_date.Value:DateTime.Now,
+                        em_code=MyEnv.LoginUser.Id,
+                        adjust_operat=MyEnv.LoginUser.Id
+                      }).ToList();
+                foreach(var item in q)
+                {
+                    YiQiWorkFlow.Domain.Basement.Command.SpPcUpdateStockBranch(
+                        item.goods_code,
+                        item.goods_bar_code,
+                        item.en_code,
+                        item.b_code,
+                        item.wh_code,
+                        item.sup_code,
+                        item.op_code,
+                        item.input_tax.Value,
+                        item.purchase_price,
+                        item.nontax_purchase_price,
+                        item.purchase_qty.Value,
+                        item.piNumber,
+                        item.putin_date,
+                        item.produce_date,
+                        item.em_code,
+                        item.adjust_operat
+                        );
+                }
+            }
+
+            return Json(new SavingResult { IsSuccess = true, Message = "保存成功" }, JsonRequestBehavior.AllowGet);
+        }
+
         #region 商品入库单编辑页面
         /// <summary>
         /// 商品入库单编辑页面
@@ -555,6 +649,10 @@ namespace YiQiWorkFlow.Web.Client.Controllers
             }
             else
             {
+                m.CreateDate = DateTime.Now;
+                m.CheckDate = DateTime.Now;
+                m.IfAblebalance = "1";
+                m.IfBalance = "1";
                 m._state = "added";
             }
             return View(m);
@@ -626,6 +724,7 @@ namespace YiQiWorkFlow.Web.Client.Controllers
                     }
                 });
                 r.IsSuccess = true;
+                r.ReturnObject = m;
                 r.Message = "保存成功";
             }
             return Json(r);

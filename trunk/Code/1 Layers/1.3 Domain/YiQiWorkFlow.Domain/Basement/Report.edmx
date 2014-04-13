@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ReportModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="ReportModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ReportModelStoreContainer">
           <EntitySet Name="Sys_Report" EntityType="ReportModel.Store.Sys_Report" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sys_Report_Column" EntityType="ReportModel.Store.Sys_Report_Column" store:Type="Tables" Schema="dbo" />
@@ -81,8 +81,82 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+        <Function Name="sp_pc_update_stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="goods_code" Type="varchar" Mode="In" />
+          <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+          <Parameter Name="en_code" Type="varchar" Mode="In" />
+          <Parameter Name="wh_code" Type="varchar" Mode="In" />
+          <Parameter Name="sup_code" Type="varchar" Mode="In" />
+          <Parameter Name="op_code" Type="varchar" Mode="In" />
+          <Parameter Name="input_tax" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_qty" Type="decimal" Mode="In" />
+          <Parameter Name="pi_number" Type="varchar" Mode="In" />
+          <Parameter Name="putin_date" Type="datetime" Mode="In" />
+          <Parameter Name="produce_date" Type="datetime" Mode="In" />
+          <Parameter Name="em_code" Type="varchar" Mode="In" />
+          <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+          <Parameter Name="sale_price" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="sp_pc_update_stock_branch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="goods_code" Type="varchar" Mode="In" />
+          <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+          <Parameter Name="en_code" Type="varchar" Mode="In" />
+          <Parameter Name="b_code" Type="varchar" Mode="In" />
+          <Parameter Name="wh_code" Type="varchar" Mode="In" />
+          <Parameter Name="sup_code" Type="varchar" Mode="In" />
+          <Parameter Name="op_code" Type="varchar" Mode="In" />
+          <Parameter Name="input_tax" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_qty" Type="decimal" Mode="In" />
+          <Parameter Name="pi_number" Type="varchar" Mode="In" />
+          <Parameter Name="putin_date" Type="datetime" Mode="In" />
+          <Parameter Name="produce_date" Type="datetime" Mode="In" />
+          <Parameter Name="em_code" Type="varchar" Mode="In" />
+          <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_pc_update_stock_out" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="goods_code" Type="varchar" Mode="In" />
+          <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+          <Parameter Name="en_code" Type="varchar" Mode="In" />
+          <Parameter Name="wh_code" Type="varchar" Mode="In" />
+          <Parameter Name="sup_code" Type="varchar" Mode="In" />
+          <Parameter Name="op_code" Type="varchar" Mode="In" />
+          <Parameter Name="input_tax" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="putout_qty" Type="decimal" Mode="In" />
+          <Parameter Name="putout_date" Type="datetime" Mode="In" />
+          <Parameter Name="em_code" Type="varchar" Mode="In" />
+          <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+          <Parameter Name="sale_price" Type="decimal" Mode="In" />
+          <Parameter Name="putout_money" Type="decimal" Mode="InOut" />
+          <Parameter Name="nontax_putout_money" Type="decimal" Mode="InOut" />
+          <Parameter Name="sale_money" Type="decimal" Mode="InOut" />
+          <Parameter Name="nontax_sale_money" Type="decimal" Mode="InOut" />
+        </Function>
+        <Function Name="sp_pc_update_stock_out_branch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="goods_code" Type="varchar" Mode="In" />
+          <Parameter Name="goods_bar_code" Type="varchar" Mode="In" />
+          <Parameter Name="en_code" Type="varchar" Mode="In" />
+          <Parameter Name="b_code" Type="varchar" Mode="In" />
+          <Parameter Name="wh_code" Type="varchar" Mode="In" />
+          <Parameter Name="sup_code" Type="varchar" Mode="In" />
+          <Parameter Name="op_code" Type="varchar" Mode="In" />
+          <Parameter Name="input_tax" Type="decimal" Mode="In" />
+          <Parameter Name="purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="nontax_purchase_price" Type="decimal" Mode="In" />
+          <Parameter Name="putout_qty" Type="decimal" Mode="In" />
+          <Parameter Name="putout_date" Type="datetime" Mode="In" />
+          <Parameter Name="em_code" Type="varchar" Mode="In" />
+          <Parameter Name="adjust_operat" Type="varchar" Mode="In" />
+          <Parameter Name="sale_price" Type="decimal" Mode="In" />
+          <Parameter Name="putout_money" Type="decimal" Mode="InOut" />
+          <Parameter Name="nontax_putout_money" Type="decimal" Mode="InOut" />
+        </Function>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ReportModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">

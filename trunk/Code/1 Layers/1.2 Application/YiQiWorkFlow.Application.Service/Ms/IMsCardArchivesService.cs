@@ -32,6 +32,8 @@ namespace YiQiWorkFlow.Application.Service.Ms
 
 
         SearchResult<MsCardArchives> Search(SearchDtoBase<MsCardArchives> c);
+
+        SearchResult<MsCardArchives> SearchAllEqual(SearchDtoBase<MsCardArchives> c);
 		
 		IList<MsCardArchives> Search(string key, int pageSize = 20, int pageIndex = 1);
 

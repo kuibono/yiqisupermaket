@@ -13,14 +13,14 @@
             <table style="width: 100%;">
                 <tr>
                     <td>
-                        <a class="mini-button" iconcls="icon-add" onclick="editRow('')" plain="true">增加</a>
+                        <!--<a class="mini-button" iconcls="icon-add" onclick="editRow('')" plain="true">增加</a>-->
                         <a class="mini-button" iconcls="icon-search" onclick="showFilterRow()" plain="true">高级检索</a>
                     </td>
                     <td style="white-space: nowrap;" align="right">
                         <table>
                             <tr>
                                 <td>
-                                    <input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
+                                    <!--<input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />-->
                                 </td>
                                 <td>
                                     <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
@@ -44,131 +44,135 @@
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                <!--<div name="action" width="80" headeralign="center" align="center" renderer="onActionRenderer"
                      cellstyle="padding:0;">
                     管理
-                </div>
-                <div field="CardNumber" headeralign="center" align="center" width="60">
+                </div>-->
+                <div field="Id" headeralign="center" align="center" width="120">
                     卡号
-                    <input id="filter_CardNumber" name="CardNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                    <input id="filter_Id" name="Id" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="SurfaceNumber" headeralign="center" align="center" width="60">
+                <div field="SurfaceNumber" headeralign="center" align="center" width="120">
                     卡面明码
                     <input id="filter_SurfaceNumber" name="SurfaceNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="MsCode" headeralign="center" align="center" width="60">
+                <div field="MsCode" headeralign="center" align="center" width="120">
                     会员编码
                     <input id="filter_MsCode" name="MsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CardCode" headeralign="center" align="center" width="60">
+                <div field="CardCode" headeralign="center" align="center" width="80">
                     卡类型编码
                     <input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CardName" headeralign="center" align="center" width="60">
+                <div field="CardName" headeralign="center" align="center" width="80">
                     卡类型名称
                     <input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="MsName" headeralign="center" align="center" width="60">
+                <div field="MsName" headeralign="center" align="center" width="80">
                     会员姓名
                     <input id="filter_MsName" name="MsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CardState" headeralign="center" align="center" width="60" renderer="onCardStateRender">
+                <div field="CardState" headeralign="center" align="center" width="80" renderer="onCardStateRender">
                     卡状态
                     <input id="filter_CardState" name="CardState" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CreateDate" headeralign="center" align="center" width="60" format="yyyy-MM-dd">
+                <div field="CreateDate" headeralign="center" align="center" width="80" dateformat="yyyy-MM-dd">
                     制卡日期
                     <input id="filter_CreateDate" name="CreateDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="GrantDate" headeralign="center" align="center" width="60" format="yyyy-MM-dd">
+                <div field="GrantDate" headeralign="center" align="center" width="80" dateformat="yyyy-MM-dd">
                     发卡日期
                     <input id="filter_GrantDate" name="GrantDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="EffectiveDate" headeralign="center" align="center" width="60" format="yyyy-MM-dd">
+                <div field="EffectiveDate" headeralign="center" align="center" width="80" dateformat="yyyy-MM-dd">
                     生效日期
                     <input id="filter_EffectiveDate" name="EffectiveDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="PointsUsefulLifeDate" headeralign="center" align="center" width="60">
+                <div field="PointsUsefulLifeDate" headeralign="center" align="center" width="80" dateformat="yyyy-MM-dd">
                     积分有效期
                     <input id="filter_PointsUsefulLifeDate" name="PointsUsefulLifeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CardUsefulLifeDate" headeralign="center" align="center" width="60">
+                <div field="CardUsefulLifeDate" headeralign="center" align="center" width="80" dateformat="yyyy-MM-dd">
                     卡有效期
                     <input id="filter_CardUsefulLifeDate" name="CardUsefulLifeDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="TransactCharge" headeralign="center" align="center" width="60">
+                <div field="TransactCharge" headeralign="center" align="center" width="80">
                     办卡费用
                     <input id="filter_TransactCharge" name="TransactCharge" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="DepositMoney" headeralign="center" align="center" width="60">
+                <div field="DepositMoney" headeralign="center" align="center" width="80">
                     押金金额
                     <input id="filter_DepositMoney" name="DepositMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="TotalMoney" headeralign="center" align="center" width="60">
+                <div field="TotalMoney" headeralign="center" align="center" width="80">
                     累计消费金额
                     <input id="filter_TotalMoney" name="TotalMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="TotalExpendTimes" headeralign="center" align="center" width="60">
+                <div field="TotalExpendTimes" headeralign="center" align="center" width="80">
                     累计消费次数
                     <input id="filter_TotalExpendTimes" name="TotalExpendTimes" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="LastExpendMoney" headeralign="center" align="center" width="60">
+                <div field="LastExpendMoney" headeralign="center" align="center" width="80">
                     上次消费金额
                     <input id="filter_LastExpendMoney" name="LastExpendMoney" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="TotalPoints" headeralign="center" align="center" width="60">
+                <div field="TotalPoints" headeralign="center" align="center" width="80">
                     累计积分
                     <input id="filter_TotalPoints" name="TotalPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="ExchangePoints" headeralign="center" align="center" width="60">
+                <div field="ExchangePoints" headeralign="center" align="center" width="80">
                     兑换积分
                     <input id="filter_ExchangePoints" name="ExchangePoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CurrentPoints" headeralign="center" align="center" width="60">
+                <div field="CurrentPoints" headeralign="center" align="center" width="80">
                     当前积分
                     <input id="filter_CurrentPoints" name="CurrentPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="ClearPoints" headeralign="center" align="center" width="60">
+                <div field="ClearPoints" headeralign="center" align="center" width="80">
                     清零积分
                     <input id="filter_ClearPoints" name="ClearPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="PrepaidPassword" headeralign="center" align="center" width="60">
+                <div field="PrepaidPassword" headeralign="center" align="center" width="80">
                     储值密码
                     <input id="filter_PrepaidPassword" name="PrepaidPassword" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="TotalPrepaid" headeralign="center" align="center" width="60">
+                <div field="TotalPrepaid" headeralign="center" align="center" width="80">
                     累计储值金额
                     <input id="filter_TotalPrepaid" name="TotalPrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CurrentPrepaid" headeralign="center" align="center" width="60">
+                <div field="CurrentPrepaid" headeralign="center" align="center" width="80">
                     当前储值金额
                     <input id="filter_CurrentPrepaid" name="CurrentPrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="CurrentPrepaidEncrypt" headeralign="center" align="center" width="60">
+                <div field="CurrentPrepaidEncrypt" headeralign="center" align="center" width="80">
                     当前金额
                     <input id="filter_CurrentPrepaidEncrypt" name="CurrentPrepaidEncrypt" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="UsePrepaid" headeralign="center" align="center" width="60">
+                <div field="UsePrepaid" headeralign="center" align="center" width="80">
                     使用金额
                     <input id="filter_UsePrepaid" name="UsePrepaid" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="LimitTimes" headeralign="center" align="center" width="60">
+                <div field="LimitTimes" headeralign="center" align="center" width="80">
                     限制次数
                     <input id="filter_LimitTimes" name="LimitTimes" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="SaleTimes" headeralign="center" align="center" width="60">
+                <div field="SaleTimes" headeralign="center" align="center" width="80">
                     消费次数
                     <input id="filter_SaleTimes" name="SaleTimes" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="Operator" headeralign="center" align="center" width="60">
+                <!--<div field="IfExamine" headeralign="center" align="center" width="80" renderer="onExamineRender">
+                    是否审核
+                    <input id="filter_IfExamine" name="IfExamine" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
+                </div>-->
+                <div field="Operator" headeralign="center" align="center" width="80">
                     操作员
                     <input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                <div field="OperatorDate" headeralign="center" align="center" width="60" format="yyyy-MM-dd">
+                <div field="OperatorDate" headeralign="center" align="center" width="80" dateformat="yyyy-MM-dd">
                     操作时间
                     <input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width: 100%;" />
                 </div>
-                @*<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>*@
+                <!--<div field="IfExamine" headeralign="center" align="center" width="30" renderer="onExamRender">审核</div>-->
 
             </div>
         </div>

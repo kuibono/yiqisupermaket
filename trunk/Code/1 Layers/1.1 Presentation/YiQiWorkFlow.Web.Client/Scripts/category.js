@@ -26,6 +26,11 @@ var c_CardMedium = [{ id: 1, text: '磁条卡' }, { id: 2, text: 'IC卡' }, { id
 var c_UpgradeType = [{ id: 1, text: '累计积分' }, { id: 2, text: '当前积分' }];
 var c_EffectiveType = [{ id: 1, text: "发卡生效" }, { id: 2, text: "指定生效" }];
 var c_MemberType = [{ id: 1, text: "新会员" }, { id: 2, text: "老会员" }];
+var c_WsType = [{ id: 1, text: "零售价" }, { id: 2, text: "批发价" }];
+var c_CustomerPayMode = [{ id: 1, text: '现金' }, { id: 2, text: '支票' }, { id: 3, text: '汇票' }];
+var c_CustomerBalancePeriod = [{ id: 1, text: '月结算' }, { id: 2, text: '季计算' }, { id: 3, text: '年结算' }];
+var c_CustomerBalanceMode = [{ id: 1, text: '预付货款' }, { id: 2, text: '货到付款' }, { id: 3, text: '实销实付' }, { id: 4, text: '扣点结算' }];
+var c_CustomerSalePeriod = [{ id: 1, text: '无限定帐期' }, { id: 2, text: '周帐期' }, { id: 3, text: '月帐期' }, { id: 4, text: '季帐期' }, { id: 4, text: '年帐期' }];
 
 function onExamRender(e) {
     if (e.value == "true" || e.value == "1") return "审核";
@@ -84,10 +89,102 @@ function onYesNoRender(e) {
     }
 }
 function onPercentRender(e) {
-    try{
+    try {
         return parseFloat(e.value) * 100 + "%";
     }
     catch (e) {
         return "";
+    }
+}
+function onReadonlyExamRender(e) {
+    if (e.value == "true" || e.value == "1") return "<span style='color:green'>是</span>";
+    else return "<span style='color:red'>否</span>";
+}
+function onYesNoRender(e) {
+    if (e.value == "true" || e.value == "1") return "是";
+    else return "否";
+}
+function onExamineRender(e) {
+    if (e.value == "0") {
+        return "未审核";
+    } else if (e.value == "1") {
+        return "已审核";
+    } else if (e.value == "-1") {
+        return "已废除";
+    }
+}
+function onFormatTimeRender(e) {
+
+    if (e.value) {
+        return mini.formatDate(e.value, "yyyy-MM-dd HH:mm:ss");
+    }
+    return "";
+}
+function onCardTypeRender(e) {
+    if (e.value == "1") {
+        return "单店使用";
+    } else if (e.value == "2") {
+        return "同城使用";
+    } else if (e.value == "3") {
+        return "异地使用";
+    }
+}
+function onCardMediumRender(e) {
+    if (e.value == "1") {
+        return "磁条卡";
+    } else if (e.value == "2") {
+        return "IC卡";
+    } else if (e.value == "3") {
+        return "条码卡";
+    } else if (e.value == "3") {
+        return "普通卡";
+    }
+}
+function onUpgradeTypeRender(e) {
+    if (e.value == "1") {
+        return "累积积分";
+    } else if (e.value == "2") {
+        return "当前积分";
+    }
+}
+function onCardStateRender(e) {
+    if (e.value == "0") {
+        return "待发";
+    } else if (e.value == "1") {
+        return "正常";
+    } else if (e.value == "2") {
+        return "挂失";
+    } else if (e.value == "3") {
+        return "冻结";
+    } else if (e.value == "4") {
+        return "废除";
+    }
+}
+function onEffectiveTypeRender(e) {
+    if (e.value == "1") {
+        return "发卡生效";
+    } else if (e.value == "2") {
+        return "指定生效";
+    }
+}
+function onLossTypeRender(e) {
+    if (e.value == "1") {
+        return "电话挂失";
+    } else if (e.value == "2") {
+        return "现场挂失";
+    }
+}
+function onSexRender(e) {
+    if (e.value == "1") {
+        return "男";
+    } else if (e.value == "2") {
+        return "女";
+    }
+}
+function onWsTypeRender(e) {
+    if (e.value == "1") {
+        return "零售价";
+    } else if (e.value == "2") {
+        return "批发价";
     }
 }

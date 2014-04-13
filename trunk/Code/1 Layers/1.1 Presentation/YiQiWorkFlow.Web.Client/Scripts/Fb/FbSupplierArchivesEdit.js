@@ -73,5 +73,17 @@ $(function () {
         chk.setValue("1");
         mini.get("Control_ExamineDate").setValue(new Date());
         clearExameAfterSave = false;
+        SaveData();
     });
 })
+function ExameData() {
+    var chk = mini.get("Control_IfExamine");
+    chk.setValue("1");
+    mini.get("Control_ExamineDate").setValue(new Date());
+    clearExameAfterSave = false;
+    SaveData();
+}
+function fillSupName() {
+    mini.get("Control_PyCode").setValue(makePy(mini.get("Control_SupName").getValue()));
+    $("#Control_SupTypeCode input:first").focus();
+}

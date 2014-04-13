@@ -181,6 +181,15 @@
             return true;
         }
 
+        $(function () {
+            var cardName = mini.get('#Control_CardName').getValue();
+            if (cardName) {
+                mini.get('#btnAbolish').show();
+            } else {
+                mini.get('#btnAbolish').hide();
+            }
+        });
+
         function Add() {
             location.href = "/Ms/MsCardtypeManageEdit";
         }
@@ -205,7 +214,7 @@
                         <a id="btnAbolish" iconcls="icon-no" class="mini-button" plain="true" tooltip="废除(Ctrl+F)">废除</a>
                         <!--<a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>-->
                         <a id="btnPrint" iconcls="icon-print" class="mini-button" plain="true" tooltip="打印">打印</a>
-                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                        <a id="btnReturn" iconcls="icon-undo" class="mini-button" plain="true" tooltip="返回(Ctrl+Q)">返回</a>
                     </td>
                 </tr>
             </table>
@@ -268,12 +277,8 @@
             <fieldset>
                 <legend>卡基础信息</legend>
                 <div class="ablock">
-                    <label for="Control_CardCode">卡类型编码:</label>
-                    <input id="Control_CardCode" value="@Model.Id" name="Id" class="mini-hidden" />
-                    @{
-                        var cardCode = ViewData["CardCode"] == null ? string.Empty : ViewData["CardCode"].ToString();
-                    }
-                    <input type="text" value="@cardCode" class="mini-textbox" readonly="readonly" vtype="maxLength:20" required="true" />
+                    <label for="Control_Id">卡类型编码:</label>
+                    <input type="text" value="@Model.Id" class="mini-textbox" name="Id" id="Control_Id" vtype="maxLength:20" required="true" enabled="false" />
                 </div>
 
                 <div class="ablock">

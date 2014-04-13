@@ -13,6 +13,7 @@
         var clearExameAfterSave = true;
         var activeGrid;
         function SaveData() {
+            
             mini.get("Control_OperatorDate").setValue(new Date());
             var grid1 = mini.get("grid1");
             var grid2 = mini.get("grid2");
@@ -30,7 +31,11 @@
             var form = new mini.Form("#formMain"); // default form
             var o = form.getData(true);
             if (clearExameAfterSave == true) {
-                o["IfExamine"] = "0";
+                if(confirm("编辑商品档案会将状态变为未审核，是否审核？")){
+                    o["IfExamine"] = "1";
+                }else{
+                    o["IfExamine"] = "0"
+                }
             }
 
             o["suppliers"] = mini.encode(grid1.getChanges());
@@ -236,6 +241,12 @@
             mini.get("tabs1").getTab(2).enabled=(mini.get("Control_GoodsType").getValue()=="4");
         }
         function onIfMainBarchanged(e){
+            var grid=mini.get("grid2");
+            if(arrayHaveValue(grid.data,"IfMainSupplier","1")){
+                this.setValue(0);
+            }else{
+                mini.getByName("PackCoef","grid2").setValue("1");
+            }
             //e.sender.getParent().data[0]["PackCoef"]="1";
             //e.sender.getParent().setData({"PackCoef":"1"});
         }
@@ -247,6 +258,38 @@
             mini.get("Control_GoodsSubName").setValue(mini.get("Control_GoodsName").getValue().substr(0,10));
             mini.get("Control_PyCode").setValue(makePy(mini.get("Control_GoodsName").getValue()));
             $("#Control_ArticleNumber input:text:first").focus();
+        }
+        function onActionRenderer(e) {
+            var grid = e.sender;
+            var record = e.record;
+            var uid = record._uid;
+            var rowIndex = e.rowIndex;
+
+            var s = '<a class="New_Button" href="javascript:_newRow(\'' + grid.id + '\')">新增</a>'
+                    +' <a class="Edit_Button" href="javascript:_editRow(\'' + grid.id + '\',\'' + uid + '\')" >编辑</a>'
+                    + ' <a class="Delete_Button" href="javascript:_delRow(\'' + grid.id + '\',\'' + uid + '\')">删除</a>';
+            if(record.IfMainSupplier=="1"){
+                s="";
+            }
+            if(record.IfMainBar=="1"){
+                s="";
+            }
+            if (grid.isEditingRow(record)) {
+                s = '<a class="Update_Button" href="javascript:_updateRow(\'' + grid.id + '\',\'' + uid + '\')">更新</a>'
+                    + ' <a class="Cancel_Button" href="javascript:_cancelRow(\'' + grid.id + '\',\'' + uid + '\')">取消</a>'
+            }
+            return s;
+        }
+        function onSupMainCheck(e){
+            var grid=mini.get("grid1");
+            if(arrayHaveValue(grid.data,"IfMainSupplier","1")){
+                this.setValue(0);
+            }else{
+                
+            }
+        }
+        function onBarCodeMainCheck(e){
+            
         }
         $(function () {
             $("#btnAddSupplier").click(function () {
@@ -342,7 +385,7 @@
                         <a id="btnFormSubmit" iconcls="icon-save" class="mini-button" plain="true" tooltip="保存(Ctrl+S)">保存</a>
                         <a id="btnExame" iconcls="icon-ok" class="mini-button" plain="true" tooltip="审核(Ctrl+E)">审核</a>
                         <a id="btnFormReset" iconcls="icon-undo" class="mini-button" plain="true" tooltip="重置(Esc)">重置</a>
-                        <a id="btnClosePage" iconcls="icon-no" class="mini-button" plain="true" tooltip="关闭(Ctrl+Q)">关闭</a>
+                        <a id="btnReturn" iconcls="icon-undo" class="mini-button" plain="true" tooltip="返回(Ctrl+Q)">返回</a>
                     </td>
                     <td>
                         <div style="display: inline-block; float: right; font-size: 12px; color: #000; font-weight: normal;">
@@ -459,8 +502,16 @@
                     <input type="text"  value="@Model.CheckUnitCode" class="mini-textbox" name="CheckUnitCode" id="Control_CheckUnitCode" vtype="maxLength:20"required="true" />
                 </div>*@
                 <div class="ablock">
+                    <label for="Control_UnderFloorCode">所属楼层:</label>
+                    <input type="text"  value="@Model.UnderFloorCode" class="mini-textbox" name="UnderFloorCode" id="Control_UnderFloorCode" vtype="maxLength:20" />
+                </div>
+                <div class="ablock">
                     <label for="Control_UnderCounterCode">所属柜台:</label>
                     <input type="text"  value="@Model.UnderCounterCode" class="mini-combobox" name="UnderCounterCode" id="Control_UnderCounterCode" url="/Common/GetComboData?table=fb_pa_goods_counter&valueColumn=counter_code&textColumn=counter_name" vtype="maxLength:20" />
+                </div>
+                 <div class="ablock">
+                    <label for="Control_BrandCode">所属品牌:</label>
+                    <input type="text"  value="@Model.BrandCode" class="mini-textbox" name="BrandCode" id="Control_BrandCode" vtype="maxLength:20" />
                 </div>
                 <div class="ablock colspan2">
                     <label for="Control_GoodsName">商品名称:</label>
@@ -488,7 +539,7 @@
                 </div>
                 <div class="ablock">
                     <label for="Control_PackUnitCode">包装单位:</label>
-                    <input type="text"  value="@Model.PackUnitCode" class="mini-combobox" name="PackUnitCode" id="Control_PackUnitCode" url="/Common/GetComboData?table=fb_pa_goods_pack_unit&valueColumn=pack_unit_code&textColumn=pack_unit_name" />
+                    <input type="text"  value="@Model.PackUnitCode" class="mini-combobox" name="PackUnitCode" id="Control_PackUnitCode" url="/Common/GetComboData?table=fb_pa_goods_pack_unit&valueColumn=pack_unit_code&textColumn=pack_unit_name" required="true" />
                 </div>
                 <div class="ablock">
                     <label for="Control_ShelfLife">保质期(天):</label>
@@ -575,17 +626,6 @@
                     <label for="Control_TradePrice">批发价:</label>
                     <input type="text" id="Control_TradePrice" name="TradePrice"  value="@Model.TradePrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
                 </div>
-            </fieldset>
-            <fieldset>
-                <legend>其他信息</legend>
-                <div class="ablock">
-                    <label for="Control_UnderFloorCode">所属楼层:</label>
-                    <input type="text"  value="@Model.UnderFloorCode" class="mini-textbox" name="UnderFloorCode" id="Control_UnderFloorCode" vtype="maxLength:20" />
-                </div>
-                <div class="ablock">
-                    <label for="Control_BrandCode">所属品牌:</label>
-                    <input type="text"  value="@Model.BrandCode" class="mini-textbox" name="BrandCode" id="Control_BrandCode" vtype="maxLength:20" />
-                </div>
                 <div class="ablock">
                     <label for="Control_AvgCost">平均成本:</label>
                     <input type="text" id="Control_AvgCost" name="AvgCost"  value="@Model.AvgCost" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
@@ -599,6 +639,10 @@
                     <label for="Control_SupplyPrice">配送价:</label>
                     <input type="text" id="Control_SupplyPrice" name="SupplyPrice"  value="@Model.SupplyPrice" class="mini-spinner" minValue="-999999999" maxValue="999999999" decimalPlaces="@YiQiWorkFlow.Web.Client.Common.FbBaseController.FbPaBaseSet.SalePreciseLen"/>
                 </div>
+            </fieldset>
+            <fieldset class="hidden">
+                <legend>其他信息</legend>
+                
                 <div class="ablock hidden">
                     <label for="Control_CreateDate">创建时间:</label>
                     <input type="text" id="Control_CreateDate" name="CreateDate"  value="@Model.CreateDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
@@ -629,7 +673,7 @@
                     <input type="text" id="Control_OperatorDate" name="OperatorDate"  value="@Model.OperatorDate" class="mini-datepicker"  format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="true" required="false" />
                 </div>
             </fieldset>
-            <div id="tabs1" class="mini-tabs" activeindex="0" style="width: 100%; height: 200px;" plain="false">
+            <div id="tabs1" class="mini-tabs" activeindex="0" style="width: 100%; height: 200px; margin-top:10px;" plain="false">
                 <div title="供货商信息">
                     <div class="mini-fit">
                         <div id="grid1" class="mini-datagrid" url="/Fb/SearchFbGoodsArchivesSupplierList?GoodsCode=@Model.Id"
@@ -641,7 +685,7 @@
                                 </div>
                                 <div type="checkcolumn" width="30">
                                 </div>
-                                <div renderer="_onActionRenderer" headeralign="center" align="center" width="70">管理</div>
+                                <div renderer="onActionRenderer" headeralign="center" align="center" width="70">管理</div>
                                 <div field="SupCode" headeralign="center" align="center" width="60">
                                     供货商
 					<input id="filter_SupCode" name="SupCode" property="editor" class="mini-combobox" valuefield="Id"  popupWidth="400" textfield="Id" pinyinfield="PyCode" url="/Data/FbSupplierArchives.js" allowinput="true" onvaluechanged="onSupnameChanged" style="width: 100%;" />
@@ -684,7 +728,7 @@
                                 </div>
                                 <div field="IfMainSupplier" headeralign="center" align="center" width="60" renderer="onYesNoRender">
                                     主供货商
-                                    <div id="filter_IfMainSupplier" property="editor" name="IfMainSupplier"  truevalue="1" falsevalue="0" class="mini-checkbox" checked="true" readonly="false"></div>
+                                    <div id="filter_IfMainSupplier" property="editor" name="IfMainSupplier"  truevalue="1" falsevalue="0" class="mini-checkbox" checked="true" readonly="false" onvaluechanged="onSupMainCheck"></div>
                                 </div>
                                 <div field="IfExamine" headeralign="center" align="center" width="60" renderer="onExamRender">
                                     是否审核
@@ -707,7 +751,7 @@
                                 </div>
                                 <div type="checkcolumn" width="30">
                                 </div>
-                                <div renderer="_onActionRenderer" headeralign="center" align="center" width="70">管理</div>
+                                <div renderer="onActionRenderer" headeralign="center" align="center" width="70">管理</div>
                                 <div field="GoodsBarCode" headeralign="center" align="center" width="60">
                                     商品销售码
 					<input id="filter_GoodsBarCode" name="GoodsBarCode" property="editor" class="mini-textbox" style="width: 100%;" onblur="onGoodsBarCodeBlur" />
@@ -748,11 +792,11 @@
                                     营业员提成
 					<input id="filter_PushRate" name="PushRate" property="editor" class="mini-spinner" style="width: 100%;" />
                                 </div>
-                                <div field="IfMainBar" headeralign="center" align="center" width="60">
+                                <div field="IfMainBar" headeralign="center" align="center" width="60" renderer="onYesNoRender">
                                     是否主销售码
-                                    <div id="filter_IfMainBar" property="editor" name="IfMainBar" class="mini-checkbox" truevalue="1" falsevalue="0" checked="true" readonly="false" oncheckedchanged="onIfMainBarchanged"></div>
+                                    <div id="filter_IfMainBar" property="editor" name="IfMainBar" class="mini-checkbox" truevalue="1" falsevalue="0" readonly="false" oncheckedchanged="onIfMainBarchanged"></div>
                                 </div>
-                                <div field="IfExamine" headeralign="center" align="center" width="60">
+                                <div field="IfExamine" headeralign="center" align="center" width="60" renderer="onExamRender">
                                     是否审核
 					<div id="Control_IfExamine" property="editor" name="IfExamine" value="1" truevalue="1" falsevalue="0" class="mini-checkbox" checked="true" readonly="false"></div>
                                 </div>
@@ -849,16 +893,6 @@
             </div>
             <div class="clear">
             </div>
-            @*<div class="control-panel">
-                <div class="control-button">
-                    <input type="button" class="myButton" id="btnFormSubmit" value="保存(Ctrl+S)" />
-                    <input type="button" class="myButton" id="btnExame" value="审核(Ctrl+E)" />
-                    <input type="reset" class="myGrayButton" id="btnFormReset" value="重置(Esc)" />
-                    <input type="button" class="myRedButton" id="btnClosePage" value="关闭(Ctrl+Q)" />
-                </div>
-                <div class="botton-up">
-                </div>
-            </div>*@
         </form>
     </div>
 </body>

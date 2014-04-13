@@ -20,7 +20,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />
+                                    <!--<input id="ifexame" class="mini-combobox" data="[{id:0,text:'否'},{id:1,text:'是'}]" nullitemtext="--是否审核--" emptytext="--是否审核--" style="width: 80px !important;" onvaluechanged="search()" />-->
                                 </td>
                                 <td>
                                     <input id="keyword" class="mini-textbox" emptytext="请输入关键词" style="width: 150px !important;" onenter="search" />
@@ -44,23 +44,51 @@
                 </div>
                 <div type="checkcolumn" width="30">
                 </div>
-                <div name="action" width="60" headeralign="center" align="center" renderer="onActionRenderer"
+                <div name="action" width="80" headeralign="center" align="center" renderer="onActionRenderer"
                      cellstyle="padding:0;">
                     管理
                 </div>
-                <div field="NumberFlow" headeralign="center" align="center" width="60">
+                <div field="Id" headeralign="center" align="center" width="120">
                     流水号
                     <input id="filter_NumberFlow" name="NumberFlow" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
                 </div>
-                <div field="ClearDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                <div field="ClearDate" headeralign="center" align="center" width="80" dateformat="yyyy-MM-dd">
                     清零日期
                     <input id="filter_ClearDate" name="ClearDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
                 </div>
-                <div field="Operator" headeralign="center" align="center" width="60">
+                <div field="CardNumber" headeralign="center" align="center" width="80">
+                    卡号
+                    <input id="filter_CardNumber" name="CardNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="SurfaceNumber" headeralign="center" align="center" width="80">
+                    卡面明码
+                    <input id="filter_SurfaceNumber" name="SurfaceNumber" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="MsCode" headeralign="center" align="center" width="80">
+                    会员编码
+                    <input id="filter_MsCode" name="MsCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="MsName" headeralign="center" align="center" width="80">
+                    会员姓名
+                    <input id="filter_MsName" name="MsName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CardCode" headeralign="center" align="center" width="80">
+                    卡类型编码
+                    <input id="filter_CardCode" name="CardCode" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CardName" headeralign="center" align="center" width="80">
+                    卡类型名称
+                    <input id="filter_CardName" name="CardName" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="CurrentPoints" headeralign="center" align="center" width="80">
+                    当前积分
+                    <input id="filter_CurrentPoints" name="CurrentPoints" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
+                </div>
+                <div field="Operator" headeralign="center" align="center" width="80">
                     操作员
                     <input id="filter_Operator" name="Operator" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
                 </div>
-                <div field="OperatorDate" headeralign="center" align="center" width="60" dateformat="yyyy-MM-dd">
+                <div field="OperatorDate" headeralign="center" align="center" width="80" dateformat="yyyy-MM-dd">
                     操作时间
                     <input id="filter_OperatorDate" name="OperatorDate" property="filter" class="mini-textbox" onvaluechanged="search" style="width:100%;" />
                 </div>
@@ -138,7 +166,8 @@
             grid.load(data);
         }
         function editRow(id) {
-            parent.showTab({ id: "MsPointsClearEdit", text: "积分清零管理管理", iconCls: "icon-edit", url: "/Ms/MsPointsClearEdit/" + id });
+            //parent.showTab({ id: "MsPointsClearEdit", text: "积分清零管理管理", iconCls: "icon-edit", url: "/Ms/MsPointsClearEdit/" + id });
+            location.href = "/Ms/MsPointsClearEdit/" + id;
         }
         function deleteItem(id) {
             $.ajax({
